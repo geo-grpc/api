@@ -3,6 +3,7 @@
 
 import sys
 _b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
+from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -19,10 +20,290 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='geometry_operators.proto',
   package='routeguide',
   syntax='proto3',
-  serialized_pb=_b('\n\x18geometry_operators.proto\x12\nrouteguide\"\xb8\x01\n\x0fServiceGeometry\x12\x13\n\x0bgeometry_id\x18\x01 \x01(\x03\x12\x1e\n\x16geometry_encoding_type\x18\x02 \x01(\t\x12\x17\n\x0fgeometry_string\x18\x03 \x01(\t\x12\x17\n\x0fgeometry_binary\x18\x04 \x01(\x0c\x12>\n\x11spatial_reference\x18\x05 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\"9\n\x17ServiceSpatialReference\x12\x10\n\x08\x65sri_wkt\x18\x05 \x01(\t\x12\x0c\n\x04wkid\x18\x06 \x01(\x05\"o\n\x0eOperatorResult\x12-\n\x08geometry\x18\x01 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x1c\n\x14spatial_relationship\x18\x02 \x01(\x08\x12\x10\n\x08\x64istance\x18\x03 \x01(\x01\"\xd9\x06\n\x0fOperatorRequest\x12\x32\n\rleft_geometry\x18\x01 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x33\n\x0eright_geometry\x18\x02 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x30\n\x0bleft_cursor\x18\x03 \x01(\x0b\x32\x1b.routeguide.OperatorRequest\x12\x31\n\x0cright_cursor\x18\x04 \x01(\x0b\x32\x1b.routeguide.OperatorRequest\x12\x15\n\roperator_type\x18\x05 \x01(\t\x12\x1d\n\x15results_encoding_type\x18\x06 \x01(\t\x12H\n\x1boperation_spatial_reference\x18\x07 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\x12\x45\n\x18result_spatial_reference\x18\x08 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\x12\x19\n\x11\x63onvex_hull_merge\x18\t \x01(\x08\x12\x18\n\x10\x62uffer_distances\x18\n \x03(\x01\x12\x1b\n\x13\x62uffer_union_result\x18\x0b \x01(\x08\x12#\n\x1bintersection_dimension_mask\x18\x0c \x01(\x05\x12\x34\n\rclip_envelope\x18\r \x01(\x0b\x32\x1d.routeguide.ServiceEnvelope2D\x12\x1a\n\x12\x63ut_consider_touch\x18\x0e \x01(\x08\x12\x1a\n\x12\x64\x65nsify_max_length\x18\x0f \x01(\x01\x12\x16\n\x0esimplify_force\x18\x10 \x01(\x08\x12\x17\n\x0foffset_distance\x18\x11 \x01(\x01\x12\x18\n\x10offset_join_type\x18\x12 \x01(\t\x12\x1a\n\x12offset_bevel_ratio\x18\x13 \x01(\x01\x12\x1c\n\x14offset_flatten_error\x18\x14 \x01(\x01\x12 \n\x18generalize_max_deviation\x18\x15 \x01(\x01\x12%\n\x1dgeneralize_remove_degenerates\x18\x16 \x01(\x08\"K\n\x11ServiceEnvelope2D\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01\"3\n\x0cReplacePoint\x12\x10\n\x08latitude\x18\x01 \x01(\x05\x12\x11\n\tlongitude\x18\x02 \x01(\x05\"W\n\tRectangle\x12$\n\x02lo\x18\x01 \x01(\x0b\x32\x18.routeguide.ReplacePoint\x12$\n\x02hi\x18\x02 \x01(\x0b\x32\x18.routeguide.ReplacePoint\"C\n\x07\x46\x65\x61ture\x12\x0c\n\x04name\x18\x01 \x01(\t\x12*\n\x08location\x18\x02 \x01(\x0b\x32\x18.routeguide.ReplacePoint\"7\n\x0f\x46\x65\x61tureDatabase\x12$\n\x07\x66\x65\x61ture\x18\x01 \x03(\x0b\x32\x13.routeguide.Feature\"H\n\tRouteNote\x12*\n\x08location\x18\x01 \x01(\x0b\x32\x18.routeguide.ReplacePoint\x12\x0f\n\x07message\x18\x02 \x01(\t\"b\n\x0cRouteSummary\x12\x13\n\x0bpoint_count\x18\x01 \x01(\x05\x12\x15\n\rfeature_count\x18\x02 \x01(\x05\x12\x10\n\x08\x64istance\x18\x03 \x01(\x05\x12\x14\n\x0c\x65lapsed_time\x18\x04 \x01(\x05\x32\xe9\x02\n\x11GeometryOperators\x12=\n\nGetFeature\x12\x18.routeguide.ReplacePoint\x1a\x13.routeguide.Feature\"\x00\x12M\n\x10\x45xecuteOperation\x12\x1b.routeguide.OperatorRequest\x1a\x1a.routeguide.OperatorResult\"\x00\x12>\n\x0cListFeatures\x12\x15.routeguide.Rectangle\x1a\x13.routeguide.Feature\"\x00\x30\x01\x12\x45\n\x0bRecordRoute\x12\x18.routeguide.ReplacePoint\x1a\x18.routeguide.RouteSummary\"\x00(\x01\x12?\n\tRouteChat\x12\x15.routeguide.RouteNote\x1a\x15.routeguide.RouteNote\"\x00(\x01\x30\x01\x42?\n\x1d\x63om.fogmodel.service.geometryB\x16GeometryOperatorsProtoP\x01\xa2\x02\x03RTGb\x06proto3')
+  serialized_pb=_b('\n\x18geometry_operators.proto\x12\nrouteguide\"\xda\x01\n\x0fServiceGeometry\x12\x13\n\x0bgeometry_id\x18\x01 \x01(\x03\x12@\n\x16geometry_encoding_type\x18\x02 \x01(\x0e\x32 .routeguide.GeometryEncodingType\x12\x17\n\x0fgeometry_string\x18\x03 \x01(\t\x12\x17\n\x0fgeometry_binary\x18\x04 \x01(\x0c\x12>\n\x11spatial_reference\x18\x05 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\"9\n\x17ServiceSpatialReference\x12\x10\n\x08\x65sri_wkt\x18\x05 \x01(\t\x12\x0c\n\x04wkid\x18\x06 \x01(\x05\"o\n\x0eOperatorResult\x12-\n\x08geometry\x18\x01 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x1c\n\x14spatial_relationship\x18\x02 \x01(\x08\x12\x10\n\x08\x64istance\x18\x03 \x01(\x01\"\xfa\x06\n\x0fOperatorRequest\x12\x32\n\rleft_geometry\x18\x01 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x33\n\x0eright_geometry\x18\x02 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x30\n\x0bleft_cursor\x18\x03 \x01(\x0b\x32\x1b.routeguide.OperatorRequest\x12\x31\n\x0cright_cursor\x18\x04 \x01(\x0b\x32\x1b.routeguide.OperatorRequest\x12\x36\n\roperator_type\x18\x05 \x01(\x0e\x32\x1f.routeguide.ServiceOperatorType\x12\x1d\n\x15results_encoding_type\x18\x06 \x01(\t\x12H\n\x1boperation_spatial_reference\x18\x07 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\x12\x45\n\x18result_spatial_reference\x18\x08 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\x12\x19\n\x11\x63onvex_hull_merge\x18\t \x01(\x08\x12\x18\n\x10\x62uffer_distances\x18\n \x03(\x01\x12\x1b\n\x13\x62uffer_union_result\x18\x0b \x01(\x08\x12#\n\x1bintersection_dimension_mask\x18\x0c \x01(\x05\x12\x34\n\rclip_envelope\x18\r \x01(\x0b\x32\x1d.routeguide.ServiceEnvelope2D\x12\x1a\n\x12\x63ut_consider_touch\x18\x0e \x01(\x08\x12\x1a\n\x12\x64\x65nsify_max_length\x18\x0f \x01(\x01\x12\x16\n\x0esimplify_force\x18\x10 \x01(\x08\x12\x17\n\x0foffset_distance\x18\x11 \x01(\x01\x12\x18\n\x10offset_join_type\x18\x12 \x01(\t\x12\x1a\n\x12offset_bevel_ratio\x18\x13 \x01(\x01\x12\x1c\n\x14offset_flatten_error\x18\x14 \x01(\x01\x12 \n\x18generalize_max_deviation\x18\x15 \x01(\x01\x12%\n\x1dgeneralize_remove_degenerates\x18\x16 \x01(\x08\"K\n\x11ServiceEnvelope2D\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01\"3\n\x0cReplacePoint\x12\x10\n\x08latitude\x18\x01 \x01(\x05\x12\x11\n\tlongitude\x18\x02 \x01(\x05\"W\n\tRectangle\x12$\n\x02lo\x18\x01 \x01(\x0b\x32\x18.routeguide.ReplacePoint\x12$\n\x02hi\x18\x02 \x01(\x0b\x32\x18.routeguide.ReplacePoint\"C\n\x07\x46\x65\x61ture\x12\x0c\n\x04name\x18\x01 \x01(\t\x12*\n\x08location\x18\x02 \x01(\x0b\x32\x18.routeguide.ReplacePoint\"7\n\x0f\x46\x65\x61tureDatabase\x12$\n\x07\x66\x65\x61ture\x18\x01 \x03(\x0b\x32\x13.routeguide.Feature\"H\n\tRouteNote\x12*\n\x08location\x18\x01 \x01(\x0b\x32\x18.routeguide.ReplacePoint\x12\x0f\n\x07message\x18\x02 \x01(\t\"b\n\x0cRouteSummary\x12\x13\n\x0bpoint_count\x18\x01 \x01(\x05\x12\x15\n\rfeature_count\x18\x02 \x01(\x05\x12\x10\n\x08\x64istance\x18\x03 \x01(\x05\x12\x14\n\x0c\x65lapsed_time\x18\x04 \x01(\x05*?\n\x14GeometryEncodingType\x12\x07\n\x03wkt\x10\x00\x12\x07\n\x03wkb\x10\x01\x12\x0b\n\x07geojson\x10\x02\x12\x08\n\x04\x65sri\x10\x03*\xb4\x06\n\x13ServiceOperatorType\x12\x0b\n\x07Project\x10\x00\x12\x10\n\x0c\x45xportToJson\x10\x01\x12\x12\n\x0eImportFromJson\x10\x02\x12\x1d\n\x19ImportMapGeometryFromJson\x10\x03\x12\x15\n\x11\x45xportToESRIShape\x10\x04\x12\x17\n\x13ImportFromESRIShape\x10\x05\x12\t\n\x05Union\x10\x06\x12\x0e\n\nDifference\x10\x07\x12\x0f\n\x0bProximity2D\x10\x08\x12\n\n\x06Relate\x10\t\x12\n\n\x06\x45quals\x10\n\x12\x0c\n\x08\x44isjoint\x10\x0b\x12\x0e\n\nIntersects\x10\x0c\x12\n\n\x06Within\x10\r\x12\x0c\n\x08\x43ontains\x10\x0e\x12\x0b\n\x07\x43rosses\x10\x0f\x12\x0b\n\x07Touches\x10\x10\x12\x0c\n\x08Overlaps\x10\x11\x12\n\n\x06\x42uffer\x10\x12\x12\x0c\n\x08\x44istance\x10\x13\x12\x10\n\x0cIntersection\x10\x14\x12\x08\n\x04\x43lip\x10\x15\x12\x07\n\x03\x43ut\x10\x16\x12\x13\n\x0f\x44\x65nsifyByLength\x10\x17\x12\x12\n\x0e\x44\x65nsifyByAngle\x10\x18\x12\x0e\n\nLabelPoint\x10\x19\x12\x12\n\x0eGeodesicBuffer\x10\x1a\x12\x1b\n\x17GeodeticDensifyByLength\x10\x1b\x12\x1a\n\x16ShapePreservingDensify\x10\x1c\x12\x12\n\x0eGeodeticLength\x10\x1d\x12\x10\n\x0cGeodeticArea\x10\x1e\x12\x0c\n\x08Simplify\x10\x1f\x12\x0f\n\x0bSimplifyOGC\x10 \x12\n\n\x06Offset\x10!\x12\x0e\n\nGeneralize\x10\"\x12\x14\n\x10GeneralizeByArea\x10#\x12\x0f\n\x0b\x45xportToWkb\x10$\x12\x11\n\rImportFromWkb\x10%\x12\x0f\n\x0b\x45xportToWkt\x10&\x12\x11\n\rImportFromWkt\x10\'\x12\x15\n\x11ImportFromGeoJson\x10(\x12\x13\n\x0f\x45xportToGeoJson\x10)\x12\x17\n\x13SymmetricDifference\x10*\x12\x0e\n\nConvexHull\x10+\x12\x0c\n\x08\x42oundary\x10,\x12\x10\n\x0cRandomPoints\x10-2\xe9\x02\n\x11GeometryOperators\x12=\n\nGetFeature\x12\x18.routeguide.ReplacePoint\x1a\x13.routeguide.Feature\"\x00\x12M\n\x10\x45xecuteOperation\x12\x1b.routeguide.OperatorRequest\x1a\x1a.routeguide.OperatorResult\"\x00\x12>\n\x0cListFeatures\x12\x15.routeguide.Rectangle\x1a\x13.routeguide.Feature\"\x00\x30\x01\x12\x45\n\x0bRecordRoute\x12\x18.routeguide.ReplacePoint\x1a\x18.routeguide.RouteSummary\"\x00(\x01\x12?\n\tRouteChat\x12\x15.routeguide.RouteNote\x1a\x15.routeguide.RouteNote\"\x00(\x01\x30\x01\x42?\n\x1d\x63om.fogmodel.service.geometryB\x16GeometryOperatorsProtoP\x01\xa2\x02\x03RTGb\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
+_GEOMETRYENCODINGTYPE = _descriptor.EnumDescriptor(
+  name='GeometryEncodingType',
+  full_name='routeguide.GeometryEncodingType',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='wkt', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='wkb', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='geojson', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='esri', index=3, number=3,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=1845,
+  serialized_end=1908,
+)
+_sym_db.RegisterEnumDescriptor(_GEOMETRYENCODINGTYPE)
+
+GeometryEncodingType = enum_type_wrapper.EnumTypeWrapper(_GEOMETRYENCODINGTYPE)
+_SERVICEOPERATORTYPE = _descriptor.EnumDescriptor(
+  name='ServiceOperatorType',
+  full_name='routeguide.ServiceOperatorType',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='Project', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ExportToJson', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ImportFromJson', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ImportMapGeometryFromJson', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ExportToESRIShape', index=4, number=4,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ImportFromESRIShape', index=5, number=5,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Union', index=6, number=6,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Difference', index=7, number=7,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Proximity2D', index=8, number=8,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Relate', index=9, number=9,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Equals', index=10, number=10,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Disjoint', index=11, number=11,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Intersects', index=12, number=12,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Within', index=13, number=13,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Contains', index=14, number=14,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Crosses', index=15, number=15,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Touches', index=16, number=16,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Overlaps', index=17, number=17,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Buffer', index=18, number=18,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Distance', index=19, number=19,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Intersection', index=20, number=20,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Clip', index=21, number=21,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Cut', index=22, number=22,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DensifyByLength', index=23, number=23,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DensifyByAngle', index=24, number=24,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LabelPoint', index=25, number=25,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='GeodesicBuffer', index=26, number=26,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='GeodeticDensifyByLength', index=27, number=27,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ShapePreservingDensify', index=28, number=28,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='GeodeticLength', index=29, number=29,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='GeodeticArea', index=30, number=30,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Simplify', index=31, number=31,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SimplifyOGC', index=32, number=32,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Offset', index=33, number=33,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Generalize', index=34, number=34,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='GeneralizeByArea', index=35, number=35,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ExportToWkb', index=36, number=36,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ImportFromWkb', index=37, number=37,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ExportToWkt', index=38, number=38,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ImportFromWkt', index=39, number=39,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ImportFromGeoJson', index=40, number=40,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ExportToGeoJson', index=41, number=41,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SymmetricDifference', index=42, number=42,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ConvexHull', index=43, number=43,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Boundary', index=44, number=44,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RandomPoints', index=45, number=45,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=1911,
+  serialized_end=2731,
+)
+_sym_db.RegisterEnumDescriptor(_SERVICEOPERATORTYPE)
+
+ServiceOperatorType = enum_type_wrapper.EnumTypeWrapper(_SERVICEOPERATORTYPE)
+wkt = 0
+wkb = 1
+geojson = 2
+esri = 3
+Project = 0
+ExportToJson = 1
+ImportFromJson = 2
+ImportMapGeometryFromJson = 3
+ExportToESRIShape = 4
+ImportFromESRIShape = 5
+Union = 6
+Difference = 7
+Proximity2D = 8
+Relate = 9
+Equals = 10
+Disjoint = 11
+Intersects = 12
+Within = 13
+Contains = 14
+Crosses = 15
+Touches = 16
+Overlaps = 17
+Buffer = 18
+Distance = 19
+Intersection = 20
+Clip = 21
+Cut = 22
+DensifyByLength = 23
+DensifyByAngle = 24
+LabelPoint = 25
+GeodesicBuffer = 26
+GeodeticDensifyByLength = 27
+ShapePreservingDensify = 28
+GeodeticLength = 29
+GeodeticArea = 30
+Simplify = 31
+SimplifyOGC = 32
+Offset = 33
+Generalize = 34
+GeneralizeByArea = 35
+ExportToWkb = 36
+ImportFromWkb = 37
+ExportToWkt = 38
+ImportFromWkt = 39
+ImportFromGeoJson = 40
+ExportToGeoJson = 41
+SymmetricDifference = 42
+ConvexHull = 43
+Boundary = 44
+RandomPoints = 45
 
 
 
@@ -42,8 +323,8 @@ _SERVICEGEOMETRY = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='geometry_encoding_type', full_name='routeguide.ServiceGeometry.geometry_encoding_type', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -81,7 +362,7 @@ _SERVICEGEOMETRY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=41,
-  serialized_end=225,
+  serialized_end=259,
 )
 
 
@@ -118,8 +399,8 @@ _SERVICESPATIALREFERENCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=227,
-  serialized_end=284,
+  serialized_start=261,
+  serialized_end=318,
 )
 
 
@@ -163,8 +444,8 @@ _OPERATORRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=286,
-  serialized_end=397,
+  serialized_start=320,
+  serialized_end=431,
 )
 
 
@@ -205,8 +486,8 @@ _OPERATORREQUEST = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='operator_type', full_name='routeguide.OperatorRequest.operator_type', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -341,8 +622,8 @@ _OPERATORREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=400,
-  serialized_end=1257,
+  serialized_start=434,
+  serialized_end=1324,
 )
 
 
@@ -393,8 +674,8 @@ _SERVICEENVELOPE2D = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1259,
-  serialized_end=1334,
+  serialized_start=1326,
+  serialized_end=1401,
 )
 
 
@@ -431,8 +712,8 @@ _REPLACEPOINT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1336,
-  serialized_end=1387,
+  serialized_start=1403,
+  serialized_end=1454,
 )
 
 
@@ -469,8 +750,8 @@ _RECTANGLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1389,
-  serialized_end=1476,
+  serialized_start=1456,
+  serialized_end=1543,
 )
 
 
@@ -507,8 +788,8 @@ _FEATURE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1478,
-  serialized_end=1545,
+  serialized_start=1545,
+  serialized_end=1612,
 )
 
 
@@ -538,8 +819,8 @@ _FEATUREDATABASE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1547,
-  serialized_end=1602,
+  serialized_start=1614,
+  serialized_end=1669,
 )
 
 
@@ -576,8 +857,8 @@ _ROUTENOTE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1604,
-  serialized_end=1676,
+  serialized_start=1671,
+  serialized_end=1743,
 )
 
 
@@ -628,16 +909,18 @@ _ROUTESUMMARY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1678,
-  serialized_end=1776,
+  serialized_start=1745,
+  serialized_end=1843,
 )
 
+_SERVICEGEOMETRY.fields_by_name['geometry_encoding_type'].enum_type = _GEOMETRYENCODINGTYPE
 _SERVICEGEOMETRY.fields_by_name['spatial_reference'].message_type = _SERVICESPATIALREFERENCE
 _OPERATORRESULT.fields_by_name['geometry'].message_type = _SERVICEGEOMETRY
 _OPERATORREQUEST.fields_by_name['left_geometry'].message_type = _SERVICEGEOMETRY
 _OPERATORREQUEST.fields_by_name['right_geometry'].message_type = _SERVICEGEOMETRY
 _OPERATORREQUEST.fields_by_name['left_cursor'].message_type = _OPERATORREQUEST
 _OPERATORREQUEST.fields_by_name['right_cursor'].message_type = _OPERATORREQUEST
+_OPERATORREQUEST.fields_by_name['operator_type'].enum_type = _SERVICEOPERATORTYPE
 _OPERATORREQUEST.fields_by_name['operation_spatial_reference'].message_type = _SERVICESPATIALREFERENCE
 _OPERATORREQUEST.fields_by_name['result_spatial_reference'].message_type = _SERVICESPATIALREFERENCE
 _OPERATORREQUEST.fields_by_name['clip_envelope'].message_type = _SERVICEENVELOPE2D
@@ -657,6 +940,8 @@ DESCRIPTOR.message_types_by_name['Feature'] = _FEATURE
 DESCRIPTOR.message_types_by_name['FeatureDatabase'] = _FEATUREDATABASE
 DESCRIPTOR.message_types_by_name['RouteNote'] = _ROUTENOTE
 DESCRIPTOR.message_types_by_name['RouteSummary'] = _ROUTESUMMARY
+DESCRIPTOR.enum_types_by_name['GeometryEncodingType'] = _GEOMETRYENCODINGTYPE
+DESCRIPTOR.enum_types_by_name['ServiceOperatorType'] = _SERVICEOPERATORTYPE
 
 ServiceGeometry = _reflection.GeneratedProtocolMessageType('ServiceGeometry', (_message.Message,), dict(
   DESCRIPTOR = _SERVICEGEOMETRY,
