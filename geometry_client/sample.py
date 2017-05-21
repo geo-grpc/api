@@ -4,8 +4,6 @@ from shapely.geometry import LineString
 import geometry_operators_pb2
 import geometry_operators_pb2_grpc
 
-geometry_operators_pb2.GeometryEncodingType
-
 polygon = Polygon([(0, 0), (1, 1), (1, 0)])
 serviceGeom = geometry_operators_pb2.ServiceGeometry(
     geometry_string=polygon.wkt,
