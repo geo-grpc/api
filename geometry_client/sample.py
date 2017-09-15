@@ -4,6 +4,8 @@ from shapely.geometry import LineString
 import geometry_operators_pb2
 import geometry_operators_pb2_grpc
 
+import sys
+
 polygon = Polygon([(0, 0), (1, 1), (1, 0)])
 serviceGeom = geometry_operators_pb2.ServiceGeometry(
     geometry_string=polygon.wkt,
@@ -27,17 +29,30 @@ opRequestProject = geometry_operators_pb2.OperatorRequest(
     operation_spatial_reference=outputSpatialReference)
 
 
-def run():
+def run(address):
+    print "connect to address: ", address
+    print "create channel"
+    channel = grpc.insecure_channel(address)
 
-    channel = grpc.insecure_channel('localhost:8980')
+    print "make stub"
     stub = geometry_operators_pb2_grpc.GeometryOperatorsStub(channel)
+
+    print "make wkt request"
     response = stub.ExecuteOperation(opRequest)
     # print response
-    print "Greeter client received:\n", response
+    print "Client received wkt response:\n", response
 
+    print "make project request"
     response2 = stub.ExecuteOperation(opRequestProject)
-    print "Project response:\n", response2
+    print "Client received project response:\n", response2
 
 
-print "Greeter client sent:\n", serviceGeom
-run()
+if __name__ == "__main__":
+    print "Greeter client sent:\n", serviceGeom
+    if len(sys.argv) == 1:
+        address = 'localhost:8980'
+    else:
+        address = sys.argv[1]
+
+    run(address)
+
