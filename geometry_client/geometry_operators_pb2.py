@@ -22,7 +22,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_pb=_b('\n\x18geometry_operators.proto\x12\nrouteguide\"\xda\x01\n\x0fServiceGeometry\x12\x13\n\x0bgeometry_id\x18\x01 \x01(\x03\x12@\n\x16geometry_encoding_type\x18\x02 \x01(\x0e\x32 .routeguide.GeometryEncodingType\x12\x17\n\x0fgeometry_string\x18\x03 \x01(\t\x12\x17\n\x0fgeometry_binary\x18\x04 \x01(\x0c\x12>\n\x11spatial_reference\x18\x05 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\"9\n\x17ServiceSpatialReference\x12\x10\n\x08\x65sri_wkt\x18\x05 \x01(\t\x12\x0c\n\x04wkid\x18\x06 \x01(\x05\"o\n\x0eOperatorResult\x12-\n\x08geometry\x18\x01 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x1c\n\x14spatial_relationship\x18\x02 \x01(\x08\x12\x10\n\x08\x64istance\x18\x03 \x01(\x01\"\xfa\x06\n\x0fOperatorRequest\x12\x32\n\rleft_geometry\x18\x01 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x33\n\x0eright_geometry\x18\x02 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x30\n\x0bleft_cursor\x18\x03 \x01(\x0b\x32\x1b.routeguide.OperatorRequest\x12\x31\n\x0cright_cursor\x18\x04 \x01(\x0b\x32\x1b.routeguide.OperatorRequest\x12\x36\n\roperator_type\x18\x05 \x01(\x0e\x32\x1f.routeguide.ServiceOperatorType\x12\x1d\n\x15results_encoding_type\x18\x06 \x01(\t\x12H\n\x1boperation_spatial_reference\x18\x07 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\x12\x45\n\x18result_spatial_reference\x18\x08 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\x12\x19\n\x11\x63onvex_hull_merge\x18\t \x01(\x08\x12\x18\n\x10\x62uffer_distances\x18\n \x03(\x01\x12\x1b\n\x13\x62uffer_union_result\x18\x0b \x01(\x08\x12#\n\x1bintersection_dimension_mask\x18\x0c \x01(\x05\x12\x34\n\rclip_envelope\x18\r \x01(\x0b\x32\x1d.routeguide.ServiceEnvelope2D\x12\x1a\n\x12\x63ut_consider_touch\x18\x0e \x01(\x08\x12\x1a\n\x12\x64\x65nsify_max_length\x18\x0f \x01(\x01\x12\x16\n\x0esimplify_force\x18\x10 \x01(\x08\x12\x17\n\x0foffset_distance\x18\x11 \x01(\x01\x12\x18\n\x10offset_join_type\x18\x12 \x01(\t\x12\x1a\n\x12offset_bevel_ratio\x18\x13 \x01(\x01\x12\x1c\n\x14offset_flatten_error\x18\x14 \x01(\x01\x12 \n\x18generalize_max_deviation\x18\x15 \x01(\x01\x12%\n\x1dgeneralize_remove_degenerates\x18\x16 \x01(\x08\"K\n\x11ServiceEnvelope2D\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01\"3\n\x0cReplacePoint\x12\x10\n\x08latitude\x18\x01 \x01(\x05\x12\x11\n\tlongitude\x18\x02 \x01(\x05\"W\n\tRectangle\x12$\n\x02lo\x18\x01 \x01(\x0b\x32\x18.routeguide.ReplacePoint\x12$\n\x02hi\x18\x02 \x01(\x0b\x32\x18.routeguide.ReplacePoint\"C\n\x07\x46\x65\x61ture\x12\x0c\n\x04name\x18\x01 \x01(\t\x12*\n\x08location\x18\x02 \x01(\x0b\x32\x18.routeguide.ReplacePoint\"7\n\x0f\x46\x65\x61tureDatabase\x12$\n\x07\x66\x65\x61ture\x18\x01 \x03(\x0b\x32\x13.routeguide.Feature\"H\n\tRouteNote\x12*\n\x08location\x18\x01 \x01(\x0b\x32\x18.routeguide.ReplacePoint\x12\x0f\n\x07message\x18\x02 \x01(\t\"b\n\x0cRouteSummary\x12\x13\n\x0bpoint_count\x18\x01 \x01(\x05\x12\x15\n\rfeature_count\x18\x02 \x01(\x05\x12\x10\n\x08\x64istance\x18\x03 \x01(\x05\x12\x14\n\x0c\x65lapsed_time\x18\x04 \x01(\x05*?\n\x14GeometryEncodingType\x12\x07\n\x03wkt\x10\x00\x12\x07\n\x03wkb\x10\x01\x12\x0b\n\x07geojson\x10\x02\x12\x08\n\x04\x65sri\x10\x03*\xb4\x06\n\x13ServiceOperatorType\x12\x0b\n\x07Project\x10\x00\x12\x10\n\x0c\x45xportToJson\x10\x01\x12\x12\n\x0eImportFromJson\x10\x02\x12\x1d\n\x19ImportMapGeometryFromJson\x10\x03\x12\x15\n\x11\x45xportToESRIShape\x10\x04\x12\x17\n\x13ImportFromESRIShape\x10\x05\x12\t\n\x05Union\x10\x06\x12\x0e\n\nDifference\x10\x07\x12\x0f\n\x0bProximity2D\x10\x08\x12\n\n\x06Relate\x10\t\x12\n\n\x06\x45quals\x10\n\x12\x0c\n\x08\x44isjoint\x10\x0b\x12\x0e\n\nIntersects\x10\x0c\x12\n\n\x06Within\x10\r\x12\x0c\n\x08\x43ontains\x10\x0e\x12\x0b\n\x07\x43rosses\x10\x0f\x12\x0b\n\x07Touches\x10\x10\x12\x0c\n\x08Overlaps\x10\x11\x12\n\n\x06\x42uffer\x10\x12\x12\x0c\n\x08\x44istance\x10\x13\x12\x10\n\x0cIntersection\x10\x14\x12\x08\n\x04\x43lip\x10\x15\x12\x07\n\x03\x43ut\x10\x16\x12\x13\n\x0f\x44\x65nsifyByLength\x10\x17\x12\x12\n\x0e\x44\x65nsifyByAngle\x10\x18\x12\x0e\n\nLabelPoint\x10\x19\x12\x12\n\x0eGeodesicBuffer\x10\x1a\x12\x1b\n\x17GeodeticDensifyByLength\x10\x1b\x12\x1a\n\x16ShapePreservingDensify\x10\x1c\x12\x12\n\x0eGeodeticLength\x10\x1d\x12\x10\n\x0cGeodeticArea\x10\x1e\x12\x0c\n\x08Simplify\x10\x1f\x12\x0f\n\x0bSimplifyOGC\x10 \x12\n\n\x06Offset\x10!\x12\x0e\n\nGeneralize\x10\"\x12\x14\n\x10GeneralizeByArea\x10#\x12\x0f\n\x0b\x45xportToWkb\x10$\x12\x11\n\rImportFromWkb\x10%\x12\x0f\n\x0b\x45xportToWkt\x10&\x12\x11\n\rImportFromWkt\x10\'\x12\x15\n\x11ImportFromGeoJson\x10(\x12\x13\n\x0f\x45xportToGeoJson\x10)\x12\x17\n\x13SymmetricDifference\x10*\x12\x0e\n\nConvexHull\x10+\x12\x0c\n\x08\x42oundary\x10,\x12\x10\n\x0cRandomPoints\x10-2\xe9\x02\n\x11GeometryOperators\x12=\n\nGetFeature\x12\x18.routeguide.ReplacePoint\x1a\x13.routeguide.Feature\"\x00\x12M\n\x10\x45xecuteOperation\x12\x1b.routeguide.OperatorRequest\x1a\x1a.routeguide.OperatorResult\"\x00\x12>\n\x0cListFeatures\x12\x15.routeguide.Rectangle\x1a\x13.routeguide.Feature\"\x00\x30\x01\x12\x45\n\x0bRecordRoute\x12\x18.routeguide.ReplacePoint\x1a\x18.routeguide.RouteSummary\"\x00(\x01\x12?\n\tRouteChat\x12\x15.routeguide.RouteNote\x1a\x15.routeguide.RouteNote\"\x00(\x01\x30\x01\x42?\n\x1d\x63om.fogmodel.service.geometryB\x16GeometryOperatorsProtoP\x01\xa2\x02\x03RTGb\x06proto3')
 )
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _GEOMETRYENCODINGTYPE = _descriptor.EnumDescriptor(
   name='GeometryEncodingType',
@@ -942,6 +941,7 @@ DESCRIPTOR.message_types_by_name['RouteNote'] = _ROUTENOTE
 DESCRIPTOR.message_types_by_name['RouteSummary'] = _ROUTESUMMARY
 DESCRIPTOR.enum_types_by_name['GeometryEncodingType'] = _GEOMETRYENCODINGTYPE
 DESCRIPTOR.enum_types_by_name['ServiceOperatorType'] = _SERVICEOPERATORTYPE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ServiceGeometry = _reflection.GeneratedProtocolMessageType('ServiceGeometry', (_message.Message,), dict(
   DESCRIPTOR = _SERVICEGEOMETRY,
@@ -1023,14 +1023,74 @@ _sym_db.RegisterMessage(RouteSummary)
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\035com.fogmodel.service.geometryB\026GeometryOperatorsProtoP\001\242\002\003RTG'))
+
+_GEOMETRYOPERATORS = _descriptor.ServiceDescriptor(
+  name='GeometryOperators',
+  full_name='routeguide.GeometryOperators',
+  file=DESCRIPTOR,
+  index=0,
+  options=None,
+  serialized_start=2734,
+  serialized_end=3095,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='GetFeature',
+    full_name='routeguide.GeometryOperators.GetFeature',
+    index=0,
+    containing_service=None,
+    input_type=_REPLACEPOINT,
+    output_type=_FEATURE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ExecuteOperation',
+    full_name='routeguide.GeometryOperators.ExecuteOperation',
+    index=1,
+    containing_service=None,
+    input_type=_OPERATORREQUEST,
+    output_type=_OPERATORRESULT,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListFeatures',
+    full_name='routeguide.GeometryOperators.ListFeatures',
+    index=2,
+    containing_service=None,
+    input_type=_RECTANGLE,
+    output_type=_FEATURE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RecordRoute',
+    full_name='routeguide.GeometryOperators.RecordRoute',
+    index=3,
+    containing_service=None,
+    input_type=_REPLACEPOINT,
+    output_type=_ROUTESUMMARY,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RouteChat',
+    full_name='routeguide.GeometryOperators.RouteChat',
+    index=4,
+    containing_service=None,
+    input_type=_ROUTENOTE,
+    output_type=_ROUTENOTE,
+    options=None,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_GEOMETRYOPERATORS)
+
+DESCRIPTOR.services_by_name['GeometryOperators'] = _GEOMETRYOPERATORS
+
 try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class GeometryOperatorsStub(object):
