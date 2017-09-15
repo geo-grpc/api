@@ -2,3 +2,5 @@
 .idea
 
 **/*.pyc
+#./geometry_client/geometry_operators_pb2.py
+#./geometry_client/geometry_operators_pb2_grpc.py
