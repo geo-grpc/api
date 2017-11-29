@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/geometry-client-python.iml" filepath="$PROJECT_DIR$/.idea/geometry-client-python.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/geometryclientpython.iml" filepath="$PROJECT_DIR$/.idea/geometryclientpython.iml" />
     </modules>
   </component>

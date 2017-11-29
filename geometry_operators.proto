@@ -1,0 +1,282 @@
+// Copyright 2015, Google Inc.
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following disclaimer
+// in the documentation and/or other materials provided with the
+// distribution.
+//     * Neither the name of Google Inc. nor the names of its
+// contributors may be used to endorse or promote products derived from
+// this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.fogmodel.service.geometry";
+option java_outer_classname = "GeometryOperatorsProto";
+option objc_class_prefix = "RTG";
+
+package routeguide;
+
+// Interface exported by the server.
+service GeometryOperators {
+    // A simple RPC.
+    //
+    // Obtains the feature at a given position.
+    //
+    // A feature with an empty name is returned if there's no feature at the given
+    // position.
+    rpc GetFeature(ReplacePoint) returns (Feature) {}
+
+    // Execute a geometry operation
+    rpc ExecuteOperation(OperatorRequest) returns (OperatorResult) {}
+
+    // A server-to-client streaming RPC.
+    //
+    // Obtains the Features available within the given Rectangle.  Results are
+    // streamed rather than returned at once (e.g. in a response message with a
+    // repeated field), as the rectangle may cover a large area and contain a
+    // huge number of features.
+    rpc ListFeatures(Rectangle) returns (stream Feature) {}
+
+    // A client-to-server streaming RPC.
+    //
+    // Accepts a stream of Points on a route being traversed, returning a
+    // RouteSummary when traversal is completed.
+    rpc RecordRoute(stream ReplacePoint) returns (RouteSummary) {}
+
+    // A Bidirectional streaming RPC.
+    //
+    // Accepts a stream of RouteNotes sent while a route is being traversed,
+    // while receiving other RouteNotes (e.g. from other users).
+    rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+}
+
+enum GeometryEncodingType {
+    wkt = 0;
+    wkb = 1;
+    geojson = 2;
+    esri = 3;
+}
+
+enum ServiceOperatorType {
+    Project = 0;
+
+    ExportToJson = 1;
+    ImportFromJson = 2;
+    ImportMapGeometryFromJson = 3;
+    ExportToESRIShape = 4;
+    ImportFromESRIShape = 5;
+
+    Union = 6;
+    Difference = 7;
+
+    Proximity2D = 8;
+
+    Relate = 9;
+    Equals = 10;
+    Disjoint = 11;
+    Intersects = 12;
+    Within = 13;
+    Contains = 14;
+    Crosses = 15;
+    Touches = 16;
+    Overlaps = 17;
+
+    Buffer = 18;
+    Distance = 19;
+    Intersection = 20;
+    Clip = 21;
+    Cut = 22;
+    DensifyByLength = 23;
+    DensifyByAngle = 24;
+    LabelPoint = 25;
+
+    GeodesicBuffer = 26;
+    GeodeticDensifyByLength = 27;
+    ShapePreservingDensify = 28;
+    GeodeticLength = 29;
+    GeodeticArea = 30;
+
+    Simplify = 31;
+    SimplifyOGC = 32;
+    Offset = 33;
+    Generalize = 34;
+    GeneralizeByArea = 35;
+
+    ExportToWkb = 36;
+    ImportFromWkb = 37;
+    ExportToWkt = 38;
+    ImportFromWkt = 39;
+    ImportFromGeoJson = 40;
+    ExportToGeoJson = 41;
+    SymmetricDifference = 42;
+    ConvexHull = 43;
+    Boundary = 44;
+    RandomPoints = 45;
+}
+
+message ServiceGeometry {
+    // id is usually associated with position in file format or database
+    int64 geometry_id = 1;
+
+    // TODO review esri encoding typename (this is for the esri shape binary format)
+    // type can be 'wkt', 'wkb', 'geojson', or 'esri'
+    GeometryEncodingType geometry_encoding_type = 2;
+
+    // the geometry encoded as base64 (wkb or esri) or as a string (wkt or geojson)
+    string geometry_string = 3;
+
+    bytes geometry_binary = 4;
+
+    ServiceSpatialReference spatial_reference = 5;
+}
+
+message ServiceSpatialReference {
+    // String that is a wkt, wkid, esri_wkt, or a proj4 string
+    string esri_wkt = 5;
+
+    // type is either 'wkid', 'esri_wkt'
+    int32 wkid = 6;
+}
+
+message OperatorResult {
+    ServiceGeometry geometry = 1;
+
+    bool spatial_relationship = 2;
+
+    double distance = 3;
+
+    map<int32, bool> relate_map = 4;
+}
+
+message OperatorRequest {
+    ServiceGeometry left_geometry = 1;
+    ServiceGeometry right_geometry = 2;
+
+    OperatorRequest left_cursor = 3;
+    OperatorRequest right_cursor = 4;
+
+    // TODO replace with Enum
+    ServiceOperatorType operator_type = 5;
+
+    string results_encoding_type = 6;
+
+    ServiceSpatialReference operation_spatial_reference = 7;
+
+    ServiceSpatialReference result_spatial_reference = 8;
+
+    bool convex_hull_merge = 9;
+
+    repeated double buffer_distances = 10;
+    bool buffer_union_result = 11;
+
+    int32 intersection_dimension_mask = 12;
+
+    ServiceEnvelope2D clip_envelope = 13;
+
+    bool cut_consider_touch = 14;
+
+    double densify_max_length = 15;
+
+    bool simplify_force = 16;
+
+    double offset_distance = 17;
+    //TODO replace with Enum
+    string offset_join_type = 18;
+    double offset_bevel_ratio = 19;
+    double offset_flatten_error = 20;
+
+    double generalize_max_deviation = 21;
+    bool generalize_remove_degenerates = 22;
+
+}
+
+message ServiceEnvelope2D {
+    double xmin = 1;
+    double ymin = 2;
+    double xmax = 3;
+    double ymax = 4;
+}
+
+
+// Points are represented as latitude-longitude pairs in the E7 representation
+// (degrees multiplied by 10**7 and rounded to the nearest integer).
+// Latitudes should be in the range +/- 90 degrees and longitude should be in
+// the range +/- 180 degrees (inclusive).
+message ReplacePoint {
+    int32 latitude = 1;
+    int32 longitude = 2;
+}
+
+// A latitude-longitude rectangle, represented as two diagonally opposite
+// points "lo" and "hi".
+message Rectangle {
+    // One corner of the rectangle.
+    ReplacePoint lo = 1;
+
+    // The other corner of the rectangle.
+    ReplacePoint hi = 2;
+}
+
+// A feature names something at a given point.
+//
+// If a feature could not be named, the name is empty.
+message Feature {
+    // The name of the feature.
+    string name = 1;
+
+    // The point where the feature is detected.
+    ReplacePoint location = 2;
+}
+
+// Not used in the RPC.  Instead, this is here for the form serialized to disk.
+message FeatureDatabase {
+    repeated Feature feature = 1;
+}
+
+// A RouteNote is a message sent while at a given point.
+message RouteNote {
+    // The location from which the message is sent.
+    ReplacePoint location = 1;
+
+    // The message to be sent.
+    string message = 2;
+}
+
+// A RouteSummary is received in response to a RecordRoute rpc.
+//
+// It contains the number of individual points received, the number of
+// detected features, and the total distance covered as the cumulative sum of
+// the distance between each point.
+message RouteSummary {
+    // The number of points received.
+    int32 point_count = 1;
+
+    // The number of known features passed while traversing the route.
+    int32 feature_count = 2;
+
+    // The distance covered in metres.
+    int32 distance = 3;
+
+    // The duration of the traversal in seconds.
+    int32 elapsed_time = 4;
+}
