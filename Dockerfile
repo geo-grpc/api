@@ -9,14 +9,14 @@ RUN python -m pip install --upgrade pip && \
     python -m pip install grpcio && \
     pip install grpcio-tools
 
-WORKDIR /opt/src
+WORKDIR /opt/src/geometry-client-python
 COPY ./ ./
 
 # TODO build proto each time.
 # ARG PROTO_PATH=./proto
 # RUN python -mgrpc_tools.protoc -I=../../src/main/proto/ --python_out=./ --grpc_python_out=./ ../../src/main/proto/geometry_operators.proto
 
-ENV HOSTNAME="localhost:8980"
+ENV GEOMETRY_SERVICE_HOST="localhost:8980"
 EXPOSE 80
 
-CMD python /opt/src/geometry_client/sample.py "$HOSTNAME"
+CMD python /opt/src/test/sample.py "$GEOMETRY_SERVICE_HOST"
