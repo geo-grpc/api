@@ -14,7 +14,7 @@ class TestBasic(unittest.TestCase):
 
     def setUpClass(cls):
         # TODO setup environment variable
-        # address = os.getenv("GEOMETRY_SERVICE_HOST", 'localhost:8980')
+        address = os.getenv("GEOMETRY_SERVICE_HOST", 'localhost:8980')
         #
         # print("connect to address: ", address)
         # print("create channel")
