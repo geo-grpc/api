@@ -12,13 +12,13 @@ class TestBasic(unittest.TestCase):
 
     channel = None
 
-    def setUpClass(cls):
+    def setUp(self):
         # TODO setup environment variable
         address = os.getenv("GEOMETRY_SERVICE_HOST", 'localhost:8980')
         #
         # print("connect to address: ", address)
         # print("create channel")
-        # cls.channel = grpc.insecure_channel(address)
+        self.channel = grpc.insecure_channel(address)
 
     def test_1(self):
         self.assertTrue(True)
