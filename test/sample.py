@@ -20,11 +20,15 @@
 
 import os
 import unittest
+import random
+import datetime
 
-import grpc
+from functools import partial
+
 from shapely.wkt import loads
-from shapely.geometry import LineString
 from shapely.geometry import Polygon
+from shapely.geometry import LineString, Point
+from shapely.ops import cascaded_union
 from epl.geometry.geometry_operators_pb2 import *
 import epl.geometry.geometry_operators_pb2_grpc as geometry_grpc
 
@@ -46,13 +50,13 @@ class TestBasic(unittest.TestCase):
         polygon = Polygon([(0, 0), (1, 1), (1, 0)])
 
         serviceGeom = ServiceGeometry()
-        serviceGeom.geometry_binary.extend([bytes(polygon.wkb)])
+        serviceGeom.geometry_binary.extend([polygon.wkb])
         serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
 
         opRequest = OperatorRequest(left_geometry=serviceGeom,
                                     operator_type=ServiceOperatorType.Value('Buffer'),
-                                    buffer_distances=[1.2])
-
+                                    buffer_distances=[1.2],
+                                    results_encoding_type="wkt")
 
         print("make stub")
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
@@ -80,7 +84,8 @@ class TestBasic(unittest.TestCase):
         opRequestProject = OperatorRequest(
             left_geometry=serviceGeomPolyline,
             operator_type=ServiceOperatorType.Value('Project'),
-            operation_spatial_reference=outputSpatialReference)
+            operation_spatial_reference=outputSpatialReference,
+            results_encoding_type="wkt")
 
         print("make project request")
         response2 = stub.ExecuteOperation(opRequestProject)
@@ -89,3 +94,48 @@ class TestBasic(unittest.TestCase):
         expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
         actual = response2.geometry.geometry_string[0]
         self.assertEqual(expected, actual)
+
+    def test_union(self):
+        # Build patches as in dissolved.py
+        r = partial(random.uniform, -20.0, 20.0)
+        points = [Point(r(), r()) for i in range(10000)]
+
+        shape_start = datetime.datetime.now()
+        spots = [p.buffer(2.5) for p in points]
+        patches = cascaded_union(spots)
+        shape_end = datetime.datetime.now()
+        shape_delta = shape_end - shape_start
+        shape_microseconds = int(shape_delta.total_seconds() * 1000)
+
+        stub = geometry_grpc.GeometryOperatorsStub(self.channel)
+        serviceGeom = ServiceGeometry()
+
+        epl_start = datetime.datetime.now()
+        serviceGeom.geometry_binary.extend([p.wkb for p in points])
+        serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
+
+        opRequestBuffer = OperatorRequest(left_geometry=serviceGeom,
+                                          operator_type=ServiceOperatorType.Value('Buffer'),
+                                          buffer_distances=[2.5])
+
+        opRequestUnion = OperatorRequest(left_cursor=opRequestBuffer,
+                                         operator_type=ServiceOperatorType.Value('Union'))
+
+        response = stub.ExecuteOperation(opRequestUnion)
+        epl_end = datetime.datetime.now()
+        epl_delta = epl_end - epl_start
+        epl_microseconds = int(epl_delta.total_seconds() * 1000)
+        self.assertGreater(shape_microseconds, epl_microseconds)
+        self.assertGreater(shape_microseconds / 8, epl_microseconds)
+        print("completed")
+        # print("make stub")
+        # stub = geometry_grpc.GeometryOperatorsStub(self.channel)
+        #
+        # print("make wkt request")
+        # response = stub.ExecuteOperation(opRequest)
+        # # print response
+        # print("Client received wkt response:\n", response)
+        # result_buffered = loads(response.geometry.geometry_string[0])
+        # self.assertTrue(result_buffered.contains(polygon))
+        # shapely_buffer = polygon.buffer(1.2)
+        # self.assertAlmostEqual(shapely_buffer.area, result_buffered.area, 2)
