@@ -22,35 +22,35 @@ class TestBasic(unittest.TestCase):
 
     def test_1(self):
         self.assertTrue(True)
-        # polygon = Polygon([(0, 0), (1, 1), (1, 0)])
-        # serviceGeom = ServiceGeometry(
-        #     geometry_string=polygon.wkt,
-        #     geometry_encoding_type=GeometryEncodingType.Value('wkt'))
-        #
-        # opRequest = OperatorRequest(left_geometry=serviceGeom, operator_type=ServiceOperatorType.Value('ExportToWkt'))
-        #
-        # serviceSpatialReference = ServiceSpatialReference(wkid=32632)
-        # outputSpatialReference = ServiceSpatialReference(wkid=4326)
-        # polyline = LineString([(500000,       0), (400000,  100000), (600000, -100000)])
-        #
-        # serviceGeomPolyline = ServiceGeometry(
-        #     geometry_string=polyline.wkt,
-        #     geometry_encoding_type=GeometryEncodingType.Value('wkt'),
-        #     spatial_reference=serviceSpatialReference)
-        #
-        # opRequestProject = OperatorRequest(
-        #     left_geometry=serviceGeomPolyline,
-        #     operator_type=ServiceOperatorType.Value('Project'),
-        #     operation_spatial_reference=outputSpatialReference)
-        #
-        # print("make stub")
-        # stub = geometry_grpc.GeometryOperatorsStub(self.channel)
-        #
-        # print("make wkt request")
-        # response = stub.ExecuteOperation(opRequest)
-        # # print response
-        # print("Client received wkt response:\n", response)
-        #
-        # print("make project request")
-        # response2 = stub.ExecuteOperation(opRequestProject)
-        # print("Client received project response:\n", response2)
+        polygon = Polygon([(0, 0), (1, 1), (1, 0)])
+        serviceGeom = ServiceGeometry(
+            geometry_string=polygon.wkt,
+            geometry_encoding_type=GeometryEncodingType.Value('wkt'))
+
+        opRequest = OperatorRequest(left_geometry=serviceGeom, operator_type=ServiceOperatorType.Value('ExportToWkt'))
+
+        serviceSpatialReference = ServiceSpatialReference(wkid=32632)
+        outputSpatialReference = ServiceSpatialReference(wkid=4326)
+        polyline = LineString([(500000,       0), (400000,  100000), (600000, -100000)])
+
+        serviceGeomPolyline = ServiceGeometry(
+            geometry_string=polyline.wkt,
+            geometry_encoding_type=GeometryEncodingType.Value('wkt'),
+            spatial_reference=serviceSpatialReference)
+
+        opRequestProject = OperatorRequest(
+            left_geometry=serviceGeomPolyline,
+            operator_type=ServiceOperatorType.Value('Project'),
+            operation_spatial_reference=outputSpatialReference)
+
+        print("make stub")
+        stub = geometry_grpc.GeometryOperatorsStub(self.channel)
+
+        print("make wkt request")
+        response = stub.ExecuteOperation(opRequest)
+        # print response
+        print("Client received wkt response:\n", response)
+
+        print("make project request")
+        response2 = stub.ExecuteOperation(opRequestProject)
+        print("Client received project response:\n", response2)
