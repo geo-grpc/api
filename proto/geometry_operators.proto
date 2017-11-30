@@ -37,7 +37,8 @@ service GeometryOperators {
     // position.
     rpc GetFeature(ReplacePoint) returns (Feature) {}
 
-    // Execute a geometry operation
+    // Execute a single geometry operation
+    // TODO should be a stream
     rpc ExecuteOperation(OperatorRequest) returns (OperatorResult) {}
 
     // A server-to-client streaming RPC.
@@ -61,6 +62,9 @@ service GeometryOperators {
     rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
 }
 
+/*
+  Type of input geometry
+*/
 enum GeometryEncodingType {
     wkt = 0;
     wkb = 1;
@@ -127,16 +131,15 @@ enum ServiceOperatorType {
 
 message ServiceGeometry {
     // id is usually associated with position in file format or database
-    int64 geometry_id = 1;
+    repeated int64 geometry_id = 1;
 
     // TODO review esri encoding typename (this is for the esri shape binary format)
     // type can be 'wkt', 'wkb', 'geojson', or 'esri'
     GeometryEncodingType geometry_encoding_type = 2;
 
     // the geometry encoded as base64 (wkb or esri) or as a string (wkt or geojson)
-    string geometry_string = 3;
-
-    bytes geometry_binary = 4;
+    repeated string geometry_string = 3;
+    repeated bytes geometry_binary = 4;
 
     ServiceSpatialReference spatial_reference = 5;
 }

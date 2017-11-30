@@ -58,7 +58,8 @@ class GeometryOperatorsServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def ExecuteOperation(self, request, context):
-    """Execute a geometry operation
+    """Execute a single geometry operation
+    TODO should be a stream
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
