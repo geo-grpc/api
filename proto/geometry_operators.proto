@@ -21,7 +21,7 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.fogmodel.service.geometry";
+option java_package = "com.epl.service.geometry";
 option java_outer_classname = "GeometryOperatorsProto";
 option objc_class_prefix = "RTG";
 
@@ -69,6 +69,7 @@ enum GeometryEncodingType {
     wkt = 0;
     wkb = 1;
     geojson = 2;
+    // TODO change to esrishape
     esri = 3;
 }
 
@@ -172,6 +173,7 @@ message OperatorRequest {
     // TODO replace with Enum
     ServiceOperatorType operator_type = 5;
 
+    // TODO change to GeometryEncodingType
     string results_encoding_type = 6;
 
     ServiceSpatialReference operation_spatial_reference = 7;
