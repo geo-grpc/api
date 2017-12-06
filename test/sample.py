@@ -104,9 +104,8 @@ class TestBasic(unittest.TestCase):
     def test_union(self):
         # Build patches as in dissolved.py
         r = partial(random.uniform, -20.0, 20.0)
-        shape_start = datetime.datetime.now()
-        points = [Point(r(), r()) for i in range(10000)]
 
+        points = [Point(r(), r()) for i in range(10000)]
         spots = [p.buffer(2.5) for p in points]
         shape_start = datetime.datetime.now()
         patches = cascaded_union(spots)
@@ -116,21 +115,16 @@ class TestBasic(unittest.TestCase):
         print(shape_microseconds)
         print(patches.wkt)
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
-        serviceGeom = ServiceGeometry()
 
-        epl_start = datetime.datetime.now()
-        serviceGeom.geometry_binary.extend([p.wkb for p in points])
+        serviceGeom = ServiceGeometry()
+        serviceGeom.geometry_binary.extend(spots)
         serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
 
-        opRequestBuffer = OperatorRequest(left_geometry=serviceGeom,
-                                          operator_type=ServiceOperatorType.Value('Buffer'),
-                                          buffer_distances=[2.5],
-                                          buffer_union_result=True)
+        opRequestUnion = OperatorRequest(left_geometry=serviceGeom,
+                                         operator_type=ServiceOperatorType.Value('Union'))
 
-        # opRequestUnion = OperatorRequest(left_cursor=opRequestBuffer,
-        #                                  operator_type=ServiceOperatorType.Value('Union'))
-
-        response = stub.ExecuteOperation(opRequestBuffer)
+        epl_start = datetime.datetime.now()
+        response = stub.ExecuteOperation(opRequestUnion)
         unioned_result = wkbloads(response.geometry.geometry_binary[0])
         epl_end = datetime.datetime.now()
         epl_delta = epl_end - epl_start
