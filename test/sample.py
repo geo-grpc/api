@@ -116,8 +116,9 @@ class TestBasic(unittest.TestCase):
         print(patches.wkt)
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
 
+        spots_wkb = [s.wkb for s in spots]
         serviceGeom = ServiceGeometry()
-        serviceGeom.geometry_binary.extend(spots)
+        serviceGeom.geometry_binary.extend(spots_wkb)
         serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
 
         opRequestUnion = OperatorRequest(left_geometry=serviceGeom,
