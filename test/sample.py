@@ -27,6 +27,7 @@ import grpc
 from functools import partial
 
 from shapely.wkt import loads
+from shapely.wkb import loads as wkbloads
 from shapely.geometry import Polygon
 from shapely.geometry import LineString, Point
 from shapely.ops import cascaded_union
@@ -45,6 +46,10 @@ class TestBasic(unittest.TestCase):
         # print("connect to address: ", address)
         # print("create channel")
         self.channel = grpc.insecure_channel(address)
+
+        # options
+        # https://groups.google.com/forum/#!topic/grpc-io/ZtBCw4ZqLqE
+        # https://github.com/justdoit0823/grpc-resolver/blob/master/grpcresolver/registry.py
 
     def test_buffer(self):
         self.assertTrue(True)
@@ -99,15 +104,17 @@ class TestBasic(unittest.TestCase):
     def test_union(self):
         # Build patches as in dissolved.py
         r = partial(random.uniform, -20.0, 20.0)
+        shape_start = datetime.datetime.now()
         points = [Point(r(), r()) for i in range(10000)]
 
-        shape_start = datetime.datetime.now()
         spots = [p.buffer(2.5) for p in points]
+        shape_start = datetime.datetime.now()
         patches = cascaded_union(spots)
         shape_end = datetime.datetime.now()
         shape_delta = shape_end - shape_start
         shape_microseconds = int(shape_delta.total_seconds() * 1000)
-
+        print(shape_microseconds)
+        print(patches.wkt)
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
         serviceGeom = ServiceGeometry()
 
@@ -117,18 +124,23 @@ class TestBasic(unittest.TestCase):
 
         opRequestBuffer = OperatorRequest(left_geometry=serviceGeom,
                                           operator_type=ServiceOperatorType.Value('Buffer'),
-                                          buffer_distances=[2.5])
+                                          buffer_distances=[2.5],
+                                          buffer_union_result=True)
 
-        opRequestUnion = OperatorRequest(left_cursor=opRequestBuffer,
-                                         operator_type=ServiceOperatorType.Value('Union'))
+        # opRequestUnion = OperatorRequest(left_cursor=opRequestBuffer,
+        #                                  operator_type=ServiceOperatorType.Value('Union'))
 
-        response = stub.ExecuteOperation(opRequestUnion)
+        response = stub.ExecuteOperation(opRequestBuffer)
+        unioned_result = wkbloads(response.geometry.geometry_binary[0])
         epl_end = datetime.datetime.now()
         epl_delta = epl_end - epl_start
         epl_microseconds = int(epl_delta.total_seconds() * 1000)
         self.assertGreater(shape_microseconds, epl_microseconds)
-        self.assertGreater(shape_microseconds / 8, epl_microseconds)
-        print("completed")
+        # self.assertGreater(shape_microseconds / 8, epl_microseconds)
+
+        # self.assertAlmostEqual(patches.area, unioned_result.area, 4)
+
+
         # print("make stub")
         # stub = geometry_grpc.GeometryOperatorsStub(self.channel)
         #
