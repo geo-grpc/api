@@ -100,37 +100,37 @@ class TestBasic(unittest.TestCase):
         actual = response2.geometry.geometry_string[0]
         self.assertEqual(expected, actual)
 
-    unittest.skip("performance problems with union")
-    def test_union(self):
-        # Build patches as in dissolved.py
-        r = partial(random.uniform, -20.0, 20.0)
-
-        points = [Point(r(), r()) for i in range(10000)]
-        spots = [p.buffer(2.5) for p in points]
-        shape_start = datetime.datetime.now()
-        patches = cascaded_union(spots)
-        shape_end = datetime.datetime.now()
-        shape_delta = shape_end - shape_start
-        shape_microseconds = int(shape_delta.total_seconds() * 1000)
-        print(shape_microseconds)
-        print(patches.wkt)
-        stub = geometry_grpc.GeometryOperatorsStub(self.channel)
-
-        spots_wkb = [s.wkb for s in spots]
-        serviceGeom = ServiceGeometry()
-        serviceGeom.geometry_binary.extend(spots_wkb)
-        serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
-
-        opRequestUnion = OperatorRequest(left_geometry=serviceGeom,
-                                         operator_type=ServiceOperatorType.Value('Union'))
-
-        epl_start = datetime.datetime.now()
-        response = stub.ExecuteOperation(opRequestUnion)
-        unioned_result = wkbloads(response.geometry.geometry_binary[0])
-        epl_end = datetime.datetime.now()
-        epl_delta = epl_end - epl_start
-        epl_microseconds = int(epl_delta.total_seconds() * 1000)
-        self.assertGreater(shape_microseconds, epl_microseconds)
+    # unittest.skip("performance problems with union")
+    # def test_union(self):
+    #     # Build patches as in dissolved.py
+    #     r = partial(random.uniform, -20.0, 20.0)
+    #
+    #     points = [Point(r(), r()) for i in range(10000)]
+    #     spots = [p.buffer(2.5) for p in points]
+    #     shape_start = datetime.datetime.now()
+    #     patches = cascaded_union(spots)
+    #     shape_end = datetime.datetime.now()
+    #     shape_delta = shape_end - shape_start
+    #     shape_microseconds = int(shape_delta.total_seconds() * 1000)
+    #     print(shape_microseconds)
+    #     print(patches.wkt)
+    #     stub = geometry_grpc.GeometryOperatorsStub(self.channel)
+    #
+    #     spots_wkb = [s.wkb for s in spots]
+    #     serviceGeom = ServiceGeometry()
+    #     serviceGeom.geometry_binary.extend(spots_wkb)
+    #     serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
+    #
+    #     opRequestUnion = OperatorRequest(left_geometry=serviceGeom,
+    #                                      operator_type=ServiceOperatorType.Value('Union'))
+    #
+    #     epl_start = datetime.datetime.now()
+    #     response = stub.ExecuteOperation(opRequestUnion)
+    #     unioned_result = wkbloads(response.geometry.geometry_binary[0])
+    #     epl_end = datetime.datetime.now()
+    #     epl_delta = epl_end - epl_start
+    #     epl_microseconds = int(epl_delta.total_seconds() * 1000)
+    #     self.assertGreater(shape_microseconds, epl_microseconds)
         # self.assertGreater(shape_microseconds / 8, epl_microseconds)
 
         # self.assertAlmostEqual(patches.area, unioned_result.area, 4)
