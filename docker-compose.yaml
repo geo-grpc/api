@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  geometry-service-java:
+    image: us.gcr.io/echoparklabs/geometry-service-java:latest
+    ports:
+      - "8980"
+
+  geometry-client:
+    image: us.gcr.io/echoparklabs/geometry-client-python
+    environment:
+      GEOMETRY_SERVICE_HOST: geometry-service-java:8980
+
+    command: ["/bin/bash", "-c", "pip install pytest; cd test; pytest --verbose --junitxml=./testresults.xml sample.py; ls; cd ../"]
