@@ -61,7 +61,7 @@ class TestBasic(unittest.TestCase):
         opRequest = OperatorRequest(left_geometry=serviceGeom,
                                     operator_type=ServiceOperatorType.Value('Buffer'),
                                     buffer_distances=[1.2],
-                                    results_encoding_type="wkt")
+                                    results_encoding_type=GeometryEncodingType.Value('wkt'))
 
         print("make stub")
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
@@ -90,7 +90,7 @@ class TestBasic(unittest.TestCase):
             left_geometry=serviceGeomPolyline,
             operator_type=ServiceOperatorType.Value('Project'),
             operation_spatial_reference=outputSpatialReference,
-            results_encoding_type="wkt")
+            results_encoding_type=GeometryEncodingType.Value('wkt'))
 
         print("make project request")
         response2 = stub.ExecuteOperation(opRequestProject)
