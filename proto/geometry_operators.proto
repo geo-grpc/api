@@ -25,9 +25,11 @@ option java_package = "com.epl.service.geometry";
 option java_outer_classname = "GeometryOperatorsProto";
 option objc_class_prefix = "RTG";
 
-package routeguide;
+package geometry;
 
-// Interface exported by the server.
+/*
+ gRPC Interfaces for working with geometry operators
+*/
 service GeometryOperators {
     // Execute a single geometry operation
     rpc ExecuteOperation(OperatorRequest) returns (OperatorResult) {}
@@ -36,45 +38,46 @@ service GeometryOperators {
 }
 
 /*
-  Type of input geometry
+  Type of geometry encoding
 */
 enum GeometryEncodingType {
-    wkb = 0;
-    wkt = 1;
-    geojson = 2;
-    // TODO change to esrishape
-    esrishape = 3;
+    unknown = 0;
+    wkb = 1; // well-known binary
+    wkt = 2; // well-known text
+    geojson = 3; // geojson
+    esrishape = 4; // esri shape binary
 }
 
 enum ServiceOperatorType {
-    Project = 0;
+    Project = 0; // project geometry from one spatial reference to another
 
-    ExportToJson = 1;
-    ImportFromJson = 2;
-    ImportMapGeometryFromJson = 3;
-    ExportToESRIShape = 4;
-    ImportFromESRIShape = 5;
+    ExportToJson = 1; // deprecated
+    ImportFromJson = 2; // deprecated
+    ImportMapGeometryFromJson = 3; // deprecated
 
-    Union = 6;
-    Difference = 7;
+    ExportToESRIShape = 4; // export geometry to esrishape binary data
+    ImportFromESRIShape = 5; // import from esrishape binary data
 
-    Proximity2D = 8;
+    Union = 6; // union two or more geometries
+    Difference = 7; // difference of two or more geometries
 
-    Relate = 9;
-    Equals = 10;
-    Disjoint = 11;
-    Intersects = 12;
-    Within = 13;
-    Contains = 14;
-    Crosses = 15;
-    Touches = 16;
-    Overlaps = 17;
+    Proximity2D = 8; // not yet exposed
 
-    Buffer = 18;
-    Distance = 19;
-    Intersection = 20;
-    Clip = 21;
-    Cut = 22;
+    Relate = 9; // not yet exposed 9 dim
+    Equals = 10; // relational operator
+    Disjoint = 11; // relational operator
+    Intersects = 12; // relational operator
+    Within = 13; // relational operator
+    Contains = 14; // relational operator
+    Crosses = 15; // relational operator
+    Touches = 16; // relational operator
+    Overlaps = 17; // relational operator
+
+    Buffer = 18; // create polygon that is a buffer of the inputs
+    Distance = 19; // not yet exposed
+    Intersection = 20; // intersection of two or more geometries
+    Clip = 21; // clip a geometry or geometries by a horizon
+    Cut = 22; // cut geometry
     DensifyByLength = 23;
     DensifyByAngle = 24;
     LabelPoint = 25;
@@ -119,6 +122,7 @@ message ServiceGeometry {
 }
 
 message ServiceSpatialReference {
+    string proj4 = 4;
     // String that is a wkt, wkid, esri_wkt, or a proj4 string
     string esri_wkt = 5;
 
@@ -151,9 +155,11 @@ message OperatorRequest {
 
     ServiceSpatialReference result_spatial_reference = 8;
 
+
     bool convex_hull_merge = 9;
 
     repeated double buffer_distances = 10;
+    repeated double buffer_max_deviations = 28;
     bool buffer_union_result = 11;
 
     int32 intersection_dimension_mask = 12;
@@ -174,7 +180,13 @@ message OperatorRequest {
 
     double generalize_max_deviation = 21;
     bool generalize_remove_degenerates = 22;
+    int32 max_vertices_in_full_circle = 23;
 
+    repeated bool generic_booleans = 24;
+    repeated double generic_doubles = 25;
+    repeated int32 generic_integers = 26;
+    repeated string generic_strings = 27;
+    string de_9im = 29;
 }
 
 message ServiceEnvelope2D {
