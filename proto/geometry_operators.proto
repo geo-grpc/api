@@ -104,6 +104,7 @@ enum ServiceOperatorType {
     ConvexHull = 43;
     Boundary = 44;
     RandomPoints = 45;
+    EnclosingCircle = 46;
 }
 
 message ServiceGeometry {
