@@ -15,3 +15,5 @@ epl/geometry/__pycache__/
 epl_geometry.egg-info/
 projection-horizon.ipynb
 temp/
+epl/geometry/geometry_operators_pb2.py
+epl/geometry/geometry_operators_pb2_grpc.py
