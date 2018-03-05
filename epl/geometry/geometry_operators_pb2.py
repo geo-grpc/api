@@ -18,19 +18,19 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='geometry_operators.proto',
-  package='routeguide',
+  package='geometry',
   syntax='proto3',
-  serialized_pb=_b('\n\x18geometry_operators.proto\x12\nrouteguide\"\xda\x01\n\x0fServiceGeometry\x12\x13\n\x0bgeometry_id\x18\x01 \x03(\x03\x12@\n\x16geometry_encoding_type\x18\x02 \x01(\x0e\x32 .routeguide.GeometryEncodingType\x12\x17\n\x0fgeometry_string\x18\x03 \x03(\t\x12\x17\n\x0fgeometry_binary\x18\x04 \x03(\x0c\x12>\n\x11spatial_reference\x18\x05 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\"9\n\x17ServiceSpatialReference\x12\x10\n\x08\x65sri_wkt\x18\x05 \x01(\t\x12\x0c\n\x04wkid\x18\x06 \x01(\x05\"\xe0\x01\n\x0eOperatorResult\x12-\n\x08geometry\x18\x01 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x1c\n\x14spatial_relationship\x18\x02 \x01(\x08\x12\x10\n\x08\x64istance\x18\x03 \x01(\x01\x12=\n\nrelate_map\x18\x04 \x03(\x0b\x32).routeguide.OperatorResult.RelateMapEntry\x1a\x30\n\x0eRelateMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\"\xfa\x06\n\x0fOperatorRequest\x12\x32\n\rleft_geometry\x18\x01 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x33\n\x0eright_geometry\x18\x02 \x01(\x0b\x32\x1b.routeguide.ServiceGeometry\x12\x30\n\x0bleft_cursor\x18\x03 \x01(\x0b\x32\x1b.routeguide.OperatorRequest\x12\x31\n\x0cright_cursor\x18\x04 \x01(\x0b\x32\x1b.routeguide.OperatorRequest\x12\x36\n\roperator_type\x18\x05 \x01(\x0e\x32\x1f.routeguide.ServiceOperatorType\x12\x1d\n\x15results_encoding_type\x18\x06 \x01(\t\x12H\n\x1boperation_spatial_reference\x18\x07 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\x12\x45\n\x18result_spatial_reference\x18\x08 \x01(\x0b\x32#.routeguide.ServiceSpatialReference\x12\x19\n\x11\x63onvex_hull_merge\x18\t \x01(\x08\x12\x18\n\x10\x62uffer_distances\x18\n \x03(\x01\x12\x1b\n\x13\x62uffer_union_result\x18\x0b \x01(\x08\x12#\n\x1bintersection_dimension_mask\x18\x0c \x01(\x05\x12\x34\n\rclip_envelope\x18\r \x01(\x0b\x32\x1d.routeguide.ServiceEnvelope2D\x12\x1a\n\x12\x63ut_consider_touch\x18\x0e \x01(\x08\x12\x1a\n\x12\x64\x65nsify_max_length\x18\x0f \x01(\x01\x12\x16\n\x0esimplify_force\x18\x10 \x01(\x08\x12\x17\n\x0foffset_distance\x18\x11 \x01(\x01\x12\x18\n\x10offset_join_type\x18\x12 \x01(\t\x12\x1a\n\x12offset_bevel_ratio\x18\x13 \x01(\x01\x12\x1c\n\x14offset_flatten_error\x18\x14 \x01(\x01\x12 \n\x18generalize_max_deviation\x18\x15 \x01(\x01\x12%\n\x1dgeneralize_remove_degenerates\x18\x16 \x01(\x08\"K\n\x11ServiceEnvelope2D\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01\"3\n\x0cReplacePoint\x12\x10\n\x08latitude\x18\x01 \x01(\x05\x12\x11\n\tlongitude\x18\x02 \x01(\x05\"W\n\tRectangle\x12$\n\x02lo\x18\x01 \x01(\x0b\x32\x18.routeguide.ReplacePoint\x12$\n\x02hi\x18\x02 \x01(\x0b\x32\x18.routeguide.ReplacePoint\"C\n\x07\x46\x65\x61ture\x12\x0c\n\x04name\x18\x01 \x01(\t\x12*\n\x08location\x18\x02 \x01(\x0b\x32\x18.routeguide.ReplacePoint\"7\n\x0f\x46\x65\x61tureDatabase\x12$\n\x07\x66\x65\x61ture\x18\x01 \x03(\x0b\x32\x13.routeguide.Feature\"H\n\tRouteNote\x12*\n\x08location\x18\x01 \x01(\x0b\x32\x18.routeguide.ReplacePoint\x12\x0f\n\x07message\x18\x02 \x01(\t\"b\n\x0cRouteSummary\x12\x13\n\x0bpoint_count\x18\x01 \x01(\x05\x12\x15\n\rfeature_count\x18\x02 \x01(\x05\x12\x10\n\x08\x64istance\x18\x03 \x01(\x05\x12\x14\n\x0c\x65lapsed_time\x18\x04 \x01(\x05*?\n\x14GeometryEncodingType\x12\x07\n\x03wkt\x10\x00\x12\x07\n\x03wkb\x10\x01\x12\x0b\n\x07geojson\x10\x02\x12\x08\n\x04\x65sri\x10\x03*\xb4\x06\n\x13ServiceOperatorType\x12\x0b\n\x07Project\x10\x00\x12\x10\n\x0c\x45xportToJson\x10\x01\x12\x12\n\x0eImportFromJson\x10\x02\x12\x1d\n\x19ImportMapGeometryFromJson\x10\x03\x12\x15\n\x11\x45xportToESRIShape\x10\x04\x12\x17\n\x13ImportFromESRIShape\x10\x05\x12\t\n\x05Union\x10\x06\x12\x0e\n\nDifference\x10\x07\x12\x0f\n\x0bProximity2D\x10\x08\x12\n\n\x06Relate\x10\t\x12\n\n\x06\x45quals\x10\n\x12\x0c\n\x08\x44isjoint\x10\x0b\x12\x0e\n\nIntersects\x10\x0c\x12\n\n\x06Within\x10\r\x12\x0c\n\x08\x43ontains\x10\x0e\x12\x0b\n\x07\x43rosses\x10\x0f\x12\x0b\n\x07Touches\x10\x10\x12\x0c\n\x08Overlaps\x10\x11\x12\n\n\x06\x42uffer\x10\x12\x12\x0c\n\x08\x44istance\x10\x13\x12\x10\n\x0cIntersection\x10\x14\x12\x08\n\x04\x43lip\x10\x15\x12\x07\n\x03\x43ut\x10\x16\x12\x13\n\x0f\x44\x65nsifyByLength\x10\x17\x12\x12\n\x0e\x44\x65nsifyByAngle\x10\x18\x12\x0e\n\nLabelPoint\x10\x19\x12\x12\n\x0eGeodesicBuffer\x10\x1a\x12\x1b\n\x17GeodeticDensifyByLength\x10\x1b\x12\x1a\n\x16ShapePreservingDensify\x10\x1c\x12\x12\n\x0eGeodeticLength\x10\x1d\x12\x10\n\x0cGeodeticArea\x10\x1e\x12\x0c\n\x08Simplify\x10\x1f\x12\x0f\n\x0bSimplifyOGC\x10 \x12\n\n\x06Offset\x10!\x12\x0e\n\nGeneralize\x10\"\x12\x14\n\x10GeneralizeByArea\x10#\x12\x0f\n\x0b\x45xportToWkb\x10$\x12\x11\n\rImportFromWkb\x10%\x12\x0f\n\x0b\x45xportToWkt\x10&\x12\x11\n\rImportFromWkt\x10\'\x12\x15\n\x11ImportFromGeoJson\x10(\x12\x13\n\x0f\x45xportToGeoJson\x10)\x12\x17\n\x13SymmetricDifference\x10*\x12\x0e\n\nConvexHull\x10+\x12\x0c\n\x08\x42oundary\x10,\x12\x10\n\x0cRandomPoints\x10-2\xe9\x02\n\x11GeometryOperators\x12=\n\nGetFeature\x12\x18.routeguide.ReplacePoint\x1a\x13.routeguide.Feature\"\x00\x12M\n\x10\x45xecuteOperation\x12\x1b.routeguide.OperatorRequest\x1a\x1a.routeguide.OperatorResult\"\x00\x12>\n\x0cListFeatures\x12\x15.routeguide.Rectangle\x1a\x13.routeguide.Feature\"\x00\x30\x01\x12\x45\n\x0bRecordRoute\x12\x18.routeguide.ReplacePoint\x1a\x18.routeguide.RouteSummary\"\x00(\x01\x12?\n\tRouteChat\x12\x15.routeguide.RouteNote\x1a\x15.routeguide.RouteNote\"\x00(\x01\x30\x01\x42?\n\x1d\x63om.fogmodel.service.geometryB\x16GeometryOperatorsProtoP\x01\xa2\x02\x03RTGb\x06proto3')
+  serialized_pb=_b('\n\x18geometry_operators.proto\x12\x08geometry\"\xd6\x01\n\x0fServiceGeometry\x12\x13\n\x0bgeometry_id\x18\x01 \x03(\x03\x12>\n\x16geometry_encoding_type\x18\x02 \x01(\x0e\x32\x1e.geometry.GeometryEncodingType\x12\x17\n\x0fgeometry_string\x18\x03 \x03(\t\x12\x17\n\x0fgeometry_binary\x18\x04 \x03(\x0c\x12<\n\x11spatial_reference\x18\x05 \x01(\x0b\x32!.geometry.ServiceSpatialReference\"H\n\x17ServiceSpatialReference\x12\r\n\x05proj4\x18\x04 \x01(\t\x12\x10\n\x08\x65sri_wkt\x18\x05 \x01(\t\x12\x0c\n\x04wkid\x18\x06 \x01(\x05\"\xdc\x01\n\x0eOperatorResult\x12+\n\x08geometry\x18\x01 \x01(\x0b\x32\x19.geometry.ServiceGeometry\x12\x1c\n\x14spatial_relationship\x18\x02 \x01(\x08\x12\x10\n\x08\x64istance\x18\x03 \x01(\x01\x12;\n\nrelate_map\x18\x04 \x03(\x0b\x32\'.geometry.OperatorResult.RelateMapEntry\x1a\x30\n\x0eRelateMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\"\xc4\x08\n\x0fOperatorRequest\x12\x30\n\rleft_geometry\x18\x01 \x01(\x0b\x32\x19.geometry.ServiceGeometry\x12\x31\n\x0eright_geometry\x18\x02 \x01(\x0b\x32\x19.geometry.ServiceGeometry\x12.\n\x0bleft_cursor\x18\x03 \x01(\x0b\x32\x19.geometry.OperatorRequest\x12/\n\x0cright_cursor\x18\x04 \x01(\x0b\x32\x19.geometry.OperatorRequest\x12\x34\n\roperator_type\x18\x05 \x01(\x0e\x32\x1d.geometry.ServiceOperatorType\x12=\n\x15results_encoding_type\x18\x06 \x01(\x0e\x32\x1e.geometry.GeometryEncodingType\x12\x46\n\x1boperation_spatial_reference\x18\x07 \x01(\x0b\x32!.geometry.ServiceSpatialReference\x12\x43\n\x18result_spatial_reference\x18\x08 \x01(\x0b\x32!.geometry.ServiceSpatialReference\x12\x19\n\x11\x63onvex_hull_merge\x18\t \x01(\x08\x12\x18\n\x10\x62uffer_distances\x18\n \x03(\x01\x12\x1d\n\x15\x62uffer_max_deviations\x18\x1c \x03(\x01\x12\x1b\n\x13\x62uffer_union_result\x18\x0b \x01(\x08\x12#\n\x1bintersection_dimension_mask\x18\x0c \x01(\x05\x12\x32\n\rclip_envelope\x18\r \x01(\x0b\x32\x1b.geometry.ServiceEnvelope2D\x12\x1a\n\x12\x63ut_consider_touch\x18\x0e \x01(\x08\x12\x1a\n\x12\x64\x65nsify_max_length\x18\x0f \x01(\x01\x12\x16\n\x0esimplify_force\x18\x10 \x01(\x08\x12\x17\n\x0foffset_distance\x18\x11 \x01(\x01\x12\x18\n\x10offset_join_type\x18\x12 \x01(\t\x12\x1a\n\x12offset_bevel_ratio\x18\x13 \x01(\x01\x12\x1c\n\x14offset_flatten_error\x18\x14 \x01(\x01\x12 \n\x18generalize_max_deviation\x18\x15 \x01(\x01\x12%\n\x1dgeneralize_remove_degenerates\x18\x16 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x17 \x01(\x05\x12\x18\n\x10generic_booleans\x18\x18 \x03(\x08\x12\x17\n\x0fgeneric_doubles\x18\x19 \x03(\x01\x12\x18\n\x10generic_integers\x18\x1a \x03(\x05\x12\x17\n\x0fgeneric_strings\x18\x1b \x03(\t\x12\x0e\n\x06\x64\x65_9im\x18\x1d \x01(\t\"K\n\x11ServiceEnvelope2D\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01*Q\n\x14GeometryEncodingType\x12\x0b\n\x07unknown\x10\x00\x12\x07\n\x03wkb\x10\x01\x12\x07\n\x03wkt\x10\x02\x12\x0b\n\x07geojson\x10\x03\x12\r\n\tesrishape\x10\x04*\xc9\x06\n\x13ServiceOperatorType\x12\x0b\n\x07Project\x10\x00\x12\x10\n\x0c\x45xportToJson\x10\x01\x12\x12\n\x0eImportFromJson\x10\x02\x12\x1d\n\x19ImportMapGeometryFromJson\x10\x03\x12\x15\n\x11\x45xportToESRIShape\x10\x04\x12\x17\n\x13ImportFromESRIShape\x10\x05\x12\t\n\x05Union\x10\x06\x12\x0e\n\nDifference\x10\x07\x12\x0f\n\x0bProximity2D\x10\x08\x12\n\n\x06Relate\x10\t\x12\n\n\x06\x45quals\x10\n\x12\x0c\n\x08\x44isjoint\x10\x0b\x12\x0e\n\nIntersects\x10\x0c\x12\n\n\x06Within\x10\r\x12\x0c\n\x08\x43ontains\x10\x0e\x12\x0b\n\x07\x43rosses\x10\x0f\x12\x0b\n\x07Touches\x10\x10\x12\x0c\n\x08Overlaps\x10\x11\x12\n\n\x06\x42uffer\x10\x12\x12\x0c\n\x08\x44istance\x10\x13\x12\x10\n\x0cIntersection\x10\x14\x12\x08\n\x04\x43lip\x10\x15\x12\x07\n\x03\x43ut\x10\x16\x12\x13\n\x0f\x44\x65nsifyByLength\x10\x17\x12\x12\n\x0e\x44\x65nsifyByAngle\x10\x18\x12\x0e\n\nLabelPoint\x10\x19\x12\x12\n\x0eGeodesicBuffer\x10\x1a\x12\x1b\n\x17GeodeticDensifyByLength\x10\x1b\x12\x1a\n\x16ShapePreservingDensify\x10\x1c\x12\x12\n\x0eGeodeticLength\x10\x1d\x12\x10\n\x0cGeodeticArea\x10\x1e\x12\x0c\n\x08Simplify\x10\x1f\x12\x0f\n\x0bSimplifyOGC\x10 \x12\n\n\x06Offset\x10!\x12\x0e\n\nGeneralize\x10\"\x12\x14\n\x10GeneralizeByArea\x10#\x12\x0f\n\x0b\x45xportToWkb\x10$\x12\x11\n\rImportFromWkb\x10%\x12\x0f\n\x0b\x45xportToWkt\x10&\x12\x11\n\rImportFromWkt\x10\'\x12\x15\n\x11ImportFromGeoJson\x10(\x12\x13\n\x0f\x45xportToGeoJson\x10)\x12\x17\n\x13SymmetricDifference\x10*\x12\x0e\n\nConvexHull\x10+\x12\x0c\n\x08\x42oundary\x10,\x12\x10\n\x0cRandomPoints\x10-\x12\x13\n\x0f\x45nclosingCircle\x10.2\xfe\x01\n\x11GeometryOperators\x12I\n\x10\x45xecuteOperation\x12\x19.geometry.OperatorRequest\x1a\x18.geometry.OperatorResult\"\x00\x12M\n\x10StreamOperations\x12\x19.geometry.OperatorRequest\x1a\x18.geometry.OperatorResult\"\x00(\x01\x30\x01\x12O\n\x12StreamOperationsEx\x12\x19.geometry.OperatorRequest\x1a\x18.geometry.OperatorResult\"\x00(\x01\x30\x01\x42:\n\x18\x63om.epl.service.geometryB\x16GeometryOperatorsProtoP\x01\xa2\x02\x03RTGb\x06proto3')
 )
 
 _GEOMETRYENCODINGTYPE = _descriptor.EnumDescriptor(
   name='GeometryEncodingType',
-  full_name='routeguide.GeometryEncodingType',
+  full_name='geometry.GeometryEncodingType',
   filename=None,
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='wkt', index=0, number=0,
+      name='unknown', index=0, number=0,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
@@ -38,25 +38,29 @@ _GEOMETRYENCODINGTYPE = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='geojson', index=2, number=2,
+      name='wkt', index=2, number=2,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='esri', index=3, number=3,
+      name='geojson', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='esrishape', index=4, number=4,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=1959,
-  serialized_end=2022,
+  serialized_start=1724,
+  serialized_end=1805,
 )
 _sym_db.RegisterEnumDescriptor(_GEOMETRYENCODINGTYPE)
 
 GeometryEncodingType = enum_type_wrapper.EnumTypeWrapper(_GEOMETRYENCODINGTYPE)
 _SERVICEOPERATORTYPE = _descriptor.EnumDescriptor(
   name='ServiceOperatorType',
-  full_name='routeguide.ServiceOperatorType',
+  full_name='geometry.ServiceOperatorType',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -244,19 +248,24 @@ _SERVICEOPERATORTYPE = _descriptor.EnumDescriptor(
       name='RandomPoints', index=45, number=45,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='EnclosingCircle', index=46, number=46,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=2025,
-  serialized_end=2845,
+  serialized_start=1808,
+  serialized_end=2649,
 )
 _sym_db.RegisterEnumDescriptor(_SERVICEOPERATORTYPE)
 
 ServiceOperatorType = enum_type_wrapper.EnumTypeWrapper(_SERVICEOPERATORTYPE)
-wkt = 0
+unknown = 0
 wkb = 1
-geojson = 2
-esri = 3
+wkt = 2
+geojson = 3
+esrishape = 4
 Project = 0
 ExportToJson = 1
 ImportFromJson = 2
@@ -303,46 +312,47 @@ SymmetricDifference = 42
 ConvexHull = 43
 Boundary = 44
 RandomPoints = 45
+EnclosingCircle = 46
 
 
 
 _SERVICEGEOMETRY = _descriptor.Descriptor(
   name='ServiceGeometry',
-  full_name='routeguide.ServiceGeometry',
+  full_name='geometry.ServiceGeometry',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='geometry_id', full_name='routeguide.ServiceGeometry.geometry_id', index=0,
+      name='geometry_id', full_name='geometry.ServiceGeometry.geometry_id', index=0,
       number=1, type=3, cpp_type=2, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='geometry_encoding_type', full_name='routeguide.ServiceGeometry.geometry_encoding_type', index=1,
+      name='geometry_encoding_type', full_name='geometry.ServiceGeometry.geometry_encoding_type', index=1,
       number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='geometry_string', full_name='routeguide.ServiceGeometry.geometry_string', index=2,
+      name='geometry_string', full_name='geometry.ServiceGeometry.geometry_string', index=2,
       number=3, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='geometry_binary', full_name='routeguide.ServiceGeometry.geometry_binary', index=3,
+      name='geometry_binary', full_name='geometry.ServiceGeometry.geometry_binary', index=3,
       number=4, type=12, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='spatial_reference', full_name='routeguide.ServiceGeometry.spatial_reference', index=4,
+      name='spatial_reference', full_name='geometry.ServiceGeometry.spatial_reference', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -360,27 +370,34 @@ _SERVICEGEOMETRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=41,
-  serialized_end=259,
+  serialized_start=39,
+  serialized_end=253,
 )
 
 
 _SERVICESPATIALREFERENCE = _descriptor.Descriptor(
   name='ServiceSpatialReference',
-  full_name='routeguide.ServiceSpatialReference',
+  full_name='geometry.ServiceSpatialReference',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='esri_wkt', full_name='routeguide.ServiceSpatialReference.esri_wkt', index=0,
+      name='proj4', full_name='geometry.ServiceSpatialReference.proj4', index=0,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='esri_wkt', full_name='geometry.ServiceSpatialReference.esri_wkt', index=1,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='wkid', full_name='routeguide.ServiceSpatialReference.wkid', index=1,
+      name='wkid', full_name='geometry.ServiceSpatialReference.wkid', index=2,
       number=6, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -398,27 +415,27 @@ _SERVICESPATIALREFERENCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=261,
-  serialized_end=318,
+  serialized_start=255,
+  serialized_end=327,
 )
 
 
 _OPERATORRESULT_RELATEMAPENTRY = _descriptor.Descriptor(
   name='RelateMapEntry',
-  full_name='routeguide.OperatorResult.RelateMapEntry',
+  full_name='geometry.OperatorResult.RelateMapEntry',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='key', full_name='routeguide.OperatorResult.RelateMapEntry.key', index=0,
+      name='key', full_name='geometry.OperatorResult.RelateMapEntry.key', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='value', full_name='routeguide.OperatorResult.RelateMapEntry.value', index=1,
+      name='value', full_name='geometry.OperatorResult.RelateMapEntry.value', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -436,40 +453,40 @@ _OPERATORRESULT_RELATEMAPENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=497,
-  serialized_end=545,
+  serialized_start=502,
+  serialized_end=550,
 )
 
 _OPERATORRESULT = _descriptor.Descriptor(
   name='OperatorResult',
-  full_name='routeguide.OperatorResult',
+  full_name='geometry.OperatorResult',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='geometry', full_name='routeguide.OperatorResult.geometry', index=0,
+      name='geometry', full_name='geometry.OperatorResult.geometry', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='spatial_relationship', full_name='routeguide.OperatorResult.spatial_relationship', index=1,
+      name='spatial_relationship', full_name='geometry.OperatorResult.spatial_relationship', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='distance', full_name='routeguide.OperatorResult.distance', index=2,
+      name='distance', full_name='geometry.OperatorResult.distance', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='relate_map', full_name='routeguide.OperatorResult.relate_map', index=3,
+      name='relate_map', full_name='geometry.OperatorResult.relate_map', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -487,169 +504,218 @@ _OPERATORRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=321,
-  serialized_end=545,
+  serialized_start=330,
+  serialized_end=550,
 )
 
 
 _OPERATORREQUEST = _descriptor.Descriptor(
   name='OperatorRequest',
-  full_name='routeguide.OperatorRequest',
+  full_name='geometry.OperatorRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='left_geometry', full_name='routeguide.OperatorRequest.left_geometry', index=0,
+      name='left_geometry', full_name='geometry.OperatorRequest.left_geometry', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='right_geometry', full_name='routeguide.OperatorRequest.right_geometry', index=1,
+      name='right_geometry', full_name='geometry.OperatorRequest.right_geometry', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='left_cursor', full_name='routeguide.OperatorRequest.left_cursor', index=2,
+      name='left_cursor', full_name='geometry.OperatorRequest.left_cursor', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='right_cursor', full_name='routeguide.OperatorRequest.right_cursor', index=3,
+      name='right_cursor', full_name='geometry.OperatorRequest.right_cursor', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='operator_type', full_name='routeguide.OperatorRequest.operator_type', index=4,
+      name='operator_type', full_name='geometry.OperatorRequest.operator_type', index=4,
       number=5, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='results_encoding_type', full_name='routeguide.OperatorRequest.results_encoding_type', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='results_encoding_type', full_name='geometry.OperatorRequest.results_encoding_type', index=5,
+      number=6, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='operation_spatial_reference', full_name='routeguide.OperatorRequest.operation_spatial_reference', index=6,
+      name='operation_spatial_reference', full_name='geometry.OperatorRequest.operation_spatial_reference', index=6,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='result_spatial_reference', full_name='routeguide.OperatorRequest.result_spatial_reference', index=7,
+      name='result_spatial_reference', full_name='geometry.OperatorRequest.result_spatial_reference', index=7,
       number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='convex_hull_merge', full_name='routeguide.OperatorRequest.convex_hull_merge', index=8,
+      name='convex_hull_merge', full_name='geometry.OperatorRequest.convex_hull_merge', index=8,
       number=9, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='buffer_distances', full_name='routeguide.OperatorRequest.buffer_distances', index=9,
+      name='buffer_distances', full_name='geometry.OperatorRequest.buffer_distances', index=9,
       number=10, type=1, cpp_type=5, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='buffer_union_result', full_name='routeguide.OperatorRequest.buffer_union_result', index=10,
+      name='buffer_max_deviations', full_name='geometry.OperatorRequest.buffer_max_deviations', index=10,
+      number=28, type=1, cpp_type=5, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='buffer_union_result', full_name='geometry.OperatorRequest.buffer_union_result', index=11,
       number=11, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='intersection_dimension_mask', full_name='routeguide.OperatorRequest.intersection_dimension_mask', index=11,
+      name='intersection_dimension_mask', full_name='geometry.OperatorRequest.intersection_dimension_mask', index=12,
       number=12, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='clip_envelope', full_name='routeguide.OperatorRequest.clip_envelope', index=12,
+      name='clip_envelope', full_name='geometry.OperatorRequest.clip_envelope', index=13,
       number=13, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='cut_consider_touch', full_name='routeguide.OperatorRequest.cut_consider_touch', index=13,
+      name='cut_consider_touch', full_name='geometry.OperatorRequest.cut_consider_touch', index=14,
       number=14, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='densify_max_length', full_name='routeguide.OperatorRequest.densify_max_length', index=14,
+      name='densify_max_length', full_name='geometry.OperatorRequest.densify_max_length', index=15,
       number=15, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='simplify_force', full_name='routeguide.OperatorRequest.simplify_force', index=15,
+      name='simplify_force', full_name='geometry.OperatorRequest.simplify_force', index=16,
       number=16, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='offset_distance', full_name='routeguide.OperatorRequest.offset_distance', index=16,
+      name='offset_distance', full_name='geometry.OperatorRequest.offset_distance', index=17,
       number=17, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='offset_join_type', full_name='routeguide.OperatorRequest.offset_join_type', index=17,
+      name='offset_join_type', full_name='geometry.OperatorRequest.offset_join_type', index=18,
       number=18, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='offset_bevel_ratio', full_name='routeguide.OperatorRequest.offset_bevel_ratio', index=18,
+      name='offset_bevel_ratio', full_name='geometry.OperatorRequest.offset_bevel_ratio', index=19,
       number=19, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='offset_flatten_error', full_name='routeguide.OperatorRequest.offset_flatten_error', index=19,
+      name='offset_flatten_error', full_name='geometry.OperatorRequest.offset_flatten_error', index=20,
       number=20, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='generalize_max_deviation', full_name='routeguide.OperatorRequest.generalize_max_deviation', index=20,
+      name='generalize_max_deviation', full_name='geometry.OperatorRequest.generalize_max_deviation', index=21,
       number=21, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='generalize_remove_degenerates', full_name='routeguide.OperatorRequest.generalize_remove_degenerates', index=21,
+      name='generalize_remove_degenerates', full_name='geometry.OperatorRequest.generalize_remove_degenerates', index=22,
       number=22, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='max_vertices_in_full_circle', full_name='geometry.OperatorRequest.max_vertices_in_full_circle', index=23,
+      number=23, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='generic_booleans', full_name='geometry.OperatorRequest.generic_booleans', index=24,
+      number=24, type=8, cpp_type=7, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='generic_doubles', full_name='geometry.OperatorRequest.generic_doubles', index=25,
+      number=25, type=1, cpp_type=5, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='generic_integers', full_name='geometry.OperatorRequest.generic_integers', index=26,
+      number=26, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='generic_strings', full_name='geometry.OperatorRequest.generic_strings', index=27,
+      number=27, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='de_9im', full_name='geometry.OperatorRequest.de_9im', index=28,
+      number=29, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -665,41 +731,41 @@ _OPERATORREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=548,
-  serialized_end=1438,
+  serialized_start=553,
+  serialized_end=1645,
 )
 
 
 _SERVICEENVELOPE2D = _descriptor.Descriptor(
   name='ServiceEnvelope2D',
-  full_name='routeguide.ServiceEnvelope2D',
+  full_name='geometry.ServiceEnvelope2D',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='xmin', full_name='routeguide.ServiceEnvelope2D.xmin', index=0,
+      name='xmin', full_name='geometry.ServiceEnvelope2D.xmin', index=0,
       number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='ymin', full_name='routeguide.ServiceEnvelope2D.ymin', index=1,
+      name='ymin', full_name='geometry.ServiceEnvelope2D.ymin', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='xmax', full_name='routeguide.ServiceEnvelope2D.xmax', index=2,
+      name='xmax', full_name='geometry.ServiceEnvelope2D.xmax', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='ymax', full_name='routeguide.ServiceEnvelope2D.ymax', index=3,
+      name='ymax', full_name='geometry.ServiceEnvelope2D.ymax', index=3,
       number=4, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -717,243 +783,8 @@ _SERVICEENVELOPE2D = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1440,
-  serialized_end=1515,
-)
-
-
-_REPLACEPOINT = _descriptor.Descriptor(
-  name='ReplacePoint',
-  full_name='routeguide.ReplacePoint',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='latitude', full_name='routeguide.ReplacePoint.latitude', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='longitude', full_name='routeguide.ReplacePoint.longitude', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1517,
-  serialized_end=1568,
-)
-
-
-_RECTANGLE = _descriptor.Descriptor(
-  name='Rectangle',
-  full_name='routeguide.Rectangle',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='lo', full_name='routeguide.Rectangle.lo', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='hi', full_name='routeguide.Rectangle.hi', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1570,
-  serialized_end=1657,
-)
-
-
-_FEATURE = _descriptor.Descriptor(
-  name='Feature',
-  full_name='routeguide.Feature',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='routeguide.Feature.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='location', full_name='routeguide.Feature.location', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1659,
-  serialized_end=1726,
-)
-
-
-_FEATUREDATABASE = _descriptor.Descriptor(
-  name='FeatureDatabase',
-  full_name='routeguide.FeatureDatabase',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='feature', full_name='routeguide.FeatureDatabase.feature', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1728,
-  serialized_end=1783,
-)
-
-
-_ROUTENOTE = _descriptor.Descriptor(
-  name='RouteNote',
-  full_name='routeguide.RouteNote',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='location', full_name='routeguide.RouteNote.location', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='routeguide.RouteNote.message', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1785,
-  serialized_end=1857,
-)
-
-
-_ROUTESUMMARY = _descriptor.Descriptor(
-  name='RouteSummary',
-  full_name='routeguide.RouteSummary',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='point_count', full_name='routeguide.RouteSummary.point_count', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='feature_count', full_name='routeguide.RouteSummary.feature_count', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='distance', full_name='routeguide.RouteSummary.distance', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='elapsed_time', full_name='routeguide.RouteSummary.elapsed_time', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1859,
-  serialized_end=1957,
+  serialized_start=1647,
+  serialized_end=1722,
 )
 
 _SERVICEGEOMETRY.fields_by_name['geometry_encoding_type'].enum_type = _GEOMETRYENCODINGTYPE
@@ -966,25 +797,15 @@ _OPERATORREQUEST.fields_by_name['right_geometry'].message_type = _SERVICEGEOMETR
 _OPERATORREQUEST.fields_by_name['left_cursor'].message_type = _OPERATORREQUEST
 _OPERATORREQUEST.fields_by_name['right_cursor'].message_type = _OPERATORREQUEST
 _OPERATORREQUEST.fields_by_name['operator_type'].enum_type = _SERVICEOPERATORTYPE
+_OPERATORREQUEST.fields_by_name['results_encoding_type'].enum_type = _GEOMETRYENCODINGTYPE
 _OPERATORREQUEST.fields_by_name['operation_spatial_reference'].message_type = _SERVICESPATIALREFERENCE
 _OPERATORREQUEST.fields_by_name['result_spatial_reference'].message_type = _SERVICESPATIALREFERENCE
 _OPERATORREQUEST.fields_by_name['clip_envelope'].message_type = _SERVICEENVELOPE2D
-_RECTANGLE.fields_by_name['lo'].message_type = _REPLACEPOINT
-_RECTANGLE.fields_by_name['hi'].message_type = _REPLACEPOINT
-_FEATURE.fields_by_name['location'].message_type = _REPLACEPOINT
-_FEATUREDATABASE.fields_by_name['feature'].message_type = _FEATURE
-_ROUTENOTE.fields_by_name['location'].message_type = _REPLACEPOINT
 DESCRIPTOR.message_types_by_name['ServiceGeometry'] = _SERVICEGEOMETRY
 DESCRIPTOR.message_types_by_name['ServiceSpatialReference'] = _SERVICESPATIALREFERENCE
 DESCRIPTOR.message_types_by_name['OperatorResult'] = _OPERATORRESULT
 DESCRIPTOR.message_types_by_name['OperatorRequest'] = _OPERATORREQUEST
 DESCRIPTOR.message_types_by_name['ServiceEnvelope2D'] = _SERVICEENVELOPE2D
-DESCRIPTOR.message_types_by_name['ReplacePoint'] = _REPLACEPOINT
-DESCRIPTOR.message_types_by_name['Rectangle'] = _RECTANGLE
-DESCRIPTOR.message_types_by_name['Feature'] = _FEATURE
-DESCRIPTOR.message_types_by_name['FeatureDatabase'] = _FEATUREDATABASE
-DESCRIPTOR.message_types_by_name['RouteNote'] = _ROUTENOTE
-DESCRIPTOR.message_types_by_name['RouteSummary'] = _ROUTESUMMARY
 DESCRIPTOR.enum_types_by_name['GeometryEncodingType'] = _GEOMETRYENCODINGTYPE
 DESCRIPTOR.enum_types_by_name['ServiceOperatorType'] = _SERVICEOPERATORTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -992,14 +813,14 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 ServiceGeometry = _reflection.GeneratedProtocolMessageType('ServiceGeometry', (_message.Message,), dict(
   DESCRIPTOR = _SERVICEGEOMETRY,
   __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.ServiceGeometry)
+  # @@protoc_insertion_point(class_scope:geometry.ServiceGeometry)
   ))
 _sym_db.RegisterMessage(ServiceGeometry)
 
 ServiceSpatialReference = _reflection.GeneratedProtocolMessageType('ServiceSpatialReference', (_message.Message,), dict(
   DESCRIPTOR = _SERVICESPATIALREFERENCE,
   __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.ServiceSpatialReference)
+  # @@protoc_insertion_point(class_scope:geometry.ServiceSpatialReference)
   ))
 _sym_db.RegisterMessage(ServiceSpatialReference)
 
@@ -1008,12 +829,12 @@ OperatorResult = _reflection.GeneratedProtocolMessageType('OperatorResult', (_me
   RelateMapEntry = _reflection.GeneratedProtocolMessageType('RelateMapEntry', (_message.Message,), dict(
     DESCRIPTOR = _OPERATORRESULT_RELATEMAPENTRY,
     __module__ = 'geometry_operators_pb2'
-    # @@protoc_insertion_point(class_scope:routeguide.OperatorResult.RelateMapEntry)
+    # @@protoc_insertion_point(class_scope:geometry.OperatorResult.RelateMapEntry)
     ))
   ,
   DESCRIPTOR = _OPERATORRESULT,
   __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.OperatorResult)
+  # @@protoc_insertion_point(class_scope:geometry.OperatorResult)
   ))
 _sym_db.RegisterMessage(OperatorResult)
 _sym_db.RegisterMessage(OperatorResult.RelateMapEntry)
@@ -1021,86 +842,44 @@ _sym_db.RegisterMessage(OperatorResult.RelateMapEntry)
 OperatorRequest = _reflection.GeneratedProtocolMessageType('OperatorRequest', (_message.Message,), dict(
   DESCRIPTOR = _OPERATORREQUEST,
   __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.OperatorRequest)
+  # @@protoc_insertion_point(class_scope:geometry.OperatorRequest)
   ))
 _sym_db.RegisterMessage(OperatorRequest)
 
 ServiceEnvelope2D = _reflection.GeneratedProtocolMessageType('ServiceEnvelope2D', (_message.Message,), dict(
   DESCRIPTOR = _SERVICEENVELOPE2D,
   __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.ServiceEnvelope2D)
+  # @@protoc_insertion_point(class_scope:geometry.ServiceEnvelope2D)
   ))
 _sym_db.RegisterMessage(ServiceEnvelope2D)
 
-ReplacePoint = _reflection.GeneratedProtocolMessageType('ReplacePoint', (_message.Message,), dict(
-  DESCRIPTOR = _REPLACEPOINT,
-  __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.ReplacePoint)
-  ))
-_sym_db.RegisterMessage(ReplacePoint)
-
-Rectangle = _reflection.GeneratedProtocolMessageType('Rectangle', (_message.Message,), dict(
-  DESCRIPTOR = _RECTANGLE,
-  __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.Rectangle)
-  ))
-_sym_db.RegisterMessage(Rectangle)
-
-Feature = _reflection.GeneratedProtocolMessageType('Feature', (_message.Message,), dict(
-  DESCRIPTOR = _FEATURE,
-  __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.Feature)
-  ))
-_sym_db.RegisterMessage(Feature)
-
-FeatureDatabase = _reflection.GeneratedProtocolMessageType('FeatureDatabase', (_message.Message,), dict(
-  DESCRIPTOR = _FEATUREDATABASE,
-  __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.FeatureDatabase)
-  ))
-_sym_db.RegisterMessage(FeatureDatabase)
-
-RouteNote = _reflection.GeneratedProtocolMessageType('RouteNote', (_message.Message,), dict(
-  DESCRIPTOR = _ROUTENOTE,
-  __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.RouteNote)
-  ))
-_sym_db.RegisterMessage(RouteNote)
-
-RouteSummary = _reflection.GeneratedProtocolMessageType('RouteSummary', (_message.Message,), dict(
-  DESCRIPTOR = _ROUTESUMMARY,
-  __module__ = 'geometry_operators_pb2'
-  # @@protoc_insertion_point(class_scope:routeguide.RouteSummary)
-  ))
-_sym_db.RegisterMessage(RouteSummary)
-
 
 DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\035com.fogmodel.service.geometryB\026GeometryOperatorsProtoP\001\242\002\003RTG'))
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\030com.epl.service.geometryB\026GeometryOperatorsProtoP\001\242\002\003RTG'))
 _OPERATORRESULT_RELATEMAPENTRY.has_options = True
 _OPERATORRESULT_RELATEMAPENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 
 _GEOMETRYOPERATORS = _descriptor.ServiceDescriptor(
   name='GeometryOperators',
-  full_name='routeguide.GeometryOperators',
+  full_name='geometry.GeometryOperators',
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=2848,
-  serialized_end=3209,
+  serialized_start=2652,
+  serialized_end=2906,
   methods=[
   _descriptor.MethodDescriptor(
-    name='GetFeature',
-    full_name='routeguide.GeometryOperators.GetFeature',
+    name='ExecuteOperation',
+    full_name='geometry.GeometryOperators.ExecuteOperation',
     index=0,
     containing_service=None,
-    input_type=_REPLACEPOINT,
-    output_type=_FEATURE,
+    input_type=_OPERATORREQUEST,
+    output_type=_OPERATORRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='ExecuteOperation',
-    full_name='routeguide.GeometryOperators.ExecuteOperation',
+    name='StreamOperations',
+    full_name='geometry.GeometryOperators.StreamOperations',
     index=1,
     containing_service=None,
     input_type=_OPERATORREQUEST,
@@ -1108,30 +887,12 @@ _GEOMETRYOPERATORS = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='ListFeatures',
-    full_name='routeguide.GeometryOperators.ListFeatures',
+    name='StreamOperationsEx',
+    full_name='geometry.GeometryOperators.StreamOperationsEx',
     index=2,
     containing_service=None,
-    input_type=_RECTANGLE,
-    output_type=_FEATURE,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RecordRoute',
-    full_name='routeguide.GeometryOperators.RecordRoute',
-    index=3,
-    containing_service=None,
-    input_type=_REPLACEPOINT,
-    output_type=_ROUTESUMMARY,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RouteChat',
-    full_name='routeguide.GeometryOperators.RouteChat',
-    index=4,
-    containing_service=None,
-    input_type=_ROUTENOTE,
-    output_type=_ROUTENOTE,
+    input_type=_OPERATORREQUEST,
+    output_type=_OPERATORRESULT,
     options=None,
   ),
 ])
@@ -1150,7 +911,8 @@ try:
 
 
   class GeometryOperatorsStub(object):
-    """Interface exported by the server.
+    """
+    gRPC Interfaces for working with geometry operators
     """
 
     def __init__(self, channel):
@@ -1159,85 +921,45 @@ try:
       Args:
         channel: A grpc.Channel.
       """
-      self.GetFeature = channel.unary_unary(
-          '/routeguide.GeometryOperators/GetFeature',
-          request_serializer=ReplacePoint.SerializeToString,
-          response_deserializer=Feature.FromString,
-          )
       self.ExecuteOperation = channel.unary_unary(
-          '/routeguide.GeometryOperators/ExecuteOperation',
+          '/geometry.GeometryOperators/ExecuteOperation',
           request_serializer=OperatorRequest.SerializeToString,
           response_deserializer=OperatorResult.FromString,
           )
-      self.ListFeatures = channel.unary_stream(
-          '/routeguide.GeometryOperators/ListFeatures',
-          request_serializer=Rectangle.SerializeToString,
-          response_deserializer=Feature.FromString,
+      self.StreamOperations = channel.stream_stream(
+          '/geometry.GeometryOperators/StreamOperations',
+          request_serializer=OperatorRequest.SerializeToString,
+          response_deserializer=OperatorResult.FromString,
           )
-      self.RecordRoute = channel.stream_unary(
-          '/routeguide.GeometryOperators/RecordRoute',
-          request_serializer=ReplacePoint.SerializeToString,
-          response_deserializer=RouteSummary.FromString,
-          )
-      self.RouteChat = channel.stream_stream(
-          '/routeguide.GeometryOperators/RouteChat',
-          request_serializer=RouteNote.SerializeToString,
-          response_deserializer=RouteNote.FromString,
+      self.StreamOperationsEx = channel.stream_stream(
+          '/geometry.GeometryOperators/StreamOperationsEx',
+          request_serializer=OperatorRequest.SerializeToString,
+          response_deserializer=OperatorResult.FromString,
           )
 
 
   class GeometryOperatorsServicer(object):
-    """Interface exported by the server.
     """
-
-    def GetFeature(self, request, context):
-      """A simple RPC.
-
-      Obtains the feature at a given position.
-
-      A feature with an empty name is returned if there's no feature at the given
-      position.
-      """
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
+    gRPC Interfaces for working with geometry operators
+    """
 
     def ExecuteOperation(self, request, context):
       """Execute a single geometry operation
-      TODO should be a stream
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
 
-    def ListFeatures(self, request, context):
-      """A server-to-client streaming RPC.
-
-      Obtains the Features available within the given Rectangle.  Results are
-      streamed rather than returned at once (e.g. in a response message with a
-      repeated field), as the rectangle may cover a large area and contain a
-      huge number of features.
-      """
+    def StreamOperations(self, request_iterator, context):
+      # missing associated documentation comment in .proto file
+      pass
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
 
-    def RecordRoute(self, request_iterator, context):
-      """A client-to-server streaming RPC.
-
-      Accepts a stream of Points on a route being traversed, returning a
-      RouteSummary when traversal is completed.
-      """
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def RouteChat(self, request_iterator, context):
-      """A Bidirectional streaming RPC.
-
-      Accepts a stream of RouteNotes sent while a route is being traversed,
-      while receiving other RouteNotes (e.g. from other users).
-      """
+    def StreamOperationsEx(self, request_iterator, context):
+      # missing associated documentation comment in .proto file
+      pass
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
@@ -1245,34 +967,24 @@ try:
 
   def add_GeometryOperatorsServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'GetFeature': grpc.unary_unary_rpc_method_handler(
-            servicer.GetFeature,
-            request_deserializer=ReplacePoint.FromString,
-            response_serializer=Feature.SerializeToString,
-        ),
         'ExecuteOperation': grpc.unary_unary_rpc_method_handler(
             servicer.ExecuteOperation,
             request_deserializer=OperatorRequest.FromString,
             response_serializer=OperatorResult.SerializeToString,
         ),
-        'ListFeatures': grpc.unary_stream_rpc_method_handler(
-            servicer.ListFeatures,
-            request_deserializer=Rectangle.FromString,
-            response_serializer=Feature.SerializeToString,
+        'StreamOperations': grpc.stream_stream_rpc_method_handler(
+            servicer.StreamOperations,
+            request_deserializer=OperatorRequest.FromString,
+            response_serializer=OperatorResult.SerializeToString,
         ),
-        'RecordRoute': grpc.stream_unary_rpc_method_handler(
-            servicer.RecordRoute,
-            request_deserializer=ReplacePoint.FromString,
-            response_serializer=RouteSummary.SerializeToString,
-        ),
-        'RouteChat': grpc.stream_stream_rpc_method_handler(
-            servicer.RouteChat,
-            request_deserializer=RouteNote.FromString,
-            response_serializer=RouteNote.SerializeToString,
+        'StreamOperationsEx': grpc.stream_stream_rpc_method_handler(
+            servicer.StreamOperationsEx,
+            request_deserializer=OperatorRequest.FromString,
+            response_serializer=OperatorResult.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        'routeguide.GeometryOperators', rpc_method_handlers)
+        'geometry.GeometryOperators', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -1282,44 +994,20 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    """Interface exported by the server.
     """
-    def GetFeature(self, request, context):
-      """A simple RPC.
-
-      Obtains the feature at a given position.
-
-      A feature with an empty name is returned if there's no feature at the given
-      position.
-      """
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    gRPC Interfaces for working with geometry operators
+    """
     def ExecuteOperation(self, request, context):
       """Execute a single geometry operation
-      TODO should be a stream
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def ListFeatures(self, request, context):
-      """A server-to-client streaming RPC.
-
-      Obtains the Features available within the given Rectangle.  Results are
-      streamed rather than returned at once (e.g. in a response message with a
-      repeated field), as the rectangle may cover a large area and contain a
-      huge number of features.
-      """
+    def StreamOperations(self, request_iterator, context):
+      # missing associated documentation comment in .proto file
+      pass
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def RecordRoute(self, request_iterator, context):
-      """A client-to-server streaming RPC.
-
-      Accepts a stream of Points on a route being traversed, returning a
-      RouteSummary when traversal is completed.
-      """
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def RouteChat(self, request_iterator, context):
-      """A Bidirectional streaming RPC.
-
-      Accepts a stream of RouteNotes sent while a route is being traversed,
-      while receiving other RouteNotes (e.g. from other users).
-      """
+    def StreamOperationsEx(self, request_iterator, context):
+      # missing associated documentation comment in .proto file
+      pass
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
@@ -1329,47 +1017,21 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    """Interface exported by the server.
     """
-    def GetFeature(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """A simple RPC.
-
-      Obtains the feature at a given position.
-
-      A feature with an empty name is returned if there's no feature at the given
-      position.
-      """
-      raise NotImplementedError()
-    GetFeature.future = None
+    gRPC Interfaces for working with geometry operators
+    """
     def ExecuteOperation(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Execute a single geometry operation
-      TODO should be a stream
       """
       raise NotImplementedError()
     ExecuteOperation.future = None
-    def ListFeatures(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """A server-to-client streaming RPC.
-
-      Obtains the Features available within the given Rectangle.  Results are
-      streamed rather than returned at once (e.g. in a response message with a
-      repeated field), as the rectangle may cover a large area and contain a
-      huge number of features.
-      """
+    def StreamOperations(self, request_iterator, timeout, metadata=None, with_call=False, protocol_options=None):
+      # missing associated documentation comment in .proto file
+      pass
       raise NotImplementedError()
-    def RecordRoute(self, request_iterator, timeout, metadata=None, with_call=False, protocol_options=None):
-      """A client-to-server streaming RPC.
-
-      Accepts a stream of Points on a route being traversed, returning a
-      RouteSummary when traversal is completed.
-      """
-      raise NotImplementedError()
-    RecordRoute.future = None
-    def RouteChat(self, request_iterator, timeout, metadata=None, with_call=False, protocol_options=None):
-      """A Bidirectional streaming RPC.
-
-      Accepts a stream of RouteNotes sent while a route is being traversed,
-      while receiving other RouteNotes (e.g. from other users).
-      """
+    def StreamOperationsEx(self, request_iterator, timeout, metadata=None, with_call=False, protocol_options=None):
+      # missing associated documentation comment in .proto file
+      pass
       raise NotImplementedError()
 
 
@@ -1380,25 +1042,19 @@ try:
     file not marked beta) for all further purposes. This function was
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_deserializers = {
-      ('routeguide.GeometryOperators', 'ExecuteOperation'): OperatorRequest.FromString,
-      ('routeguide.GeometryOperators', 'GetFeature'): ReplacePoint.FromString,
-      ('routeguide.GeometryOperators', 'ListFeatures'): Rectangle.FromString,
-      ('routeguide.GeometryOperators', 'RecordRoute'): ReplacePoint.FromString,
-      ('routeguide.GeometryOperators', 'RouteChat'): RouteNote.FromString,
+      ('geometry.GeometryOperators', 'ExecuteOperation'): OperatorRequest.FromString,
+      ('geometry.GeometryOperators', 'StreamOperations'): OperatorRequest.FromString,
+      ('geometry.GeometryOperators', 'StreamOperationsEx'): OperatorRequest.FromString,
     }
     response_serializers = {
-      ('routeguide.GeometryOperators', 'ExecuteOperation'): OperatorResult.SerializeToString,
-      ('routeguide.GeometryOperators', 'GetFeature'): Feature.SerializeToString,
-      ('routeguide.GeometryOperators', 'ListFeatures'): Feature.SerializeToString,
-      ('routeguide.GeometryOperators', 'RecordRoute'): RouteSummary.SerializeToString,
-      ('routeguide.GeometryOperators', 'RouteChat'): RouteNote.SerializeToString,
+      ('geometry.GeometryOperators', 'ExecuteOperation'): OperatorResult.SerializeToString,
+      ('geometry.GeometryOperators', 'StreamOperations'): OperatorResult.SerializeToString,
+      ('geometry.GeometryOperators', 'StreamOperationsEx'): OperatorResult.SerializeToString,
     }
     method_implementations = {
-      ('routeguide.GeometryOperators', 'ExecuteOperation'): face_utilities.unary_unary_inline(servicer.ExecuteOperation),
-      ('routeguide.GeometryOperators', 'GetFeature'): face_utilities.unary_unary_inline(servicer.GetFeature),
-      ('routeguide.GeometryOperators', 'ListFeatures'): face_utilities.unary_stream_inline(servicer.ListFeatures),
-      ('routeguide.GeometryOperators', 'RecordRoute'): face_utilities.stream_unary_inline(servicer.RecordRoute),
-      ('routeguide.GeometryOperators', 'RouteChat'): face_utilities.stream_stream_inline(servicer.RouteChat),
+      ('geometry.GeometryOperators', 'ExecuteOperation'): face_utilities.unary_unary_inline(servicer.ExecuteOperation),
+      ('geometry.GeometryOperators', 'StreamOperations'): face_utilities.stream_stream_inline(servicer.StreamOperations),
+      ('geometry.GeometryOperators', 'StreamOperationsEx'): face_utilities.stream_stream_inline(servicer.StreamOperationsEx),
     }
     server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
     return beta_implementations.server(method_implementations, options=server_options)
@@ -1411,28 +1067,22 @@ try:
     file not marked beta) for all further purposes. This function was
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_serializers = {
-      ('routeguide.GeometryOperators', 'ExecuteOperation'): OperatorRequest.SerializeToString,
-      ('routeguide.GeometryOperators', 'GetFeature'): ReplacePoint.SerializeToString,
-      ('routeguide.GeometryOperators', 'ListFeatures'): Rectangle.SerializeToString,
-      ('routeguide.GeometryOperators', 'RecordRoute'): ReplacePoint.SerializeToString,
-      ('routeguide.GeometryOperators', 'RouteChat'): RouteNote.SerializeToString,
+      ('geometry.GeometryOperators', 'ExecuteOperation'): OperatorRequest.SerializeToString,
+      ('geometry.GeometryOperators', 'StreamOperations'): OperatorRequest.SerializeToString,
+      ('geometry.GeometryOperators', 'StreamOperationsEx'): OperatorRequest.SerializeToString,
     }
     response_deserializers = {
-      ('routeguide.GeometryOperators', 'ExecuteOperation'): OperatorResult.FromString,
-      ('routeguide.GeometryOperators', 'GetFeature'): Feature.FromString,
-      ('routeguide.GeometryOperators', 'ListFeatures'): Feature.FromString,
-      ('routeguide.GeometryOperators', 'RecordRoute'): RouteSummary.FromString,
-      ('routeguide.GeometryOperators', 'RouteChat'): RouteNote.FromString,
+      ('geometry.GeometryOperators', 'ExecuteOperation'): OperatorResult.FromString,
+      ('geometry.GeometryOperators', 'StreamOperations'): OperatorResult.FromString,
+      ('geometry.GeometryOperators', 'StreamOperationsEx'): OperatorResult.FromString,
     }
     cardinalities = {
       'ExecuteOperation': cardinality.Cardinality.UNARY_UNARY,
-      'GetFeature': cardinality.Cardinality.UNARY_UNARY,
-      'ListFeatures': cardinality.Cardinality.UNARY_STREAM,
-      'RecordRoute': cardinality.Cardinality.STREAM_UNARY,
-      'RouteChat': cardinality.Cardinality.STREAM_STREAM,
+      'StreamOperations': cardinality.Cardinality.STREAM_STREAM,
+      'StreamOperationsEx': cardinality.Cardinality.STREAM_STREAM,
     }
     stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-    return beta_implementations.dynamic_stub(channel, 'routeguide.GeometryOperators', cardinalities, options=stub_options)
+    return beta_implementations.dynamic_stub(channel, 'geometry.GeometryOperators', cardinalities, options=stub_options)
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

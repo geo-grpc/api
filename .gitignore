@@ -7,3 +7,11 @@ build/
 out/
 .idea/libraries/*.xml
 vcs.xml
+dist/
+.ipynb_checkpoints/
+demos/
+epl/__pycache__/
+epl/geometry/__pycache__/
+epl_geometry.egg-info/
+projection-horizon.ipynb
+temp/

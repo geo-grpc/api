@@ -22,6 +22,7 @@ import unittest
 import random
 import datetime
 import grpc
+import math
 
 from functools import partial
 
@@ -29,10 +30,11 @@ from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
 from shapely.geometry import Polygon
 from shapely.geometry import LineString, Point
+from shapely.geometry import MultiPoint
 from shapely.ops import cascaded_union
 from epl.geometry.geometry_operators_pb2 import *
 import epl.geometry.geometry_operators_pb2_grpc as geometry_grpc
-
+import numpy as np
 
 class TestBasic(unittest.TestCase):
 
@@ -100,50 +102,115 @@ class TestBasic(unittest.TestCase):
         actual = response2.geometry.geometry_string[0]
         self.assertEqual(expected, actual)
 
+    def test_multipoint(self):
+        stub = geometry_grpc.GeometryOperatorsStub(self.channel)
+        serviceSpatialReference = ServiceSpatialReference(wkid=4326)
+        outputSpatialReference = ServiceSpatialReference(wkid=3857)
+        multipoints_array = []
+        for longitude in range(-180, 180, 10):
+            for latitude in range(-80, 80, 10):
+                multipoints_array.append((longitude, latitude))
+
+        multipoint = MultiPoint(multipoints_array)
+
+        serviceGeomPolyline = ServiceGeometry(
+            geometry_string=[multipoint.wkt],
+            geometry_encoding_type=GeometryEncodingType.Value('wkt'),
+            spatial_reference=serviceSpatialReference)
+
+        opRequestProject = OperatorRequest(
+            left_geometry=serviceGeomPolyline,
+            operator_type=ServiceOperatorType.Value('Project'),
+            operation_spatial_reference=outputSpatialReference)
+
+        opRequestOuter = OperatorRequest(
+            left_cursor=opRequestProject,
+            operator_type=ServiceOperatorType.Value('Project'),
+            operation_spatial_reference=serviceSpatialReference,
+            results_encoding_type=GeometryEncodingType.Value('wkt'))
+
+        print("make project request")
+        response = stub.ExecuteOperation(opRequestOuter)
+        print("Client received project response:\n", response)
+        round_trip_result_wkt = loads(response.geometry.geometry_string[0])
+
+        opRequestOuter = OperatorRequest(
+            left_cursor=opRequestProject,
+            operator_type=ServiceOperatorType.Value('Project'),
+            operation_spatial_reference=serviceSpatialReference,
+            results_encoding_type=GeometryEncodingType.Value('wkb'))
+        response = stub.ExecuteOperation(opRequestOuter)
+        round_trip_result = wkbloads(response.geometry.geometry_binary[0])
+        self.assertIsNotNone(round_trip_result)
+
+        max_diff_lat = 0.0
+        max_diff_lon = 0.0
+        for index, projected_point in enumerate(round_trip_result):
+            original_point = multipoint[index]
+            if math.fabs(original_point.x - projected_point.x) > max_diff_lon:
+                max_diff_lon = math.fabs(original_point.x - projected_point.x)
+            if math.fabs(original_point.y - projected_point.y) > max_diff_lat:
+                max_diff_lat = math.fabs(original_point.y - projected_point.y)
+
+            self.assertLess(math.fabs(original_point.x - projected_point.x), 0.0000001)
+            self.assertLess(math.fabs(original_point.y - projected_point.y), 0.0000001)
+
+        for index, projected_point in enumerate(round_trip_result_wkt):
+            original_point = multipoint[index]
+            if math.fabs(original_point.x - projected_point.x) > max_diff_lon:
+                max_diff_lon = math.fabs(original_point.x - projected_point.x)
+            if math.fabs(original_point.y - projected_point.y) > max_diff_lat:
+                max_diff_lat = math.fabs(original_point.y - projected_point.y)
+
+            self.assertLess(math.fabs(original_point.x - projected_point.x), 0.00000001)
+            self.assertLess(math.fabs(original_point.y - projected_point.y), 0.00000001)
+
+
     # unittest.skip("performance problems with union")
-    # def test_union(self):
-    #     # Build patches as in dissolved.py
-    #     r = partial(random.uniform, -20.0, 20.0)
-    #
-    #     points = [Point(r(), r()) for i in range(10000)]
-    #     spots = [p.buffer(2.5) for p in points]
-    #     shape_start = datetime.datetime.now()
-    #     patches = cascaded_union(spots)
-    #     shape_end = datetime.datetime.now()
-    #     shape_delta = shape_end - shape_start
-    #     shape_microseconds = int(shape_delta.total_seconds() * 1000)
-    #     print(shape_microseconds)
-    #     print(patches.wkt)
-    #     stub = geometry_grpc.GeometryOperatorsStub(self.channel)
-    #
-    #     spots_wkb = [s.wkb for s in spots]
-    #     serviceGeom = ServiceGeometry()
-    #     serviceGeom.geometry_binary.extend(spots_wkb)
-    #     serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
-    #
-    #     opRequestUnion = OperatorRequest(left_geometry=serviceGeom,
-    #                                      operator_type=ServiceOperatorType.Value('Union'))
-    #
-    #     epl_start = datetime.datetime.now()
-    #     response = stub.ExecuteOperation(opRequestUnion)
-    #     unioned_result = wkbloads(response.geometry.geometry_binary[0])
-    #     epl_end = datetime.datetime.now()
-    #     epl_delta = epl_end - epl_start
-    #     epl_microseconds = int(epl_delta.total_seconds() * 1000)
-    #     self.assertGreater(shape_microseconds, epl_microseconds)
-        # self.assertGreater(shape_microseconds / 8, epl_microseconds)
-
-        # self.assertAlmostEqual(patches.area, unioned_result.area, 4)
+    # Welp, this test has non-simple geometries from shapely
+    def test_union(self):
+        # Build patches as in dissolved.py
+        stub = geometry_grpc.GeometryOperatorsStub(self.channel)
+        r = partial(random.uniform, -20.0, 20.0)
+        serviceSpatialReference = ServiceSpatialReference(wkid=4326)
+        points = [Point(r(), r()) for i in range(10000)]
+        spots = [p.buffer(2.5) for p in points]
+        service_multipoint = ServiceGeometry(spatial_reference=serviceSpatialReference,
+                                             geometry_encoding_type=GeometryEncodingType.Value('wkb'))
+        shape_start = datetime.datetime.now()
+        patches = cascaded_union(spots)
+        # because shapely is non-simple we need to simplify it for this to be a fair comparison
+        service_multipoint.geometry_binary.extend([patches.wkb])
+        opRequestOuter = OperatorRequest(
+            left_geometry=service_multipoint,
+            operator_type=ServiceOperatorType.Value('Simplify'),
+            operation_spatial_reference=serviceSpatialReference,
+            results_encoding_type=GeometryEncodingType.Value('wkb'))
+        response = stub.ExecuteOperation(opRequestOuter)
+        patches = wkbloads(response.geometry.geometry_binary[0])
+        shape_end = datetime.datetime.now()
+        shape_delta = shape_end - shape_start
+        shape_microseconds = int(shape_delta.total_seconds() * 1000)
+        print(shape_microseconds)
+        print(patches.wkt)
 
 
-        # print("make stub")
-        # stub = geometry_grpc.GeometryOperatorsStub(self.channel)
-        #
-        # print("make wkt request")
-        # response = stub.ExecuteOperation(opRequest)
-        # # print response
-        # print("Client received wkt response:\n", response)
-        # result_buffered = loads(response.geometry.geometry_string[0])
-        # self.assertTrue(result_buffered.contains(polygon))
-        # shapely_buffer = polygon.buffer(1.2)
-        # self.assertAlmostEqual(shapely_buffer.area, result_buffered.area, 2)
+        spots_wkb = [s.wkb for s in spots]
+        serviceGeom = ServiceGeometry()
+        serviceGeom.geometry_binary.extend(spots_wkb)
+        serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
+
+        opRequestUnion = OperatorRequest(left_geometry=serviceGeom,
+                                         operator_type=ServiceOperatorType.Value('Union'))
+
+        epl_start = datetime.datetime.now()
+        response = stub.ExecuteOperation(opRequestUnion)
+        unioned_result = wkbloads(response.geometry.geometry_binary[0])
+
+        epl_end = datetime.datetime.now()
+        epl_delta = epl_end - epl_start
+        epl_microseconds = int(epl_delta.total_seconds() * 1000)
+        self.assertGreater(shape_microseconds, epl_microseconds)
+        self.assertGreater(shape_microseconds * 0.75, epl_microseconds)
+
+        self.assertAlmostEqual(patches.area, unioned_result.area, 8)
