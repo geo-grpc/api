@@ -5,7 +5,8 @@ import geometry_operators_pb2 as geometry__operators__pb2
 
 
 class GeometryOperatorsStub(object):
-  """Interface exported by the server.
+  """
+  gRPC Interfaces for working with geometry operators
   """
 
   def __init__(self, channel):
@@ -14,85 +15,45 @@ class GeometryOperatorsStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.GetFeature = channel.unary_unary(
-        '/routeguide.GeometryOperators/GetFeature',
-        request_serializer=geometry__operators__pb2.ReplacePoint.SerializeToString,
-        response_deserializer=geometry__operators__pb2.Feature.FromString,
-        )
     self.ExecuteOperation = channel.unary_unary(
-        '/routeguide.GeometryOperators/ExecuteOperation',
+        '/geometry.GeometryOperators/ExecuteOperation',
         request_serializer=geometry__operators__pb2.OperatorRequest.SerializeToString,
         response_deserializer=geometry__operators__pb2.OperatorResult.FromString,
         )
-    self.ListFeatures = channel.unary_stream(
-        '/routeguide.GeometryOperators/ListFeatures',
-        request_serializer=geometry__operators__pb2.Rectangle.SerializeToString,
-        response_deserializer=geometry__operators__pb2.Feature.FromString,
+    self.StreamOperations = channel.stream_stream(
+        '/geometry.GeometryOperators/StreamOperations',
+        request_serializer=geometry__operators__pb2.OperatorRequest.SerializeToString,
+        response_deserializer=geometry__operators__pb2.OperatorResult.FromString,
         )
-    self.RecordRoute = channel.stream_unary(
-        '/routeguide.GeometryOperators/RecordRoute',
-        request_serializer=geometry__operators__pb2.ReplacePoint.SerializeToString,
-        response_deserializer=geometry__operators__pb2.RouteSummary.FromString,
-        )
-    self.RouteChat = channel.stream_stream(
-        '/routeguide.GeometryOperators/RouteChat',
-        request_serializer=geometry__operators__pb2.RouteNote.SerializeToString,
-        response_deserializer=geometry__operators__pb2.RouteNote.FromString,
+    self.StreamOperationsEx = channel.stream_stream(
+        '/geometry.GeometryOperators/StreamOperationsEx',
+        request_serializer=geometry__operators__pb2.OperatorRequest.SerializeToString,
+        response_deserializer=geometry__operators__pb2.OperatorResult.FromString,
         )
 
 
 class GeometryOperatorsServicer(object):
-  """Interface exported by the server.
   """
-
-  def GetFeature(self, request, context):
-    """A simple RPC.
-
-    Obtains the feature at a given position.
-
-    A feature with an empty name is returned if there's no feature at the given
-    position.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+  gRPC Interfaces for working with geometry operators
+  """
 
   def ExecuteOperation(self, request, context):
     """Execute a single geometry operation
-    TODO should be a stream
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def ListFeatures(self, request, context):
-    """A server-to-client streaming RPC.
-
-    Obtains the Features available within the given Rectangle.  Results are
-    streamed rather than returned at once (e.g. in a response message with a
-    repeated field), as the rectangle may cover a large area and contain a
-    huge number of features.
-    """
+  def StreamOperations(self, request_iterator, context):
+    # missing associated documentation comment in .proto file
+    pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def RecordRoute(self, request_iterator, context):
-    """A client-to-server streaming RPC.
-
-    Accepts a stream of Points on a route being traversed, returning a
-    RouteSummary when traversal is completed.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def RouteChat(self, request_iterator, context):
-    """A Bidirectional streaming RPC.
-
-    Accepts a stream of RouteNotes sent while a route is being traversed,
-    while receiving other RouteNotes (e.g. from other users).
-    """
+  def StreamOperationsEx(self, request_iterator, context):
+    # missing associated documentation comment in .proto file
+    pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -100,32 +61,22 @@ class GeometryOperatorsServicer(object):
 
 def add_GeometryOperatorsServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'GetFeature': grpc.unary_unary_rpc_method_handler(
-          servicer.GetFeature,
-          request_deserializer=geometry__operators__pb2.ReplacePoint.FromString,
-          response_serializer=geometry__operators__pb2.Feature.SerializeToString,
-      ),
       'ExecuteOperation': grpc.unary_unary_rpc_method_handler(
           servicer.ExecuteOperation,
           request_deserializer=geometry__operators__pb2.OperatorRequest.FromString,
           response_serializer=geometry__operators__pb2.OperatorResult.SerializeToString,
       ),
-      'ListFeatures': grpc.unary_stream_rpc_method_handler(
-          servicer.ListFeatures,
-          request_deserializer=geometry__operators__pb2.Rectangle.FromString,
-          response_serializer=geometry__operators__pb2.Feature.SerializeToString,
+      'StreamOperations': grpc.stream_stream_rpc_method_handler(
+          servicer.StreamOperations,
+          request_deserializer=geometry__operators__pb2.OperatorRequest.FromString,
+          response_serializer=geometry__operators__pb2.OperatorResult.SerializeToString,
       ),
-      'RecordRoute': grpc.stream_unary_rpc_method_handler(
-          servicer.RecordRoute,
-          request_deserializer=geometry__operators__pb2.ReplacePoint.FromString,
-          response_serializer=geometry__operators__pb2.RouteSummary.SerializeToString,
-      ),
-      'RouteChat': grpc.stream_stream_rpc_method_handler(
-          servicer.RouteChat,
-          request_deserializer=geometry__operators__pb2.RouteNote.FromString,
-          response_serializer=geometry__operators__pb2.RouteNote.SerializeToString,
+      'StreamOperationsEx': grpc.stream_stream_rpc_method_handler(
+          servicer.StreamOperationsEx,
+          request_deserializer=geometry__operators__pb2.OperatorRequest.FromString,
+          response_serializer=geometry__operators__pb2.OperatorResult.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'routeguide.GeometryOperators', rpc_method_handlers)
+      'geometry.GeometryOperators', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
