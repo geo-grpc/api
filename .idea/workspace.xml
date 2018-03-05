@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86e1756b-1c6e-4c36-94ab-231468f66a08" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
-      <change beforePath="$PROJECT_DIR$/epl/geometry/geometry_operators_pb2.py" afterPath="$PROJECT_DIR$/epl/geometry/geometry_operators_pb2.py" />
-      <change beforePath="$PROJECT_DIR$/epl/geometry/geometry_operators_pb2_grpc.py" afterPath="$PROJECT_DIR$/epl/geometry/geometry_operators_pb2_grpc.py" />
-      <change beforePath="$PROJECT_DIR$/proto/geometry_operators.proto" afterPath="$PROJECT_DIR$/proto/epl/geometry/geometry_operators.proto" />
-      <change beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
-      <change beforePath="$PROJECT_DIR$/test/sample.py" afterPath="$PROJECT_DIR$/test/sample.py" />
+      <change beforePath="$PROJECT_DIR$/epl/geometry/geometry_operators_pb2.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/epl/geometry/geometry_operators_pb2_grpc.py" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,16 +71,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="geometry_operators_pb2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/epl/geometry/geometry_operators_pb2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="97" lean-forward="false" selection-start-line="22" selection-start-column="97" selection-end-line="22" selection-end-column="97" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -101,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="12" column="100" lean-forward="false" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
+              <caret line="12" column="104" lean-forward="false" selection-start-line="12" selection-start-column="104" selection-end-line="12" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -113,18 +99,6 @@
             <state relative-caret-position="157">
               <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="geometry_operators_pb2_grpc.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/epl/geometry/geometry_operators_pb2_grpc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="57" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="57" />
-              <folding>
-                <element signature="e#70#81#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -704,7 +678,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57544756" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38746804" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38746804" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18311875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -944,9 +918,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="27" />
-          <folding>
-            <element signature="e#70#81#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1210,9 +1182,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="57" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="57" />
-          <folding>
-            <element signature="e#70#81#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1245,7 +1215,7 @@
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="100" lean-forward="false" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
+          <caret line="12" column="104" lean-forward="false" selection-start-line="12" selection-start-column="104" selection-end-line="12" selection-end-column="104" />
           <folding />
         </state>
       </provider>
