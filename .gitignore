@@ -17,3 +17,4 @@ projection-horizon.ipynb
 temp/
 epl/geometry/geometry_operators_pb2.py
 epl/geometry/geometry_operators_pb2_grpc.py
+.cache/
