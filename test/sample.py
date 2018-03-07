@@ -37,6 +37,7 @@ from epl.geometry.geometry_operators_pb2 import *
 import epl.geometry.geometry_operators_pb2_grpc as geometry_grpc
 import numpy as np
 
+
 class TestBasic(unittest.TestCase):
 
     channel = None
@@ -216,3 +217,63 @@ class TestBasic(unittest.TestCase):
         # self.assertGreater(shape_microseconds * 0.75, epl_microseconds)
 
         self.assertAlmostEqual(patches.area, unioned_result.area, 8)
+
+    # tests exception handling for points outside the range of projection
+    def test_ETRS(self):
+        geometry_string = []
+
+        change_interval = 15
+        start_lon = -180.0
+        end_lon = 180.0
+        start_latitude = -90.0
+        end_latitude = 90.0
+
+        m = int(((end_lon - start_lon) / change_interval) * ((end_latitude - start_latitude) / change_interval))
+
+        D = 2  # dimensionality
+        X = np.zeros((m, D))  # data matrix where each row is a single example
+
+        idx = 0
+        original_points = []
+        for longitude in np.arange(-180.0, 180.0, change_interval):
+            for latitude in np.arange(-90, 90, change_interval):
+                X[idx] = (longitude, latitude)
+                idx += 1
+
+                point = Point(longitude, latitude)
+                original_points.append(point)
+                geometry_string.append(point.wkt)
+
+        stub = geometry_grpc.GeometryOperatorsStub(self.channel)
+        serviceSpatialReference = ServiceSpatialReference(wkid=4326)
+        outputSpatialReference = ServiceSpatialReference(wkid=3035)
+        # outputSpatialReference = ServiceSpatialReference(wkid=32632)
+
+        serviceGeomPolyline = ServiceGeometry(
+            geometry_string=geometry_string,
+            geometry_encoding_type=GeometryEncodingType.Value('wkt'),
+            spatial_reference=serviceSpatialReference)
+
+        opRequestProject = OperatorRequest(
+            left_geometry=serviceGeomPolyline,
+            operator_type=ServiceOperatorType.Value('Project'),
+            operation_spatial_reference=outputSpatialReference)
+
+        opRequestOuter = OperatorRequest(
+            left_cursor=opRequestProject,
+            operator_type=ServiceOperatorType.Value('Project'),
+            operation_spatial_reference=serviceSpatialReference,
+            results_encoding_type=GeometryEncodingType.Value('wkt'))
+
+        # print("make project request")
+        response = stub.ExecuteOperation(opRequestOuter)
+        # print("Client received project response:\n", response)
+        projected_point_array = [loads(wkt) for wkt in response.geometry.geometry_string]
+
+        for index, original in enumerate(original_points):
+            point_projected = projected_point_array[index]
+            if point_projected.wkt == 'POINT EMPTY':
+                continue
+            if original.x == -180 or original.x == 180:
+                continue
+            self.assertAlmostEqual(point_projected.x, original.x, 8)
