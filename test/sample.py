@@ -126,7 +126,7 @@ class TestBasic(unittest.TestCase):
             operation_spatial_reference=outputSpatialReference)
 
         opRequestOuter = OperatorRequest(
-            left_cursor=opRequestProject,
+            left_nested_request=opRequestProject,
             operator_type=ServiceOperatorType.Value('Project'),
             operation_spatial_reference=serviceSpatialReference,
             results_encoding_type=GeometryEncodingType.Value('wkt'))
@@ -137,7 +137,7 @@ class TestBasic(unittest.TestCase):
         round_trip_result_wkt = loads(response.geometry_bag.geometry_strings[0])
 
         opRequestOuter = OperatorRequest(
-            left_cursor=opRequestProject,
+            left_nested_request=opRequestProject,
             operator_type=ServiceOperatorType.Value('Project'),
             operation_spatial_reference=serviceSpatialReference,
             results_encoding_type=GeometryEncodingType.Value('wkb'))
@@ -260,7 +260,7 @@ class TestBasic(unittest.TestCase):
             operation_spatial_reference=outputSpatialReference)
 
         opRequestOuter = OperatorRequest(
-            left_cursor=opRequestProject,
+            left_nested_request=opRequestProject,
             operator_type=ServiceOperatorType.Value('Project'),
             operation_spatial_reference=serviceSpatialReference,
             results_encoding_type=GeometryEncodingType.Value('wkt'))
