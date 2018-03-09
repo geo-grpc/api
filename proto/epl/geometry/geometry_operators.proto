@@ -198,11 +198,14 @@ message OperatorResult {
 
 message OperatorRequest {
 
+    GeometryBagData geometry_bag = 30;
+    OperatorRequest nested_request = 31;
+
     GeometryBagData left_geometry_bag = 1;
     GeometryBagData right_geometry_bag = 2;
 
-    OperatorRequest left_cursor = 3;
-    OperatorRequest right_cursor = 4;
+    OperatorRequest left_nested_request = 3;
+    OperatorRequest right_nested_request = 4;
 
     ServiceOperatorType operator_type = 5;
 
@@ -245,8 +248,7 @@ message OperatorRequest {
     repeated string generic_strings = 27;
     string de_9im = 29;
 
-//    GeometryBagData geometries = 30;
-//    OperatorRequest cursor = 31;
+
 }
 
 message EnvelopeData {
