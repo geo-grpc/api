@@ -115,7 +115,7 @@ enum ServiceOperatorType {
 message GeometryBagData {
     // id is usually associated with position in file format or database
     //    repeated int64 geometry_ids = 1;
-    repeated int64 geometry_id = 1;
+    repeated int64 geometry_ids = 1;
     // TODO review esri encoding typename (this is for the esri shape binary format)
     // type can be 'wkt', 'wkb', 'geojson', or 'esri'
     GeometryEncodingType geometry_encoding_type = 2;
@@ -123,8 +123,8 @@ message GeometryBagData {
     // the geometry encoded as base64 (wkb or esri) or as a string (wkt or geojson)
     //    repeated string geometry_strings = 3;
     //    repeated bytes geometry_binaries = 4;
-    repeated string geometry_string = 3;
-    repeated bytes geometry_binary = 4;
+    repeated string geometry_strings = 3;
+    repeated bytes geometry_binaries = 4;
 
     SpatialReferenceData spatial_reference = 5;
 }
@@ -172,7 +172,7 @@ message OperatorResult {
 //
 //    int32 intersection_dimension_mask = 12;
 //
-//    ServiceEnvelope2D clip_envelope = 13;
+//    EnvelopeData clip_envelope = 13;
 //
 //    bool cut_consider_touch = 14;
 //
@@ -198,6 +198,7 @@ message OperatorResult {
 //}
 
 message OperatorRequest {
+
     GeometryBagData left_geometry = 1;
     GeometryBagData right_geometry = 2;
 
@@ -221,7 +222,7 @@ message OperatorRequest {
 
     int32 intersection_dimension_mask = 12;
 
-    ServiceEnvelope2D clip_envelope = 13;
+    EnvelopeData clip_envelope = 13;
 
     bool cut_consider_touch = 14;
 
@@ -244,9 +245,12 @@ message OperatorRequest {
     repeated int32 generic_integers = 26;
     repeated string generic_strings = 27;
     string de_9im = 29;
+
+    GeometryBagData geometries = 30;
+    OperatorRequest cursor = 31;
 }
 
-message ServiceEnvelope2D {
+message EnvelopeData {
     double xmin = 1;
     double ymin = 2;
     double xmax = 3;
