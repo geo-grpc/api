@@ -58,11 +58,11 @@ class TestBasic(unittest.TestCase):
         self.assertTrue(True)
         polygon = Polygon([(0, 0), (1, 1), (1, 0)])
 
-        serviceGeom = ServiceGeometry()
-        serviceGeom.geometry_binary.extend([polygon.wkb])
-        serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
+        geometryBagData = GeometryBagData()
+        geometryBagData.geometry_binary.extend([polygon.wkb])
+        geometryBagData.geometry_encoding_type = GeometryEncodingType.Value('wkb')
 
-        opRequest = OperatorRequest(left_geometry=serviceGeom,
+        opRequest = OperatorRequest(left_geometry=geometryBagData,
                                     operator_type=ServiceOperatorType.Value('Buffer'),
                                     buffer_distances=[1.2],
                                     results_encoding_type=GeometryEncodingType.Value('wkt'))
@@ -81,11 +81,11 @@ class TestBasic(unittest.TestCase):
 
     def test_project(self):
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
-        serviceSpatialReference = ServiceSpatialReference(wkid=32632)
-        outputSpatialReference = ServiceSpatialReference(wkid=4326)
+        serviceSpatialReference = SpatialReferenceData(wkid=32632)
+        outputSpatialReference = SpatialReferenceData(wkid=4326)
         polyline = LineString([(500000,       0), (400000,  100000), (600000, -100000)])
 
-        serviceGeomPolyline = ServiceGeometry(
+        serviceGeomPolyline = GeometryBagData(
             geometry_string=[polyline.wkt],
             geometry_encoding_type=GeometryEncodingType.Value('wkt'),
             spatial_reference=serviceSpatialReference)
@@ -106,8 +106,8 @@ class TestBasic(unittest.TestCase):
 
     def test_multipoint(self):
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
-        serviceSpatialReference = ServiceSpatialReference(wkid=4326)
-        outputSpatialReference = ServiceSpatialReference(wkid=3857)
+        serviceSpatialReference = SpatialReferenceData(wkid=4326)
+        outputSpatialReference = SpatialReferenceData(wkid=3857)
         multipoints_array = []
         for longitude in range(-180, 180, 10):
             for latitude in range(-80, 80, 10):
@@ -115,7 +115,7 @@ class TestBasic(unittest.TestCase):
 
         multipoint = MultiPoint(multipoints_array)
 
-        serviceGeomPolyline = ServiceGeometry(
+        serviceGeomPolyline = GeometryBagData(
             geometry_string=[multipoint.wkt],
             geometry_encoding_type=GeometryEncodingType.Value('wkt'),
             spatial_reference=serviceSpatialReference)
@@ -174,10 +174,10 @@ class TestBasic(unittest.TestCase):
         # Build patches as in dissolved.py
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
         r = partial(random.uniform, -20.0, 20.0)
-        serviceSpatialReference = ServiceSpatialReference(wkid=4326)
+        serviceSpatialReference = SpatialReferenceData(wkid=4326)
         points = [Point(r(), r()) for i in range(10000)]
         spots = [p.buffer(2.5) for p in points]
-        service_multipoint = ServiceGeometry(spatial_reference=serviceSpatialReference,
+        service_multipoint = GeometryBagData(spatial_reference=serviceSpatialReference,
                                              geometry_encoding_type=GeometryEncodingType.Value('wkb'))
         shape_start = datetime.datetime.now()
         patches = cascaded_union(spots)
@@ -198,11 +198,11 @@ class TestBasic(unittest.TestCase):
 
 
         spots_wkb = [s.wkb for s in spots]
-        serviceGeom = ServiceGeometry()
-        serviceGeom.geometry_binary.extend(spots_wkb)
-        serviceGeom.geometry_encoding_type = GeometryEncodingType.Value('wkb')
+        geometryBagData = GeometryBagData()
+        geometryBagData.geometry_binary.extend(spots_wkb)
+        geometryBagData.geometry_encoding_type = GeometryEncodingType.Value('wkb')
 
-        opRequestUnion = OperatorRequest(left_geometry=serviceGeom,
+        opRequestUnion = OperatorRequest(left_geometry=geometryBagData,
                                          operator_type=ServiceOperatorType.Value('Union'))
 
         epl_start = datetime.datetime.now()
@@ -245,11 +245,11 @@ class TestBasic(unittest.TestCase):
                 geometry_string.append(point.wkt)
 
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
-        serviceSpatialReference = ServiceSpatialReference(wkid=4326)
-        outputSpatialReference = ServiceSpatialReference(wkid=3035)
-        # outputSpatialReference = ServiceSpatialReference(wkid=32632)
+        serviceSpatialReference = SpatialReferenceData(wkid=4326)
+        outputSpatialReference = SpatialReferenceData(wkid=3035)
+        # outputSpatialReference = SpatialReferenceData(wkid=32632)
 
-        serviceGeomPolyline = ServiceGeometry(
+        serviceGeomPolyline = GeometryBagData(
             geometry_string=geometry_string,
             geometry_encoding_type=GeometryEncodingType.Value('wkt'),
             spatial_reference=serviceSpatialReference)

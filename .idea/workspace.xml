@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86e1756b-1c6e-4c36-94ab-231468f66a08" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/proto/epl/geometry/geometry_operators.proto" afterPath="$PROJECT_DIR$/proto/epl/geometry/geometry_operators.proto" />
       <change beforePath="$PROJECT_DIR$/test/sample.py" afterPath="$PROJECT_DIR$/test/sample.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,18 +25,18 @@
     <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_union.coverage" NAME="Unittests for sample.TestBasic.test_union Coverage Results" MODIFIED="1520129421328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_test_sample_TestBasic_test_ETRS.coverage" NAME="py.test for test.sample.TestBasic.test_ETRS Coverage Results" MODIFIED="1520394485825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometryclientpython$run1.coverage" NAME="run1 Coverage Results" MODIFIED="1492884533141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geometry_client_python$pytest_for_sample_TestBasic.coverage" NAME="pytest for sample.TestBasic Coverage Results" MODIFIED="1520395102025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$pytest_for_sample_TestBasic.coverage" NAME="pytest for sample.TestBasic Coverage Results" MODIFIED="1520560050921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="sample.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sample.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/sample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="2631">
+              <caret line="249" column="55" lean-forward="false" selection-start-line="249" selection-start-column="55" selection-end-line="249" selection-end-column="55" />
               <folding>
                 <element signature="e#649#658#0" expanded="true" />
               </folding>
@@ -44,8 +47,8 @@
       <file leaf-file-name="geometry_operators.proto" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proto/epl/geometry/geometry_operators.proto">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1570">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="273">
+              <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -69,41 +72,9 @@
             <state relative-caret-position="45">
               <caret line="3" column="47" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="47" />
               <folding>
-                <element signature="e#221#1040#0" expanded="false" />
-                <element signature="e#1086#1698#0" expanded="false" />
-                <element signature="e#1766#2612#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="case.py" pinned="false" current-in-tab="false">
-        <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/unittest/case.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4755">
-              <caret line="330" column="0" lean-forward="false" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="diff_tools.py" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/teamcity/diff_tools.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setup.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="24" column="44" lean-forward="false" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#2389#3565#0" expanded="false" />
+                <marker date="1520560074680" expanded="false" signature="218:1040" ph="..." />
+                <marker date="1520560074680" expanded="true" signature="316:1040" ph="..." />
               </folding>
             </state>
           </provider>
@@ -112,18 +83,49 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="180">
+              <caret line="12" column="125" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="125" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Untitled2.ipynb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demos/Untitled2.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="0" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="projection-horizon.ipynb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demos/projection-horizon.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="105">
+                <caret line="7" column="134" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="134" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="221">
+              <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -156,9 +158,13 @@
       <find>geometry_operators_pb2</find>
       <find>geometry_grpc</find>
       <find>MultiPoint</find>
+      <find>serviceGeom</find>
+      <find>SpatialRefernceData</find>
     </findStrings>
     <replaceStrings>
       <replace>print($1)</replace>
+      <replace>geometryBagData</replace>
+      <replace>SpatialReferenceData</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -179,9 +185,10 @@
         <option value="$PROJECT_DIR$/proto/geometry_operators.proto" />
         <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/demos/Untitled2.ipynb" />
         <option value="$PROJECT_DIR$/demos/projection-horizon.ipynb" />
         <option value="$PROJECT_DIR$/test/sample.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -211,17 +218,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
               <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
-              <item name="demos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
@@ -261,8 +265,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -670,15 +672,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_for_test_sample_TestBasic_test_ETRS - 2018.03.06 at 18h 54m 27s.xml">
-      <configuration name="py.test for test.sample.TestBasic.test_ETRS" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_for_test_sample_TestBasic_test_ETRS - 2018.03.06 at 19h 11m 57s.xml">
-      <configuration name="py.test for test.sample.TestBasic.test_ETRS" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_for_test_sample_TestBasic_test_ETRS - 2018.03.06 at 19h 40m 19s.xml">
-      <configuration name="py.test for test.sample.TestBasic.test_ETRS" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_for_test_sample_TestBasic_test_ETRS - 2018.03.06 at 19h 43m 22s.xml">
       <configuration name="py.test for test.sample.TestBasic.test_ETRS" configurationId="tests" />
     </history-entry>
@@ -700,6 +693,15 @@
     <history-entry file="py_test_for_test_sample_TestBasic_test_ETRS - 2018.03.06 at 19h 48m 07s.xml">
       <configuration name="py.test for test.sample.TestBasic.test_ETRS" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_for_sample_TestBasic - 2018.03.06 at 19h 58m 34s.xml">
+      <configuration name="pytest for sample.TestBasic" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_sample_TestBasic - 2018.03.06 at 19h 59m 29s.xml">
+      <configuration name="pytest for sample.TestBasic" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_sample_TestBasic - 2018.03.08 at 17h 47m 33s.xml">
+      <configuration name="pytest for sample.TestBasic" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -718,9 +720,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48895898" sideWeight="0.33358043" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36317137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286445" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2911302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36317137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3286445" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29971388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -888,20 +890,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/epl/geometry/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/site-packages/google/protobuf/internal/python_message.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19646">
-          <caret line="1034" column="0" lean-forward="false" selection-start-line="1034" selection-start-column="0" selection-end-line="1034" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/site-packages/grpc/_channel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9405">
@@ -970,9 +958,9 @@
         <state relative-caret-position="76">
           <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="27" />
           <folding>
-            <element signature="e#221#1040#0" expanded="false" />
-            <element signature="e#1086#1698#0" expanded="false" />
-            <element signature="e#1766#2612#0" expanded="false" />
+            <element signature="e#2389#3565#0" expanded="false" />
+            <marker date="1520560074680" expanded="false" signature="218:1040" ph="..." />
+            <marker date="1520560074680" expanded="true" signature="316:1040" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1096,13 +1084,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VERSION">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1173,16 +1154,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="105">
-            <caret line="7" column="134" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="134" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/proto/geometry_operators.proto" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/teamcity/diff_tools.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1205,7 +1176,7 @@
         <state relative-caret-position="315">
           <caret line="24" column="44" lean-forward="false" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1215,26 +1186,10 @@
         <state relative-caret-position="45">
           <caret line="3" column="47" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="47" />
           <folding>
-            <element signature="e#221#1040#0" expanded="false" />
-            <element signature="e#1086#1698#0" expanded="false" />
-            <element signature="e#1766#2612#0" expanded="false" />
+            <element signature="e#2389#3565#0" expanded="false" />
+            <marker date="1520560074680" expanded="false" signature="218:1040" ph="..." />
+            <marker date="1520560074680" expanded="true" signature="316:1040" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1246,30 +1201,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proto/epl/geometry/geometry_operators.proto">
+    <entry file="file://$PROJECT_DIR$/demos/Untitled2.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1570">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demos/projection-horizon.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
-          <selected id="7" />
+          <selected id="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="105">
+            <caret line="7" column="134" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="134" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/e/doc/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proto/epl/geometry/geometry_operators.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="125" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="125" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/sample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="2631">
+          <caret line="249" column="55" lean-forward="false" selection-start-line="249" selection-start-column="55" selection-end-line="249" selection-end-column="55" />
           <folding>
             <element signature="e#649#658#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
