@@ -35,6 +35,10 @@ service GeometryOperators {
     rpc ExecuteOperation(OperatorRequest) returns (OperatorResult) {}
 
     rpc StreamOperations(stream OperatorRequest) returns (stream OperatorResult) {}
+
+    rpc StreamOperationsEx(stream OperatorRequest) returns (stream OperatorResult) {}
+
+//    rpc StreamFileOperations(stream BigFileRequest) returns (stream OperatorResult) {}
 }
 
 /*
@@ -107,22 +111,25 @@ enum ServiceOperatorType {
     EnclosingCircle = 46;
 }
 
-message ServiceGeometry {
+//message ServiceGeometryBag {
+message GeometryBagData {
     // id is usually associated with position in file format or database
+    //    repeated int64 geometry_ids = 1;
     repeated int64 geometry_id = 1;
-
     // TODO review esri encoding typename (this is for the esri shape binary format)
     // type can be 'wkt', 'wkb', 'geojson', or 'esri'
     GeometryEncodingType geometry_encoding_type = 2;
 
     // the geometry encoded as base64 (wkb or esri) or as a string (wkt or geojson)
+    //    repeated string geometry_strings = 3;
+    //    repeated bytes geometry_binaries = 4;
     repeated string geometry_string = 3;
     repeated bytes geometry_binary = 4;
 
-    ServiceSpatialReference spatial_reference = 5;
+    SpatialReferenceData spatial_reference = 5;
 }
 
-message ServiceSpatialReference {
+message SpatialReferenceData {
     string proj4 = 4;
     // String that is a wkt, wkid, esri_wkt, or a proj4 string
     string esri_wkt = 5;
@@ -132,7 +139,7 @@ message ServiceSpatialReference {
 }
 
 message OperatorResult {
-    ServiceGeometry geometry = 1;
+    GeometryBagData geometry = 1;
 
     bool spatial_relationship = 2;
 
@@ -141,9 +148,58 @@ message OperatorResult {
     map<int32, bool> relate_map = 4;
 }
 
+//message BigFileRequest {
+//    OperatorRequest nested_request = 1;
+//    ServiceOperatorType operator_type = 2;
+//    SpatialReferenceData input_spatial_reference = 3;
+//    SpatialReferenceData operation_spatial_reference = 4;
+//    SpatialReferenceData result_spatial_reference = 5;
+//
+//    bytes data = 6;
+//    int64 offset = 7;
+//    string file_name = 8;
+//
+//    OperatorParameters = 9;
+//    bool IsLastChunk = 10;
+//}
+
+//message OperatorParameters {
+//    bool convex_hull_merge = 9;
+//
+//    repeated double buffer_distances = 10;
+//    repeated double buffer_max_deviations = 28;
+//    bool buffer_union_result = 11;
+//
+//    int32 intersection_dimension_mask = 12;
+//
+//    ServiceEnvelope2D clip_envelope = 13;
+//
+//    bool cut_consider_touch = 14;
+//
+//    double densify_max_length = 15;
+//
+//    bool simplify_force = 16;
+//
+//    double offset_distance = 17;
+//    //TODO replace with Enum
+//    string offset_join_type = 18;
+//    double offset_bevel_ratio = 19;
+//    double offset_flatten_error = 20;
+//
+//    double generalize_max_deviation = 21;
+//    bool generalize_remove_degenerates = 22;
+//    int32 max_vertices_in_full_circle = 23;
+//
+//    repeated bool generic_booleans = 24;
+//    repeated double generic_doubles = 25;
+//    repeated int32 generic_integers = 26;
+//    repeated string generic_strings = 27;
+//    string de_9im = 29;
+//}
+
 message OperatorRequest {
-    ServiceGeometry left_geometry = 1;
-    ServiceGeometry right_geometry = 2;
+    GeometryBagData left_geometry = 1;
+    GeometryBagData right_geometry = 2;
 
     OperatorRequest left_cursor = 3;
     OperatorRequest right_cursor = 4;
@@ -152,9 +208,9 @@ message OperatorRequest {
 
     GeometryEncodingType results_encoding_type = 6;
 
-    ServiceSpatialReference operation_spatial_reference = 7;
+    SpatialReferenceData operation_spatial_reference = 7;
 
-    ServiceSpatialReference result_spatial_reference = 8;
+    SpatialReferenceData result_spatial_reference = 8;
 
 
     bool convex_hull_merge = 9;
