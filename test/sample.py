@@ -59,7 +59,7 @@ class TestBasic(unittest.TestCase):
         polygon = Polygon([(0, 0), (1, 1), (1, 0)])
 
         geometryBagData = GeometryBagData()
-        geometryBagData.geometry_binary.extend([polygon.wkb])
+        geometryBagData.geometry_binaries.extend([polygon.wkb])
         geometryBagData.geometry_encoding_type = GeometryEncodingType.Value('wkb')
 
         opRequest = OperatorRequest(left_geometry=geometryBagData,
@@ -74,7 +74,7 @@ class TestBasic(unittest.TestCase):
         response = stub.ExecuteOperation(opRequest)
         # print response
         print("Client received wkt response:\n", response)
-        result_buffered = loads(response.geometry.geometry_string[0])
+        result_buffered = loads(response.geometry.geometry_strings[0])
         self.assertTrue(result_buffered.contains(polygon))
         shapely_buffer = polygon.buffer(1.2)
         self.assertAlmostEqual(shapely_buffer.area, result_buffered.area, 2)
@@ -86,7 +86,7 @@ class TestBasic(unittest.TestCase):
         polyline = LineString([(500000,       0), (400000,  100000), (600000, -100000)])
 
         serviceGeomPolyline = GeometryBagData(
-            geometry_string=[polyline.wkt],
+            geometry_strings=[polyline.wkt],
             geometry_encoding_type=GeometryEncodingType.Value('wkt'),
             spatial_reference=serviceSpatialReference)
 
@@ -101,7 +101,7 @@ class TestBasic(unittest.TestCase):
         print("Client received project response:\n", response2)
 
         expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
-        actual = response2.geometry.geometry_string[0]
+        actual = response2.geometry.geometry_strings[0]
         self.assertEqual(expected, actual)
 
     def test_multipoint(self):
@@ -116,7 +116,7 @@ class TestBasic(unittest.TestCase):
         multipoint = MultiPoint(multipoints_array)
 
         serviceGeomPolyline = GeometryBagData(
-            geometry_string=[multipoint.wkt],
+            geometry_strings=[multipoint.wkt],
             geometry_encoding_type=GeometryEncodingType.Value('wkt'),
             spatial_reference=serviceSpatialReference)
 
@@ -134,7 +134,7 @@ class TestBasic(unittest.TestCase):
         print("make project request")
         response = stub.ExecuteOperation(opRequestOuter)
         print("Client received project response:\n", response)
-        round_trip_result_wkt = loads(response.geometry.geometry_string[0])
+        round_trip_result_wkt = loads(response.geometry.geometry_strings[0])
 
         opRequestOuter = OperatorRequest(
             left_cursor=opRequestProject,
@@ -142,7 +142,7 @@ class TestBasic(unittest.TestCase):
             operation_spatial_reference=serviceSpatialReference,
             results_encoding_type=GeometryEncodingType.Value('wkb'))
         response = stub.ExecuteOperation(opRequestOuter)
-        round_trip_result = wkbloads(response.geometry.geometry_binary[0])
+        round_trip_result = wkbloads(response.geometry.geometry_binaries[0])
         self.assertIsNotNone(round_trip_result)
 
         max_diff_lat = 0.0
@@ -182,14 +182,14 @@ class TestBasic(unittest.TestCase):
         shape_start = datetime.datetime.now()
         patches = cascaded_union(spots)
         # because shapely is non-simple we need to simplify it for this to be a fair comparison
-        service_multipoint.geometry_binary.extend([patches.wkb])
+        service_multipoint.geometry_binaries.extend([patches.wkb])
         opRequestOuter = OperatorRequest(
             left_geometry=service_multipoint,
             operator_type=ServiceOperatorType.Value('Simplify'),
             operation_spatial_reference=serviceSpatialReference,
             results_encoding_type=GeometryEncodingType.Value('wkb'))
         response = stub.ExecuteOperation(opRequestOuter)
-        patches = wkbloads(response.geometry.geometry_binary[0])
+        patches = wkbloads(response.geometry.geometry_binaries[0])
         shape_end = datetime.datetime.now()
         shape_delta = shape_end - shape_start
         shape_microseconds = int(shape_delta.total_seconds() * 1000)
@@ -199,7 +199,7 @@ class TestBasic(unittest.TestCase):
 
         spots_wkb = [s.wkb for s in spots]
         geometryBagData = GeometryBagData()
-        geometryBagData.geometry_binary.extend(spots_wkb)
+        geometryBagData.geometry_binaries.extend(spots_wkb)
         geometryBagData.geometry_encoding_type = GeometryEncodingType.Value('wkb')
 
         opRequestUnion = OperatorRequest(left_geometry=geometryBagData,
@@ -207,7 +207,7 @@ class TestBasic(unittest.TestCase):
 
         epl_start = datetime.datetime.now()
         response = stub.ExecuteOperation(opRequestUnion)
-        unioned_result = wkbloads(response.geometry.geometry_binary[0])
+        unioned_result = wkbloads(response.geometry.geometry_binaries[0])
 
         epl_end = datetime.datetime.now()
         epl_delta = epl_end - epl_start
@@ -220,7 +220,7 @@ class TestBasic(unittest.TestCase):
 
     # tests exception handling for points outside the range of projection
     def test_ETRS(self):
-        geometry_string = []
+        geometry_strings = []
 
         change_interval = 15
         start_lon = -180.0
@@ -242,7 +242,7 @@ class TestBasic(unittest.TestCase):
 
                 point = Point(longitude, latitude)
                 original_points.append(point)
-                geometry_string.append(point.wkt)
+                geometry_strings.append(point.wkt)
 
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
         serviceSpatialReference = SpatialReferenceData(wkid=4326)
@@ -250,7 +250,7 @@ class TestBasic(unittest.TestCase):
         # outputSpatialReference = SpatialReferenceData(wkid=32632)
 
         serviceGeomPolyline = GeometryBagData(
-            geometry_string=geometry_string,
+            geometry_strings=geometry_strings,
             geometry_encoding_type=GeometryEncodingType.Value('wkt'),
             spatial_reference=serviceSpatialReference)
 
@@ -268,7 +268,7 @@ class TestBasic(unittest.TestCase):
         # print("make project request")
         response = stub.ExecuteOperation(opRequestOuter)
         # print("Client received project response:\n", response)
-        projected_point_array = [loads(wkt) for wkt in response.geometry.geometry_string]
+        projected_point_array = [loads(wkt) for wkt in response.geometry.geometry_strings]
 
         for index, original in enumerate(original_points):
             point_projected = projected_point_array[index]
