@@ -49,6 +49,7 @@ enum GeometryEncodingType {
     wkb = 1; // well-known binary
     wkt = 2; // well-known text
     geojson = 3; // geojson
+    // TODO review esri encoding typename (this is for the esri shape binary format)
     esrishape = 4; // esri shape binary
 }
 
@@ -116,13 +117,11 @@ message GeometryBagData {
     // id is usually associated with position in file format or database
     //    repeated int64 geometry_ids = 1;
     repeated int64 geometry_ids = 1;
-    // TODO review esri encoding typename (this is for the esri shape binary format)
+
     // type can be 'wkt', 'wkb', 'geojson', or 'esri'
     GeometryEncodingType geometry_encoding_type = 2;
 
     // the geometry encoded as base64 (wkb or esri) or as a string (wkt or geojson)
-    //    repeated string geometry_strings = 3;
-    //    repeated bytes geometry_binaries = 4;
     repeated string geometry_strings = 3;
     repeated bytes geometry_binaries = 4;
 
@@ -139,7 +138,7 @@ message SpatialReferenceData {
 }
 
 message OperatorResult {
-    GeometryBagData geometry = 1;
+    GeometryBagData geometry_bag = 1;
 
     bool spatial_relationship = 2;
 
@@ -199,8 +198,8 @@ message OperatorResult {
 
 message OperatorRequest {
 
-    GeometryBagData left_geometry = 1;
-    GeometryBagData right_geometry = 2;
+    GeometryBagData left_geometry_bag = 1;
+    GeometryBagData right_geometry_bag = 2;
 
     OperatorRequest left_cursor = 3;
     OperatorRequest right_cursor = 4;
@@ -246,8 +245,8 @@ message OperatorRequest {
     repeated string generic_strings = 27;
     string de_9im = 29;
 
-    GeometryBagData geometries = 30;
-    OperatorRequest cursor = 31;
+//    GeometryBagData geometries = 30;
+//    OperatorRequest cursor = 31;
 }
 
 message EnvelopeData {
