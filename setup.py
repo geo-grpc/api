@@ -9,14 +9,15 @@ os.chdir(src_path)
 sys.path.insert(0, src_path)
 
 kwargs = {
-    'name': 'epl-geometry',
+    'name': 'epl.geometry',
     'description': 'Echo Park Labs Geometry Client',
     'long_description': open('README.md').read(),
     'author': 'Echo Park Labs',
     'author_email': 'david@echoparklabs.com',
     'url': 'https://bitbucket.org/davidraleigh/geometry-client-python',
     'version': open('VERSION').read(),
-    'packages': find_packages('.'),
+    "namespace_package": ['epl'],
+    'packages': ['epl.geometry'],
     'zip_safe': False
 }
 
