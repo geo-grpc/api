@@ -13,9 +13,12 @@ demos/
 epl/__pycache__/
 epl/geometry/__pycache__/
 epl_geometry.egg-info/
-projection-horizon.ipynb
+*.ipynb
 temp/
 epl/geometry/geometry_operators_pb2.py
 epl/geometry/geometry_operators_pb2_grpc.py
 .cache/
 .pytest_cache/
+epl.geometry.egg-info/
+epl/grpc/geometry/geometry_operators_pb2.py
+epl/grpc/geometry/geometry_operators_pb2_grpc.py
