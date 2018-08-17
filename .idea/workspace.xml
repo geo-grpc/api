@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86e1756b-1c6e-4c36-94ab-231468f66a08" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/epl/grpc/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/epl/geometry/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/epl/grpc/geometry/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto/epl/geometry/geometry_operators.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/epl/grpc/geometry/geometry_operators.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/sample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/epl/grpc/geometry/geometry_operators.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/epl/grpc/geometry/geometry_operators.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,17 +15,18 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_test_sample_TestBasic_test_ETRS.coverage" NAME="py.test for test.sample.TestBasic.test_ETRS Coverage Results" MODIFIED="1520394485825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometryclientpython$run1.coverage" NAME="run1 Coverage Results" MODIFIED="1492884533141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_sample_TestBasic_test_project.coverage" NAME="py.test for sample.TestBasic.test_project Coverage Results" MODIFIED="1527875100230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometry_client_python$pytest_for_sample_TestBasic.coverage" NAME="pytest for sample.TestBasic Coverage Results" MODIFIED="1525550090774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_project.coverage" NAME="Unittests for sample.TestBasic.test_project Coverage Results" MODIFIED="1512072830154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_union.coverage" NAME="Unittests for sample.TestBasic.test_union Coverage Results" MODIFIED="1520129421328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/geometry_client_python$sample.coverage" NAME="sample Coverage Results" MODIFIED="1534302223671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_buffer.coverage" NAME="Unittests for sample.TestBasic.test_buffer Coverage Results" MODIFIED="1512073693766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_multipoint.coverage" NAME="Unittests for sample.TestBasic.test_multipoint Coverage Results" MODIFIED="1520190800004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic.coverage" NAME="Unittests for sample.TestBasic Coverage Results" MODIFIED="1520190331031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometry_client_python$run1.coverage" NAME="run1 Coverage Results" MODIFIED="1492906462287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_test_sample_TestBasic_test_ETRS.coverage" NAME="py.test for test.sample.TestBasic.test_ETRS Coverage Results" MODIFIED="1520394485825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_sample_TestBasic_test_project.coverage" NAME="py.test for sample.TestBasic.test_project Coverage Results" MODIFIED="1527875100230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_sample_TestBasic_test_ETRS.coverage" NAME="py.test for sample.TestBasic.test_ETRS Coverage Results" MODIFIED="1534388435577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_project.coverage" NAME="Unittests for sample.TestBasic.test_project Coverage Results" MODIFIED="1512072830154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$sample.coverage" NAME="sample Coverage Results" MODIFIED="1534302223671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_multipoint.coverage" NAME="Unittests for sample.TestBasic.test_multipoint Coverage Results" MODIFIED="1520190800004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_1.coverage" NAME="Unittests for sample.TestBasic.test_1 Coverage Results" MODIFIED="1512072327838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -40,8 +37,8 @@
       <file leaf-file-name="sample.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/sample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="221" column="24" selection-start-line="221" selection-start-column="24" selection-end-line="221" selection-end-column="24" />
+            <state relative-caret-position="1799">
+              <caret line="224" column="21" lean-forward="true" selection-start-line="224" selection-start-column="21" selection-end-line="224" selection-end-column="21" />
               <folding>
                 <element signature="e#649#658#0" expanded="true" />
               </folding>
@@ -49,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
+            <state relative-caret-position="225">
               <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
             </state>
           </provider>
@@ -79,8 +76,20 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="435">
+              <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,15 +111,6 @@
       </file>
       <file leaf-file-name="Untitled.ipynb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demos/Untitled.ipynb">
-          <provider selected="true" editor-type-id="ipnb-editor">
-            <state>
-              <selected id="0" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Planar+data+classification+with+one+hidden+layer+v5.ipynb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demos/Planar+data+classification+with+one+hidden+layer+v5.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
               <selected id="0" />
@@ -196,10 +196,10 @@
         <option value="$PROJECT_DIR$/demos/Untitled2.ipynb" />
         <option value="$PROJECT_DIR$/demos/projection-horizon.ipynb" />
         <option value="$PROJECT_DIR$/epl/__init__.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/test/sample.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/setup.py" />
       </list>
     </option>
   </component>
@@ -216,14 +216,13 @@
     <option name="x" value="96" />
     <option name="y" value="23" />
     <option name="width" value="1344" />
-    <option name="height" value="877" />
+    <option name="height" value="1203" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -239,51 +238,13 @@
             <path>
               <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
               <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
-              <item name="epl" type="462c0819:PsiDirectoryNode" />
-              <item name="grpc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
-              <item name="epl" type="462c0819:PsiDirectoryNode" />
-              <item name="grpc" type="462c0819:PsiDirectoryNode" />
-              <item name="geometry" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
-              <item name="proto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
-              <item name="proto" type="462c0819:PsiDirectoryNode" />
-              <item name="epl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
-              <item name="proto" type="462c0819:PsiDirectoryNode" />
-              <item name="epl" type="462c0819:PsiDirectoryNode" />
-              <item name="grpc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
-              <item name="proto" type="462c0819:PsiDirectoryNode" />
-              <item name="epl" type="462c0819:PsiDirectoryNode" />
-              <item name="grpc" type="462c0819:PsiDirectoryNode" />
-              <item name="geometry" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="geometry-client-python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="geometry-client-python" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,7 +280,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.sample">
+  <component name="RunManager" selected="Python tests.py.test for sample.TestBasic.test_ETRS">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <module name="geometryclientpython" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -425,18 +386,18 @@
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
-      <module name="geometry-client-python" />
+      <module name="geometryclientpython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
@@ -481,20 +442,6 @@
       <option name="_new_pattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;sample.TestBasic.test_multipoint&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-    </configuration>
-    <configuration name="Unittests for sample.TestBasic.test_union" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="geometry-client-python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sample.TestBasic.test_union&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -545,19 +492,34 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
-      <module name="geometryclientpython" />
+      <module name="geometry-client-python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="SDK_HOME" value="/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="py.test for sample.TestBasic.test_ETRS" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="geometry-client-python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;sample.TestBasic.test_ETRS&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
     <configuration name="py.test for sample.TestBasic.test_project" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="geometry-client-python" />
@@ -628,19 +590,19 @@
     <list>
       <item itemvalue="Python tests.sample" />
       <item itemvalue="Python tests.pytest for sample.TestBasic" />
-      <item itemvalue="Python tests.Unittests for sample.TestBasic.test_union" />
       <item itemvalue="Python tests.Unittests for sample.TestBasic" />
       <item itemvalue="Python tests.Unittests for sample.TestBasic.test_multipoint" />
       <item itemvalue="Python tests.py.test for test.sample.TestBasic.test_ETRS" />
       <item itemvalue="Python tests.py.test for sample.TestBasic.test_project" />
+      <item itemvalue="Python tests.py.test for sample.TestBasic.test_ETRS" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.py.test for sample.TestBasic.test_ETRS" />
         <item itemvalue="Python tests.py.test for sample.TestBasic.test_project" />
         <item itemvalue="Python tests.py.test for test.sample.TestBasic.test_ETRS" />
         <item itemvalue="Python tests.Unittests for sample.TestBasic.test_multipoint" />
         <item itemvalue="Python tests.Unittests for sample.TestBasic" />
-        <item itemvalue="Python tests.Unittests for sample.TestBasic.test_union" />
       </list>
     </recent_temporary>
   </component>
@@ -658,9 +620,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_for_sample_TestBasic_test_project - 2018.06.01 at 10h 44m 37s.xml">
-      <configuration name="py.test for sample.TestBasic.test_project" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_for_sample_TestBasic_test_project - 2018.06.01 at 10h 45m 01s.xml">
       <configuration name="py.test for sample.TestBasic.test_project" configurationId="tests" />
     </history-entry>
@@ -688,6 +647,9 @@
     <history-entry file="sample - 2018.08.14 at 20h 03m 55s.xml">
       <configuration name="sample" configurationId="tests" />
     </history-entry>
+    <history-entry file="py_test_for_sample_TestBasic_test_ETRS - 2018.08.15 at 20h 00m 37s.xml">
+      <configuration name="py.test for sample.TestBasic.test_ETRS" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -699,23 +661,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="96" y="23" width="1344" height="877" extended-state="0" />
-    <editor active="true" />
+    <frame x="96" y="23" width="1344" height="1203" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4974055" weight="0.32912722" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.33358043" side_tool="true" weight="0.48895898" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4730769" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32911393" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32911393" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.4974055" weight="0.32912722" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.4974055" visible="true" weight="0.2628205" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24884793" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.1397436" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4974055" weight="0.45840868" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26036867" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.66641957" weight="0.39641944" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.66641957" weight="0.39641944" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -730,23 +691,23 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="11" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16196205" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Data View" order="4" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4974055" weight="0.32912722" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5287009" />
-      <window_info anchor="right" id="Data View" order="4" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4974055" weight="0.32912722" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32930514" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16196205" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4974055" weight="0.32912722" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.33358043" side_tool="true" weight="0.48895898" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.66641957" weight="0.33736154" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4974055" weight="0.32912722" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1102,13 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demos/Untitled1.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -1164,18 +1118,11 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -1193,20 +1140,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/sample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="221" column="24" selection-start-line="221" selection-start-column="24" selection-end-line="221" selection-end-column="24" />
+        <state relative-caret-position="1799">
+          <caret line="224" column="21" lean-forward="true" selection-start-line="224" selection-start-column="21" selection-end-line="224" selection-end-column="21" />
           <folding>
             <element signature="e#649#658#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        <state relative-caret-position="435">
+          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
