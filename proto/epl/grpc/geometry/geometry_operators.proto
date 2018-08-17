@@ -206,8 +206,9 @@ message GeneralizeParams {
 }
 
 message GeneralizeByAreaParams {
-    double max_deviation = 1;
+    double percent_reduction = 1;
     bool remove_degenerates = 2;
+    int32 max_point_count = 3;
 }
 
 message IntersectionParams {
@@ -270,6 +271,7 @@ message OperatorRequest {
         ClipParams clip_params = 19;
         DensifyParams densify_params = 20;
         SimplifyParams simplify_params = 21;
+        GeneralizeByAreaParams generalize_by_area_params = 22;
 //    }
 }
 
