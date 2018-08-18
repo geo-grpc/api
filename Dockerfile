@@ -17,8 +17,7 @@ FROM python:3.5-slim
 
 RUN apt update
 
-RUN pip3 install --upgrade pip && \
-    pip3 install grpcio
+RUN pip3 install grpcio
 
 # TODO remove this and place it as an install for the testing
 RUN pip3 install shapely
