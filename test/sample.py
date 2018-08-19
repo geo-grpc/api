@@ -103,8 +103,57 @@ class TestBasic(unittest.TestCase):
         print("Client received project response:\n", response2)
 
         expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
+
         actual = response2.geometry_bag.wkt[0]
-        self.assertEqual(expected, actual)
+
+        opEquals = OperatorRequest(
+            left_geometry_bag=GeometryBagData(wkt=[expected]),
+            right_geometry_bag=response2.geometry_bag,
+            operator_type=ServiceOperatorType.Value("Equals"),
+            operation_spatial_reference=outputSpatialReference)
+
+        response3 = stub.ExecuteOperation(opEquals)
+
+        self.assertTrue(response3.spatial_relationship)
+
+    def test_exception(self):
+        stub = geometry_grpc.GeometryOperatorsStub(self.channel)
+        serviceSpatialReference = SpatialReferenceData(wkid=32632)
+        outputSpatialReference = SpatialReferenceData(wkid=4326)
+        polyline = LineString([(500000,       0), (400000,  100000), (600000, -100000)])
+
+        a = EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
+        serviceGeomPolyline = GeometryBagData(
+            wkt=[polyline.wkt],
+            spatial_reference=serviceSpatialReference)
+
+        opRequestProject = OperatorRequest(
+            left_geometry_bag=serviceGeomPolyline,
+            operator_type=ServiceOperatorType.Value('Project'),
+            operation_spatial_reference=outputSpatialReference,
+            results_encoding_type=GeometryEncodingType.Value('wkt'))
+
+        print("make project request")
+        response2 = stub.ExecuteOperation(opRequestProject)
+        print("Client received project response:\n", response2)
+
+        expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
+
+        actual = response2.geometry_bag.wkt[0]
+
+        opEquals = OperatorRequest(
+            left_geometry_bag=serviceGeomPolyline,
+            right_geometry_bag=response2.geometry_bag,
+            operator_type=ServiceOperatorType.Value("Equals"),
+            operation_spatial_reference=outputSpatialReference)
+
+        try:
+            response3 = stub.ExecuteOperation(opEquals)
+            self.assertTrue(False)
+        except grpc.RpcError as e:
+            self.assertEqual('executeOperation error : either both spatial references are local or neither', e.details())
+
+
 
     def test_multipoint(self):
         stub = geometry_grpc.GeometryOperatorsStub(self.channel)
