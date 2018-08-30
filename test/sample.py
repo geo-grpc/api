@@ -151,7 +151,7 @@ class TestBasic(unittest.TestCase):
             response3 = stub.ExecuteOperation(opEquals)
             self.assertTrue(False)
         except grpc.RpcError as e:
-            self.assertEqual('executeOperation error : either both spatial references are local or neither', e.details())
+            self.assertEqual('executeOperation error : java.lang.IllegalArgumentException: either both spatial references are local or neither', e.details())
 
 
 
