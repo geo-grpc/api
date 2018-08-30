@@ -51,6 +51,7 @@ enum GeometryEncodingType {
     geojson = 3; // geojson
     // TODO review esri encoding typename (this is for the esri shape binary format)
     esrishape = 4; // esri shape binary
+    esrijson = 5;
 }
 
 enum ServiceOperatorType {
@@ -134,6 +135,8 @@ message GeometryBagData {
     repeated bytes esri_shape = 6;
 
     SpatialReferenceData spatial_reference = 7;
+
+    repeated string esri_json = 8;
 }
 
 message SpatialReferenceData {

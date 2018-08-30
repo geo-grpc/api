@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="86e1756b-1c6e-4c36-94ab-231468f66a08" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/sample.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +22,8 @@
     <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_sample_TestBasic_test_project.coverage" NAME="py.test for sample.TestBasic.test_project Coverage Results" MODIFIED="1534648107422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_sample_TestBasic_test_ETRS.coverage" NAME="py.test for sample.TestBasic.test_ETRS Coverage Results" MODIFIED="1534646562665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_project.coverage" NAME="Unittests for sample.TestBasic.test_project Coverage Results" MODIFIED="1512072830154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/geometry_client_python$sample.coverage" NAME="sample Coverage Results" MODIFIED="1534646864605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_sample_TestBasic_test_exception.coverage" NAME="py.test for sample.TestBasic.test_exception Coverage Results" MODIFIED="1534648724452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$sample.coverage" NAME="sample Coverage Results" MODIFIED="1535062502724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geometry_client_python$py_test_for_sample_TestBasic_test_exception.coverage" NAME="py.test for sample.TestBasic.test_exception Coverage Results" MODIFIED="1535062046672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_multipoint.coverage" NAME="Unittests for sample.TestBasic.test_multipoint Coverage Results" MODIFIED="1520190800004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/geometry_client_python$Unittests_for_sample_TestBasic_test_1.coverage" NAME="Unittests for sample.TestBasic.test_1 Coverage Results" MODIFIED="1512072327838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
@@ -34,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="sample.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sample.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/sample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="153" column="12" selection-start-line="153" selection-start-column="12" selection-end-line="153" selection-end-column="12" />
+            <state relative-caret-position="15">
+              <caret line="181" column="68" selection-start-line="181" selection-start-column="68" selection-end-line="181" selection-end-column="68" />
               <folding>
                 <element signature="e#649#658#0" expanded="true" />
                 <element signature="e#1698#2896#0" />
@@ -47,10 +45,22 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="105">
+                <caret line="7" column="7" selection-start-line="7" selection-end-line="8" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="_channel.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.6/site-packages/grpc/_channel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
+            <state relative-caret-position="5685">
               <caret line="388" selection-start-line="388" selection-end-line="388" />
             </state>
           </provider>
@@ -59,7 +69,7 @@
       <file leaf-file-name="case.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/Cellar/python/3.6.4_3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
+            <state relative-caret-position="8865">
               <caret line="604" selection-start-line="604" selection-end-line="604" />
             </state>
           </provider>
@@ -68,7 +78,7 @@
       <file leaf-file-name="contextlib.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/Cellar/python/3.6.4_3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/contextlib.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
+            <state relative-caret-position="1215">
               <caret line="85" selection-start-line="85" selection-end-line="85" />
             </state>
           </provider>
@@ -77,7 +87,7 @@
       <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.6/site-packages/shapely/geometry/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
+            <state relative-caret-position="5295">
               <caret line="366" selection-start-line="366" selection-end-line="366" />
             </state>
           </provider>
@@ -86,17 +96,8 @@
       <file leaf-file-name="geos.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.6/site-packages/shapely/geos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
+            <state relative-caret-position="5115">
               <caret line="354" selection-start-line="354" selection-end-line="354" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -104,7 +105,7 @@
       <file leaf-file-name="geometry_operators.proto" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proto/epl/grpc/geometry/geometry_operators.proto">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
+            <state relative-caret-position="1950">
               <caret line="148" column="32" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="32" />
             </state>
           </provider>
@@ -144,9 +145,9 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>GeometryOperatorsStub</find>
-      <find />
-      <find />
-      <find />
+      <find>print &quot;([\w]+)</find>
+      <find>print ([\w,\\ &quot;]+)</find>
+      <find>print ([\w,\\ :&quot;]+)</find>
       <find>geometry__operators__pb2</find>
       <find>ServiceOperatorType</find>
       <find>enum_type_wrapper</find>
@@ -166,8 +167,8 @@
       <find>multipo</find>
       <find>nested</find>
       <find>geometry_strings</find>
-      <find />
-      <find />
+      <find>spatial references</find>
+      <find>MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))</find>
     </findStrings>
     <replaceStrings>
       <replace>print($1)</replace>
@@ -220,14 +221,13 @@
     <option name="x" value="96" />
     <option name="y" value="23" />
     <option name="width" value="1344" />
-    <option name="height" value="1192" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -288,6 +288,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -323,7 +324,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.py.test for sample.TestBasic.test_exception">
+  <component name="RunManager" selected="Python tests.sample">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <module name="geometryclientpython" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -429,18 +430,21 @@
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
-      <module name="geometryclientpython" />
+      <module name="geometry-client-python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="GEOMETRY_SERVICE_HOST" value="0.0.0.0:8980" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
@@ -517,21 +521,18 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
-      <module name="geometry-client-python" />
+      <module name="geometryclientpython" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="GEOMETRY_SERVICE_HOST" value="0.0.0.0:8980" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration name="py.test for sample.TestBasic.test_ETRS" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
@@ -675,18 +676,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_for_sample_TestBasic_test_project - 2018.08.18 at 20h 06m 35s.xml">
-      <configuration name="py.test for sample.TestBasic.test_project" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_for_sample_TestBasic_test_project - 2018.08.18 at 20h 07m 53s.xml">
-      <configuration name="py.test for sample.TestBasic.test_project" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_for_sample_TestBasic_test_project - 2018.08.18 at 20h 08m 23s.xml">
-      <configuration name="py.test for sample.TestBasic.test_project" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_for_sample_TestBasic_test_project - 2018.08.18 at 20h 09m 40s.xml">
-      <configuration name="py.test for sample.TestBasic.test_project" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_for_sample_TestBasic_test_exception - 2018.08.18 at 20h 10m 56s.xml">
       <configuration name="py.test for sample.TestBasic.test_exception" configurationId="tests" />
     </history-entry>
@@ -705,6 +694,18 @@
     <history-entry file="py_test_for_sample_TestBasic_test_exception - 2018.08.18 at 20h 18m 21s.xml">
       <configuration name="py.test for sample.TestBasic.test_exception" configurationId="tests" />
     </history-entry>
+    <history-entry file="py_test_for_sample_TestBasic_test_exception - 2018.08.18 at 20h 18m 49s.xml">
+      <configuration name="py.test for sample.TestBasic.test_exception" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_sample_TestBasic_test_exception - 2018.08.23 at 15h 07m 29s.xml">
+      <configuration name="py.test for sample.TestBasic.test_exception" configurationId="tests" />
+    </history-entry>
+    <history-entry file="sample - 2018.08.23 at 15h 07m 55s.xml">
+      <configuration name="sample" configurationId="tests" />
+    </history-entry>
+    <history-entry file="sample - 2018.08.23 at 15h 15m 16s.xml">
+      <configuration name="sample" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -716,23 +717,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="96" y="23" width="1344" height="1192" extended-state="0" />
-    <editor active="true" />
+    <frame x="96" y="23" width="1344" height="877" extended-state="1" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4974055" weight="0.32912722" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.33358043" side_tool="true" weight="0.48895898" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32911393" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.513242" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32876712" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.4974055" weight="0.32912722" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36894977" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4974055" weight="0.25296804" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26804915" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2795699" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.66641957" weight="0.43744293" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.66641957" visible="true" weight="0.43744293" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -747,23 +747,23 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="11" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" id="Data View" order="4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16196205" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4974055" weight="0.32912722" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5287009" />
+      <window_info anchor="right" id="Data View" order="4" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4974055" weight="0.32912722" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32930514" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16196205" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4974055" weight="0.32912722" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.33358043" side_tool="true" weight="0.48895898" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.66641957" weight="0.33736154" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4974055" weight="0.32912722" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -854,22 +854,22 @@
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>(patches.area, unioned_result.area, 1)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>math.fabs(original_point.x - projected_point.x)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>math.fabs(original_point.y - projected_point.y)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>math.fabs(original_point.y - projected_point.x)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -911,12 +911,12 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>(float(original_point.x), float(projected_point.x), 0.000001)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>(float(original_point.y), float(projected_point.y), 0.000001)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1146,13 +1146,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demos/planar_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/demos/Untitled.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
@@ -1163,15 +1157,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/epl/grpc/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/epl/grpc/geometry/geometry_operators_pb2.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1199,14 +1184,14 @@
     </entry>
     <entry file="file:///usr/local/lib/python3.6/site-packages/shapely/geometry/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
+        <state relative-caret-position="5295">
           <caret line="366" selection-start-line="366" selection-end-line="366" />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/local/lib/python3.6/site-packages/shapely/geos.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
+        <state relative-caret-position="5115">
           <caret line="354" selection-start-line="354" selection-end-line="354" />
         </state>
       </provider>
@@ -1220,40 +1205,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/proto/epl/grpc/geometry/geometry_operators.proto">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
+        <state relative-caret-position="1950">
           <caret line="148" column="32" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/local/Cellar/python/3.6.4_3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/contextlib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
+        <state relative-caret-position="1215">
           <caret line="85" selection-start-line="85" selection-end-line="85" />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/local/Cellar/python/3.6.4_3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
+        <state relative-caret-position="8865">
           <caret line="604" selection-start-line="604" selection-end-line="604" />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/local/lib/python3.6/site-packages/grpc/_channel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
+        <state relative-caret-position="5685">
           <caret line="388" selection-start-line="388" selection-end-line="388" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/sample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="153" column="12" selection-start-line="153" selection-start-column="12" selection-end-line="153" selection-end-column="12" />
+        <state relative-caret-position="15">
+          <caret line="181" column="68" selection-start-line="181" selection-start-column="68" selection-end-line="181" selection-end-column="68" />
           <folding>
             <element signature="e#649#658#0" expanded="true" />
             <element signature="e#1698#2896#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="105">
+            <caret line="7" column="7" selection-start-line="7" selection-end-line="8" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
