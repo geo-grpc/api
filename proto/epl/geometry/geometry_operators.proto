@@ -21,11 +21,11 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.service.geometry";
+option java_package = "com.epl.geometry";
 option java_outer_classname = "GeometryOperatorsProto";
 option objc_class_prefix = "RTG";
 
-package epl.grpc.geometry;
+package epl.geometry;
 
 /*
  gRPC Interfaces for working with geometry operators
@@ -34,26 +34,29 @@ service GeometryOperators {
     // Execute a single geometry operation
     rpc ExecuteOperation(OperatorRequest) returns (OperatorResult) {}
 
+    // Stream in requests and return a stream of results
     rpc StreamOperations(stream OperatorRequest) returns (stream OperatorResult) {}
 
     rpc StreamOperationsEx(stream OperatorRequest) returns (stream OperatorResult) {}
 
+    // stream in file chunks for a geometry file type and stream back results for each geometry encountered
     rpc StreamFileOperations(stream FileChunk) returns (stream OperatorResult) {}
 }
 
 /*
-  Type of geometry encoding
+  type of geometry operators
 */
 enum GeometryEncodingType {
     unknown = 0;
     wkb = 1; // well-known binary
     wkt = 2; // well-known text
     geojson = 3; // geojson
-    // TODO review esri encoding typename (this is for the esri shape binary format)
     esrishape = 4; // esri shape binary
-    esrijson = 5;
 }
 
+/*
+  type of geometry operators
+*/
 enum ServiceOperatorType {
     Project = 0; // project geometry from one spatial reference to another
 
@@ -120,11 +123,11 @@ enum OffsetJoinType {
     Square =3;
 }
 
-//message ServiceGeometryBag {
 message GeometryBagData {
-    // id is usually associated with position in file format or database
-    //    repeated int64 geometry_ids = 1;
+    // oneof block start
     repeated int64 geometry_ids = 1;
+    repeated string feature_ids = 9;
+    // oneof block end
 
     // type can be 'wkt', 'wkb', 'geojson', or 'esri'
     GeometryEncodingType geometry_encoding_type = 2;
@@ -155,7 +158,7 @@ message OperatorResult {
 
     double distance = 3;
 
-    map<int32, bool> relate_map = 4;
+    map<int64, bool> relate_map = 4;
 }
 
 enum FileType {
@@ -170,10 +173,11 @@ message FileChunk {
     SpatialReferenceData result_spatial_reference = 5;
 
     bytes data = 6;
-    int64 offset = 7;
-    string file_name = 8;
+    int64 size = 7;
+    int64 offset = 8;
+    string file_name = 9;
 
-    bool is_last_chunk = 9;
+    bool is_last_chunk = 10;
 }
 
 message BufferParams {
@@ -286,3 +290,4 @@ message EnvelopeData {
     double ymax = 4;
     SpatialReferenceData spatial_reference = 5;
 }
+
