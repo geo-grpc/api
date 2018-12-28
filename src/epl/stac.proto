@@ -1,0 +1,90 @@
+/*
+Copyright 2017-2018 Echo Park Labs
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+For additional information, contact:
+
+email: info@echoparklabs.io
+*/
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.epl.stac";
+option java_outer_classname = "StacMetadata";
+option objc_class_prefix = "STC";
+
+package epl;
+
+import "google/protobuf/timestamp.proto";
+import "epl/geometry.proto";
+
+enum RelationshipType {
+    FIELD_EQUALS = 0;
+    FIELD_NOT_EQUAL = 1;
+    FIELD_GREATER = 2;
+    FIELD_LESS = 3;
+}
+
+enum SortDirection {
+    NOT_SORTED = 0;
+    DESCENDING = 1;
+    ASCENDING = 2;
+}
+
+message MetadataRequest {
+    Query query = 1;
+    uint32 limit = 2;
+    uint64 offset = 3;
+
+    // TODO allow multiple sort fields?
+    SortDirection sort_direction = 4;
+    FieldName sort_field = 5;
+
+    // this is a nice way to exclude heavier items like geometries
+    repeated FieldName result_fields = 6; // if blank all fields returned
+}
+
+message MetadataResponse {
+    repeated FieldInfo field_info = 1;
+    uint64 offset_index = 2;
+}
+
+message Query {
+    repeated Query and = 1;
+    repeated Query or = 2;
+    FieldInfo field_info = 3;
+    RelationshipType relationship = 4;
+}
+
+enum FieldName {
+    // 0 - 199 reserved for EO
+    ALL_FIELDS = 0;
+    EO_GEOMETRY = 1;
+    EO_CLOUDS = 2;
+    EO_BBOX = 3;
+    EO_GSD = 4;
+
+    // 200 - 399 reserved for vendors
+}
+
+
+message FieldInfo {
+    FieldName fieldName = 1;
+    int64 int64 = 2;
+    double double = 3;
+    epl.GeometryBagData geometry = 4;
+    epl.EnvelopeData bbox = 5;
+    google.protobuf.Timestamp datetimez = 6;
+}

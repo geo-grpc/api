@@ -22,26 +22,10 @@ syntax = "proto3";
 
 option java_multiple_files = true;
 option java_package = "com.epl.geometry";
-option java_outer_classname = "GeometryOperatorsProto";
+option java_outer_classname = "GeometryProto";
 option objc_class_prefix = "RTG";
 
-package epl.geometry;
-
-/*
- gRPC Interfaces for working with geometry operators
-*/
-service GeometryOperators {
-    // Execute a single geometry operation
-    rpc ExecuteOperation(OperatorRequest) returns (OperatorResult) {}
-
-    // Stream in requests and return a stream of results
-    rpc StreamOperations(stream OperatorRequest) returns (stream OperatorResult) {}
-
-    rpc StreamOperationsEx(stream OperatorRequest) returns (stream OperatorResult) {}
-
-    // stream in file chunks for a geometry file type and stream back results for each geometry encountered
-    rpc StreamFileOperations(stream FileChunk) returns (stream OperatorResult) {}
-}
+package epl;
 
 /*
   Type of geometry encoding
