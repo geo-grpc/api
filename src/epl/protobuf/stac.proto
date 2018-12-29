@@ -25,7 +25,7 @@ option java_package = "com.epl.protobuf.stac";
 option java_outer_classname = "StacMetadata";
 option objc_class_prefix = "STC";
 
-package epl.protobuf.stac;
+package epl.protobuf;
 
 import "google/protobuf/timestamp.proto";
 import "epl/protobuf/geometry_operators.proto";
@@ -84,7 +84,7 @@ message FieldInfo {
     FieldName fieldName = 1;
     int64 int64 = 2;
     double double = 3;
-    epl.GeometryBagData geometry = 4;
-    epl.EnvelopeData bbox = 5;
+    epl.protobuf.GeometryBagData geometry = 4;
+    epl.protobuf.EnvelopeData bbox = 5;
     google.protobuf.Timestamp datetimez = 6;
 }
