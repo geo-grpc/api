@@ -32,8 +32,8 @@ from shapely.geometry import Polygon
 from shapely.geometry import LineString, Point
 from shapely.geometry import MultiPoint
 from shapely.ops import cascaded_union
-from epl.geometry.geometry_operators_pb2 import *
-import epl.geometry.geometry_operators_pb2_grpc as geometry_grpc
+from epl.protobuf.geometry.geometry_operators_pb2 import *
+import epl.protobuf.geometry.geometry_operators_pb2_grpc as geometry_grpc
 import numpy as np
 
 
