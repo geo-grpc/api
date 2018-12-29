@@ -1,11 +1,15 @@
-from git root project:
+make/update the python proto classes:
 ```bash
-cd geometry-client-python/geometry_client/
+pip3 install --upgrade pip
+pip3 install grpcio-tools
+pip3 install protobuf
+
+python3 -mgrpc_tools.protoc -I=./proto/ --python_out=./ --grpc_python_out=./ ./proto/epl/grpc/geometry/geometry_operators.proto
 ```
 
-Then make/update the python proto classes:
+for running the tests
 ```bash
-python -mgrpc_tools.protoc -I=../../src/main/proto/ --python_out=./ --grpc_python_out=./ ../../src/main/proto/geometry_operators.proto
+pip3 install shapely
+pip3 install pytest
+pytest test/sample.py
 ```
-
-If the geometry-client-python directory is not relative to the geometry-service-java project then the proto files won't be found and the project won't build.
