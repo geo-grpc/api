@@ -25,10 +25,10 @@ option java_package = "com.epl.stac";
 option java_outer_classname = "StacMetadata";
 option objc_class_prefix = "STC";
 
-package epl;
+package epl.protobuf.stac;
 
 import "google/protobuf/timestamp.proto";
-import "epl/geometry.proto";
+import "epl/protobuf/geometry_operators.proto";
 
 enum RelationshipType {
     FIELD_EQUALS = 0;

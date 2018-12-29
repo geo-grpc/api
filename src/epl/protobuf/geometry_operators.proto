@@ -25,7 +25,7 @@ option java_package = "com.epl.geometry";
 option java_outer_classname = "GeometryOperatorsProto";
 option objc_class_prefix = "RTG";
 
-package epl.geometry;
+package epl.protobuf.geometry;
 
 /*
  gRPC Interfaces for working with geometry operators
