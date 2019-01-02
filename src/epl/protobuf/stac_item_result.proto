@@ -41,6 +41,7 @@ When mixing proto2 and proto3, there's a checklist of don't (like no 'required' 
 4. Do not use extension for anything except custom options.
 */
 
+// Right now this isn't included in the response as it's a bit messy
 message BandDetails {
     optional string name = 1;
     optional string common_name = 2;
@@ -71,6 +72,7 @@ message MetadataResult {
 
     map<string, Asset> assets = 6;
 
+    // Difference from current STAC definition: properties are not nested beneath a properties object
     optional float eo_sun_azimuth = 8;
     optional float eo_sun_elevation = 9;
     optional float eo_gsd = 10;
@@ -81,12 +83,17 @@ message MetadataResult {
     optional epl.protobuf.EnvelopeData bbox = 14;
     optional epl.protobuf.GeometryBagData geometry = 15;
 
-    repeated EO_BAND eo_bands = 16;
+    // Difference from current STAC definition: bands are just the enums instead of the bandDetails
+    // STAC has bands defined twice. once in assets and once in properties. should probably just be
+    // once.
+    optional EO_BAND eo_bands = 16;
 
     reserved 17 to 200;
 
     optional google.protobuf.Timestamp src_img_date = 201;
     optional string usgsid = 202;
+
+    reserved 500 to max;
 }
 
 
