@@ -1,5 +1,5 @@
 /*
-Copyright 2017 Echo Park Labs
+Copyright 2017-2018 Echo Park Labs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,11 +21,11 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.geometry";
+option java_package = "com.epl.protobuf.geometry";
 option java_outer_classname = "GeometryOperatorsProto";
 option objc_class_prefix = "RTG";
 
-package epl.protobuf.geometry;
+package epl.protobuf;
 
 /*
  gRPC Interfaces for working with geometry operators
@@ -121,6 +121,20 @@ enum OffsetJoinType {
     Bevel = 1;
     Miter = 2;
     Square =3;
+}
+
+message GeometryData {
+    int64 geometry_id = 1;
+    string feature_id = 9;
+
+    GeometryEncodingType geometry_encoding_type = 2;
+    // oneof block
+    string wkt = 3;
+    string geojson = 4;
+    bytes wkb = 5;
+    bytes esri_shape = 6;
+    // oneof block
+    SpatialReferenceData spatial_reference = 7;
 }
 
 message GeometryBagData {
