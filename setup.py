@@ -9,7 +9,7 @@ os.chdir(src_path)
 sys.path.insert(0, src_path)
 
 kwargs = {
-    'name': 'epl.grpc.geometry',
+    'name': 'epl.protobuf',
     'description': 'Echo Park Labs Geometry Client',
     'long_description': open('README.md').read(),
     'author': 'Echo Park Labs',
@@ -17,7 +17,7 @@ kwargs = {
     'url': 'https://bitbucket.org/davidraleigh/geometry-client-python',
     'version': open('VERSION').read(),
     "namespace_package": ['epl'],
-    'packages': ['epl.grpc.geometry'],
+    'packages': ['epl.protobuf'],
     'zip_safe': False
 }
 
