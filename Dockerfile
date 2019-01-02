@@ -10,7 +10,7 @@ COPY ./ ./
 
 # firgured out the package defintin by looking at comments in this issue https://github.com/google/protobuf/issues/2283
 # has to do with having a defined set of package directories for the proto file itself if you're going to publish code to a package itself
-RUN python3 -mgrpc_tools.protoc -I=./proto/ --python_out=./ --grpc_python_out=./ ./proto/epl/protobuf/geometry/geometry_operators.proto
+RUN python3 -mgrpc_tools.protoc -I=./proto/ --python_out=./ --grpc_python_out=./ ./proto/epl/protobuf/geometry_operators.proto
 
 
 FROM python:3.5-slim
