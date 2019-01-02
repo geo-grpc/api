@@ -123,6 +123,20 @@ enum OffsetJoinType {
     Square =3;
 }
 
+message GeometryData {
+    int64 geometry_id = 1;
+    string feature_id = 9;
+
+    GeometryEncodingType geometry_encoding_type = 2;
+    // oneof block
+    string wkt = 3;
+    string geojson = 4;
+    bytes wkb = 5;
+    bytes esri_shape = 6;
+    // oneof block
+    SpatialReferenceData spatial_reference = 7;
+}
+
 message GeometryBagData {
     // oneof block start
     repeated int64 geometry_ids = 1;

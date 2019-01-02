@@ -31,10 +31,15 @@ import "google/protobuf/timestamp.proto";
 import "epl/protobuf/geometry_operators.proto";
 
 enum RelationshipType {
-    FIELD_EQUALS = 0;
-    FIELD_NOT_EQUAL = 1;
-    FIELD_GREATER = 2;
-    FIELD_LESS = 3;
+    UNKNOWN_FIELD_REL = 0;
+    FIELD_EQUALS = 2;
+    FIELD_NOT_EQUAL = 4;
+    FIELD_LESS_EQUAL = 8;
+    FIELD_GREATER_EQUAL = 16;
+    FIELD_LESS = 32;
+    FIELD_GREATER = 64;
+    FIELD_RANGE = 128;
+    FIELD_NOT_RANGE = 256;
 }
 
 enum SortDirection {
@@ -43,48 +48,122 @@ enum SortDirection {
     ASCENDING = 2;
 }
 
+enum EO_PLATFORM {
+    UNKNOWN_PLATFORM = 0;
+    LANDSAT_8 = 1;
+    NAIP = 2; // should this be Aerial instead?
+}
+
+enum EO_INSTRUMENT {
+    UNKNOWN_INSTRUMENT = 0;
+}
+
+enum EO_BAND {
+    UNKNOWN_BAND = 0;
+    COASTAL_BAND = 2;
+    BLUE_BAND = 4;
+    GREEN_BAND = 8;
+    RED_BAND = 16;
+    RGB_BANDS = 28;
+    NEAR_INFRARED_BAND = 32;
+    RGBIR_BANDS = 60;
+    SWIR_16_BAND = 64;
+    SWIR_22_BAND = 128;
+    PANCHROMATIC_BAND = 256;
+    CIRRUS_BAND = 512;
+    LWIR_11_BAND = 1024;
+    LWIR_12_BAND = 2048;
+}
+
+enum ASSET_TYPE {
+    UNKNOWN_ASSET = 0;
+    JPEG = 1;
+    GEOTIFF = 2;
+    LERC = 3;
+    MRF = 4;
+    MRF_IDX = 5;
+    MRF_XML = 6;
+}
+
+enum IAAS {
+    UNKNOWN_IAAS = 0;
+    AWS = 1;
+    GCP = 2;
+    AZURE = 3;
+}
+
+message FloatField {
+    float value = 1;
+    RelationshipType rel_type = 2;
+    float range_value = 3;
+    bool sort_by = 4;
+    SortDirection sort_direction = 5;
+}
+
+message DoubleField {
+    double value = 1;
+    RelationshipType rel_type = 2;
+    double range_value = 3;
+    bool sort_by = 4;
+    SortDirection sort_direction = 5;
+}
+
+message StringField {
+    string value = 1;
+    RelationshipType rel_type = 2;
+    string range_value = 3;
+    bool sort_by = 4;
+    SortDirection sort_direction = 5;
+}
+
+message TimestampField {
+    google.protobuf.Timestamp value = 1;
+    RelationshipType rel_type = 2;
+    google.protobuf.Timestamp range_value = 3;
+    bool sort_by = 4;
+    SortDirection sort_direction = 5;
+}
+
+message GeometryField {
+//    oneof
+    epl.protobuf.GeometryData geometry = 1;
+    epl.protobuf.GeometryBagData geometry_bag = 2;
+    epl.protobuf.OperatorRequest geometry_operator = 3;
+// end oneof
+
+    epl.protobuf.ServiceOperatorType relational_operator = 4;
+}
+
+
 message MetadataRequest {
-    Query query = 1;
+    StringField id = 1;
     uint32 limit = 2;
     uint64 offset = 3;
 
-    // TODO allow multiple sort fields?
-    SortDirection sort_direction = 4;
-    FieldName sort_field = 5;
+    reserved 4 to 5; // reserved for sorting request
+    // SortDirection sort_direction = 3;
+    // string sort_field = 4;
 
-    // this is a nice way to exclude heavier items like geometries
-    repeated FieldName result_fields = 6; // if blank all fields returned
+    reserved 6 to 7; // reserved for requesting fields or excluding fields
+    // repeated string result_fields = 5; // if blank all fields returned
+    // repeated string excluded_result_fields = 5;
+
+    FloatField eo_sun_azimuth = 8;
+    FloatField eo_sun_elevation = 9;
+    FloatField eo_gsd = 10;
+    FloatField eo_off_nadir = 11;
+    FloatField eo_azimuth = 12;
+    FloatField eo_cloud_cover = 13;
+
+    epl.protobuf.EnvelopeData bbox = 14;
+    GeometryField geometry = 15;
+
+    EO_BAND eo_bands = 16;
+
+    reserved 17 to 200;
+    TimestampField src_img_date = 201;
+    StringField usgsid = 202;
+
+    reserved 500 to max;
 }
 
-message MetadataResponse {
-    repeated FieldInfo field_info = 1;
-    uint64 offset_index = 2;
-}
-
-message Query {
-    repeated Query and = 1;
-    repeated Query or = 2;
-    FieldInfo field_info = 3;
-    RelationshipType relationship = 4;
-}
-
-enum FieldName {
-    // 0 - 199 reserved for EO
-    ALL_FIELDS = 0;
-    EO_GEOMETRY = 1;
-    EO_CLOUDS = 2;
-    EO_BBOX = 3;
-    EO_GSD = 4;
-
-    // 200 - 399 reserved for vendors
-}
-
-
-message FieldInfo {
-    FieldName fieldName = 1;
-    int64 int64 = 2;
-    double double = 3;
-    epl.protobuf.GeometryBagData geometry = 4;
-    epl.protobuf.EnvelopeData bbox = 5;
-    google.protobuf.Timestamp datetimez = 6;
-}

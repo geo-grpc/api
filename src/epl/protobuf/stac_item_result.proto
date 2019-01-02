@@ -1,0 +1,92 @@
+/*
+Copyright 2017-2018 Echo Park Labs
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+For additional information, contact:
+
+email: info@echoparklabs.io
+*/
+
+//    https://github.com/protocolbuffers/protobuf/issues/1606
+syntax = "proto2";
+
+option java_multiple_files = true;
+option java_package = "com.epl.protobuf.stac";
+option java_outer_classname = "StacMetadata";
+option objc_class_prefix = "STC";
+
+package epl.protobuf;
+
+import "google/protobuf/timestamp.proto";
+import "epl/protobuf/geometry_operators.proto";
+import "epl/protobuf/stac.proto";
+
+/*
+https://groups.google.com/forum/#!topic/protobuf/bO2L6-_t91Q
+When mixing proto2 and proto3, there's a checklist of don't (like no 'required' fields)
+1. All fields should be optional.
+2. Do not use custom default values.
+3. All enums should have first element with tag = 0.
+4. Do not use extension for anything except custom options.
+*/
+
+message BandDetails {
+    optional string name = 1;
+    optional string common_name = 2;
+    optional string description = 3;
+    optional float gsd = 4;
+    optional float accuracy = 5;
+    optional float center_wavelength = 6;
+    optional float full_width_half_max = 7;
+}
+
+message Asset {
+    optional string href = 1;
+    optional ASSET_TYPE asset_type = 2;
+    optional EO_BAND eo_band = 3;
+    optional IAAS bucket_iaas_host = 4;
+    optional string bucket_owner = 5;
+    optional string bucket_region = 6;
+    optional string bucket_ref = 7;
+}
+
+message MetadataResult {
+    optional string id = 1;
+    optional EO_PLATFORM eo_platform = 2;
+    optional EO_INSTRUMENT eo_instrument = 3;
+    optional uint32 eo_epsg = 4;
+
+    reserved 5;
+
+    map<string, Asset> assets = 6;
+
+    optional float eo_sun_azimuth = 8;
+    optional float eo_sun_elevation = 9;
+    optional float eo_gsd = 10;
+    optional float eo_off_nadir = 11;
+    optional float eo_azimuth = 12;
+    optional float eo_cloud_cover = 13;
+
+    optional epl.protobuf.EnvelopeData bbox = 14;
+    optional epl.protobuf.GeometryBagData geometry = 15;
+
+    repeated EO_BAND eo_bands = 16;
+
+    reserved 17 to 200;
+
+    optional google.protobuf.Timestamp src_img_date = 201;
+    optional string usgsid = 202;
+}
+
+
