@@ -1,5 +1,5 @@
 /*
-Copyright 2017 Echo Park Labs
+Copyright 2017-2018 Echo Park Labs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,27 +21,12 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.geometry";
-option java_outer_classname = "GeometryOperatorsProto";
+option java_package = "com.epl.protobuf.geometry";
+option java_outer_classname = "GeometryProto";
 option objc_class_prefix = "RTG";
+option go_package = "geo-grpc/geometry-client-go/epl/protobuf";
 
-package epl.protobuf.geometry;
-
-/*
- gRPC Interfaces for working with geometry operators
-*/
-service GeometryOperators {
-    // Execute a single geometry operation
-    rpc ExecuteOperation(OperatorRequest) returns (OperatorResult) {}
-
-    // Stream in requests and return a stream of results
-    rpc StreamOperations(stream OperatorRequest) returns (stream OperatorResult) {}
-
-    rpc StreamOperationsEx(stream OperatorRequest) returns (stream OperatorResult) {}
-
-    // stream in file chunks for a geometry file type and stream back results for each geometry encountered
-    rpc StreamFileOperations(stream FileChunk) returns (stream OperatorResult) {}
-}
+package epl.protobuf;
 
 /*
   type of geometry operators
@@ -121,6 +106,20 @@ enum OffsetJoinType {
     Bevel = 1;
     Miter = 2;
     Square =3;
+}
+
+message GeometryData {
+    int64 geometry_id = 1;
+    string feature_id = 9;
+
+    GeometryEncodingType geometry_encoding_type = 2;
+    // oneof block
+    string wkt = 3;
+    string geojson = 4;
+    bytes wkb = 5;
+    bytes esri_shape = 6;
+    // oneof block
+    SpatialReferenceData spatial_reference = 7;
 }
 
 message GeometryBagData {
@@ -246,17 +245,17 @@ message SimplifyParams {
 }
 
 message OperatorRequest {
-//    oneof primary_geoms {
-        GeometryBagData geometry_bag = 1;
-        OperatorRequest geometry_request = 2;
-        GeometryBagData left_geometry_bag = 3;
-        OperatorRequest left_geometry_request = 4;
-//    }
+    //    oneof primary_geoms {
+    GeometryBagData geometry_bag = 1;
+    OperatorRequest geometry_request = 2;
+    GeometryBagData left_geometry_bag = 3;
+    OperatorRequest left_geometry_request = 4;
+    //    }
 
-//    oneof secondary_geoms {
-        GeometryBagData right_geometry_bag = 5;
-        OperatorRequest right_geometry_request = 6;
-//    }
+    //    oneof secondary_geoms {
+    GeometryBagData right_geometry_bag = 5;
+    OperatorRequest right_geometry_request = 6;
+    //    }
 
     ServiceOperatorType operator_type = 7;
 
@@ -266,20 +265,20 @@ message OperatorRequest {
 
     SpatialReferenceData result_spatial_reference = 10;
 
-//    oneof params {
-        BufferParams buffer_params = 11;
-        ConvexParams convex_params = 12;
-        RelateParams relate_params = 13;
-        RandomPointsParams random_points_params = 14;
-        GeneralizeParams generalize_params = 15;
-        IntersectionParams intersection_params = 16;
-        OffsetParams offset_params = 17;
-        CutParams cut_params = 18;
-        ClipParams clip_params = 19;
-        DensifyParams densify_params = 20;
-        SimplifyParams simplify_params = 21;
-        GeneralizeByAreaParams generalize_by_area_params = 22;
-//    }
+    //    oneof params {
+    BufferParams buffer_params = 11;
+    ConvexParams convex_params = 12;
+    RelateParams relate_params = 13;
+    RandomPointsParams random_points_params = 14;
+    GeneralizeParams generalize_params = 15;
+    IntersectionParams intersection_params = 16;
+    OffsetParams offset_params = 17;
+    CutParams cut_params = 18;
+    ClipParams clip_params = 19;
+    DensifyParams densify_params = 20;
+    SimplifyParams simplify_params = 21;
+    GeneralizeByAreaParams generalize_by_area_params = 22;
+    //    }
 }
 
 
