@@ -7,8 +7,6 @@ build/
 *.iml
 *.orig
 out/
-.idea/libraries/*.xml
-vcs.xml
 dist/
 .ipynb_checkpoints/
 demos/
