@@ -28,7 +28,7 @@ option objc_class_prefix = "STC";
 package epl.protobuf;
 
 import "google/protobuf/timestamp.proto";
-import "epl/protobuf/geometry_operators.proto";
+import "epl/protobuf/geometry.proto";
 
 enum RelationshipType {
     UNKNOWN_FIELD_REL = 0;
