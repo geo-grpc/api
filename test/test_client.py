@@ -33,7 +33,7 @@ from shapely.geometry import LineString, Point
 from shapely.geometry import MultiPoint
 from shapely.ops import cascaded_union
 from epl.protobuf.geometry_pb2 import *
-import epl.protobuf.geometry_operators_pb2_grpc as geometry_grpc
+import epl.grpc.geometry_operators_pb2_grpc as geometry_grpc
 import numpy as np
 
 
