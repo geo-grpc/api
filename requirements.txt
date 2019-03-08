@@ -1,0 +1,4 @@
+grpcio-tools
+protobuf
+shapely
+pytest

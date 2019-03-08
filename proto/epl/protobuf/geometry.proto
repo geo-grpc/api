@@ -24,7 +24,7 @@ option java_multiple_files = true;
 option java_package = "com.epl.protobuf.geometry";
 option java_outer_classname = "GeometryProto";
 option objc_class_prefix = "RTG";
-option go_package = "geo-grpc/geometry-client-go/epl/protobuf";
+option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
 
 package epl.protobuf;
 
