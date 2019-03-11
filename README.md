@@ -1,8 +1,8 @@
 # protobuf
 
 ```bash
-python3 -mgrpc_tools.protoc -I=./src/ --python_out=./ \
-  ./src/epl/protobuf/geometry_operators.proto  \
-  ./src/epl/protobuf/stac.proto \
-  ./src/epl/protobuf/stac_item_result.proto
+protoc -I proto/ proto/epl/protobuf/geometry.proto --go_out=$GOPATH/src
+protoc -I proto/ proto/epl/grpc/geometry_operators.proto --go_out=plugins=grpc:$GOPATH/src
+protoc -I proto/ proto/epl/protobuf/stac.proto --go_out=$GOPATH/src
+protoc -I proto/ proto/epl/grpc/stac_operators.proto --go_out=plugins=grpc:$GOPATH/src
 ```
