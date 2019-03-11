@@ -231,3 +231,8 @@ message MetadataResult {
 
     reserved 500 to max;
 }
+
+message DBResult {
+    optional string status = 1;
+    optional int32 status_code = 2;
+}
