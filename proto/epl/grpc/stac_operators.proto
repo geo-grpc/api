@@ -22,7 +22,7 @@ syntax = "proto2";
 
 option go_package = "github.com/geo-grpc/api/golang/epl/grpc";
 
-package swiftera.grpc;
+package epl.grpc;
 
 import "epl/protobuf/stac.proto";
 

@@ -235,4 +235,5 @@ message MetadataResult {
 message DBResult {
     optional string status = 1;
     optional int32 status_code = 2;
+    optional string result_id = 3;
 }
