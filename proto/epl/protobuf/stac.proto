@@ -18,7 +18,7 @@ For additional information, contact:
 email: info@echoparklabs.io
 */
 
-syntax = "proto2";
+syntax = "proto3";
 
 option java_multiple_files = true;
 option java_package = "com.epl.protobuf.stac";
@@ -29,6 +29,7 @@ option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
 package epl.protobuf;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 import "epl/protobuf/geometry.proto";
 
 enum RelationshipType {
@@ -94,52 +95,48 @@ enum IAAS {
 }
 
 message FloatField {
-    optional float value = 1;
-    optional RelationshipType rel_type = 2;
-    optional float range_value = 3;
-    optional bool sort_by = 4;
-    optional SortDirection sort_direction = 5;
+    float value = 1;
+    RelationshipType rel_type = 2;
+    float range_value = 3;
+    SortDirection sort_direction = 4;
 }
 
 message DoubleField {
-    optional double value = 1;
-    optional RelationshipType rel_type = 2;
-    optional double range_value = 3;
-    optional bool sort_by = 4;
-    optional SortDirection sort_direction = 5;
+    double value = 1;
+    RelationshipType rel_type = 2;
+    double range_value = 3;
+    SortDirection sort_direction = 4;
 }
 
 message StringField {
-    optional string value = 1;
-    optional RelationshipType rel_type = 2;
-    optional string range_value = 3;
-    optional bool sort_by = 4;
-    optional SortDirection sort_direction = 5;
+    string value = 1;
+    RelationshipType rel_type = 2;
+    string range_value = 3;
+    SortDirection sort_direction = 4;
 }
 
 message TimestampField {
-    optional google.protobuf.Timestamp value = 1;
-    optional RelationshipType rel_type = 2;
-    optional google.protobuf.Timestamp range_value = 3;
-    optional bool sort_by = 4;
-    optional SortDirection sort_direction = 5;
+    google.protobuf.Timestamp value = 1;
+    RelationshipType rel_type = 2;
+    google.protobuf.Timestamp range_value = 3;
+    SortDirection sort_direction = 4;
 }
 
 message GeometryField {
 //    oneof
-    optional epl.protobuf.GeometryData geometry = 1;
-    optional epl.protobuf.GeometryBagData geometry_bag = 2;
-    optional epl.protobuf.OperatorRequest geometry_operator = 3;
+    epl.protobuf.GeometryData geometry = 1;
+    epl.protobuf.GeometryBagData geometry_bag = 2;
+    epl.protobuf.OperatorRequest geometry_operator = 3;
 // end oneof
 
-    optional epl.protobuf.ServiceOperatorType relational_operator = 4;
+    epl.protobuf.ServiceOperatorType relational_operator = 4;
 }
 
 
 message MetadataRequest {
-    optional StringField id = 1;
-    optional uint32 limit = 2;
-    optional uint64 offset = 3;
+    StringField id = 1;
+    uint32 limit = 2;
+    uint64 offset = 3;
 
     reserved 4 to 5; // reserved for sorting request
     // SortDirection sort_direction = 3;
@@ -149,21 +146,21 @@ message MetadataRequest {
     // repeated string result_fields = 5; // if blank all fields returned
     // repeated string excluded_result_fields = 5;
 
-    optional FloatField eo_sun_azimuth = 8;
-    optional FloatField eo_sun_elevation = 9;
-    optional FloatField eo_gsd = 10;
-    optional FloatField eo_off_nadir = 11;
-    optional FloatField eo_azimuth = 12;
-    optional FloatField eo_cloud_cover = 13;
+    FloatField eo_sun_azimuth = 8;
+    FloatField eo_sun_elevation = 9;
+    FloatField eo_gsd = 10;
+    FloatField eo_off_nadir = 11;
+    FloatField eo_azimuth = 12;
+    FloatField eo_cloud_cover = 13;
 
-    optional epl.protobuf.EnvelopeData bbox = 14;
-    optional GeometryField geometry = 15;
+    epl.protobuf.EnvelopeData bbox = 14;
+    GeometryField geometry = 15;
 
-    optional EO_BAND eo_bands = 16;
+    EO_BAND eo_bands = 16;
 
     reserved 20 to 200;
-    optional TimestampField src_img_date = 201;
-    optional StringField usgsid = 202;
+    TimestampField src_img_date = 201;
+    StringField usgsid = 202;
 
     reserved 500 to max;
 }
@@ -179,61 +176,61 @@ When mixing proto2 and proto3, there's a checklist of don't (like no 'required' 
 
 // Right now this isn't included in the response as it's a bit messy
 message BandDetails {
-    optional string name = 1;
-    optional string common_name = 2;
-    optional string description = 3;
-    optional float gsd = 4;
-    optional float accuracy = 5;
-    optional float center_wavelength = 6;
-    optional float full_width_half_max = 7;
+    string name = 1;
+    string common_name = 2;
+    string description = 3;
+    google.protobuf.FloatValue gsd = 4;
+    google.protobuf.FloatValue accuracy = 5;
+    google.protobuf.FloatValue center_wavelength = 6;
+    google.protobuf.FloatValue full_width_half_max = 7;
 }
 
 message Asset {
-    optional string href = 1;
-    optional ASSET_TYPE asset_type = 2;
-    optional EO_BAND eo_band = 3;
-    optional IAAS bucket_iaas_host = 4;
-    optional string bucket_owner = 5;
-    optional string bucket_region = 6;
-    optional string bucket_ref = 7;
+    string href = 1;
+    ASSET_TYPE asset_type = 2;
+    EO_BAND eo_band = 3;
+    IAAS bucket_iaas_host = 4;
+    string bucket_owner = 5;
+    string bucket_region = 6;
+    string bucket_ref = 7;
 }
 
 message MetadataResult {
-    optional string id = 1;
-    optional EO_PLATFORM eo_platform = 2;
-    optional EO_INSTRUMENT eo_instrument = 3;
-    optional uint32 eo_epsg = 4;
+    string id = 1;
+    EO_PLATFORM eo_platform = 2;
+    EO_INSTRUMENT eo_instrument = 3;
+    uint32 eo_epsg = 4;
 
     reserved 5;
 
     map<string, Asset> assets = 6;
 
     // Difference from current STAC definition: properties are not nested beneath a properties object
-    optional float eo_sun_azimuth = 8;
-    optional float eo_sun_elevation = 9;
-    optional float eo_gsd = 10;
-    optional float eo_off_nadir = 11;
-    optional float eo_azimuth = 12;
-    optional float eo_cloud_cover = 13;
+    google.protobuf.FloatValue eo_sun_azimuth = 8;
+    google.protobuf.FloatValue eo_sun_elevation = 9;
+    google.protobuf.FloatValue eo_gsd = 10;
+    google.protobuf.FloatValue eo_off_nadir = 11;
+    google.protobuf.FloatValue eo_azimuth = 12;
+    google.protobuf.FloatValue eo_cloud_cover = 13;
 
-    optional epl.protobuf.EnvelopeData bbox = 14;
-    optional epl.protobuf.GeometryBagData geometry = 15;
+    epl.protobuf.EnvelopeData bbox = 14;
+    epl.protobuf.GeometryBagData geometry = 15;
 
     // Difference from current STAC definition: bands are just the enums instead of the bandDetails
     // STAC has bands defined twice. once in assets and once in properties. should probably just be
     // once.
-    optional EO_BAND eo_bands = 16;
+    EO_BAND eo_bands = 16;
 
     reserved 17 to 200;
 
-    optional google.protobuf.Timestamp src_img_date = 201;
-    optional string usgsid = 202;
+    google.protobuf.Timestamp src_img_date = 201;
+    string usgsid = 202;
 
     reserved 500 to max;
 }
 
 message DBResult {
-    optional string status = 1;
-    optional int32 status_code = 2;
-    optional string result_id = 3;
+    string status = 1;
+    int32 status_code = 2;
+    string result_id = 3;
 }
