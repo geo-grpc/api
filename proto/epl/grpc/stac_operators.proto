@@ -31,5 +31,5 @@ import "epl/protobuf/stac.proto";
 */
 service MetadataOperators {
     rpc Search(epl.protobuf.MetadataRequest) returns (stream epl.protobuf.MetadataResult) {}
-    rpc Insert(epl.protobuf.MetadataResult) returns (stream epl.protobuf.DBResult) {}
+    rpc Insert(epl.protobuf.MetadataResult) returns (epl.protobuf.DBResult) {}
 }
