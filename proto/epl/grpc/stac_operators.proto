@@ -30,6 +30,6 @@ import "epl/protobuf/stac.proto";
  gRPC Interfaces for working with imagery operators
 */
 service MetadataOperators {
-    rpc Search(epl.protobuf.MetadataRequest) returns (stream epl.protobuf.MetadataResult) {}
-    rpc Insert(epl.protobuf.MetadataResult) returns (epl.protobuf.DBResult) {}
+    rpc Search(epl.protobuf.MetadataRequest) returns (stream epl.protobuf.StacMetadata) {}
+    rpc Insert(epl.protobuf.StacMetadata) returns (epl.protobuf.DBResult) {}
 }
