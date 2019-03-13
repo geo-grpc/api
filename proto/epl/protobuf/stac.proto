@@ -214,7 +214,7 @@ message MetadataResult {
     google.protobuf.FloatValue eo_cloud_cover = 13;
 
     epl.protobuf.EnvelopeData bbox = 14;
-    epl.protobuf.GeometryBagData geometry = 15;
+    epl.protobuf.GeometryData geometry = 15;
 
     // Difference from current STAC definition: bands are just the enums instead of the bandDetails
     // STAC has bands defined twice. once in assets and once in properties. should probably just be
