@@ -211,27 +211,28 @@ message StacMetadata {
 
     map<string, Asset> assets = 7;
     google.protobuf.Timestamp datetime = 8;
-    google.protobuf.Timestamp observed = 9;
-    google.protobuf.Timestamp updated = 10;
+    google.protobuf.Timestamp data_observed = 9;
+    google.protobuf.Timestamp metadata_updated = 10;
+    google.protobuf.Timestamp data_processed = 11;
 
-    EO_PLATFORM eo_platform = 11;
-    EO_INSTRUMENT eo_instrument = 12;
-    uint32 eo_epsg = 13;
+    EO_PLATFORM eo_platform = 12;
+    EO_INSTRUMENT eo_instrument = 13;
+    uint32 eo_epsg = 14;
 
     // Difference from current STAC definition: properties are not nested beneath a properties object
-    google.protobuf.FloatValue eo_sun_azimuth = 14;
-    google.protobuf.FloatValue eo_sun_elevation = 15;
-    google.protobuf.FloatValue eo_gsd = 16;
-    google.protobuf.FloatValue eo_off_nadir = 17;
-    google.protobuf.FloatValue eo_azimuth = 18;
-    google.protobuf.FloatValue eo_cloud_cover = 19;
+    google.protobuf.FloatValue eo_sun_azimuth = 15;
+    google.protobuf.FloatValue eo_sun_elevation = 16;
+    google.protobuf.FloatValue eo_gsd = 17;
+    google.protobuf.FloatValue eo_off_nadir = 18;
+    google.protobuf.FloatValue eo_azimuth = 19;
+    google.protobuf.FloatValue eo_cloud_cover = 20;
 
     // Difference from current STAC definition: bands are just the enums instead of the bandDetails
     // STAC has bands defined twice. once in assets and once in properties. should probably just be
     // once.
-    EO_BAND eo_bands = 20;
+    EO_BAND eo_bands = 21;
 
-    reserved 21 to 200;
+    reserved 22 to 200;
 
     google.protobuf.Timestamp src_img_date = 201;
     string usgsid = 202;
