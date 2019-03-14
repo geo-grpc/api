@@ -21,12 +21,12 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.protobuf.geometry";
-option java_outer_classname = "GeometryOperatorsProto";
-option objc_class_prefix = "RTG";
+option java_package = "com.epl.grpc";
+option java_outer_classname = "GeometryServiceProto";
+option objc_class_prefix = "GMS";
 option go_package = "github.com/geo-grpc/api/golang/epl/grpc";
 
-package epl.protobuf;
+package epl.grpc;
 
 import "epl/protobuf/geometry.proto";
 
@@ -35,13 +35,13 @@ import "epl/protobuf/geometry.proto";
 */
 service GeometryOperators {
     // Execute a single geometry operation
-    rpc ExecuteOperation(OperatorRequest) returns (OperatorResult) {}
+    rpc ExecuteOperation(epl.protobuf.OperatorRequest) returns (epl.protobuf.OperatorResult) {}
 
     // Stream in requests and return a stream of results
-    rpc StreamOperations(stream OperatorRequest) returns (stream OperatorResult) {}
+    rpc StreamOperations(stream epl.protobuf.OperatorRequest) returns (stream epl.protobuf.OperatorResult) {}
 
-    rpc StreamOperationsEx(stream OperatorRequest) returns (stream OperatorResult) {}
+    rpc StreamOperationsEx(stream epl.protobuf.OperatorRequest) returns (stream epl.protobuf.OperatorResult) {}
 
     // stream in file chunks for a geometry file type and stream back results for each geometry encountered
-    rpc StreamFileOperations(stream FileChunk) returns (stream OperatorResult) {}
+    rpc StreamFileOperations(stream epl.protobuf.FileChunk) returns (stream epl.protobuf.OperatorResult) {}
 }

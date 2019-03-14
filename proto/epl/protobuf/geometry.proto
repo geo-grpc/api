@@ -21,9 +21,9 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.protobuf.geometry";
+option java_package = "com.epl.protobuf";
 option java_outer_classname = "GeometryProto";
-option objc_class_prefix = "RTG";
+option objc_class_prefix = "GMPB";
 option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
 
 package epl.protobuf;
