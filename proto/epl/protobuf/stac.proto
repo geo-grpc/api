@@ -218,10 +218,10 @@ message Timerange {
 
 message StacMetadata {
     string id = 1;
-    // type ignored as this isn't geojson
+    // 'type" ignored as this isn't geojson
     epl.protobuf.GeometryData geometry = 3;
     epl.protobuf.EnvelopeData bbox = 4;
-    // properties ignored for now.
+    // "properties" ignored for now. maybe make a map<String, Any>?
     reserved 5;
     // links ignored because we're using grpc, but maybe it shouldn't be in cases of using protobuf without grpc?
     reserved 6;
