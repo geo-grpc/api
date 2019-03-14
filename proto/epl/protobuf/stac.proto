@@ -154,7 +154,7 @@ message MetadataRequest {
     FloatField eo_cloud_cover = 13;
 
     epl.protobuf.EnvelopeData bbox = 14;
-    GeometryField geometry = 15;
+    GeometryField geometryField = 15;
 
     EO_BAND eo_bands = 16;
 
@@ -199,6 +199,30 @@ message Asset {
     string bucket_ref = 7;
 }
 
+message Timerange {
+    // Represents seconds of UTC time since Unix epoch
+    // 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+    // 9999-12-31T23:59:59Z inclusive.
+    int64 start_seconds = 1;
+
+    // Non-negative fractions of a second at nanosecond resolution. Negative
+    // second values with fractions must still have non-negative nanos values
+    // that count forward in time. Must be from 0 to 999,999,999
+    // inclusive.
+    int32 start_nanos = 2;
+
+    // Represents seconds of UTC time since Unix epoch
+    // 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+    // 9999-12-31T23:59:59Z inclusive.
+    int64 end_seconds = 3;
+
+    // Non-negative fractions of a second at nanosecond resolution. Negative
+    // second values with fractions must still have non-negative nanos values
+    // that count forward in time. Must be from 0 to 999,999,999
+    // inclusive.
+    int32 end_nanos = 4;
+}
+
 message StacMetadata {
     string id = 1;
     // type ignored as this isn't geojson
@@ -214,26 +238,28 @@ message StacMetadata {
     google.protobuf.Timestamp data_observed = 9;
     google.protobuf.Timestamp metadata_updated = 10;
     google.protobuf.Timestamp data_processed = 11;
+    Timerange data_observed_range = 12;
 
-    EO_PLATFORM eo_platform = 12;
-    EO_INSTRUMENT eo_instrument = 13;
-    uint32 eo_epsg = 14;
+    EO_PLATFORM eo_platform = 13;
+    EO_INSTRUMENT eo_instrument = 14;
+    uint32 eo_epsg = 15;
 
     // Difference from current STAC definition: properties are not nested beneath a properties object
-    google.protobuf.FloatValue eo_sun_azimuth = 15;
-    google.protobuf.FloatValue eo_sun_elevation = 16;
-    google.protobuf.FloatValue eo_gsd = 17;
-    google.protobuf.FloatValue eo_off_nadir = 18;
-    google.protobuf.FloatValue eo_azimuth = 19;
-    google.protobuf.FloatValue eo_cloud_cover = 20;
+    google.protobuf.FloatValue eo_sun_azimuth = 16;
+    google.protobuf.FloatValue eo_sun_elevation = 17;
+    google.protobuf.FloatValue eo_gsd = 18;
+    google.protobuf.FloatValue eo_off_nadir = 19;
+    google.protobuf.FloatValue eo_azimuth = 20;
+    google.protobuf.FloatValue eo_cloud_cover = 21;
 
     // Difference from current STAC definition: bands are just the enums instead of the bandDetails
     // STAC has bands defined twice. once in assets and once in properties. should probably just be
     // once.
-    EO_BAND eo_bands = 21;
+    EO_BAND eo_bands = 22;
 
-    reserved 22 to 200;
+    reserved 23 to 200;
 
+    // NAIP
     google.protobuf.Timestamp src_img_date = 201;
     string usgsid = 202;
 
