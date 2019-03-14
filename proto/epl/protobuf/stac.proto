@@ -122,16 +122,6 @@ message TimestampField {
     SortDirection sort_direction = 4;
 }
 
-message GeometryField {
-//    oneof
-    epl.protobuf.GeometryData geometry = 1;
-    epl.protobuf.GeometryBagData geometry_bag = 2;
-    epl.protobuf.OperatorRequest geometry_operator = 3;
-// end oneof
-
-    epl.protobuf.ServiceOperatorType relational_operator = 4;
-}
-
 
 message MetadataRequest {
     StringField id = 1;
@@ -153,16 +143,19 @@ message MetadataRequest {
     FloatField eo_azimuth = 12;
     FloatField eo_cloud_cover = 13;
 
+    //    oneof
     epl.protobuf.EnvelopeData bbox = 14;
-    GeometryField geometryField = 15;
+    epl.protobuf.GeometryData geometry = 15;
+    epl.protobuf.OperatorRequest geometry_operator = 16;
+    // end oneof
 
-    EO_BAND eo_bands = 16;
+    EO_BAND eo_bands = 17;
 
-    TimestampField datetime = 17;
-    TimestampField observed = 18;
-    TimestampField updated = 19;
+    TimestampField datetime = 18;
+    TimestampField observed = 19;
+    TimestampField updated = 20;
 
-    reserved 20 to 200;
+    reserved 21 to 200;
     TimestampField src_img_date = 201;
     StringField usgsid = 202;
 
