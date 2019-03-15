@@ -1,5 +1,5 @@
 /*
-Copyright 2017-2018 Echo Park Labs
+Copyright 2017-2019 Echo Park Labs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.protobuf.geometry";
+option java_package = "com.epl.protobuf";
 option java_outer_classname = "GeometryProto";
-option objc_class_prefix = "RTG";
+option objc_class_prefix = "GMPB";
 option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
 
 package epl.protobuf;
@@ -116,10 +116,10 @@ message GeometryData {
     // oneof block
     string wkt = 3;
     string geojson = 4;
-    bytes wkb = 5;
-    bytes esri_shape = 6;
+    bytes  wkb = 5;
+    bytes  esri_shape = 6;
     // oneof block
-    SpatialReferenceData spatial_reference = 7;
+    SpatialReferenceData  spatial_reference = 7;
 }
 
 message GeometryBagData {
@@ -136,7 +136,7 @@ message GeometryBagData {
     repeated bytes wkb = 5;
     repeated bytes esri_shape = 6;
 
-    SpatialReferenceData spatial_reference = 7;
+    SpatialReferenceData  spatial_reference = 7;
 
     repeated string esri_json = 8;
 }
@@ -147,54 +147,56 @@ message SpatialReferenceData {
     string esri_wkt = 5;
 
     // type is either 'wkid', 'esri_wkt'
-    int32 wkid = 6;
+    int32  wkid = 6;
 }
 
-message OperatorResult {
-    GeometryBagData geometry_bag = 1;
+message GeometryResponse {
+    // oneof
+    GeometryBagData  geometry_bag = 1;
 
-    bool spatial_relationship = 2;
+    bool  spatial_relationship = 2;
 
-    double distance = 3;
+    double  measure = 3;
 
     map<int64, bool> relate_map = 4;
+    // oneof
 }
 
 enum FileType {
     Shapefile = 0;
 }
 
-message FileChunk {
-    OperatorRequest nested_request = 1;
-    GeometryEncodingType results_encoding_type = 2;
+message FileRequestChunk {
+    GeometryRequest nested_request = 1;
+    GeometryEncodingType  results_encoding_type = 2;
 
-    SpatialReferenceData input_spatial_reference = 3;
-    SpatialReferenceData result_spatial_reference = 5;
+    SpatialReferenceData  input_spatial_reference = 3;
+    SpatialReferenceData  result_spatial_reference = 5;
 
-    bytes data = 6;
+    bytes  data = 6;
     int64 size = 7;
     int64 offset = 8;
     string file_name = 9;
 
-    bool is_last_chunk = 10;
+    bool  is_last_chunk = 10;
 }
 
 message BufferParams {
     repeated double distances = 1;
     repeated double max_deviations = 2;
-    bool union_result = 3;
-    int32 max_vertices_in_full_circle = 4;
+    bool  union_result = 3;
+    int32  max_vertices_in_full_circle = 4;
 }
 
 message GeodeticBufferParams {
     repeated double distances = 1;
     repeated double max_deviations = 2;
-    bool union_result = 3;
-    int32 max_vertices_in_full_circle = 4;
+    bool  union_result = 3;
+    int32  max_vertices_in_full_circle = 4;
 }
 
 message ConvexParams {
-    bool merge = 1;
+    bool  merge = 1;
 }
 
 message RelateParams {
@@ -207,29 +209,29 @@ message RandomPointsParams {
 }
 
 message GeneralizeParams {
-    double max_deviation = 1;
-    bool remove_degenerates = 2;
+    double  max_deviation = 1;
+    bool  remove_degenerates = 2;
 }
 
 message GeneralizeByAreaParams {
-    double percent_reduction = 1;
-    bool remove_degenerates = 2;
-    int32 max_point_count = 3;
+    double  percent_reduction = 1;
+    bool  remove_degenerates = 2;
+    int32  max_point_count = 3;
 }
 
 message IntersectionParams {
-    int32 dimension_mask = 1;
+    int32  dimension_mask = 1;
 }
 
 message OffsetParams {
-    double distance = 1;
+    double  distance = 1;
     OffsetJoinType join_type = 2;
-    double bevel_ratio = 3;
-    double flatten_error = 4;
+    double  bevel_ratio = 3;
+    double  flatten_error = 4;
 }
 
 message CutParams {
-    bool consider_touch = 1;
+    bool  consider_touch = 1;
 }
 
 message ClipParams {
@@ -237,33 +239,33 @@ message ClipParams {
 }
 
 message DensifyParams {
-    double max_length = 1;
+    double  max_length = 1;
 }
 
 message SimplifyParams {
-    bool force = 1;
+    bool  force = 1;
 }
 
-message OperatorRequest {
+message GeometryRequest {
     //    oneof primary_geoms {
-    GeometryBagData geometry_bag = 1;
-    OperatorRequest geometry_request = 2;
-    GeometryBagData left_geometry_bag = 3;
-    OperatorRequest left_geometry_request = 4;
+    GeometryBagData  geometry_bag = 1;
+    GeometryRequest geometry_request = 2;
+    GeometryBagData  left_geometry_bag = 3;
+    GeometryRequest left_geometry_request = 4;
     //    }
 
     //    oneof secondary_geoms {
-    GeometryBagData right_geometry_bag = 5;
-    OperatorRequest right_geometry_request = 6;
+    GeometryBagData  right_geometry_bag = 5;
+    GeometryRequest right_geometry_request = 6;
     //    }
 
     ServiceOperatorType operator_type = 7;
 
-    GeometryEncodingType results_encoding_type = 8;
+    GeometryEncodingType  results_encoding_type = 8;
 
-    SpatialReferenceData operation_spatial_reference = 9;
+    SpatialReferenceData  operation_spatial_reference = 9;
 
-    SpatialReferenceData result_spatial_reference = 10;
+    SpatialReferenceData  result_spatial_reference = 10;
 
     //    oneof params {
     BufferParams buffer_params = 11;
@@ -279,14 +281,17 @@ message OperatorRequest {
     SimplifyParams simplify_params = 21;
     GeneralizeByAreaParams generalize_by_area_params = 22;
     //    }
+
+    GeometryData geometry = 23;
+    GeometryData left_geometry = 24;
+    GeometryData right_geometry = 25;
 }
 
 
 message EnvelopeData {
-    double xmin = 1;
-    double ymin = 2;
-    double xmax = 3;
-    double ymax = 4;
-    SpatialReferenceData spatial_reference = 5;
+    double  xmin = 1;
+    double  ymin = 2;
+    double  xmax = 3;
+    double  ymax = 4;
+    SpatialReferenceData  spatial_reference = 5;
 }
-
