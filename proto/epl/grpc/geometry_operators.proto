@@ -1,5 +1,5 @@
 /*
-Copyright 2017-2018 Echo Park Labs
+Copyright 2017-2019 Echo Park Labs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -33,15 +33,23 @@ import "epl/protobuf/geometry.proto";
 /*
  gRPC Interfaces for working with geometry operators
 */
-service GeometryOperators {
-    // Execute a single geometry operation
-    rpc ExecuteOperation(epl.protobuf.OperatorRequest) returns (epl.protobuf.OperatorResult) {}
+service GeometryService {
+    // Execute a single blocking geometry operation
+    rpc GeometryOperationUnary(epl.protobuf.GeometryRequest) returns (epl.protobuf.GeometryResponse) {}
 
-    // Stream in requests and return a stream of results
-    rpc StreamOperations(stream epl.protobuf.OperatorRequest) returns (stream epl.protobuf.OperatorResult) {}
+    // stream in operator requests and get back a stream of results
+    rpc GeometryOperationBiStream(stream epl.protobuf.GeometryRequest) returns (stream epl.protobuf.GeometryResponse) {}
 
-    rpc StreamOperationsEx(stream epl.protobuf.OperatorRequest) returns (stream epl.protobuf.OperatorResult) {}
+    // manual flow control bi-directional stream. example
+    // go shouldn't use this because of https://groups.google.com/forum/#!topic/grpc-io/6_B46Oszb4k ?
+    rpc GeometryOperationBiStreamFlow(stream epl.protobuf.GeometryRequest) returns (stream epl.protobuf.GeometryResponse) {}
+
+    // Maybe a cut operation that returns a lot of different geometries? for now, this is not implemented.
+    // rpc GeometryOperationServerStream(epl.protobuf.GeometryRequest) returns (stream epl.protobuf.GeometryResponse) {}
+
+    // Maybe something like a union operation. for now, this is not implemented.
+    // rpc GeometryOperationClientStream(stream epl.protobuf.GeometryRequest) returns (epl.protobuf.GeometryResponse) {}
 
     // stream in file chunks for a geometry file type and stream back results for each geometry encountered
-    rpc StreamFileOperations(stream epl.protobuf.FileChunk) returns (stream epl.protobuf.OperatorResult) {}
+    rpc FileOperationBiStreamFlow(stream epl.protobuf.FileRequestChunk) returns (stream epl.protobuf.GeometryResponse) {}
 }

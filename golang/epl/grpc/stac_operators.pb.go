@@ -32,28 +32,28 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// MetadataOperatorsClient is the client API for MetadataOperators service.
+// StacServiceClient is the client API for StacService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type MetadataOperatorsClient interface {
-	Search(ctx context.Context, in *protobuf.MetadataRequest, opts ...grpc.CallOption) (MetadataOperators_SearchClient, error)
-	Insert(ctx context.Context, in *protobuf.StacMetadata, opts ...grpc.CallOption) (*protobuf.DBResult, error)
+type StacServiceClient interface {
+	Search(ctx context.Context, in *protobuf.SearchRequest, opts ...grpc.CallOption) (StacService_SearchClient, error)
+	Insert(ctx context.Context, in *protobuf.StacMetadata, opts ...grpc.CallOption) (*protobuf.InsertResponse, error)
 }
 
-type metadataOperatorsClient struct {
+type stacServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewMetadataOperatorsClient(cc *grpc.ClientConn) MetadataOperatorsClient {
-	return &metadataOperatorsClient{cc}
+func NewStacServiceClient(cc *grpc.ClientConn) StacServiceClient {
+	return &stacServiceClient{cc}
 }
 
-func (c *metadataOperatorsClient) Search(ctx context.Context, in *protobuf.MetadataRequest, opts ...grpc.CallOption) (MetadataOperators_SearchClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MetadataOperators_serviceDesc.Streams[0], "/epl.grpc.MetadataOperators/Search", opts...)
+func (c *stacServiceClient) Search(ctx context.Context, in *protobuf.SearchRequest, opts ...grpc.CallOption) (StacService_SearchClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StacService_serviceDesc.Streams[0], "/epl.grpc.StacService/Search", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &metadataOperatorsSearchClient{stream}
+	x := &stacServiceSearchClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -63,16 +63,16 @@ func (c *metadataOperatorsClient) Search(ctx context.Context, in *protobuf.Metad
 	return x, nil
 }
 
-type MetadataOperators_SearchClient interface {
+type StacService_SearchClient interface {
 	Recv() (*protobuf.StacMetadata, error)
 	grpc.ClientStream
 }
 
-type metadataOperatorsSearchClient struct {
+type stacServiceSearchClient struct {
 	grpc.ClientStream
 }
 
-func (x *metadataOperatorsSearchClient) Recv() (*protobuf.StacMetadata, error) {
+func (x *stacServiceSearchClient) Recv() (*protobuf.StacMetadata, error) {
 	m := new(protobuf.StacMetadata)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -80,77 +80,77 @@ func (x *metadataOperatorsSearchClient) Recv() (*protobuf.StacMetadata, error) {
 	return m, nil
 }
 
-func (c *metadataOperatorsClient) Insert(ctx context.Context, in *protobuf.StacMetadata, opts ...grpc.CallOption) (*protobuf.DBResult, error) {
-	out := new(protobuf.DBResult)
-	err := c.cc.Invoke(ctx, "/epl.grpc.MetadataOperators/Insert", in, out, opts...)
+func (c *stacServiceClient) Insert(ctx context.Context, in *protobuf.StacMetadata, opts ...grpc.CallOption) (*protobuf.InsertResponse, error) {
+	out := new(protobuf.InsertResponse)
+	err := c.cc.Invoke(ctx, "/epl.grpc.StacService/Insert", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MetadataOperatorsServer is the server API for MetadataOperators service.
-type MetadataOperatorsServer interface {
-	Search(*protobuf.MetadataRequest, MetadataOperators_SearchServer) error
-	Insert(context.Context, *protobuf.StacMetadata) (*protobuf.DBResult, error)
+// StacServiceServer is the server API for StacService service.
+type StacServiceServer interface {
+	Search(*protobuf.SearchRequest, StacService_SearchServer) error
+	Insert(context.Context, *protobuf.StacMetadata) (*protobuf.InsertResponse, error)
 }
 
-func RegisterMetadataOperatorsServer(s *grpc.Server, srv MetadataOperatorsServer) {
-	s.RegisterService(&_MetadataOperators_serviceDesc, srv)
+func RegisterStacServiceServer(s *grpc.Server, srv StacServiceServer) {
+	s.RegisterService(&_StacService_serviceDesc, srv)
 }
 
-func _MetadataOperators_Search_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(protobuf.MetadataRequest)
+func _StacService_Search_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(protobuf.SearchRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(MetadataOperatorsServer).Search(m, &metadataOperatorsSearchServer{stream})
+	return srv.(StacServiceServer).Search(m, &stacServiceSearchServer{stream})
 }
 
-type MetadataOperators_SearchServer interface {
+type StacService_SearchServer interface {
 	Send(*protobuf.StacMetadata) error
 	grpc.ServerStream
 }
 
-type metadataOperatorsSearchServer struct {
+type stacServiceSearchServer struct {
 	grpc.ServerStream
 }
 
-func (x *metadataOperatorsSearchServer) Send(m *protobuf.StacMetadata) error {
+func (x *stacServiceSearchServer) Send(m *protobuf.StacMetadata) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _MetadataOperators_Insert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StacService_Insert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(protobuf.StacMetadata)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MetadataOperatorsServer).Insert(ctx, in)
+		return srv.(StacServiceServer).Insert(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/epl.grpc.MetadataOperators/Insert",
+		FullMethod: "/epl.grpc.StacService/Insert",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetadataOperatorsServer).Insert(ctx, req.(*protobuf.StacMetadata))
+		return srv.(StacServiceServer).Insert(ctx, req.(*protobuf.StacMetadata))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _MetadataOperators_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "epl.grpc.MetadataOperators",
-	HandlerType: (*MetadataOperatorsServer)(nil),
+var _StacService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "epl.grpc.StacService",
+	HandlerType: (*StacServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Insert",
-			Handler:    _MetadataOperators_Insert_Handler,
+			Handler:    _StacService_Insert_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Search",
-			Handler:       _MetadataOperators_Search_Handler,
+			Handler:       _StacService_Search_Handler,
 			ServerStreams: true,
 		},
 	},
@@ -158,22 +158,24 @@ var _MetadataOperators_serviceDesc = grpc.ServiceDesc{
 }
 
 func init() {
-	proto.RegisterFile("epl/grpc/stac_operators.proto", fileDescriptor_stac_operators_0867c4cc25eeb1c7)
+	proto.RegisterFile("epl/grpc/stac_operators.proto", fileDescriptor_stac_operators_6abe4ad7c074ba47)
 }
 
-var fileDescriptor_stac_operators_0867c4cc25eeb1c7 = []byte{
-	// 200 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0xd0, 0x31, 0x4b, 0xc5, 0x30,
-	0x10, 0x07, 0xf0, 0x76, 0x29, 0x92, 0xcd, 0x0c, 0x0a, 0x81, 0x2e, 0x5d, 0xc4, 0xc1, 0x44, 0x74,
-	0x77, 0x28, 0x82, 0x38, 0x88, 0xd0, 0x6e, 0x2e, 0x72, 0x8d, 0x67, 0x5a, 0xc8, 0x6b, 0xf2, 0x92,
-	0xcb, 0xb7, 0x79, 0x1f, 0xf6, 0xd1, 0x3c, 0x32, 0x74, 0x79, 0xeb, 0xfd, 0x7f, 0xff, 0x83, 0x3b,
-	0xd6, 0xa2, 0xb7, 0xca, 0x04, 0xaf, 0x55, 0x24, 0xd0, 0xbf, 0xce, 0x63, 0x00, 0x72, 0x21, 0x4a,
-	0x1f, 0x1c, 0x39, 0x7e, 0x83, 0xde, 0xca, 0x2d, 0x16, 0xf7, 0x1b, 0xcc, 0xc3, 0x29, 0xfd, 0x67,
-	0x7c, 0x21, 0x2f, 0xa7, 0x9a, 0xdd, 0x7e, 0x21, 0xc1, 0x1f, 0x10, 0x7c, 0x97, 0x3a, 0xff, 0x60,
-	0xcd, 0x88, 0x10, 0xf4, 0xcc, 0x5b, 0xb9, 0xed, 0x28, 0x4d, 0x59, 0xe8, 0x80, 0xc7, 0x84, 0x91,
-	0x84, 0xd8, 0xc7, 0x23, 0x81, 0x2e, 0xa4, 0xab, 0x9e, 0x6b, 0xfe, 0xc6, 0x9a, 0xcf, 0x35, 0x62,
-	0x20, 0x7e, 0x45, 0x8a, 0xbb, 0x7d, 0xf6, 0xde, 0x0f, 0x18, 0x93, 0xa5, 0xae, 0xea, 0x1f, 0x7f,
-	0x1e, 0xcc, 0x42, 0x73, 0x9a, 0xa4, 0x76, 0x07, 0x65, 0xd0, 0x3d, 0xe5, 0x6b, 0xc1, 0x2f, 0xca,
-	0x38, 0x0b, 0xab, 0x51, 0xe5, 0x03, 0x53, 0x93, 0xfb, 0xaf, 0xe7, 0x00, 0x00, 0x00, 0xff, 0xff,
-	0xae, 0xe4, 0x5e, 0xa0, 0x14, 0x01, 0x00, 0x00,
+var fileDescriptor_stac_operators_6abe4ad7c074ba47 = []byte{
+	// 226 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x90, 0xb1, 0x4a, 0x04, 0x31,
+	0x10, 0x86, 0x6f, 0x15, 0x16, 0x89, 0x16, 0x92, 0x46, 0x58, 0xb5, 0xb9, 0xc6, 0xca, 0x44, 0xf4,
+	0x0d, 0x0e, 0x2d, 0x2c, 0x84, 0xf3, 0x62, 0x65, 0x23, 0xb3, 0xe3, 0x98, 0x5b, 0xd8, 0xdb, 0x89,
+	0xc9, 0xac, 0x0f, 0x63, 0xe9, 0x93, 0x4a, 0xb2, 0x2c, 0xa8, 0x85, 0xed, 0xff, 0x7f, 0x1f, 0xc9,
+	0xfc, 0xea, 0x9c, 0x42, 0x6f, 0x7d, 0x0c, 0x68, 0x93, 0x00, 0xbe, 0x70, 0xa0, 0x08, 0xc2, 0x31,
+	0x99, 0x10, 0x59, 0x58, 0x1f, 0x50, 0xe8, 0x4d, 0xae, 0x9b, 0x93, 0x0c, 0x96, 0xb0, 0x1d, 0xdf,
+	0x0a, 0x3c, 0x21, 0xd7, 0x9f, 0x95, 0x3a, 0x74, 0x02, 0xe8, 0x28, 0x7e, 0x74, 0x48, 0xfa, 0x4e,
+	0xd5, 0x8e, 0x20, 0xe2, 0x56, 0x9f, 0x9a, 0x6c, 0xcf, 0x8e, 0x99, 0xd2, 0x0d, 0xbd, 0x8f, 0x94,
+	0xa4, 0x69, 0xfe, 0x94, 0x02, 0xf8, 0x40, 0x02, 0xaf, 0x20, 0xb0, 0x5c, 0x5c, 0x55, 0xfa, 0x56,
+	0xd5, 0xf7, 0x43, 0xa2, 0x28, 0xfa, 0x1f, 0xb2, 0x39, 0xfb, 0xdd, 0x4d, 0xc6, 0x86, 0x52, 0xe0,
+	0x21, 0xd1, 0x72, 0xb1, 0x7a, 0x54, 0x47, 0xc8, 0x3b, 0x33, 0x5f, 0xb1, 0x3a, 0xfe, 0xf1, 0xd3,
+	0x75, 0xb6, 0xd6, 0xd5, 0xf3, 0x85, 0xef, 0x64, 0x3b, 0xb6, 0x06, 0x79, 0x67, 0x3d, 0xf1, 0x65,
+	0x59, 0x03, 0x42, 0x67, 0x3d, 0xf7, 0x30, 0x78, 0x3b, 0x2f, 0xf4, 0xb5, 0xb7, 0xef, 0x9e, 0x5c,
+	0x5b, 0x97, 0xd7, 0x6e, 0xbe, 0x03, 0x00, 0x00, 0xff, 0xff, 0x35, 0x4b, 0x0e, 0xa5, 0x3a, 0x01,
+	0x00, 0x00,
 }

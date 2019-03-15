@@ -1,5 +1,5 @@
 /*
-Copyright 2017-2018 Echo Park Labs
+Copyright 2017-2019 Echo Park Labs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -150,22 +150,24 @@ message SpatialReferenceData {
     int32  wkid = 6;
 }
 
-message OperatorResult {
+message GeometryResponse {
+    // oneof
     GeometryBagData  geometry_bag = 1;
 
     bool  spatial_relationship = 2;
 
-    double  distance = 3;
+    double  measure = 3;
 
     map<int64, bool> relate_map = 4;
+    // oneof
 }
 
 enum FileType {
     Shapefile = 0;
 }
 
-message FileChunk {
-    OperatorRequest nested_request = 1;
+message FileRequestChunk {
+    GeometryRequest nested_request = 1;
     GeometryEncodingType  results_encoding_type = 2;
 
     SpatialReferenceData  input_spatial_reference = 3;
@@ -244,17 +246,17 @@ message SimplifyParams {
     bool  force = 1;
 }
 
-message OperatorRequest {
+message GeometryRequest {
     //    oneof primary_geoms {
     GeometryBagData  geometry_bag = 1;
-    OperatorRequest geometry_request = 2;
+    GeometryRequest geometry_request = 2;
     GeometryBagData  left_geometry_bag = 3;
-    OperatorRequest left_geometry_request = 4;
+    GeometryRequest left_geometry_request = 4;
     //    }
 
     //    oneof secondary_geoms {
     GeometryBagData  right_geometry_bag = 5;
-    OperatorRequest right_geometry_request = 6;
+    GeometryRequest right_geometry_request = 6;
     //    }
 
     ServiceOperatorType operator_type = 7;
