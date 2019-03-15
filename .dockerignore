@@ -2,6 +2,4 @@
 .idea
 
 **/*.pyc
-#./geometry/geometry_operators_pb2.py
-#./geometry/geometry_operators_pb2_grpc.py
 **/__pycache__/

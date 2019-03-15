@@ -1,15 +1,25 @@
 version: '3'
-
 services:
+  geometry-client:
+    container_name: geometry-client-c
+    image: geometry-client-i
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - geometry-service-java
+    networks:
+      - geometry-service
+    environment:
+      - GEOMETRY_SERVICE_HOST=geometry-service-java:8980
 
   geometry-service-java:
-    image: echoparklabs/geometry-service-java:latest
+    container_name: geometry-service-java-c
+    image: geometry-service-java-i
     ports:
-      - "8980"
+      - "8980:8980"
+    networks:
+      - geometry-service
 
-  geometry-client:
-    image: echoparklabs/geometry-client-python
-    environment:
-      GEOMETRY_SERVICE_HOST: geometry-service-java:8980
-
-    command: ["/bin/bash", "-c", "pip install pytest; cd test; pytest --verbose --junitxml=./testresults.xml sample.py; ls; cd ../"]
+networks:
+  geometry-service: {}
