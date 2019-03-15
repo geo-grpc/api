@@ -150,10 +150,8 @@ class TestBasic(unittest.TestCase):
             response3 = stub.GeometryOperationUnary(op_equals)
             self.assertTrue(False)
         except grpc.RpcError as e:
-            self.assertEqual(
-                'GeometryOperationUnary error : java.lang.IllegalArgumentException: either both spatial references are '
-                'local or neither',
-                e.details())
+            self.assertTrue(e.details().startswith('geometryOperationUnary error : either both spatial references are '
+                                                   'local or neither'))
 
     def test_multipoint(self):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
