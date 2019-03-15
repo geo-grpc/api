@@ -34,6 +34,6 @@ import "epl/protobuf/stac.proto";
  gRPC Interfaces for working with stac metadata
 */
 service StacService {
-    rpc Search(epl.protobuf.SearchRequest) returns (stream epl.protobuf.StacMetadata) {}
-    rpc Insert(epl.protobuf.StacMetadata) returns (epl.protobuf.InsertResponse) {}
+    rpc Search(epl.protobuf.StacSearchRequest) returns (stream epl.protobuf.StacMetadata) {}
+    rpc Insert(epl.protobuf.StacMetadata) returns (epl.protobuf.StacInsertResponse) {}
 }

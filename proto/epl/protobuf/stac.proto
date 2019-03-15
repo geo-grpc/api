@@ -123,7 +123,7 @@ message TimestampField {
 }
 
 
-message SearchRequest {
+message StacSearchRequest {
     StringField id = 1;
     uint32 limit = 2;
     uint64 offset = 3;
@@ -259,7 +259,7 @@ message StacMetadata {
     reserved 500 to max;
 }
 
-message InsertResponse {
+message StacInsertResponse {
     string status = 1;
     int32 status_code = 2;
     string result_id = 3;
