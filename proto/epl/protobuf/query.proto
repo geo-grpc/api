@@ -1,0 +1,79 @@
+/*
+Copyright 2017-2019 Echo Park Labs
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+For additional information, contact:
+
+email: info@echoparklabs.io
+*/
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.epl.protobuf";
+option java_outer_classname = "QueryProto";
+option objc_class_prefix = "QPB";
+option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
+
+package epl.protobuf;
+
+import "google/protobuf/timestamp.proto";
+
+import "epl/protobuf/query.proto";
+
+enum SortDirection {
+    NOT_SORTED = 0;
+    DESCENDING = 1;
+    ASCENDING = 2;
+}
+
+enum RelationshipType {
+    UNKNOWN_FIELD_REL = 0;
+    FIELD_EQUALS = 2;
+    FIELD_NOT_EQUAL = 4;
+    FIELD_LESS_EQUAL = 8;
+    FIELD_GREATER_EQUAL = 16;
+    FIELD_LESS = 32;
+    FIELD_GREATER = 64;
+    FIELD_RANGE = 128;
+    FIELD_NOT_RANGE = 256;
+}
+
+message FloatField {
+    float value = 1;
+    RelationshipType rel_type = 2;
+    float range_value = 3;
+    SortDirection sort_direction = 4;
+}
+
+message DoubleField {
+    double value = 1;
+    RelationshipType rel_type = 2;
+    double range_value = 3;
+    SortDirection sort_direction = 4;
+}
+
+message StringField {
+    string value = 1;
+    RelationshipType rel_type = 2;
+    string range_value = 3;
+    SortDirection sort_direction = 4;
+}
+
+message TimestampField {
+    google.protobuf.Timestamp value = 1;
+    RelationshipType rel_type = 2;
+    google.protobuf.Timestamp range_value = 3;
+    SortDirection sort_direction = 4;
+}
