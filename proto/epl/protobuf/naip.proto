@@ -29,7 +29,7 @@ option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
 package epl.protobuf;
 
 import "google/protobuf/timestamp.proto";
-import "epl/protobuf/stac.proto";
+import "epl/protobuf/query.proto";
 
 message NaipProperties {
     google.protobuf.Timestamp src_img_date = 1;

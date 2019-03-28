@@ -30,8 +30,6 @@ package epl.protobuf;
 
 import "google/protobuf/timestamp.proto";
 
-import "epl/protobuf/query.proto";
-
 enum SortDirection {
     NOT_SORTED = 0;
     DESCENDING = 1;
