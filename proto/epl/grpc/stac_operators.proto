@@ -35,5 +35,6 @@ import "epl/protobuf/stac.proto";
 */
 service StacService {
     rpc Search(epl.protobuf.StacSearchRequest) returns (stream epl.protobuf.StacMetadata) {}
-    rpc Insert(epl.protobuf.StacMetadata) returns (epl.protobuf.StacInsertResponse) {}
+    rpc Insert(epl.protobuf.StacMetadata) returns (epl.protobuf.StacDBResponse) {}
+    rpc Update(epl.protobuf.StacMetadata) returns (epl.protobuf.StacDBResponse) {}
 }

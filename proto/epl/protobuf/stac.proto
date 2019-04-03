@@ -180,7 +180,7 @@ message StacMetadata {
     reserved 14 to max;
 }
 
-message StacInsertResponse {
+message StacDBResponse {
     string status = 1;
     int32 status_code = 2;
     string result_id = 3;
