@@ -156,7 +156,7 @@ message Asset {
     string bucket_owner = 6;
     string bucket_region = 7;
     string bucket = 8;
-    string blob_name = 9;
+    string object_path = 9;
 }
 
 message StacMetadata {
