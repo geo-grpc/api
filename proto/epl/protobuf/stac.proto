@@ -36,33 +36,6 @@ import "google/protobuf/any.proto";
 import "epl/protobuf/geometry.proto";
 import "epl/protobuf/query.proto";
 
-enum EOPlatform {
-    UNKNOWN_EO_PLATFORM = 0;
-    LANDSAT_8 = 1;
-    NAIP = 2; // should this be Aerial instead?
-}
-
-enum EOInstrument {
-    UNKNOWN_EO_INSTRUMENT = 0;
-}
-
-enum EOBand {
-    UNKNOWN_BAND = 0;
-    COASTAL_BAND = 2;
-    BLUE_BAND = 4;
-    GREEN_BAND = 8;
-    RED_BAND = 16;
-    RGB_BANDS = 28;
-    NEAR_INFRARED_BAND = 32;
-    RGBIR_BANDS = 60;
-    SWIR_16_BAND = 64;
-    SWIR_22_BAND = 128;
-    PANCHROMATIC_BAND = 256;
-    CIRRUS_BAND = 512;
-    LWIR_11_BAND = 1024;
-    LWIR_12_BAND = 2048;
-}
-
 enum AssetType {
     UNKNOWN_ASSET = 0;
     JPEG = 1;
@@ -96,7 +69,7 @@ message StacSearchRequest {
     // repeated string excluded_result_fields = 5;
 
     google.protobuf.Any properties_request = 8;
-    EORequest eo_request = 9;
+    Eo.Request eo_request = 9;
 
     //    oneof
     epl.protobuf.EnvelopeData bbox = 14;
@@ -113,16 +86,6 @@ message StacSearchRequest {
     StringField usgsid = 202;
 
     reserved 500 to max;
-}
-
-message EORequest {
-    FloatField eo_sun_azimuth = 8;
-    FloatField eo_sun_elevation = 9;
-    FloatField eo_gsd = 10;
-    FloatField eo_off_nadir = 11;
-    FloatField eo_azimuth = 12;
-    FloatField eo_cloud_cover = 13;
-    EOBand eo_bands = 17;
 }
 
 /*
@@ -149,7 +112,7 @@ message Asset {
     string href = 1;
     string type = 2;
     // https://github.com/radiantearth/stac-spec/blob/612ee4fb4f979c049d2416e7f5374a5301b8a277/extensions/eo/README.md
-    EOBand eo_bands = 3;
+    Eo.Band eo_bands = 3;
 
     AssetType asset_type = 4;
     CloudPlatform cloud_platform = 5;
@@ -175,7 +138,7 @@ message StacMetadata {
     google.protobuf.Timestamp metadata_updated = 11;
     google.protobuf.Timestamp data_processed = 12;
 
-    EOProperties eo_properties = 13;
+    Eo eo = 13;
 
     reserved 14 to max;
 }
@@ -185,21 +148,70 @@ message StacInsertResponse {
     int32 status_code = 2;
 }
 
-message EOProperties {
-    uint32 eo_epsg = 1;
-    EOPlatform eo_platform = 2;
-    EOInstrument eo_instrument = 3;
+message Sar {
+    enum Platform {
+        UNKNOWN_SAR_PLATFORM = 0;
+        ENVISAT = 1;
+        SENTINEL1A = 2;
+    }
+    Platform platform = 1;
+}
+
+message Eo {
+    enum Platform {
+        UNKNOWN_EO_PLATFORM = 0;
+        LANDSAT_8 = 2;
+        NAIP = 4; // should this be Aerial instead?
+    }
+
+    enum Instrument {
+        UNKNOWN_EO_INSTRUMENT = 0;
+    }
+
+    enum Band {
+        UNKNOWN_BAND = 0;
+        COASTAL_BAND = 2;
+        BLUE_BAND = 4;
+        GREEN_BAND = 8;
+        RED_BAND = 16;
+        RGB_BANDS = 28;
+        NEAR_INFRARED_BAND = 32;
+        RGBIR_BANDS = 60;
+        SWIR_16_BAND = 64;
+        SWIR_22_BAND = 128;
+        PANCHROMATIC_BAND = 256;
+        CIRRUS_BAND = 512;
+        LWIR_11_BAND = 1024;
+        LWIR_12_BAND = 2048;
+    }
+
+    message Request {
+        int32 epsg = 1;
+        Eo.Platform platform = 2;
+        Eo.Instrument instrument = 3;
+        FloatField sun_azimuth = 4;
+        FloatField sun_elevation = 5;
+        FloatField gsd = 6;
+        FloatField off_nadir = 7;
+        FloatField azimuth = 8;
+        FloatField cloud_cover = 9;
+        Eo.Band bands = 10;
+    }
+
+    uint32 epsg = 1;
+    Platform platform = 2;
+    Instrument instrument = 3;
 
     // Difference from current STAC definition: properties are not nested beneath a properties object
-    google.protobuf.FloatValue eo_sun_azimuth = 4;
-    google.protobuf.FloatValue eo_sun_elevation = 5;
-    google.protobuf.FloatValue eo_gsd = 6;
-    google.protobuf.FloatValue eo_off_nadir = 7;
-    google.protobuf.FloatValue eo_azimuth = 8;
-    google.protobuf.FloatValue eo_cloud_cover = 9;
+    google.protobuf.FloatValue sun_azimuth = 4;
+    google.protobuf.FloatValue sun_elevation = 5;
+    google.protobuf.FloatValue gsd = 6;
+    google.protobuf.FloatValue off_nadir = 7;
+    google.protobuf.FloatValue azimuth = 8;
+    google.protobuf.FloatValue cloud_cover = 9;
 
     // Difference from current STAC definition: bands are just the enums instead of the bandDetails
     // STAC has bands defined twice. once in assets and once in properties. should probably just be
     // once.
-    EOBand eo_bands = 10;
+    Band bands = 10;
 }
