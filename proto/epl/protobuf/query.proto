@@ -75,3 +75,10 @@ message TimestampField {
     google.protobuf.Timestamp range_value = 3;
     SortDirection sort_direction = 4;
 }
+
+message UInt32Field {
+    uint32 value = 1;
+    FieldRelationship rel_type = 2;
+    uint32 range_value = 3;
+    SortDirection sort_direction = 4;
+}

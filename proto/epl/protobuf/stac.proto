@@ -155,6 +155,10 @@ message Sar {
         SENTINEL1A = 2;
     }
     Platform platform = 1;
+
+    enum Instrument {
+        UNKNOWN_EO_INSTRUMENT = 0;
+    }
 }
 
 message Eo {
