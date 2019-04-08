@@ -36,17 +36,17 @@ import "google/protobuf/any.proto";
 import "epl/protobuf/geometry.proto";
 import "epl/protobuf/query.proto";
 
-enum EoPlatform {
+enum EOPlatform {
     UNKNOWN_EO_PLATFORM = 0;
     LANDSAT_8 = 1;
     NAIP = 2; // should this be Aerial instead?
 }
 
-enum EoInstrument {
+enum EOInstrument {
     UNKNOWN_EO_INSTRUMENT = 0;
 }
 
-enum EoBand {
+enum EOBand {
     UNKNOWN_BAND = 0;
     COASTAL_BAND = 2;
     BLUE_BAND = 4;
@@ -96,7 +96,7 @@ message StacSearchRequest {
     // repeated string excluded_result_fields = 5;
 
     google.protobuf.Any properties_request = 8;
-    EoRequest eo_request = 9;
+    EORequest eo_request = 9;
 
     //    oneof
     epl.protobuf.EnvelopeData bbox = 14;
@@ -115,14 +115,14 @@ message StacSearchRequest {
     reserved 500 to max;
 }
 
-message EoRequest {
+message EORequest {
     FloatField eo_sun_azimuth = 8;
     FloatField eo_sun_elevation = 9;
     FloatField eo_gsd = 10;
     FloatField eo_off_nadir = 11;
     FloatField eo_azimuth = 12;
     FloatField eo_cloud_cover = 13;
-    EoBand eo_bands = 17;
+    EOBand eo_bands = 17;
 }
 
 /*
@@ -149,7 +149,7 @@ message Asset {
     string href = 1;
     string type = 2;
     // https://github.com/radiantearth/stac-spec/blob/612ee4fb4f979c049d2416e7f5374a5301b8a277/extensions/eo/README.md
-    EoBand eo_bands = 3;
+    EOBand eo_bands = 3;
 
     AssetType asset_type = 4;
     CloudPlatform cloud_platform = 5;
@@ -175,21 +175,20 @@ message StacMetadata {
     google.protobuf.Timestamp metadata_updated = 11;
     google.protobuf.Timestamp data_processed = 12;
 
-    EoProperties eo_properties = 13;
+    EOProperties eo_properties = 13;
 
     reserved 14 to max;
 }
 
-message StacDBResponse {
+message StacInsertResponse {
     string status = 1;
     int32 status_code = 2;
-    string result_id = 3;
 }
 
-message EoProperties {
+message EOProperties {
     uint32 eo_epsg = 1;
-    EoPlatform eo_platform = 2;
-    EoInstrument eo_instrument = 3;
+    EOPlatform eo_platform = 2;
+    EOInstrument eo_instrument = 3;
 
     // Difference from current STAC definition: properties are not nested beneath a properties object
     google.protobuf.FloatValue eo_sun_azimuth = 4;
@@ -202,5 +201,5 @@ message EoProperties {
     // Difference from current STAC definition: bands are just the enums instead of the bandDetails
     // STAC has bands defined twice. once in assets and once in properties. should probably just be
     // once.
-    EoBand eo_bands = 10;
+    EOBand eo_bands = 10;
 }
