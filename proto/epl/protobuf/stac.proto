@@ -71,7 +71,7 @@ message StacSearchRequest {
     // repeated string excluded_result_fields = 5;
 
     google.protobuf.Any properties_request = 8;
-    Eo.Request eo_request = 9;
+    EoRequest eo_request = 9;
 
     //    oneof
     epl.protobuf.EnvelopeData bbox = 14;
@@ -187,19 +187,6 @@ message Eo {
         LWIR_12_BAND = 2048;
     }
 
-    message Request {
-        int32 epsg = 1;
-        Eo.Platform platform = 2;
-        Eo.Instrument instrument = 3;
-        FloatField sun_azimuth = 4;
-        FloatField sun_elevation = 5;
-        FloatField gsd = 6;
-        FloatField off_nadir = 7;
-        FloatField azimuth = 8;
-        FloatField cloud_cover = 9;
-        Eo.Band bands = 10;
-    }
-
     uint32 epsg = 1;
     Platform platform = 2;
     Instrument instrument = 3;
@@ -216,4 +203,17 @@ message Eo {
     // STAC has bands defined twice. once in assets and once in properties. should probably just be
     // once.
     Band bands = 10;
+}
+
+message EoRequest {
+    int32 epsg = 1;
+    Eo.Platform platform = 2;
+    Eo.Instrument instrument = 3;
+    FloatField sun_azimuth = 4;
+    FloatField sun_elevation = 5;
+    FloatField gsd = 6;
+    FloatField off_nadir = 7;
+    FloatField azimuth = 8;
+    FloatField cloud_cover = 9;
+    Eo.Band bands = 10;
 }

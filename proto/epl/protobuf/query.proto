@@ -37,15 +37,15 @@ enum SortDirection {
 }
 
 enum FieldRelationship {
-    UNKNOWN_FIELD_REL = 0;
-    FIELD_EQUALS = 2;
-    FIELD_NOT_EQUAL = 4;
-    FIELD_LESS_EQUAL = 8;
-    FIELD_GREATER_EQUAL = 16;
-    FIELD_LESS = 32;
-    FIELD_GREATER = 64;
-    FIELD_RANGE = 128;
-    FIELD_NOT_RANGE = 256;
+    FIELD_EQ = 0;
+    FIELD_LT_OR_EQ = 2;
+    FIELD_GT_OR_EQ = 4;
+    FIELD_LT = 8;
+    FIELD_GT = 16;
+    FIELD_RANGE = 32;
+    FIELD_NOT_RANGE = 64;
+    FIELD_NOT_EQ = 128;
+    FIELD_STARTS_WITH = 256;
 }
 
 message FloatField {
