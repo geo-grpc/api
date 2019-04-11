@@ -29,7 +29,6 @@ option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
 package epl.protobuf;
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/any.proto";
 
@@ -59,31 +58,34 @@ enum CloudPlatform {
 
 message StacSearchRequest {
     StringField id = 1;
-    uint32 limit = 2;
-    uint64 offset = 3;
 
-    reserved 4 to 5; // reserved for sorting request
+    //    oneof
+    epl.protobuf.GeometryData geometry = 2;
+    epl.protobuf.EnvelopeData bbox = 3;
+    epl.protobuf.GeometryRequest geometry_request = 4;
+    // end oneof
+
+    google.protobuf.Any properties_request = 5;
+
+    TimestampField datetime = 6;
+    TimestampField observed = 7;
+    TimestampField processed = 8;
+    TimestampField updated = 9;
+
+    EoRequest eo_request = 10;
+
+    uint32 limit = 11;
+    uint64 offset = 12;
+
+    reserved 13 to 14; // reserved for sorting request
     // SortDirection sort_direction = 3;
     // string sort_field = 4;
 
-    reserved 6 to 7; // reserved for requesting fields or excluding fields
+    reserved 15 to 16; // reserved for requesting fields or excluding fields
     // repeated string result_fields = 5; // if blank all fields returned
     // repeated string excluded_result_fields = 5;
 
-    google.protobuf.Any properties_request = 8;
-    EoRequest eo_request = 9;
-
-    //    oneof
-    epl.protobuf.EnvelopeData bbox = 14;
-    epl.protobuf.GeometryData geometry = 15;
-    epl.protobuf.GeometryRequest geometry_request = 16;
-    // end oneof
-
-    TimestampField datetime = 18;
-    TimestampField observed = 19;
-    TimestampField updated = 20;
-
-    reserved 21 to max;
+    reserved 17 to max;
 }
 
 /*
@@ -131,10 +133,9 @@ message StacMetadata {
 
     map<string, Asset> assets = 7;
     google.protobuf.Timestamp datetime = 8;
-    google.protobuf.Timestamp data_observed = 9;
-    google.protobuf.Duration data_observed_duration = 10;
-    google.protobuf.Timestamp metadata_updated = 11;
-    google.protobuf.Timestamp data_processed = 12;
+    google.protobuf.Timestamp observed = 9;
+    google.protobuf.Timestamp processed = 11;
+    google.protobuf.Timestamp updated = 12;
 
     Eo eo = 13;
 
