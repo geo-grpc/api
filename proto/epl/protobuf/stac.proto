@@ -45,6 +45,8 @@ enum AssetType {
     MRF_IDX = 5;
     MRF_XML = 6;
     CO_GEOTIFF = 7;
+    ARW = 8;
+    THUMBNAIL = 9;
 }
 
 enum CloudPlatform {
@@ -81,11 +83,7 @@ message StacSearchRequest {
     TimestampField observed = 19;
     TimestampField updated = 20;
 
-    reserved 21 to 200;
-    TimestampField src_img_date = 201;
-    StringField usgsid = 202;
-
-    reserved 500 to max;
+    reserved 21 to max;
 }
 
 /*
