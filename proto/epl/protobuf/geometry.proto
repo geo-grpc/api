@@ -37,6 +37,7 @@ enum GeometryEncodingType {
     wkt = 2; // well-known text
     geojson = 3; // geojson
     esrishape = 4; // esri shape binary
+    envelope_type = 5;
 }
 
 /*
@@ -52,7 +53,7 @@ enum ServiceOperatorType {
     ExportToESRIShape = 4; // export geometry to esrishape binary data
     ImportFromESRIShape = 5; // import from esrishape binary data
 
-    Union = 6; // union two or more geometries
+    //Union = 6; // union two or more geometries
     Difference = 7; // difference of two or more geometries
 
     Proximity2D = 8; // not yet exposed
@@ -110,55 +111,38 @@ enum OffsetJoinType {
 
 message GeometryData {
     int64 geometry_id = 1;
-    string feature_id = 9;
+    string feature_id = 2;
 
-    GeometryEncodingType geometry_encoding_type = 2;
     // oneof block
     string wkt = 3;
     string geojson = 4;
     bytes wkb = 5;
     bytes esri_shape = 6;
     // oneof block
+
     SpatialReferenceData spatial_reference = 7;
 }
 
-message GeometryBagData {
-    // oneof block start
-    repeated int64 geometry_ids = 1;
-    repeated string feature_ids = 9;
-    // oneof block end
-
-    // type can be 'wkt', 'wkb', 'geojson', or 'esri'
-    GeometryEncodingType geometry_encoding_type = 2;
-
-    repeated string wkt = 3;
-    repeated string geojson = 4;
-    repeated bytes wkb = 5;
-    repeated bytes esri_shape = 6;
-
-    SpatialReferenceData spatial_reference = 7;
-
-    repeated string esri_json = 8;
-}
 
 message SpatialReferenceData {
-    string proj4 = 4;
+    string proj4 = 1;
     // String that is a wkt, wkid, esri_wkt, or a proj4 string
-    string esri_wkt = 5;
+    string esri_wkt = 2;
 
     // type is either 'wkid', 'esri_wkt'
-    int32 wkid = 6;
+    int32 wkid = 3;
 }
 
 message GeometryResponse {
     // oneof
-    GeometryBagData geometry_bag = 1;
+    GeometryData geometry = 1;
 
     bool spatial_relationship = 2;
 
     double measure = 3;
 
     map<int64, bool> relate_map = 4;
+    EnvelopeData envelope = 5;
     // oneof
 }
 
@@ -182,15 +166,15 @@ message FileRequestChunk {
 }
 
 message BufferParams {
-    repeated double distances = 1;
-    repeated double max_deviations = 2;
+    double distance = 1;
+    double max_deviation = 2;
     bool union_result = 3;
     int32 max_vertices_in_full_circle = 4;
 }
 
 message GeodeticBufferParams {
-    repeated double distances = 1;
-    repeated double max_deviations = 2;
+    double distance = 1;
+    double max_deviation = 2;
     bool union_result = 3;
     int32 max_vertices_in_full_circle = 4;
 }
@@ -204,7 +188,7 @@ message RelateParams {
 }
 
 message RandomPointsParams {
-    repeated double points_per_square_km = 1;
+    double points_per_square_km = 1;
     int64 seed = 2;
 }
 
@@ -248,14 +232,13 @@ message SimplifyParams {
 
 message GeometryRequest {
     //    oneof primary_geoms {
-    GeometryBagData geometry_bag = 1;
-    GeometryRequest geometry_request = 2;
-    GeometryBagData left_geometry_bag = 3;
+    GeometryData geometry = 1;
+    GeometryData left_geometry = 2;
+    GeometryRequest geometry_request = 3;
     GeometryRequest left_geometry_request = 4;
     //    }
 
-    //    oneof secondary_geoms {
-    GeometryBagData right_geometry_bag = 5;
+    GeometryData right_geometry = 5;
     GeometryRequest right_geometry_request = 6;
     //    }
 
@@ -281,10 +264,6 @@ message GeometryRequest {
     SimplifyParams simplify_params = 21;
     GeneralizeByAreaParams generalize_by_area_params = 22;
     //    }
-
-    GeometryData geometry = 23;
-    GeometryData left_geometry = 24;
-    GeometryData right_geometry = 25;
 }
 
 
