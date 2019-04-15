@@ -57,31 +57,31 @@ message StringField {
 message FloatField {
     float value = 1;
     FieldRelationship rel_type = 2;
-    float between_value_1 = 3;
-    float between_value_2 = 4;
+    float between_value1 = 3;
+    float between_value2 = 4;
     SortDirection sort_direction = 5;
 }
 
 message DoubleField {
     double value = 1;
     FieldRelationship rel_type = 2;
-    double between_value_1 = 3;
-    double between_value_2 = 4;
+    double between_value1 = 3;
+    double between_value2 = 4;
     SortDirection sort_direction = 5;
 }
 
 message TimestampField {
     google.protobuf.Timestamp value = 1;
     FieldRelationship rel_type = 2;
-    google.protobuf.Timestamp between_value_1 = 3;
-    google.protobuf.Timestamp between_value_2 = 4;
+    google.protobuf.Timestamp between_value1 = 3;
+    google.protobuf.Timestamp between_value2 = 4;
     SortDirection sort_direction = 5;
 }
 
 message UInt32Field {
     uint32 value = 1;
     FieldRelationship rel_type = 2;
-    uint32 between_value_1 = 3;
-    uint32 between_value_2 = 4;
+    uint32 between_value1 = 3;
+    uint32 between_value2 = 4;
     SortDirection sort_direction = 5;
 }
