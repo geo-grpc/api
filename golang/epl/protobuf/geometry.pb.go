@@ -52,7 +52,7 @@ func (x GeometryEncodingType) String() string {
 	return proto.EnumName(GeometryEncodingType_name, int32(x))
 }
 func (GeometryEncodingType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{0}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{0}
 }
 
 //
@@ -199,7 +199,7 @@ func (x ServiceOperatorType) String() string {
 	return proto.EnumName(ServiceOperatorType_name, int32(x))
 }
 func (ServiceOperatorType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{1}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{1}
 }
 
 type OffsetJoinType int32
@@ -228,7 +228,7 @@ func (x OffsetJoinType) String() string {
 	return proto.EnumName(OffsetJoinType_name, int32(x))
 }
 func (OffsetJoinType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{2}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{2}
 }
 
 type FileType int32
@@ -248,7 +248,7 @@ func (x FileType) String() string {
 	return proto.EnumName(FileType_name, int32(x))
 }
 func (FileType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{3}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{3}
 }
 
 type GeometryData struct {
@@ -269,7 +269,7 @@ func (m *GeometryData) Reset()         { *m = GeometryData{} }
 func (m *GeometryData) String() string { return proto.CompactTextString(m) }
 func (*GeometryData) ProtoMessage()    {}
 func (*GeometryData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{0}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{0}
 }
 func (m *GeometryData) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GeometryData.Unmarshal(m, b)
@@ -353,7 +353,7 @@ func (m *SpatialReferenceData) Reset()         { *m = SpatialReferenceData{} }
 func (m *SpatialReferenceData) String() string { return proto.CompactTextString(m) }
 func (*SpatialReferenceData) ProtoMessage()    {}
 func (*SpatialReferenceData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{1}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{1}
 }
 func (m *SpatialReferenceData) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SpatialReferenceData.Unmarshal(m, b)
@@ -410,7 +410,7 @@ func (m *GeometryResponse) Reset()         { *m = GeometryResponse{} }
 func (m *GeometryResponse) String() string { return proto.CompactTextString(m) }
 func (*GeometryResponse) ProtoMessage()    {}
 func (*GeometryResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{2}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{2}
 }
 func (m *GeometryResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GeometryResponse.Unmarshal(m, b)
@@ -484,7 +484,7 @@ func (m *FileRequestChunk) Reset()         { *m = FileRequestChunk{} }
 func (m *FileRequestChunk) String() string { return proto.CompactTextString(m) }
 func (*FileRequestChunk) ProtoMessage()    {}
 func (*FileRequestChunk) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{3}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{3}
 }
 func (m *FileRequestChunk) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FileRequestChunk.Unmarshal(m, b)
@@ -581,7 +581,7 @@ func (m *BufferParams) Reset()         { *m = BufferParams{} }
 func (m *BufferParams) String() string { return proto.CompactTextString(m) }
 func (*BufferParams) ProtoMessage()    {}
 func (*BufferParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{4}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{4}
 }
 func (m *BufferParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_BufferParams.Unmarshal(m, b)
@@ -643,7 +643,7 @@ func (m *GeodeticBufferParams) Reset()         { *m = GeodeticBufferParams{} }
 func (m *GeodeticBufferParams) String() string { return proto.CompactTextString(m) }
 func (*GeodeticBufferParams) ProtoMessage()    {}
 func (*GeodeticBufferParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{5}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{5}
 }
 func (m *GeodeticBufferParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GeodeticBufferParams.Unmarshal(m, b)
@@ -702,7 +702,7 @@ func (m *ConvexParams) Reset()         { *m = ConvexParams{} }
 func (m *ConvexParams) String() string { return proto.CompactTextString(m) }
 func (*ConvexParams) ProtoMessage()    {}
 func (*ConvexParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{6}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{6}
 }
 func (m *ConvexParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ConvexParams.Unmarshal(m, b)
@@ -740,7 +740,7 @@ func (m *RelateParams) Reset()         { *m = RelateParams{} }
 func (m *RelateParams) String() string { return proto.CompactTextString(m) }
 func (*RelateParams) ProtoMessage()    {}
 func (*RelateParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{7}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{7}
 }
 func (m *RelateParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RelateParams.Unmarshal(m, b)
@@ -779,7 +779,7 @@ func (m *RandomPointsParams) Reset()         { *m = RandomPointsParams{} }
 func (m *RandomPointsParams) String() string { return proto.CompactTextString(m) }
 func (*RandomPointsParams) ProtoMessage()    {}
 func (*RandomPointsParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{8}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{8}
 }
 func (m *RandomPointsParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RandomPointsParams.Unmarshal(m, b)
@@ -825,7 +825,7 @@ func (m *GeneralizeParams) Reset()         { *m = GeneralizeParams{} }
 func (m *GeneralizeParams) String() string { return proto.CompactTextString(m) }
 func (*GeneralizeParams) ProtoMessage()    {}
 func (*GeneralizeParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{9}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{9}
 }
 func (m *GeneralizeParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GeneralizeParams.Unmarshal(m, b)
@@ -872,7 +872,7 @@ func (m *GeneralizeByAreaParams) Reset()         { *m = GeneralizeByAreaParams{}
 func (m *GeneralizeByAreaParams) String() string { return proto.CompactTextString(m) }
 func (*GeneralizeByAreaParams) ProtoMessage()    {}
 func (*GeneralizeByAreaParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{10}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{10}
 }
 func (m *GeneralizeByAreaParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GeneralizeByAreaParams.Unmarshal(m, b)
@@ -924,7 +924,7 @@ func (m *IntersectionParams) Reset()         { *m = IntersectionParams{} }
 func (m *IntersectionParams) String() string { return proto.CompactTextString(m) }
 func (*IntersectionParams) ProtoMessage()    {}
 func (*IntersectionParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{11}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{11}
 }
 func (m *IntersectionParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_IntersectionParams.Unmarshal(m, b)
@@ -965,7 +965,7 @@ func (m *OffsetParams) Reset()         { *m = OffsetParams{} }
 func (m *OffsetParams) String() string { return proto.CompactTextString(m) }
 func (*OffsetParams) ProtoMessage()    {}
 func (*OffsetParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{12}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{12}
 }
 func (m *OffsetParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_OffsetParams.Unmarshal(m, b)
@@ -1024,7 +1024,7 @@ func (m *CutParams) Reset()         { *m = CutParams{} }
 func (m *CutParams) String() string { return proto.CompactTextString(m) }
 func (*CutParams) ProtoMessage()    {}
 func (*CutParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{13}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{13}
 }
 func (m *CutParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CutParams.Unmarshal(m, b)
@@ -1062,7 +1062,7 @@ func (m *ClipParams) Reset()         { *m = ClipParams{} }
 func (m *ClipParams) String() string { return proto.CompactTextString(m) }
 func (*ClipParams) ProtoMessage()    {}
 func (*ClipParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{14}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{14}
 }
 func (m *ClipParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ClipParams.Unmarshal(m, b)
@@ -1100,7 +1100,7 @@ func (m *DensifyParams) Reset()         { *m = DensifyParams{} }
 func (m *DensifyParams) String() string { return proto.CompactTextString(m) }
 func (*DensifyParams) ProtoMessage()    {}
 func (*DensifyParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{15}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{15}
 }
 func (m *DensifyParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DensifyParams.Unmarshal(m, b)
@@ -1138,7 +1138,7 @@ func (m *SimplifyParams) Reset()         { *m = SimplifyParams{} }
 func (m *SimplifyParams) String() string { return proto.CompactTextString(m) }
 func (*SimplifyParams) ProtoMessage()    {}
 func (*SimplifyParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{16}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{16}
 }
 func (m *SimplifyParams) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SimplifyParams.Unmarshal(m, b)
@@ -1199,7 +1199,7 @@ func (m *GeometryRequest) Reset()         { *m = GeometryRequest{} }
 func (m *GeometryRequest) String() string { return proto.CompactTextString(m) }
 func (*GeometryRequest) ProtoMessage()    {}
 func (*GeometryRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{17}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{17}
 }
 func (m *GeometryRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GeometryRequest.Unmarshal(m, b)
@@ -1388,7 +1388,7 @@ func (m *EnvelopeData) Reset()         { *m = EnvelopeData{} }
 func (m *EnvelopeData) String() string { return proto.CompactTextString(m) }
 func (*EnvelopeData) ProtoMessage()    {}
 func (*EnvelopeData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_e3575641701fdc19, []int{18}
+	return fileDescriptor_geometry_2a6a165a1902e770, []int{18}
 }
 func (m *EnvelopeData) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_EnvelopeData.Unmarshal(m, b)
@@ -1471,10 +1471,10 @@ func init() {
 }
 
 func init() {
-	proto.RegisterFile("epl/protobuf/geometry.proto", fileDescriptor_geometry_e3575641701fdc19)
+	proto.RegisterFile("epl/protobuf/geometry.proto", fileDescriptor_geometry_2a6a165a1902e770)
 }
 
-var fileDescriptor_geometry_e3575641701fdc19 = []byte{
+var fileDescriptor_geometry_2a6a165a1902e770 = []byte{
 	// 2069 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x58, 0xdf, 0x72, 0x1b, 0xb7,
 	0xf5, 0xf6, 0x4a, 0xa2, 0x44, 0x1e, 0x2e, 0x29, 0x08, 0xa2, 0x24, 0xda, 0xfa, 0xf9, 0x17, 0x79,
