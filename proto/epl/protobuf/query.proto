@@ -42,43 +42,46 @@ enum FieldRelationship {
     FIELD_GT_OR_EQ = 4;
     FIELD_LT = 8;
     FIELD_GT = 16;
-    FIELD_RANGE = 32;
-    FIELD_NOT_RANGE = 64;
+    FIELD_BETWEEN = 32;
+    FIELD_NOT_BETWEEN = 64;
     FIELD_NOT_EQ = 128;
     FIELD_STARTS_WITH = 256;
-}
-
-message FloatField {
-    float value = 1;
-    FieldRelationship rel_type = 2;
-    float range_value = 3;
-    SortDirection sort_direction = 4;
-}
-
-message DoubleField {
-    double value = 1;
-    FieldRelationship rel_type = 2;
-    double range_value = 3;
-    SortDirection sort_direction = 4;
 }
 
 message StringField {
     string value = 1;
     FieldRelationship rel_type = 2;
-    string range_value = 3;
     SortDirection sort_direction = 4;
+}
+
+message FloatField {
+    float value = 1;
+    FieldRelationship rel_type = 2;
+    float between_value_1 = 3;
+    float between_value_2 = 4;
+    SortDirection sort_direction = 5;
+}
+
+message DoubleField {
+    double value = 1;
+    FieldRelationship rel_type = 2;
+    double between_value_1 = 3;
+    double between_value_2 = 4;
+    SortDirection sort_direction = 5;
 }
 
 message TimestampField {
     google.protobuf.Timestamp value = 1;
     FieldRelationship rel_type = 2;
-    google.protobuf.Timestamp range_value = 3;
-    SortDirection sort_direction = 4;
+    google.protobuf.Timestamp between_value_1 = 3;
+    google.protobuf.Timestamp between_value_2 = 4;
+    SortDirection sort_direction = 5;
 }
 
 message UInt32Field {
     uint32 value = 1;
     FieldRelationship rel_type = 2;
-    uint32 range_value = 3;
-    SortDirection sort_direction = 4;
+    uint32 between_value_1 = 3;
+    uint32 between_value_2 = 4;
+    SortDirection sort_direction = 5;
 }

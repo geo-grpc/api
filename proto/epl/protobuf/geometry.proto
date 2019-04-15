@@ -32,7 +32,7 @@ package epl.protobuf;
   type of geometry operators
 */
 enum GeometryEncodingType {
-    unknown = 0;
+    unknown = 0; // unknown type.
     wkb = 1; // well-known binary
     wkt = 2; // well-known text
     geojson = 3; // geojson
