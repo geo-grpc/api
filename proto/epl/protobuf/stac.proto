@@ -76,16 +76,6 @@ message StacSearchRequest {
 
     uint32 limit = 11;
     uint64 offset = 12;
-
-    reserved 13 to 14; // reserved for sorting request
-    // SortDirection sort_direction = 3;
-    // string sort_field = 4;
-
-    reserved 15 to 16; // reserved for requesting fields or excluding fields
-    // repeated string result_fields = 5; // if blank all fields returned
-    // repeated string excluded_result_fields = 5;
-
-    reserved 17 to max;
 }
 
 /*
@@ -115,6 +105,8 @@ message Asset {
     Eo.Band eo_bands = 3;
 
     AssetType asset_type = 4;
+
+    // non-standard
     CloudPlatform cloud_platform = 5;
     string bucket_owner = 6;
     string bucket_region = 7;
@@ -128,18 +120,22 @@ message StacMetadata {
     epl.protobuf.GeometryData geometry = 3;
     epl.protobuf.EnvelopeData bbox = 4;
     google.protobuf.Any properties = 5;
-    // links ignored because we're using grpc, but maybe it shouldn't be in cases of using protobuf without grpc?
+
+    // links ignored because we're using grpc,
+    // but maybe it shouldn't be in cases of using protobuf
+    // without grpc?
     reserved 6;
 
     map<string, Asset> assets = 7;
     google.protobuf.Timestamp datetime = 8;
+
+    // non-standard
     google.protobuf.Timestamp observed = 9;
     google.protobuf.Timestamp processed = 11;
     google.protobuf.Timestamp updated = 12;
 
     Eo eo = 13;
-
-    reserved 14 to max;
+    Sar sar = 14;
 }
 
 message StacInsertResponse {
@@ -192,7 +188,6 @@ message Eo {
     Platform platform = 2;
     Instrument instrument = 3;
 
-    // Difference from current STAC definition: properties are not nested beneath a properties object
     google.protobuf.FloatValue sun_azimuth = 4;
     google.protobuf.FloatValue sun_elevation = 5;
     google.protobuf.FloatValue gsd = 6;
@@ -200,9 +195,6 @@ message Eo {
     google.protobuf.FloatValue azimuth = 8;
     google.protobuf.FloatValue cloud_cover = 9;
 
-    // Difference from current STAC definition: bands are just the enums instead of the bandDetails
-    // STAC has bands defined twice. once in assets and once in properties. should probably just be
-    // once.
     Band bands = 10;
 }
 

@@ -126,10 +126,7 @@ message GeometryData {
 
 message SpatialReferenceData {
     string proj4 = 1;
-    // String that is a wkt, wkid, esri_wkt, or a proj4 string
     string esri_wkt = 2;
-
-    // type is either 'wkid', 'esri_wkt'
     int32 wkid = 3;
 }
 
