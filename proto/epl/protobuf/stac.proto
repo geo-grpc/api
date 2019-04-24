@@ -44,7 +44,7 @@ enum AssetType {
     MRF_IDX = 5;
     MRF_XML = 6;
     CO_GEOTIFF = 7;
-    ARW = 8;
+    RAW = 8;
     THUMBNAIL = 9;
 }
 
