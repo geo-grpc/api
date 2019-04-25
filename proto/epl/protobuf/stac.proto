@@ -222,11 +222,13 @@ message EoRequest {
     int32 epsg = 1;
     Eo.Platform platform = 2;
     Eo.Instrument instrument = 3;
-    FloatField sun_azimuth = 4;
-    FloatField sun_elevation = 5;
-    FloatField gsd = 6;
-    FloatField off_nadir = 7;
-    FloatField azimuth = 8;
-    FloatField cloud_cover = 9;
-    Eo.Band bands = 10;
+    Eo.Constellation constellation = 4;
+
+    FloatField sun_azimuth = 5;
+    FloatField sun_elevation = 6;
+    FloatField gsd = 7;
+    FloatField off_nadir = 8;
+    FloatField azimuth = 9;
+    FloatField cloud_cover = 10;
+    Eo.Band bands = 11;
 }
