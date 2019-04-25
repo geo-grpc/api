@@ -230,5 +230,6 @@ message EoRequest {
     FloatField off_nadir = 8;
     FloatField azimuth = 9;
     FloatField cloud_cover = 10;
+
     Eo.Band bands = 11;
 }
