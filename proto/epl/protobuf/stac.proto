@@ -206,15 +206,16 @@ message Eo {
     uint32 epsg = 1;
     Platform platform = 2;
     Instrument instrument = 3;
+    Constellation constellation = 4;
 
-    google.protobuf.FloatValue sun_azimuth = 4;
-    google.protobuf.FloatValue sun_elevation = 5;
-    google.protobuf.FloatValue gsd = 6;
-    google.protobuf.FloatValue off_nadir = 7;
-    google.protobuf.FloatValue azimuth = 8;
-    google.protobuf.FloatValue cloud_cover = 9;
+    google.protobuf.FloatValue sun_azimuth = 5;
+    google.protobuf.FloatValue sun_elevation = 6;
+    google.protobuf.FloatValue gsd = 7;
+    google.protobuf.FloatValue off_nadir = 8;
+    google.protobuf.FloatValue azimuth = 9;
+    google.protobuf.FloatValue cloud_cover = 10;
 
-    Band bands = 10;
+    Band bands = 11;
 }
 
 message EoRequest {
