@@ -145,26 +145,45 @@ message StacInsertResponse {
 
 message Sar {
     enum Platform {
-        UNKNOWN_SAR_PLATFORM = 0;
+        UNKNOWN_PLATFORM = 0;
         ENVISAT = 1;
         SENTINEL1A = 2;
     }
     Platform platform = 1;
 
     enum Instrument {
-        UNKNOWN_EO_INSTRUMENT = 0;
+        UNKNOWN_INSTRUMENT = 0;
     }
 }
 
 message Eo {
     enum Platform {
-        UNKNOWN_EO_PLATFORM = 0;
-        LANDSAT_8 = 2;
-        NAIP = 4; // should this be Aerial instead?
+        UNKNOWN_PLATFORM = 0;
+        LANDSAT_1 = 2;
+        LANDSAT_2 = 4;
+        LANDSAT_3 = 8;
+        LANDSAT_123 = 14;
+        LANDSAT_4 = 16;
+        LANDSAT_5 = 32;
+        LANDSAT_45 = 48;
+        LANDSAT_7 = 64;
+        LANDSAT_8 = 128;
+        SWIFT_2 = 256;
     }
 
     enum Instrument {
-        UNKNOWN_EO_INSTRUMENT = 0;
+        UNKNOWN_INSTRUMENT = 0;
+        OLI = 2;
+        TIRS = 4;
+        POM = 8;
+    }
+
+    enum Constellation {
+        UNKNOWN_CONSTELLATION = 0;
+        LANDSAT = 2;
+        NAIP = 4;
+        PNOA = 8;
+        SWIFT = 16;
     }
 
     enum Band {
