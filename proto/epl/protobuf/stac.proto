@@ -138,9 +138,10 @@ message StacMetadata {
     Sar sar = 14;
 }
 
-message StacInsertResponse {
+message StacUpsertResponse {
     string status = 1;
     int32 status_code = 2;
+    string data_id = 3;
 }
 
 message Sar {
