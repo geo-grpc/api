@@ -46,6 +46,7 @@ enum AssetType {
     CO_GEOTIFF = 7;
     RAW = 8;
     THUMBNAIL = 9;
+    TIFF = 10;
 }
 
 enum CloudPlatform {
@@ -176,7 +177,7 @@ message Eo {
         UNKNOWN_INSTRUMENT = 0;
         OLI = 2;
         TIRS = 4;
-        POM = 8;
+        POM_1 = 8;
     }
 
     enum Constellation {
