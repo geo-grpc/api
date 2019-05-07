@@ -28,7 +28,7 @@ from functools import partial
 
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
-from shapely.geometry import Polygon
+from epl.shapelier.geometry.polygon import Polygon
 from shapely.geometry import LineString, Point
 from shapely.geometry import MultiPoint
 from shapely.ops import cascaded_union
@@ -53,17 +53,11 @@ class TestBasic(unittest.TestCase):
         # https://github.com/justdoit0823/grpc-resolver/blob/master/grpcresolver/registry.py
 
     def test_buffer(self):
-        self.assertTrue(True)
-        polygon = Polygon([(0, 0), (1, 1), (1, 0)])
-
-        geometry_bag_data = GeometryData()
-        geometry_bag_data.wkb = polygon.wkb
-        # geometry_bag_data.geometry_binaries.extend([polygon.wkb])
-        # geometry_bag_data.geometry_encoding_type = GeometryEncodingType.Value('wkb')
+        polygon = Polygon([(0, 0), (1, 1), (1, 0)], spatial_reference=SpatialReferenceData(wkid=4326))
 
         buffer_params = BufferParams(distance=1.2)
 
-        op_request = GeometryRequest(left_geometry=geometry_bag_data,
+        op_request = GeometryRequest(left_geometry=polygon.export_protobuf(),
                                      operator_type=ServiceOperatorType.Value('Buffer'),
                                      buffer_params=buffer_params,
                                      result_encoding_type=GeometryEncodingType.Value('wkt'))
@@ -79,6 +73,28 @@ class TestBasic(unittest.TestCase):
         self.assertTrue(result_buffered.contains(polygon))
         shapely_buffer = polygon.buffer(1.2)
         self.assertAlmostEqual(shapely_buffer.area, result_buffered.area, 2)
+
+    def test_remote_buffer(self):
+        polygon = Polygon([(0, 0), (1, 1), (1, 0)], spatial_reference=SpatialReferenceData(wkid=4326))
+
+        buffer_params = BufferParams(distance=1.2)
+
+        op_request = GeometryRequest(left_geometry=polygon.export_protobuf(),
+                                     operator_type=ServiceOperatorType.Value('Buffer'),
+                                     buffer_params=buffer_params,
+                                     result_encoding_type=GeometryEncodingType.Value('wkt'))
+
+        print("make stub")
+        stub = geometry_grpc.GeometryServiceStub(self.channel)
+
+        print("make wkt request")
+        response = stub.GeometryOperationUnary(op_request)
+        new_polygon = polygon.import_protobuf(response.geometry)
+        shapely_buffer = polygon.buffer(1.2)
+        self.assertAlmostEqual(shapely_buffer.area, new_polygon.area, 2)
+
+        another_new_polygon = polygon.remote_buffer(1.2)
+        self.assertAlmostEqual(shapely_buffer.area, another_new_polygon.area, 2)
 
     def test_project(self):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
