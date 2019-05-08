@@ -35,7 +35,7 @@ class Point(BaseGeometry):
       1.0
     """
 
-    def __init__(self, *args, spatial_reference: geometry_pb2.SpatialReferenceData = None):
+    def __init__(self, *args, crs: geometry_pb2.SpatialReferenceData = None):
         """
         Parameters
         ----------
@@ -45,7 +45,7 @@ class Point(BaseGeometry):
         2) 2 or more parameters: x, y, z : float
             Easting, northing, and elevation.
         """
-        BaseGeometry.__init__(self, spatial_reference=spatial_reference)
+        BaseGeometry.__init__(self, crs=crs)
         if len(args) > 0:
             self._set_coords(*args)
 

@@ -22,7 +22,7 @@ class LineString(BaseGeometry):
     and need not be straight. Unlike a LinearRing, a LineString is not closed.
     """
 
-    def __init__(self, coordinates=None, spatial_reference: geometry_pb2.SpatialReferenceData = None):
+    def __init__(self, coordinates=None, crs: geometry_pb2.SpatialReferenceData = None):
         """
         Parameters
         ----------
@@ -39,7 +39,7 @@ class LineString(BaseGeometry):
           >>> a.length
           2.0
         """
-        BaseGeometry.__init__(self, spatial_reference=spatial_reference)
+        BaseGeometry.__init__(self, crs=crs)
         if coordinates is not None:
             self._set_coords(coordinates)
 

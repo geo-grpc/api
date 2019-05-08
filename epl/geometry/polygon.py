@@ -27,7 +27,7 @@ class LinearRing(LineString):
     invalid and operations on it may fail.
     """
 
-    def __init__(self, coordinates=None, spatial_reference: geometry_pb2.SpatialReferenceData = None):
+    def __init__(self, coordinates=None, crs: geometry_pb2.SpatialReferenceData = None):
         """
         Parameters
         ----------
@@ -47,7 +47,7 @@ class LinearRing(LineString):
           >>> ring.length
           4.0
         """
-        BaseGeometry.__init__(self, spatial_reference=spatial_reference)
+        BaseGeometry.__init__(self, crs=crs)
         if coordinates is not None:
             self._set_coords(coordinates)
 
@@ -217,7 +217,7 @@ class Polygon(BaseGeometry):
     def __init__(self,
                  shell=None,
                  holes=None,
-                 spatial_reference: geometry_pb2.SpatialReferenceData = None):
+                 crs: geometry_pb2.SpatialReferenceData = None):
         """
         Parameters
         ----------
@@ -236,7 +236,7 @@ class Polygon(BaseGeometry):
           >>> polygon.area
           1.0
         """
-        BaseGeometry.__init__(self, spatial_reference)
+        BaseGeometry.__init__(self, crs)
 
         if shell is not None:
             ret = geos_polygon_from_py(shell, holes)

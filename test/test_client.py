@@ -47,7 +47,7 @@ class TestBasic(unittest.TestCase):
         # https://github.com/justdoit0823/grpc-resolver/blob/master/grpcresolver/registry.py
 
     def test_buffer(self):
-        polygon = Polygon([(0, 0), (1, 1), (1, 0)], spatial_reference=SpatialReferenceData(wkid=4326))
+        polygon = Polygon([(0, 0), (1, 1), (1, 0)], crs=SpatialReferenceData(wkid=4326))
 
         buffer_params = BufferParams(distance=1.2)
 
@@ -69,7 +69,7 @@ class TestBasic(unittest.TestCase):
         self.assertAlmostEqual(shapely_buffer.area, result_buffered.area, 2)
 
     def test_remote_buffer(self):
-        polygon = Polygon([(0, 0), (1, 1), (1, 0)], spatial_reference=SpatialReferenceData(wkid=4326))
+        polygon = Polygon([(0, 0), (1, 1), (1, 0)], crs=SpatialReferenceData(wkid=4326))
 
         buffer_params = BufferParams(distance=1.2)
 
@@ -92,7 +92,7 @@ class TestBasic(unittest.TestCase):
         print(another_new_polygon.export_protobuf())
 
     def test_remote_buffer_bounds(self):
-        polygon = Polygon([(0, 0), (1, 1), (1, 0)], spatial_reference=SpatialReferenceData(wkid=4326))
+        polygon = Polygon([(0, 0), (1, 1), (1, 0)], crs=SpatialReferenceData(wkid=4326))
         buffered = polygon.remote_buffer(33)
         self.assertEqual(-33, buffered.envelope_data.ymin)
         self.assertEqual(-33, buffered.envelope_data.xmin)
@@ -103,7 +103,7 @@ class TestBasic(unittest.TestCase):
         self.assertEqual(-33, buffered.envelope_data.xmin)
         self.assertEqual(34, buffered.envelope_data.xmax)
         self.assertEqual(34, buffered.envelope_data.ymax)
-        self.assertEqual(4326, buffered.spatial_reference.wkid)
+        self.assertEqual(4326, buffered.crs.wkid)
 
     def test_project(self):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
@@ -144,7 +144,7 @@ class TestBasic(unittest.TestCase):
         service_spatial_reference = SpatialReferenceData(wkid=32632)
         output_spatial_reference = SpatialReferenceData(wkid=4326)
         polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)],
-                              spatial_reference=service_spatial_reference)
+                              crs=service_spatial_reference)
         print("make project request")
         projected = polyline.remote_project(to_spatial_reference=output_spatial_reference)
         print("Client received project response:\n", projected.wkt)
@@ -269,7 +269,7 @@ class TestBasic(unittest.TestCase):
     #     service_spatial_reference = SpatialReferenceData(wkid=4326)
     #     points = [Point(r(), r()) for i in range(10000)]
     #     spots = [p.buffer(2.5) for p in points]
-    #     service_multipoint = GeometryData(spatial_reference=service_spatial_reference)
+    #     service_multipoint = GeometryData(crs=service_spatial_reference)
     #     shape_start = datetime.datetime.now()
     #     patches = cascaded_union(spots)
     #     # because shapely is non-simple we need to simplify it for this to be a fair comparison
@@ -331,7 +331,7 @@ class TestBasic(unittest.TestCase):
                 X[idx] = (longitude, latitude)
                 idx += 1
 
-                point = Point(longitude, latitude, spatial_reference=service_spatial_reference)
+                point = Point(longitude, latitude, crs=service_spatial_reference)
 
                 service_geom_polyline = GeometryData(
                     wkt=point.wkt,
