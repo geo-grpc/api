@@ -18,14 +18,14 @@ FROM python:3.5-slim
 
 RUN apt update
 
-RUN pip3 install grpcio
-
-# TODO, I thought this wasn't required
-RUN pip3 install protobuf
-# TODO, I thought this wasn't required
-
-# TODO remove this and place it as an install for the testing
-RUN pip3 install shapely
+#RUN pip3 install grpcio
+#
+## TODO, I thought this wasn't required
+#RUN pip3 install protobuf
+## TODO, I thought this wasn't required
+#
+## TODO remove this and place it as an install for the testing
+#RUN pip3 install shapely
 
 WORKDIR /opt/src/geometry-client-python
 

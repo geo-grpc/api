@@ -3,8 +3,8 @@
 from ctypes import c_void_p, cast
 
 from shapely.geos import lgeos
-from epl.shapelier.geometry.base import BaseMultipartGeometry, geos_geom_from_py
-from epl.shapelier.geometry import polygon
+from epl.geometry.base import BaseMultipartGeometry, geos_geom_from_py
+from epl.geometry import polygon
 from shapely.geometry.proxy import CachingGeometryProxy
 
 __all__ = ['MultiPolygon', 'asMultiPolygon']

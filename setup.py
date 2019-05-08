@@ -9,26 +9,30 @@ os.chdir(src_path)
 sys.path.insert(0, src_path)
 
 kwargs = {
-    'name': 'epl.protobuf',
-    'description': 'Echo Park Labs Geometry Client',
+    'name': 'epl.geometry',
+    'description': 'geometry library that extends shapely to work with Echo Park Labs gRPC geometry library',
+    'url': 'https://github.com/geo-grpc/geometry-client-python',
     'long_description': open('README.md').read(),
-    'author': 'Echo Park Labs',
-    'author_email': 'david@echoparklabs.com',
-    'url': 'https://bitbucket.org/davidraleigh/geometry-client-python',
+    'author': 'David Raleigh',
+    'author_email': 'davidraleigh@geometry.com',
+    'license': 'Apache 2.0',
     'version': open('VERSION').read(),
-    "namespace_package": ['epl'],
-    'packages': ['epl.protobuf'],
+    'namespace_package': ['epl'],
+    'python_requires': '>3.5.2',
+    'packages': ['epl.grpc', 'epl.protobuf', 'epl.geometry'],
+    'install_requires': [
+        'grpcio-tools',
+        'protobuf',
+        'shapely'
+    ],
     'zip_safe': False
 }
 
 clssfrs = [
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 2.7",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.3",
-    "Programming Language :: Python :: 3.4",
-    "Programming Language :: Python :: 3.5",
-    "Programming Language :: Python :: 3.6",
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
 ]
 kwargs['classifiers'] = clssfrs
 

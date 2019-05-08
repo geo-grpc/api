@@ -1,6 +1,6 @@
 """Line strings and related utilities
 """
-from epl.shapelier.geometry.base import BaseGeometry
+from epl.geometry.base import BaseGeometry
 from epl.protobuf import geometry_pb2
 from ctypes import c_double
 

@@ -19,20 +19,13 @@
 
 import os
 import unittest
-import random
-import datetime
 import grpc
 import math
 
-from functools import partial
-
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
-from epl.shapelier.geometry.polygon import Polygon
-from epl.shapelier.geometry.linestring import LineString
-from shapely.geometry import Point
-from shapely.geometry import MultiPoint
-from shapely.ops import cascaded_union
+from epl.geometry import Point, MultiPoint, Polygon, LineString
+
 from epl.protobuf.geometry_pb2 import *
 import epl.grpc.geometry_service_pb2_grpc as geometry_grpc
 import numpy as np
@@ -110,6 +103,7 @@ class TestBasic(unittest.TestCase):
         self.assertEqual(-33, buffered.envelope_data.xmin)
         self.assertEqual(34, buffered.envelope_data.xmax)
         self.assertEqual(34, buffered.envelope_data.ymax)
+        self.assertEqual(4326, buffered.spatial_reference.wkid)
 
     def test_project(self):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
@@ -337,7 +331,7 @@ class TestBasic(unittest.TestCase):
                 X[idx] = (longitude, latitude)
                 idx += 1
 
-                point = Point(longitude, latitude)
+                point = Point(longitude, latitude, spatial_reference=service_spatial_reference)
 
                 service_geom_polyline = GeometryData(
                     wkt=point.wkt,

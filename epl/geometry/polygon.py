@@ -2,12 +2,10 @@
 """
 
 import sys
-import grpc
 
-from epl.grpc import geometry_service_pb2_grpc
 from epl.protobuf import geometry_pb2
-from epl.shapelier.geometry.base import BaseGeometry
-from epl.shapelier.geometry.linestring import LineString, LineStringAdapter
+from epl.geometry.base import BaseGeometry
+from epl.geometry.linestring import LineString, LineStringAdapter
 
 from ctypes import c_void_p, cast, POINTER
 import weakref
