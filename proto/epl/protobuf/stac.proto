@@ -137,6 +137,12 @@ message StacMetadata {
 
     Eo eo = 13;
     Sar sar = 14;
+    Dtr dtr = 15;
+}
+
+message Dtr {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
 }
 
 message StacUpsertResponse {
@@ -190,19 +196,19 @@ message Eo {
 
     enum Band {
         UNKNOWN_BAND = 0;
-        COASTAL_BAND = 2;
-        BLUE_BAND = 4;
-        GREEN_BAND = 8;
-        RED_BAND = 16;
-        RGB_BANDS = 28;
-        NEAR_INFRARED_BAND = 32;
-        RGBIR_BANDS = 60;
-        SWIR_16_BAND = 64;
-        SWIR_22_BAND = 128;
-        PANCHROMATIC_BAND = 256;
-        CIRRUS_BAND = 512;
-        LWIR_11_BAND = 1024;
-        LWIR_12_BAND = 2048;
+        COASTAL = 2;
+        BLUE = 4;
+        GREEN = 8;
+        RED = 16;
+        RGB = 28;
+        NEAR_INFRARED = 32;
+        RGBIR = 60;
+        SWIR_16 = 64;
+        SWIR_22 = 128;
+        PANCHROMATIC = 256;
+        CIRRUS = 512;
+        LWIR_11 = 1024;
+        LWIR_12 = 2048;
     }
 
     uint32 epsg = 1;

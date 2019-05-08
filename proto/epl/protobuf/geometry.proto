@@ -149,7 +149,7 @@ enum FileType {
 
 message FileRequestChunk {
     GeometryRequest nested_request = 1;
-    GeometryEncodingType results_encoding_type = 2;
+    GeometryEncodingType result_encoding_type = 2;
 
     SpatialReferenceData input_spatial_reference = 3;
     SpatialReferenceData result_spatial_reference = 5;
@@ -241,7 +241,7 @@ message GeometryRequest {
 
     ServiceOperatorType operator_type = 7;
 
-    GeometryEncodingType results_encoding_type = 8;
+    GeometryEncodingType result_encoding_type = 8;
 
     SpatialReferenceData operation_spatial_reference = 9;
 
