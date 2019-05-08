@@ -29,7 +29,8 @@ from functools import partial
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
 from epl.shapelier.geometry.polygon import Polygon
-from shapely.geometry import LineString, Point
+from epl.shapelier.geometry.linestring import LineString
+from shapely.geometry import Point
 from shapely.geometry import MultiPoint
 from shapely.ops import cascaded_union
 from epl.protobuf.geometry_pb2 import *
@@ -95,6 +96,20 @@ class TestBasic(unittest.TestCase):
 
         another_new_polygon = polygon.remote_buffer(1.2)
         self.assertAlmostEqual(shapely_buffer.area, another_new_polygon.area, 2)
+        print(another_new_polygon.export_protobuf())
+
+    def test_remote_buffer_bounds(self):
+        polygon = Polygon([(0, 0), (1, 1), (1, 0)], spatial_reference=SpatialReferenceData(wkid=4326))
+        buffered = polygon.remote_buffer(33)
+        self.assertEqual(-33, buffered.envelope_data.ymin)
+        self.assertEqual(-33, buffered.envelope_data.xmin)
+        self.assertEqual(34, buffered.envelope_data.xmax)
+        self.assertEqual(34, buffered.envelope_data.ymax)
+        buffered = polygon.buffer(33)
+        self.assertEqual(-33, buffered.envelope_data.ymin)
+        self.assertEqual(-33, buffered.envelope_data.xmin)
+        self.assertEqual(34, buffered.envelope_data.xmax)
+        self.assertEqual(34, buffered.envelope_data.ymax)
 
     def test_project(self):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
@@ -127,6 +142,27 @@ class TestBasic(unittest.TestCase):
             operator_type=ServiceOperatorType.Value("Equals"),
             operation_spatial_reference=output_spatial_reference)
 
+        response3 = stub.GeometryOperationUnary(op_equals)
+
+        self.assertTrue(response3.spatial_relationship)
+
+    def test_remote_project(self):
+        service_spatial_reference = SpatialReferenceData(wkid=32632)
+        output_spatial_reference = SpatialReferenceData(wkid=4326)
+        polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)],
+                              spatial_reference=service_spatial_reference)
+        print("make project request")
+        projected = polyline.remote_project(to_spatial_reference=output_spatial_reference)
+        print("Client received project response:\n", projected.wkt)
+        print(projected.wkt)
+        expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
+
+        op_equals = GeometryRequest(
+            left_geometry=GeometryData(wkt=expected),
+            right_geometry=projected.export_protobuf(),
+            operator_type=ServiceOperatorType.Value("Equals"),
+            operation_spatial_reference=output_spatial_reference)
+        stub = geometry_grpc.GeometryServiceStub(self.channel)
         response3 = stub.GeometryOperationUnary(op_equals)
 
         self.assertTrue(response3.spatial_relationship)
