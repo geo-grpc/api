@@ -18,41 +18,58 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
+type FileType int32
+
+const (
+	FileType_Shapefile FileType = 0
+)
+
+var FileType_name = map[int32]string{
+	0: "Shapefile",
+}
+var FileType_value = map[string]int32{
+	"Shapefile": 0,
+}
+
+func (x FileType) String() string {
+	return proto.EnumName(FileType_name, int32(x))
+}
+func (FileType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{0}
+}
+
 //
 // type of geometry operators
 type GeometryEncodingType int32
 
 const (
-	GeometryEncodingType_unknown       GeometryEncodingType = 0
-	GeometryEncodingType_wkb           GeometryEncodingType = 1
-	GeometryEncodingType_wkt           GeometryEncodingType = 2
-	GeometryEncodingType_geojson       GeometryEncodingType = 3
-	GeometryEncodingType_esrishape     GeometryEncodingType = 4
-	GeometryEncodingType_envelope_type GeometryEncodingType = 5
+	GeometryEncodingType_UKNOWN_ENCODING GeometryEncodingType = 0
+	GeometryEncodingType_WKB             GeometryEncodingType = 1
+	GeometryEncodingType_WKT             GeometryEncodingType = 2
+	GeometryEncodingType_GEOJSON         GeometryEncodingType = 3
+	GeometryEncodingType_ESRI_SHAPE      GeometryEncodingType = 4
 )
 
 var GeometryEncodingType_name = map[int32]string{
-	0: "unknown",
-	1: "wkb",
-	2: "wkt",
-	3: "geojson",
-	4: "esrishape",
-	5: "envelope_type",
+	0: "UKNOWN_ENCODING",
+	1: "WKB",
+	2: "WKT",
+	3: "GEOJSON",
+	4: "ESRI_SHAPE",
 }
 var GeometryEncodingType_value = map[string]int32{
-	"unknown":       0,
-	"wkb":           1,
-	"wkt":           2,
-	"geojson":       3,
-	"esrishape":     4,
-	"envelope_type": 5,
+	"UKNOWN_ENCODING": 0,
+	"WKB":             1,
+	"WKT":             2,
+	"GEOJSON":         3,
+	"ESRI_SHAPE":      4,
 }
 
 func (x GeometryEncodingType) String() string {
 	return proto.EnumName(GeometryEncodingType_name, int32(x))
 }
 func (GeometryEncodingType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{0}
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{1}
 }
 
 //
@@ -199,7 +216,7 @@ func (x ServiceOperatorType) String() string {
 	return proto.EnumName(ServiceOperatorType_name, int32(x))
 }
 func (ServiceOperatorType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{1}
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{2}
 }
 
 type OffsetJoinType int32
@@ -228,27 +245,7 @@ func (x OffsetJoinType) String() string {
 	return proto.EnumName(OffsetJoinType_name, int32(x))
 }
 func (OffsetJoinType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{2}
-}
-
-type FileType int32
-
-const (
-	FileType_Shapefile FileType = 0
-)
-
-var FileType_name = map[int32]string{
-	0: "Shapefile",
-}
-var FileType_value = map[string]int32{
-	"Shapefile": 0,
-}
-
-func (x FileType) String() string {
-	return proto.EnumName(FileType_name, int32(x))
-}
-func (FileType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{3}
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{3}
 }
 
 type GeometryData struct {
@@ -259,7 +256,8 @@ type GeometryData struct {
 	Geojson              string                `protobuf:"bytes,4,opt,name=geojson,proto3" json:"geojson,omitempty"`
 	Wkb                  []byte                `protobuf:"bytes,5,opt,name=wkb,proto3" json:"wkb,omitempty"`
 	EsriShape            []byte                `protobuf:"bytes,6,opt,name=esri_shape,json=esriShape,proto3" json:"esri_shape,omitempty"`
-	SpatialReference     *SpatialReferenceData `protobuf:"bytes,7,opt,name=spatial_reference,json=spatialReference,proto3" json:"spatial_reference,omitempty"`
+	Sr                   *SpatialReferenceData `protobuf:"bytes,7,opt,name=sr,proto3" json:"sr,omitempty"`
+	Envelope             *EnvelopeData         `protobuf:"bytes,8,opt,name=envelope,proto3" json:"envelope,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
 	XXX_sizecache        int32                 `json:"-"`
@@ -269,7 +267,7 @@ func (m *GeometryData) Reset()         { *m = GeometryData{} }
 func (m *GeometryData) String() string { return proto.CompactTextString(m) }
 func (*GeometryData) ProtoMessage()    {}
 func (*GeometryData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{0}
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{0}
 }
 func (m *GeometryData) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GeometryData.Unmarshal(m, b)
@@ -331,17 +329,25 @@ func (m *GeometryData) GetEsriShape() []byte {
 	return nil
 }
 
-func (m *GeometryData) GetSpatialReference() *SpatialReferenceData {
+func (m *GeometryData) GetSr() *SpatialReferenceData {
 	if m != nil {
-		return m.SpatialReference
+		return m.Sr
+	}
+	return nil
+}
+
+func (m *GeometryData) GetEnvelope() *EnvelopeData {
+	if m != nil {
+		return m.Envelope
 	}
 	return nil
 }
 
 type SpatialReferenceData struct {
-	Proj4                string   `protobuf:"bytes,1,opt,name=proj4,proto3" json:"proj4,omitempty"`
-	EsriWkt              string   `protobuf:"bytes,2,opt,name=esri_wkt,json=esriWkt,proto3" json:"esri_wkt,omitempty"`
-	Wkid                 int32    `protobuf:"varint,3,opt,name=wkid,proto3" json:"wkid,omitempty"`
+	Wkid                 int32    `protobuf:"varint,1,opt,name=wkid,proto3" json:"wkid,omitempty"`
+	Proj4                string   `protobuf:"bytes,2,opt,name=proj4,proto3" json:"proj4,omitempty"`
+	EsriWkt              string   `protobuf:"bytes,3,opt,name=esri_wkt,json=esriWkt,proto3" json:"esri_wkt,omitempty"`
+	OgcWkt               string   `protobuf:"bytes,4,opt,name=ogc_wkt,json=ogcWkt,proto3" json:"ogc_wkt,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -351,7 +357,7 @@ func (m *SpatialReferenceData) Reset()         { *m = SpatialReferenceData{} }
 func (m *SpatialReferenceData) String() string { return proto.CompactTextString(m) }
 func (*SpatialReferenceData) ProtoMessage()    {}
 func (*SpatialReferenceData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{1}
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{1}
 }
 func (m *SpatialReferenceData) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SpatialReferenceData.Unmarshal(m, b)
@@ -371,6 +377,13 @@ func (m *SpatialReferenceData) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_SpatialReferenceData proto.InternalMessageInfo
 
+func (m *SpatialReferenceData) GetWkid() int32 {
+	if m != nil {
+		return m.Wkid
+	}
+	return 0
+}
+
 func (m *SpatialReferenceData) GetProj4() string {
 	if m != nil {
 		return m.Proj4
@@ -385,796 +398,95 @@ func (m *SpatialReferenceData) GetEsriWkt() string {
 	return ""
 }
 
-func (m *SpatialReferenceData) GetWkid() int32 {
+func (m *SpatialReferenceData) GetOgcWkt() string {
 	if m != nil {
-		return m.Wkid
-	}
-	return 0
-}
-
-type GeometryResponse struct {
-	// oneof
-	Geometry             *GeometryData  `protobuf:"bytes,1,opt,name=geometry,proto3" json:"geometry,omitempty"`
-	SpatialRelationship  bool           `protobuf:"varint,2,opt,name=spatial_relationship,json=spatialRelationship,proto3" json:"spatial_relationship,omitempty"`
-	Measure              float64        `protobuf:"fixed64,3,opt,name=measure,proto3" json:"measure,omitempty"`
-	RelateMap            map[int64]bool `protobuf:"bytes,4,rep,name=relate_map,json=relateMap,proto3" json:"relate_map,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
-	Envelope             *EnvelopeData  `protobuf:"bytes,5,opt,name=envelope,proto3" json:"envelope,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *GeometryResponse) Reset()         { *m = GeometryResponse{} }
-func (m *GeometryResponse) String() string { return proto.CompactTextString(m) }
-func (*GeometryResponse) ProtoMessage()    {}
-func (*GeometryResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{2}
-}
-func (m *GeometryResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GeometryResponse.Unmarshal(m, b)
-}
-func (m *GeometryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GeometryResponse.Marshal(b, m, deterministic)
-}
-func (dst *GeometryResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GeometryResponse.Merge(dst, src)
-}
-func (m *GeometryResponse) XXX_Size() int {
-	return xxx_messageInfo_GeometryResponse.Size(m)
-}
-func (m *GeometryResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GeometryResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GeometryResponse proto.InternalMessageInfo
-
-func (m *GeometryResponse) GetGeometry() *GeometryData {
-	if m != nil {
-		return m.Geometry
-	}
-	return nil
-}
-
-func (m *GeometryResponse) GetSpatialRelationship() bool {
-	if m != nil {
-		return m.SpatialRelationship
-	}
-	return false
-}
-
-func (m *GeometryResponse) GetMeasure() float64 {
-	if m != nil {
-		return m.Measure
-	}
-	return 0
-}
-
-func (m *GeometryResponse) GetRelateMap() map[int64]bool {
-	if m != nil {
-		return m.RelateMap
-	}
-	return nil
-}
-
-func (m *GeometryResponse) GetEnvelope() *EnvelopeData {
-	if m != nil {
-		return m.Envelope
-	}
-	return nil
-}
-
-type FileRequestChunk struct {
-	NestedRequest          *GeometryRequest      `protobuf:"bytes,1,opt,name=nested_request,json=nestedRequest,proto3" json:"nested_request,omitempty"`
-	ResultEncodingType     GeometryEncodingType  `protobuf:"varint,2,opt,name=result_encoding_type,json=resultEncodingType,proto3,enum=epl.protobuf.GeometryEncodingType" json:"result_encoding_type,omitempty"`
-	InputSpatialReference  *SpatialReferenceData `protobuf:"bytes,3,opt,name=input_spatial_reference,json=inputSpatialReference,proto3" json:"input_spatial_reference,omitempty"`
-	ResultSpatialReference *SpatialReferenceData `protobuf:"bytes,5,opt,name=result_spatial_reference,json=resultSpatialReference,proto3" json:"result_spatial_reference,omitempty"`
-	Data                   []byte                `protobuf:"bytes,6,opt,name=data,proto3" json:"data,omitempty"`
-	Size                   int64                 `protobuf:"varint,7,opt,name=size,proto3" json:"size,omitempty"`
-	Offset                 int64                 `protobuf:"varint,8,opt,name=offset,proto3" json:"offset,omitempty"`
-	FileName               string                `protobuf:"bytes,9,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
-	IsLastChunk            bool                  `protobuf:"varint,10,opt,name=is_last_chunk,json=isLastChunk,proto3" json:"is_last_chunk,omitempty"`
-	XXX_NoUnkeyedLiteral   struct{}              `json:"-"`
-	XXX_unrecognized       []byte                `json:"-"`
-	XXX_sizecache          int32                 `json:"-"`
-}
-
-func (m *FileRequestChunk) Reset()         { *m = FileRequestChunk{} }
-func (m *FileRequestChunk) String() string { return proto.CompactTextString(m) }
-func (*FileRequestChunk) ProtoMessage()    {}
-func (*FileRequestChunk) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{3}
-}
-func (m *FileRequestChunk) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FileRequestChunk.Unmarshal(m, b)
-}
-func (m *FileRequestChunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FileRequestChunk.Marshal(b, m, deterministic)
-}
-func (dst *FileRequestChunk) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FileRequestChunk.Merge(dst, src)
-}
-func (m *FileRequestChunk) XXX_Size() int {
-	return xxx_messageInfo_FileRequestChunk.Size(m)
-}
-func (m *FileRequestChunk) XXX_DiscardUnknown() {
-	xxx_messageInfo_FileRequestChunk.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FileRequestChunk proto.InternalMessageInfo
-
-func (m *FileRequestChunk) GetNestedRequest() *GeometryRequest {
-	if m != nil {
-		return m.NestedRequest
-	}
-	return nil
-}
-
-func (m *FileRequestChunk) GetResultEncodingType() GeometryEncodingType {
-	if m != nil {
-		return m.ResultEncodingType
-	}
-	return GeometryEncodingType_unknown
-}
-
-func (m *FileRequestChunk) GetInputSpatialReference() *SpatialReferenceData {
-	if m != nil {
-		return m.InputSpatialReference
-	}
-	return nil
-}
-
-func (m *FileRequestChunk) GetResultSpatialReference() *SpatialReferenceData {
-	if m != nil {
-		return m.ResultSpatialReference
-	}
-	return nil
-}
-
-func (m *FileRequestChunk) GetData() []byte {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-func (m *FileRequestChunk) GetSize() int64 {
-	if m != nil {
-		return m.Size
-	}
-	return 0
-}
-
-func (m *FileRequestChunk) GetOffset() int64 {
-	if m != nil {
-		return m.Offset
-	}
-	return 0
-}
-
-func (m *FileRequestChunk) GetFileName() string {
-	if m != nil {
-		return m.FileName
+		return m.OgcWkt
 	}
 	return ""
 }
 
-func (m *FileRequestChunk) GetIsLastChunk() bool {
+type EnvelopeData struct {
+	Xmin                 float64               `protobuf:"fixed64,1,opt,name=xmin,proto3" json:"xmin,omitempty"`
+	Ymin                 float64               `protobuf:"fixed64,2,opt,name=ymin,proto3" json:"ymin,omitempty"`
+	Xmax                 float64               `protobuf:"fixed64,3,opt,name=xmax,proto3" json:"xmax,omitempty"`
+	Ymax                 float64               `protobuf:"fixed64,4,opt,name=ymax,proto3" json:"ymax,omitempty"`
+	Sr                   *SpatialReferenceData `protobuf:"bytes,5,opt,name=sr,proto3" json:"sr,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *EnvelopeData) Reset()         { *m = EnvelopeData{} }
+func (m *EnvelopeData) String() string { return proto.CompactTextString(m) }
+func (*EnvelopeData) ProtoMessage()    {}
+func (*EnvelopeData) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{2}
+}
+func (m *EnvelopeData) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EnvelopeData.Unmarshal(m, b)
+}
+func (m *EnvelopeData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EnvelopeData.Marshal(b, m, deterministic)
+}
+func (dst *EnvelopeData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EnvelopeData.Merge(dst, src)
+}
+func (m *EnvelopeData) XXX_Size() int {
+	return xxx_messageInfo_EnvelopeData.Size(m)
+}
+func (m *EnvelopeData) XXX_DiscardUnknown() {
+	xxx_messageInfo_EnvelopeData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_EnvelopeData proto.InternalMessageInfo
+
+func (m *EnvelopeData) GetXmin() float64 {
 	if m != nil {
-		return m.IsLastChunk
-	}
-	return false
-}
-
-type BufferParams struct {
-	Distance                float64  `protobuf:"fixed64,1,opt,name=distance,proto3" json:"distance,omitempty"`
-	MaxDeviation            float64  `protobuf:"fixed64,2,opt,name=max_deviation,json=maxDeviation,proto3" json:"max_deviation,omitempty"`
-	UnionResult             bool     `protobuf:"varint,3,opt,name=union_result,json=unionResult,proto3" json:"union_result,omitempty"`
-	MaxVerticesInFullCircle int32    `protobuf:"varint,4,opt,name=max_vertices_in_full_circle,json=maxVerticesInFullCircle,proto3" json:"max_vertices_in_full_circle,omitempty"`
-	XXX_NoUnkeyedLiteral    struct{} `json:"-"`
-	XXX_unrecognized        []byte   `json:"-"`
-	XXX_sizecache           int32    `json:"-"`
-}
-
-func (m *BufferParams) Reset()         { *m = BufferParams{} }
-func (m *BufferParams) String() string { return proto.CompactTextString(m) }
-func (*BufferParams) ProtoMessage()    {}
-func (*BufferParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{4}
-}
-func (m *BufferParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_BufferParams.Unmarshal(m, b)
-}
-func (m *BufferParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_BufferParams.Marshal(b, m, deterministic)
-}
-func (dst *BufferParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BufferParams.Merge(dst, src)
-}
-func (m *BufferParams) XXX_Size() int {
-	return xxx_messageInfo_BufferParams.Size(m)
-}
-func (m *BufferParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_BufferParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_BufferParams proto.InternalMessageInfo
-
-func (m *BufferParams) GetDistance() float64 {
-	if m != nil {
-		return m.Distance
+		return m.Xmin
 	}
 	return 0
 }
 
-func (m *BufferParams) GetMaxDeviation() float64 {
+func (m *EnvelopeData) GetYmin() float64 {
 	if m != nil {
-		return m.MaxDeviation
+		return m.Ymin
 	}
 	return 0
 }
 
-func (m *BufferParams) GetUnionResult() bool {
+func (m *EnvelopeData) GetXmax() float64 {
 	if m != nil {
-		return m.UnionResult
-	}
-	return false
-}
-
-func (m *BufferParams) GetMaxVerticesInFullCircle() int32 {
-	if m != nil {
-		return m.MaxVerticesInFullCircle
+		return m.Xmax
 	}
 	return 0
 }
 
-type GeodeticBufferParams struct {
-	Distance                float64  `protobuf:"fixed64,1,opt,name=distance,proto3" json:"distance,omitempty"`
-	MaxDeviation            float64  `protobuf:"fixed64,2,opt,name=max_deviation,json=maxDeviation,proto3" json:"max_deviation,omitempty"`
-	UnionResult             bool     `protobuf:"varint,3,opt,name=union_result,json=unionResult,proto3" json:"union_result,omitempty"`
-	MaxVerticesInFullCircle int32    `protobuf:"varint,4,opt,name=max_vertices_in_full_circle,json=maxVerticesInFullCircle,proto3" json:"max_vertices_in_full_circle,omitempty"`
-	XXX_NoUnkeyedLiteral    struct{} `json:"-"`
-	XXX_unrecognized        []byte   `json:"-"`
-	XXX_sizecache           int32    `json:"-"`
-}
-
-func (m *GeodeticBufferParams) Reset()         { *m = GeodeticBufferParams{} }
-func (m *GeodeticBufferParams) String() string { return proto.CompactTextString(m) }
-func (*GeodeticBufferParams) ProtoMessage()    {}
-func (*GeodeticBufferParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{5}
-}
-func (m *GeodeticBufferParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GeodeticBufferParams.Unmarshal(m, b)
-}
-func (m *GeodeticBufferParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GeodeticBufferParams.Marshal(b, m, deterministic)
-}
-func (dst *GeodeticBufferParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GeodeticBufferParams.Merge(dst, src)
-}
-func (m *GeodeticBufferParams) XXX_Size() int {
-	return xxx_messageInfo_GeodeticBufferParams.Size(m)
-}
-func (m *GeodeticBufferParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_GeodeticBufferParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GeodeticBufferParams proto.InternalMessageInfo
-
-func (m *GeodeticBufferParams) GetDistance() float64 {
+func (m *EnvelopeData) GetYmax() float64 {
 	if m != nil {
-		return m.Distance
+		return m.Ymax
 	}
 	return 0
 }
 
-func (m *GeodeticBufferParams) GetMaxDeviation() float64 {
+func (m *EnvelopeData) GetSr() *SpatialReferenceData {
 	if m != nil {
-		return m.MaxDeviation
-	}
-	return 0
-}
-
-func (m *GeodeticBufferParams) GetUnionResult() bool {
-	if m != nil {
-		return m.UnionResult
-	}
-	return false
-}
-
-func (m *GeodeticBufferParams) GetMaxVerticesInFullCircle() int32 {
-	if m != nil {
-		return m.MaxVerticesInFullCircle
-	}
-	return 0
-}
-
-type ConvexParams struct {
-	Merge                bool     `protobuf:"varint,1,opt,name=merge,proto3" json:"merge,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ConvexParams) Reset()         { *m = ConvexParams{} }
-func (m *ConvexParams) String() string { return proto.CompactTextString(m) }
-func (*ConvexParams) ProtoMessage()    {}
-func (*ConvexParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{6}
-}
-func (m *ConvexParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ConvexParams.Unmarshal(m, b)
-}
-func (m *ConvexParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ConvexParams.Marshal(b, m, deterministic)
-}
-func (dst *ConvexParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConvexParams.Merge(dst, src)
-}
-func (m *ConvexParams) XXX_Size() int {
-	return xxx_messageInfo_ConvexParams.Size(m)
-}
-func (m *ConvexParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConvexParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ConvexParams proto.InternalMessageInfo
-
-func (m *ConvexParams) GetMerge() bool {
-	if m != nil {
-		return m.Merge
-	}
-	return false
-}
-
-type RelateParams struct {
-	De_9Im               string   `protobuf:"bytes,1,opt,name=de_9im,json=de9im,proto3" json:"de_9im,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RelateParams) Reset()         { *m = RelateParams{} }
-func (m *RelateParams) String() string { return proto.CompactTextString(m) }
-func (*RelateParams) ProtoMessage()    {}
-func (*RelateParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{7}
-}
-func (m *RelateParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RelateParams.Unmarshal(m, b)
-}
-func (m *RelateParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RelateParams.Marshal(b, m, deterministic)
-}
-func (dst *RelateParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RelateParams.Merge(dst, src)
-}
-func (m *RelateParams) XXX_Size() int {
-	return xxx_messageInfo_RelateParams.Size(m)
-}
-func (m *RelateParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_RelateParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RelateParams proto.InternalMessageInfo
-
-func (m *RelateParams) GetDe_9Im() string {
-	if m != nil {
-		return m.De_9Im
-	}
-	return ""
-}
-
-type RandomPointsParams struct {
-	PointsPerSquareKm    float64  `protobuf:"fixed64,1,opt,name=points_per_square_km,json=pointsPerSquareKm,proto3" json:"points_per_square_km,omitempty"`
-	Seed                 int64    `protobuf:"varint,2,opt,name=seed,proto3" json:"seed,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RandomPointsParams) Reset()         { *m = RandomPointsParams{} }
-func (m *RandomPointsParams) String() string { return proto.CompactTextString(m) }
-func (*RandomPointsParams) ProtoMessage()    {}
-func (*RandomPointsParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{8}
-}
-func (m *RandomPointsParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RandomPointsParams.Unmarshal(m, b)
-}
-func (m *RandomPointsParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RandomPointsParams.Marshal(b, m, deterministic)
-}
-func (dst *RandomPointsParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RandomPointsParams.Merge(dst, src)
-}
-func (m *RandomPointsParams) XXX_Size() int {
-	return xxx_messageInfo_RandomPointsParams.Size(m)
-}
-func (m *RandomPointsParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_RandomPointsParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RandomPointsParams proto.InternalMessageInfo
-
-func (m *RandomPointsParams) GetPointsPerSquareKm() float64 {
-	if m != nil {
-		return m.PointsPerSquareKm
-	}
-	return 0
-}
-
-func (m *RandomPointsParams) GetSeed() int64 {
-	if m != nil {
-		return m.Seed
-	}
-	return 0
-}
-
-type GeneralizeParams struct {
-	MaxDeviation         float64  `protobuf:"fixed64,1,opt,name=max_deviation,json=maxDeviation,proto3" json:"max_deviation,omitempty"`
-	RemoveDegenerates    bool     `protobuf:"varint,2,opt,name=remove_degenerates,json=removeDegenerates,proto3" json:"remove_degenerates,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GeneralizeParams) Reset()         { *m = GeneralizeParams{} }
-func (m *GeneralizeParams) String() string { return proto.CompactTextString(m) }
-func (*GeneralizeParams) ProtoMessage()    {}
-func (*GeneralizeParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{9}
-}
-func (m *GeneralizeParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GeneralizeParams.Unmarshal(m, b)
-}
-func (m *GeneralizeParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GeneralizeParams.Marshal(b, m, deterministic)
-}
-func (dst *GeneralizeParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GeneralizeParams.Merge(dst, src)
-}
-func (m *GeneralizeParams) XXX_Size() int {
-	return xxx_messageInfo_GeneralizeParams.Size(m)
-}
-func (m *GeneralizeParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_GeneralizeParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GeneralizeParams proto.InternalMessageInfo
-
-func (m *GeneralizeParams) GetMaxDeviation() float64 {
-	if m != nil {
-		return m.MaxDeviation
-	}
-	return 0
-}
-
-func (m *GeneralizeParams) GetRemoveDegenerates() bool {
-	if m != nil {
-		return m.RemoveDegenerates
-	}
-	return false
-}
-
-type GeneralizeByAreaParams struct {
-	PercentReduction     float64  `protobuf:"fixed64,1,opt,name=percent_reduction,json=percentReduction,proto3" json:"percent_reduction,omitempty"`
-	RemoveDegenerates    bool     `protobuf:"varint,2,opt,name=remove_degenerates,json=removeDegenerates,proto3" json:"remove_degenerates,omitempty"`
-	MaxPointCount        int32    `protobuf:"varint,3,opt,name=max_point_count,json=maxPointCount,proto3" json:"max_point_count,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GeneralizeByAreaParams) Reset()         { *m = GeneralizeByAreaParams{} }
-func (m *GeneralizeByAreaParams) String() string { return proto.CompactTextString(m) }
-func (*GeneralizeByAreaParams) ProtoMessage()    {}
-func (*GeneralizeByAreaParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{10}
-}
-func (m *GeneralizeByAreaParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GeneralizeByAreaParams.Unmarshal(m, b)
-}
-func (m *GeneralizeByAreaParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GeneralizeByAreaParams.Marshal(b, m, deterministic)
-}
-func (dst *GeneralizeByAreaParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GeneralizeByAreaParams.Merge(dst, src)
-}
-func (m *GeneralizeByAreaParams) XXX_Size() int {
-	return xxx_messageInfo_GeneralizeByAreaParams.Size(m)
-}
-func (m *GeneralizeByAreaParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_GeneralizeByAreaParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GeneralizeByAreaParams proto.InternalMessageInfo
-
-func (m *GeneralizeByAreaParams) GetPercentReduction() float64 {
-	if m != nil {
-		return m.PercentReduction
-	}
-	return 0
-}
-
-func (m *GeneralizeByAreaParams) GetRemoveDegenerates() bool {
-	if m != nil {
-		return m.RemoveDegenerates
-	}
-	return false
-}
-
-func (m *GeneralizeByAreaParams) GetMaxPointCount() int32 {
-	if m != nil {
-		return m.MaxPointCount
-	}
-	return 0
-}
-
-type IntersectionParams struct {
-	DimensionMask        int32    `protobuf:"varint,1,opt,name=dimension_mask,json=dimensionMask,proto3" json:"dimension_mask,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *IntersectionParams) Reset()         { *m = IntersectionParams{} }
-func (m *IntersectionParams) String() string { return proto.CompactTextString(m) }
-func (*IntersectionParams) ProtoMessage()    {}
-func (*IntersectionParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{11}
-}
-func (m *IntersectionParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_IntersectionParams.Unmarshal(m, b)
-}
-func (m *IntersectionParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_IntersectionParams.Marshal(b, m, deterministic)
-}
-func (dst *IntersectionParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_IntersectionParams.Merge(dst, src)
-}
-func (m *IntersectionParams) XXX_Size() int {
-	return xxx_messageInfo_IntersectionParams.Size(m)
-}
-func (m *IntersectionParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_IntersectionParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_IntersectionParams proto.InternalMessageInfo
-
-func (m *IntersectionParams) GetDimensionMask() int32 {
-	if m != nil {
-		return m.DimensionMask
-	}
-	return 0
-}
-
-type OffsetParams struct {
-	Distance             float64        `protobuf:"fixed64,1,opt,name=distance,proto3" json:"distance,omitempty"`
-	JoinType             OffsetJoinType `protobuf:"varint,2,opt,name=join_type,json=joinType,proto3,enum=epl.protobuf.OffsetJoinType" json:"join_type,omitempty"`
-	BevelRatio           float64        `protobuf:"fixed64,3,opt,name=bevel_ratio,json=bevelRatio,proto3" json:"bevel_ratio,omitempty"`
-	FlattenError         float64        `protobuf:"fixed64,4,opt,name=flatten_error,json=flattenError,proto3" json:"flatten_error,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *OffsetParams) Reset()         { *m = OffsetParams{} }
-func (m *OffsetParams) String() string { return proto.CompactTextString(m) }
-func (*OffsetParams) ProtoMessage()    {}
-func (*OffsetParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{12}
-}
-func (m *OffsetParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_OffsetParams.Unmarshal(m, b)
-}
-func (m *OffsetParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_OffsetParams.Marshal(b, m, deterministic)
-}
-func (dst *OffsetParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OffsetParams.Merge(dst, src)
-}
-func (m *OffsetParams) XXX_Size() int {
-	return xxx_messageInfo_OffsetParams.Size(m)
-}
-func (m *OffsetParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_OffsetParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_OffsetParams proto.InternalMessageInfo
-
-func (m *OffsetParams) GetDistance() float64 {
-	if m != nil {
-		return m.Distance
-	}
-	return 0
-}
-
-func (m *OffsetParams) GetJoinType() OffsetJoinType {
-	if m != nil {
-		return m.JoinType
-	}
-	return OffsetJoinType_Round
-}
-
-func (m *OffsetParams) GetBevelRatio() float64 {
-	if m != nil {
-		return m.BevelRatio
-	}
-	return 0
-}
-
-func (m *OffsetParams) GetFlattenError() float64 {
-	if m != nil {
-		return m.FlattenError
-	}
-	return 0
-}
-
-type CutParams struct {
-	ConsiderTouch        bool     `protobuf:"varint,1,opt,name=consider_touch,json=considerTouch,proto3" json:"consider_touch,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CutParams) Reset()         { *m = CutParams{} }
-func (m *CutParams) String() string { return proto.CompactTextString(m) }
-func (*CutParams) ProtoMessage()    {}
-func (*CutParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{13}
-}
-func (m *CutParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CutParams.Unmarshal(m, b)
-}
-func (m *CutParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CutParams.Marshal(b, m, deterministic)
-}
-func (dst *CutParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CutParams.Merge(dst, src)
-}
-func (m *CutParams) XXX_Size() int {
-	return xxx_messageInfo_CutParams.Size(m)
-}
-func (m *CutParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_CutParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CutParams proto.InternalMessageInfo
-
-func (m *CutParams) GetConsiderTouch() bool {
-	if m != nil {
-		return m.ConsiderTouch
-	}
-	return false
-}
-
-type ClipParams struct {
-	Envelope             *EnvelopeData `protobuf:"bytes,1,opt,name=envelope,proto3" json:"envelope,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *ClipParams) Reset()         { *m = ClipParams{} }
-func (m *ClipParams) String() string { return proto.CompactTextString(m) }
-func (*ClipParams) ProtoMessage()    {}
-func (*ClipParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{14}
-}
-func (m *ClipParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClipParams.Unmarshal(m, b)
-}
-func (m *ClipParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClipParams.Marshal(b, m, deterministic)
-}
-func (dst *ClipParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClipParams.Merge(dst, src)
-}
-func (m *ClipParams) XXX_Size() int {
-	return xxx_messageInfo_ClipParams.Size(m)
-}
-func (m *ClipParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClipParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ClipParams proto.InternalMessageInfo
-
-func (m *ClipParams) GetEnvelope() *EnvelopeData {
-	if m != nil {
-		return m.Envelope
+		return m.Sr
 	}
 	return nil
-}
-
-type DensifyParams struct {
-	MaxLength            float64  `protobuf:"fixed64,1,opt,name=max_length,json=maxLength,proto3" json:"max_length,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DensifyParams) Reset()         { *m = DensifyParams{} }
-func (m *DensifyParams) String() string { return proto.CompactTextString(m) }
-func (*DensifyParams) ProtoMessage()    {}
-func (*DensifyParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{15}
-}
-func (m *DensifyParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DensifyParams.Unmarshal(m, b)
-}
-func (m *DensifyParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DensifyParams.Marshal(b, m, deterministic)
-}
-func (dst *DensifyParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DensifyParams.Merge(dst, src)
-}
-func (m *DensifyParams) XXX_Size() int {
-	return xxx_messageInfo_DensifyParams.Size(m)
-}
-func (m *DensifyParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_DensifyParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DensifyParams proto.InternalMessageInfo
-
-func (m *DensifyParams) GetMaxLength() float64 {
-	if m != nil {
-		return m.MaxLength
-	}
-	return 0
-}
-
-type SimplifyParams struct {
-	Force                bool     `protobuf:"varint,1,opt,name=force,proto3" json:"force,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *SimplifyParams) Reset()         { *m = SimplifyParams{} }
-func (m *SimplifyParams) String() string { return proto.CompactTextString(m) }
-func (*SimplifyParams) ProtoMessage()    {}
-func (*SimplifyParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{16}
-}
-func (m *SimplifyParams) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SimplifyParams.Unmarshal(m, b)
-}
-func (m *SimplifyParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SimplifyParams.Marshal(b, m, deterministic)
-}
-func (dst *SimplifyParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SimplifyParams.Merge(dst, src)
-}
-func (m *SimplifyParams) XXX_Size() int {
-	return xxx_messageInfo_SimplifyParams.Size(m)
-}
-func (m *SimplifyParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_SimplifyParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SimplifyParams proto.InternalMessageInfo
-
-func (m *SimplifyParams) GetForce() bool {
-	if m != nil {
-		return m.Force
-	}
-	return false
 }
 
 type GeometryRequest struct {
 	//    oneof primary_geoms {
-	Geometry                  *GeometryData         `protobuf:"bytes,1,opt,name=geometry,proto3" json:"geometry,omitempty"`
-	LeftGeometry              *GeometryData         `protobuf:"bytes,2,opt,name=left_geometry,json=leftGeometry,proto3" json:"left_geometry,omitempty"`
-	GeometryRequest           *GeometryRequest      `protobuf:"bytes,3,opt,name=geometry_request,json=geometryRequest,proto3" json:"geometry_request,omitempty"`
-	LeftGeometryRequest       *GeometryRequest      `protobuf:"bytes,4,opt,name=left_geometry_request,json=leftGeometryRequest,proto3" json:"left_geometry_request,omitempty"`
-	RightGeometry             *GeometryData         `protobuf:"bytes,5,opt,name=right_geometry,json=rightGeometry,proto3" json:"right_geometry,omitempty"`
-	RightGeometryRequest      *GeometryRequest      `protobuf:"bytes,6,opt,name=right_geometry_request,json=rightGeometryRequest,proto3" json:"right_geometry_request,omitempty"`
-	OperatorType              ServiceOperatorType   `protobuf:"varint,7,opt,name=operator_type,json=operatorType,proto3,enum=epl.protobuf.ServiceOperatorType" json:"operator_type,omitempty"`
-	ResultEncodingType        GeometryEncodingType  `protobuf:"varint,8,opt,name=result_encoding_type,json=resultEncodingType,proto3,enum=epl.protobuf.GeometryEncodingType" json:"result_encoding_type,omitempty"`
-	OperationSpatialReference *SpatialReferenceData `protobuf:"bytes,9,opt,name=operation_spatial_reference,json=operationSpatialReference,proto3" json:"operation_spatial_reference,omitempty"`
-	ResultSpatialReference    *SpatialReferenceData `protobuf:"bytes,10,opt,name=result_spatial_reference,json=resultSpatialReference,proto3" json:"result_spatial_reference,omitempty"`
+	Geometry             *GeometryData         `protobuf:"bytes,1,opt,name=geometry,proto3" json:"geometry,omitempty"`
+	LeftGeometry         *GeometryData         `protobuf:"bytes,2,opt,name=left_geometry,json=leftGeometry,proto3" json:"left_geometry,omitempty"`
+	GeometryRequest      *GeometryRequest      `protobuf:"bytes,3,opt,name=geometry_request,json=geometryRequest,proto3" json:"geometry_request,omitempty"`
+	LeftGeometryRequest  *GeometryRequest      `protobuf:"bytes,4,opt,name=left_geometry_request,json=leftGeometryRequest,proto3" json:"left_geometry_request,omitempty"`
+	RightGeometry        *GeometryData         `protobuf:"bytes,5,opt,name=right_geometry,json=rightGeometry,proto3" json:"right_geometry,omitempty"`
+	RightGeometryRequest *GeometryRequest      `protobuf:"bytes,6,opt,name=right_geometry_request,json=rightGeometryRequest,proto3" json:"right_geometry_request,omitempty"`
+	OperatorType         ServiceOperatorType   `protobuf:"varint,7,opt,name=operator_type,json=operatorType,proto3,enum=epl.protobuf.ServiceOperatorType" json:"operator_type,omitempty"`
+	ResultEncodingType   GeometryEncodingType  `protobuf:"varint,8,opt,name=result_encoding_type,json=resultEncodingType,proto3,enum=epl.protobuf.GeometryEncodingType" json:"result_encoding_type,omitempty"`
+	OperationSr          *SpatialReferenceData `protobuf:"bytes,9,opt,name=operation_sr,json=operationSr,proto3" json:"operation_sr,omitempty"`
+	ResultSr             *SpatialReferenceData `protobuf:"bytes,10,opt,name=result_sr,json=resultSr,proto3" json:"result_sr,omitempty"`
 	//    oneof params {
 	BufferParams           *BufferParams           `protobuf:"bytes,11,opt,name=buffer_params,json=bufferParams,proto3" json:"buffer_params,omitempty"`
 	ConvexParams           *ConvexParams           `protobuf:"bytes,12,opt,name=convex_params,json=convexParams,proto3" json:"convex_params,omitempty"`
@@ -1197,7 +509,7 @@ func (m *GeometryRequest) Reset()         { *m = GeometryRequest{} }
 func (m *GeometryRequest) String() string { return proto.CompactTextString(m) }
 func (*GeometryRequest) ProtoMessage()    {}
 func (*GeometryRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{17}
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{3}
 }
 func (m *GeometryRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GeometryRequest.Unmarshal(m, b)
@@ -1270,19 +582,19 @@ func (m *GeometryRequest) GetResultEncodingType() GeometryEncodingType {
 	if m != nil {
 		return m.ResultEncodingType
 	}
-	return GeometryEncodingType_unknown
+	return GeometryEncodingType_UKNOWN_ENCODING
 }
 
-func (m *GeometryRequest) GetOperationSpatialReference() *SpatialReferenceData {
+func (m *GeometryRequest) GetOperationSr() *SpatialReferenceData {
 	if m != nil {
-		return m.OperationSpatialReference
+		return m.OperationSr
 	}
 	return nil
 }
 
-func (m *GeometryRequest) GetResultSpatialReference() *SpatialReferenceData {
+func (m *GeometryRequest) GetResultSr() *SpatialReferenceData {
 	if m != nil {
-		return m.ResultSpatialReference
+		return m.ResultSr
 	}
 	return nil
 }
@@ -1371,79 +683,781 @@ func (m *GeometryRequest) GetGeneralizeByAreaParams() *GeneralizeByAreaParams {
 	return nil
 }
 
-type EnvelopeData struct {
-	Xmin                 float64               `protobuf:"fixed64,1,opt,name=xmin,proto3" json:"xmin,omitempty"`
-	Ymin                 float64               `protobuf:"fixed64,2,opt,name=ymin,proto3" json:"ymin,omitempty"`
-	Xmax                 float64               `protobuf:"fixed64,3,opt,name=xmax,proto3" json:"xmax,omitempty"`
-	Ymax                 float64               `protobuf:"fixed64,4,opt,name=ymax,proto3" json:"ymax,omitempty"`
-	SpatialReference     *SpatialReferenceData `protobuf:"bytes,5,opt,name=spatial_reference,json=spatialReference,proto3" json:"spatial_reference,omitempty"`
+type GeometryResponse struct {
+	Geometry             *GeometryData  `protobuf:"bytes,1,opt,name=geometry,proto3" json:"geometry,omitempty"`
+	SpatialRelationship  bool           `protobuf:"varint,2,opt,name=spatial_relationship,json=spatialRelationship,proto3" json:"spatial_relationship,omitempty"`
+	Measure              float64        `protobuf:"fixed64,3,opt,name=measure,proto3" json:"measure,omitempty"`
+	RelateMap            map[int64]bool `protobuf:"bytes,4,rep,name=relate_map,json=relateMap,proto3" json:"relate_map,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	Envelope             *EnvelopeData  `protobuf:"bytes,5,opt,name=envelope,proto3" json:"envelope,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *GeometryResponse) Reset()         { *m = GeometryResponse{} }
+func (m *GeometryResponse) String() string { return proto.CompactTextString(m) }
+func (*GeometryResponse) ProtoMessage()    {}
+func (*GeometryResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{4}
+}
+func (m *GeometryResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GeometryResponse.Unmarshal(m, b)
+}
+func (m *GeometryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GeometryResponse.Marshal(b, m, deterministic)
+}
+func (dst *GeometryResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GeometryResponse.Merge(dst, src)
+}
+func (m *GeometryResponse) XXX_Size() int {
+	return xxx_messageInfo_GeometryResponse.Size(m)
+}
+func (m *GeometryResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GeometryResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GeometryResponse proto.InternalMessageInfo
+
+func (m *GeometryResponse) GetGeometry() *GeometryData {
+	if m != nil {
+		return m.Geometry
+	}
+	return nil
+}
+
+func (m *GeometryResponse) GetSpatialRelationship() bool {
+	if m != nil {
+		return m.SpatialRelationship
+	}
+	return false
+}
+
+func (m *GeometryResponse) GetMeasure() float64 {
+	if m != nil {
+		return m.Measure
+	}
+	return 0
+}
+
+func (m *GeometryResponse) GetRelateMap() map[int64]bool {
+	if m != nil {
+		return m.RelateMap
+	}
+	return nil
+}
+
+func (m *GeometryResponse) GetEnvelope() *EnvelopeData {
+	if m != nil {
+		return m.Envelope
+	}
+	return nil
+}
+
+type FileRequestChunk struct {
+	NestedRequest        *GeometryRequest      `protobuf:"bytes,1,opt,name=nested_request,json=nestedRequest,proto3" json:"nested_request,omitempty"`
+	ResultEncodingType   GeometryEncodingType  `protobuf:"varint,2,opt,name=result_encoding_type,json=resultEncodingType,proto3,enum=epl.protobuf.GeometryEncodingType" json:"result_encoding_type,omitempty"`
+	InputSr              *SpatialReferenceData `protobuf:"bytes,3,opt,name=input_sr,json=inputSr,proto3" json:"input_sr,omitempty"`
+	ResultSr             *SpatialReferenceData `protobuf:"bytes,5,opt,name=result_sr,json=resultSr,proto3" json:"result_sr,omitempty"`
+	Data                 []byte                `protobuf:"bytes,6,opt,name=data,proto3" json:"data,omitempty"`
+	Size                 int64                 `protobuf:"varint,7,opt,name=size,proto3" json:"size,omitempty"`
+	Offset               int64                 `protobuf:"varint,8,opt,name=offset,proto3" json:"offset,omitempty"`
+	FileName             string                `protobuf:"bytes,9,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
+	IsLastChunk          bool                  `protobuf:"varint,10,opt,name=is_last_chunk,json=isLastChunk,proto3" json:"is_last_chunk,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *EnvelopeData) Reset()         { *m = EnvelopeData{} }
-func (m *EnvelopeData) String() string { return proto.CompactTextString(m) }
-func (*EnvelopeData) ProtoMessage()    {}
-func (*EnvelopeData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_geometry_c6c8a919c6b67385, []int{18}
+func (m *FileRequestChunk) Reset()         { *m = FileRequestChunk{} }
+func (m *FileRequestChunk) String() string { return proto.CompactTextString(m) }
+func (*FileRequestChunk) ProtoMessage()    {}
+func (*FileRequestChunk) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{5}
 }
-func (m *EnvelopeData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EnvelopeData.Unmarshal(m, b)
+func (m *FileRequestChunk) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FileRequestChunk.Unmarshal(m, b)
 }
-func (m *EnvelopeData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EnvelopeData.Marshal(b, m, deterministic)
+func (m *FileRequestChunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FileRequestChunk.Marshal(b, m, deterministic)
 }
-func (dst *EnvelopeData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EnvelopeData.Merge(dst, src)
+func (dst *FileRequestChunk) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FileRequestChunk.Merge(dst, src)
 }
-func (m *EnvelopeData) XXX_Size() int {
-	return xxx_messageInfo_EnvelopeData.Size(m)
+func (m *FileRequestChunk) XXX_Size() int {
+	return xxx_messageInfo_FileRequestChunk.Size(m)
 }
-func (m *EnvelopeData) XXX_DiscardUnknown() {
-	xxx_messageInfo_EnvelopeData.DiscardUnknown(m)
+func (m *FileRequestChunk) XXX_DiscardUnknown() {
+	xxx_messageInfo_FileRequestChunk.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_EnvelopeData proto.InternalMessageInfo
+var xxx_messageInfo_FileRequestChunk proto.InternalMessageInfo
 
-func (m *EnvelopeData) GetXmin() float64 {
+func (m *FileRequestChunk) GetNestedRequest() *GeometryRequest {
 	if m != nil {
-		return m.Xmin
-	}
-	return 0
-}
-
-func (m *EnvelopeData) GetYmin() float64 {
-	if m != nil {
-		return m.Ymin
-	}
-	return 0
-}
-
-func (m *EnvelopeData) GetXmax() float64 {
-	if m != nil {
-		return m.Xmax
-	}
-	return 0
-}
-
-func (m *EnvelopeData) GetYmax() float64 {
-	if m != nil {
-		return m.Ymax
-	}
-	return 0
-}
-
-func (m *EnvelopeData) GetSpatialReference() *SpatialReferenceData {
-	if m != nil {
-		return m.SpatialReference
+		return m.NestedRequest
 	}
 	return nil
+}
+
+func (m *FileRequestChunk) GetResultEncodingType() GeometryEncodingType {
+	if m != nil {
+		return m.ResultEncodingType
+	}
+	return GeometryEncodingType_UKNOWN_ENCODING
+}
+
+func (m *FileRequestChunk) GetInputSr() *SpatialReferenceData {
+	if m != nil {
+		return m.InputSr
+	}
+	return nil
+}
+
+func (m *FileRequestChunk) GetResultSr() *SpatialReferenceData {
+	if m != nil {
+		return m.ResultSr
+	}
+	return nil
+}
+
+func (m *FileRequestChunk) GetData() []byte {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+func (m *FileRequestChunk) GetSize() int64 {
+	if m != nil {
+		return m.Size
+	}
+	return 0
+}
+
+func (m *FileRequestChunk) GetOffset() int64 {
+	if m != nil {
+		return m.Offset
+	}
+	return 0
+}
+
+func (m *FileRequestChunk) GetFileName() string {
+	if m != nil {
+		return m.FileName
+	}
+	return ""
+}
+
+func (m *FileRequestChunk) GetIsLastChunk() bool {
+	if m != nil {
+		return m.IsLastChunk
+	}
+	return false
+}
+
+type BufferParams struct {
+	Distance                float64  `protobuf:"fixed64,1,opt,name=distance,proto3" json:"distance,omitempty"`
+	MaxDeviation            float64  `protobuf:"fixed64,2,opt,name=max_deviation,json=maxDeviation,proto3" json:"max_deviation,omitempty"`
+	UnionResult             bool     `protobuf:"varint,3,opt,name=union_result,json=unionResult,proto3" json:"union_result,omitempty"`
+	MaxVerticesInFullCircle int32    `protobuf:"varint,4,opt,name=max_vertices_in_full_circle,json=maxVerticesInFullCircle,proto3" json:"max_vertices_in_full_circle,omitempty"`
+	XXX_NoUnkeyedLiteral    struct{} `json:"-"`
+	XXX_unrecognized        []byte   `json:"-"`
+	XXX_sizecache           int32    `json:"-"`
+}
+
+func (m *BufferParams) Reset()         { *m = BufferParams{} }
+func (m *BufferParams) String() string { return proto.CompactTextString(m) }
+func (*BufferParams) ProtoMessage()    {}
+func (*BufferParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{6}
+}
+func (m *BufferParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BufferParams.Unmarshal(m, b)
+}
+func (m *BufferParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BufferParams.Marshal(b, m, deterministic)
+}
+func (dst *BufferParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BufferParams.Merge(dst, src)
+}
+func (m *BufferParams) XXX_Size() int {
+	return xxx_messageInfo_BufferParams.Size(m)
+}
+func (m *BufferParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_BufferParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BufferParams proto.InternalMessageInfo
+
+func (m *BufferParams) GetDistance() float64 {
+	if m != nil {
+		return m.Distance
+	}
+	return 0
+}
+
+func (m *BufferParams) GetMaxDeviation() float64 {
+	if m != nil {
+		return m.MaxDeviation
+	}
+	return 0
+}
+
+func (m *BufferParams) GetUnionResult() bool {
+	if m != nil {
+		return m.UnionResult
+	}
+	return false
+}
+
+func (m *BufferParams) GetMaxVerticesInFullCircle() int32 {
+	if m != nil {
+		return m.MaxVerticesInFullCircle
+	}
+	return 0
+}
+
+type GeodeticBufferParams struct {
+	Distance                float64  `protobuf:"fixed64,1,opt,name=distance,proto3" json:"distance,omitempty"`
+	MaxDeviation            float64  `protobuf:"fixed64,2,opt,name=max_deviation,json=maxDeviation,proto3" json:"max_deviation,omitempty"`
+	UnionResult             bool     `protobuf:"varint,3,opt,name=union_result,json=unionResult,proto3" json:"union_result,omitempty"`
+	MaxVerticesInFullCircle int32    `protobuf:"varint,4,opt,name=max_vertices_in_full_circle,json=maxVerticesInFullCircle,proto3" json:"max_vertices_in_full_circle,omitempty"`
+	XXX_NoUnkeyedLiteral    struct{} `json:"-"`
+	XXX_unrecognized        []byte   `json:"-"`
+	XXX_sizecache           int32    `json:"-"`
+}
+
+func (m *GeodeticBufferParams) Reset()         { *m = GeodeticBufferParams{} }
+func (m *GeodeticBufferParams) String() string { return proto.CompactTextString(m) }
+func (*GeodeticBufferParams) ProtoMessage()    {}
+func (*GeodeticBufferParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{7}
+}
+func (m *GeodeticBufferParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GeodeticBufferParams.Unmarshal(m, b)
+}
+func (m *GeodeticBufferParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GeodeticBufferParams.Marshal(b, m, deterministic)
+}
+func (dst *GeodeticBufferParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GeodeticBufferParams.Merge(dst, src)
+}
+func (m *GeodeticBufferParams) XXX_Size() int {
+	return xxx_messageInfo_GeodeticBufferParams.Size(m)
+}
+func (m *GeodeticBufferParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_GeodeticBufferParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GeodeticBufferParams proto.InternalMessageInfo
+
+func (m *GeodeticBufferParams) GetDistance() float64 {
+	if m != nil {
+		return m.Distance
+	}
+	return 0
+}
+
+func (m *GeodeticBufferParams) GetMaxDeviation() float64 {
+	if m != nil {
+		return m.MaxDeviation
+	}
+	return 0
+}
+
+func (m *GeodeticBufferParams) GetUnionResult() bool {
+	if m != nil {
+		return m.UnionResult
+	}
+	return false
+}
+
+func (m *GeodeticBufferParams) GetMaxVerticesInFullCircle() int32 {
+	if m != nil {
+		return m.MaxVerticesInFullCircle
+	}
+	return 0
+}
+
+type ConvexParams struct {
+	Merge                bool     `protobuf:"varint,1,opt,name=merge,proto3" json:"merge,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ConvexParams) Reset()         { *m = ConvexParams{} }
+func (m *ConvexParams) String() string { return proto.CompactTextString(m) }
+func (*ConvexParams) ProtoMessage()    {}
+func (*ConvexParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{8}
+}
+func (m *ConvexParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConvexParams.Unmarshal(m, b)
+}
+func (m *ConvexParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConvexParams.Marshal(b, m, deterministic)
+}
+func (dst *ConvexParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConvexParams.Merge(dst, src)
+}
+func (m *ConvexParams) XXX_Size() int {
+	return xxx_messageInfo_ConvexParams.Size(m)
+}
+func (m *ConvexParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConvexParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConvexParams proto.InternalMessageInfo
+
+func (m *ConvexParams) GetMerge() bool {
+	if m != nil {
+		return m.Merge
+	}
+	return false
+}
+
+type RelateParams struct {
+	De_9Im               string   `protobuf:"bytes,1,opt,name=de_9im,json=de9im,proto3" json:"de_9im,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RelateParams) Reset()         { *m = RelateParams{} }
+func (m *RelateParams) String() string { return proto.CompactTextString(m) }
+func (*RelateParams) ProtoMessage()    {}
+func (*RelateParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{9}
+}
+func (m *RelateParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RelateParams.Unmarshal(m, b)
+}
+func (m *RelateParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RelateParams.Marshal(b, m, deterministic)
+}
+func (dst *RelateParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RelateParams.Merge(dst, src)
+}
+func (m *RelateParams) XXX_Size() int {
+	return xxx_messageInfo_RelateParams.Size(m)
+}
+func (m *RelateParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_RelateParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RelateParams proto.InternalMessageInfo
+
+func (m *RelateParams) GetDe_9Im() string {
+	if m != nil {
+		return m.De_9Im
+	}
+	return ""
+}
+
+type RandomPointsParams struct {
+	PointsPerSquareKm    float64  `protobuf:"fixed64,1,opt,name=points_per_square_km,json=pointsPerSquareKm,proto3" json:"points_per_square_km,omitempty"`
+	Seed                 int64    `protobuf:"varint,2,opt,name=seed,proto3" json:"seed,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RandomPointsParams) Reset()         { *m = RandomPointsParams{} }
+func (m *RandomPointsParams) String() string { return proto.CompactTextString(m) }
+func (*RandomPointsParams) ProtoMessage()    {}
+func (*RandomPointsParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{10}
+}
+func (m *RandomPointsParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RandomPointsParams.Unmarshal(m, b)
+}
+func (m *RandomPointsParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RandomPointsParams.Marshal(b, m, deterministic)
+}
+func (dst *RandomPointsParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RandomPointsParams.Merge(dst, src)
+}
+func (m *RandomPointsParams) XXX_Size() int {
+	return xxx_messageInfo_RandomPointsParams.Size(m)
+}
+func (m *RandomPointsParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_RandomPointsParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RandomPointsParams proto.InternalMessageInfo
+
+func (m *RandomPointsParams) GetPointsPerSquareKm() float64 {
+	if m != nil {
+		return m.PointsPerSquareKm
+	}
+	return 0
+}
+
+func (m *RandomPointsParams) GetSeed() int64 {
+	if m != nil {
+		return m.Seed
+	}
+	return 0
+}
+
+type GeneralizeParams struct {
+	MaxDeviation         float64  `protobuf:"fixed64,1,opt,name=max_deviation,json=maxDeviation,proto3" json:"max_deviation,omitempty"`
+	RemoveDegenerates    bool     `protobuf:"varint,2,opt,name=remove_degenerates,json=removeDegenerates,proto3" json:"remove_degenerates,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GeneralizeParams) Reset()         { *m = GeneralizeParams{} }
+func (m *GeneralizeParams) String() string { return proto.CompactTextString(m) }
+func (*GeneralizeParams) ProtoMessage()    {}
+func (*GeneralizeParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{11}
+}
+func (m *GeneralizeParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GeneralizeParams.Unmarshal(m, b)
+}
+func (m *GeneralizeParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GeneralizeParams.Marshal(b, m, deterministic)
+}
+func (dst *GeneralizeParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GeneralizeParams.Merge(dst, src)
+}
+func (m *GeneralizeParams) XXX_Size() int {
+	return xxx_messageInfo_GeneralizeParams.Size(m)
+}
+func (m *GeneralizeParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_GeneralizeParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GeneralizeParams proto.InternalMessageInfo
+
+func (m *GeneralizeParams) GetMaxDeviation() float64 {
+	if m != nil {
+		return m.MaxDeviation
+	}
+	return 0
+}
+
+func (m *GeneralizeParams) GetRemoveDegenerates() bool {
+	if m != nil {
+		return m.RemoveDegenerates
+	}
+	return false
+}
+
+type GeneralizeByAreaParams struct {
+	PercentReduction     float64  `protobuf:"fixed64,1,opt,name=percent_reduction,json=percentReduction,proto3" json:"percent_reduction,omitempty"`
+	RemoveDegenerates    bool     `protobuf:"varint,2,opt,name=remove_degenerates,json=removeDegenerates,proto3" json:"remove_degenerates,omitempty"`
+	MaxPointCount        int32    `protobuf:"varint,3,opt,name=max_point_count,json=maxPointCount,proto3" json:"max_point_count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GeneralizeByAreaParams) Reset()         { *m = GeneralizeByAreaParams{} }
+func (m *GeneralizeByAreaParams) String() string { return proto.CompactTextString(m) }
+func (*GeneralizeByAreaParams) ProtoMessage()    {}
+func (*GeneralizeByAreaParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{12}
+}
+func (m *GeneralizeByAreaParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GeneralizeByAreaParams.Unmarshal(m, b)
+}
+func (m *GeneralizeByAreaParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GeneralizeByAreaParams.Marshal(b, m, deterministic)
+}
+func (dst *GeneralizeByAreaParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GeneralizeByAreaParams.Merge(dst, src)
+}
+func (m *GeneralizeByAreaParams) XXX_Size() int {
+	return xxx_messageInfo_GeneralizeByAreaParams.Size(m)
+}
+func (m *GeneralizeByAreaParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_GeneralizeByAreaParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GeneralizeByAreaParams proto.InternalMessageInfo
+
+func (m *GeneralizeByAreaParams) GetPercentReduction() float64 {
+	if m != nil {
+		return m.PercentReduction
+	}
+	return 0
+}
+
+func (m *GeneralizeByAreaParams) GetRemoveDegenerates() bool {
+	if m != nil {
+		return m.RemoveDegenerates
+	}
+	return false
+}
+
+func (m *GeneralizeByAreaParams) GetMaxPointCount() int32 {
+	if m != nil {
+		return m.MaxPointCount
+	}
+	return 0
+}
+
+type IntersectionParams struct {
+	DimensionMask        int32    `protobuf:"varint,1,opt,name=dimension_mask,json=dimensionMask,proto3" json:"dimension_mask,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *IntersectionParams) Reset()         { *m = IntersectionParams{} }
+func (m *IntersectionParams) String() string { return proto.CompactTextString(m) }
+func (*IntersectionParams) ProtoMessage()    {}
+func (*IntersectionParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{13}
+}
+func (m *IntersectionParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_IntersectionParams.Unmarshal(m, b)
+}
+func (m *IntersectionParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_IntersectionParams.Marshal(b, m, deterministic)
+}
+func (dst *IntersectionParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IntersectionParams.Merge(dst, src)
+}
+func (m *IntersectionParams) XXX_Size() int {
+	return xxx_messageInfo_IntersectionParams.Size(m)
+}
+func (m *IntersectionParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_IntersectionParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_IntersectionParams proto.InternalMessageInfo
+
+func (m *IntersectionParams) GetDimensionMask() int32 {
+	if m != nil {
+		return m.DimensionMask
+	}
+	return 0
+}
+
+type OffsetParams struct {
+	Distance             float64        `protobuf:"fixed64,1,opt,name=distance,proto3" json:"distance,omitempty"`
+	JoinType             OffsetJoinType `protobuf:"varint,2,opt,name=join_type,json=joinType,proto3,enum=epl.protobuf.OffsetJoinType" json:"join_type,omitempty"`
+	BevelRatio           float64        `protobuf:"fixed64,3,opt,name=bevel_ratio,json=bevelRatio,proto3" json:"bevel_ratio,omitempty"`
+	FlattenError         float64        `protobuf:"fixed64,4,opt,name=flatten_error,json=flattenError,proto3" json:"flatten_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OffsetParams) Reset()         { *m = OffsetParams{} }
+func (m *OffsetParams) String() string { return proto.CompactTextString(m) }
+func (*OffsetParams) ProtoMessage()    {}
+func (*OffsetParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{14}
+}
+func (m *OffsetParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OffsetParams.Unmarshal(m, b)
+}
+func (m *OffsetParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OffsetParams.Marshal(b, m, deterministic)
+}
+func (dst *OffsetParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OffsetParams.Merge(dst, src)
+}
+func (m *OffsetParams) XXX_Size() int {
+	return xxx_messageInfo_OffsetParams.Size(m)
+}
+func (m *OffsetParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_OffsetParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OffsetParams proto.InternalMessageInfo
+
+func (m *OffsetParams) GetDistance() float64 {
+	if m != nil {
+		return m.Distance
+	}
+	return 0
+}
+
+func (m *OffsetParams) GetJoinType() OffsetJoinType {
+	if m != nil {
+		return m.JoinType
+	}
+	return OffsetJoinType_Round
+}
+
+func (m *OffsetParams) GetBevelRatio() float64 {
+	if m != nil {
+		return m.BevelRatio
+	}
+	return 0
+}
+
+func (m *OffsetParams) GetFlattenError() float64 {
+	if m != nil {
+		return m.FlattenError
+	}
+	return 0
+}
+
+type CutParams struct {
+	ConsiderTouch        bool     `protobuf:"varint,1,opt,name=consider_touch,json=considerTouch,proto3" json:"consider_touch,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CutParams) Reset()         { *m = CutParams{} }
+func (m *CutParams) String() string { return proto.CompactTextString(m) }
+func (*CutParams) ProtoMessage()    {}
+func (*CutParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{15}
+}
+func (m *CutParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CutParams.Unmarshal(m, b)
+}
+func (m *CutParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CutParams.Marshal(b, m, deterministic)
+}
+func (dst *CutParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CutParams.Merge(dst, src)
+}
+func (m *CutParams) XXX_Size() int {
+	return xxx_messageInfo_CutParams.Size(m)
+}
+func (m *CutParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_CutParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CutParams proto.InternalMessageInfo
+
+func (m *CutParams) GetConsiderTouch() bool {
+	if m != nil {
+		return m.ConsiderTouch
+	}
+	return false
+}
+
+type ClipParams struct {
+	Envelope             *EnvelopeData `protobuf:"bytes,1,opt,name=envelope,proto3" json:"envelope,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *ClipParams) Reset()         { *m = ClipParams{} }
+func (m *ClipParams) String() string { return proto.CompactTextString(m) }
+func (*ClipParams) ProtoMessage()    {}
+func (*ClipParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{16}
+}
+func (m *ClipParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ClipParams.Unmarshal(m, b)
+}
+func (m *ClipParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ClipParams.Marshal(b, m, deterministic)
+}
+func (dst *ClipParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ClipParams.Merge(dst, src)
+}
+func (m *ClipParams) XXX_Size() int {
+	return xxx_messageInfo_ClipParams.Size(m)
+}
+func (m *ClipParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_ClipParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ClipParams proto.InternalMessageInfo
+
+func (m *ClipParams) GetEnvelope() *EnvelopeData {
+	if m != nil {
+		return m.Envelope
+	}
+	return nil
+}
+
+type DensifyParams struct {
+	MaxLength            float64  `protobuf:"fixed64,1,opt,name=max_length,json=maxLength,proto3" json:"max_length,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DensifyParams) Reset()         { *m = DensifyParams{} }
+func (m *DensifyParams) String() string { return proto.CompactTextString(m) }
+func (*DensifyParams) ProtoMessage()    {}
+func (*DensifyParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{17}
+}
+func (m *DensifyParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DensifyParams.Unmarshal(m, b)
+}
+func (m *DensifyParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DensifyParams.Marshal(b, m, deterministic)
+}
+func (dst *DensifyParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DensifyParams.Merge(dst, src)
+}
+func (m *DensifyParams) XXX_Size() int {
+	return xxx_messageInfo_DensifyParams.Size(m)
+}
+func (m *DensifyParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_DensifyParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DensifyParams proto.InternalMessageInfo
+
+func (m *DensifyParams) GetMaxLength() float64 {
+	if m != nil {
+		return m.MaxLength
+	}
+	return 0
+}
+
+type SimplifyParams struct {
+	Force                bool     `protobuf:"varint,1,opt,name=force,proto3" json:"force,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SimplifyParams) Reset()         { *m = SimplifyParams{} }
+func (m *SimplifyParams) String() string { return proto.CompactTextString(m) }
+func (*SimplifyParams) ProtoMessage()    {}
+func (*SimplifyParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_geometry_0c6502420f6e0144, []int{18}
+}
+func (m *SimplifyParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SimplifyParams.Unmarshal(m, b)
+}
+func (m *SimplifyParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SimplifyParams.Marshal(b, m, deterministic)
+}
+func (dst *SimplifyParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SimplifyParams.Merge(dst, src)
+}
+func (m *SimplifyParams) XXX_Size() int {
+	return xxx_messageInfo_SimplifyParams.Size(m)
+}
+func (m *SimplifyParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_SimplifyParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SimplifyParams proto.InternalMessageInfo
+
+func (m *SimplifyParams) GetForce() bool {
+	if m != nil {
+		return m.Force
+	}
+	return false
 }
 
 func init() {
 	proto.RegisterType((*GeometryData)(nil), "epl.protobuf.GeometryData")
 	proto.RegisterType((*SpatialReferenceData)(nil), "epl.protobuf.SpatialReferenceData")
+	proto.RegisterType((*EnvelopeData)(nil), "epl.protobuf.EnvelopeData")
+	proto.RegisterType((*GeometryRequest)(nil), "epl.protobuf.GeometryRequest")
 	proto.RegisterType((*GeometryResponse)(nil), "epl.protobuf.GeometryResponse")
 	proto.RegisterMapType((map[int64]bool)(nil), "epl.protobuf.GeometryResponse.RelateMapEntry")
 	proto.RegisterType((*FileRequestChunk)(nil), "epl.protobuf.FileRequestChunk")
@@ -1460,148 +1474,146 @@ func init() {
 	proto.RegisterType((*ClipParams)(nil), "epl.protobuf.ClipParams")
 	proto.RegisterType((*DensifyParams)(nil), "epl.protobuf.DensifyParams")
 	proto.RegisterType((*SimplifyParams)(nil), "epl.protobuf.SimplifyParams")
-	proto.RegisterType((*GeometryRequest)(nil), "epl.protobuf.GeometryRequest")
-	proto.RegisterType((*EnvelopeData)(nil), "epl.protobuf.EnvelopeData")
+	proto.RegisterEnum("epl.protobuf.FileType", FileType_name, FileType_value)
 	proto.RegisterEnum("epl.protobuf.GeometryEncodingType", GeometryEncodingType_name, GeometryEncodingType_value)
 	proto.RegisterEnum("epl.protobuf.ServiceOperatorType", ServiceOperatorType_name, ServiceOperatorType_value)
 	proto.RegisterEnum("epl.protobuf.OffsetJoinType", OffsetJoinType_name, OffsetJoinType_value)
-	proto.RegisterEnum("epl.protobuf.FileType", FileType_name, FileType_value)
 }
 
 func init() {
-	proto.RegisterFile("epl/protobuf/geometry.proto", fileDescriptor_geometry_c6c8a919c6b67385)
+	proto.RegisterFile("epl/protobuf/geometry.proto", fileDescriptor_geometry_0c6502420f6e0144)
 }
 
-var fileDescriptor_geometry_c6c8a919c6b67385 = []byte{
-	// 2066 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x58, 0xcd, 0x72, 0xdb, 0xc8,
-	0x11, 0x36, 0x44, 0x51, 0x22, 0x9b, 0x20, 0x35, 0x1a, 0x51, 0x12, 0x6d, 0xc5, 0x59, 0x99, 0x6b,
-	0x3b, 0x8a, 0x1d, 0x4b, 0x15, 0x27, 0xb5, 0x15, 0x27, 0x9b, 0x72, 0xad, 0x7e, 0xec, 0xd5, 0xae,
-	0x1d, 0x6b, 0x21, 0x57, 0x5c, 0xd9, 0xa4, 0x0a, 0x05, 0x02, 0x4d, 0x6a, 0x2c, 0x00, 0x03, 0x0f,
-	0x06, 0x32, 0xb9, 0xcf, 0x92, 0x53, 0xae, 0x39, 0x24, 0xc7, 0xbc, 0x4b, 0x9e, 0x20, 0x55, 0x39,
-	0xe7, 0x94, 0x43, 0x6a, 0x06, 0x18, 0x12, 0xfc, 0x71, 0xad, 0x76, 0xf7, 0x94, 0xdb, 0xcc, 0x37,
-	0xdd, 0x1f, 0xba, 0xe7, 0xef, 0xeb, 0x01, 0xec, 0x60, 0x12, 0x1e, 0x24, 0x82, 0x4b, 0xde, 0xcb,
-	0xfa, 0x07, 0x03, 0xe4, 0x11, 0x4a, 0x31, 0xda, 0xd7, 0x08, 0xb5, 0x31, 0x09, 0xf7, 0xcd, 0x60,
-	0xf7, 0xbf, 0x16, 0xd8, 0xcf, 0x0b, 0x83, 0x63, 0x4f, 0x7a, 0xf4, 0x23, 0x68, 0x18, 0x07, 0x97,
-	0x05, 0x1d, 0x6b, 0xd7, 0xda, 0xab, 0x38, 0x60, 0xa0, 0xd3, 0x80, 0xde, 0x06, 0xe8, 0xa3, 0x27,
-	0x33, 0x81, 0x6a, 0x7c, 0x69, 0xd7, 0xda, 0xab, 0x3b, 0xf5, 0x02, 0x39, 0x0d, 0x28, 0x81, 0xca,
-	0xfb, 0x4b, 0xd9, 0xa9, 0x68, 0x5c, 0x35, 0x69, 0x07, 0x56, 0x07, 0xc8, 0xdf, 0xa6, 0x3c, 0xee,
-	0x2c, 0x6b, 0xd4, 0x74, 0x73, 0xdb, 0x5e, 0xa7, 0xba, 0x6b, 0xed, 0xd9, 0xca, 0xb6, 0xa7, 0xc8,
-	0x31, 0x15, 0xcc, 0x4d, 0x2f, 0xbc, 0x04, 0x3b, 0x2b, 0x7a, 0xa0, 0xae, 0x90, 0x73, 0x05, 0xd0,
-	0x57, 0xb0, 0x9e, 0x26, 0x9e, 0x64, 0x5e, 0xe8, 0x0a, 0xec, 0xa3, 0xc0, 0xd8, 0xc7, 0xce, 0xea,
-	0xae, 0xb5, 0xd7, 0x78, 0xdc, 0xdd, 0x2f, 0xe7, 0xb5, 0x7f, 0x9e, 0x9b, 0x39, 0xc6, 0x4a, 0xe5,
-	0xe6, 0x90, 0x74, 0x06, 0xed, 0xfe, 0x11, 0xda, 0x8b, 0x2c, 0x69, 0x1b, 0xaa, 0x89, 0xe0, 0x6f,
-	0x7f, 0xa9, 0xf3, 0xaf, 0x3b, 0x79, 0x87, 0xde, 0x84, 0x9a, 0x8e, 0x4e, 0x25, 0x98, 0x27, 0xbe,
-	0xaa, 0xfa, 0x6f, 0x2e, 0x25, 0xa5, 0xb0, 0xfc, 0xfe, 0x92, 0x05, 0x3a, 0xef, 0xaa, 0xa3, 0xdb,
-	0xdd, 0x7f, 0x2e, 0x01, 0x31, 0x73, 0xeb, 0x60, 0x9a, 0xf0, 0x38, 0x45, 0xfa, 0x09, 0xd4, 0xcc,
-	0x64, 0x6a, 0xf2, 0xc6, 0xe3, 0x5b, 0xd3, 0x91, 0x97, 0x57, 0xc3, 0x19, 0xdb, 0xd2, 0x9f, 0x43,
-	0x7b, 0x92, 0x7a, 0xe8, 0x49, 0xc6, 0xe3, 0xf4, 0x82, 0x25, 0x3a, 0x8e, 0x9a, 0xb3, 0x31, 0xce,
-	0x6c, 0x32, 0xa4, 0x26, 0x3e, 0x42, 0x2f, 0xcd, 0x04, 0xea, 0xb0, 0x2c, 0xc7, 0x74, 0xe9, 0x0b,
-	0x00, 0x4d, 0x82, 0x6e, 0xe4, 0x25, 0x9d, 0xe5, 0xdd, 0xca, 0x5e, 0xe3, 0xf1, 0xa3, 0xc5, 0x61,
-	0x98, 0xc0, 0xf7, 0x35, 0x35, 0xbe, 0xf4, 0x92, 0x93, 0x58, 0xc1, 0x75, 0x61, 0xfa, 0x2a, 0x25,
-	0x8c, 0xaf, 0x30, 0xe4, 0x09, 0xea, 0xb5, 0x9c, 0x4b, 0xe9, 0xa4, 0x18, 0xcd, 0x53, 0x32, 0xb6,
-	0xb7, 0x3e, 0x85, 0xd6, 0x34, 0xa9, 0xda, 0x10, 0x97, 0x38, 0x2a, 0x36, 0x9d, 0x6a, 0xaa, 0x85,
-	0xb8, 0xf2, 0xc2, 0x0c, 0x8b, 0x3c, 0xf3, 0xce, 0xaf, 0x97, 0x7e, 0x65, 0x75, 0xff, 0x55, 0x01,
-	0xf2, 0x8c, 0x85, 0xe8, 0xe0, 0xbb, 0x0c, 0x53, 0x79, 0x74, 0x91, 0xc5, 0x97, 0xf4, 0x18, 0x5a,
-	0x31, 0xa6, 0x12, 0x03, 0x57, 0xe4, 0x70, 0x31, 0xc7, 0xb7, 0x3f, 0x94, 0x9c, 0x36, 0x72, 0x9a,
-	0xb9, 0x53, 0xd1, 0xa5, 0xaf, 0xa1, 0x2d, 0x30, 0xcd, 0x42, 0xe9, 0x62, 0xec, 0xf3, 0x80, 0xc5,
-	0x03, 0x57, 0x8e, 0x92, 0x3c, 0x86, 0xd6, 0xec, 0x4e, 0x33, 0x5c, 0x27, 0x85, 0xe9, 0xeb, 0x51,
-	0x82, 0x0e, 0xcd, 0xfd, 0xcb, 0x18, 0xfd, 0x1a, 0xb6, 0x59, 0x9c, 0x64, 0xd2, 0x9d, 0xdf, 0xc2,
-	0x95, 0x6b, 0x6f, 0xe1, 0x4d, 0x4d, 0x31, 0x3b, 0x44, 0xff, 0x04, 0x9d, 0x22, 0xe2, 0x79, 0xf2,
-	0xea, 0xb5, 0xc9, 0xb7, 0x72, 0x8e, 0x39, 0x76, 0x0a, 0xcb, 0x81, 0x27, 0xbd, 0xe2, 0x3c, 0xea,
-	0xb6, 0xc2, 0x52, 0xf6, 0x4d, 0x7e, 0xfa, 0x2a, 0x8e, 0x6e, 0xd3, 0x2d, 0x58, 0xe1, 0xfd, 0x7e,
-	0x8a, 0xb2, 0x53, 0xd3, 0x68, 0xd1, 0xa3, 0x3b, 0x50, 0xef, 0xb3, 0x10, 0xdd, 0xd8, 0x8b, 0xb0,
-	0x53, 0xd7, 0x07, 0xa7, 0xa6, 0x80, 0xdf, 0x79, 0x11, 0xd2, 0x2e, 0x34, 0x59, 0xea, 0x86, 0x5e,
-	0x2a, 0x5d, 0x5f, 0xad, 0x61, 0x07, 0xf4, 0x4a, 0x37, 0x58, 0xfa, 0xc2, 0x2b, 0x96, 0xb5, 0xfb,
-	0x77, 0x0b, 0xec, 0xc3, 0xac, 0xdf, 0x47, 0x71, 0xe6, 0x09, 0x2f, 0x4a, 0xe9, 0x2d, 0xa8, 0x05,
-	0x2c, 0x95, 0x9e, 0xca, 0xcf, 0xd2, 0x7b, 0x7b, 0xdc, 0xa7, 0x1f, 0x43, 0x33, 0xf2, 0x86, 0x6e,
-	0x80, 0x57, 0x4c, 0x9f, 0x05, 0xbd, 0x6c, 0x96, 0x63, 0x47, 0xde, 0xf0, 0xd8, 0x60, 0xf4, 0x0e,
-	0xd8, 0x59, 0xcc, 0x78, 0xec, 0xe6, 0x29, 0xeb, 0x15, 0xa8, 0x39, 0x0d, 0x8d, 0x39, 0x1a, 0xa2,
-	0x9f, 0xc2, 0x8e, 0xe2, 0xb9, 0x42, 0x21, 0x99, 0x8f, 0xa9, 0xcb, 0x62, 0xb7, 0x9f, 0x85, 0xa1,
-	0xeb, 0x33, 0xe1, 0x87, 0xa8, 0xef, 0xb2, 0xaa, 0xb3, 0x1d, 0x79, 0xc3, 0xdf, 0x17, 0x16, 0xa7,
-	0xf1, 0xb3, 0x2c, 0x0c, 0x8f, 0xf4, 0x70, 0xf7, 0x1f, 0x16, 0xb4, 0x9f, 0x23, 0x0f, 0x50, 0x32,
-	0xff, 0xff, 0x2c, 0xf4, 0xbb, 0x60, 0x1f, 0xf1, 0xf8, 0x0a, 0x87, 0x45, 0xc4, 0x6d, 0xa8, 0x46,
-	0x28, 0x06, 0x79, 0xb8, 0x35, 0x27, 0xef, 0x74, 0xef, 0x81, 0x9d, 0x9f, 0xde, 0xc2, 0x6a, 0x13,
-	0x56, 0x02, 0x74, 0x9f, 0xb0, 0xc8, 0xdc, 0x99, 0x01, 0x3e, 0x61, 0x51, 0xf7, 0x0f, 0x40, 0x1d,
-	0x2f, 0x0e, 0x78, 0x74, 0xc6, 0x59, 0x2c, 0xd3, 0xc2, 0xf8, 0x00, 0xda, 0x89, 0xee, 0xbb, 0x09,
-	0x0a, 0x37, 0x7d, 0x97, 0x79, 0x02, 0xdd, 0xcb, 0xa8, 0x98, 0x90, 0xf5, 0x7c, 0xec, 0x0c, 0xc5,
-	0xb9, 0x1e, 0xf9, 0x32, 0xd2, 0xdb, 0x0d, 0x31, 0xd7, 0x1b, 0xb5, 0xdd, 0x10, 0x83, 0x6e, 0x5f,
-	0x5d, 0xaf, 0x31, 0x0a, 0x2f, 0x64, 0xdf, 0x98, 0x28, 0xe6, 0x66, 0xd0, 0x5a, 0x30, 0x83, 0x8f,
-	0x80, 0x0a, 0x8c, 0xf8, 0x15, 0xba, 0x01, 0x0e, 0x34, 0x83, 0xc4, 0xb4, 0xb8, 0x61, 0xd6, 0xf3,
-	0x91, 0xe3, 0xc9, 0x40, 0xf7, 0xcf, 0x16, 0x6c, 0x4d, 0x3e, 0x74, 0x38, 0xfa, 0x4c, 0xa0, 0x57,
-	0x7c, 0xee, 0x21, 0xac, 0x27, 0x28, 0x7c, 0x8c, 0xa5, 0x2b, 0x30, 0xc8, 0xfc, 0xd2, 0x27, 0x49,
-	0x31, 0xe0, 0x18, 0xfc, 0x3b, 0x7e, 0x96, 0xde, 0x87, 0x35, 0x95, 0x8a, 0x9e, 0x0b, 0xd7, 0xe7,
-	0x59, 0x2c, 0x0b, 0x75, 0x51, 0x19, 0xea, 0xd9, 0x3c, 0x52, 0x60, 0xf7, 0x37, 0x40, 0x4f, 0x63,
-	0x89, 0x22, 0x45, 0xfd, 0x99, 0x22, 0xb2, 0x7b, 0xd0, 0x0a, 0x58, 0x84, 0x71, 0xaa, 0x76, 0x4a,
-	0xe4, 0xa5, 0x97, 0x3a, 0xac, 0xaa, 0xd3, 0x1c, 0xa3, 0x2f, 0xbd, 0xf4, 0xb2, 0xfb, 0x57, 0x0b,
-	0xec, 0x57, 0xfa, 0x94, 0x5e, 0x63, 0x7b, 0x3e, 0x81, 0xfa, 0x5b, 0xce, 0xe2, 0xf2, 0x65, 0xf8,
-	0xa3, 0xe9, 0x6b, 0x25, 0xa7, 0xfa, 0x82, 0xb3, 0x58, 0x5f, 0x83, 0xb5, 0xb7, 0x45, 0x4b, 0x95,
-	0x15, 0x3d, 0xbc, 0xc2, 0xd0, 0x15, 0x6a, 0x09, 0x0a, 0x3d, 0x02, 0x0d, 0x39, 0x0a, 0x51, 0x0b,
-	0xd7, 0x0f, 0x3d, 0x29, 0x31, 0x76, 0x51, 0x08, 0x2e, 0xf4, 0x26, 0xb5, 0x1c, 0xbb, 0x00, 0x4f,
-	0x14, 0xd6, 0x7d, 0x0c, 0xf5, 0xa3, 0x4c, 0x4e, 0x32, 0xf4, 0x79, 0x9c, 0xb2, 0x00, 0x85, 0x2b,
-	0x79, 0xe6, 0x5f, 0x14, 0xfb, 0xb3, 0x69, 0xd0, 0xd7, 0x0a, 0xec, 0x1e, 0x03, 0x1c, 0x85, 0x2c,
-	0x29, 0x9c, 0xca, 0x5a, 0x65, 0x5d, 0x5f, 0xab, 0xba, 0xfb, 0xd0, 0x3c, 0x56, 0xd3, 0xd6, 0x1f,
-	0x15, 0x44, 0xb7, 0x01, 0xd4, 0xea, 0x84, 0x18, 0x0f, 0xe4, 0x45, 0x31, 0x53, 0xf5, 0xc8, 0x1b,
-	0xbe, 0xd0, 0x40, 0xf7, 0x3e, 0xb4, 0xce, 0x59, 0x94, 0x84, 0x13, 0x87, 0x36, 0x54, 0xfb, 0x5c,
-	0xf8, 0xe3, 0x53, 0xa4, 0x3b, 0xdd, 0xff, 0xd8, 0xb0, 0x36, 0xa3, 0x46, 0xdf, 0xbb, 0x44, 0x78,
-	0x0a, 0xcd, 0x10, 0xfb, 0xd2, 0x1d, 0x3b, 0x2f, 0x7d, 0xab, 0xb3, 0xad, 0x1c, 0x0c, 0x42, 0x3f,
-	0x07, 0x32, 0xae, 0xfd, 0x8c, 0x7e, 0x56, 0xae, 0xa3, 0x9f, 0x6b, 0x83, 0x99, 0x14, 0xbe, 0x82,
-	0xcd, 0xa9, 0x50, 0xc6, 0x74, 0xcb, 0xd7, 0xa1, 0xdb, 0x28, 0x47, 0x65, 0x28, 0x3f, 0x83, 0x96,
-	0x60, 0x83, 0x8b, 0x52, 0x7a, 0xd5, 0x6f, 0x4d, 0xaf, 0xa9, 0x3d, 0xc6, 0xf9, 0x9d, 0xc3, 0xd6,
-	0x34, 0xc5, 0x38, 0xac, 0x95, 0xeb, 0x84, 0xd5, 0x9e, 0x62, 0x33, 0x71, 0x3d, 0x83, 0x26, 0x4f,
-	0xd4, 0x91, 0xe5, 0x22, 0x3f, 0x18, 0xab, 0xfa, 0x60, 0xdc, 0x99, 0xd1, 0x5b, 0x14, 0x57, 0xcc,
-	0xc7, 0x57, 0x85, 0xa5, 0x3e, 0x1d, 0x36, 0x2f, 0xf5, 0x3e, 0x58, 0x74, 0xd4, 0x7e, 0x50, 0xd1,
-	0xd1, 0x83, 0x9d, 0xfc, 0x2b, 0xea, 0x1a, 0x98, 0xaf, 0x0d, 0xea, 0xd7, 0xae, 0x0d, 0x6e, 0x8e,
-	0x69, 0xbe, 0x53, 0xf1, 0x01, 0x3f, 0xb8, 0xf8, 0x78, 0x0a, 0xcd, 0x9e, 0xd6, 0x4f, 0x37, 0xd1,
-	0x07, 0xa9, 0xd3, 0x58, 0xb4, 0xec, 0x65, 0x89, 0x75, 0xec, 0x5e, 0x59, 0x70, 0x9f, 0x82, 0xba,
-	0x11, 0xae, 0x70, 0x68, 0x08, 0xec, 0x45, 0x04, 0x65, 0xc5, 0x73, 0x6c, 0xbf, 0xac, 0x7f, 0x4f,
-	0xa1, 0x59, 0x54, 0xcb, 0x05, 0x41, 0x73, 0x11, 0x41, 0x59, 0x0c, 0x1d, 0x5b, 0x94, 0xa5, 0xd1,
-	0x81, 0xb6, 0xd0, 0x1a, 0xe8, 0x1a, 0xd1, 0xcb, 0x79, 0x5a, 0x9a, 0x67, 0x77, 0x86, 0x67, 0x4e,
-	0x2d, 0x1d, 0x2a, 0xe6, 0x15, 0xf4, 0x4b, 0x58, 0x1f, 0x8c, 0x35, 0xc9, 0x10, 0xae, 0x69, 0xc2,
-	0x1f, 0xcf, 0xee, 0x95, 0x69, 0x8d, 0x74, 0xc8, 0x60, 0x56, 0x35, 0xbf, 0x82, 0x0d, 0x56, 0x92,
-	0x10, 0x43, 0x47, 0x16, 0xc5, 0x37, 0xaf, 0x35, 0x0e, 0x65, 0xf3, 0xfa, 0xf3, 0x14, 0x9a, 0x79,
-	0xf5, 0x67, 0xc8, 0xd6, 0x17, 0x4d, 0x5a, 0x59, 0x7a, 0x1c, 0x9b, 0x97, 0x85, 0xe8, 0x13, 0x00,
-	0x3f, 0x1b, 0x7b, 0x53, 0xed, 0xbd, 0x3d, 0xb3, 0x66, 0x46, 0x0b, 0x9c, 0xba, 0x3f, 0x96, 0x85,
-	0x27, 0xd0, 0xf0, 0x43, 0x96, 0x18, 0xc7, 0x0d, 0xed, 0xd8, 0x99, 0x71, 0x1c, 0x0b, 0x82, 0x03,
-	0xfe, 0x44, 0x1c, 0x0e, 0xa1, 0x15, 0xe4, 0x97, 0xbc, 0xf1, 0x6e, 0x6b, 0xef, 0x9d, 0x69, 0xef,
-	0x29, 0x21, 0x70, 0x9a, 0xc1, 0x94, 0x2e, 0x9c, 0xc0, 0x5a, 0x5a, 0x5c, 0xfc, 0x86, 0x64, 0x53,
-	0x93, 0xcc, 0x28, 0xe5, 0xb4, 0x3a, 0x38, 0xad, 0x74, 0x5a, 0x2d, 0x5c, 0xb8, 0x59, 0x5a, 0xde,
-	0xde, 0xc8, 0xf5, 0x04, 0x7a, 0x86, 0x70, 0x4b, 0x13, 0xde, 0xfd, 0xd0, 0x32, 0x97, 0x2b, 0x14,
-	0x67, 0x6b, 0xb0, 0x10, 0xef, 0xfe, 0xcd, 0x02, 0xbb, 0xac, 0x75, 0xaa, 0xc2, 0x1a, 0x46, 0xcc,
-	0x54, 0x2f, 0xba, 0xad, 0xb0, 0x91, 0xc2, 0xf2, 0x32, 0x54, 0xb7, 0x73, 0x3b, 0x6f, 0x58, 0x48,
-	0xb8, 0x6e, 0xe7, 0x76, 0xde, 0xb0, 0xd0, 0x6c, 0xdd, 0x5e, 0xfc, 0x56, 0xaf, 0x7e, 0xff, 0xb7,
-	0xfa, 0x83, 0x40, 0x17, 0xd4, 0x73, 0xd7, 0x1e, 0x6d, 0xc0, 0x6a, 0x16, 0x5f, 0xc6, 0xfc, 0x7d,
-	0x4c, 0x6e, 0xd0, 0x55, 0xfd, 0x4b, 0x81, 0x58, 0x79, 0x43, 0x92, 0x25, 0x35, 0x5c, 0xfc, 0x6f,
-	0x20, 0x15, 0xda, 0x04, 0xfd, 0x37, 0x41, 0xff, 0x5e, 0x20, 0xcb, 0x74, 0x1d, 0x9a, 0x46, 0xe1,
-	0xf5, 0x65, 0x4b, 0xaa, 0x0f, 0xfe, 0x5d, 0x85, 0x8d, 0x05, 0x97, 0xb5, 0xa2, 0x39, 0x13, 0xfc,
-	0x2d, 0xfa, 0x92, 0xdc, 0xa0, 0x04, 0xec, 0x93, 0x61, 0xc2, 0x85, 0x7c, 0xcd, 0xbf, 0x50, 0xc4,
-	0x16, 0xa5, 0xd0, 0x3a, 0x8d, 0x14, 0xf2, 0x4c, 0xf0, 0x48, 0x63, 0x4b, 0xf4, 0x36, 0xdc, 0xcc,
-	0xb1, 0x97, 0x5e, 0x62, 0x22, 0x1f, 0x0f, 0x57, 0xe8, 0x26, 0xac, 0x1b, 0x92, 0x93, 0x73, 0xe7,
-	0xf4, 0xbc, 0x88, 0x69, 0x1b, 0x36, 0x26, 0x4c, 0x93, 0x81, 0x2a, 0x6d, 0x01, 0x1c, 0xb3, 0x7e,
-	0x31, 0x1b, 0x64, 0x95, 0xae, 0x41, 0xe3, 0x4c, 0xf0, 0x21, 0x8b, 0x98, 0x1c, 0x3d, 0x3e, 0x26,
-	0x35, 0x0a, 0xb0, 0x92, 0x5f, 0x42, 0xa4, 0xae, 0xda, 0x27, 0xef, 0x32, 0x2f, 0x4c, 0x09, 0x50,
-	0x1b, 0x6a, 0xc7, 0x2c, 0x55, 0xa5, 0x98, 0x24, 0x0d, 0x45, 0x33, 0x3e, 0xc2, 0x29, 0xb1, 0x95,
-	0xe5, 0x1b, 0x26, 0x2f, 0x58, 0x4c, 0x9a, 0xca, 0xf2, 0x88, 0xc7, 0xd2, 0x63, 0x71, 0x4a, 0x5a,
-	0x2a, 0xe5, 0x23, 0xc1, 0xd3, 0x14, 0x53, 0xb2, 0xa6, 0x3a, 0xba, 0x9e, 0xc2, 0x94, 0x10, 0x65,
-	0xf7, 0xea, 0x0a, 0x45, 0xe8, 0x25, 0x29, 0x59, 0x57, 0x0c, 0xf9, 0xf5, 0x4b, 0x68, 0xf1, 0x2d,
-	0x5d, 0x2e, 0x92, 0x0d, 0x35, 0x4f, 0xe5, 0xeb, 0x82, 0xb4, 0x69, 0x0d, 0x96, 0xd5, 0xe1, 0x23,
-	0x9b, 0x6a, 0x81, 0x8e, 0x32, 0x49, 0xb6, 0xe8, 0x06, 0xac, 0x15, 0x27, 0xea, 0x70, 0x94, 0x57,
-	0x4f, 0x64, 0x5b, 0xcd, 0xa7, 0x7e, 0x3d, 0xa5, 0xe6, 0xf5, 0x44, 0x6e, 0xd1, 0x1d, 0xd8, 0x36,
-	0x2f, 0xaa, 0x59, 0x87, 0x9d, 0xb1, 0x83, 0x64, 0x7e, 0x81, 0xdd, 0x56, 0xc1, 0x98, 0x63, 0x46,
-	0x3e, 0x52, 0xf3, 0x65, 0x7a, 0xaf, 0x9e, 0x1f, 0x91, 0x5d, 0x15, 0x77, 0x7e, 0xff, 0x90, 0x3b,
-	0x6a, 0x56, 0x26, 0x07, 0x88, 0x74, 0x69, 0xbb, 0xfc, 0xb6, 0xc8, 0x0f, 0x0e, 0xf9, 0x58, 0x51,
-	0x98, 0x25, 0x7b, 0x73, 0xd9, 0x23, 0x77, 0xd5, 0x06, 0x9a, 0x2c, 0x96, 0x82, 0xee, 0x4d, 0xdb,
-	0x48, 0x72, 0x7f, 0xd6, 0x46, 0x92, 0x9f, 0xa8, 0xa5, 0x9f, 0x40, 0xcf, 0x31, 0xdf, 0x44, 0x7b,
-	0x6a, 0x26, 0x8c, 0xab, 0x01, 0x7f, 0xaa, 0xf6, 0xc3, 0xf9, 0x28, 0x52, 0x9b, 0x87, 0xf9, 0xa5,
-	0xf5, 0x7f, 0xa0, 0x42, 0xce, 0x45, 0xeb, 0xf3, 0x2c, 0x0c, 0xc9, 0x43, 0x95, 0xed, 0x21, 0xcf,
-	0xe2, 0xc0, 0x13, 0x23, 0xf2, 0x33, 0x35, 0xf5, 0x65, 0x25, 0x21, 0x8f, 0x34, 0x7b, 0xec, 0x87,
-	0x3c, 0x65, 0xf1, 0x20, 0x7f, 0xe9, 0x91, 0xfd, 0x07, 0xbf, 0x85, 0xd6, 0x74, 0xcd, 0x4e, 0xeb,
-	0x50, 0x75, 0x14, 0x0d, 0xb9, 0xa1, 0x9a, 0x87, 0xaa, 0x42, 0x27, 0x96, 0x6a, 0xbe, 0x64, 0x12,
-	0x05, 0x59, 0x52, 0xd3, 0x96, 0x3f, 0xcb, 0x48, 0xe5, 0xc1, 0x4d, 0xa8, 0x3d, 0x63, 0x21, 0x6a,
-	0xc7, 0x26, 0xd4, 0xf5, 0x56, 0x55, 0x2f, 0x7b, 0x72, 0xe3, 0xf0, 0x0d, 0x10, 0x9f, 0x47, 0x53,
-	0x27, 0xfd, 0xb0, 0x69, 0x8e, 0xc1, 0x99, 0x42, 0xce, 0xac, 0xaf, 0x1f, 0x0e, 0x98, 0xbc, 0xc8,
-	0x7a, 0xfb, 0x3e, 0x8f, 0x0e, 0x06, 0xc8, 0x1f, 0x0d, 0x44, 0xe2, 0x1f, 0x78, 0x09, 0x3b, 0x18,
-	0xf0, 0xd0, 0x8b, 0x07, 0x07, 0xe5, 0x1f, 0x99, 0x7f, 0x59, 0x5a, 0x7e, 0xfe, 0xf2, 0xec, 0xb0,
-	0xb7, 0xa2, 0x81, 0x5f, 0xfc, 0x2f, 0x00, 0x00, 0xff, 0xff, 0x9e, 0xf0, 0x41, 0xb2, 0xe6, 0x14,
-	0x00, 0x00,
+var fileDescriptor_geometry_0c6502420f6e0144 = []byte{
+	// 2065 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x58, 0x4f, 0x57, 0x1b, 0xc9,
+	0x11, 0xb7, 0x24, 0x04, 0x52, 0xe9, 0x0f, 0x4d, 0x23, 0x83, 0x6c, 0xd6, 0x59, 0x56, 0x6b, 0x3b,
+	0xc4, 0x8e, 0xe1, 0x85, 0xe4, 0xed, 0x8b, 0x93, 0xdd, 0xb7, 0xcf, 0x80, 0x8c, 0xf1, 0x1f, 0x60,
+	0x07, 0x27, 0xbc, 0xec, 0x65, 0x5e, 0x33, 0x2a, 0x89, 0x36, 0x33, 0xd3, 0xe3, 0xee, 0x19, 0x56,
+	0xda, 0x8f, 0x91, 0x4b, 0x2e, 0x39, 0xe5, 0x9a, 0x43, 0x72, 0xcc, 0x21, 0xdf, 0x24, 0x5f, 0x21,
+	0x1f, 0x22, 0xaf, 0x7b, 0x7a, 0xc4, 0x48, 0xc8, 0x59, 0xbc, 0x39, 0xe5, 0xd6, 0xf5, 0xeb, 0xaa,
+	0x9f, 0xaa, 0xab, 0xaa, 0xab, 0x7a, 0x04, 0x6b, 0x18, 0xf9, 0x5b, 0x91, 0x14, 0xb1, 0x38, 0x4b,
+	0xfa, 0x5b, 0x03, 0x14, 0x01, 0xc6, 0x72, 0xb4, 0x69, 0x10, 0x5a, 0xc7, 0xc8, 0xdf, 0xcc, 0x36,
+	0x3b, 0x7f, 0x2a, 0x42, 0x7d, 0xdf, 0x2a, 0xec, 0xb1, 0x98, 0xd1, 0x4f, 0xa1, 0x96, 0x19, 0xb8,
+	0xbc, 0xd7, 0x2e, 0xac, 0x17, 0x36, 0x4a, 0x0e, 0x64, 0xd0, 0x41, 0x8f, 0xde, 0x03, 0xe8, 0x23,
+	0x8b, 0x13, 0x89, 0x7a, 0xbf, 0xb8, 0x5e, 0xd8, 0xa8, 0x3a, 0x55, 0x8b, 0x1c, 0xf4, 0x28, 0x81,
+	0xd2, 0x77, 0x17, 0x71, 0xbb, 0x64, 0x70, 0xbd, 0xa4, 0x6d, 0x58, 0x18, 0xa0, 0x78, 0xa7, 0x44,
+	0xd8, 0x9e, 0x33, 0x68, 0x26, 0xa6, 0xba, 0x67, 0xed, 0xf2, 0x7a, 0x61, 0xa3, 0xae, 0x75, 0xcf,
+	0x34, 0x39, 0x2a, 0xc9, 0x5d, 0x75, 0xce, 0x22, 0x6c, 0xcf, 0x9b, 0x8d, 0xaa, 0x46, 0x4e, 0x34,
+	0x40, 0xb7, 0xa1, 0xa8, 0x64, 0x7b, 0x61, 0xbd, 0xb0, 0x51, 0xdb, 0xee, 0x6c, 0xe6, 0x0f, 0xb2,
+	0x79, 0x12, 0xb1, 0x98, 0x33, 0xdf, 0xc1, 0x3e, 0x4a, 0x0c, 0x3d, 0xd4, 0x87, 0x71, 0x8a, 0x4a,
+	0xd2, 0x2f, 0xa0, 0x82, 0xe1, 0x25, 0xfa, 0x22, 0xc2, 0x76, 0xc5, 0x58, 0xde, 0x9d, 0xb4, 0xec,
+	0xda, 0x5d, 0x63, 0x31, 0xd6, 0xed, 0xc4, 0xd0, 0x9a, 0xc5, 0x49, 0x29, 0xcc, 0x7d, 0x77, 0x61,
+	0x23, 0x53, 0x76, 0xcc, 0x9a, 0xb6, 0xa0, 0x1c, 0x49, 0xf1, 0xee, 0x57, 0x36, 0x1c, 0xa9, 0x40,
+	0xef, 0x40, 0xc5, 0x1c, 0xe6, 0x2a, 0x1e, 0x0b, 0x5a, 0x3e, 0xbd, 0x88, 0xe9, 0x2a, 0x2c, 0x88,
+	0x81, 0x67, 0x76, 0xd2, 0x98, 0xcc, 0x8b, 0x81, 0x77, 0x7a, 0x11, 0x77, 0xfe, 0x58, 0x80, 0x7a,
+	0xde, 0x21, 0xfd, 0x73, 0xc3, 0x80, 0x87, 0xe6, 0xe7, 0x0a, 0x8e, 0x59, 0x6b, 0x6c, 0xa4, 0xb1,
+	0x62, 0x8a, 0x8d, 0x2c, 0x36, 0x0c, 0xd8, 0xd0, 0xfc, 0x90, 0xd1, 0x63, 0xc3, 0x54, 0x8f, 0x0d,
+	0xcd, 0x4f, 0x18, 0x3d, 0x36, 0xb4, 0x21, 0x2c, 0x7f, 0x4c, 0x08, 0x3b, 0xff, 0xac, 0xc3, 0x62,
+	0x56, 0x24, 0x0e, 0xbe, 0x4f, 0x50, 0xc5, 0x3a, 0xac, 0x59, 0x51, 0x18, 0xdf, 0xae, 0x85, 0x35,
+	0x5f, 0x55, 0xce, 0x58, 0x97, 0x7e, 0x0d, 0x0d, 0x1f, 0xfb, 0xb1, 0x3b, 0x36, 0x2e, 0xfe, 0xa0,
+	0x71, 0x5d, 0x1b, 0x64, 0x08, 0x7d, 0x01, 0x64, 0x5c, 0xa0, 0x32, 0x75, 0xc6, 0x1c, 0xba, 0xb6,
+	0x7d, 0x6f, 0x36, 0x87, 0xf5, 0xd8, 0x59, 0x1c, 0x4c, 0x1d, 0xe1, 0x1b, 0xb8, 0x3d, 0xe1, 0xca,
+	0x98, 0x6e, 0xee, 0x26, 0x74, 0xcb, 0x79, 0xaf, 0x32, 0xca, 0x67, 0xd0, 0x94, 0x7c, 0x70, 0x9e,
+	0x3b, 0x5e, 0xf9, 0x07, 0x8f, 0xd7, 0x30, 0x16, 0xe3, 0xf3, 0x9d, 0xc0, 0xca, 0x24, 0xc5, 0xd8,
+	0xad, 0xf9, 0x9b, 0xb8, 0xd5, 0x9a, 0x60, 0xcb, 0xfc, 0x7a, 0x0e, 0x0d, 0x11, 0xa1, 0x64, 0xb1,
+	0x90, 0x6e, 0x3c, 0x8a, 0xd0, 0xdc, 0xa1, 0xe6, 0xf6, 0x67, 0x53, 0x05, 0x80, 0xf2, 0x92, 0x7b,
+	0x78, 0x64, 0x35, 0xdf, 0x8e, 0x22, 0x74, 0xea, 0x22, 0x27, 0xd1, 0xb7, 0xd0, 0x92, 0xa8, 0x12,
+	0x3f, 0x76, 0x31, 0xf4, 0x44, 0x8f, 0x87, 0x83, 0x94, 0xae, 0x62, 0xe8, 0x3a, 0xb3, 0x5d, 0xeb,
+	0x5a, 0x55, 0xc3, 0x47, 0x53, 0xfb, 0x3c, 0x46, 0xbb, 0x60, 0x7f, 0x85, 0x8b, 0xd0, 0x55, 0xb2,
+	0x5d, 0xbd, 0x71, 0x75, 0xd6, 0xc6, 0x76, 0x27, 0x92, 0x7e, 0x0d, 0x55, 0xeb, 0x9c, 0x92, 0x6d,
+	0xb8, 0x31, 0x47, 0x25, 0x35, 0x32, 0x04, 0x8d, 0xb3, 0xa4, 0xdf, 0x47, 0xe9, 0x46, 0x4c, 0xb2,
+	0x40, 0xb5, 0x6b, 0xb3, 0x92, 0xb7, 0x63, 0x54, 0x8e, 0x8d, 0x86, 0x53, 0x3f, 0xcb, 0x49, 0x9a,
+	0xc0, 0x13, 0xe1, 0x25, 0x0e, 0x33, 0x82, 0xfa, 0x2c, 0x82, 0x5d, 0xa3, 0x92, 0x11, 0x78, 0x39,
+	0x49, 0x13, 0x48, 0xf4, 0x59, 0x8c, 0x19, 0x41, 0x63, 0x16, 0x81, 0x63, 0x54, 0x32, 0x02, 0x99,
+	0x93, 0xa8, 0x03, 0x2d, 0xc9, 0xc2, 0x9e, 0x08, 0xdc, 0x48, 0xf0, 0x30, 0x56, 0x19, 0x4f, 0xd3,
+	0xf0, 0xac, 0x4f, 0xf1, 0x18, 0xcd, 0x63, 0xa3, 0x68, 0xd9, 0xa8, 0xbc, 0x86, 0xd1, 0x57, 0xb0,
+	0x34, 0xc0, 0x10, 0x25, 0xf3, 0xf9, 0xf7, 0x63, 0xc7, 0x16, 0x0d, 0xe1, 0x4f, 0xa6, 0x33, 0x9e,
+	0xa9, 0x59, 0x3a, 0x32, 0x98, 0x42, 0xe8, 0x37, 0xb0, 0xcc, 0xc3, 0x18, 0xa5, 0x42, 0xcf, 0xa4,
+	0xdb, 0xd2, 0x91, 0x59, 0xfe, 0x1d, 0xe4, 0x14, 0x33, 0xff, 0xf8, 0x35, 0x4c, 0x07, 0x4d, 0xf4,
+	0xfb, 0x0a, 0xe3, 0x8c, 0x6c, 0x69, 0x56, 0xd0, 0x8e, 0x8c, 0x4a, 0x16, 0x34, 0x91, 0x93, 0xe8,
+	0x17, 0x00, 0x5e, 0x32, 0xb6, 0xa6, 0xc6, 0x7a, 0x75, 0x2a, 0x67, 0x49, 0x66, 0x5a, 0xf5, 0xb2,
+	0x25, 0x7d, 0x0a, 0x35, 0xcf, 0xe7, 0x51, 0x66, 0xb8, 0x6c, 0x0c, 0xdb, 0x53, 0x86, 0x3e, 0x8f,
+	0xac, 0x25, 0x78, 0xe3, 0x35, 0xdd, 0x81, 0x66, 0x0f, 0x43, 0xc5, 0xfb, 0xa3, 0xcc, 0xba, 0x65,
+	0xac, 0xd7, 0x26, 0xad, 0xf7, 0x52, 0x1d, 0x4b, 0xd0, 0xe8, 0xe5, 0x45, 0xda, 0x85, 0x45, 0xc5,
+	0x83, 0xc8, 0xcf, 0x91, 0xdc, 0x36, 0x24, 0x9f, 0x4c, 0x55, 0xbd, 0x55, 0xb2, 0x2c, 0x4d, 0x35,
+	0x21, 0x53, 0x17, 0xee, 0xe4, 0xd2, 0x7b, 0x36, 0x72, 0x99, 0x44, 0x96, 0x11, 0xae, 0x18, 0xc2,
+	0xfb, 0x1f, 0x4a, 0xf3, 0xce, 0xe8, 0x99, 0x44, 0x66, 0x89, 0x57, 0x06, 0x33, 0xf1, 0xce, 0xbf,
+	0x8a, 0x40, 0xae, 0x1a, 0x92, 0x8a, 0x44, 0xa8, 0xf0, 0x47, 0xcf, 0x8f, 0x5f, 0x40, 0x4b, 0xa5,
+	0xb7, 0xd8, 0x35, 0x85, 0xcf, 0x45, 0xa8, 0xce, 0x79, 0x64, 0xc6, 0x48, 0xc5, 0x59, 0x56, 0xd9,
+	0x0d, 0xbf, 0xda, 0xd2, 0x0f, 0x90, 0x00, 0x99, 0x4a, 0x24, 0xda, 0xe9, 0x98, 0x89, 0xf4, 0x35,
+	0x80, 0xbd, 0x6e, 0x01, 0x8b, 0xda, 0x73, 0xeb, 0xa5, 0x8d, 0xda, 0xf6, 0x93, 0x0f, 0xf5, 0xd7,
+	0xd4, 0x71, 0x7b, 0xf9, 0xde, 0xb0, 0xa8, 0x1b, 0x6a, 0xb8, 0x2a, 0x33, 0x79, 0xe2, 0xa5, 0x51,
+	0xbe, 0xf9, 0x4b, 0xe3, 0xee, 0x97, 0xd0, 0x9c, 0x24, 0xd5, 0x0f, 0xa3, 0x0b, 0x1c, 0xd9, 0xc7,
+	0x97, 0x5e, 0xea, 0x17, 0xc6, 0x25, 0xf3, 0x13, 0xb4, 0xe7, 0x4c, 0x85, 0xdf, 0x14, 0x7f, 0x5d,
+	0xe8, 0xfc, 0xad, 0x04, 0xe4, 0x39, 0xf7, 0xd1, 0xb6, 0xfa, 0xdd, 0xf3, 0x24, 0xbc, 0xa0, 0x7b,
+	0xd0, 0x0c, 0x51, 0xc5, 0xd8, 0x1b, 0x0f, 0x8f, 0xc2, 0x4d, 0x86, 0x47, 0x23, 0x35, 0xca, 0xa6,
+	0xc6, 0x87, 0xba, 0x7d, 0xf1, 0x7f, 0xea, 0xf6, 0x5f, 0x41, 0x85, 0x87, 0x51, 0x62, 0xba, 0x74,
+	0xe9, 0xc6, 0x5d, 0x7a, 0xc1, 0xd8, 0x4c, 0x77, 0xf9, 0xf2, 0x8f, 0xe8, 0xf2, 0x14, 0xe6, 0x7a,
+	0x2c, 0x66, 0xf6, 0x75, 0x69, 0xd6, 0x1a, 0x53, 0xfc, 0xfb, 0x74, 0x2c, 0x96, 0x1c, 0xb3, 0xa6,
+	0x2b, 0x30, 0x9f, 0x76, 0x09, 0x33, 0xdd, 0x4a, 0x8e, 0x95, 0xe8, 0x1a, 0x54, 0xfb, 0xdc, 0x47,
+	0x37, 0x64, 0x01, 0x9a, 0x51, 0x55, 0x75, 0x2a, 0x1a, 0x38, 0x64, 0x01, 0xd2, 0x0e, 0x34, 0xb8,
+	0x72, 0x7d, 0xa6, 0x62, 0xd7, 0xd3, 0x99, 0x30, 0x73, 0xa8, 0xe2, 0xd4, 0xb8, 0x7a, 0xcd, 0x6c,
+	0x72, 0x3a, 0x7f, 0x2f, 0x40, 0x3d, 0x3f, 0x44, 0xe8, 0x5d, 0xa8, 0xf4, 0xb8, 0x8a, 0x59, 0xe8,
+	0xa1, 0x7d, 0xe7, 0x8d, 0x65, 0xfa, 0x39, 0x34, 0x02, 0x36, 0x74, 0x7b, 0x78, 0xc9, 0x4d, 0x45,
+	0xdb, 0x47, 0x5f, 0x3d, 0x60, 0xc3, 0xbd, 0x0c, 0xa3, 0x9f, 0x41, 0x3d, 0x09, 0x75, 0x37, 0x4d,
+	0x0f, 0x69, 0xc2, 0x5a, 0x71, 0x6a, 0x06, 0x73, 0x0c, 0x44, 0xbf, 0x84, 0x35, 0xcd, 0x73, 0x89,
+	0x32, 0xe6, 0x1e, 0x2a, 0x97, 0x87, 0x6e, 0x3f, 0xf1, 0x7d, 0xd7, 0xe3, 0xd2, 0xf3, 0xd1, 0x3c,
+	0x79, 0xca, 0xce, 0x6a, 0xc0, 0x86, 0xbf, 0xb7, 0x1a, 0x07, 0xe1, 0xf3, 0xc4, 0xf7, 0x77, 0xcd,
+	0x76, 0xe7, 0x1f, 0x05, 0x68, 0xed, 0xa3, 0xe8, 0x61, 0xcc, 0xbd, 0xff, 0x33, 0xd7, 0xef, 0x43,
+	0x3d, 0x3f, 0x70, 0xf5, 0x4d, 0x0a, 0x50, 0x0e, 0x52, 0x77, 0x2b, 0x4e, 0x2a, 0x74, 0x1e, 0x40,
+	0x3d, 0x3f, 0x55, 0xe9, 0x6d, 0x98, 0xef, 0xa1, 0xfb, 0x94, 0x07, 0x46, 0xad, 0xea, 0x94, 0x7b,
+	0xf8, 0x94, 0x07, 0x9d, 0x3f, 0x00, 0xbd, 0x3e, 0x34, 0xe9, 0x16, 0xb4, 0xb2, 0x69, 0x8b, 0xd2,
+	0x55, 0xef, 0x13, 0x26, 0xd1, 0xbd, 0x08, 0x6c, 0x40, 0x96, 0xd2, 0xbd, 0x63, 0x94, 0x27, 0x66,
+	0xe7, 0x55, 0x60, 0xca, 0x0d, 0x31, 0xfd, 0x7a, 0xd2, 0xe5, 0x86, 0xd8, 0xeb, 0xf4, 0x75, 0x93,
+	0x9c, 0x1a, 0x96, 0xd7, 0x22, 0x58, 0x98, 0x11, 0xc1, 0x27, 0x40, 0x25, 0x06, 0xe2, 0x12, 0xdd,
+	0x1e, 0xa6, 0x1d, 0x38, 0x46, 0x65, 0xfb, 0xc4, 0x52, 0xba, 0xb3, 0x77, 0xb5, 0xd1, 0xf9, 0x73,
+	0x01, 0x56, 0x66, 0x37, 0x70, 0xfa, 0x18, 0x96, 0x22, 0x94, 0x1e, 0x86, 0xb1, 0x2b, 0xb1, 0x97,
+	0x78, 0xb9, 0x9f, 0x24, 0x76, 0xc3, 0xc9, 0xf0, 0x8f, 0xfc, 0x59, 0xfa, 0x10, 0x16, 0xf5, 0x51,
+	0x4c, 0x2c, 0x5c, 0x4f, 0x24, 0x61, 0x9a, 0xea, 0xb2, 0xa3, 0x4f, 0x68, 0xa2, 0xb9, 0xab, 0xc1,
+	0xce, 0x6f, 0x81, 0x5e, 0x1f, 0xfb, 0xf4, 0x01, 0x34, 0x7b, 0x3c, 0xd0, 0xd3, 0x4f, 0x84, 0x6e,
+	0xc0, 0xd4, 0x85, 0xfd, 0xfc, 0x6a, 0x8c, 0xd1, 0x37, 0x4c, 0x5d, 0x74, 0xfe, 0x5a, 0x80, 0x7a,
+	0x7e, 0xce, 0xff, 0xd7, 0xf2, 0x7c, 0x0a, 0xd5, 0x77, 0x82, 0x87, 0xf9, 0x96, 0xf6, 0xc9, 0xac,
+	0x27, 0xc3, 0x4b, 0xc1, 0x43, 0xd3, 0xcc, 0x2a, 0xef, 0xec, 0x4a, 0x7f, 0x24, 0x9f, 0xe1, 0x25,
+	0xfa, 0xae, 0x79, 0x7b, 0xda, 0xa9, 0x02, 0x06, 0x72, 0x34, 0xa2, 0x13, 0xd7, 0xf7, 0x59, 0x1c,
+	0x63, 0xe8, 0xa2, 0x94, 0x42, 0xda, 0x4f, 0xb0, 0xba, 0x05, 0xbb, 0x1a, 0xeb, 0x6c, 0x43, 0x75,
+	0xfc, 0xac, 0xd0, 0x27, 0xf4, 0x44, 0xa8, 0x78, 0x0f, 0xa5, 0x1b, 0x8b, 0xc4, 0x3b, 0xb7, 0xf5,
+	0xd9, 0xc8, 0xd0, 0xb7, 0x1a, 0xec, 0xec, 0x01, 0x5c, 0xbd, 0x28, 0x26, 0x26, 0x4e, 0xe1, 0x23,
+	0xbe, 0x6d, 0x37, 0xa1, 0x31, 0xf1, 0xb2, 0xd0, 0xdf, 0xdd, 0x3a, 0x3b, 0x3e, 0x86, 0x83, 0xf8,
+	0xdc, 0x46, 0xaa, 0x1a, 0xb0, 0xe1, 0x6b, 0x03, 0x74, 0x1e, 0x42, 0x73, 0xf2, 0x11, 0xa1, 0x6f,
+	0x51, 0x5f, 0x48, 0x6f, 0x7c, 0x8b, 0x8c, 0xf0, 0xe8, 0x0e, 0x54, 0xf4, 0x28, 0x32, 0x31, 0x6a,
+	0x40, 0xd5, 0x7c, 0xb4, 0xeb, 0xd6, 0x48, 0x6e, 0x3d, 0xfa, 0xd6, 0x34, 0x90, 0x6b, 0x13, 0x82,
+	0x2e, 0xc3, 0xe2, 0xef, 0x5e, 0x1d, 0x1e, 0x9d, 0x1e, 0xba, 0xdd, 0xc3, 0xdd, 0xa3, 0xbd, 0x83,
+	0xc3, 0x7d, 0x72, 0x8b, 0x2e, 0x40, 0xe9, 0xf4, 0xd5, 0x0e, 0x29, 0xa4, 0x8b, 0xb7, 0xa4, 0x48,
+	0x6b, 0xb0, 0xb0, 0xdf, 0x3d, 0x7a, 0x79, 0x72, 0x74, 0x48, 0x4a, 0xb4, 0x09, 0xd0, 0x3d, 0x71,
+	0x0e, 0xdc, 0x93, 0x17, 0xcf, 0x8e, 0xbb, 0x64, 0xee, 0xd1, 0xbf, 0xcb, 0xb0, 0x3c, 0xe3, 0xdb,
+	0x45, 0x1b, 0x1d, 0x4b, 0xf1, 0x0e, 0xbd, 0x98, 0xdc, 0xa2, 0x04, 0xea, 0xdd, 0x61, 0x24, 0x64,
+	0xfc, 0x56, 0xbc, 0x54, 0x22, 0x24, 0x05, 0x4a, 0xa1, 0x79, 0x10, 0x68, 0xe4, 0xb9, 0x14, 0x81,
+	0xc1, 0x8a, 0xf4, 0x1e, 0xdc, 0x49, 0xb1, 0x37, 0x2c, 0xca, 0xfc, 0x1d, 0x6f, 0x97, 0xe8, 0x6d,
+	0x58, 0xca, 0x48, 0xb4, 0x07, 0xe6, 0x80, 0x64, 0x8e, 0xae, 0xc2, 0xf2, 0x15, 0xd3, 0xd5, 0x46,
+	0x59, 0x7b, 0xba, 0xc7, 0xfb, 0x76, 0x0e, 0x91, 0x05, 0xba, 0x08, 0xb5, 0x63, 0x29, 0x86, 0x3c,
+	0xe0, 0xf1, 0x68, 0x7b, 0x8f, 0x54, 0x28, 0xc0, 0x7c, 0xda, 0x77, 0x48, 0x55, 0xaf, 0xbb, 0xef,
+	0x13, 0xe6, 0x2b, 0x02, 0xb4, 0x0e, 0x95, 0x3d, 0xae, 0x74, 0xc1, 0xc5, 0xa4, 0xa6, 0x69, 0xc6,
+	0x97, 0x42, 0x91, 0xba, 0xd6, 0x3c, 0xe5, 0xf1, 0x39, 0x0f, 0x49, 0x43, 0x6b, 0xee, 0x8a, 0x30,
+	0x66, 0x3c, 0x54, 0xa4, 0xa9, 0x8f, 0xbc, 0x2b, 0x85, 0x52, 0xa8, 0xc8, 0xa2, 0x16, 0x4c, 0xd5,
+	0xa0, 0x22, 0x44, 0xeb, 0x1d, 0x5d, 0xa2, 0xf4, 0x59, 0xa4, 0xc8, 0x92, 0x66, 0x48, 0xfb, 0x38,
+	0xa1, 0xf6, 0xb7, 0xcc, 0xa5, 0x20, 0xcb, 0x3a, 0x4e, 0xf9, 0x0b, 0x48, 0x5a, 0xb4, 0x02, 0x73,
+	0xba, 0xe6, 0xc8, 0x6d, 0x9d, 0x8e, 0xdd, 0x24, 0x26, 0x2b, 0x3a, 0x6b, 0xb6, 0x80, 0x76, 0x46,
+	0x69, 0x8d, 0x90, 0x55, 0x1d, 0x4f, 0x33, 0x23, 0x54, 0x36, 0x23, 0xc8, 0x5d, 0xba, 0x06, 0xab,
+	0xd9, 0xdc, 0x98, 0x36, 0x58, 0x1b, 0x1b, 0xc4, 0xdc, 0xb3, 0xd8, 0x3d, 0xed, 0x4c, 0x56, 0x6a,
+	0xe4, 0x53, 0x1d, 0xaf, 0x4c, 0x3a, 0xda, 0xdf, 0x25, 0xeb, 0xda, 0xef, 0xf4, 0x56, 0x92, 0xcf,
+	0x74, 0x54, 0xae, 0x1a, 0x19, 0xe9, 0xd0, 0x56, 0xbe, 0x83, 0xa6, 0x8d, 0x8d, 0x7c, 0xae, 0x29,
+	0xb2, 0x94, 0x9d, 0x5e, 0x9c, 0x91, 0xfb, 0x74, 0x09, 0x1a, 0x57, 0xc9, 0xd2, 0xd0, 0x83, 0x49,
+	0x9d, 0x98, 0x3c, 0x9c, 0xd6, 0x89, 0xc9, 0x4f, 0x75, 0xea, 0xaf, 0xa0, 0x7d, 0x4c, 0x8b, 0x68,
+	0x43, 0x47, 0x22, 0x33, 0xcd, 0xc0, 0x9f, 0xe9, 0x7a, 0x38, 0x19, 0x05, 0xba, 0x78, 0xb8, 0x97,
+	0xcb, 0xff, 0x23, 0xed, 0x72, 0x3a, 0x8c, 0x5e, 0x24, 0xbe, 0x4f, 0x1e, 0xeb, 0xd3, 0xee, 0x88,
+	0x24, 0xec, 0x31, 0x39, 0x22, 0x3f, 0xd7, 0xa1, 0xcf, 0x4f, 0x17, 0xf2, 0xc4, 0xb0, 0x87, 0x9e,
+	0x2f, 0x14, 0x0f, 0x07, 0xe9, 0x3c, 0x23, 0x9b, 0x8f, 0xbe, 0x82, 0xe6, 0x64, 0x67, 0xa2, 0x55,
+	0x28, 0x3b, 0x9a, 0x86, 0xdc, 0xd2, 0xcb, 0x1d, 0xdd, 0x87, 0x48, 0x41, 0x2f, 0xdf, 0xf0, 0x18,
+	0x25, 0x29, 0xea, 0xb0, 0xa5, 0xc3, 0x87, 0x94, 0x76, 0x4e, 0x81, 0x78, 0x22, 0x98, 0xe8, 0x13,
+	0x3b, 0x8d, 0xac, 0xd6, 0x8f, 0x35, 0x72, 0x5c, 0xf8, 0xf6, 0xf1, 0x80, 0xc7, 0xe7, 0xc9, 0xd9,
+	0xa6, 0x27, 0x82, 0xad, 0x01, 0x8a, 0x27, 0x03, 0x19, 0x79, 0x5b, 0x2c, 0xe2, 0x5b, 0x03, 0xe1,
+	0xb3, 0x70, 0xb0, 0x95, 0xff, 0x87, 0xf1, 0x2f, 0xc5, 0xb9, 0xfd, 0x37, 0xc7, 0x3b, 0x67, 0xf3,
+	0x06, 0xf8, 0xe5, 0x7f, 0x02, 0x00, 0x00, 0xff, 0xff, 0xe2, 0x11, 0x31, 0xa7, 0x7f, 0x14, 0x00,
+	0x00,
 }

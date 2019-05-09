@@ -155,7 +155,7 @@ message Sar {
     enum Platform {
         UNKNOWN_PLATFORM = 0;
         ENVISAT = 1;
-        SENTINEL1A = 2;
+        SENTINEL_1A = 2;
     }
     Platform platform = 1;
 

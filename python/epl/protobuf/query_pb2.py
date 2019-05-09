@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='epl.protobuf',
   syntax='proto3',
   serialized_options=_b('\n\020com.epl.protobufB\nQueryProtoP\001Z+github.com/geo-grpc/api/golang/epl/protobuf\242\002\003QPB'),
-  serialized_pb=_b('\n\x18\x65pl/protobuf/query.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\"\x84\x01\n\x0bStringField\x12\r\n\x05value\x18\x01 \x01(\t\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x33\n\x0esort_direction\x18\x04 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xb3\x01\n\nFloatField\x12\r\n\x05value\x18\x01 \x01(\x02\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x16\n\x0e\x62\x65tween_value1\x18\x03 \x01(\x02\x12\x16\n\x0e\x62\x65tween_value2\x18\x04 \x01(\x02\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xb4\x01\n\x0b\x44oubleField\x12\r\n\x05value\x18\x01 \x01(\x01\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x16\n\x0e\x62\x65tween_value1\x18\x03 \x01(\x01\x12\x16\n\x0e\x62\x65tween_value2\x18\x04 \x01(\x01\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\x8b\x02\n\x0eTimestampField\x12)\n\x05value\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x32\n\x0e\x62\x65tween_value1\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0e\x62\x65tween_value2\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xb4\x01\n\x0bUInt32Field\x12\r\n\x05value\x18\x01 \x01(\r\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x16\n\x0e\x62\x65tween_value1\x18\x03 \x01(\r\x12\x16\n\x0e\x62\x65tween_value2\x18\x04 \x01(\r\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection*>\n\rSortDirection\x12\x0e\n\nNOT_SORTED\x10\x00\x12\x0e\n\nDESCENDING\x10\x01\x12\r\n\tASCENDING\x10\x02*\xba\x01\n\x11\x46ieldRelationship\x12\x0c\n\x08\x46IELD_EQ\x10\x00\x12\x12\n\x0e\x46IELD_LT_OR_EQ\x10\x02\x12\x12\n\x0e\x46IELD_GT_OR_EQ\x10\x04\x12\x0c\n\x08\x46IELD_LT\x10\x08\x12\x0c\n\x08\x46IELD_GT\x10\x10\x12\x11\n\rFIELD_BETWEEN\x10 \x12\x15\n\x11\x46IELD_NOT_BETWEEN\x10@\x12\x11\n\x0c\x46IELD_NOT_EQ\x10\x80\x01\x12\x16\n\x11\x46IELD_STARTS_WITH\x10\x80\x02\x42S\n\x10\x63om.epl.protobufB\nQueryProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x03QPBb\x06proto3')
+  serialized_pb=_b('\n\x18\x65pl/protobuf/query.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\"\x84\x01\n\x0bStringField\x12\r\n\x05value\x18\x01 \x01(\t\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x33\n\x0esort_direction\x18\x04 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xb3\x01\n\nFloatField\x12\r\n\x05value\x18\x01 \x01(\x02\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x16\n\x0e\x62\x65tween_value1\x18\x03 \x01(\x02\x12\x16\n\x0e\x62\x65tween_value2\x18\x04 \x01(\x02\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xb4\x01\n\x0b\x44oubleField\x12\r\n\x05value\x18\x01 \x01(\x01\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x16\n\x0e\x62\x65tween_value1\x18\x03 \x01(\x01\x12\x16\n\x0e\x62\x65tween_value2\x18\x04 \x01(\x01\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\x8b\x02\n\x0eTimestampField\x12)\n\x05value\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x32\n\x0e\x62\x65tween_value1\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0e\x62\x65tween_value2\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xb4\x01\n\x0bUInt32Field\x12\r\n\x05value\x18\x01 \x01(\r\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x16\n\x0e\x62\x65tween_value1\x18\x03 \x01(\r\x12\x16\n\x0e\x62\x65tween_value2\x18\x04 \x01(\r\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection*2\n\rSortDirection\x12\x0e\n\nNOT_SORTED\x10\x00\x12\x08\n\x04\x44\x45SC\x10\x01\x12\x07\n\x03\x41SC\x10\x02*\x84\x01\n\x11\x46ieldRelationship\x12\x06\n\x02\x45Q\x10\x00\x12\x0c\n\x08LT_OR_EQ\x10\x02\x12\x0c\n\x08GT_OR_EQ\x10\x04\x12\x06\n\x02LT\x10\x08\x12\x06\n\x02GT\x10\x10\x12\x0b\n\x07\x42\x45TWEEN\x10 \x12\x0f\n\x0bNOT_BETWEEN\x10@\x12\x0b\n\x06NOT_EQ\x10\x80\x01\x12\x10\n\x0bSTARTS_WITH\x10\x80\x02\x42S\n\x10\x63om.epl.protobufB\nQueryProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x03QPBb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -36,18 +36,18 @@ _SORTDIRECTION = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='DESCENDING', index=1, number=1,
+      name='DESC', index=1, number=1,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ASCENDING', index=2, number=2,
+      name='ASC', index=2, number=2,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
   serialized_start=1028,
-  serialized_end=1090,
+  serialized_end=1078,
 )
 _sym_db.RegisterEnumDescriptor(_SORTDIRECTION)
 
@@ -59,62 +59,62 @@ _FIELDRELATIONSHIP = _descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='FIELD_EQ', index=0, number=0,
+      name='EQ', index=0, number=0,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FIELD_LT_OR_EQ', index=1, number=2,
+      name='LT_OR_EQ', index=1, number=2,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FIELD_GT_OR_EQ', index=2, number=4,
+      name='GT_OR_EQ', index=2, number=4,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FIELD_LT', index=3, number=8,
+      name='LT', index=3, number=8,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FIELD_GT', index=4, number=16,
+      name='GT', index=4, number=16,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FIELD_BETWEEN', index=5, number=32,
+      name='BETWEEN', index=5, number=32,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FIELD_NOT_BETWEEN', index=6, number=64,
+      name='NOT_BETWEEN', index=6, number=64,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FIELD_NOT_EQ', index=7, number=128,
+      name='NOT_EQ', index=7, number=128,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FIELD_STARTS_WITH', index=8, number=256,
+      name='STARTS_WITH', index=8, number=256,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1093,
-  serialized_end=1279,
+  serialized_start=1081,
+  serialized_end=1213,
 )
 _sym_db.RegisterEnumDescriptor(_FIELDRELATIONSHIP)
 
 FieldRelationship = enum_type_wrapper.EnumTypeWrapper(_FIELDRELATIONSHIP)
 NOT_SORTED = 0
-DESCENDING = 1
-ASCENDING = 2
-FIELD_EQ = 0
-FIELD_LT_OR_EQ = 2
-FIELD_GT_OR_EQ = 4
-FIELD_LT = 8
-FIELD_GT = 16
-FIELD_BETWEEN = 32
-FIELD_NOT_BETWEEN = 64
-FIELD_NOT_EQ = 128
-FIELD_STARTS_WITH = 256
+DESC = 1
+ASC = 2
+EQ = 0
+LT_OR_EQ = 2
+GT_OR_EQ = 4
+LT = 8
+GT = 16
+BETWEEN = 32
+NOT_BETWEEN = 64
+NOT_EQ = 128
+STARTS_WITH = 256
 
 
 

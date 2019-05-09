@@ -32,20 +32,20 @@ import "google/protobuf/timestamp.proto";
 
 enum SortDirection {
     NOT_SORTED = 0;
-    DESCENDING = 1;
-    ASCENDING = 2;
+    DESC = 1;
+    ASC = 2;
 }
 
 enum FieldRelationship {
-    FIELD_EQ = 0;
-    FIELD_LT_OR_EQ = 2;
-    FIELD_GT_OR_EQ = 4;
-    FIELD_LT = 8;
-    FIELD_GT = 16;
-    FIELD_BETWEEN = 32;
-    FIELD_NOT_BETWEEN = 64;
-    FIELD_NOT_EQ = 128;
-    FIELD_STARTS_WITH = 256;
+    EQ = 0;
+    LT_OR_EQ = 2;
+    GT_OR_EQ = 4;
+    LT = 8;
+    GT = 16;
+    BETWEEN = 32;
+    NOT_BETWEEN = 64;
+    NOT_EQ = 128;
+    STARTS_WITH = 256;
 }
 
 message StringField {
