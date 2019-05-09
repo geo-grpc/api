@@ -16,7 +16,7 @@ kwargs = {
     'author': 'David Raleigh',
     'author_email': 'davidraleigh@geometry.com',
     'license': 'Apache 2.0',
-    'version': open('VERSION').read(),
+    'version': '0.2.8',
     'namespace_package': ['epl'],
     'python_requires': '>3.5.2',
     'packages': ['epl.geometry'],

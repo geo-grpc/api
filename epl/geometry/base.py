@@ -167,16 +167,16 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
 
     def remote_buffer(self, distance: float):
         op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
-                                                  operator=geometry_pb2.GeometryRequest.Buffer,
+                                                  operator=geometry_pb2.BUFFER,
                                                   buffer_params=geometry_pb2.GeometryRequest.BufferParams(distance=distance),
-                                                  result_encoding=geometry_pb2.GeometryData.WKT)
+                                                  result_encoding=geometry_pb2.WKT)
 
         geometry_response = self._stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def remote_project(self, to_spatial_reference: geometry_pb2.SpatialReferenceData):
         op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
-                                                  operator=geometry_pb2.GeometryRequest.Project,
+                                                  operator=geometry_pb2.PROJECT,
                                                   result_sr=to_spatial_reference)
         return BaseGeometry.import_protobuf(op_request.geometry)
 
