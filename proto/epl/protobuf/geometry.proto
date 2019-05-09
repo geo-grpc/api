@@ -42,18 +42,6 @@ message GeometryData {
     SpatialReferenceData sr = 7;
 
     EnvelopeData envelope = 8;
-
-    /*
-        type of geometry operators
-    */
-    enum Encoding {
-        UNKNOWN_ENCODING = 0; // unknown type.
-        WKB = 1; // well-known binary
-        WKT = 2; // well-known text
-        GEOJSON = 3; // geojson
-        ESRI_SHAPE = 4; // esri shape binary
-        ENVELOPE = 5;
-    }
 }
 
 message SpatialReferenceData {
@@ -76,69 +64,74 @@ message EnvelopeData {
     SpatialReferenceData sr = 5;
 }
 
+/*
+    type of geometry operators
+*/
+enum Encoding {
+    UNKNOWN_ENCODING = 0; // unknown type.
+    WKB = 1; // well-known binary
+    WKT = 2; // well-known text
+    GEOJSON = 3; // geojson
+    ESRI_SHAPE = 4; // esri shape binary
+    ENVELOPE = 5;
+}
+
+/*
+    type of geometry operators
+*/
+enum OperatorType {
+    UNKNOWN_OPERATOR = 0;
+    PROJECT = 1;
+    EXPORT_TO_JSON = 2;
+    IMPORT_FROM_JSON = 3;
+    EXPORT_TO_ESRI_SHAPE = 4;
+    IMPORT_FROM_ESRI_SHAPE = 5;
+    UNION = 6;
+    DIFFERENCE = 7;
+    PROXIMITY_2D = 8;
+    RELATE = 9;
+    EQUALS = 10;
+    DISJOINT = 11;
+    INTERSECTS = 12;
+    WITHIN = 13;
+    CONTAINS = 14;
+    CROSSES = 15;
+    TOUCHES = 16;
+    OVERLAPS = 17;
+    BUFFER = 18;
+    DISTANCE = 19;
+    INTERSECTION = 20;
+    CLIP = 21;
+    CUT = 22;
+    DENSIFY_BY_LENGTH = 23;
+    DENSIFY_BY_ANGLE = 24;
+    LABEL_POINT = 25;
+    GEODESIC_BUFFER = 26;
+    GEODETIC_DENSIFY_BY_LENGTH = 27;
+
+    //    SHAPE_PRESERVING_DENSIFY = 28;
+
+    GEODETIC_LENGTH = 29;
+    GEODETIC_AREA = 30;
+    SIMPLIFY = 31;
+    SIMPLIFY_OGC = 32;
+    OFFSET = 33;
+    GENERALIZE = 34;
+    GENERALIZE_BY_AREA = 35;
+    EXPORT_TO_WKB = 36;
+    IMPORT_FROM_WKB = 37;
+    EXPORT_TO_WKT = 38;
+    IMPORT_FROM_WKT = 39;
+    IMPORT_FROM_GEOJSON = 40;
+    EXPORT_TO_GEOJSON = 41;
+    SYMMETRIC_DIFFERENCE = 42;
+    CONVEX_HULL = 43;
+    BOUNDARY = 44;
+    RANDOM_POINTS = 45;
+    ENCLOSING_CIRCLE = 46;
+}
+
 message GeometryRequest {
-    /*
-        type of geometry operators
-    */
-    enum Operator {
-        Project = 0; // project geometry from one spatial reference to another
-
-        ExportToJson = 1; // deprecated
-        ImportFromJson = 2; // deprecated
-        ImportMapGeometryFromJson = 3; // deprecated
-
-        ExportToESRIShape = 4; // export geometry to esrishape binary data
-        ImportFromESRIShape = 5; // import from esrishape binary data
-
-        Union = 6; // union two or more geometries
-        Difference = 7; // difference of two or more geometries
-
-        Proximity2D = 8; // not yet exposed
-
-        Relate = 9; // not yet exposed 9 dim
-        Equals = 10; // relational operator
-        Disjoint = 11; // relational operator
-        Intersects = 12; // relational operator
-        Within = 13; // relational operator
-        Contains = 14; // relational operator
-        Crosses = 15; // relational operator
-        Touches = 16; // relational operator
-        Overlaps = 17; // relational operator
-
-        Buffer = 18; // create polygon that is a buffer of the inputs
-        Distance = 19; // not yet exposed
-        Intersection = 20; // intersection of two or more geometries
-        Clip = 21; // clip a geometry or geometries by a horizon
-        Cut = 22; // cut geometry
-        DensifyByLength = 23;
-        // DensifyByAngle = 24;
-        // LabelPoint = 25;
-
-        GeodesicBuffer = 26;
-        GeodeticDensifyByLength = 27;
-        // ShapePreservingDensify = 28;
-        GeodeticLength = 29;
-        // GeodeticArea = 30;
-
-        Simplify = 31;
-        SimplifyOGC = 32;
-        Offset = 33;
-        Generalize = 34;
-        GeneralizeByArea = 35;
-
-        ExportToWkb = 36;
-        ImportFromWkb = 37;
-        ExportToWkt = 38;
-        ImportFromWkt = 39;
-        ImportFromGeoJson = 40;
-        ExportToGeoJson = 41;
-        SymmetricDifference = 42;
-        ConvexHull = 43;
-        Boundary = 44;
-        RandomPoints = 45;
-        EnclosingCircle = 46;
-    }
-
     //    oneof primary_geoms {
     GeometryData geometry = 1;
     GeometryData left_geometry = 2;
@@ -150,9 +143,9 @@ message GeometryRequest {
     GeometryRequest right_geometry_request = 6;
     //    }
 
-    Operator operator = 7;
+    OperatorType operator = 7;
 
-    GeometryData.Encoding result_encoding = 8;
+    Encoding result_encoding = 8;
 
     SpatialReferenceData operation_sr = 9;
 
@@ -202,10 +195,10 @@ message GeometryRequest {
 
     message OffsetParams {
         enum OffsetJoinType {
-            Round = 0;
-            Bevel = 1;
-            Miter = 2;
-            Square =3;
+            ROUND = 0;
+            BEVEL = 1;
+            MITER = 2;
+            SQUARE =3;
         }
 
         double distance = 1;
@@ -262,11 +255,11 @@ message GeometryResponse {
 
 message FileRequestChunk {
     enum FileType {
-        Shapefile = 0;
+        SHAPEFILE = 0;
     }
 
     GeometryRequest nested_request = 1;
-    GeometryData.Encoding result_encoding_type = 2;
+    Encoding result_encoding_type = 2;
 
     SpatialReferenceData input_sr = 3;
     SpatialReferenceData result_sr = 5;
