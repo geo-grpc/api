@@ -3,8 +3,7 @@ FROM python:3.5-slim
 RUN apt update
 
 WORKDIR /opt/src/geometry-client-python
-
-COPY --from=builder /opt/src/geometry-client-python /opt/src/geometry-client-python
+COPY ./ /opt/src/geometry-client-python
 
 RUN pip3 install .
 
