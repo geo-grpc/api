@@ -20,7 +20,7 @@ class GeometryCollection(BaseMultipartGeometry):
         A sequence of Shapely geometry instances
     """
 
-    def __init__(self, geoms=None, crs: geometry_pb2.SpatialReferenceData=None):
+    def __init__(self, geoms=None, sr: geometry_pb2.SpatialReferenceData=None):
         """
         Parameters
         ----------
@@ -35,7 +35,7 @@ class GeometryCollection(BaseMultipartGeometry):
           >>> l = LineString([(52, -1), (49, 2)])
           >>> gc = GeometryCollection([p, l])
         """
-        BaseMultipartGeometry.__init__(self, crs=crs)
+        BaseMultipartGeometry.__init__(self, sr=sr)
         if not geoms:
             pass
         else:

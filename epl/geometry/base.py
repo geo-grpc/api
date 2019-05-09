@@ -72,11 +72,11 @@ def geometry_type_name(g):
 
 def geom_factory(g,
                  parent=None,
-                 crs: geometry_pb2.SpatialReferenceData = None):
+                 sr: geometry_pb2.SpatialReferenceData = None):
     # Abstract geometry factory for use with topological methods below
     if not g:
         raise ValueError("No Shapely geometry can be created from null value")
-    ob = BaseGeometry(crs=crs)
+    ob = BaseGeometry(sr=sr)
     geom_type = geometry_type_name(g)
     # TODO: check cost of dynamic import by profiling
 
@@ -148,17 +148,17 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
     _stub = None
 
     def __init__(self,
-                 crs: geometry_pb2.SpatialReferenceData):
+                 sr: geometry_pb2.SpatialReferenceData):
         super(BaseGeometry, self).__init__()
         self._stub = _GeometryServiceStub().stub
-        self._crs = crs
+        self._sr = sr
 
     @property
-    def crs(self):
-        return self._crs
+    def sr(self):
+        return self._sr
 
     def export_protobuf(self) -> geometry_pb2.GeometryData:
-        return geometry_pb2.GeometryData(wkb=self.wkb, spatial_reference=self._crs)
+        return geometry_pb2.GeometryData(wkb=self.wkb, sr=self._sr)
 
     @staticmethod
     def import_protobuf(geometry_data: geometry_pb2.GeometryData) -> geometry_pb2.SpatialReferenceData:
@@ -167,17 +167,17 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
 
     def remote_buffer(self, distance: float):
         op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
-                                                  operator_type=geometry_pb2.Buffer,
-                                                  buffer_params=geometry_pb2.BufferParams(distance=distance),
-                                                  result_encoding_type=geometry_pb2.wkb)
+                                                  operator=geometry_pb2.GeometryRequest.Buffer,
+                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(distance=distance),
+                                                  result_encoding=geometry_pb2.GeometryData.WKT)
 
         geometry_response = self._stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def remote_project(self, to_spatial_reference: geometry_pb2.SpatialReferenceData):
         op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
-                                                  operator_type=geometry_pb2.Project,
-                                                  result_spatial_reference=to_spatial_reference)
+                                                  operator=geometry_pb2.GeometryRequest.Project,
+                                                  result_sr=to_spatial_reference)
         return BaseGeometry.import_protobuf(op_request.geometry)
 
     @property
@@ -189,17 +189,17 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         collection of points. The boundary of a point is an empty (null)
         collection.
         """
-        return geom_factory(self.impl['boundary'](self), crs=self.crs)
+        return geom_factory(self.impl['boundary'](self), sr=self.sr)
 
     @property
     def centroid(self):
         """Returns the geometric center of the object"""
-        return geom_factory(self.impl['centroid'](self), crs=self.crs)
+        return geom_factory(self.impl['centroid'](self), sr=self.sr)
 
     @delegated
     def representative_point(self):
         """Returns a point guaranteed to be within the object, cheaply."""
-        return geom_factory(self.impl['representative_point'](self), crs=self.crs)
+        return geom_factory(self.impl['representative_point'](self), sr=self.sr)
 
     @property
     def convex_hull(self):
@@ -209,12 +209,12 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         The convex hull of a three member multipoint, for example, is a
         triangular polygon.
         """
-        return geom_factory(self.impl['convex_hull'](self), crs=self.crs)
+        return geom_factory(self.impl['convex_hull'](self), sr=self.sr)
 
     @property
     def envelope(self):
         """A figure that envelopes the geometry"""
-        return geom_factory(self.impl['envelope'](self), crs=self.crs)
+        return geom_factory(self.impl['envelope'](self), sr=self.sr)
 
     def buffer(self, distance, resolution=16, quadsegs=None,
                cap_style=CAP_STYLE.round, join_style=JOIN_STYLE.round,
@@ -267,7 +267,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
             raise ValueError(
                 'Cannot compute offset from zero-length line segment')
         if cap_style == CAP_STYLE.round and join_style == JOIN_STYLE.round:
-            return geom_factory(self.impl['buffer'](self, distance, res), crs=self.crs)
+            return geom_factory(self.impl['buffer'](self, distance, res), sr=self.sr)
 
         if 'buffer_with_style' not in self.impl:
             raise NotImplementedError("Styled buffering not available for "
@@ -276,7 +276,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         return geom_factory(self.impl['buffer_with_style'](self, distance, res,
                                                            cap_style,
                                                            join_style,
-                                                           mitre_limit), crs=self.crs)
+                                                           mitre_limit), sr=self.sr)
 
     @delegated
     def simplify(self, tolerance, preserve_topology=True):
@@ -292,27 +292,27 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
             op = self.impl['topology_preserve_simplify']
         else:
             op = self.impl['simplify']
-        return geom_factory(op(self, tolerance), crs=self.crs)
+        return geom_factory(op(self, tolerance), sr=self.sr)
 
     # Binary operations
     # -----------------
 
     def difference(self, other):
         """Returns the difference of the geometries"""
-        return geom_factory(self.impl['difference'](self, other), crs=self.crs)
+        return geom_factory(self.impl['difference'](self, other), sr=self.sr)
 
     def intersection(self, other):
         """Returns the intersection of the geometries"""
-        return geom_factory(self.impl['intersection'](self, other), crs=self.crs)
+        return geom_factory(self.impl['intersection'](self, other), sr=self.sr)
 
     def symmetric_difference(self, other):
         """Returns the symmetric difference of the geometries
         (Shapely geometry)"""
-        return geom_factory(self.impl['symmetric_difference'](self, other), crs=self.crs)
+        return geom_factory(self.impl['symmetric_difference'](self, other), sr=self.sr)
 
     def union(self, other):
         """Returns the union of the geometries (Shapely geometry)"""
-        return geom_factory(self.impl['union'](self, other), crs=self.crs)
+        return geom_factory(self.impl['union'](self, other), sr=self.sr)
 
     @property
     def envelope_data(self):
@@ -321,7 +321,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                                          ymin=self.bounds[1],
                                          xmax=self.bounds[2],
                                          ymax=self.bounds[3],
-                                         spatial_reference=self._crs)
+                                         sr=self._sr)
 
 
 class BaseMultipartGeometry(BaseGeometry):
@@ -539,7 +539,7 @@ class RPCReader(object):
             geom = self.read_wkt()
         elif len(self._geometry_data.wkb) > 0:
             geom = self.read_wkb()
-        result = geom_factory(geom, crs=self._geometry_data.spatial_reference)
+        result = geom_factory(geom, sr=self._geometry_data.sr)
         return result
 
     def read_wkb(self):
