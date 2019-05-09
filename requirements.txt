@@ -2,4 +2,4 @@ grpcio-tools
 protobuf
 shapely
 pytest
-epl.protobuf==0.2.6
+epl.protobuf==0.2.7
