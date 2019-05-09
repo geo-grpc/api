@@ -3,7 +3,6 @@
 
 import sys
 _b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
-from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -20,36 +19,19 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='epl.protobuf',
   syntax='proto3',
   serialized_options=_b('\n\020com.epl.protobufB\rGeometryProtoP\001Z+github.com/geo-grpc/api/golang/epl/protobuf\242\002\004GMPB'),
-  serialized_pb=_b('\n\x1b\x65pl/protobuf/geometry.proto\x12\x0c\x65pl.protobuf\"\xd4\x01\n\x0cGeometryData\x12\x13\n\x0bgeometry_id\x18\x01 \x01(\x03\x12\x12\n\nfeature_id\x18\x02 \x01(\t\x12\x0b\n\x03wkt\x18\x03 \x01(\t\x12\x0f\n\x07geojson\x18\x04 \x01(\t\x12\x0b\n\x03wkb\x18\x05 \x01(\x0c\x12\x12\n\nesri_shape\x18\x06 \x01(\x0c\x12.\n\x02sr\x18\x07 \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12,\n\x08\x65nvelope\x18\x08 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\"V\n\x14SpatialReferenceData\x12\x0c\n\x04wkid\x18\x01 \x01(\x05\x12\r\n\x05proj4\x18\x02 \x01(\t\x12\x10\n\x08\x65sri_wkt\x18\x03 \x01(\t\x12\x0f\n\x07ogc_wkt\x18\x04 \x01(\t\"v\n\x0c\x45nvelopeData\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01\x12.\n\x02sr\x18\x05 \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\"\xe0\t\n\x0fGeometryRequest\x12,\n\x08geometry\x18\x01 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12\x31\n\rleft_geometry\x18\x02 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12\x37\n\x10geometry_request\x18\x03 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12<\n\x15left_geometry_request\x18\x04 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12\x32\n\x0eright_geometry\x18\x05 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12=\n\x16right_geometry_request\x18\x06 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12\x38\n\roperator_type\x18\x07 \x01(\x0e\x32!.epl.protobuf.ServiceOperatorType\x12@\n\x14result_encoding_type\x18\x08 \x01(\x0e\x32\".epl.protobuf.GeometryEncodingType\x12\x38\n\x0coperation_sr\x18\t \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12\x35\n\tresult_sr\x18\n \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12\x31\n\rbuffer_params\x18\x0b \x01(\x0b\x32\x1a.epl.protobuf.BufferParams\x12\x31\n\rconvex_params\x18\x0c \x01(\x0b\x32\x1a.epl.protobuf.ConvexParams\x12\x31\n\rrelate_params\x18\r \x01(\x0b\x32\x1a.epl.protobuf.RelateParams\x12>\n\x14random_points_params\x18\x0e \x01(\x0b\x32 .epl.protobuf.RandomPointsParams\x12\x39\n\x11generalize_params\x18\x0f \x01(\x0b\x32\x1e.epl.protobuf.GeneralizeParams\x12=\n\x13intersection_params\x18\x10 \x01(\x0b\x32 .epl.protobuf.IntersectionParams\x12\x31\n\roffset_params\x18\x11 \x01(\x0b\x32\x1a.epl.protobuf.OffsetParams\x12+\n\ncut_params\x18\x12 \x01(\x0b\x32\x17.epl.protobuf.CutParams\x12-\n\x0b\x63lip_params\x18\x13 \x01(\x0b\x32\x18.epl.protobuf.ClipParams\x12\x33\n\x0e\x64\x65nsify_params\x18\x14 \x01(\x0b\x32\x1b.epl.protobuf.DensifyParams\x12\x35\n\x0fsimplify_params\x18\x15 \x01(\x0b\x32\x1c.epl.protobuf.SimplifyParams\x12G\n\x19generalize_by_area_params\x18\x16 \x01(\x0b\x32$.epl.protobuf.GeneralizeByAreaParams\"\x92\x02\n\x10GeometryResponse\x12,\n\x08geometry\x18\x01 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12\x1c\n\x14spatial_relationship\x18\x02 \x01(\x08\x12\x0f\n\x07measure\x18\x03 \x01(\x01\x12\x41\n\nrelate_map\x18\x04 \x03(\x0b\x32-.epl.protobuf.GeometryResponse.RelateMapEntry\x12,\n\x08\x65nvelope\x18\x05 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x1a\x30\n\x0eRelateMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\x03\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\"\xce\x02\n\x10\x46ileRequestChunk\x12\x35\n\x0enested_request\x18\x01 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12@\n\x14result_encoding_type\x18\x02 \x01(\x0e\x32\".epl.protobuf.GeometryEncodingType\x12\x34\n\x08input_sr\x18\x03 \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12\x35\n\tresult_sr\x18\x05 \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\x12\x0c\n\x04size\x18\x07 \x01(\x03\x12\x0e\n\x06offset\x18\x08 \x01(\x03\x12\x11\n\tfile_name\x18\t \x01(\t\x12\x15\n\ris_last_chunk\x18\n \x01(\x08\"r\n\x0c\x42ufferParams\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12\x15\n\rmax_deviation\x18\x02 \x01(\x01\x12\x14\n\x0cunion_result\x18\x03 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x04 \x01(\x05\"z\n\x14GeodeticBufferParams\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12\x15\n\rmax_deviation\x18\x02 \x01(\x01\x12\x14\n\x0cunion_result\x18\x03 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x04 \x01(\x05\"\x1d\n\x0c\x43onvexParams\x12\r\n\x05merge\x18\x01 \x01(\x08\"\x1e\n\x0cRelateParams\x12\x0e\n\x06\x64\x65_9im\x18\x01 \x01(\t\"@\n\x12RandomPointsParams\x12\x1c\n\x14points_per_square_km\x18\x01 \x01(\x01\x12\x0c\n\x04seed\x18\x02 \x01(\x03\"E\n\x10GeneralizeParams\x12\x15\n\rmax_deviation\x18\x01 \x01(\x01\x12\x1a\n\x12remove_degenerates\x18\x02 \x01(\x08\"h\n\x16GeneralizeByAreaParams\x12\x19\n\x11percent_reduction\x18\x01 \x01(\x01\x12\x1a\n\x12remove_degenerates\x18\x02 \x01(\x08\x12\x17\n\x0fmax_point_count\x18\x03 \x01(\x05\",\n\x12IntersectionParams\x12\x16\n\x0e\x64imension_mask\x18\x01 \x01(\x05\"}\n\x0cOffsetParams\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12/\n\tjoin_type\x18\x02 \x01(\x0e\x32\x1c.epl.protobuf.OffsetJoinType\x12\x13\n\x0b\x62\x65vel_ratio\x18\x03 \x01(\x01\x12\x15\n\rflatten_error\x18\x04 \x01(\x01\"#\n\tCutParams\x12\x16\n\x0e\x63onsider_touch\x18\x01 \x01(\x08\":\n\nClipParams\x12,\n\x08\x65nvelope\x18\x01 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\"#\n\rDensifyParams\x12\x12\n\nmax_length\x18\x01 \x01(\x01\"\x1f\n\x0eSimplifyParams\x12\r\n\x05\x66orce\x18\x01 \x01(\x08*\x19\n\x08\x46ileType\x12\r\n\tShapefile\x10\x00*Z\n\x14GeometryEncodingType\x12\x13\n\x0fUKNOWN_ENCODING\x10\x00\x12\x07\n\x03WKB\x10\x01\x12\x07\n\x03WKT\x10\x02\x12\x0b\n\x07GEOJSON\x10\x03\x12\x0e\n\nESRI_SHAPE\x10\x04*\xec\x05\n\x13ServiceOperatorType\x12\x0b\n\x07Project\x10\x00\x12\x10\n\x0c\x45xportToJson\x10\x01\x12\x12\n\x0eImportFromJson\x10\x02\x12\x1d\n\x19ImportMapGeometryFromJson\x10\x03\x12\x15\n\x11\x45xportToESRIShape\x10\x04\x12\x17\n\x13ImportFromESRIShape\x10\x05\x12\x0e\n\nDifference\x10\x07\x12\x0f\n\x0bProximity2D\x10\x08\x12\n\n\x06Relate\x10\t\x12\n\n\x06\x45quals\x10\n\x12\x0c\n\x08\x44isjoint\x10\x0b\x12\x0e\n\nIntersects\x10\x0c\x12\n\n\x06Within\x10\r\x12\x0c\n\x08\x43ontains\x10\x0e\x12\x0b\n\x07\x43rosses\x10\x0f\x12\x0b\n\x07Touches\x10\x10\x12\x0c\n\x08Overlaps\x10\x11\x12\n\n\x06\x42uffer\x10\x12\x12\x0c\n\x08\x44istance\x10\x13\x12\x10\n\x0cIntersection\x10\x14\x12\x08\n\x04\x43lip\x10\x15\x12\x07\n\x03\x43ut\x10\x16\x12\x13\n\x0f\x44\x65nsifyByLength\x10\x17\x12\x12\n\x0eGeodesicBuffer\x10\x1a\x12\x1b\n\x17GeodeticDensifyByLength\x10\x1b\x12\x12\n\x0eGeodeticLength\x10\x1d\x12\x0c\n\x08Simplify\x10\x1f\x12\x0f\n\x0bSimplifyOGC\x10 \x12\n\n\x06Offset\x10!\x12\x0e\n\nGeneralize\x10\"\x12\x14\n\x10GeneralizeByArea\x10#\x12\x0f\n\x0b\x45xportToWkb\x10$\x12\x11\n\rImportFromWkb\x10%\x12\x0f\n\x0b\x45xportToWkt\x10&\x12\x11\n\rImportFromWkt\x10\'\x12\x15\n\x11ImportFromGeoJson\x10(\x12\x13\n\x0f\x45xportToGeoJson\x10)\x12\x17\n\x13SymmetricDifference\x10*\x12\x0e\n\nConvexHull\x10+\x12\x0c\n\x08\x42oundary\x10,\x12\x10\n\x0cRandomPoints\x10-\x12\x13\n\x0f\x45nclosingCircle\x10.*=\n\x0eOffsetJoinType\x12\t\n\x05Round\x10\x00\x12\t\n\x05\x42\x65vel\x10\x01\x12\t\n\x05Miter\x10\x02\x12\n\n\x06Square\x10\x03\x42W\n\x10\x63om.epl.protobufB\rGeometryProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x04GMPBb\x06proto3')
+  serialized_pb=_b('\n\x1b\x65pl/protobuf/geometry.proto\x12\x0c\x65pl.protobuf\"\xb3\x02\n\x0cGeometryData\x12\x13\n\x0bgeometry_id\x18\x01 \x01(\x03\x12\x12\n\nfeature_id\x18\x02 \x01(\t\x12\x0b\n\x03wkt\x18\x03 \x01(\t\x12\x0f\n\x07geojson\x18\x04 \x01(\t\x12\x0b\n\x03wkb\x18\x05 \x01(\x0c\x12\x12\n\nesri_shape\x18\x06 \x01(\x0c\x12.\n\x02sr\x18\x07 \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12,\n\x08\x65nvelope\x18\x08 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\"]\n\x08\x45ncoding\x12\x14\n\x10UNKNOWN_ENCODING\x10\x00\x12\x07\n\x03WKB\x10\x01\x12\x07\n\x03WKT\x10\x02\x12\x0b\n\x07GEOJSON\x10\x03\x12\x0e\n\nESRI_SHAPE\x10\x04\x12\x0c\n\x08\x45NVELOPE\x10\x05\"V\n\x14SpatialReferenceData\x12\x0c\n\x04wkid\x18\x01 \x01(\x05\x12\r\n\x05proj4\x18\x02 \x01(\t\x12\x10\n\x08\x65sri_wkt\x18\x03 \x01(\t\x12\x0f\n\x07ogc_wkt\x18\x04 \x01(\t\"v\n\x0c\x45nvelopeData\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01\x12.\n\x02sr\x18\x05 \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\"\xde\x18\n\x0fGeometryRequest\x12,\n\x08geometry\x18\x01 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12\x31\n\rleft_geometry\x18\x02 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12\x37\n\x10geometry_request\x18\x03 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12<\n\x15left_geometry_request\x18\x04 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12\x32\n\x0eright_geometry\x18\x05 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12=\n\x16right_geometry_request\x18\x06 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12\x38\n\x08operator\x18\x07 \x01(\x0e\x32&.epl.protobuf.GeometryRequest.Operator\x12<\n\x0fresult_encoding\x18\x08 \x01(\x0e\x32#.epl.protobuf.GeometryData.Encoding\x12\x38\n\x0coperation_sr\x18\t \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12\x35\n\tresult_sr\x18\n \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12\x41\n\rbuffer_params\x18\x0b \x01(\x0b\x32*.epl.protobuf.GeometryRequest.BufferParams\x12\x41\n\rconvex_params\x18\x0c \x01(\x0b\x32*.epl.protobuf.GeometryRequest.ConvexParams\x12\x41\n\rrelate_params\x18\r \x01(\x0b\x32*.epl.protobuf.GeometryRequest.RelateParams\x12N\n\x14random_points_params\x18\x0e \x01(\x0b\x32\x30.epl.protobuf.GeometryRequest.RandomPointsParams\x12I\n\x11generalize_params\x18\x0f \x01(\x0b\x32..epl.protobuf.GeometryRequest.GeneralizeParams\x12M\n\x13intersection_params\x18\x10 \x01(\x0b\x32\x30.epl.protobuf.GeometryRequest.IntersectionParams\x12\x41\n\roffset_params\x18\x11 \x01(\x0b\x32*.epl.protobuf.GeometryRequest.OffsetParams\x12;\n\ncut_params\x18\x12 \x01(\x0b\x32\'.epl.protobuf.GeometryRequest.CutParams\x12=\n\x0b\x63lip_params\x18\x13 \x01(\x0b\x32(.epl.protobuf.GeometryRequest.ClipParams\x12\x43\n\x0e\x64\x65nsify_params\x18\x14 \x01(\x0b\x32+.epl.protobuf.GeometryRequest.DensifyParams\x12\x45\n\x0fsimplify_params\x18\x15 \x01(\x0b\x32,.epl.protobuf.GeometryRequest.SimplifyParams\x12W\n\x19generalize_by_area_params\x18\x16 \x01(\x0b\x32\x34.epl.protobuf.GeometryRequest.GeneralizeByAreaParams\x1ar\n\x0c\x42ufferParams\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12\x15\n\rmax_deviation\x18\x02 \x01(\x01\x12\x14\n\x0cunion_result\x18\x03 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x04 \x01(\x05\x1az\n\x14GeodeticBufferParams\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12\x15\n\rmax_deviation\x18\x02 \x01(\x01\x12\x14\n\x0cunion_result\x18\x03 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x04 \x01(\x05\x1a\x1d\n\x0c\x43onvexParams\x12\r\n\x05merge\x18\x01 \x01(\x08\x1a\x1e\n\x0cRelateParams\x12\x0e\n\x06\x64\x65_9im\x18\x01 \x01(\t\x1a@\n\x12RandomPointsParams\x12\x1c\n\x14points_per_square_km\x18\x01 \x01(\x01\x12\x0c\n\x04seed\x18\x02 \x01(\x03\x1a\x45\n\x10GeneralizeParams\x12\x15\n\rmax_deviation\x18\x01 \x01(\x01\x12\x1a\n\x12remove_degenerates\x18\x02 \x01(\x08\x1ah\n\x16GeneralizeByAreaParams\x12\x19\n\x11percent_reduction\x18\x01 \x01(\x01\x12\x1a\n\x12remove_degenerates\x18\x02 \x01(\x08\x12\x17\n\x0fmax_point_count\x18\x03 \x01(\x05\x1a,\n\x12IntersectionParams\x12\x16\n\x0e\x64imension_mask\x18\x01 \x01(\x05\x1a\xd9\x01\n\x0cOffsetParams\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12L\n\tjoin_type\x18\x02 \x01(\x0e\x32\x39.epl.protobuf.GeometryRequest.OffsetParams.OffsetJoinType\x12\x13\n\x0b\x62\x65vel_ratio\x18\x03 \x01(\x01\x12\x15\n\rflatten_error\x18\x04 \x01(\x01\"=\n\x0eOffsetJoinType\x12\t\n\x05Round\x10\x00\x12\t\n\x05\x42\x65vel\x10\x01\x12\t\n\x05Miter\x10\x02\x12\n\n\x06Square\x10\x03\x1a#\n\tCutParams\x12\x16\n\x0e\x63onsider_touch\x18\x01 \x01(\x08\x1a:\n\nClipParams\x12,\n\x08\x65nvelope\x18\x01 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x1a#\n\rDensifyParams\x12\x12\n\nmax_length\x18\x01 \x01(\x01\x1a\x1f\n\x0eSimplifyParams\x12\r\n\x05\x66orce\x18\x01 \x01(\x08\"\xec\x05\n\x08Operator\x12\x0b\n\x07Project\x10\x00\x12\x10\n\x0c\x45xportToJson\x10\x01\x12\x12\n\x0eImportFromJson\x10\x02\x12\x1d\n\x19ImportMapGeometryFromJson\x10\x03\x12\x15\n\x11\x45xportToESRIShape\x10\x04\x12\x17\n\x13ImportFromESRIShape\x10\x05\x12\t\n\x05Union\x10\x06\x12\x0e\n\nDifference\x10\x07\x12\x0f\n\x0bProximity2D\x10\x08\x12\n\n\x06Relate\x10\t\x12\n\n\x06\x45quals\x10\n\x12\x0c\n\x08\x44isjoint\x10\x0b\x12\x0e\n\nIntersects\x10\x0c\x12\n\n\x06Within\x10\r\x12\x0c\n\x08\x43ontains\x10\x0e\x12\x0b\n\x07\x43rosses\x10\x0f\x12\x0b\n\x07Touches\x10\x10\x12\x0c\n\x08Overlaps\x10\x11\x12\n\n\x06\x42uffer\x10\x12\x12\x0c\n\x08\x44istance\x10\x13\x12\x10\n\x0cIntersection\x10\x14\x12\x08\n\x04\x43lip\x10\x15\x12\x07\n\x03\x43ut\x10\x16\x12\x13\n\x0f\x44\x65nsifyByLength\x10\x17\x12\x12\n\x0eGeodesicBuffer\x10\x1a\x12\x1b\n\x17GeodeticDensifyByLength\x10\x1b\x12\x12\n\x0eGeodeticLength\x10\x1d\x12\x0c\n\x08Simplify\x10\x1f\x12\x0f\n\x0bSimplifyOGC\x10 \x12\n\n\x06Offset\x10!\x12\x0e\n\nGeneralize\x10\"\x12\x14\n\x10GeneralizeByArea\x10#\x12\x0f\n\x0b\x45xportToWkb\x10$\x12\x11\n\rImportFromWkb\x10%\x12\x0f\n\x0b\x45xportToWkt\x10&\x12\x11\n\rImportFromWkt\x10\'\x12\x15\n\x11ImportFromGeoJson\x10(\x12\x13\n\x0f\x45xportToGeoJson\x10)\x12\x17\n\x13SymmetricDifference\x10*\x12\x0e\n\nConvexHull\x10+\x12\x0c\n\x08\x42oundary\x10,\x12\x10\n\x0cRandomPoints\x10-\x12\x13\n\x0f\x45nclosingCircle\x10.\"\x92\x02\n\x10GeometryResponse\x12,\n\x08geometry\x18\x01 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12\x1c\n\x14spatial_relationship\x18\x02 \x01(\x08\x12\x0f\n\x07measure\x18\x03 \x01(\x01\x12\x41\n\nrelate_map\x18\x04 \x03(\x0b\x32-.epl.protobuf.GeometryResponse.RelateMapEntry\x12,\n\x08\x65nvelope\x18\x05 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x1a\x30\n\x0eRelateMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\x03\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\"\xea\x02\n\x10\x46ileRequestChunk\x12\x35\n\x0enested_request\x18\x01 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12\x41\n\x14result_encoding_type\x18\x02 \x01(\x0e\x32#.epl.protobuf.GeometryData.Encoding\x12\x34\n\x08input_sr\x18\x03 \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12\x35\n\tresult_sr\x18\x05 \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\x12\x0c\n\x04size\x18\x07 \x01(\x03\x12\x0e\n\x06offset\x18\x08 \x01(\x03\x12\x11\n\tfile_name\x18\t \x01(\t\x12\x15\n\ris_last_chunk\x18\n \x01(\x08\"\x19\n\x08\x46ileType\x12\r\n\tShapefile\x10\x00\x42W\n\x10\x63om.epl.protobufB\rGeometryProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x04GMPBb\x06proto3')
 )
 
-_FILETYPE = _descriptor.EnumDescriptor(
-  name='FileType',
-  full_name='epl.protobuf.FileType',
+
+
+_GEOMETRYDATA_ENCODING = _descriptor.EnumDescriptor(
+  name='Encoding',
+  full_name='epl.protobuf.GeometryData.Encoding',
   filename=None,
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='Shapefile', index=0, number=0,
-      serialized_options=None,
-      type=None),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=3219,
-  serialized_end=3244,
-)
-_sym_db.RegisterEnumDescriptor(_FILETYPE)
-
-FileType = enum_type_wrapper.EnumTypeWrapper(_FILETYPE)
-_GEOMETRYENCODINGTYPE = _descriptor.EnumDescriptor(
-  name='GeometryEncodingType',
-  full_name='epl.protobuf.GeometryEncodingType',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='UKNOWN_ENCODING', index=0, number=0,
+      name='UNKNOWN_ENCODING', index=0, number=0,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
@@ -68,18 +50,51 @@ _GEOMETRYENCODINGTYPE = _descriptor.EnumDescriptor(
       name='ESRI_SHAPE', index=4, number=4,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ENVELOPE', index=5, number=5,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3246,
-  serialized_end=3336,
+  serialized_start=260,
+  serialized_end=353,
 )
-_sym_db.RegisterEnumDescriptor(_GEOMETRYENCODINGTYPE)
+_sym_db.RegisterEnumDescriptor(_GEOMETRYDATA_ENCODING)
 
-GeometryEncodingType = enum_type_wrapper.EnumTypeWrapper(_GEOMETRYENCODINGTYPE)
-_SERVICEOPERATORTYPE = _descriptor.EnumDescriptor(
-  name='ServiceOperatorType',
-  full_name='epl.protobuf.ServiceOperatorType',
+_GEOMETRYREQUEST_OFFSETPARAMS_OFFSETJOINTYPE = _descriptor.EnumDescriptor(
+  name='OffsetJoinType',
+  full_name='epl.protobuf.GeometryRequest.OffsetParams.OffsetJoinType',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='Round', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Bevel', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Miter', index=2, number=2,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Square', index=3, number=3,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2751,
+  serialized_end=2812,
+)
+_sym_db.RegisterEnumDescriptor(_GEOMETRYREQUEST_OFFSETPARAMS_OFFSETJOINTYPE)
+
+_GEOMETRYREQUEST_OPERATOR = _descriptor.EnumDescriptor(
+  name='Operator',
+  full_name='epl.protobuf.GeometryRequest.Operator',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -108,242 +123,178 @@ _SERVICEOPERATORTYPE = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Difference', index=6, number=7,
+      name='Union', index=6, number=6,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Proximity2D', index=7, number=8,
+      name='Difference', index=7, number=7,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Relate', index=8, number=9,
+      name='Proximity2D', index=8, number=8,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Equals', index=9, number=10,
+      name='Relate', index=9, number=9,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Disjoint', index=10, number=11,
+      name='Equals', index=10, number=10,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Intersects', index=11, number=12,
+      name='Disjoint', index=11, number=11,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Within', index=12, number=13,
+      name='Intersects', index=12, number=12,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Contains', index=13, number=14,
+      name='Within', index=13, number=13,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Crosses', index=14, number=15,
+      name='Contains', index=14, number=14,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Touches', index=15, number=16,
+      name='Crosses', index=15, number=15,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Overlaps', index=16, number=17,
+      name='Touches', index=16, number=16,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Buffer', index=17, number=18,
+      name='Overlaps', index=17, number=17,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Distance', index=18, number=19,
+      name='Buffer', index=18, number=18,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Intersection', index=19, number=20,
+      name='Distance', index=19, number=19,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Clip', index=20, number=21,
+      name='Intersection', index=20, number=20,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Cut', index=21, number=22,
+      name='Clip', index=21, number=21,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='DensifyByLength', index=22, number=23,
+      name='Cut', index=22, number=22,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='GeodesicBuffer', index=23, number=26,
+      name='DensifyByLength', index=23, number=23,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='GeodeticDensifyByLength', index=24, number=27,
+      name='GeodesicBuffer', index=24, number=26,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='GeodeticLength', index=25, number=29,
+      name='GeodeticDensifyByLength', index=25, number=27,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Simplify', index=26, number=31,
+      name='GeodeticLength', index=26, number=29,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SimplifyOGC', index=27, number=32,
+      name='Simplify', index=27, number=31,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Offset', index=28, number=33,
+      name='SimplifyOGC', index=28, number=32,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Generalize', index=29, number=34,
+      name='Offset', index=29, number=33,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='GeneralizeByArea', index=30, number=35,
+      name='Generalize', index=30, number=34,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ExportToWkb', index=31, number=36,
+      name='GeneralizeByArea', index=31, number=35,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ImportFromWkb', index=32, number=37,
+      name='ExportToWkb', index=32, number=36,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ExportToWkt', index=33, number=38,
+      name='ImportFromWkb', index=33, number=37,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ImportFromWkt', index=34, number=39,
+      name='ExportToWkt', index=34, number=38,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ImportFromGeoJson', index=35, number=40,
+      name='ImportFromWkt', index=35, number=39,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ExportToGeoJson', index=36, number=41,
+      name='ImportFromGeoJson', index=36, number=40,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SymmetricDifference', index=37, number=42,
+      name='ExportToGeoJson', index=37, number=41,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ConvexHull', index=38, number=43,
+      name='SymmetricDifference', index=38, number=42,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Boundary', index=39, number=44,
+      name='ConvexHull', index=39, number=43,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='RandomPoints', index=40, number=45,
+      name='Boundary', index=40, number=44,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='EnclosingCircle', index=41, number=46,
+      name='RandomPoints', index=41, number=45,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='EnclosingCircle', index=42, number=46,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3339,
-  serialized_end=4087,
+  serialized_start=2982,
+  serialized_end=3730,
 )
-_sym_db.RegisterEnumDescriptor(_SERVICEOPERATORTYPE)
+_sym_db.RegisterEnumDescriptor(_GEOMETRYREQUEST_OPERATOR)
 
-ServiceOperatorType = enum_type_wrapper.EnumTypeWrapper(_SERVICEOPERATORTYPE)
-_OFFSETJOINTYPE = _descriptor.EnumDescriptor(
-  name='OffsetJoinType',
-  full_name='epl.protobuf.OffsetJoinType',
+_FILEREQUESTCHUNK_FILETYPE = _descriptor.EnumDescriptor(
+  name='FileType',
+  full_name='epl.protobuf.FileRequestChunk.FileType',
   filename=None,
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='Round', index=0, number=0,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Bevel', index=1, number=1,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Miter', index=2, number=2,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='Square', index=3, number=3,
+      name='Shapefile', index=0, number=0,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4089,
-  serialized_end=4150,
+  serialized_start=4347,
+  serialized_end=4372,
 )
-_sym_db.RegisterEnumDescriptor(_OFFSETJOINTYPE)
-
-OffsetJoinType = enum_type_wrapper.EnumTypeWrapper(_OFFSETJOINTYPE)
-Shapefile = 0
-UKNOWN_ENCODING = 0
-WKB = 1
-WKT = 2
-GEOJSON = 3
-ESRI_SHAPE = 4
-Project = 0
-ExportToJson = 1
-ImportFromJson = 2
-ImportMapGeometryFromJson = 3
-ExportToESRIShape = 4
-ImportFromESRIShape = 5
-Difference = 7
-Proximity2D = 8
-Relate = 9
-Equals = 10
-Disjoint = 11
-Intersects = 12
-Within = 13
-Contains = 14
-Crosses = 15
-Touches = 16
-Overlaps = 17
-Buffer = 18
-Distance = 19
-Intersection = 20
-Clip = 21
-Cut = 22
-DensifyByLength = 23
-GeodesicBuffer = 26
-GeodeticDensifyByLength = 27
-GeodeticLength = 29
-Simplify = 31
-SimplifyOGC = 32
-Offset = 33
-Generalize = 34
-GeneralizeByArea = 35
-ExportToWkb = 36
-ImportFromWkb = 37
-ExportToWkt = 38
-ImportFromWkt = 39
-ImportFromGeoJson = 40
-ExportToGeoJson = 41
-SymmetricDifference = 42
-ConvexHull = 43
-Boundary = 44
-RandomPoints = 45
-EnclosingCircle = 46
-Round = 0
-Bevel = 1
-Miter = 2
-Square = 3
-
+_sym_db.RegisterEnumDescriptor(_FILEREQUESTCHUNK_FILETYPE)
 
 
 _GEOMETRYDATA = _descriptor.Descriptor(
@@ -414,6 +365,7 @@ _GEOMETRYDATA = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _GEOMETRYDATA_ENCODING,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -422,7 +374,7 @@ _GEOMETRYDATA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=46,
-  serialized_end=258,
+  serialized_end=353,
 )
 
 
@@ -473,8 +425,8 @@ _SPATIALREFERENCEDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=260,
-  serialized_end=346,
+  serialized_start=355,
+  serialized_end=441,
 )
 
 
@@ -532,10 +484,492 @@ _ENVELOPEDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=348,
-  serialized_end=466,
+  serialized_start=443,
+  serialized_end=561,
 )
 
+
+_GEOMETRYREQUEST_BUFFERPARAMS = _descriptor.Descriptor(
+  name='BufferParams',
+  full_name='epl.protobuf.GeometryRequest.BufferParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='distance', full_name='epl.protobuf.GeometryRequest.BufferParams.distance', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='max_deviation', full_name='epl.protobuf.GeometryRequest.BufferParams.max_deviation', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='union_result', full_name='epl.protobuf.GeometryRequest.BufferParams.union_result', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='max_vertices_in_full_circle', full_name='epl.protobuf.GeometryRequest.BufferParams.max_vertices_in_full_circle', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2002,
+  serialized_end=2116,
+)
+
+_GEOMETRYREQUEST_GEODETICBUFFERPARAMS = _descriptor.Descriptor(
+  name='GeodeticBufferParams',
+  full_name='epl.protobuf.GeometryRequest.GeodeticBufferParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='distance', full_name='epl.protobuf.GeometryRequest.GeodeticBufferParams.distance', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='max_deviation', full_name='epl.protobuf.GeometryRequest.GeodeticBufferParams.max_deviation', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='union_result', full_name='epl.protobuf.GeometryRequest.GeodeticBufferParams.union_result', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='max_vertices_in_full_circle', full_name='epl.protobuf.GeometryRequest.GeodeticBufferParams.max_vertices_in_full_circle', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2118,
+  serialized_end=2240,
+)
+
+_GEOMETRYREQUEST_CONVEXPARAMS = _descriptor.Descriptor(
+  name='ConvexParams',
+  full_name='epl.protobuf.GeometryRequest.ConvexParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='merge', full_name='epl.protobuf.GeometryRequest.ConvexParams.merge', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2242,
+  serialized_end=2271,
+)
+
+_GEOMETRYREQUEST_RELATEPARAMS = _descriptor.Descriptor(
+  name='RelateParams',
+  full_name='epl.protobuf.GeometryRequest.RelateParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='de_9im', full_name='epl.protobuf.GeometryRequest.RelateParams.de_9im', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2273,
+  serialized_end=2303,
+)
+
+_GEOMETRYREQUEST_RANDOMPOINTSPARAMS = _descriptor.Descriptor(
+  name='RandomPointsParams',
+  full_name='epl.protobuf.GeometryRequest.RandomPointsParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='points_per_square_km', full_name='epl.protobuf.GeometryRequest.RandomPointsParams.points_per_square_km', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='seed', full_name='epl.protobuf.GeometryRequest.RandomPointsParams.seed', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2305,
+  serialized_end=2369,
+)
+
+_GEOMETRYREQUEST_GENERALIZEPARAMS = _descriptor.Descriptor(
+  name='GeneralizeParams',
+  full_name='epl.protobuf.GeometryRequest.GeneralizeParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='max_deviation', full_name='epl.protobuf.GeometryRequest.GeneralizeParams.max_deviation', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='remove_degenerates', full_name='epl.protobuf.GeometryRequest.GeneralizeParams.remove_degenerates', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2371,
+  serialized_end=2440,
+)
+
+_GEOMETRYREQUEST_GENERALIZEBYAREAPARAMS = _descriptor.Descriptor(
+  name='GeneralizeByAreaParams',
+  full_name='epl.protobuf.GeometryRequest.GeneralizeByAreaParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='percent_reduction', full_name='epl.protobuf.GeometryRequest.GeneralizeByAreaParams.percent_reduction', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='remove_degenerates', full_name='epl.protobuf.GeometryRequest.GeneralizeByAreaParams.remove_degenerates', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='max_point_count', full_name='epl.protobuf.GeometryRequest.GeneralizeByAreaParams.max_point_count', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2442,
+  serialized_end=2546,
+)
+
+_GEOMETRYREQUEST_INTERSECTIONPARAMS = _descriptor.Descriptor(
+  name='IntersectionParams',
+  full_name='epl.protobuf.GeometryRequest.IntersectionParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dimension_mask', full_name='epl.protobuf.GeometryRequest.IntersectionParams.dimension_mask', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2548,
+  serialized_end=2592,
+)
+
+_GEOMETRYREQUEST_OFFSETPARAMS = _descriptor.Descriptor(
+  name='OffsetParams',
+  full_name='epl.protobuf.GeometryRequest.OffsetParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='distance', full_name='epl.protobuf.GeometryRequest.OffsetParams.distance', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='join_type', full_name='epl.protobuf.GeometryRequest.OffsetParams.join_type', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='bevel_ratio', full_name='epl.protobuf.GeometryRequest.OffsetParams.bevel_ratio', index=2,
+      number=3, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='flatten_error', full_name='epl.protobuf.GeometryRequest.OffsetParams.flatten_error', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _GEOMETRYREQUEST_OFFSETPARAMS_OFFSETJOINTYPE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2595,
+  serialized_end=2812,
+)
+
+_GEOMETRYREQUEST_CUTPARAMS = _descriptor.Descriptor(
+  name='CutParams',
+  full_name='epl.protobuf.GeometryRequest.CutParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='consider_touch', full_name='epl.protobuf.GeometryRequest.CutParams.consider_touch', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2814,
+  serialized_end=2849,
+)
+
+_GEOMETRYREQUEST_CLIPPARAMS = _descriptor.Descriptor(
+  name='ClipParams',
+  full_name='epl.protobuf.GeometryRequest.ClipParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='envelope', full_name='epl.protobuf.GeometryRequest.ClipParams.envelope', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2851,
+  serialized_end=2909,
+)
+
+_GEOMETRYREQUEST_DENSIFYPARAMS = _descriptor.Descriptor(
+  name='DensifyParams',
+  full_name='epl.protobuf.GeometryRequest.DensifyParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='max_length', full_name='epl.protobuf.GeometryRequest.DensifyParams.max_length', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2911,
+  serialized_end=2946,
+)
+
+_GEOMETRYREQUEST_SIMPLIFYPARAMS = _descriptor.Descriptor(
+  name='SimplifyParams',
+  full_name='epl.protobuf.GeometryRequest.SimplifyParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='force', full_name='epl.protobuf.GeometryRequest.SimplifyParams.force', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2948,
+  serialized_end=2979,
+)
 
 _GEOMETRYREQUEST = _descriptor.Descriptor(
   name='GeometryRequest',
@@ -587,14 +1021,14 @@ _GEOMETRYREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='operator_type', full_name='epl.protobuf.GeometryRequest.operator_type', index=6,
+      name='operator', full_name='epl.protobuf.GeometryRequest.operator', index=6,
       number=7, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='result_encoding_type', full_name='epl.protobuf.GeometryRequest.result_encoding_type', index=7,
+      name='result_encoding', full_name='epl.protobuf.GeometryRequest.result_encoding', index=7,
       number=8, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -701,8 +1135,9 @@ _GEOMETRYREQUEST = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_GEOMETRYREQUEST_BUFFERPARAMS, _GEOMETRYREQUEST_GEODETICBUFFERPARAMS, _GEOMETRYREQUEST_CONVEXPARAMS, _GEOMETRYREQUEST_RELATEPARAMS, _GEOMETRYREQUEST_RANDOMPOINTSPARAMS, _GEOMETRYREQUEST_GENERALIZEPARAMS, _GEOMETRYREQUEST_GENERALIZEBYAREAPARAMS, _GEOMETRYREQUEST_INTERSECTIONPARAMS, _GEOMETRYREQUEST_OFFSETPARAMS, _GEOMETRYREQUEST_CUTPARAMS, _GEOMETRYREQUEST_CLIPPARAMS, _GEOMETRYREQUEST_DENSIFYPARAMS, _GEOMETRYREQUEST_SIMPLIFYPARAMS, ],
   enum_types=[
+    _GEOMETRYREQUEST_OPERATOR,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -710,8 +1145,8 @@ _GEOMETRYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=469,
-  serialized_end=1717,
+  serialized_start=564,
+  serialized_end=3730,
 )
 
 
@@ -748,8 +1183,8 @@ _GEOMETRYRESPONSE_RELATEMAPENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1946,
-  serialized_end=1994,
+  serialized_start=3959,
+  serialized_end=4007,
 )
 
 _GEOMETRYRESPONSE = _descriptor.Descriptor(
@@ -806,8 +1241,8 @@ _GEOMETRYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1720,
-  serialized_end=1994,
+  serialized_start=3733,
+  serialized_end=4007,
 )
 
 
@@ -886,6 +1321,7 @@ _FILEREQUESTCHUNK = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _FILEREQUESTCHUNK_FILETYPE,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -893,562 +1329,68 @@ _FILEREQUESTCHUNK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1997,
-  serialized_end=2331,
-)
-
-
-_BUFFERPARAMS = _descriptor.Descriptor(
-  name='BufferParams',
-  full_name='epl.protobuf.BufferParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='distance', full_name='epl.protobuf.BufferParams.distance', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='max_deviation', full_name='epl.protobuf.BufferParams.max_deviation', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='union_result', full_name='epl.protobuf.BufferParams.union_result', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='max_vertices_in_full_circle', full_name='epl.protobuf.BufferParams.max_vertices_in_full_circle', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2333,
-  serialized_end=2447,
-)
-
-
-_GEODETICBUFFERPARAMS = _descriptor.Descriptor(
-  name='GeodeticBufferParams',
-  full_name='epl.protobuf.GeodeticBufferParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='distance', full_name='epl.protobuf.GeodeticBufferParams.distance', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='max_deviation', full_name='epl.protobuf.GeodeticBufferParams.max_deviation', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='union_result', full_name='epl.protobuf.GeodeticBufferParams.union_result', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='max_vertices_in_full_circle', full_name='epl.protobuf.GeodeticBufferParams.max_vertices_in_full_circle', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2449,
-  serialized_end=2571,
-)
-
-
-_CONVEXPARAMS = _descriptor.Descriptor(
-  name='ConvexParams',
-  full_name='epl.protobuf.ConvexParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='merge', full_name='epl.protobuf.ConvexParams.merge', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2573,
-  serialized_end=2602,
-)
-
-
-_RELATEPARAMS = _descriptor.Descriptor(
-  name='RelateParams',
-  full_name='epl.protobuf.RelateParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='de_9im', full_name='epl.protobuf.RelateParams.de_9im', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2604,
-  serialized_end=2634,
-)
-
-
-_RANDOMPOINTSPARAMS = _descriptor.Descriptor(
-  name='RandomPointsParams',
-  full_name='epl.protobuf.RandomPointsParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='points_per_square_km', full_name='epl.protobuf.RandomPointsParams.points_per_square_km', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='seed', full_name='epl.protobuf.RandomPointsParams.seed', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2636,
-  serialized_end=2700,
-)
-
-
-_GENERALIZEPARAMS = _descriptor.Descriptor(
-  name='GeneralizeParams',
-  full_name='epl.protobuf.GeneralizeParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='max_deviation', full_name='epl.protobuf.GeneralizeParams.max_deviation', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='remove_degenerates', full_name='epl.protobuf.GeneralizeParams.remove_degenerates', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2702,
-  serialized_end=2771,
-)
-
-
-_GENERALIZEBYAREAPARAMS = _descriptor.Descriptor(
-  name='GeneralizeByAreaParams',
-  full_name='epl.protobuf.GeneralizeByAreaParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='percent_reduction', full_name='epl.protobuf.GeneralizeByAreaParams.percent_reduction', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='remove_degenerates', full_name='epl.protobuf.GeneralizeByAreaParams.remove_degenerates', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='max_point_count', full_name='epl.protobuf.GeneralizeByAreaParams.max_point_count', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2773,
-  serialized_end=2877,
-)
-
-
-_INTERSECTIONPARAMS = _descriptor.Descriptor(
-  name='IntersectionParams',
-  full_name='epl.protobuf.IntersectionParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='dimension_mask', full_name='epl.protobuf.IntersectionParams.dimension_mask', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2879,
-  serialized_end=2923,
-)
-
-
-_OFFSETPARAMS = _descriptor.Descriptor(
-  name='OffsetParams',
-  full_name='epl.protobuf.OffsetParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='distance', full_name='epl.protobuf.OffsetParams.distance', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='join_type', full_name='epl.protobuf.OffsetParams.join_type', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='bevel_ratio', full_name='epl.protobuf.OffsetParams.bevel_ratio', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='flatten_error', full_name='epl.protobuf.OffsetParams.flatten_error', index=3,
-      number=4, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2925,
-  serialized_end=3050,
-)
-
-
-_CUTPARAMS = _descriptor.Descriptor(
-  name='CutParams',
-  full_name='epl.protobuf.CutParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='consider_touch', full_name='epl.protobuf.CutParams.consider_touch', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3052,
-  serialized_end=3087,
-)
-
-
-_CLIPPARAMS = _descriptor.Descriptor(
-  name='ClipParams',
-  full_name='epl.protobuf.ClipParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='envelope', full_name='epl.protobuf.ClipParams.envelope', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3089,
-  serialized_end=3147,
-)
-
-
-_DENSIFYPARAMS = _descriptor.Descriptor(
-  name='DensifyParams',
-  full_name='epl.protobuf.DensifyParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='max_length', full_name='epl.protobuf.DensifyParams.max_length', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3149,
-  serialized_end=3184,
-)
-
-
-_SIMPLIFYPARAMS = _descriptor.Descriptor(
-  name='SimplifyParams',
-  full_name='epl.protobuf.SimplifyParams',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='force', full_name='epl.protobuf.SimplifyParams.force', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3186,
-  serialized_end=3217,
+  serialized_start=4010,
+  serialized_end=4372,
 )
 
 _GEOMETRYDATA.fields_by_name['sr'].message_type = _SPATIALREFERENCEDATA
 _GEOMETRYDATA.fields_by_name['envelope'].message_type = _ENVELOPEDATA
+_GEOMETRYDATA_ENCODING.containing_type = _GEOMETRYDATA
 _ENVELOPEDATA.fields_by_name['sr'].message_type = _SPATIALREFERENCEDATA
+_GEOMETRYREQUEST_BUFFERPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_GEODETICBUFFERPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_CONVEXPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_RELATEPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_RANDOMPOINTSPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_GENERALIZEPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_GENERALIZEBYAREAPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_INTERSECTIONPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_OFFSETPARAMS.fields_by_name['join_type'].enum_type = _GEOMETRYREQUEST_OFFSETPARAMS_OFFSETJOINTYPE
+_GEOMETRYREQUEST_OFFSETPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_OFFSETPARAMS_OFFSETJOINTYPE.containing_type = _GEOMETRYREQUEST_OFFSETPARAMS
+_GEOMETRYREQUEST_CUTPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_CLIPPARAMS.fields_by_name['envelope'].message_type = _ENVELOPEDATA
+_GEOMETRYREQUEST_CLIPPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_DENSIFYPARAMS.containing_type = _GEOMETRYREQUEST
+_GEOMETRYREQUEST_SIMPLIFYPARAMS.containing_type = _GEOMETRYREQUEST
 _GEOMETRYREQUEST.fields_by_name['geometry'].message_type = _GEOMETRYDATA
 _GEOMETRYREQUEST.fields_by_name['left_geometry'].message_type = _GEOMETRYDATA
 _GEOMETRYREQUEST.fields_by_name['geometry_request'].message_type = _GEOMETRYREQUEST
 _GEOMETRYREQUEST.fields_by_name['left_geometry_request'].message_type = _GEOMETRYREQUEST
 _GEOMETRYREQUEST.fields_by_name['right_geometry'].message_type = _GEOMETRYDATA
 _GEOMETRYREQUEST.fields_by_name['right_geometry_request'].message_type = _GEOMETRYREQUEST
-_GEOMETRYREQUEST.fields_by_name['operator_type'].enum_type = _SERVICEOPERATORTYPE
-_GEOMETRYREQUEST.fields_by_name['result_encoding_type'].enum_type = _GEOMETRYENCODINGTYPE
+_GEOMETRYREQUEST.fields_by_name['operator'].enum_type = _GEOMETRYREQUEST_OPERATOR
+_GEOMETRYREQUEST.fields_by_name['result_encoding'].enum_type = _GEOMETRYDATA_ENCODING
 _GEOMETRYREQUEST.fields_by_name['operation_sr'].message_type = _SPATIALREFERENCEDATA
 _GEOMETRYREQUEST.fields_by_name['result_sr'].message_type = _SPATIALREFERENCEDATA
-_GEOMETRYREQUEST.fields_by_name['buffer_params'].message_type = _BUFFERPARAMS
-_GEOMETRYREQUEST.fields_by_name['convex_params'].message_type = _CONVEXPARAMS
-_GEOMETRYREQUEST.fields_by_name['relate_params'].message_type = _RELATEPARAMS
-_GEOMETRYREQUEST.fields_by_name['random_points_params'].message_type = _RANDOMPOINTSPARAMS
-_GEOMETRYREQUEST.fields_by_name['generalize_params'].message_type = _GENERALIZEPARAMS
-_GEOMETRYREQUEST.fields_by_name['intersection_params'].message_type = _INTERSECTIONPARAMS
-_GEOMETRYREQUEST.fields_by_name['offset_params'].message_type = _OFFSETPARAMS
-_GEOMETRYREQUEST.fields_by_name['cut_params'].message_type = _CUTPARAMS
-_GEOMETRYREQUEST.fields_by_name['clip_params'].message_type = _CLIPPARAMS
-_GEOMETRYREQUEST.fields_by_name['densify_params'].message_type = _DENSIFYPARAMS
-_GEOMETRYREQUEST.fields_by_name['simplify_params'].message_type = _SIMPLIFYPARAMS
-_GEOMETRYREQUEST.fields_by_name['generalize_by_area_params'].message_type = _GENERALIZEBYAREAPARAMS
+_GEOMETRYREQUEST.fields_by_name['buffer_params'].message_type = _GEOMETRYREQUEST_BUFFERPARAMS
+_GEOMETRYREQUEST.fields_by_name['convex_params'].message_type = _GEOMETRYREQUEST_CONVEXPARAMS
+_GEOMETRYREQUEST.fields_by_name['relate_params'].message_type = _GEOMETRYREQUEST_RELATEPARAMS
+_GEOMETRYREQUEST.fields_by_name['random_points_params'].message_type = _GEOMETRYREQUEST_RANDOMPOINTSPARAMS
+_GEOMETRYREQUEST.fields_by_name['generalize_params'].message_type = _GEOMETRYREQUEST_GENERALIZEPARAMS
+_GEOMETRYREQUEST.fields_by_name['intersection_params'].message_type = _GEOMETRYREQUEST_INTERSECTIONPARAMS
+_GEOMETRYREQUEST.fields_by_name['offset_params'].message_type = _GEOMETRYREQUEST_OFFSETPARAMS
+_GEOMETRYREQUEST.fields_by_name['cut_params'].message_type = _GEOMETRYREQUEST_CUTPARAMS
+_GEOMETRYREQUEST.fields_by_name['clip_params'].message_type = _GEOMETRYREQUEST_CLIPPARAMS
+_GEOMETRYREQUEST.fields_by_name['densify_params'].message_type = _GEOMETRYREQUEST_DENSIFYPARAMS
+_GEOMETRYREQUEST.fields_by_name['simplify_params'].message_type = _GEOMETRYREQUEST_SIMPLIFYPARAMS
+_GEOMETRYREQUEST.fields_by_name['generalize_by_area_params'].message_type = _GEOMETRYREQUEST_GENERALIZEBYAREAPARAMS
+_GEOMETRYREQUEST_OPERATOR.containing_type = _GEOMETRYREQUEST
 _GEOMETRYRESPONSE_RELATEMAPENTRY.containing_type = _GEOMETRYRESPONSE
 _GEOMETRYRESPONSE.fields_by_name['geometry'].message_type = _GEOMETRYDATA
 _GEOMETRYRESPONSE.fields_by_name['relate_map'].message_type = _GEOMETRYRESPONSE_RELATEMAPENTRY
 _GEOMETRYRESPONSE.fields_by_name['envelope'].message_type = _ENVELOPEDATA
 _FILEREQUESTCHUNK.fields_by_name['nested_request'].message_type = _GEOMETRYREQUEST
-_FILEREQUESTCHUNK.fields_by_name['result_encoding_type'].enum_type = _GEOMETRYENCODINGTYPE
+_FILEREQUESTCHUNK.fields_by_name['result_encoding_type'].enum_type = _GEOMETRYDATA_ENCODING
 _FILEREQUESTCHUNK.fields_by_name['input_sr'].message_type = _SPATIALREFERENCEDATA
 _FILEREQUESTCHUNK.fields_by_name['result_sr'].message_type = _SPATIALREFERENCEDATA
-_OFFSETPARAMS.fields_by_name['join_type'].enum_type = _OFFSETJOINTYPE
-_CLIPPARAMS.fields_by_name['envelope'].message_type = _ENVELOPEDATA
+_FILEREQUESTCHUNK_FILETYPE.containing_type = _FILEREQUESTCHUNK
 DESCRIPTOR.message_types_by_name['GeometryData'] = _GEOMETRYDATA
 DESCRIPTOR.message_types_by_name['SpatialReferenceData'] = _SPATIALREFERENCEDATA
 DESCRIPTOR.message_types_by_name['EnvelopeData'] = _ENVELOPEDATA
 DESCRIPTOR.message_types_by_name['GeometryRequest'] = _GEOMETRYREQUEST
 DESCRIPTOR.message_types_by_name['GeometryResponse'] = _GEOMETRYRESPONSE
 DESCRIPTOR.message_types_by_name['FileRequestChunk'] = _FILEREQUESTCHUNK
-DESCRIPTOR.message_types_by_name['BufferParams'] = _BUFFERPARAMS
-DESCRIPTOR.message_types_by_name['GeodeticBufferParams'] = _GEODETICBUFFERPARAMS
-DESCRIPTOR.message_types_by_name['ConvexParams'] = _CONVEXPARAMS
-DESCRIPTOR.message_types_by_name['RelateParams'] = _RELATEPARAMS
-DESCRIPTOR.message_types_by_name['RandomPointsParams'] = _RANDOMPOINTSPARAMS
-DESCRIPTOR.message_types_by_name['GeneralizeParams'] = _GENERALIZEPARAMS
-DESCRIPTOR.message_types_by_name['GeneralizeByAreaParams'] = _GENERALIZEBYAREAPARAMS
-DESCRIPTOR.message_types_by_name['IntersectionParams'] = _INTERSECTIONPARAMS
-DESCRIPTOR.message_types_by_name['OffsetParams'] = _OFFSETPARAMS
-DESCRIPTOR.message_types_by_name['CutParams'] = _CUTPARAMS
-DESCRIPTOR.message_types_by_name['ClipParams'] = _CLIPPARAMS
-DESCRIPTOR.message_types_by_name['DensifyParams'] = _DENSIFYPARAMS
-DESCRIPTOR.message_types_by_name['SimplifyParams'] = _SIMPLIFYPARAMS
-DESCRIPTOR.enum_types_by_name['FileType'] = _FILETYPE
-DESCRIPTOR.enum_types_by_name['GeometryEncodingType'] = _GEOMETRYENCODINGTYPE
-DESCRIPTOR.enum_types_by_name['ServiceOperatorType'] = _SERVICEOPERATORTYPE
-DESCRIPTOR.enum_types_by_name['OffsetJoinType'] = _OFFSETJOINTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 GeometryData = _reflection.GeneratedProtocolMessageType('GeometryData', (_message.Message,), dict(
@@ -1473,11 +1415,115 @@ EnvelopeData = _reflection.GeneratedProtocolMessageType('EnvelopeData', (_messag
 _sym_db.RegisterMessage(EnvelopeData)
 
 GeometryRequest = _reflection.GeneratedProtocolMessageType('GeometryRequest', (_message.Message,), dict(
+
+  BufferParams = _reflection.GeneratedProtocolMessageType('BufferParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_BUFFERPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.BufferParams)
+    ))
+  ,
+
+  GeodeticBufferParams = _reflection.GeneratedProtocolMessageType('GeodeticBufferParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_GEODETICBUFFERPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.GeodeticBufferParams)
+    ))
+  ,
+
+  ConvexParams = _reflection.GeneratedProtocolMessageType('ConvexParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_CONVEXPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.ConvexParams)
+    ))
+  ,
+
+  RelateParams = _reflection.GeneratedProtocolMessageType('RelateParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_RELATEPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.RelateParams)
+    ))
+  ,
+
+  RandomPointsParams = _reflection.GeneratedProtocolMessageType('RandomPointsParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_RANDOMPOINTSPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.RandomPointsParams)
+    ))
+  ,
+
+  GeneralizeParams = _reflection.GeneratedProtocolMessageType('GeneralizeParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_GENERALIZEPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.GeneralizeParams)
+    ))
+  ,
+
+  GeneralizeByAreaParams = _reflection.GeneratedProtocolMessageType('GeneralizeByAreaParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_GENERALIZEBYAREAPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.GeneralizeByAreaParams)
+    ))
+  ,
+
+  IntersectionParams = _reflection.GeneratedProtocolMessageType('IntersectionParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_INTERSECTIONPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.IntersectionParams)
+    ))
+  ,
+
+  OffsetParams = _reflection.GeneratedProtocolMessageType('OffsetParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_OFFSETPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.OffsetParams)
+    ))
+  ,
+
+  CutParams = _reflection.GeneratedProtocolMessageType('CutParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_CUTPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.CutParams)
+    ))
+  ,
+
+  ClipParams = _reflection.GeneratedProtocolMessageType('ClipParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_CLIPPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.ClipParams)
+    ))
+  ,
+
+  DensifyParams = _reflection.GeneratedProtocolMessageType('DensifyParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_DENSIFYPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.DensifyParams)
+    ))
+  ,
+
+  SimplifyParams = _reflection.GeneratedProtocolMessageType('SimplifyParams', (_message.Message,), dict(
+    DESCRIPTOR = _GEOMETRYREQUEST_SIMPLIFYPARAMS,
+    __module__ = 'epl.protobuf.geometry_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest.SimplifyParams)
+    ))
+  ,
   DESCRIPTOR = _GEOMETRYREQUEST,
   __module__ = 'epl.protobuf.geometry_pb2'
   # @@protoc_insertion_point(class_scope:epl.protobuf.GeometryRequest)
   ))
 _sym_db.RegisterMessage(GeometryRequest)
+_sym_db.RegisterMessage(GeometryRequest.BufferParams)
+_sym_db.RegisterMessage(GeometryRequest.GeodeticBufferParams)
+_sym_db.RegisterMessage(GeometryRequest.ConvexParams)
+_sym_db.RegisterMessage(GeometryRequest.RelateParams)
+_sym_db.RegisterMessage(GeometryRequest.RandomPointsParams)
+_sym_db.RegisterMessage(GeometryRequest.GeneralizeParams)
+_sym_db.RegisterMessage(GeometryRequest.GeneralizeByAreaParams)
+_sym_db.RegisterMessage(GeometryRequest.IntersectionParams)
+_sym_db.RegisterMessage(GeometryRequest.OffsetParams)
+_sym_db.RegisterMessage(GeometryRequest.CutParams)
+_sym_db.RegisterMessage(GeometryRequest.ClipParams)
+_sym_db.RegisterMessage(GeometryRequest.DensifyParams)
+_sym_db.RegisterMessage(GeometryRequest.SimplifyParams)
 
 GeometryResponse = _reflection.GeneratedProtocolMessageType('GeometryResponse', (_message.Message,), dict(
 
@@ -1500,97 +1546,6 @@ FileRequestChunk = _reflection.GeneratedProtocolMessageType('FileRequestChunk', 
   # @@protoc_insertion_point(class_scope:epl.protobuf.FileRequestChunk)
   ))
 _sym_db.RegisterMessage(FileRequestChunk)
-
-BufferParams = _reflection.GeneratedProtocolMessageType('BufferParams', (_message.Message,), dict(
-  DESCRIPTOR = _BUFFERPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.BufferParams)
-  ))
-_sym_db.RegisterMessage(BufferParams)
-
-GeodeticBufferParams = _reflection.GeneratedProtocolMessageType('GeodeticBufferParams', (_message.Message,), dict(
-  DESCRIPTOR = _GEODETICBUFFERPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.GeodeticBufferParams)
-  ))
-_sym_db.RegisterMessage(GeodeticBufferParams)
-
-ConvexParams = _reflection.GeneratedProtocolMessageType('ConvexParams', (_message.Message,), dict(
-  DESCRIPTOR = _CONVEXPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.ConvexParams)
-  ))
-_sym_db.RegisterMessage(ConvexParams)
-
-RelateParams = _reflection.GeneratedProtocolMessageType('RelateParams', (_message.Message,), dict(
-  DESCRIPTOR = _RELATEPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.RelateParams)
-  ))
-_sym_db.RegisterMessage(RelateParams)
-
-RandomPointsParams = _reflection.GeneratedProtocolMessageType('RandomPointsParams', (_message.Message,), dict(
-  DESCRIPTOR = _RANDOMPOINTSPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.RandomPointsParams)
-  ))
-_sym_db.RegisterMessage(RandomPointsParams)
-
-GeneralizeParams = _reflection.GeneratedProtocolMessageType('GeneralizeParams', (_message.Message,), dict(
-  DESCRIPTOR = _GENERALIZEPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.GeneralizeParams)
-  ))
-_sym_db.RegisterMessage(GeneralizeParams)
-
-GeneralizeByAreaParams = _reflection.GeneratedProtocolMessageType('GeneralizeByAreaParams', (_message.Message,), dict(
-  DESCRIPTOR = _GENERALIZEBYAREAPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.GeneralizeByAreaParams)
-  ))
-_sym_db.RegisterMessage(GeneralizeByAreaParams)
-
-IntersectionParams = _reflection.GeneratedProtocolMessageType('IntersectionParams', (_message.Message,), dict(
-  DESCRIPTOR = _INTERSECTIONPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.IntersectionParams)
-  ))
-_sym_db.RegisterMessage(IntersectionParams)
-
-OffsetParams = _reflection.GeneratedProtocolMessageType('OffsetParams', (_message.Message,), dict(
-  DESCRIPTOR = _OFFSETPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.OffsetParams)
-  ))
-_sym_db.RegisterMessage(OffsetParams)
-
-CutParams = _reflection.GeneratedProtocolMessageType('CutParams', (_message.Message,), dict(
-  DESCRIPTOR = _CUTPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.CutParams)
-  ))
-_sym_db.RegisterMessage(CutParams)
-
-ClipParams = _reflection.GeneratedProtocolMessageType('ClipParams', (_message.Message,), dict(
-  DESCRIPTOR = _CLIPPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.ClipParams)
-  ))
-_sym_db.RegisterMessage(ClipParams)
-
-DensifyParams = _reflection.GeneratedProtocolMessageType('DensifyParams', (_message.Message,), dict(
-  DESCRIPTOR = _DENSIFYPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.DensifyParams)
-  ))
-_sym_db.RegisterMessage(DensifyParams)
-
-SimplifyParams = _reflection.GeneratedProtocolMessageType('SimplifyParams', (_message.Message,), dict(
-  DESCRIPTOR = _SIMPLIFYPARAMS,
-  __module__ = 'epl.protobuf.geometry_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.SimplifyParams)
-  ))
-_sym_db.RegisterMessage(SimplifyParams)
 
 
 DESCRIPTOR._options = None

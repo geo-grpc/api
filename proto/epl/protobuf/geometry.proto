@@ -42,6 +42,18 @@ message GeometryData {
     SpatialReferenceData sr = 7;
 
     EnvelopeData envelope = 8;
+
+    /*
+        type of geometry operators
+    */
+    enum Encoding {
+        UNKNOWN_ENCODING = 0; // unknown type.
+        WKB = 1; // well-known binary
+        WKT = 2; // well-known text
+        GEOJSON = 3; // geojson
+        ESRI_SHAPE = 4; // esri shape binary
+        ENVELOPE = 5;
+    }
 }
 
 message SpatialReferenceData {
@@ -65,6 +77,68 @@ message EnvelopeData {
 }
 
 message GeometryRequest {
+    /*
+        type of geometry operators
+    */
+    enum Operator {
+        Project = 0; // project geometry from one spatial reference to another
+
+        ExportToJson = 1; // deprecated
+        ImportFromJson = 2; // deprecated
+        ImportMapGeometryFromJson = 3; // deprecated
+
+        ExportToESRIShape = 4; // export geometry to esrishape binary data
+        ImportFromESRIShape = 5; // import from esrishape binary data
+
+        Union = 6; // union two or more geometries
+        Difference = 7; // difference of two or more geometries
+
+        Proximity2D = 8; // not yet exposed
+
+        Relate = 9; // not yet exposed 9 dim
+        Equals = 10; // relational operator
+        Disjoint = 11; // relational operator
+        Intersects = 12; // relational operator
+        Within = 13; // relational operator
+        Contains = 14; // relational operator
+        Crosses = 15; // relational operator
+        Touches = 16; // relational operator
+        Overlaps = 17; // relational operator
+
+        Buffer = 18; // create polygon that is a buffer of the inputs
+        Distance = 19; // not yet exposed
+        Intersection = 20; // intersection of two or more geometries
+        Clip = 21; // clip a geometry or geometries by a horizon
+        Cut = 22; // cut geometry
+        DensifyByLength = 23;
+        // DensifyByAngle = 24;
+        // LabelPoint = 25;
+
+        GeodesicBuffer = 26;
+        GeodeticDensifyByLength = 27;
+        // ShapePreservingDensify = 28;
+        GeodeticLength = 29;
+        // GeodeticArea = 30;
+
+        Simplify = 31;
+        SimplifyOGC = 32;
+        Offset = 33;
+        Generalize = 34;
+        GeneralizeByArea = 35;
+
+        ExportToWkb = 36;
+        ImportFromWkb = 37;
+        ExportToWkt = 38;
+        ImportFromWkt = 39;
+        ImportFromGeoJson = 40;
+        ExportToGeoJson = 41;
+        SymmetricDifference = 42;
+        ConvexHull = 43;
+        Boundary = 44;
+        RandomPoints = 45;
+        EnclosingCircle = 46;
+    }
+
     //    oneof primary_geoms {
     GeometryData geometry = 1;
     GeometryData left_geometry = 2;
@@ -76,14 +150,85 @@ message GeometryRequest {
     GeometryRequest right_geometry_request = 6;
     //    }
 
-    ServiceOperatorType operator_type = 7;
+    Operator operator = 7;
 
-    GeometryEncodingType result_encoding_type = 8;
+    GeometryData.Encoding result_encoding = 8;
 
     SpatialReferenceData operation_sr = 9;
 
     SpatialReferenceData result_sr = 10;
 
+    message BufferParams {
+        double distance = 1;
+        double max_deviation = 2;
+        bool union_result = 3;
+        int32 max_vertices_in_full_circle = 4;
+    }
+
+    message GeodeticBufferParams {
+        double distance = 1;
+        double max_deviation = 2;
+        bool union_result = 3;
+        int32 max_vertices_in_full_circle = 4;
+    }
+
+    message ConvexParams {
+        bool merge = 1;
+    }
+
+    message RelateParams {
+        string de_9im = 1;
+    }
+
+    message RandomPointsParams {
+        double points_per_square_km = 1;
+        int64 seed = 2;
+    }
+
+    message GeneralizeParams {
+        double max_deviation = 1;
+        bool remove_degenerates = 2;
+    }
+
+    message GeneralizeByAreaParams {
+        double percent_reduction = 1;
+        bool remove_degenerates = 2;
+        int32 max_point_count = 3;
+    }
+
+    message IntersectionParams {
+        int32 dimension_mask = 1;
+    }
+
+    message OffsetParams {
+        enum OffsetJoinType {
+            Round = 0;
+            Bevel = 1;
+            Miter = 2;
+            Square =3;
+        }
+
+        double distance = 1;
+        OffsetJoinType join_type = 2;
+        double bevel_ratio = 3;
+        double flatten_error = 4;
+    }
+
+    message CutParams {
+        bool consider_touch = 1;
+    }
+
+    message ClipParams {
+        EnvelopeData envelope = 1;
+    }
+
+    message DensifyParams {
+        double max_length = 1;
+    }
+
+    message SimplifyParams {
+        bool force = 1;
+    }
     //    oneof params {
     BufferParams buffer_params = 11;
     ConvexParams convex_params = 12;
@@ -116,8 +261,12 @@ message GeometryResponse {
 }
 
 message FileRequestChunk {
+    enum FileType {
+        Shapefile = 0;
+    }
+
     GeometryRequest nested_request = 1;
-    GeometryEncodingType result_encoding_type = 2;
+    GeometryData.Encoding result_encoding_type = 2;
 
     SpatialReferenceData input_sr = 3;
     SpatialReferenceData result_sr = 5;
@@ -128,153 +277,4 @@ message FileRequestChunk {
     string file_name = 9;
 
     bool is_last_chunk = 10;
-}
-
-message BufferParams {
-    double distance = 1;
-    double max_deviation = 2;
-    bool union_result = 3;
-    int32 max_vertices_in_full_circle = 4;
-}
-
-message GeodeticBufferParams {
-    double distance = 1;
-    double max_deviation = 2;
-    bool union_result = 3;
-    int32 max_vertices_in_full_circle = 4;
-}
-
-message ConvexParams {
-    bool merge = 1;
-}
-
-message RelateParams {
-    string de_9im = 1;
-}
-
-message RandomPointsParams {
-    double points_per_square_km = 1;
-    int64 seed = 2;
-}
-
-message GeneralizeParams {
-    double max_deviation = 1;
-    bool remove_degenerates = 2;
-}
-
-message GeneralizeByAreaParams {
-    double percent_reduction = 1;
-    bool remove_degenerates = 2;
-    int32 max_point_count = 3;
-}
-
-message IntersectionParams {
-    int32 dimension_mask = 1;
-}
-
-message OffsetParams {
-    double distance = 1;
-    OffsetJoinType join_type = 2;
-    double bevel_ratio = 3;
-    double flatten_error = 4;
-}
-
-message CutParams {
-    bool consider_touch = 1;
-}
-
-message ClipParams {
-    EnvelopeData envelope = 1;
-}
-
-message DensifyParams {
-    double max_length = 1;
-}
-
-message SimplifyParams {
-    bool force = 1;
-}
-
-enum FileType {
-    Shapefile = 0;
-}
-
-/*
-  type of geometry operators
-*/
-enum GeometryEncodingType {
-    UKNOWN_ENCODING = 0; // unknown type.
-    WKB = 1; // well-known binary
-    WKT = 2; // well-known text
-    GEOJSON = 3; // geojson
-    ESRI_SHAPE = 4; // esri shape binary
-}
-
-/*
-  type of geometry operators
-*/
-enum ServiceOperatorType {
-    Project = 0; // project geometry from one spatial reference to another
-
-    ExportToJson = 1; // deprecated
-    ImportFromJson = 2; // deprecated
-    ImportMapGeometryFromJson = 3; // deprecated
-
-    ExportToESRIShape = 4; // export geometry to esrishape binary data
-    ImportFromESRIShape = 5; // import from esrishape binary data
-
-    //Union = 6; // union two or more geometries
-    Difference = 7; // difference of two or more geometries
-
-    Proximity2D = 8; // not yet exposed
-
-    Relate = 9; // not yet exposed 9 dim
-    Equals = 10; // relational operator
-    Disjoint = 11; // relational operator
-    Intersects = 12; // relational operator
-    Within = 13; // relational operator
-    Contains = 14; // relational operator
-    Crosses = 15; // relational operator
-    Touches = 16; // relational operator
-    Overlaps = 17; // relational operator
-
-    Buffer = 18; // create polygon that is a buffer of the inputs
-    Distance = 19; // not yet exposed
-    Intersection = 20; // intersection of two or more geometries
-    Clip = 21; // clip a geometry or geometries by a horizon
-    Cut = 22; // cut geometry
-    DensifyByLength = 23;
-    // DensifyByAngle = 24;
-    // LabelPoint = 25;
-
-    GeodesicBuffer = 26;
-    GeodeticDensifyByLength = 27;
-    // ShapePreservingDensify = 28;
-    GeodeticLength = 29;
-    // GeodeticArea = 30;
-
-    Simplify = 31;
-    SimplifyOGC = 32;
-    Offset = 33;
-    Generalize = 34;
-    GeneralizeByArea = 35;
-
-    ExportToWkb = 36;
-    ImportFromWkb = 37;
-    ExportToWkt = 38;
-    ImportFromWkt = 39;
-    ImportFromGeoJson = 40;
-    ExportToGeoJson = 41;
-    SymmetricDifference = 42;
-    ConvexHull = 43;
-    Boundary = 44;
-    RandomPoints = 45;
-    EnclosingCircle = 46;
-}
-
-enum OffsetJoinType {
-    Round = 0;
-    Bevel = 1;
-    Miter = 2;
-    Square =3;
 }
