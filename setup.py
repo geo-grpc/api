@@ -19,11 +19,12 @@ kwargs = {
     'version': open('VERSION').read(),
     'namespace_package': ['epl'],
     'python_requires': '>3.5.2',
-    'packages': ['epl.grpc', 'epl.protobuf', 'epl.geometry'],
+    'packages': ['epl.geometry'],
     'install_requires': [
         'grpcio-tools',
         'protobuf',
-        'shapely'
+        'shapely',
+        'epl.protobuf'
     ],
     'zip_safe': False
 }

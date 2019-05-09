@@ -27,7 +27,7 @@ from shapely.wkb import loads as wkbloads
 from epl.geometry import Point, MultiPoint, Polygon, LineString
 
 from epl.protobuf.geometry_pb2 import *
-import epl.grpc.geometry_service_pb2_grpc as geometry_grpc
+import epl.protobuf.geometry_service_pb2_grpc as geometry_grpc
 import numpy as np
 
 

@@ -14,8 +14,7 @@ from shapely.geos import lgeos
 from shapely.geometry import base as shapely_base
 from shapely.impl import delegated
 
-from epl.protobuf import geometry_pb2
-from epl.grpc import geometry_service_pb2_grpc
+from epl.protobuf import geometry_pb2, geometry_service_pb2_grpc
 
 
 integer_types = (int,)
