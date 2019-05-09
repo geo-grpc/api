@@ -1,6 +1,6 @@
 FROM python:3.5-slim
 
-RUN apt update
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
 
 WORKDIR /opt/src/geometry-client-python
 COPY ./ /opt/src/geometry-client-python
