@@ -28,44 +28,73 @@ option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
 
 package epl.protobuf;
 
+/**
+ * Container for Geometry data, has id, encoded geometry coordinates and shape, spatial reference and envelope
+ */
 message GeometryData {
-    int64 geometry_id = 1;
+    // geometry id as an integer
+    uint64 geometry_id = 1;
+    // feature id as a string (for guids and other ids that aren't numeric)
     string feature_id = 2;
 
-    // oneof block
-    string wkt = 3;
-    string geojson = 4;
-    bytes wkb = 5;
-    bytes esri_shape = 6;
-    // oneof block
+    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
 
+    // well known text format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
+    string wkt = 3;
+    // geojson format for geometry encoding, https://en.wikipedia.org/wiki/GeoJSON
+    string geojson = 4;
+    // well known binary format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry#Well-known_binary
+    bytes wkb = 5;
+    // ESRI shape binary format for geometry encoding (fastest decoding and encoding for geometry service) https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
+    bytes esri_shape = 6;
+
+    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
+
+    // spatial reference of geometry
     SpatialReferenceData sr = 7;
 
+    // envelope or bounding box of geometry
     EnvelopeData envelope = 8;
 }
 
+/**
+ * Spatial Reference system. Used with a geometry to define the reference system of the geometry's coordinates
+ */
 message SpatialReferenceData {
-    // oneof block
+    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
 
-    int32 wkid = 1;
+    // wkid (well know id), or srid (spatial reference id) of the projected or geographic coordinate system
+    int32 epsg_wkid = 1;
+    // proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html
     string proj4 = 2;
+
+    // deprecated
     string esri_wkt = 3;
+    // deprecated
     string ogc_wkt = 4;
 
-    // oneof block
+    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
 }
 
-
+/**
+ * Container for Envelope data (bounding box), x and y min and max and an optional spatial reference
+ */
 message EnvelopeData {
+    // min x value
     double xmin = 1;
+    // min y value
     double ymin = 2;
+    // max x value
     double xmax = 3;
+    // max y value
     double ymax = 4;
+
+    // spatial reference of envelope
     SpatialReferenceData sr = 5;
 }
 
 /*
-    type of geometry operators
+    type of geometry encodings
 */
 enum Encoding {
     UNKNOWN_ENCODING = 0; // unknown type.
@@ -73,7 +102,7 @@ enum Encoding {
     WKT = 2; // well-known text
     GEOJSON = 3; // geojson
     ESRI_SHAPE = 4; // esri shape binary
-    ENVELOPE = 5;
+    ENVELOPE = 5; // @exclude deprecated
 }
 
 /*
@@ -81,13 +110,13 @@ enum Encoding {
 */
 enum OperatorType {
     UNKNOWN_OPERATOR = 0;
-    PROJECT = 1;
+    PROJECT = 1; // project geometry
     EXPORT_TO_JSON = 2;
     IMPORT_FROM_JSON = 3;
     EXPORT_TO_ESRI_SHAPE = 4;
     IMPORT_FROM_ESRI_SHAPE = 5;
-    UNION = 6;
-    DIFFERENCE = 7;
+    UNION = 6; // union one or more geometries
+    DIFFERENCE = 7; // difference two geometries
     PROXIMITY_2D = 8;
     RELATE = 9;
     EQUALS = 10;
@@ -105,14 +134,14 @@ enum OperatorType {
     CUT = 22;
     DENSIFY_BY_LENGTH = 23;
     DENSIFY_BY_ANGLE = 24;
-    LABEL_POINT = 25;
+    // LABEL_POINT = 25;
     GEODESIC_BUFFER = 26;
     GEODETIC_DENSIFY_BY_LENGTH = 27;
 
-    //    SHAPE_PRESERVING_DENSIFY = 28;
+    // SHAPE_PRESERVING_DENSIFY = 28;
 
-    GEODETIC_LENGTH = 29;
-    GEODETIC_AREA = 30;
+    // GEODETIC_LENGTH = 29;
+    // GEODETIC_AREA = 30;
     SIMPLIFY = 31;
     SIMPLIFY_OGC = 32;
     OFFSET = 33;
@@ -132,24 +161,40 @@ enum OperatorType {
 }
 
 message GeometryRequest {
-    //    oneof primary_geoms {
+    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
+
+    // geometry to be operated on
     GeometryData geometry = 1;
+    // if there are two geometries to operate on, then this is the first geometry
     GeometryData left_geometry = 2;
+    // the result of the geometry request is to be operated on by this request
     GeometryRequest geometry_request = 3;
+    // if there are two geometries, the left geometry request is to be operated on by this request
     GeometryRequest left_geometry_request = 4;
-    //    }
 
+    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
+
+    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
+
+    // if there are two geometries to operate on, then this is the second geometry
     GeometryData right_geometry = 5;
+    // if there are two geometries, the right geometry request is to be operated on by this request
     GeometryRequest right_geometry_request = 6;
-    //    }
 
+    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
+
+    // (default is PROJECT) geometry operation to perform on input geometries
     OperatorType operator = 7;
 
+    // (default is wkb) encoding, wkt, wkb, esri_shape, etc
     Encoding result_encoding = 8;
 
+    // (optional) the spatial reference the geometric operation should take place in. If both inputs are in different spatial references, you can use this to define a common reference system for the geometric operation.
     SpatialReferenceData operation_sr = 9;
 
+    // (optional) after the operation has been completed, project the results to a new spatial reference.
     SpatialReferenceData result_sr = 10;
+
 
     message BufferParams {
         double distance = 1;
@@ -222,7 +267,9 @@ message GeometryRequest {
     message SimplifyParams {
         bool force = 1;
     }
+
     //    oneof params {
+
     BufferParams buffer_params = 11;
     ConvexParams convex_params = 12;
     RelateParams relate_params = 13;
@@ -235,6 +282,7 @@ message GeometryRequest {
     DensifyParams densify_params = 20;
     SimplifyParams simplify_params = 21;
     GeneralizeByAreaParams generalize_by_area_params = 22;
+
     //    }
 }
 

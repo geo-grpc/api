@@ -35,29 +35,49 @@ import "google/protobuf/any.proto";
 import "epl/protobuf/geometry.proto";
 import "epl/protobuf/query.proto";
 
-enum AssetType {
-    UNKNOWN_ASSET = 0;
-    JPEG = 1;
-    GEOTIFF = 2;
-    LERC = 3;
-    MRF = 4;
-    MRF_IDX = 5;
-    MRF_XML = 6;
-    CO_GEOTIFF = 7;
-    RAW = 8;
-    THUMBNAIL = 9;
-    TIFF = 10;
+/**
+ * Spatio-Temporal Asset Catalog Item. This data item has a spatial and temporal extent. It has a unique identifier
+ * downloadable assets. It may have an extension with details beyond the spatial and temporal extents. It may have
+ * additional properties in the properties field
+ */
+message StacItem {
+    // Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs.
+    string id = 1;
+
+    // 'type" ignored as this isn't geojson
+
+    // the spatial shape of the item. must have a spatial reference defined.
+    epl.protobuf.GeometryData geometry = 3;
+    // the bounding box of the spatial shape of the item. must have a spatial reference defined.
+    epl.protobuf.EnvelopeData bbox = 4;
+    // the properties of an item that are not defined within the stac specification. Requires marshalling and un-marshalling https://developers.google.com/protocol-buffers/docs/proto3#any
+    google.protobuf.Any properties = 5;
+
+    // links ignored because we're using grpc, but maybe it shouldn't be in cases of using protobuf without grpc?
+    reserved 6;
+
+    // Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter 'Asset types'.
+    map<string, Asset> assets = 7;
+
+    // The searchable date and time of the assets, in UTC
+    google.protobuf.Timestamp datetime = 8;
+
+    // (optional) A human readable title describing the item.
+    string title = 9;
+    // (optional) The id of the STAC Collection this Item references to (see collection relation type below). This field is required if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection.
+    string collection = 10;
+
+    // non-standard
+    google.protobuf.Timestamp observed = 11;
+    google.protobuf.Timestamp processed = 12;
+    google.protobuf.Timestamp updated = 13;
+
+    Eo eo = 14;
+    Sar sar = 15;
+    Dtr dtr = 16;
 }
 
-enum CloudPlatform {
-    UNKNOWN_CLOUD_PLATFORM = 0;
-    AWS = 1;
-    GCP = 2;
-    AZURE = 3;
-}
-
-
-message StacSearchRequest {
+message StacRequest {
     StringField id = 1;
 
     //    oneof
@@ -113,31 +133,6 @@ message Asset {
     string bucket_region = 7;
     string bucket = 8;
     string object_path = 9;
-}
-
-message StacMetadata {
-    string id = 1;
-    // 'type" ignored as this isn't geojson
-    epl.protobuf.GeometryData geometry = 3;
-    epl.protobuf.EnvelopeData bbox = 4;
-    google.protobuf.Any properties = 5;
-
-    // links ignored because we're using grpc,
-    // but maybe it shouldn't be in cases of using protobuf
-    // without grpc?
-    reserved 6;
-
-    map<string, Asset> assets = 7;
-    google.protobuf.Timestamp datetime = 8;
-
-    // non-standard
-    google.protobuf.Timestamp observed = 9;
-    google.protobuf.Timestamp processed = 11;
-    google.protobuf.Timestamp updated = 12;
-
-    Eo eo = 13;
-    Sar sar = 14;
-    Dtr dtr = 15;
 }
 
 message Dtr {
@@ -240,4 +235,25 @@ message EoRequest {
     FloatField cloud_cover = 10;
 
     Eo.Band bands = 11;
+}
+
+enum AssetType {
+    UNKNOWN_ASSET = 0;
+    JPEG = 1;
+    GEOTIFF = 2;
+    LERC = 3;
+    MRF = 4;
+    MRF_IDX = 5;
+    MRF_XML = 6;
+    CO_GEOTIFF = 7;
+    RAW = 8;
+    THUMBNAIL = 9;
+    TIFF = 10;
+}
+
+enum CloudPlatform {
+    UNKNOWN_CLOUD_PLATFORM = 0;
+    AWS = 1;
+    GCP = 2;
+    AZURE = 3;
 }
