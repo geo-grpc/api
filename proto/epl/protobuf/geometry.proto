@@ -85,6 +85,8 @@ message SpatialReferenceData {
     string proj4 = 2;
     // custom projection
     Custom custom = 3;
+    // well-known text string of spatial reference
+    string wkt = 4;
 
     // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
 }
