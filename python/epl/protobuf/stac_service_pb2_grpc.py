@@ -17,17 +17,17 @@ class StacServiceStub(object):
     """
     self.Search = channel.unary_stream(
         '/epl.protobuf.StacService/Search',
-        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacSearchRequest.SerializeToString,
-        response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacMetadata.FromString,
+        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacRequest.SerializeToString,
+        response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
         )
     self.Insert = channel.unary_unary(
         '/epl.protobuf.StacService/Insert',
-        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacMetadata.SerializeToString,
+        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.FromString,
         )
     self.Update = channel.unary_unary(
         '/epl.protobuf.StacService/Update',
-        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacMetadata.SerializeToString,
+        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.FromString,
         )
 
@@ -63,17 +63,17 @@ def add_StacServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'Search': grpc.unary_stream_rpc_method_handler(
           servicer.Search,
-          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacSearchRequest.FromString,
-          response_serializer=epl_dot_protobuf_dot_stac__pb2.StacMetadata.SerializeToString,
+          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacRequest.FromString,
+          response_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
       ),
       'Insert': grpc.unary_unary_rpc_method_handler(
           servicer.Insert,
-          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacMetadata.FromString,
+          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
           response_serializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.SerializeToString,
       ),
       'Update': grpc.unary_unary_rpc_method_handler(
           servicer.Update,
-          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacMetadata.FromString,
+          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
           response_serializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.SerializeToString,
       ),
   }

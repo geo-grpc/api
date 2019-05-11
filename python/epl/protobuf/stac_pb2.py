@@ -25,7 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='epl.protobuf',
   syntax='proto3',
   serialized_options=_b('\n\020com.epl.protobufB\tStacProtoP\001Z+github.com/geo-grpc/api/golang/epl/protobuf\242\002\004STPB'),
-  serialized_pb=_b('\n\x17\x65pl/protobuf/stac.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x19google/protobuf/any.proto\x1a\x1b\x65pl/protobuf/geometry.proto\x1a\x18\x65pl/protobuf/query.proto\"\x89\x04\n\x11StacSearchRequest\x12%\n\x02id\x18\x01 \x01(\x0b\x32\x19.epl.protobuf.StringField\x12,\n\x08geometry\x18\x02 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12(\n\x04\x62\x62ox\x18\x03 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x12\x37\n\x10geometry_request\x18\x04 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12\x30\n\x12properties_request\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12.\n\x08\x64\x61tetime\x18\x06 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12.\n\x08observed\x18\x07 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12/\n\tprocessed\x18\x08 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12-\n\x07updated\x18\t \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12+\n\neo_request\x18\n \x01(\x0b\x32\x17.epl.protobuf.EoRequest\x12\r\n\x05limit\x18\x0b \x01(\r\x12\x0e\n\x06offset\x18\x0c \x01(\x04\"\x90\x02\n\x0b\x42\x61ndDetails\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x63ommon_name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12(\n\x03gsd\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08\x61\x63\x63uracy\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x36\n\x11\x63\x65nter_wavelength\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x38\n\x13\x66ull_width_half_max\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\"\x80\x02\n\x05\x41sset\x12\x0c\n\x04href\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\'\n\x08\x65o_bands\x18\x03 \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\x12+\n\nasset_type\x18\x04 \x01(\x0e\x32\x17.epl.protobuf.AssetType\x12\x33\n\x0e\x63loud_platform\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.CloudPlatform\x12\x14\n\x0c\x62ucket_owner\x18\x06 \x01(\t\x12\x15\n\rbucket_region\x18\x07 \x01(\t\x12\x0e\n\x06\x62ucket\x18\x08 \x01(\t\x12\x13\n\x0bobject_path\x18\t \x01(\t\"\xb4\x04\n\x0cStacMetadata\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x08geometry\x18\x03 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12(\n\x04\x62\x62ox\x18\x04 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x12(\n\nproperties\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x36\n\x06\x61ssets\x18\x07 \x03(\x0b\x32&.epl.protobuf.StacMetadata.AssetsEntry\x12,\n\x08\x64\x61tetime\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08observed\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12-\n\tprocessed\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07updated\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1c\n\x02\x65o\x18\r \x01(\x0b\x32\x10.epl.protobuf.Eo\x12\x1e\n\x03sar\x18\x0e \x01(\x0b\x32\x11.epl.protobuf.Sar\x12\x1e\n\x03\x64tr\x18\x0f \x01(\x0b\x32\x11.epl.protobuf.Dtr\x1a\x42\n\x0b\x41ssetsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.epl.protobuf.Asset:\x02\x38\x01J\x04\x08\x06\x10\x07\"Y\n\x03\x44tr\x12)\n\x05start\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"J\n\x12StacUpsertResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\x12\x13\n\x0bstatus_code\x18\x02 \x01(\x05\x12\x0f\n\x07\x64\x61ta_id\x18\x03 \x01(\t\"\x99\x01\n\x03Sar\x12,\n\x08platform\x18\x01 \x01(\x0e\x32\x1a.epl.protobuf.Sar.Platform\">\n\x08Platform\x12\x14\n\x10UNKNOWN_PLATFORM\x10\x00\x12\x0b\n\x07\x45NVISAT\x10\x01\x12\x0f\n\x0bSENTINEL_1A\x10\x02\"$\n\nInstrument\x12\x16\n\x12UNKNOWN_INSTRUMENT\x10\x00\"\x89\x08\n\x02\x45o\x12\x0c\n\x04\x65psg\x18\x01 \x01(\r\x12+\n\x08platform\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.Eo.Platform\x12/\n\ninstrument\x18\x03 \x01(\x0e\x32\x1b.epl.protobuf.Eo.Instrument\x12\x35\n\rconstellation\x18\x04 \x01(\x0e\x32\x1e.epl.protobuf.Eo.Constellation\x12\x30\n\x0bsun_azimuth\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x32\n\rsun_elevation\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12(\n\x03gsd\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12.\n\toff_nadir\x18\x08 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12,\n\x07\x61zimuth\x18\t \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x30\n\x0b\x63loud_cover\x18\n \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12$\n\x05\x62\x61nds\x18\x0b \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\"\xb9\x01\n\x08Platform\x12\x14\n\x10UNKNOWN_PLATFORM\x10\x00\x12\r\n\tLANDSAT_1\x10\x02\x12\r\n\tLANDSAT_2\x10\x04\x12\r\n\tLANDSAT_3\x10\x08\x12\x0f\n\x0bLANDSAT_123\x10\x0e\x12\r\n\tLANDSAT_4\x10\x10\x12\r\n\tLANDSAT_5\x10 \x12\x0e\n\nLANDSAT_45\x10\x30\x12\r\n\tLANDSAT_7\x10@\x12\x0e\n\tLANDSAT_8\x10\x80\x01\x12\x0c\n\x07SWIFT_2\x10\x80\x02\"B\n\nInstrument\x12\x16\n\x12UNKNOWN_INSTRUMENT\x10\x00\x12\x07\n\x03OLI\x10\x02\x12\x08\n\x04TIRS\x10\x04\x12\t\n\x05POM_1\x10\x08\"V\n\rConstellation\x12\x19\n\x15UNKNOWN_CONSTELLATION\x10\x00\x12\x0b\n\x07LANDSAT\x10\x02\x12\x08\n\x04NAIP\x10\x04\x12\x08\n\x04PNOA\x10\x08\x12\t\n\x05SWIFT\x10\x10\"\xc1\x01\n\x04\x42\x61nd\x12\x10\n\x0cUNKNOWN_BAND\x10\x00\x12\x0b\n\x07\x43OASTAL\x10\x02\x12\x08\n\x04\x42LUE\x10\x04\x12\t\n\x05GREEN\x10\x08\x12\x07\n\x03RED\x10\x10\x12\x07\n\x03RGB\x10\x1c\x12\x11\n\rNEAR_INFRARED\x10 \x12\t\n\x05RGBIR\x10<\x12\x0b\n\x07SWIR_16\x10@\x12\x0c\n\x07SWIR_22\x10\x80\x01\x12\x11\n\x0cPANCHROMATIC\x10\x80\x02\x12\x0b\n\x06\x43IRRUS\x10\x80\x04\x12\x0c\n\x07LWIR_11\x10\x80\x08\x12\x0c\n\x07LWIR_12\x10\x80\x10\"\xe2\x03\n\tEoRequest\x12\x0c\n\x04\x65psg\x18\x01 \x01(\x05\x12+\n\x08platform\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.Eo.Platform\x12/\n\ninstrument\x18\x03 \x01(\x0e\x32\x1b.epl.protobuf.Eo.Instrument\x12\x35\n\rconstellation\x18\x04 \x01(\x0e\x32\x1e.epl.protobuf.Eo.Constellation\x12-\n\x0bsun_azimuth\x18\x05 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12/\n\rsun_elevation\x18\x06 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12%\n\x03gsd\x18\x07 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12+\n\toff_nadir\x18\x08 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12)\n\x07\x61zimuth\x18\t \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12-\n\x0b\x63loud_cover\x18\n \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12$\n\x05\x62\x61nds\x18\x0b \x01(\x0e\x32\x15.epl.protobuf.Eo.Band*\x94\x01\n\tAssetType\x12\x11\n\rUNKNOWN_ASSET\x10\x00\x12\x08\n\x04JPEG\x10\x01\x12\x0b\n\x07GEOTIFF\x10\x02\x12\x08\n\x04LERC\x10\x03\x12\x07\n\x03MRF\x10\x04\x12\x0b\n\x07MRF_IDX\x10\x05\x12\x0b\n\x07MRF_XML\x10\x06\x12\x0e\n\nCO_GEOTIFF\x10\x07\x12\x07\n\x03RAW\x10\x08\x12\r\n\tTHUMBNAIL\x10\t\x12\x08\n\x04TIFF\x10\n*H\n\rCloudPlatform\x12\x1a\n\x16UNKNOWN_CLOUD_PLATFORM\x10\x00\x12\x07\n\x03\x41WS\x10\x01\x12\x07\n\x03GCP\x10\x02\x12\t\n\x05\x41ZURE\x10\x03\x42S\n\x10\x63om.epl.protobufB\tStacProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x04STPBb\x06proto3')
+  serialized_pb=_b('\n\x17\x65pl/protobuf/stac.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x19google/protobuf/any.proto\x1a\x1b\x65pl/protobuf/geometry.proto\x1a\x18\x65pl/protobuf/query.proto\"\xcf\x04\n\x08StacItem\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x08geometry\x18\x03 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12(\n\x04\x62\x62ox\x18\x04 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x12(\n\nproperties\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x32\n\x06\x61ssets\x18\x07 \x03(\x0b\x32\".epl.protobuf.StacItem.AssetsEntry\x12,\n\x08\x64\x61tetime\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\r\n\x05title\x18\t \x01(\t\x12\x12\n\ncollection\x18\n \x01(\t\x12,\n\x08observed\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12-\n\tprocessed\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07updated\x18\r \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1c\n\x02\x65o\x18\x0e \x01(\x0b\x32\x10.epl.protobuf.Eo\x12\x1e\n\x03sar\x18\x0f \x01(\x0b\x32\x11.epl.protobuf.Sar\x12\x1e\n\x03\x64tr\x18\x10 \x01(\x0b\x32\x11.epl.protobuf.Dtr\x1a\x42\n\x0b\x41ssetsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.epl.protobuf.Asset:\x02\x38\x01J\x04\x08\x06\x10\x07\"\x83\x04\n\x0bStacRequest\x12%\n\x02id\x18\x01 \x01(\x0b\x32\x19.epl.protobuf.StringField\x12,\n\x08geometry\x18\x02 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12(\n\x04\x62\x62ox\x18\x03 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x12\x37\n\x10geometry_request\x18\x04 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12\x30\n\x12properties_request\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12.\n\x08\x64\x61tetime\x18\x06 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12.\n\x08observed\x18\x07 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12/\n\tprocessed\x18\x08 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12-\n\x07updated\x18\t \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12+\n\neo_request\x18\n \x01(\x0b\x32\x17.epl.protobuf.EoRequest\x12\r\n\x05limit\x18\x0b \x01(\r\x12\x0e\n\x06offset\x18\x0c \x01(\x04\"\x90\x02\n\x0b\x42\x61ndDetails\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x63ommon_name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12(\n\x03gsd\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08\x61\x63\x63uracy\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x36\n\x11\x63\x65nter_wavelength\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x38\n\x13\x66ull_width_half_max\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\"\x80\x02\n\x05\x41sset\x12\x0c\n\x04href\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\'\n\x08\x65o_bands\x18\x03 \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\x12+\n\nasset_type\x18\x04 \x01(\x0e\x32\x17.epl.protobuf.AssetType\x12\x33\n\x0e\x63loud_platform\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.CloudPlatform\x12\x14\n\x0c\x62ucket_owner\x18\x06 \x01(\t\x12\x15\n\rbucket_region\x18\x07 \x01(\t\x12\x0e\n\x06\x62ucket\x18\x08 \x01(\t\x12\x13\n\x0bobject_path\x18\t \x01(\t\"Y\n\x03\x44tr\x12)\n\x05start\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"J\n\x12StacUpsertResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\x12\x13\n\x0bstatus_code\x18\x02 \x01(\x05\x12\x0f\n\x07\x64\x61ta_id\x18\x03 \x01(\t\"\x99\x01\n\x03Sar\x12,\n\x08platform\x18\x01 \x01(\x0e\x32\x1a.epl.protobuf.Sar.Platform\">\n\x08Platform\x12\x14\n\x10UNKNOWN_PLATFORM\x10\x00\x12\x0b\n\x07\x45NVISAT\x10\x01\x12\x0f\n\x0bSENTINEL_1A\x10\x02\"$\n\nInstrument\x12\x16\n\x12UNKNOWN_INSTRUMENT\x10\x00\"\x89\x08\n\x02\x45o\x12\x0c\n\x04\x65psg\x18\x01 \x01(\r\x12+\n\x08platform\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.Eo.Platform\x12/\n\ninstrument\x18\x03 \x01(\x0e\x32\x1b.epl.protobuf.Eo.Instrument\x12\x35\n\rconstellation\x18\x04 \x01(\x0e\x32\x1e.epl.protobuf.Eo.Constellation\x12\x30\n\x0bsun_azimuth\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x32\n\rsun_elevation\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12(\n\x03gsd\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12.\n\toff_nadir\x18\x08 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12,\n\x07\x61zimuth\x18\t \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x30\n\x0b\x63loud_cover\x18\n \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12$\n\x05\x62\x61nds\x18\x0b \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\"\xb9\x01\n\x08Platform\x12\x14\n\x10UNKNOWN_PLATFORM\x10\x00\x12\r\n\tLANDSAT_1\x10\x02\x12\r\n\tLANDSAT_2\x10\x04\x12\r\n\tLANDSAT_3\x10\x08\x12\x0f\n\x0bLANDSAT_123\x10\x0e\x12\r\n\tLANDSAT_4\x10\x10\x12\r\n\tLANDSAT_5\x10 \x12\x0e\n\nLANDSAT_45\x10\x30\x12\r\n\tLANDSAT_7\x10@\x12\x0e\n\tLANDSAT_8\x10\x80\x01\x12\x0c\n\x07SWIFT_2\x10\x80\x02\"B\n\nInstrument\x12\x16\n\x12UNKNOWN_INSTRUMENT\x10\x00\x12\x07\n\x03OLI\x10\x02\x12\x08\n\x04TIRS\x10\x04\x12\t\n\x05POM_1\x10\x08\"V\n\rConstellation\x12\x19\n\x15UNKNOWN_CONSTELLATION\x10\x00\x12\x0b\n\x07LANDSAT\x10\x02\x12\x08\n\x04NAIP\x10\x04\x12\x08\n\x04PNOA\x10\x08\x12\t\n\x05SWIFT\x10\x10\"\xc1\x01\n\x04\x42\x61nd\x12\x10\n\x0cUNKNOWN_BAND\x10\x00\x12\x0b\n\x07\x43OASTAL\x10\x02\x12\x08\n\x04\x42LUE\x10\x04\x12\t\n\x05GREEN\x10\x08\x12\x07\n\x03RED\x10\x10\x12\x07\n\x03RGB\x10\x1c\x12\x11\n\rNEAR_INFRARED\x10 \x12\t\n\x05RGBIR\x10<\x12\x0b\n\x07SWIR_16\x10@\x12\x0c\n\x07SWIR_22\x10\x80\x01\x12\x11\n\x0cPANCHROMATIC\x10\x80\x02\x12\x0b\n\x06\x43IRRUS\x10\x80\x04\x12\x0c\n\x07LWIR_11\x10\x80\x08\x12\x0c\n\x07LWIR_12\x10\x80\x10\"\xe2\x03\n\tEoRequest\x12\x0c\n\x04\x65psg\x18\x01 \x01(\x05\x12+\n\x08platform\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.Eo.Platform\x12/\n\ninstrument\x18\x03 \x01(\x0e\x32\x1b.epl.protobuf.Eo.Instrument\x12\x35\n\rconstellation\x18\x04 \x01(\x0e\x32\x1e.epl.protobuf.Eo.Constellation\x12-\n\x0bsun_azimuth\x18\x05 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12/\n\rsun_elevation\x18\x06 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12%\n\x03gsd\x18\x07 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12+\n\toff_nadir\x18\x08 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12)\n\x07\x61zimuth\x18\t \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12-\n\x0b\x63loud_cover\x18\n \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12$\n\x05\x62\x61nds\x18\x0b \x01(\x0e\x32\x15.epl.protobuf.Eo.Band*\x94\x01\n\tAssetType\x12\x11\n\rUNKNOWN_ASSET\x10\x00\x12\x08\n\x04JPEG\x10\x01\x12\x0b\n\x07GEOTIFF\x10\x02\x12\x08\n\x04LERC\x10\x03\x12\x07\n\x03MRF\x10\x04\x12\x0b\n\x07MRF_IDX\x10\x05\x12\x0b\n\x07MRF_XML\x10\x06\x12\x0e\n\nCO_GEOTIFF\x10\x07\x12\x07\n\x03RAW\x10\x08\x12\r\n\tTHUMBNAIL\x10\t\x12\x08\n\x04TIFF\x10\n*H\n\rCloudPlatform\x12\x1a\n\x16UNKNOWN_CLOUD_PLATFORM\x10\x00\x12\x07\n\x03\x41WS\x10\x01\x12\x07\n\x03GCP\x10\x02\x12\t\n\x05\x41ZURE\x10\x03\x42S\n\x10\x63om.epl.protobufB\tStacProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x04STPBb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,epl_dot_protobuf_dot_geometry__pb2.DESCRIPTOR,epl_dot_protobuf_dot_query__pb2.DESCRIPTOR,])
 
@@ -82,8 +82,8 @@ _ASSETTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3658,
-  serialized_end=3806,
+  serialized_start=3679,
+  serialized_end=3827,
 )
 _sym_db.RegisterEnumDescriptor(_ASSETTYPE)
 
@@ -113,8 +113,8 @@ _CLOUDPLATFORM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3808,
-  serialized_end=3880,
+  serialized_start=3829,
+  serialized_end=3901,
 )
 _sym_db.RegisterEnumDescriptor(_CLOUDPLATFORM)
 
@@ -157,8 +157,8 @@ _SAR_PLATFORM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2034,
-  serialized_end=2096,
+  serialized_start=2055,
+  serialized_end=2117,
 )
 _sym_db.RegisterEnumDescriptor(_SAR_PLATFORM)
 
@@ -175,8 +175,8 @@ _SAR_INSTRUMENT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2098,
-  serialized_end=2134,
+  serialized_start=2119,
+  serialized_end=2155,
 )
 _sym_db.RegisterEnumDescriptor(_SAR_INSTRUMENT)
 
@@ -233,8 +233,8 @@ _EO_PLATFORM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2633,
-  serialized_end=2818,
+  serialized_start=2654,
+  serialized_end=2839,
 )
 _sym_db.RegisterEnumDescriptor(_EO_PLATFORM)
 
@@ -263,8 +263,8 @@ _EO_INSTRUMENT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2820,
-  serialized_end=2886,
+  serialized_start=2841,
+  serialized_end=2907,
 )
 _sym_db.RegisterEnumDescriptor(_EO_INSTRUMENT)
 
@@ -297,8 +297,8 @@ _EO_CONSTELLATION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2888,
-  serialized_end=2974,
+  serialized_start=2909,
+  serialized_end=2995,
 )
 _sym_db.RegisterEnumDescriptor(_EO_CONSTELLATION)
 
@@ -367,98 +367,257 @@ _EO_BAND = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2977,
-  serialized_end=3170,
+  serialized_start=2998,
+  serialized_end=3191,
 )
 _sym_db.RegisterEnumDescriptor(_EO_BAND)
 
 
-_STACSEARCHREQUEST = _descriptor.Descriptor(
-  name='StacSearchRequest',
-  full_name='epl.protobuf.StacSearchRequest',
+_STACITEM_ASSETSENTRY = _descriptor.Descriptor(
+  name='AssetsEntry',
+  full_name='epl.protobuf.StacItem.AssetsEntry',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='epl.protobuf.StacSearchRequest.id', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='key', full_name='epl.protobuf.StacItem.AssetsEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='geometry', full_name='epl.protobuf.StacSearchRequest.geometry', index=1,
+      name='value', full_name='epl.protobuf.StacItem.AssetsEntry.value', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=_b('8\001'),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=708,
+  serialized_end=774,
+)
+
+_STACITEM = _descriptor.Descriptor(
+  name='StacItem',
+  full_name='epl.protobuf.StacItem',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
     _descriptor.FieldDescriptor(
-      name='bbox', full_name='epl.protobuf.StacSearchRequest.bbox', index=2,
+      name='id', full_name='epl.protobuf.StacItem.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='geometry', full_name='epl.protobuf.StacItem.geometry', index=1,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='geometry_request', full_name='epl.protobuf.StacSearchRequest.geometry_request', index=3,
+      name='bbox', full_name='epl.protobuf.StacItem.bbox', index=2,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='properties_request', full_name='epl.protobuf.StacSearchRequest.properties_request', index=4,
+      name='properties', full_name='epl.protobuf.StacItem.properties', index=3,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='datetime', full_name='epl.protobuf.StacSearchRequest.datetime', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='assets', full_name='epl.protobuf.StacItem.assets', index=4,
+      number=7, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='observed', full_name='epl.protobuf.StacSearchRequest.observed', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='processed', full_name='epl.protobuf.StacSearchRequest.processed', index=7,
+      name='datetime', full_name='epl.protobuf.StacItem.datetime', index=5,
       number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='updated', full_name='epl.protobuf.StacSearchRequest.updated', index=8,
+      name='title', full_name='epl.protobuf.StacItem.title', index=6,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='collection', full_name='epl.protobuf.StacItem.collection', index=7,
+      number=10, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='observed', full_name='epl.protobuf.StacItem.observed', index=8,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='processed', full_name='epl.protobuf.StacItem.processed', index=9,
+      number=12, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='updated', full_name='epl.protobuf.StacItem.updated', index=10,
+      number=13, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='eo', full_name='epl.protobuf.StacItem.eo', index=11,
+      number=14, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sar', full_name='epl.protobuf.StacItem.sar', index=12,
+      number=15, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='dtr', full_name='epl.protobuf.StacItem.dtr', index=13,
+      number=16, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_STACITEM_ASSETSENTRY, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=189,
+  serialized_end=780,
+)
+
+
+_STACREQUEST = _descriptor.Descriptor(
+  name='StacRequest',
+  full_name='epl.protobuf.StacRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='epl.protobuf.StacRequest.id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='geometry', full_name='epl.protobuf.StacRequest.geometry', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='bbox', full_name='epl.protobuf.StacRequest.bbox', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='geometry_request', full_name='epl.protobuf.StacRequest.geometry_request', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='properties_request', full_name='epl.protobuf.StacRequest.properties_request', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='datetime', full_name='epl.protobuf.StacRequest.datetime', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='observed', full_name='epl.protobuf.StacRequest.observed', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='processed', full_name='epl.protobuf.StacRequest.processed', index=7,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='updated', full_name='epl.protobuf.StacRequest.updated', index=8,
       number=9, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='eo_request', full_name='epl.protobuf.StacSearchRequest.eo_request', index=9,
+      name='eo_request', full_name='epl.protobuf.StacRequest.eo_request', index=9,
       number=10, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='limit', full_name='epl.protobuf.StacSearchRequest.limit', index=10,
+      name='limit', full_name='epl.protobuf.StacRequest.limit', index=10,
       number=11, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='offset', full_name='epl.protobuf.StacSearchRequest.offset', index=11,
+      name='offset', full_name='epl.protobuf.StacRequest.offset', index=11,
       number=12, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -476,8 +635,8 @@ _STACSEARCHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=189,
-  serialized_end=710,
+  serialized_start=783,
+  serialized_end=1298,
 )
 
 
@@ -549,8 +708,8 @@ _BANDDETAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=713,
-  serialized_end=985,
+  serialized_start=1301,
+  serialized_end=1573,
 )
 
 
@@ -636,153 +795,8 @@ _ASSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=988,
-  serialized_end=1244,
-)
-
-
-_STACMETADATA_ASSETSENTRY = _descriptor.Descriptor(
-  name='AssetsEntry',
-  full_name='epl.protobuf.StacMetadata.AssetsEntry',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='key', full_name='epl.protobuf.StacMetadata.AssetsEntry.key', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='epl.protobuf.StacMetadata.AssetsEntry.value', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=_b('8\001'),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1739,
-  serialized_end=1805,
-)
-
-_STACMETADATA = _descriptor.Descriptor(
-  name='StacMetadata',
-  full_name='epl.protobuf.StacMetadata',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='id', full_name='epl.protobuf.StacMetadata.id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='geometry', full_name='epl.protobuf.StacMetadata.geometry', index=1,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='bbox', full_name='epl.protobuf.StacMetadata.bbox', index=2,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='properties', full_name='epl.protobuf.StacMetadata.properties', index=3,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='assets', full_name='epl.protobuf.StacMetadata.assets', index=4,
-      number=7, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='datetime', full_name='epl.protobuf.StacMetadata.datetime', index=5,
-      number=8, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='observed', full_name='epl.protobuf.StacMetadata.observed', index=6,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='processed', full_name='epl.protobuf.StacMetadata.processed', index=7,
-      number=11, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='updated', full_name='epl.protobuf.StacMetadata.updated', index=8,
-      number=12, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='eo', full_name='epl.protobuf.StacMetadata.eo', index=9,
-      number=13, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sar', full_name='epl.protobuf.StacMetadata.sar', index=10,
-      number=14, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='dtr', full_name='epl.protobuf.StacMetadata.dtr', index=11,
-      number=15, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_STACMETADATA_ASSETSENTRY, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1247,
-  serialized_end=1811,
+  serialized_start=1576,
+  serialized_end=1832,
 )
 
 
@@ -819,8 +833,8 @@ _DTR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1813,
-  serialized_end=1902,
+  serialized_start=1834,
+  serialized_end=1923,
 )
 
 
@@ -864,8 +878,8 @@ _STACUPSERTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1904,
-  serialized_end=1978,
+  serialized_start=1925,
+  serialized_end=1999,
 )
 
 
@@ -897,8 +911,8 @@ _SAR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1981,
-  serialized_end=2134,
+  serialized_start=2002,
+  serialized_end=2155,
 )
 
 
@@ -1002,8 +1016,8 @@ _EO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2137,
-  serialized_end=3170,
+  serialized_start=2158,
+  serialized_end=3191,
 )
 
 
@@ -1103,20 +1117,33 @@ _EOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3173,
-  serialized_end=3655,
+  serialized_start=3194,
+  serialized_end=3676,
 )
 
-_STACSEARCHREQUEST.fields_by_name['id'].message_type = epl_dot_protobuf_dot_query__pb2._STRINGFIELD
-_STACSEARCHREQUEST.fields_by_name['geometry'].message_type = epl_dot_protobuf_dot_geometry__pb2._GEOMETRYDATA
-_STACSEARCHREQUEST.fields_by_name['bbox'].message_type = epl_dot_protobuf_dot_geometry__pb2._ENVELOPEDATA
-_STACSEARCHREQUEST.fields_by_name['geometry_request'].message_type = epl_dot_protobuf_dot_geometry__pb2._GEOMETRYREQUEST
-_STACSEARCHREQUEST.fields_by_name['properties_request'].message_type = google_dot_protobuf_dot_any__pb2._ANY
-_STACSEARCHREQUEST.fields_by_name['datetime'].message_type = epl_dot_protobuf_dot_query__pb2._TIMESTAMPFIELD
-_STACSEARCHREQUEST.fields_by_name['observed'].message_type = epl_dot_protobuf_dot_query__pb2._TIMESTAMPFIELD
-_STACSEARCHREQUEST.fields_by_name['processed'].message_type = epl_dot_protobuf_dot_query__pb2._TIMESTAMPFIELD
-_STACSEARCHREQUEST.fields_by_name['updated'].message_type = epl_dot_protobuf_dot_query__pb2._TIMESTAMPFIELD
-_STACSEARCHREQUEST.fields_by_name['eo_request'].message_type = _EOREQUEST
+_STACITEM_ASSETSENTRY.fields_by_name['value'].message_type = _ASSET
+_STACITEM_ASSETSENTRY.containing_type = _STACITEM
+_STACITEM.fields_by_name['geometry'].message_type = epl_dot_protobuf_dot_geometry__pb2._GEOMETRYDATA
+_STACITEM.fields_by_name['bbox'].message_type = epl_dot_protobuf_dot_geometry__pb2._ENVELOPEDATA
+_STACITEM.fields_by_name['properties'].message_type = google_dot_protobuf_dot_any__pb2._ANY
+_STACITEM.fields_by_name['assets'].message_type = _STACITEM_ASSETSENTRY
+_STACITEM.fields_by_name['datetime'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_STACITEM.fields_by_name['observed'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_STACITEM.fields_by_name['processed'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_STACITEM.fields_by_name['updated'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_STACITEM.fields_by_name['eo'].message_type = _EO
+_STACITEM.fields_by_name['sar'].message_type = _SAR
+_STACITEM.fields_by_name['dtr'].message_type = _DTR
+_STACREQUEST.fields_by_name['id'].message_type = epl_dot_protobuf_dot_query__pb2._STRINGFIELD
+_STACREQUEST.fields_by_name['geometry'].message_type = epl_dot_protobuf_dot_geometry__pb2._GEOMETRYDATA
+_STACREQUEST.fields_by_name['bbox'].message_type = epl_dot_protobuf_dot_geometry__pb2._ENVELOPEDATA
+_STACREQUEST.fields_by_name['geometry_request'].message_type = epl_dot_protobuf_dot_geometry__pb2._GEOMETRYREQUEST
+_STACREQUEST.fields_by_name['properties_request'].message_type = google_dot_protobuf_dot_any__pb2._ANY
+_STACREQUEST.fields_by_name['datetime'].message_type = epl_dot_protobuf_dot_query__pb2._TIMESTAMPFIELD
+_STACREQUEST.fields_by_name['observed'].message_type = epl_dot_protobuf_dot_query__pb2._TIMESTAMPFIELD
+_STACREQUEST.fields_by_name['processed'].message_type = epl_dot_protobuf_dot_query__pb2._TIMESTAMPFIELD
+_STACREQUEST.fields_by_name['updated'].message_type = epl_dot_protobuf_dot_query__pb2._TIMESTAMPFIELD
+_STACREQUEST.fields_by_name['eo_request'].message_type = _EOREQUEST
 _BANDDETAILS.fields_by_name['gsd'].message_type = google_dot_protobuf_dot_wrappers__pb2._FLOATVALUE
 _BANDDETAILS.fields_by_name['accuracy'].message_type = google_dot_protobuf_dot_wrappers__pb2._FLOATVALUE
 _BANDDETAILS.fields_by_name['center_wavelength'].message_type = google_dot_protobuf_dot_wrappers__pb2._FLOATVALUE
@@ -1124,19 +1151,6 @@ _BANDDETAILS.fields_by_name['full_width_half_max'].message_type = google_dot_pro
 _ASSET.fields_by_name['eo_bands'].enum_type = _EO_BAND
 _ASSET.fields_by_name['asset_type'].enum_type = _ASSETTYPE
 _ASSET.fields_by_name['cloud_platform'].enum_type = _CLOUDPLATFORM
-_STACMETADATA_ASSETSENTRY.fields_by_name['value'].message_type = _ASSET
-_STACMETADATA_ASSETSENTRY.containing_type = _STACMETADATA
-_STACMETADATA.fields_by_name['geometry'].message_type = epl_dot_protobuf_dot_geometry__pb2._GEOMETRYDATA
-_STACMETADATA.fields_by_name['bbox'].message_type = epl_dot_protobuf_dot_geometry__pb2._ENVELOPEDATA
-_STACMETADATA.fields_by_name['properties'].message_type = google_dot_protobuf_dot_any__pb2._ANY
-_STACMETADATA.fields_by_name['assets'].message_type = _STACMETADATA_ASSETSENTRY
-_STACMETADATA.fields_by_name['datetime'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_STACMETADATA.fields_by_name['observed'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_STACMETADATA.fields_by_name['processed'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_STACMETADATA.fields_by_name['updated'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_STACMETADATA.fields_by_name['eo'].message_type = _EO
-_STACMETADATA.fields_by_name['sar'].message_type = _SAR
-_STACMETADATA.fields_by_name['dtr'].message_type = _DTR
 _DTR.fields_by_name['start'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _DTR.fields_by_name['end'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _SAR.fields_by_name['platform'].enum_type = _SAR_PLATFORM
@@ -1166,10 +1180,10 @@ _EOREQUEST.fields_by_name['off_nadir'].message_type = epl_dot_protobuf_dot_query
 _EOREQUEST.fields_by_name['azimuth'].message_type = epl_dot_protobuf_dot_query__pb2._FLOATFIELD
 _EOREQUEST.fields_by_name['cloud_cover'].message_type = epl_dot_protobuf_dot_query__pb2._FLOATFIELD
 _EOREQUEST.fields_by_name['bands'].enum_type = _EO_BAND
-DESCRIPTOR.message_types_by_name['StacSearchRequest'] = _STACSEARCHREQUEST
+DESCRIPTOR.message_types_by_name['StacItem'] = _STACITEM
+DESCRIPTOR.message_types_by_name['StacRequest'] = _STACREQUEST
 DESCRIPTOR.message_types_by_name['BandDetails'] = _BANDDETAILS
 DESCRIPTOR.message_types_by_name['Asset'] = _ASSET
-DESCRIPTOR.message_types_by_name['StacMetadata'] = _STACMETADATA
 DESCRIPTOR.message_types_by_name['Dtr'] = _DTR
 DESCRIPTOR.message_types_by_name['StacUpsertResponse'] = _STACUPSERTRESPONSE
 DESCRIPTOR.message_types_by_name['Sar'] = _SAR
@@ -1179,12 +1193,27 @@ DESCRIPTOR.enum_types_by_name['AssetType'] = _ASSETTYPE
 DESCRIPTOR.enum_types_by_name['CloudPlatform'] = _CLOUDPLATFORM
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-StacSearchRequest = _reflection.GeneratedProtocolMessageType('StacSearchRequest', (_message.Message,), dict(
-  DESCRIPTOR = _STACSEARCHREQUEST,
+StacItem = _reflection.GeneratedProtocolMessageType('StacItem', (_message.Message,), dict(
+
+  AssetsEntry = _reflection.GeneratedProtocolMessageType('AssetsEntry', (_message.Message,), dict(
+    DESCRIPTOR = _STACITEM_ASSETSENTRY,
+    __module__ = 'epl.protobuf.stac_pb2'
+    # @@protoc_insertion_point(class_scope:epl.protobuf.StacItem.AssetsEntry)
+    ))
+  ,
+  DESCRIPTOR = _STACITEM,
   __module__ = 'epl.protobuf.stac_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.StacSearchRequest)
+  # @@protoc_insertion_point(class_scope:epl.protobuf.StacItem)
   ))
-_sym_db.RegisterMessage(StacSearchRequest)
+_sym_db.RegisterMessage(StacItem)
+_sym_db.RegisterMessage(StacItem.AssetsEntry)
+
+StacRequest = _reflection.GeneratedProtocolMessageType('StacRequest', (_message.Message,), dict(
+  DESCRIPTOR = _STACREQUEST,
+  __module__ = 'epl.protobuf.stac_pb2'
+  # @@protoc_insertion_point(class_scope:epl.protobuf.StacRequest)
+  ))
+_sym_db.RegisterMessage(StacRequest)
 
 BandDetails = _reflection.GeneratedProtocolMessageType('BandDetails', (_message.Message,), dict(
   DESCRIPTOR = _BANDDETAILS,
@@ -1199,21 +1228,6 @@ Asset = _reflection.GeneratedProtocolMessageType('Asset', (_message.Message,), d
   # @@protoc_insertion_point(class_scope:epl.protobuf.Asset)
   ))
 _sym_db.RegisterMessage(Asset)
-
-StacMetadata = _reflection.GeneratedProtocolMessageType('StacMetadata', (_message.Message,), dict(
-
-  AssetsEntry = _reflection.GeneratedProtocolMessageType('AssetsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _STACMETADATA_ASSETSENTRY,
-    __module__ = 'epl.protobuf.stac_pb2'
-    # @@protoc_insertion_point(class_scope:epl.protobuf.StacMetadata.AssetsEntry)
-    ))
-  ,
-  DESCRIPTOR = _STACMETADATA,
-  __module__ = 'epl.protobuf.stac_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.StacMetadata)
-  ))
-_sym_db.RegisterMessage(StacMetadata)
-_sym_db.RegisterMessage(StacMetadata.AssetsEntry)
 
 Dtr = _reflection.GeneratedProtocolMessageType('Dtr', (_message.Message,), dict(
   DESCRIPTOR = _DTR,
@@ -1252,5 +1266,5 @@ _sym_db.RegisterMessage(EoRequest)
 
 
 DESCRIPTOR._options = None
-_STACMETADATA_ASSETSENTRY._options = None
+_STACITEM_ASSETSENTRY._options = None
 # @@protoc_insertion_point(module_scope)
