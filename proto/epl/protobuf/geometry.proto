@@ -62,19 +62,19 @@ message GeometryData {
  */
 message SpatialReferenceData {
     // Projection names
-    enum Projection {
+    enum CSType {
         // default is Lambert Azimuthal Equal Area Projection
         LAMBERT_AZI = 0;
     }
 
     // Projected coordinate system that doesn't have a wkid / srid
-    message CustomProjection {
+    message Custom {
         // longitude of center of projection (central meridian)
         double lon_0 = 1;
         // latitude of center of projection (latitude of origin)
         double lat_0 = 2;
         // enum defining the type of projection
-        Projection projection = 3;
+        CSType cs_type = 3;
     }
 
     // oneof block not currently used: https://github.com/golang/protobuf/issues/283
@@ -84,7 +84,7 @@ message SpatialReferenceData {
     // proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html
     string proj4 = 2;
     // custom projection
-    CustomProjection custom = 3;
+    Custom custom = 3;
 
     // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
 }
