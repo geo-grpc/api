@@ -68,10 +68,13 @@ message SpatialReferenceData {
     }
 
     // Projected coordinate system that doesn't have a wkid / srid
-    message Local {
-        double central_meridian = 1;
-        double lat_of_origin = 2;
-        Projection proj_type = 3;
+    message CustomProjection {
+        // longitude of center of projection (central meridian)
+        double lon_0 = 1;
+        // latitude of center of projection (latitude of origin)
+        double lat_0 = 2;
+        // enum defining the type of projection
+        Projection projection = 3;
     }
 
     // oneof block not currently used: https://github.com/golang/protobuf/issues/283
@@ -80,8 +83,8 @@ message SpatialReferenceData {
     int32 epsg_wkid = 1;
     // proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html
     string proj4 = 2;
-    // local projection format
-    Local local_proj = 3;
+    // custom projection
+    CustomProjection custom = 3;
 
     // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
 }
