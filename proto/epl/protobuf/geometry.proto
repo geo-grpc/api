@@ -156,7 +156,7 @@ enum OperatorType {
     // SHAPE_PRESERVING_DENSIFY = 28;
 
     // GEODETIC_LENGTH = 29;
-    // GEODETIC_AREA = 30;
+    GEODETIC_AREA = 30;
     SIMPLIFY = 31;
     SIMPLIFY_OGC = 32;
     OFFSET = 33;
