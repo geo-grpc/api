@@ -190,7 +190,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         :return: double value that is the WGS84 area of the geometry
         """
         op_area = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
-                                               operator=geometry_pb2.GEODESIC_BUFFER,
+                                               operator=geometry_pb2.GEODETIC_AREA,
                                                result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
         area_response = self._stub.GeometryOperationUnary(op_area)
         return area_response.measure
