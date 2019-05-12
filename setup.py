@@ -10,13 +10,13 @@ sys.path.insert(0, src_path)
 
 kwargs = {
     'name': 'epl.geometry',
-    'description': 'geometry library',
+    'description': 'geometry library for gRPC remote geometry functions',
     'url': 'https://github.com/geo-grpc/geometry-client-python',
-    'long_description': "geometry library",
+    'long_description': "geometry library for gRPC remote geometry functions",
     'author': 'David Raleigh',
     'author_email': 'davidraleigh@geometry.com',
     'license': 'Apache 2.0',
-    'version': '0.3.1',
+    'version': '0.3.2',
     'namespace_package': ['epl'],
     'python_requires': '>3.5.2',
     'packages': ['epl.geometry'],

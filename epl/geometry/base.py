@@ -214,6 +214,16 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                             other_geom,
                             operation_sr: geometry_pb2.SpatialReferenceData = None,
                             result_sr: geometry_pb2.SpatialReferenceData = None):
+        """
+        get the intersecting geometry. if the geometries intersected are in different spatial references, you'll need
+        to define a result spatial reference for them both to be projected into. That result spatial reference will be
+        the operation spatial reference. If you want their intersection to be in a different spatial reference than the
+        results, you can define that as well
+        :param other_geom: other geometry to be intersected
+        :param operation_sr: the spatial reference both geometries should be projected into for the intersection operation
+        :param result_sr: the resulting spatial reference of the output geometry
+        :return:
+        """
         op_request = geometry_pb2.GeometryRequest(left_geometry=self.export_protobuf(),
                                                   right_geometry=other_geom.export_protobuf(),
                                                   operator=geometry_pb2.INTERSECTION,
