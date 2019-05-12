@@ -16,11 +16,11 @@ from shapely.impl import delegated
 
 from epl.protobuf import geometry_pb2, geometry_service_pb2_grpc
 
-
 integer_types = (int,)
 
 try:
     import numpy as np
+
     integer_types = integer_types + (np.integer,)
 except ImportError:
     pass
@@ -209,6 +209,17 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
 
         geometry_response = self._stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
+
+    def remote_intersection(self,
+                            other_geom,
+                            operation_sr: geometry_pb2.SpatialReferenceData = None,
+                            result_sr: geometry_pb2.SpatialReferenceData = None):
+        op_request = geometry_pb2.GeometryRequest(left_geometry=self.export_protobuf(),
+                                                  right_geometry=other_geom.export_protobuf(),
+                                                  operator=geometry_pb2.INTERSECTION,
+                                                  operation_sr=operation_sr,
+                                                  result_sr=result_sr)
+        return BaseGeometry.import_protobuf(self._stub.GeometryOperationUnary(op_request).geometry)
 
     @property
     def boundary(self):

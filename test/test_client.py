@@ -171,7 +171,8 @@ class TestBasic(unittest.TestCase):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
         service_sr = geometry_pb2.SpatialReferenceData(wkid=32632)
         output_sr = geometry_pb2.SpatialReferenceData(wkid=4326)
-        polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)], sr=geometry_pb2.SpatialReferenceData(wkid=3857))
+        polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)],
+                              sr=geometry_pb2.SpatialReferenceData(wkid=3857))
 
         a = geometry_pb2.EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
         service_geom_polyline = geometry_pb2.GeometryData(
@@ -398,3 +399,26 @@ class TestBasic(unittest.TestCase):
         val = str(polygon)
         self.assertEqual(val, "POLYGON ((-85 46, -85 46, -85 46, -85 46)) wkid: 4326\n")
 
+    def test_intersection(self):
+        polygon_left = Polygon.from_bounds(xmin=-85,
+                                           ymin=46,
+                                           xmax=-83,
+                                           ymax=48,
+                                           sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polygon_right = Polygon.from_bounds(xmin=-85.5,
+                                            ymin=44,
+                                            xmax=-84,
+                                            ymax=47,
+                                            sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        intersection_1 = polygon_left.remote_intersection(polygon_right)
+        self.assertLess(intersection_1.area, polygon_left.area)
+        self.assertLess(intersection_1.area, polygon_right.area)
+        self.assertEqual(intersection_1.export_protobuf().sr.wkid, 4326)
+
+        intersection_1_web = polygon_right.remote_intersection(other_geom=polygon_left,
+                                                               operation_sr=geometry_pb2.SpatialReferenceData(wkid=3857))
+        self.assertEqual(intersection_1_web.export_protobuf().sr.wkid, 3857)
+        self.assertAlmostEqual(intersection_1.area,
+                               intersection_1_web.remote_project(
+                                   to_spatial_reference=geometry_pb2.SpatialReferenceData(
+                                       wkid=4326)).area)
