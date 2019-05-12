@@ -160,6 +160,22 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
     def __str__(self):
         return "{0} {1}".format(self.wkt, str(self.sr))
 
+    def __eq__(self, other):
+        return (
+            type(other) == type(self) and
+            tuple(self.coords) == tuple(other.coords) and
+            self.sr_eq(other.sr)
+        )
+
+    def sr_eq(self, other_sr: geometry_pb2.SpatialReferenceData):
+        if self.sr.wkid > 0:
+            return self.sr.wkid == other_sr.wkid
+        elif len(self.sr.proj4) > 0:
+            return self.sr.proj4 == other_sr.proj4
+        elif len(self.sr.wkt) > 0:
+            return self.sr.wkt == other_sr.wkt
+        return False
+
     @property
     def sr(self):
         return self._sr
@@ -441,8 +457,18 @@ class BaseMultipartGeometry(BaseGeometry):
         return (
                 type(other) == type(self) and
                 len(self) == len(other) and
-                all(x == y for x, y in zip(self, other))
+                all(x == y for x, y in zip(self, other)) and
+                self._sr_eq__(other)
         )
+
+    def _sr_eq__(self, other):
+        if self.sr.wkid > 0:
+            return self.sr.wkid == other.sr.wkid
+        elif len(self.sr.proj4) > 0:
+            return self.sr.proj4 == other.sr.proj4
+        elif len(self.sr.wkt) > 0:
+            return self.sr.wkt == other.sr.wkt
+        return False
 
     def __ne__(self, other):
         return not self.__eq__(other)

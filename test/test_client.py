@@ -416,9 +416,36 @@ class TestBasic(unittest.TestCase):
         self.assertEqual(intersection_1.export_protobuf().sr.wkid, 4326)
 
         intersection_1_web = polygon_right.remote_intersection(other_geom=polygon_left,
-                                                               operation_sr=geometry_pb2.SpatialReferenceData(wkid=3857))
+                                                               result_sr=geometry_pb2.SpatialReferenceData(
+                                                                   wkid=3857))
         self.assertEqual(intersection_1_web.export_protobuf().sr.wkid, 3857)
         self.assertAlmostEqual(intersection_1.area,
                                intersection_1_web.remote_project(
                                    to_spatial_reference=geometry_pb2.SpatialReferenceData(
                                        wkid=4326)).area)
+
+        envelope_data = geometry_pb2.EnvelopeData(xmin=-85.5,
+                                                  ymin=44,
+                                                  xmax=-84,
+                                                  ymax=47,
+                                                  sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polygon_right = Polygon.from_envelope_data(envelope_data=envelope_data)
+        intersection_2 = polygon_right.remote_intersection(polygon_left)
+        self.assertEqual(intersection_1, intersection_2)
+
+    def test_equal(self):
+        polygon_right = Polygon.from_bounds(xmin=-85.5,
+                                            ymin=44,
+                                            xmax=-84,
+                                            ymax=47,
+                                            sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polygon_lerft = Polygon.from_bounds(xmin=-85.5,
+                                            ymin=44,
+                                            xmax=-84,
+                                            ymax=47,
+                                            sr=geometry_pb2.SpatialReferenceData(wkid=3857))
+        self.assertFalse(polygon_right == polygon_lerft)
+
+        point1 = Point(2,3, sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        point2 = Point(2,3, sr=geometry_pb2.SpatialReferenceData(wkid=3857))
+        self.assertFalse(point1 == point2)

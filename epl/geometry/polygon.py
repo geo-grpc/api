@@ -268,6 +268,8 @@ class Polygon(BaseGeometry):
     def __eq__(self, other):
         if not isinstance(other, Polygon):
             return False
+        if not self.sr_eq(other.sr):
+            return False
         check_empty = (self.is_empty, other.is_empty)
         if all(check_empty):
             return True
@@ -360,6 +362,14 @@ class Polygon(BaseGeometry):
             (xmin, ymax),
             (xmax, ymax),
             (xmax, ymin)], sr=sr)
+
+    @classmethod
+    def from_envelope_data(cls, envelope_data: geometry_pb2.EnvelopeData):
+        return cls.from_bounds(xmin=envelope_data.xmin,
+                               ymin=envelope_data.ymin,
+                               xmax=envelope_data.xmax,
+                               ymax=envelope_data.ymax,
+                               sr=envelope_data.sr)
 
 
 class PolygonAdapter(PolygonProxy, Polygon):
