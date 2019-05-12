@@ -121,11 +121,13 @@ def geos_geom_from_py(ob, create_func=None):
 
 def exceptNull(func):
     """Decorator which helps avoid GEOS operations on null pointers."""
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         if not args[0]._geom or args[0].is_empty:
             raise ValueError("Null/empty geometry supports no operations")
         return func(*args, **kwargs)
+
     return wrapper
 
 
@@ -168,7 +170,8 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
     def remote_buffer(self, distance: float):
         op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
                                                   operator=geometry_pb2.BUFFER,
-                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(distance=distance),
+                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(
+                                                      distance=distance),
                                                   result_encoding=geometry_pb2.WKT)
 
         geometry_response = self._stub.GeometryOperationUnary(op_request)
@@ -178,7 +181,19 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
                                                   operator=geometry_pb2.PROJECT,
                                                   result_sr=to_spatial_reference)
-        return BaseGeometry.import_protobuf(op_request.geometry)
+        geometry_response = self._stub.GeometryOperationUnary(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
+    def remote_geodetic_area(self):
+        """
+        get the geodesic area of a polygon
+        :return: double value that is the WGS84 area of the geometry
+        """
+        op_area = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
+                                               operator=geometry_pb2.GEODESIC_BUFFER,
+                                               result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        area_response = self._stub.GeometryOperationUnary(op_area)
+        return area_response.measure
 
     @property
     def boundary(self):

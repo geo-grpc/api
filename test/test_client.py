@@ -357,3 +357,15 @@ class TestBasic(unittest.TestCase):
                 if longitude == -180 or longitude == 180:
                     continue
                 self.assertAlmostEqual(point_projected.x, longitude, 8)
+
+    def test_get_geodetic_area(self):
+        polygon = Polygon([(0, 0), (1, 1), (1, 0)], sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        area = polygon.remote_geodetic_area()
+        projected = polygon.remote_project(
+            to_spatial_reference=geometry_pb2.SpatialReferenceData(
+                custom=geometry_pb2.SpatialReferenceData.Custom(
+                    lon_0=polygon.centroid.x,
+                    lat_0=polygon.centroid.y)))
+
+        p_area = projected.remote_geodetic_area()
+        self.assertEqual(area, p_area)
