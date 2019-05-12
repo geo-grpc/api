@@ -61,6 +61,19 @@ message GeometryData {
  * Spatial Reference system. Used with a geometry to define the reference system of the geometry's coordinates
  */
 message SpatialReferenceData {
+    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
+
+    // wkid (well know id), or srid (spatial reference id) of the projected or geographic coordinate system
+    int32 wkid = 1;
+    // proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html
+    string proj4 = 2;
+    // custom projection
+    Custom custom = 3;
+    // well-known text string of spatial reference
+    string wkt = 4;
+
+    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
+
     // Projection names
     enum CSType {
         // default is Lambert Azimuthal Equal Area Projection
@@ -76,19 +89,6 @@ message SpatialReferenceData {
         // enum defining the type of projection
         CSType cs_type = 3;
     }
-
-    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
-
-    // wkid (well know id), or srid (spatial reference id) of the projected or geographic coordinate system
-    int32 wkid = 1;
-    // proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html
-    string proj4 = 2;
-    // custom projection
-    Custom custom = 3;
-    // well-known text string of spatial reference
-    string wkt = 4;
-
-    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
 }
 
 /**
