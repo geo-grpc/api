@@ -153,7 +153,12 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                  sr: geometry_pb2.SpatialReferenceData):
         super(BaseGeometry, self).__init__()
         self._stub = _GeometryServiceStub().stub
+        if sr is None:
+            raise ValueError("must define a spatial reference for geometry on creation")
         self._sr = sr
+
+    def __str__(self):
+        return "{0} {1}".format(self.wkt, str(self.sr))
 
     @property
     def sr(self):
@@ -172,7 +177,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                                                   operator=geometry_pb2.BUFFER,
                                                   buffer_params=geometry_pb2.GeometryRequest.BufferParams(
                                                       distance=distance),
-                                                  result_encoding=geometry_pb2.WKT)
+                                                  result_encoding=geometry_pb2.WKB)
 
         geometry_response = self._stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
@@ -195,6 +200,16 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         area_response = self._stub.GeometryOperationUnary(op_area)
         return area_response.measure
 
+    def remote_geodetic_buffer(self, distance_m):
+        op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
+                                                  operator=geometry_pb2.GEODESIC_BUFFER,
+                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(
+                                                      distance=distance_m),
+                                                  result_encoding=geometry_pb2.WKB)
+
+        geometry_response = self._stub.GeometryOperationUnary(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
     @property
     def boundary(self):
         """
@@ -205,6 +220,14 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         collection.
         """
         return geom_factory(self.impl['boundary'](self), sr=self.sr)
+
+    @property
+    def bounds(self):
+        """Returns minimum bounding region (minx, miny, maxx, maxy)"""
+        if self.is_empty:
+            return ()
+        else:
+            return self.impl['bounds'](self)
 
     @property
     def centroid(self):

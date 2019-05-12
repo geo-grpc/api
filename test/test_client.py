@@ -109,7 +109,7 @@ class TestBasic(unittest.TestCase):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
         service_sr = geometry_pb2.SpatialReferenceData(wkid=32632)
         output_sr = geometry_pb2.SpatialReferenceData(wkid=4326)
-        polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)])
+        polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)], sr=service_sr)
 
         a = geometry_pb2.EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
         service_geom_polyline = geometry_pb2.GeometryData(
@@ -161,11 +161,17 @@ class TestBasic(unittest.TestCase):
 
         self.assertTrue(response3.spatial_relationship)
 
+    def test_exception_sr(self):
+        try:
+            LineString([(500000, 0), (400000, 100000), (600000, -100000)])
+        except ValueError as e:
+            self.assertTrue(str(e).startswith("must define a spatial reference for geometry on creation"))
+
     def test_exception(self):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
         service_sr = geometry_pb2.SpatialReferenceData(wkid=32632)
         output_sr = geometry_pb2.SpatialReferenceData(wkid=4326)
-        polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)])
+        polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)], sr=geometry_pb2.SpatialReferenceData(wkid=3857))
 
         a = geometry_pb2.EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
         service_geom_polyline = geometry_pb2.GeometryData(
@@ -193,7 +199,7 @@ class TestBasic(unittest.TestCase):
             operation_sr=output_sr)
 
         try:
-            response3 = stub.GeometryOperationUnary(op_equals)
+            _ = stub.GeometryOperationUnary(op_equals)
             self.assertTrue(False)
         except grpc.RpcError as e:
             self.assertTrue(e.details().startswith('geometryOperationUnary error : either both spatial references are '
@@ -208,7 +214,7 @@ class TestBasic(unittest.TestCase):
             for latitude in range(-80, 80, 10):
                 multipoints_array.append((longitude, latitude))
 
-        multipoint = MultiPoint(multipoints_array)
+        multipoint = MultiPoint(multipoints_array, sr=service_sr)
 
         service_geom_polyline = geometry_pb2.GeometryData(wkt=multipoint.wkt, sr=service_sr)
 
@@ -369,3 +375,26 @@ class TestBasic(unittest.TestCase):
 
         p_area = projected.remote_geodetic_area()
         self.assertEqual(math.ceil(math.fabs((area - p_area))), 7)
+
+    def test_buffer_buffer(self):
+        polygon = Polygon.from_bounds(xmin=-85.43750000002495,
+                                      ymin=46.68749999938329,
+                                      xmax=-85.37500000014984,
+                                      ymax=46.74999999925853,
+                                      sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        geodetic_area = polygon.remote_geodetic_area()
+        self.assertAlmostEqual(geodetic_area, 33199429.76907527, 8)
+        geodetic_side = math.sqrt(geodetic_area)
+        polygon_buffered = polygon.remote_geodetic_buffer(distance_m=(geodetic_side / 2.0))
+        geodetic_area = polygon_buffered.remote_geodetic_area()
+        self.assertFalse(math.isnan(geodetic_area))
+
+    def test_str(self):
+        polygon = Polygon.from_bounds(xmin=-85,
+                                      ymin=46,
+                                      xmax=-85,
+                                      ymax=46,
+                                      sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        val = str(polygon)
+        self.assertEqual(val, "POLYGON ((-85 46, -85 46, -85 46, -85 46)) wkid: 4326\n")
+

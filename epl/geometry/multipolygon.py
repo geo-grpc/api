@@ -57,7 +57,7 @@ class MultiPolygon(BaseMultipartGeometry):
             self._geom, self._ndim = geos_multipolygon_from_py(polygons)
 
     def shape_factory(self, *args):
-        return polygon.Polygon(*args)
+        return polygon.Polygon(*args, sr=self.sr)
 
     @property
     def __geo_interface__(self):

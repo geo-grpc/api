@@ -47,7 +47,7 @@ class MultiLineString(BaseMultipartGeometry):
             self._geom, self._ndim = geos_multilinestring_from_py(lines)
 
     def shape_factory(self, *args):
-        return linestring.LineString(*args)
+        return linestring.LineString(*args, sr=self.sr)
 
     @property
     def __geo_interface__(self):

@@ -53,7 +53,7 @@ class MultiPoint(BaseMultipartGeometry):
             self._geom, self._ndim = geos_multipoint_from_py(points)
 
     def shape_factory(self, *args):
-        return point.Point(*args)
+        return point.Point(*args, sr=self.sr)
 
     @property
     def __geo_interface__(self):

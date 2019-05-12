@@ -251,7 +251,7 @@ class Polygon(BaseGeometry):
             return None
         elif self._exterior is None or self._exterior() is None:
             g = lgeos.GEOSGetExteriorRing(self._geom)
-            ring = LinearRing()
+            ring = LinearRing(sr=self.sr)
             ring._geom = g
             ring.__p__ = self
             ring._other_owned = True
@@ -353,13 +353,13 @@ class Polygon(BaseGeometry):
             ).format(2. * scale_factor, path, fill_color)
 
     @classmethod
-    def from_bounds(cls, xmin, ymin, xmax, ymax):
+    def from_bounds(cls, xmin, ymin, xmax, ymax, sr:geometry_pb2.SpatialReferenceData = None):
         """Construct a `Polygon()` from spatial bounds."""
         return cls([
             (xmin, ymin),
             (xmin, ymax),
             (xmax, ymax),
-            (xmax, ymin)])
+            (xmax, ymin)], sr=sr)
 
 
 class PolygonAdapter(PolygonProxy, Polygon):

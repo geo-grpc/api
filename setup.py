@@ -10,9 +10,9 @@ sys.path.insert(0, src_path)
 
 kwargs = {
     'name': 'epl.geometry',
-    'description': 'geometry library that extends shapely to work with Echo Park Labs gRPC geometry library',
+    'description': 'geometry library',
     'url': 'https://github.com/geo-grpc/geometry-client-python',
-    'long_description': open('README.md').read(),
+    'long_description': "geometry library",
     'author': 'David Raleigh',
     'author_email': 'davidraleigh@geometry.com',
     'license': 'Apache 2.0',
