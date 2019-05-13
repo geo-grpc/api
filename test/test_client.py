@@ -340,19 +340,19 @@ class TestBasic(unittest.TestCase):
 
                 point = Point(longitude, latitude, sr=service_sr)
 
-                service_geom_polyline = geometry_pb2.GeometryData(
+                service_geom_point = geometry_pb2.GeometryData(
                     wkt=point.wkt,
                     sr=service_sr)
 
                 op_request_project = geometry_pb2.GeometryRequest(
-                    left_geometry=service_geom_polyline,
+                    left_geometry=service_geom_point,
                     operator=geometry_pb2.PROJECT,
-                    operation_sr=output_sr)
+                    result_sr=output_sr)
 
                 op_request_outer = geometry_pb2.GeometryRequest(
                     left_geometry_request=op_request_project,
                     operator=geometry_pb2.PROJECT,
-                    operation_sr=service_sr,
+                    result_sr=service_sr,
                     result_encoding=geometry_pb2.WKT)
 
                 # print("make project request")
