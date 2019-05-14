@@ -51,7 +51,7 @@ class TestBasic(unittest.TestCase):
 
         buffer_params = geometry_pb2.GeometryRequest.BufferParams(distance=1.2)
 
-        op_request = geometry_pb2.GeometryRequest(left_geometry=polygon.export_protobuf(),
+        op_request = geometry_pb2.GeometryRequest(left_geometry=polygon.geometry_data,
                                                   operator=geometry_pb2.BUFFER,
                                                   buffer_params=buffer_params,
                                                   result_encoding=geometry_pb2.WKT)
@@ -73,7 +73,7 @@ class TestBasic(unittest.TestCase):
 
         buffer_params = geometry_pb2.GeometryRequest.BufferParams(distance=1.2)
 
-        op_request = geometry_pb2.GeometryRequest(left_geometry=polygon.export_protobuf(),
+        op_request = geometry_pb2.GeometryRequest(left_geometry=polygon.geometry_data,
                                                   operator=geometry_pb2.BUFFER,
                                                   buffer_params=buffer_params,
                                                   result_encoding=geometry_pb2.WKT)
@@ -89,7 +89,7 @@ class TestBasic(unittest.TestCase):
 
         another_new_polygon = polygon.remote_buffer(1.2)
         self.assertAlmostEqual(shapely_buffer.area, another_new_polygon.area, 2)
-        print(another_new_polygon.export_protobuf())
+        print(another_new_polygon.geometry_data)
 
     def test_remote_buffer_bounds(self):
         polygon = Polygon([(0, 0), (1, 1), (1, 0)], sr=geometry_pb2.SpatialReferenceData(wkid=4326))
@@ -153,7 +153,7 @@ class TestBasic(unittest.TestCase):
 
         op_equals = geometry_pb2.GeometryRequest(
             left_geometry=geometry_pb2.GeometryData(wkt=expected),
-            right_geometry=projected.export_protobuf(),
+            right_geometry=projected.geometry_data,
             operator=geometry_pb2.EQUALS,
             operation_sr=output_sr)
         stub = geometry_grpc.GeometryServiceStub(self.channel)
@@ -369,7 +369,7 @@ class TestBasic(unittest.TestCase):
         polygon = Polygon([(0, 0), (1, 1), (1, 0)], sr=geometry_pb2.SpatialReferenceData(wkid=4326))
         area = polygon.remote_geodetic_area()
         projected = polygon.remote_project(
-            to_spatial_reference=geometry_pb2.SpatialReferenceData(
+            to_sr=geometry_pb2.SpatialReferenceData(
                 custom=geometry_pb2.SpatialReferenceData.Custom(
                     lon_0=polygon.envelope.centroid.x,
                     lat_0=polygon.envelope.centroid.y)))
@@ -413,15 +413,15 @@ class TestBasic(unittest.TestCase):
         intersection_1 = polygon_left.remote_intersection(polygon_right)
         self.assertLess(intersection_1.area, polygon_left.area)
         self.assertLess(intersection_1.area, polygon_right.area)
-        self.assertEqual(intersection_1.export_protobuf().sr.wkid, 4326)
+        self.assertEqual(intersection_1.geometry_data.sr.wkid, 4326)
 
         intersection_1_web = polygon_right.remote_intersection(other_geom=polygon_left,
                                                                result_sr=geometry_pb2.SpatialReferenceData(
                                                                    wkid=3857))
-        self.assertEqual(intersection_1_web.export_protobuf().sr.wkid, 3857)
+        self.assertEqual(intersection_1_web.geometry_data.sr.wkid, 3857)
         self.assertAlmostEqual(intersection_1.area,
                                intersection_1_web.remote_project(
-                                   to_spatial_reference=geometry_pb2.SpatialReferenceData(
+                                   to_sr=geometry_pb2.SpatialReferenceData(
                                        wkid=4326)).area)
 
         envelope_data = geometry_pb2.EnvelopeData(xmin=-85.5,
@@ -446,6 +446,20 @@ class TestBasic(unittest.TestCase):
                                             sr=geometry_pb2.SpatialReferenceData(wkid=3857))
         self.assertFalse(polygon_right == polygon_lerft)
 
-        point1 = Point(2,3, sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        point2 = Point(2,3, sr=geometry_pb2.SpatialReferenceData(wkid=3857))
+        point1 = Point(2, 3, sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        point2 = Point(2, 3, sr=geometry_pb2.SpatialReferenceData(wkid=3857))
         self.assertFalse(point1 == point2)
+
+    def test_buffer_envelope(self):
+        # https://swiftera.atlassian.net/browse/DP-171
+        env = geometry_pb2.EnvelopeData(xmin=626926.2447786715,
+                                        ymin=4653522.778178136,
+                                        xmax=626951.6973246232,
+                                        ymax=4653539.96040726,
+                                        sr=geometry_pb2.SpatialReferenceData(wkid=32630))
+
+        polygon = Polygon.from_envelope_data(env)
+        buffered = polygon.remote_buffer(100)
+        self.assertTrue(buffered.contains(polygon))
+        buffered_geodesic = polygon.remote_geodetic_buffer(101)
+        self.assertTrue(buffered_geodesic.contains(buffered))

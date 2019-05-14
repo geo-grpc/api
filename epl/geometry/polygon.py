@@ -355,7 +355,7 @@ class Polygon(BaseGeometry):
             ).format(2. * scale_factor, path, fill_color)
 
     @classmethod
-    def from_bounds(cls, xmin, ymin, xmax, ymax, sr:geometry_pb2.SpatialReferenceData = None):
+    def from_bounds(cls, xmin, ymin, xmax, ymax, sr: geometry_pb2.SpatialReferenceData = None):
         """Construct a `Polygon()` from spatial bounds."""
         return cls([
             (xmin, ymin),

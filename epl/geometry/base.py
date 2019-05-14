@@ -180,16 +180,18 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
     def sr(self):
         return self._sr
 
-    def export_protobuf(self) -> geometry_pb2.GeometryData:
-        return geometry_pb2.GeometryData(wkb=self.wkb, sr=self._sr)
-
     @staticmethod
-    def import_protobuf(geometry_data: geometry_pb2.GeometryData) -> geometry_pb2.SpatialReferenceData:
+    def import_protobuf(geometry_data: geometry_pb2.GeometryData):
+        """
+        import the geometry protobuf into a shapely geometry
+        :param geometry_data: geometry_pb2.GeometryData with spatial reference defined
+        :return: epl.BaseGeometry
+        """
         rpc_reader = RPCReader(lgeos, geometry_data)
         return rpc_reader.read()
 
     def remote_buffer(self, distance: float):
-        op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.BUFFER,
                                                   buffer_params=geometry_pb2.GeometryRequest.BufferParams(
                                                       distance=distance),
@@ -198,10 +200,10 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         geometry_response = self._stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
-    def remote_project(self, to_spatial_reference: geometry_pb2.SpatialReferenceData):
-        op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
+    def remote_project(self, to_sr: geometry_pb2.SpatialReferenceData):
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.PROJECT,
-                                                  result_sr=to_spatial_reference)
+                                                  result_sr=to_sr)
         geometry_response = self._stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
@@ -210,14 +212,14 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         get the geodesic area of a polygon
         :return: double value that is the WGS84 area of the geometry
         """
-        op_area = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
+        op_area = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                operator=geometry_pb2.GEODETIC_AREA,
                                                result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
         area_response = self._stub.GeometryOperationUnary(op_area)
         return area_response.measure
 
     def remote_geodetic_buffer(self, distance_m):
-        op_request = geometry_pb2.GeometryRequest(geometry=self.export_protobuf(),
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.GEODESIC_BUFFER,
                                                   buffer_params=geometry_pb2.GeometryRequest.BufferParams(
                                                       distance=distance_m),
@@ -240,8 +242,8 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         :param result_sr: the resulting spatial reference of the output geometry
         :return:
         """
-        op_request = geometry_pb2.GeometryRequest(left_geometry=self.export_protobuf(),
-                                                  right_geometry=other_geom.export_protobuf(),
+        op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
+                                                  right_geometry=other_geom.geometry_data,
                                                   operator=geometry_pb2.INTERSECTION,
                                                   operation_sr=operation_sr,
                                                   result_sr=result_sr)
@@ -388,6 +390,10 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
     def union(self, other):
         """Returns the union of the geometries (Shapely geometry)"""
         return geom_factory(self.impl['union'](self, other), sr=self.sr)
+
+    @property
+    def geometry_data(self) -> geometry_pb2.GeometryData:
+        return geometry_pb2.GeometryData(wkb=self.wkb, sr=self._sr)
 
     @property
     def envelope_data(self):
