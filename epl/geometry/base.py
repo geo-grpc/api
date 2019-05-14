@@ -675,8 +675,7 @@ class _GeometryServiceStub(metaclass=_Singleton):
 
     def __init__(self):
         address = os.getenv("GEOMETRY_SERVICE_HOST", 'localhost:8980')
-        #
-        # print("connect to address: ", address)
+        print("epl.geometry client connected to address: ", address)
         # print("create channel")
         channel = grpc.insecure_channel(address)
         self.stub = geometry_service_pb2_grpc.GeometryServiceStub(channel)
