@@ -13,8 +13,8 @@ from ctypes import c_char_p, c_size_t
 from shapely.geos import lgeos
 from shapely.geometry import base as shapely_base
 from shapely.impl import delegated
-
-from epl.protobuf import geometry_pb2, geometry_service_pb2_grpc
+from epl import geometry
+from epl.protobuf import geometry_pb2
 
 integer_types = (int,)
 
@@ -152,7 +152,6 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
     def __init__(self,
                  sr: geometry_pb2.SpatialReferenceData):
         super(BaseGeometry, self).__init__()
-        self._stub = _GeometryServiceStub().stub
         if sr is None:
             raise ValueError("must define a spatial reference for geometry on creation")
         self._sr = sr
@@ -197,14 +196,14 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                                                       distance=distance),
                                                   result_encoding=geometry_pb2.WKB)
 
-        geometry_response = self._stub.GeometryOperationUnary(op_request)
+        geometry_response = geometry.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def remote_project(self, to_sr: geometry_pb2.SpatialReferenceData):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.PROJECT,
                                                   result_sr=to_sr)
-        geometry_response = self._stub.GeometryOperationUnary(op_request)
+        geometry_response = geometry.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def remote_geodetic_area(self):
@@ -215,7 +214,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
         op_area = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                operator=geometry_pb2.GEODETIC_AREA,
                                                result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        area_response = self._stub.GeometryOperationUnary(op_area)
+        area_response = geometry.geometry_service.stub.GeometryOperationUnary(op_area)
         return area_response.measure
 
     def remote_geodetic_buffer(self, distance_m):
@@ -225,7 +224,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                                                       distance=distance_m),
                                                   result_encoding=geometry_pb2.WKB)
 
-        geometry_response = self._stub.GeometryOperationUnary(op_request)
+        geometry_response = geometry.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def remote_intersection(self,
@@ -247,7 +246,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                                                   operator=geometry_pb2.INTERSECTION,
                                                   operation_sr=operation_sr,
                                                   result_sr=result_sr)
-        return BaseGeometry.import_protobuf(self._stub.GeometryOperationUnary(op_request).geometry)
+        return BaseGeometry.import_protobuf(geometry.geometry_service.stub.GeometryOperationUnary(op_request).geometry)
 
     @property
     def boundary(self):
@@ -655,27 +654,27 @@ class RPCReader(object):
         return geom
 
 
-class _Singleton(type):
-    """
-    https://sourcemaking.com/design_patterns/singleton/python/1
-    """
-
-    def __init__(cls, name, bases, attrs, **kwargs):
-        super().__init__(name, bases, attrs)
-        cls._instance = None
-
-    def __call__(cls, *args, **kwargs):
-        if cls._instance is None:
-            cls._instance = super().__call__(*args, **kwargs)
-        return cls._instance
-
-
-class _GeometryServiceStub(metaclass=_Singleton):
-    stub = None
-
-    def __init__(self):
-        address = os.getenv("GEOMETRY_SERVICE_HOST", 'localhost:8980')
-        print("epl.geometry client connected to address: ", address)
-        # print("create channel")
-        channel = grpc.insecure_channel(address)
-        self.stub = geometry_service_pb2_grpc.GeometryServiceStub(channel)
+# class _Singleton(type):
+#     """
+#     https://sourcemaking.com/design_patterns/singleton/python/1
+#     """
+#
+#     def __init__(cls, name, bases, attrs, **kwargs):
+#         super().__init__(name, bases, attrs)
+#         cls._instance = None
+#
+#     def __call__(cls, *args, **kwargs):
+#         if cls._instance is None:
+#             cls._instance = super().__call__(*args, **kwargs)
+#         return cls._instance
+#
+#
+# class _GeometryServiceStub(metaclass=_Singleton):
+#     stub = None
+#
+#     def __init__(self):
+#         address = os.getenv("GEOMETRY_SERVICE_HOST", 'localhost:8980')
+#         print("epl.geometry client connected to address: ", address)
+#         # print("create channel")
+#         channel = grpc.insecure_channel(address)
+#         self.stub = geometry_service_pb2_grpc.GeometryServiceStub(channel)

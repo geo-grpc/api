@@ -25,7 +25,7 @@ import math
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
 from epl.geometry import Point, MultiPoint, Polygon, LineString
-
+from epl import geometry
 from epl.protobuf import geometry_pb2
 import epl.protobuf.geometry_service_pb2_grpc as geometry_grpc
 import numpy as np
@@ -34,13 +34,14 @@ import numpy as np
 class TestBasic(unittest.TestCase):
     channel = None
 
-    def setUp(self):
-        # TODO setup environment variable
+    @classmethod
+    def setUpClass(cls):
         address = os.getenv("GEOMETRY_SERVICE_HOST", 'localhost:8980')
-        #
-        # print("connect to address: ", address)
-        # print("create channel")
-        self.channel = grpc.insecure_channel(address)
+        cls.channel = grpc.insecure_channel(address)
+
+    def setUp(self):
+        self.channel = TestBasic.channel
+        geometry.geometry_service.set_channel(self.channel)
 
         # options
         # https://groups.google.com/forum/#!topic/grpc-io/ZtBCw4ZqLqE
