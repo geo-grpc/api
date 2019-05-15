@@ -403,6 +403,10 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                                          ymax=self.bounds[3],
                                          sr=self._sr)
 
+    @property
+    def shapley_dump(self):
+        return shapely_base.geom_factory(self.__geom__)
+
 
 class BaseMultipartGeometry(BaseGeometry):
 

@@ -22,6 +22,7 @@ import unittest
 import grpc
 import math
 
+from shapely.geometry import Polygon as ShapelyPolygon
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
 from epl.geometry import Point, MultiPoint, Polygon, LineString
@@ -464,3 +465,15 @@ class TestBasic(unittest.TestCase):
         self.assertTrue(buffered.contains(polygon))
         buffered_geodesic = polygon.remote_geodetic_buffer(101)
         self.assertTrue(buffered_geodesic.contains(buffered))
+
+    def test_type_shapelye(self):
+        env = geometry_pb2.EnvelopeData(xmin=626926.2447786715,
+                                        ymin=4653522.778178136,
+                                        xmax=626951.6973246232,
+                                        ymax=4653539.96040726,
+                                        sr=geometry_pb2.SpatialReferenceData(wkid=32630))
+
+        polygon = Polygon.from_envelope_data(env)
+        self.assertTrue(isinstance(polygon, Polygon))
+        polygon_dump = polygon.shapley_dump
+        self.assertTrue(isinstance(polygon_dump, ShapelyPolygon))
