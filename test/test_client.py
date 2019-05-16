@@ -23,9 +23,10 @@ import grpc
 import math
 
 from shapely.geometry import Polygon as ShapelyPolygon
+from shapely.geometry import MultiPolygon as ShapelyMultiPolygon
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
-from epl.geometry import Point, MultiPoint, Polygon, LineString
+from epl.geometry import Point, MultiPoint, Polygon, LineString, MultiPolygon
 from epl import geometry
 from epl.protobuf import geometry_pb2
 import epl.protobuf.geometry_service_pb2_grpc as geometry_grpc
@@ -467,6 +468,10 @@ class TestBasic(unittest.TestCase):
         self.assertTrue(buffered_geodesic.contains(buffered))
 
     def test_type_shapelye(self):
+        sr = geometry_pb2.SpatialReferenceData(wkid=4326)
+        coords = [(0, 0), (1, 1)]
+        LineString(coords, sr=sr).contains(Point(0.5, 0.5, sr=sr))
+        Point(0.5, 0.5, sr=sr).within(LineString(coords, sr=sr))
         env = geometry_pb2.EnvelopeData(xmin=626926.2447786715,
                                         ymin=4653522.778178136,
                                         xmax=626951.6973246232,
@@ -475,5 +480,28 @@ class TestBasic(unittest.TestCase):
 
         polygon = Polygon.from_envelope_data(env)
         self.assertTrue(isinstance(polygon, Polygon))
-        polygon_dump = polygon.shapley_dump
-        self.assertTrue(isinstance(polygon_dump, ShapelyPolygon))
+        print(polygon.exterior.coords)
+        # polygon_dump = polygon.shapley_dump
+        # self.assertTrue(isinstance(polygon_dump, ShapelyPolygon))
+
+        polygon_left = Polygon.from_bounds(xmin=-85,
+                                           ymin=46,
+                                           xmax=-83,
+                                           ymax=48,
+                                           sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polygon_right = Polygon.from_bounds(xmin=-85.5,
+                                            ymin=44,
+                                            xmax=-84,
+                                            ymax=47,
+                                            sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        intersection_1 = polygon_left.remote_intersection(polygon_right)
+        self.assertTrue(isinstance(intersection_1, MultiPolygon))
+
+        for geom in intersection_1.geoms:
+            print(geom.wkt)
+
+        self.assertGreaterEqual(intersection_1.area, 0)
+        multi_shape = intersection_1.shapley_dump
+        self.assertEqual(multi_shape.area, intersection_1.area)
+        print("success")
+

@@ -6,6 +6,8 @@ from shapely.geos import lgeos
 from epl.geometry.base import BaseMultipartGeometry, geos_geom_from_py
 from epl.geometry import polygon
 from shapely.geometry.proxy import CachingGeometryProxy
+from shapely.geometry.multipolygon import MultiPolygon as ShapelyMultiPolygon
+from shapely.geometry.polygon import Polygon as ShapelyPolygon
 
 __all__ = ['MultiPolygon', 'asMultiPolygon']
 
@@ -91,6 +93,13 @@ class MultiPolygon(BaseMultipartGeometry):
         return '<g>' + \
                ''.join(p.svg(scale_factor, fill_color) for p in self) + \
                '</g>'
+
+    @property
+    def shapley_dump(self):
+        stuff = []
+        for geom in self.geoms:
+            stuff.append(geom.shapley_dump)
+        return ShapelyMultiPolygon(stuff)
 
 
 class MultiPolygonAdapter(CachingGeometryProxy, MultiPolygon):

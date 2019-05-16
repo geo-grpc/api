@@ -1,15 +1,13 @@
-import os
 import sys
 import importlib
 import warnings
-
-import grpc
 
 from abc import ABC
 from binascii import a2b_hex
 from functools import wraps
 from ctypes import c_char_p, c_size_t
 
+from shapely.coords import CoordinateSequence
 from shapely.geos import lgeos
 from shapely.geometry import base as shapely_base
 from shapely.impl import delegated
@@ -92,12 +90,45 @@ def geom_factory(g,
     return ob
 
 
+# def geom_from_wkt(data, sr: geometry_pb2.SpatialReferenceData):
+#     warnings.warn("`geom_from_wkt` is deprecated. Use `geos.wkt_reader.read(data)`.", DeprecationWarning)
+#     if sys.version_info[0] >= 3:
+#         data = data.encode('ascii')
+#     geom = lgeos.GEOSGeomFromWKT(c_char_p(data))
+#     if not geom:
+#         raise ValueError(
+#             "Could not create geometry because of errors while reading input.")
+#     return geom_factory(geom, sr=sr)
+
+
+# def geom_to_wkt(ob):
+#     warnings.warn("`geom_to_wkt` is deprecated. Use `geos.wkt_writer.write(ob)`.", DeprecationWarning)
+#     if ob is None or ob._geom is None:
+#         raise ValueError("Null geometry supports no operations")
+#     return lgeos.GEOSGeomToWKT(ob._geom)
+
+
 def deserialize_wkb(data):
     geom = lgeos.GEOSGeomFromWKB_buf(c_char_p(data), c_size_t(len(data)))
     if not geom:
         raise ValueError(
             "Could not create geometry because of errors while reading input.")
     return geom
+
+
+# def geom_from_wkb(data):
+#     warn("`geom_from_wkb` is deprecated. Use `geos.wkb_reader.read(data)`.",
+#          DeprecationWarning)
+#     return geom_factory(deserialize_wkb(data))
+#
+#
+# def geom_to_wkb(ob):
+#     warn("`geom_to_wkb` is deprecated. Use `geos.wkb_writer.write(ob)`.",
+#          DeprecationWarning)
+#     if ob is None or ob._geom is None:
+#         raise ValueError("Null geometry supports no operations")
+#     size = c_size_t()
+#     return lgeos.GEOSGeomToWKB_buf(c_void_p(ob._geom), pointer(size))
 
 
 def geos_geom_from_py(ob, create_func=None):
@@ -247,6 +278,21 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
                                                   operation_sr=operation_sr,
                                                   result_sr=result_sr)
         return BaseGeometry.import_protobuf(geometry.geometry_service.stub.GeometryOperationUnary(op_request).geometry)
+
+    # Coordinate access
+    # -----------------
+
+    def _get_coords(self):
+        """Access to geometry's coordinates (CoordinateSequence)"""
+        if self.is_empty:
+            return []
+        return CoordinateSequence(self)
+
+    def _set_coords(self, ob):
+        raise NotImplementedError(
+            "set_coords must be provided by derived classes")
+
+    coords = property(_get_coords, _set_coords)
 
     @property
     def boundary(self):
