@@ -22,11 +22,9 @@ import unittest
 import grpc
 import math
 
-from shapely.geometry import Polygon as ShapelyPolygon
-from shapely.geometry import MultiPolygon as ShapelyMultiPolygon
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
-from epl.geometry import Point, MultiPoint, Polygon, LineString, MultiPolygon
+from epl.geometry import Point, MultiPoint, Polygon, LineString, MultiPolygon, MultiLineString
 from epl import geometry
 from epl.protobuf import geometry_pb2
 import epl.protobuf.geometry_service_pb2_grpc as geometry_grpc
@@ -86,7 +84,7 @@ class TestBasic(unittest.TestCase):
 
         print("make wkt request")
         response = stub.GeometryOperationUnary(op_request)
-        new_polygon = polygon.import_protobuf(response.geometry)
+        new_polygon = Polygon.import_protobuf(response.geometry)
         shapely_buffer = polygon.buffer(1.2)
         self.assertAlmostEqual(shapely_buffer.area, new_polygon.area, 2)
 
@@ -113,6 +111,9 @@ class TestBasic(unittest.TestCase):
         service_sr = geometry_pb2.SpatialReferenceData(wkid=32632)
         output_sr = geometry_pb2.SpatialReferenceData(wkid=4326)
         polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)], sr=service_sr)
+
+        shapelypolyline = polyline.shapely_dump
+        self.assertEqual(polyline.length, shapelypolyline.length)
 
         a = geometry_pb2.EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
         service_geom_polyline = geometry_pb2.GeometryData(
@@ -161,8 +162,17 @@ class TestBasic(unittest.TestCase):
             operation_sr=output_sr)
         stub = geometry_grpc.GeometryServiceStub(self.channel)
         response3 = stub.GeometryOperationUnary(op_equals)
-
         self.assertTrue(response3.spatial_relationship)
+
+        op_simplify = geometry_pb2.GeometryRequest(
+            geometry=geometry_pb2.GeometryData(wkb=polyline.wkb, sr=geometry_pb2.SpatialReferenceData(wkid=32632)),
+            operation_sr=output_sr,
+            operator=geometry_pb2.SIMPLIFY
+        )
+        response4 = stub.GeometryOperationUnary(op_simplify)
+        multi_line = MultiLineString.import_protobuf(response4.geometry)
+        self.assertAlmostEqual(polyline.length, multi_line.length, 8)
+
 
     def test_exception_sr(self):
         try:
@@ -221,6 +231,8 @@ class TestBasic(unittest.TestCase):
         multipoint = MultiPoint(multipoints_array, sr=service_sr)
 
         service_geom_polyline = geometry_pb2.GeometryData(wkt=multipoint.wkt, sr=service_sr)
+        multipointshapely = multipoint.shapely_dump
+        self.assertEqual(multipoint.bounds[0], multipointshapely.bounds[0])
 
         op_request_project = geometry_pb2.GeometryRequest(
             left_geometry=service_geom_polyline,
@@ -489,6 +501,9 @@ class TestBasic(unittest.TestCase):
                                            xmax=-83,
                                            ymax=48,
                                            sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polygon_left_shapely = polygon_left.shapely_dump
+        self.assertEqual(polygon_left.area, polygon_left_shapely.area)
+
         polygon_right = Polygon.from_bounds(xmin=-85.5,
                                             ymin=44,
                                             xmax=-84,
@@ -501,7 +516,7 @@ class TestBasic(unittest.TestCase):
             print(geom.wkt)
 
         self.assertGreaterEqual(intersection_1.area, 0)
-        multi_shape = intersection_1.shapley_dump
+        multi_shape = intersection_1.shapely_dump
         self.assertEqual(multi_shape.area, intersection_1.area)
         print("success")
 

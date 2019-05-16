@@ -15,7 +15,7 @@ __all__ = [
     'MultiLineString', 'asMultiLineString', 'MultiPolygon', 'asMultiPolygon',
     'GeometryCollection', 'mapping', 'LinearRing', 'asLinearRing',
     'CAP_STYLE', 'JOIN_STYLE',
-    'geometry_service'
+    'geometry_service',
 ]
 
 # This needs to be called here to avoid circular references

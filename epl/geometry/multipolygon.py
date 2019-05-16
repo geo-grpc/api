@@ -2,13 +2,14 @@
 """
 from ctypes import c_void_p, cast
 
-from shapely.geos import lgeos
-from epl.geometry.base import BaseMultipartGeometry, geos_geom_from_py
-from epl.geometry import polygon
 from shapely.geometry.proxy import CachingGeometryProxy
 from shapely.geometry.multipolygon import MultiPolygon as ShapelyMultiPolygon
-from shapely.geometry.polygon import Polygon as ShapelyPolygon
-from shapely.wkb import loads as loads_wkb
+from shapely.geos import lgeos
+from shapely.wkb import loads as shapely_loads_wkb
+
+from epl.geometry import polygon
+from epl.geometry.base import BaseMultipartGeometry, geos_geom_from_py
+from epl.protobuf import geometry_pb2
 
 __all__ = ['MultiPolygon', 'asMultiPolygon']
 
@@ -25,7 +26,7 @@ class MultiPolygon(BaseMultipartGeometry):
         A sequence of `Polygon` instances
     """
 
-    def __init__(self, polygons=None, context_type='polygons'):
+    def __init__(self, polygons=None, context_type='polygons', sr: geometry_pb2.SpatialReferenceData=None):
         """
         Parameters
         ----------
@@ -49,7 +50,7 @@ class MultiPolygon(BaseMultipartGeometry):
           >>> type(ob.geoms[0]) == Polygon
           True
         """
-        super(MultiPolygon, self).__init__()
+        super(MultiPolygon, self).__init__(sr=sr)
 
         if not polygons:
             # allow creation of empty multipolygons, to support unpickling
@@ -96,8 +97,8 @@ class MultiPolygon(BaseMultipartGeometry):
                '</g>'
 
     @property
-    def shapley_dump(self):
-        arr = [loads_wkb(geom.wkb) for geom in self.geoms]
+    def shapely_dump(self):
+        arr = [shapely_loads_wkb(geom.wkb) for geom in self.geoms]
         return ShapelyMultiPolygon(arr)
 
 

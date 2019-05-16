@@ -3,10 +3,14 @@
 
 from ctypes import c_void_p, cast
 
+from shapely.geometry import MultiLineString as ShapelyMultiLineString
+from shapely.geometry.proxy import CachingGeometryProxy
 from shapely.geos import lgeos
+from shapely.wkb import loads as shapely_loads_wkb
+
 from epl.geometry.base import BaseMultipartGeometry, geos_geom_from_py
 from epl.geometry import linestring
-from shapely.geometry.proxy import CachingGeometryProxy
+from epl.protobuf import geometry_pb2
 
 __all__ = ['MultiLineString', 'asMultiLineString']
 
@@ -23,7 +27,7 @@ class MultiLineString(BaseMultipartGeometry):
         A sequence of LineStrings
     """
 
-    def __init__(self, lines=None):
+    def __init__(self, lines=None, sr=geometry_pb2.SpatialReferenceData):
         """
         Parameters
         ----------
@@ -38,7 +42,7 @@ class MultiLineString(BaseMultipartGeometry):
 
           >>> lines = MultiLineString( [[[0.0, 0.0], [1.0, 2.0]]] )
         """
-        super(MultiLineString, self).__init__()
+        super(MultiLineString, self).__init__(sr=sr)
 
         if not lines:
             # allow creation of empty multilinestrings, to support unpickling
@@ -74,6 +78,11 @@ class MultiLineString(BaseMultipartGeometry):
         return '<g>' + \
                ''.join(p.svg(scale_factor, stroke_color) for p in self) + \
                '</g>'
+
+    @property
+    def shapely_dump(self):
+        arr = [shapely_loads_wkb(geom.wkb) for geom in self.geoms]
+        return ShapelyMultiLineString(arr)
 
 
 class MultiLineStringAdapter(CachingGeometryProxy, MultiLineString):
@@ -128,7 +137,7 @@ def geos_multilinestring_from_py(ob):
         geom, ndims = linestring.geos_linestring_from_py(obs[l])
         subs[l] = cast(geom, c_void_p)
 
-    return (lgeos.GEOSGeom_createCollection(5, subs, L), N)
+    return lgeos.GEOSGeom_createCollection(5, subs, L), N
 
 
 # Test runner

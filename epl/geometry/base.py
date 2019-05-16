@@ -15,7 +15,6 @@ import sys
 from warnings import warn
 from functools import wraps
 
-from shapely.geometry import base as shapely_base
 from shapely.affinity import affine_transform
 from shapely.coords import CoordinateSequence
 from shapely.geos import WKBWriter, WKTWriter
@@ -23,6 +22,7 @@ from shapely.geos import lgeos
 from shapely.impl import DefaultImplementation, delegated
 from epl.protobuf import geometry_pb2
 from epl import geometry as geometry_init
+from shapely.wkb import loads as shapely_loads_wkb
 
 integer_types = (int,)
 
@@ -112,7 +112,7 @@ def geom_factory(g,
 
 
 def geom_to_wkt(ob):
-    warnings.warn("`geom_to_wkt` is deprecated. Use `geos.wkt_writer.write(ob)`.", DeprecationWarning)
+    warn("`geom_to_wkt` is deprecated. Use `geos.wkt_writer.write(ob)`.", DeprecationWarning)
     if ob is None or ob._geom is None:
         raise ValueError("Null geometry supports no operations")
     return lgeos.GEOSGeomToWKT(ob._geom)
@@ -853,8 +853,8 @@ class BaseGeometry(object):
                                          sr=self._sr)
 
     @property
-    def shapley_dump(self):
-        return shapely_base.geom_factory(self.__geom__)
+    def shapely_dump(self):
+        return shapely_loads_wkb(self.wkb)
 
 
 class BaseMultipartGeometry(BaseGeometry):

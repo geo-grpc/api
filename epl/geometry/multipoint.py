@@ -8,6 +8,8 @@ from epl.protobuf import geometry_pb2
 from epl.geometry.base import BaseMultipartGeometry, exceptNull, geos_geom_from_py
 from epl.geometry import point
 
+from shapely.wkb import loads as shapely_loads_wkb
+from shapely.geometry import MultiPoint as ShapelyMultiPoint
 from shapely.geometry.proxy import CachingGeometryProxy
 
 __all__ = ['MultiPoint', 'asMultiPoint']
@@ -110,6 +112,11 @@ class MultiPoint(BaseMultipartGeometry):
         ai.update({'shape': (len(self.geoms), self._ndim)})
         return ai
     __array_interface__ = property(array_interface)
+
+    @property
+    def shapely_dump(self):
+        arr = [shapely_loads_wkb(geom.wkb) for geom in self.geoms]
+        return ShapelyMultiPoint(arr)
 
 
 class MultiPointAdapter(CachingGeometryProxy, MultiPoint):
