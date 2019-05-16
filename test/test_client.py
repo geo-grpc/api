@@ -520,3 +520,36 @@ class TestBasic(unittest.TestCase):
         self.assertEqual(multi_shape.area, intersection_1.area)
         print("success")
 
+    def test_sr_params(self):
+        polygon_left = Polygon.from_bounds(xmin=-85,
+                                           ymin=46,
+                                           xmax=-83,
+                                           ymax=48,
+                                           sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polygon_right = Polygon.from_bounds(xmin=-85.5,
+                                            ymin=44,
+                                            xmax=-84,
+                                            ymax=47,
+                                            wkid=4326)
+        intersection_1 = polygon_left.remote_intersection(polygon_right)
+        self.assertLess(intersection_1.area, polygon_left.area)
+        self.assertLess(intersection_1.area, polygon_right.area)
+        self.assertEqual(intersection_1.geometry_data.sr.wkid, 4326)
+
+        intersection_1_web = polygon_right.remote_intersection(other_geom=polygon_left,
+                                                               result_sr=geometry_pb2.SpatialReferenceData(
+                                                                   wkid=3857))
+        self.assertEqual(intersection_1_web.geometry_data.sr.wkid, 3857)
+        self.assertAlmostEqual(intersection_1.area,
+                               intersection_1_web.remote_project(
+                                   to_sr=geometry_pb2.SpatialReferenceData(
+                                       wkid=4326)).area)
+
+        envelope_data = geometry_pb2.EnvelopeData(xmin=-85.5,
+                                                  ymin=44,
+                                                  xmax=-84,
+                                                  ymax=47,
+                                                  sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polygon_right = Polygon.from_envelope_data(envelope_data=envelope_data)
+        intersection_2 = polygon_right.remote_intersection(polygon_left)
+        self.assertEqual(intersection_1, intersection_2)

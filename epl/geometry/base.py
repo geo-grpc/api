@@ -223,10 +223,16 @@ class BaseGeometry(object):
     _lgeos = lgeos
 
     def __init__(self,
-                 sr: geometry_pb2.SpatialReferenceData):
+                 sr: geometry_pb2.SpatialReferenceData,
+                 wkid: int = 0,
+                 proj4: str = ""):
         super(BaseGeometry, self).__init__()
-        if sr is None:
+        if sr is None and wkid == 0 and len(proj4) == 0:
             raise ValueError("must define a spatial reference for geometry on creation")
+        if sr is None and wkid > 0:
+            sr = geometry_pb2.SpatialReferenceData(wkid=wkid)
+        elif sr is None and len(proj4) > 0:
+            sr = geometry_pb2.SpatialReferenceData(proj4=proj4)
         self._sr = sr
 
     def empty(self, val=EMPTY):

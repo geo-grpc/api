@@ -27,7 +27,11 @@ class LinearRing(LineString):
     invalid and operations on it may fail.
     """
 
-    def __init__(self, coordinates=None, sr: geometry_pb2.SpatialReferenceData = None):
+    def __init__(self,
+                 coordinates=None,
+                 sr: geometry_pb2.SpatialReferenceData = None,
+                 wkid: int = 0,
+                 proj4: str = ""):
         """
         Parameters
         ----------
@@ -47,7 +51,7 @@ class LinearRing(LineString):
           >>> ring.length
           4.0
         """
-        BaseGeometry.__init__(self, sr=sr)
+        BaseGeometry.__init__(self, sr=sr, wkid=wkid, proj4=proj4)
         if coordinates is not None:
             self._set_coords(coordinates)
 
@@ -217,7 +221,9 @@ class Polygon(BaseGeometry):
     def __init__(self,
                  shell=None,
                  holes=None,
-                 sr: geometry_pb2.SpatialReferenceData = None):
+                 sr: geometry_pb2.SpatialReferenceData = None,
+                 wkid: int = 0,
+                 proj4: str = ""):
         """
         Parameters
         ----------
@@ -236,7 +242,7 @@ class Polygon(BaseGeometry):
           >>> polygon.area
           1.0
         """
-        BaseGeometry.__init__(self, sr)
+        BaseGeometry.__init__(self, sr=sr, wkid=wkid, proj4=proj4)
 
         if shell is not None:
             ret = geos_polygon_from_py(shell, holes)
@@ -355,13 +361,13 @@ class Polygon(BaseGeometry):
             ).format(2. * scale_factor, path, fill_color)
 
     @classmethod
-    def from_bounds(cls, xmin, ymin, xmax, ymax, sr: geometry_pb2.SpatialReferenceData = None):
+    def from_bounds(cls, xmin, ymin, xmax, ymax, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
         """Construct a `Polygon()` from spatial bounds."""
         return cls([
             (xmin, ymin),
             (xmin, ymax),
             (xmax, ymax),
-            (xmax, ymin)], sr=sr)
+            (xmax, ymin)], sr=sr, wkid=wkid, proj4=proj4)
 
     @classmethod
     def from_envelope_data(cls, envelope_data: geometry_pb2.EnvelopeData):
