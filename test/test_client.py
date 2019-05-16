@@ -115,7 +115,7 @@ class TestBasic(unittest.TestCase):
         shapelypolyline = polyline.shapely_dump
         self.assertEqual(polyline.length, shapelypolyline.length)
 
-        a = geometry_pb2.EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
+        # a = geometry_pb2.EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
         service_geom_polyline = geometry_pb2.GeometryData(
             wkt=polyline.wkt,
             sr=service_sr)
@@ -132,7 +132,7 @@ class TestBasic(unittest.TestCase):
 
         expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
 
-        actual = response2.geometry.wkt
+        # actual = response2.geometry.wkt
 
         op_equals = geometry_pb2.GeometryRequest(
             left_geometry=geometry_pb2.GeometryData(wkt=expected),
@@ -173,7 +173,6 @@ class TestBasic(unittest.TestCase):
         multi_line = MultiLineString.import_protobuf(response4.geometry)
         self.assertAlmostEqual(polyline.length, multi_line.length, 8)
 
-
     def test_exception_sr(self):
         try:
             LineString([(500000, 0), (400000, 100000), (600000, -100000)])
@@ -202,9 +201,10 @@ class TestBasic(unittest.TestCase):
         response2 = stub.GeometryOperationUnary(op_request_project)
         print("Client received project response:\n", response2)
 
-        expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
-
-        actual = response2.geometry.wkt
+        # expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, " \
+        #            "9.898748937075354 -0.904618578893133))"
+        #
+        # actual = response2.geometry.wkt
 
         op_equals = geometry_pb2.GeometryRequest(
             left_geometry=service_geom_polyline,
@@ -331,8 +331,6 @@ class TestBasic(unittest.TestCase):
 
     # tests exception handling for points outside the range of projection
     def test_ETRS(self):
-        geometry_strings = []
-
         change_interval = 15
         start_lon = -180.0
         end_lon = 180.0
