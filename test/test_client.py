@@ -115,7 +115,6 @@ class TestBasic(unittest.TestCase):
         shapelypolyline = polyline.shapely_dump
         self.assertEqual(polyline.length, shapelypolyline.length)
 
-        # a = geometry_pb2.EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
         service_geom_polyline = geometry_pb2.GeometryData(
             wkt=polyline.wkt,
             sr=service_sr)
@@ -186,7 +185,6 @@ class TestBasic(unittest.TestCase):
         polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)],
                               sr=geometry_pb2.SpatialReferenceData(wkid=3857))
 
-        a = geometry_pb2.EnvelopeData(xmin=1, ymin=2, xmax=4, ymax=6)
         service_geom_polyline = geometry_pb2.GeometryData(
             wkt=polyline.wkt,
             sr=service_sr)
