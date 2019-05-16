@@ -859,6 +859,15 @@ class BaseGeometry(object):
     def shapely_dump(self):
         return shapely_loads_wkb(self.wkb)
 
+    @property
+    def carto_geom(self):
+        return self.shapely_dump
+
+    @property
+    def carto_bounds(self):
+        b = self.bounds
+        return b[0], b[2], b[1], b[3]
+
 
 class BaseMultipartGeometry(BaseGeometry):
 
