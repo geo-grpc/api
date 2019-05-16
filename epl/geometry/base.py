@@ -1,18 +1,28 @@
-import sys
+"""Base geometry class and utilities
+
+Note: a third, z, coordinate value may be used when constructing
+geometry objects, but has no effect on geometric analysis. All
+operations are performed in the x-y plane. Thus, geometries with
+different z values may intersect or be equal.
+"""
 import importlib
-import warnings
 
-from abc import ABC
 from binascii import a2b_hex
+from ctypes import pointer, c_size_t, c_char_p, c_void_p
+from itertools import islice
+import math
+import sys
+from warnings import warn
 from functools import wraps
-from ctypes import c_char_p, c_size_t
 
-from shapely.coords import CoordinateSequence
-from shapely.geos import lgeos
 from shapely.geometry import base as shapely_base
-from shapely.impl import delegated
-from epl import geometry
+from shapely.affinity import affine_transform
+from shapely.coords import CoordinateSequence
+from shapely.geos import WKBWriter, WKTWriter
+from shapely.geos import lgeos
+from shapely.impl import DefaultImplementation, delegated
 from epl.protobuf import geometry_pb2
+from epl import geometry as geometry_init
 
 integer_types = (int,)
 
@@ -101,11 +111,11 @@ def geom_factory(g,
 #     return geom_factory(geom, sr=sr)
 
 
-# def geom_to_wkt(ob):
-#     warnings.warn("`geom_to_wkt` is deprecated. Use `geos.wkt_writer.write(ob)`.", DeprecationWarning)
-#     if ob is None or ob._geom is None:
-#         raise ValueError("Null geometry supports no operations")
-#     return lgeos.GEOSGeomToWKT(ob._geom)
+def geom_to_wkt(ob):
+    warnings.warn("`geom_to_wkt` is deprecated. Use `geos.wkt_writer.write(ob)`.", DeprecationWarning)
+    if ob is None or ob._geom is None:
+        raise ValueError("Null geometry supports no operations")
+    return lgeos.GEOSGeomToWKT(ob._geom)
 
 
 def deserialize_wkb(data):
@@ -120,15 +130,15 @@ def deserialize_wkb(data):
 #     warn("`geom_from_wkb` is deprecated. Use `geos.wkb_reader.read(data)`.",
 #          DeprecationWarning)
 #     return geom_factory(deserialize_wkb(data))
-#
-#
-# def geom_to_wkb(ob):
-#     warn("`geom_to_wkb` is deprecated. Use `geos.wkb_writer.write(ob)`.",
-#          DeprecationWarning)
-#     if ob is None or ob._geom is None:
-#         raise ValueError("Null geometry supports no operations")
-#     size = c_size_t()
-#     return lgeos.GEOSGeomToWKB_buf(c_void_p(ob._geom), pointer(size))
+
+
+def geom_to_wkb(ob):
+    warn("`geom_to_wkb` is deprecated. Use `geos.wkb_writer.write(ob)`.",
+         DeprecationWarning)
+    if ob is None or ob._geom is None:
+        raise ValueError("Null geometry supports no operations")
+    size = c_size_t()
+    return lgeos.GEOSGeomToWKB_buf(c_void_p(ob._geom), pointer(size))
 
 
 def geos_geom_from_py(ob, create_func=None):
@@ -177,8 +187,43 @@ class JOIN_STYLE(object):
 EMPTY = deserialize_wkb(a2b_hex(b'010700000000000000'))
 
 
-class BaseGeometry(shapely_base.BaseGeometry, ABC):
-    _stub = None
+class BaseGeometry(object):
+    """
+    Provides GEOS spatial predicates and topological operations.
+
+    """
+
+    # Attributes
+    # ----------
+    # __geom__ : c_void_p
+    #     Cached ctypes pointer to GEOS geometry. Not to be accessed.
+    # _geom : c_void_p
+    #     Property by which the GEOS geometry is accessed.
+    # __p__ : object
+    #     Parent (Shapely) geometry
+    # _ctypes_data : object
+    #     Cached ctypes data buffer
+    # _ndim : int
+    #     Number of dimensions (2 or 3, generally)
+    # _crs : object
+    #     Coordinate reference system. Available for Shapely extensions, but
+    #     not implemented here.
+    # _other_owned : bool
+    #     True if this object's GEOS geometry is owned by another as in the
+    #     case of a multipart geometry member.
+    __geom__ = EMPTY
+    __p__ = None
+    _ctypes_data = None
+    _ndim = None
+    _crs = None
+    _other_owned = False
+    _is_empty = True
+
+    # Backend config
+    impl = DefaultImplementation
+
+    # a reference to the so/dll proxy to preserve access during clean up
+    _lgeos = lgeos
 
     def __init__(self,
                  sr: geometry_pb2.SpatialReferenceData):
@@ -187,8 +232,63 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
             raise ValueError("must define a spatial reference for geometry on creation")
         self._sr = sr
 
+    def empty(self, val=EMPTY):
+        # TODO: defer cleanup to the implementation. We shouldn't be
+        # explicitly calling a lgeos method here.
+        if not self._is_empty and not self._other_owned and self.__geom__:
+            try:
+                self._lgeos.GEOSGeom_destroy(self.__geom__)
+            except (AttributeError, TypeError):
+                pass  # _lgeos might be empty on shutdown
+        self._is_empty = True
+        self.__geom__ = val
+
+    def __del__(self):
+        self.empty(val=None)
+        self.__p__ = None
+        self._sr = None
+
     def __str__(self):
         return "{0} {1}".format(self.wkt, str(self.sr))
+
+    # To support pickling
+    def __reduce__(self):
+        return self.__class__, (), self.wkb
+
+    # TODO, does this get called anywhere?
+    def __setstate__(self, state):
+        self.empty()
+        self.__geom__ = deserialize_wkb(state)
+        self._is_empty = False
+        if lgeos.methods['has_z'](self.__geom__):
+            self._ndim = 3
+        else:
+            self._ndim = 2
+
+    @property
+    def _geom(self):
+        return self.__geom__
+
+    @_geom.setter
+    def _geom(self, val):
+        self.empty()
+        self._is_empty = val in [EMPTY, None]
+        self.__geom__ = val
+
+    # Operators
+    # ---------
+
+    def __and__(self, other):
+        return self.intersection(other)
+
+    def __or__(self, other):
+        return self.union(other)
+
+    def __sub__(self, other):
+        return self.difference(other)
+
+    def __xor__(self, other):
+        return self.symmetric_difference(other)
 
     def __eq__(self, other):
         return (
@@ -196,6 +296,11 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
             tuple(self.coords) == tuple(other.coords) and
             self.sr_eq(other.sr)
         )
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    __hash__ = None
 
     def sr_eq(self, other_sr: geometry_pb2.SpatialReferenceData):
         if self.sr.wkid > 0:
@@ -206,78 +311,33 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
             return self.sr.wkt == other_sr.wkt
         return False
 
+    # Array and ctypes interfaces
+    # ---------------------------
+
     @property
-    def sr(self):
-        return self._sr
+    def ctypes(self):
+        """Return ctypes buffer"""
+        raise NotImplementedError
 
-    @staticmethod
-    def import_protobuf(geometry_data: geometry_pb2.GeometryData):
-        """
-        import the geometry protobuf into a shapely geometry
-        :param geometry_data: geometry_pb2.GeometryData with spatial reference defined
-        :return: epl.BaseGeometry
-        """
-        rpc_reader = RPCReader(lgeos, geometry_data)
-        return rpc_reader.read()
+    @property
+    def array_interface_base(self):
+        if sys.byteorder == 'little':
+            typestr = '<f8'
+        elif sys.byteorder == 'big':
+            typestr = '>f8'
+        else:
+            raise ValueError(
+                "Unsupported byteorder: neither little nor big-endian")
+        return {
+            'version': 3,
+            'typestr': typestr,
+            'data': self.ctypes,
+        }
 
-    def remote_buffer(self, distance: float):
-        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
-                                                  operator=geometry_pb2.BUFFER,
-                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(
-                                                      distance=distance),
-                                                  result_encoding=geometry_pb2.WKB)
-
-        geometry_response = geometry.geometry_service.stub.GeometryOperationUnary(op_request)
-        return BaseGeometry.import_protobuf(geometry_response.geometry)
-
-    def remote_project(self, to_sr: geometry_pb2.SpatialReferenceData):
-        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
-                                                  operator=geometry_pb2.PROJECT,
-                                                  result_sr=to_sr)
-        geometry_response = geometry.geometry_service.stub.GeometryOperationUnary(op_request)
-        return BaseGeometry.import_protobuf(geometry_response.geometry)
-
-    def remote_geodetic_area(self):
-        """
-        get the geodesic area of a polygon
-        :return: double value that is the WGS84 area of the geometry
-        """
-        op_area = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
-                                               operator=geometry_pb2.GEODETIC_AREA,
-                                               result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        area_response = geometry.geometry_service.stub.GeometryOperationUnary(op_area)
-        return area_response.measure
-
-    def remote_geodetic_buffer(self, distance_m):
-        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
-                                                  operator=geometry_pb2.GEODESIC_BUFFER,
-                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(
-                                                      distance=distance_m),
-                                                  result_encoding=geometry_pb2.WKB)
-
-        geometry_response = geometry.geometry_service.stub.GeometryOperationUnary(op_request)
-        return BaseGeometry.import_protobuf(geometry_response.geometry)
-
-    def remote_intersection(self,
-                            other_geom,
-                            operation_sr: geometry_pb2.SpatialReferenceData = None,
-                            result_sr: geometry_pb2.SpatialReferenceData = None):
-        """
-        get the intersecting geometry. if the geometries intersected are in different spatial references, you'll need
-        to define a result spatial reference for them both to be projected into. That result spatial reference will be
-        the operation spatial reference. If you want their intersection to be in a different spatial reference than the
-        results, you can define that as well
-        :param other_geom: other geometry to be intersected
-        :param operation_sr: the spatial reference both geometries should be projected into for the intersection operation
-        :param result_sr: the resulting spatial reference of the output geometry
-        :return:
-        """
-        op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
-                                                  right_geometry=other_geom.geometry_data,
-                                                  operator=geometry_pb2.INTERSECTION,
-                                                  operation_sr=operation_sr,
-                                                  result_sr=result_sr)
-        return BaseGeometry.import_protobuf(geometry.geometry_service.stub.GeometryOperationUnary(op_request).geometry)
+    @property
+    def __array_interface__(self):
+        """Provide the Numpy array protocol."""
+        raise NotImplementedError
 
     # Coordinate access
     # -----------------
@@ -293,6 +353,124 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
             "set_coords must be provided by derived classes")
 
     coords = property(_get_coords, _set_coords)
+
+    @property
+    def xy(self):
+        """Separate arrays of X and Y coordinate values"""
+        raise NotImplementedError
+
+    # Python feature protocol
+
+    @property
+    def __geo_interface__(self):
+        """Dictionary representation of the geometry"""
+        raise NotImplementedError
+
+    # Type of geometry and its representations
+    # ----------------------------------------
+
+    def geometryType(self):
+        return geometry_type_name(self._geom)
+
+    @property
+    def type(self):
+        return self.geometryType()
+
+    def to_wkb(self):
+        warn("`to_wkb` is deprecated. Use the `wkb` property.",
+             DeprecationWarning)
+        return geom_to_wkb(self)
+
+    def to_wkt(self):
+        warn("`to_wkt` is deprecated. Use the `wkt` property.",
+             DeprecationWarning)
+        return geom_to_wkt(self)
+
+    @property
+    def wkt(self):
+        """WKT representation of the geometry"""
+        return WKTWriter(lgeos).write(self)
+
+    @property
+    def wkb(self):
+        """WKB representation of the geometry"""
+        return WKBWriter(lgeos).write(self)
+
+    @property
+    def wkb_hex(self):
+        """WKB hex representation of the geometry"""
+        return WKBWriter(lgeos).write_hex(self)
+
+    def svg(self, scale_factor=1., **kwargs):
+        """Raises NotImplementedError"""
+        raise NotImplementedError
+
+    def _repr_svg_(self):
+        """SVG representation for iPython notebook"""
+        svg_top = '<svg xmlns="http://www.w3.org/2000/svg" ' \
+                  'xmlns:xlink="http://www.w3.org/1999/xlink" '
+        if self.is_empty:
+            return svg_top + '/>'
+        else:
+            # Establish SVG canvas that will fit all the data + small space
+            xmin, ymin, xmax, ymax = self.bounds
+            if xmin == xmax and ymin == ymax:
+                # This is a point; buffer using an arbitrary size
+                xmin, ymin, xmax, ymax = self.buffer(1).bounds
+            else:
+                # Expand bounds by a fraction of the data ranges
+                expand = 0.04  # or 4%, same as R plots
+                widest_part = max([xmax - xmin, ymax - ymin])
+                expand_amount = widest_part * expand
+                xmin -= expand_amount
+                ymin -= expand_amount
+                xmax += expand_amount
+                ymax += expand_amount
+            dx = xmax - xmin
+            dy = ymax - ymin
+            width = min([max([100., dx]), 300])
+            height = min([max([100., dy]), 300])
+            try:
+                scale_factor = max([dx, dy]) / max([width, height])
+            except ZeroDivisionError:
+                scale_factor = 1.
+            view_box = "{} {} {} {}".format(xmin, ymin, dx, dy)
+            transform = "matrix(1,0,0,-1,0,{})".format(ymax + ymin)
+            return svg_top + (
+                'width="{1}" height="{2}" viewBox="{0}" '
+                'preserveAspectRatio="xMinYMin meet">'
+                '<g transform="{3}">{4}</g></svg>'
+            ).format(view_box, width, height, transform,
+                     self.svg(scale_factor))
+
+    @property
+    def geom_type(self):
+        """Name of the geometry's type, such as 'Point'"""
+        return self.geometryType()
+
+    # Real-valued properties and methods
+    # ----------------------------------
+
+    @property
+    def area(self):
+        """Unitless area of the geometry (float)"""
+        return self.impl['area'](self)
+
+    def distance(self, other):
+        """Unitless distance to other geometry (float)"""
+        return self.impl['distance'](self, other)
+
+    def hausdorff_distance(self, other):
+        """Unitless hausdorff distance to other geometry (float)"""
+        return self.impl['hausdorff_distance'](self, other)
+
+    @property
+    def length(self):
+        """Unitless length of the geometry (float)"""
+        return self.impl['length'](self)
+
+    # Topological properties
+    # ----------------------
 
     @property
     def boundary(self):
@@ -380,7 +558,7 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
           4.0
         """
         if quadsegs is not None:
-            warnings.warn(
+            warn(
                 "The `quadsegs` argument is deprecated. Use `resolution`.", DeprecationWarning, stacklevel=2)
             res = quadsegs
         else:
@@ -435,6 +613,231 @@ class BaseGeometry(shapely_base.BaseGeometry, ABC):
     def union(self, other):
         """Returns the union of the geometries (Shapely geometry)"""
         return geom_factory(self.impl['union'](self, other), sr=self.sr)
+
+    # Unary predicates
+    # ----------------
+
+    @property
+    def has_z(self):
+        """True if the geometry's coordinate sequence(s) have z values (are
+        3-dimensional)"""
+        return bool(self.impl['has_z'](self))
+
+    @property
+    def is_empty(self):
+        """True if the set of points in this geometry is empty, else False"""
+        return (self._geom is None) or bool(self.impl['is_empty'](self))
+
+    @property
+    def is_ring(self):
+        """True if the geometry is a closed ring, else False"""
+        return bool(self.impl['is_ring'](self))
+
+    @property
+    def is_closed(self):
+        """True if the geometry is closed, else False
+
+        Applicable only to 1-D geometries."""
+        if self.geom_type == 'LinearRing':
+            return True
+        elif self.geom_type == 'LineString':
+            if 'is_closed' in self.impl:
+                return bool(self.impl['is_closed'](self))
+            else:
+                return self.coords[0] == self.coords[-1]
+        else:
+            return False
+
+    @property
+    def is_simple(self):
+        """True if the geometry is simple, meaning that any self-intersections
+        are only at boundary points, else False"""
+        return bool(self.impl['is_simple'](self))
+
+    @property
+    def is_valid(self):
+        """True if the geometry is valid (definition depends on sub-class),
+        else False"""
+        return bool(self.impl['is_valid'](self))
+
+    # Binary predicates
+    # -----------------
+
+    def relate(self, other):
+        """Returns the DE-9IM intersection matrix for the two geometries
+        (string)"""
+        return self.impl['relate'](self, other)
+
+    def covers(self, other):
+        """Returns True if the geometry covers the other, else False"""
+        return bool(self.impl['covers'](self, other))
+
+    def contains(self, other):
+        """Returns True if the geometry contains the other, else False"""
+        return bool(self.impl['contains'](self, other))
+
+    def crosses(self, other):
+        """Returns True if the geometries cross, else False"""
+        return bool(self.impl['crosses'](self, other))
+
+    def disjoint(self, other):
+        """Returns True if geometries are disjoint, else False"""
+        return bool(self.impl['disjoint'](self, other))
+
+    def equals(self, other):
+        """Returns True if geometries are equal, else False
+
+        Refers to point-set equality (or topological equality), and is equivalent to
+        (self.within(other) & self.contains(other))
+        """
+        return bool(self.impl['equals'](self, other))
+
+    def intersects(self, other):
+        """Returns True if geometries intersect, else False"""
+        return bool(self.impl['intersects'](self, other))
+
+    def overlaps(self, other):
+        """Returns True if geometries overlap, else False"""
+        return bool(self.impl['overlaps'](self, other))
+
+    def touches(self, other):
+        """Returns True if geometries touch, else False"""
+        return bool(self.impl['touches'](self, other))
+
+    def within(self, other):
+        """Returns True if geometry is within the other, else False"""
+        return bool(self.impl['within'](self, other))
+
+    def equals_exact(self, other, tolerance):
+        """Returns True if geometries are equal to within a specified
+        tolerance
+
+        Refers to coordinate equality, which requires coordinates to be equal
+        and in the same order for all components of a geometry
+        """
+        return bool(self.impl['equals_exact'](self, other, tolerance))
+
+    def almost_equals(self, other, decimal=6):
+        """Returns True if geometries are equal at all coordinates to a
+        specified decimal place
+
+        Refers to approximate coordinate equality, which requires coordinates be
+        approximately equal and in the same order for all components of a geometry.
+        """
+        return self.equals_exact(other, 0.5 * 10 ** (-decimal))
+
+    def relate_pattern(self, other, pattern):
+        """Returns True if the DE-9IM string code for the relationship between
+        the geometries satisfies the pattern, else False"""
+        pattern = c_char_p(pattern.encode('ascii'))
+        return bool(self.impl['relate_pattern'](self, other, pattern))
+
+    # Linear referencing
+    # ------------------
+
+    # @delegated
+    # def project(self, other, normalized=False):
+    #     """Returns the distance along this geometry to a point nearest the
+    #     specified point
+    #
+    #     If the normalized arg is True, return the distance normalized to the
+    #     length of the linear geometry.
+    #     """
+    #     if normalized:
+    #         op = self.impl['project_normalized']
+    #     else:
+    #         op = self.impl['project']
+    #     return op(self, other)
+
+    @delegated
+    @exceptNull
+    def interpolate(self, distance, normalized=False):
+        """Return a point at the specified distance along a linear geometry
+
+        Negative length values are taken as measured in the reverse
+        direction from the end of the geometry. Out-of-range index
+        values are handled by clamping them to the valid range of values.
+        If the normalized arg is True, the distance will be interpreted as a
+        fraction of the geometry's length.
+        """
+        if normalized:
+            op = self.impl['interpolate_normalized']
+        else:
+            op = self.impl['interpolate']
+        return geom_factory(op(self, distance))
+
+    @property
+    def sr(self):
+        return self._sr
+
+    @staticmethod
+    def import_protobuf(geometry_data: geometry_pb2.GeometryData):
+        """
+        import the geometry protobuf into a shapely geometry
+        :param geometry_data: geometry_pb2.GeometryData with spatial reference defined
+        :return: epl.BaseGeometry
+        """
+        rpc_reader = RPCReader(lgeos, geometry_data)
+        return rpc_reader.read()
+
+    def remote_buffer(self, distance: float):
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                  operator=geometry_pb2.BUFFER,
+                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(
+                                                      distance=distance),
+                                                  result_encoding=geometry_pb2.WKB)
+
+        geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
+    def remote_project(self, to_sr: geometry_pb2.SpatialReferenceData):
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                  operator=geometry_pb2.PROJECT,
+                                                  result_sr=to_sr)
+        geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
+    def remote_geodetic_area(self):
+        """
+        get the geodesic area of a polygon
+        :return: double value that is the WGS84 area of the geometry
+        """
+        op_area = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                               operator=geometry_pb2.GEODETIC_AREA,
+                                               result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        area_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_area)
+        return area_response.measure
+
+    def remote_geodetic_buffer(self, distance_m):
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                  operator=geometry_pb2.GEODESIC_BUFFER,
+                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(
+                                                      distance=distance_m),
+                                                  result_encoding=geometry_pb2.WKB)
+
+        geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
+    def remote_intersection(self,
+                            other_geom,
+                            operation_sr: geometry_pb2.SpatialReferenceData = None,
+                            result_sr: geometry_pb2.SpatialReferenceData = None):
+        """
+        get the intersecting geometry. if the geometries intersected are in different spatial references, you'll need
+        to define a result spatial reference for them both to be projected into. That result spatial reference will be
+        the operation spatial reference. If you want their intersection to be in a different spatial reference than the
+        results, you can define that as well
+        :param other_geom: other geometry to be intersected
+        :param operation_sr: the spatial reference both geometries should be projected into for the intersection operation
+        :param result_sr: the resulting spatial reference of the output geometry
+        :return:
+        """
+        op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
+                                                  right_geometry=other_geom.geometry_data,
+                                                  operator=geometry_pb2.INTERSECTION,
+                                                  operation_sr=operation_sr,
+                                                  result_sr=result_sr)
+        return BaseGeometry.import_protobuf(geometry_init.geometry_service.stub.GeometryOperationUnary(op_request).geometry)
 
     @property
     def geometry_data(self) -> geometry_pb2.GeometryData:
@@ -702,29 +1105,3 @@ class RPCReader(object):
                 "Could not create geometry because of errors "
                 "while reading input.")
         return geom
-
-
-# class _Singleton(type):
-#     """
-#     https://sourcemaking.com/design_patterns/singleton/python/1
-#     """
-#
-#     def __init__(cls, name, bases, attrs, **kwargs):
-#         super().__init__(name, bases, attrs)
-#         cls._instance = None
-#
-#     def __call__(cls, *args, **kwargs):
-#         if cls._instance is None:
-#             cls._instance = super().__call__(*args, **kwargs)
-#         return cls._instance
-#
-#
-# class _GeometryServiceStub(metaclass=_Singleton):
-#     stub = None
-#
-#     def __init__(self):
-#         address = os.getenv("GEOMETRY_SERVICE_HOST", 'localhost:8980')
-#         print("epl.geometry client connected to address: ", address)
-#         # print("create channel")
-#         channel = grpc.insecure_channel(address)
-#         self.stub = geometry_service_pb2_grpc.GeometryServiceStub(channel)

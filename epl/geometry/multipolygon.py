@@ -8,6 +8,7 @@ from epl.geometry import polygon
 from shapely.geometry.proxy import CachingGeometryProxy
 from shapely.geometry.multipolygon import MultiPolygon as ShapelyMultiPolygon
 from shapely.geometry.polygon import Polygon as ShapelyPolygon
+from shapely.wkb import loads as loads_wkb
 
 __all__ = ['MultiPolygon', 'asMultiPolygon']
 
@@ -96,10 +97,8 @@ class MultiPolygon(BaseMultipartGeometry):
 
     @property
     def shapley_dump(self):
-        stuff = []
-        for geom in self.geoms:
-            stuff.append(geom.shapley_dump)
-        return ShapelyMultiPolygon(stuff)
+        arr = [loads_wkb(geom.wkb) for geom in self.geoms]
+        return ShapelyMultiPolygon(arr)
 
 
 class MultiPolygonAdapter(CachingGeometryProxy, MultiPolygon):
