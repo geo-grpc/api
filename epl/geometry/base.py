@@ -295,9 +295,9 @@ class BaseGeometry(object):
 
     def __eq__(self, other):
         return (
-            type(other) == type(self) and
-            tuple(self.coords) == tuple(other.coords) and
-            self.sr_eq(other.sr)
+                type(other) == type(self) and
+                tuple(self.coords) == tuple(other.coords) and
+                self.sr_eq(other.sr)
         )
 
     def __ne__(self, other):
@@ -419,7 +419,7 @@ class BaseGeometry(object):
             xmin, ymin, xmax, ymax = self.bounds
             if xmin == xmax and ymin == ymax:
                 # This is a point; buffer using an arbitrary size
-                xmin, ymin, xmax, ymax = self.buffer(1).bounds
+                xmin, ymin, xmax, ymax = self.s_buffer(1).bounds
             else:
                 # Expand bounds by a fraction of the data ranges
                 expand = 0.04  # or 4%, same as R plots
@@ -455,20 +455,20 @@ class BaseGeometry(object):
     # ----------------------------------
 
     @property
-    def area(self):
+    def s_area(self):
         """Unitless area of the geometry (float)"""
         return self.impl['area'](self)
 
-    def distance(self, other):
+    def s_distance(self, other):
         """Unitless distance to other geometry (float)"""
         return self.impl['distance'](self, other)
 
-    def hausdorff_distance(self, other):
+    def s_hausdorff_distance(self, other):
         """Unitless hausdorff distance to other geometry (float)"""
         return self.impl['hausdorff_distance'](self, other)
 
     @property
-    def length(self):
+    def s_length(self):
         """Unitless length of the geometry (float)"""
         return self.impl['length'](self)
 
@@ -505,7 +505,7 @@ class BaseGeometry(object):
         return geom_factory(self.impl['representative_point'](self), sr=self.sr)
 
     @property
-    def convex_hull(self):
+    def s_convex_hull(self):
         """Imagine an elastic band stretched around the geometry: that's a
         convex hull, more or less
 
@@ -519,9 +519,9 @@ class BaseGeometry(object):
         """A figure that envelopes the geometry"""
         return geom_factory(self.impl['envelope'](self), sr=self.sr)
 
-    def buffer(self, distance, resolution=16, quadsegs=None,
-               cap_style=CAP_STYLE.round, join_style=JOIN_STYLE.round,
-               mitre_limit=5.0):
+    def s_buffer(self, distance, resolution=16, quadsegs=None,
+                 cap_style=CAP_STYLE.round, join_style=JOIN_STYLE.round,
+                 mitre_limit=5.0):
         """Returns a geometry with an envelope at a distance from the object's
         envelope
 
@@ -582,7 +582,7 @@ class BaseGeometry(object):
                                                            mitre_limit), sr=self.sr)
 
     @delegated
-    def simplify(self, tolerance, preserve_topology=True):
+    def s_simplify(self, tolerance, preserve_topology=True):
         """Returns a simplified geometry produced by the Douglas-Peucker
         algorithm
 
@@ -600,20 +600,20 @@ class BaseGeometry(object):
     # Binary operations
     # -----------------
 
-    def difference(self, other):
+    def s_difference(self, other):
         """Returns the difference of the geometries"""
         return geom_factory(self.impl['difference'](self, other), sr=self.sr)
 
-    def intersection(self, other):
+    def s_intersection(self, other):
         """Returns the intersection of the geometries"""
         return geom_factory(self.impl['intersection'](self, other), sr=self.sr)
 
-    def symmetric_difference(self, other):
+    def s_symmetric_difference(self, other):
         """Returns the symmetric difference of the geometries
         (Shapely geometry)"""
         return geom_factory(self.impl['symmetric_difference'](self, other), sr=self.sr)
 
-    def union(self, other):
+    def s_union(self, other):
         """Returns the union of the geometries (Shapely geometry)"""
         return geom_factory(self.impl['union'](self, other), sr=self.sr)
 
@@ -652,13 +652,13 @@ class BaseGeometry(object):
             return False
 
     @property
-    def is_simple(self):
+    def s_is_simple(self):
         """True if the geometry is simple, meaning that any self-intersections
         are only at boundary points, else False"""
         return bool(self.impl['is_simple'](self))
 
     @property
-    def is_valid(self):
+    def s_is_valid(self):
         """True if the geometry is valid (definition depends on sub-class),
         else False"""
         return bool(self.impl['is_valid'](self))
@@ -666,28 +666,28 @@ class BaseGeometry(object):
     # Binary predicates
     # -----------------
 
-    def relate(self, other):
+    def s_relate(self, other):
         """Returns the DE-9IM intersection matrix for the two geometries
         (string)"""
         return self.impl['relate'](self, other)
 
-    def covers(self, other):
+    def s_covers(self, other):
         """Returns True if the geometry covers the other, else False"""
         return bool(self.impl['covers'](self, other))
 
-    def contains(self, other):
+    def s_contains(self, other):
         """Returns True if the geometry contains the other, else False"""
         return bool(self.impl['contains'](self, other))
 
-    def crosses(self, other):
+    def s_crosses(self, other):
         """Returns True if the geometries cross, else False"""
         return bool(self.impl['crosses'](self, other))
 
-    def disjoint(self, other):
+    def s_disjoint(self, other):
         """Returns True if geometries are disjoint, else False"""
         return bool(self.impl['disjoint'](self, other))
 
-    def equals(self, other):
+    def s_equals(self, other):
         """Returns True if geometries are equal, else False
 
         Refers to point-set equality (or topological equality), and is equivalent to
@@ -695,23 +695,23 @@ class BaseGeometry(object):
         """
         return bool(self.impl['equals'](self, other))
 
-    def intersects(self, other):
+    def s_intersects(self, other):
         """Returns True if geometries intersect, else False"""
         return bool(self.impl['intersects'](self, other))
 
-    def overlaps(self, other):
+    def s_overlaps(self, other):
         """Returns True if geometries overlap, else False"""
         return bool(self.impl['overlaps'](self, other))
 
-    def touches(self, other):
+    def s_touches(self, other):
         """Returns True if geometries touch, else False"""
         return bool(self.impl['touches'](self, other))
 
-    def within(self, other):
+    def s_within(self, other):
         """Returns True if geometry is within the other, else False"""
         return bool(self.impl['within'](self, other))
 
-    def equals_exact(self, other, tolerance):
+    def s_equals_exact(self, other, tolerance):
         """Returns True if geometries are equal to within a specified
         tolerance
 
@@ -720,16 +720,16 @@ class BaseGeometry(object):
         """
         return bool(self.impl['equals_exact'](self, other, tolerance))
 
-    def almost_equals(self, other, decimal=6):
+    def s_almost_equals(self, other, decimal=6):
         """Returns True if geometries are equal at all coordinates to a
         specified decimal place
 
         Refers to approximate coordinate equality, which requires coordinates be
         approximately equal and in the same order for all components of a geometry.
         """
-        return self.equals_exact(other, 0.5 * 10 ** (-decimal))
+        return self.s_equals_exact(other, 0.5 * 10 ** (-decimal))
 
-    def relate_pattern(self, other, pattern):
+    def s_relate_pattern(self, other, pattern):
         """Returns True if the DE-9IM string code for the relationship between
         the geometries satisfies the pattern, else False"""
         pattern = c_char_p(pattern.encode('ascii'))
@@ -738,19 +738,19 @@ class BaseGeometry(object):
     # Linear referencing
     # ------------------
 
-    # @delegated
-    # def project(self, other, normalized=False):
-    #     """Returns the distance along this geometry to a point nearest the
-    #     specified point
-    #
-    #     If the normalized arg is True, return the distance normalized to the
-    #     length of the linear geometry.
-    #     """
-    #     if normalized:
-    #         op = self.impl['project_normalized']
-    #     else:
-    #         op = self.impl['project']
-    #     return op(self, other)
+    @delegated
+    def s_project(self, other, normalized=False):
+        """Returns the distance along this geometry to a point nearest the
+        specified point
+
+        If the normalized arg is True, return the distance normalized to the
+        length of the linear geometry.
+        """
+        if normalized:
+            op = self.impl['project_normalized']
+        else:
+            op = self.impl['project']
+        return op(self, other)
 
     @delegated
     @exceptNull
@@ -783,7 +783,39 @@ class BaseGeometry(object):
         rpc_reader = RPCReader(lgeos, geometry_data)
         return rpc_reader.read()
 
-    def remote_buffer(self, distance: float):
+    @staticmethod
+    def import_wkt(wkt: str, sr: geometry_pb2.SpatialReferenceData, wkid: int = 0, proj4: str = ""):
+        # TODO. this is messy. should be using RPCReader for this
+        if sr is None:
+            sr = BaseGeometry._spat_ref_create(wkid=wkid, proj4=proj4)
+        return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkt=wkt, sr=sr))
+
+    @staticmethod
+    def import_wkb(wkb: bytes, sr: geometry_pb2.SpatialReferenceData, wkid: int = 0, proj4: str = ""):
+        # TODO. this is messy. should be using RPCReader for this
+        if sr is None:
+            sr = BaseGeometry._spat_ref_create(wkid=wkid, proj4=proj4)
+        return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkb=wkb, sr=sr))
+
+    @staticmethod
+    def _spat_ref_create(wkid: int = 0, proj4: str = ""):
+        if wkid > 0:
+            return geometry_pb2.SpatialReferenceData(wkid=wkid)
+        elif len(proj4) > 0:
+            return geometry_pb2.SpatialReferenceData(proj4=proj4)
+        return None
+
+    def buffer(self, distance: float, geodetic=True):
+        """
+        buffer a geometry by distance. defaults to buffering the geometry in meters using Lambert Azimuthal Equal Area
+        :param distance: distance in meters to buffer. If geodetic is set to false, buffers by the unit of the geometry
+        provided (for instance, if wgs84, the buffer unit is degrees)
+        :param geodetic: default to true. set to false if you want to buffer a geometry in it's native unit and not
+        geodetic in meters
+        :return: buffered geometry in spatial reference of input
+        """
+        if geodetic:
+            return self.geodetic_buffer(distance_m=distance)
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.BUFFER,
                                                   buffer_params=geometry_pb2.GeometryRequest.BufferParams(
@@ -793,16 +825,26 @@ class BaseGeometry(object):
         geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
-    def remote_project(self, to_sr: geometry_pb2.SpatialReferenceData):
+    def project(self, to_sr: geometry_pb2.SpatialReferenceData):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.PROJECT,
                                                   result_sr=to_sr)
         geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
-    def remote_geodetic_area(self):
+    def area(self, geodetic=True):
         """
-        get the geodesic area of a polygon
+        get the area of the polygon, defaults to geodetic area.
+        :param geodetic:
+        :return:
+        """
+        if geodetic:
+            return self.geodetic_area()
+        return self.s_area
+
+    def geodetic_area(self):
+        """
+        get the geodesic area of a polygon.
         :return: double value that is the WGS84 area of the geometry
         """
         op_area = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
@@ -811,7 +853,7 @@ class BaseGeometry(object):
         area_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_area)
         return area_response.measure
 
-    def remote_geodetic_buffer(self, distance_m):
+    def geodetic_buffer(self, distance_m):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.GEODESIC_BUFFER,
                                                   buffer_params=geometry_pb2.GeometryRequest.BufferParams(
@@ -821,10 +863,10 @@ class BaseGeometry(object):
         geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
-    def remote_intersection(self,
-                            other_geom,
-                            operation_sr: geometry_pb2.SpatialReferenceData = None,
-                            result_sr: geometry_pb2.SpatialReferenceData = None):
+    def intersection(self,
+                     other_geom,
+                     operation_sr: geometry_pb2.SpatialReferenceData = None,
+                     result_sr: geometry_pb2.SpatialReferenceData = None):
         """
         get the intersecting geometry. if the geometries intersected are in different spatial references, you'll need
         to define a result spatial reference for them both to be projected into. That result spatial reference will be
@@ -840,7 +882,24 @@ class BaseGeometry(object):
                                                   operator=geometry_pb2.INTERSECTION,
                                                   operation_sr=operation_sr,
                                                   result_sr=result_sr)
-        return BaseGeometry.import_protobuf(geometry_init.geometry_service.stub.GeometryOperationUnary(op_request).geometry)
+        return BaseGeometry.import_protobuf(
+            geometry_init.geometry_service.stub.GeometryOperationUnary(op_request).geometry)
+
+    def equals(self,
+               other_geom,
+               operation_sr: geometry_pb2.SpatialReferenceData = None):
+        """
+        Returns True if geometries are equal, else False.
+        :param other_geom: other geometry
+        :param operation_sr: if geometries have different spatial references, project both geometries to one spatial
+        reference for execution of equality
+        :return:
+        """
+        op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
+                                                  right_geometry=other_geom.geometry_data,
+                                                  operator=geometry_pb2.EQUALS,
+                                                  operation_sr=operation_sr)
+        return geometry_init.geometry_service.stub.GeometryOperationUnary(op_request).spatial_relationship
 
     @property
     def geometry_data(self) -> geometry_pb2.GeometryData:

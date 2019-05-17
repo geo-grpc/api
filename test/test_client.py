@@ -66,8 +66,8 @@ class TestBasic(unittest.TestCase):
         print("Client received wkt response:\n", response)
         result_buffered = loads(response.geometry.wkt)
         self.assertTrue(result_buffered.contains(polygon))
-        shapely_buffer = polygon.buffer(1.2)
-        self.assertAlmostEqual(shapely_buffer.area, result_buffered.area, 2)
+        shapely_buffer = polygon.s_buffer(1.2)
+        self.assertAlmostEqual(shapely_buffer.s_area, result_buffered.area, 2)
 
     def test_remote_buffer(self):
         polygon = Polygon([(0, 0), (1, 1), (1, 0)], sr=geometry_pb2.SpatialReferenceData(wkid=4326))
@@ -85,21 +85,21 @@ class TestBasic(unittest.TestCase):
         print("make wkt request")
         response = stub.GeometryOperationUnary(op_request)
         new_polygon = Polygon.import_protobuf(response.geometry)
-        shapely_buffer = polygon.buffer(1.2)
-        self.assertAlmostEqual(shapely_buffer.area, new_polygon.area, 2)
+        shapely_buffer = polygon.s_buffer(1.2)
+        self.assertAlmostEqual(shapely_buffer.s_area, new_polygon.s_area, 2)
 
-        another_new_polygon = polygon.remote_buffer(1.2)
-        self.assertAlmostEqual(shapely_buffer.area, another_new_polygon.area, 2)
+        another_new_polygon = polygon.s_buffer(1.2)
+        self.assertAlmostEqual(shapely_buffer.s_area, another_new_polygon.s_area, 2)
         print(another_new_polygon.geometry_data)
 
     def test_remote_buffer_bounds(self):
         polygon = Polygon([(0, 0), (1, 1), (1, 0)], sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        buffered = polygon.remote_buffer(33)
+        buffered = polygon.s_buffer(33)
         self.assertEqual(-33, buffered.envelope_data.ymin)
         self.assertEqual(-33, buffered.envelope_data.xmin)
         self.assertEqual(34, buffered.envelope_data.xmax)
         self.assertEqual(34, buffered.envelope_data.ymax)
-        buffered = polygon.buffer(33)
+        buffered = polygon.s_buffer(33)
         self.assertEqual(-33, buffered.envelope_data.ymin)
         self.assertEqual(-33, buffered.envelope_data.xmin)
         self.assertEqual(34, buffered.envelope_data.xmax)
@@ -113,7 +113,7 @@ class TestBasic(unittest.TestCase):
         polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)], sr=service_sr)
 
         shapelypolyline = polyline.shapely_dump
-        self.assertEqual(polyline.length, shapelypolyline.length)
+        self.assertEqual(polyline.s_length, shapelypolyline.length)
 
         service_geom_polyline = geometry_pb2.GeometryData(
             wkt=polyline.wkt,
@@ -149,7 +149,7 @@ class TestBasic(unittest.TestCase):
         polyline = LineString([(500000, 0), (400000, 100000), (600000, -100000)],
                               sr=service_sr)
         print("make project request")
-        projected = polyline.remote_project(output_sr)
+        projected = polyline.project(output_sr)
         print("Client received project response:\n", projected.wkt)
         print(projected.wkt)
         expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
@@ -170,7 +170,7 @@ class TestBasic(unittest.TestCase):
         )
         response4 = stub.GeometryOperationUnary(op_simplify)
         multi_line = MultiLineString.import_protobuf(response4.geometry)
-        self.assertAlmostEqual(polyline.length, multi_line.length, 8)
+        self.assertAlmostEqual(polyline.s_length, multi_line.s_length, 8)
 
     def test_exception_sr(self):
         try:
@@ -378,14 +378,14 @@ class TestBasic(unittest.TestCase):
 
     def test_get_geodetic_area(self):
         polygon = Polygon([(0, 0), (1, 1), (1, 0)], sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        area = polygon.remote_geodetic_area()
-        projected = polygon.remote_project(
+        area = polygon.geodetic_area()
+        projected = polygon.project(
             to_sr=geometry_pb2.SpatialReferenceData(
                 custom=geometry_pb2.SpatialReferenceData.Custom(
                     lon_0=polygon.envelope.centroid.x,
                     lat_0=polygon.envelope.centroid.y)))
 
-        p_area = projected.remote_geodetic_area()
+        p_area = projected.geodetic_area()
         self.assertEqual(math.ceil(math.fabs((area - p_area))), 7)
 
     def test_buffer_buffer(self):
@@ -394,11 +394,11 @@ class TestBasic(unittest.TestCase):
                                       xmax=-85.37500000014984,
                                       ymax=46.74999999925853,
                                       sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        geodetic_area = polygon.remote_geodetic_area()
+        geodetic_area = polygon.geodetic_area()
         self.assertAlmostEqual(geodetic_area, 33199429.76907527, 8)
         geodetic_side = math.sqrt(geodetic_area)
-        polygon_buffered = polygon.remote_geodetic_buffer(distance_m=(geodetic_side / 2.0))
-        geodetic_area = polygon_buffered.remote_geodetic_area()
+        polygon_buffered = polygon.geodetic_buffer(distance_m=(geodetic_side / 2.0))
+        geodetic_area = polygon_buffered.geodetic_area()
         self.assertFalse(math.isnan(geodetic_area))
 
     def test_str(self):
@@ -421,19 +421,19 @@ class TestBasic(unittest.TestCase):
                                             xmax=-84,
                                             ymax=47,
                                             sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        intersection_1 = polygon_left.remote_intersection(polygon_right)
-        self.assertLess(intersection_1.area, polygon_left.area)
-        self.assertLess(intersection_1.area, polygon_right.area)
+        intersection_1 = polygon_left.intersection(polygon_right)
+        self.assertLess(intersection_1.s_area, polygon_left.s_area)
+        self.assertLess(intersection_1.s_area, polygon_right.s_area)
         self.assertEqual(intersection_1.geometry_data.sr.wkid, 4326)
 
-        intersection_1_web = polygon_right.remote_intersection(other_geom=polygon_left,
-                                                               result_sr=geometry_pb2.SpatialReferenceData(
-                                                                   wkid=3857))
+        intersection_1_web = polygon_right.intersection(other_geom=polygon_left,
+                                                        result_sr=geometry_pb2.SpatialReferenceData(
+                                                            wkid=3857))
         self.assertEqual(intersection_1_web.geometry_data.sr.wkid, 3857)
-        self.assertAlmostEqual(intersection_1.area,
-                               intersection_1_web.remote_project(
+        self.assertAlmostEqual(intersection_1.s_area,
+                               intersection_1_web.project(
                                    to_sr=geometry_pb2.SpatialReferenceData(
-                                       wkid=4326)).area)
+                                       wkid=4326)).s_area)
 
         envelope_data = geometry_pb2.EnvelopeData(xmin=-85.5,
                                                   ymin=44,
@@ -441,7 +441,7 @@ class TestBasic(unittest.TestCase):
                                                   ymax=47,
                                                   sr=geometry_pb2.SpatialReferenceData(wkid=4326))
         polygon_right = Polygon.from_envelope_data(envelope_data=envelope_data)
-        intersection_2 = polygon_right.remote_intersection(polygon_left)
+        intersection_2 = polygon_right.intersection(polygon_left)
         self.assertEqual(intersection_1, intersection_2)
 
     def test_equal(self):
@@ -470,16 +470,16 @@ class TestBasic(unittest.TestCase):
                                         sr=geometry_pb2.SpatialReferenceData(wkid=32630))
 
         polygon = Polygon.from_envelope_data(env)
-        buffered = polygon.remote_buffer(100)
-        self.assertTrue(buffered.contains(polygon))
-        buffered_geodesic = polygon.remote_geodetic_buffer(101)
-        self.assertTrue(buffered_geodesic.contains(buffered))
+        buffered = polygon.s_buffer(100)
+        self.assertTrue(buffered.s_contains(polygon))
+        buffered_geodesic = polygon.geodetic_buffer(101)
+        self.assertTrue(buffered_geodesic.s_contains(buffered))
 
     def test_type_shapelye(self):
         sr = geometry_pb2.SpatialReferenceData(wkid=4326)
         coords = [(0, 0), (1, 1)]
-        LineString(coords, sr=sr).contains(Point(0.5, 0.5, sr=sr))
-        Point(0.5, 0.5, sr=sr).within(LineString(coords, sr=sr))
+        LineString(coords, sr=sr).s_contains(Point(0.5, 0.5, sr=sr))
+        Point(0.5, 0.5, sr=sr).s_within(LineString(coords, sr=sr))
         env = geometry_pb2.EnvelopeData(xmin=626926.2447786715,
                                         ymin=4653522.778178136,
                                         xmax=626951.6973246232,
@@ -498,22 +498,22 @@ class TestBasic(unittest.TestCase):
                                            ymax=48,
                                            sr=geometry_pb2.SpatialReferenceData(wkid=4326))
         polygon_left_shapely = polygon_left.shapely_dump
-        self.assertEqual(polygon_left.area, polygon_left_shapely.area)
+        self.assertEqual(polygon_left.s_area, polygon_left_shapely.area)
 
         polygon_right = Polygon.from_bounds(xmin=-85.5,
                                             ymin=44,
                                             xmax=-84,
                                             ymax=47,
                                             sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        intersection_1 = polygon_left.remote_intersection(polygon_right)
+        intersection_1 = polygon_left.intersection(polygon_right)
         self.assertTrue(isinstance(intersection_1, MultiPolygon))
 
         for geom in intersection_1.geoms:
             print(geom.wkt)
 
-        self.assertGreaterEqual(intersection_1.area, 0)
+        self.assertGreaterEqual(intersection_1.s_area, 0)
         multi_shape = intersection_1.shapely_dump
-        self.assertEqual(multi_shape.area, intersection_1.area)
+        self.assertEqual(multi_shape.area, intersection_1.s_area)
         print("success")
 
     def test_sr_params(self):
@@ -527,19 +527,19 @@ class TestBasic(unittest.TestCase):
                                             xmax=-84,
                                             ymax=47,
                                             wkid=4326)
-        intersection_1 = polygon_left.remote_intersection(polygon_right)
-        self.assertLess(intersection_1.area, polygon_left.area)
-        self.assertLess(intersection_1.area, polygon_right.area)
+        intersection_1 = polygon_left.intersection(polygon_right)
+        self.assertLess(intersection_1.s_area, polygon_left.s_area)
+        self.assertLess(intersection_1.s_area, polygon_right.s_area)
         self.assertEqual(intersection_1.geometry_data.sr.wkid, 4326)
 
-        intersection_1_web = polygon_right.remote_intersection(other_geom=polygon_left,
-                                                               result_sr=geometry_pb2.SpatialReferenceData(
-                                                                   wkid=3857))
+        intersection_1_web = polygon_right.intersection(other_geom=polygon_left,
+                                                        result_sr=geometry_pb2.SpatialReferenceData(
+                                                            wkid=3857))
         self.assertEqual(intersection_1_web.geometry_data.sr.wkid, 3857)
-        self.assertAlmostEqual(intersection_1.area,
-                               intersection_1_web.remote_project(
+        self.assertAlmostEqual(intersection_1.s_area,
+                               intersection_1_web.project(
                                    to_sr=geometry_pb2.SpatialReferenceData(
-                                       wkid=4326)).area)
+                                       wkid=4326)).s_area)
 
         envelope_data = geometry_pb2.EnvelopeData(xmin=-85.5,
                                                   ymin=44,
@@ -547,5 +547,32 @@ class TestBasic(unittest.TestCase):
                                                   ymax=47,
                                                   sr=geometry_pb2.SpatialReferenceData(wkid=4326))
         polygon_right = Polygon.from_envelope_data(envelope_data=envelope_data)
-        intersection_2 = polygon_right.remote_intersection(polygon_left)
+        intersection_2 = polygon_right.intersection(polygon_left)
         self.assertEqual(intersection_1, intersection_2)
+
+    def test_custom_azi(self):
+        polygon_right = Polygon.from_bounds(xmin=-85.5,
+                                            ymin=44,
+                                            xmax=-84,
+                                            ymax=47,
+                                            wkid=4326)
+        sr = geometry_pb2.SpatialReferenceData(custom=geometry_pb2.SpatialReferenceData.Custom(lon_0=-84.5, lat_0=45.5))
+        polyg_projected = polygon_right.project(to_sr=sr)
+        print(polyg_projected)
+        self.assertEqual(polyg_projected.sr.proj4, "+proj=laea +lat_0=45.500000 +lon_0=-84.500000 +x_0=4321000 "
+                                                   "+y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m "
+                                                   "+no_defs")
+
+    def test_equals(self):
+        polygon_right = Polygon.from_bounds(xmin=-85.5,
+                                            ymin=44,
+                                            xmax=-84,
+                                            ymax=47,
+                                            wkid=4326)
+        polygon_left = Polygon.from_bounds(xmin=-85.5000000002,
+                                           ymin=44,
+                                           xmax=-84,
+                                           ymax=47,
+                                           wkid=4326)
+        self.assertTrue(polygon_right.equals(polygon_left))
+        self.assertFalse(polygon_right.s_equals(polygon_left))
