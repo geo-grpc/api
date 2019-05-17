@@ -576,3 +576,63 @@ class TestBasic(unittest.TestCase):
                                            wkid=4326)
         self.assertTrue(polygon_right.equals(polygon_left))
         self.assertFalse(polygon_right.s_equals(polygon_left))
+
+    def test_envelope_data_equals(self):
+        xmin = 39.99430071558862
+        ymin = 19.996406537338878
+        xmax = 40.00569928441138
+        ymax = 20.003593250811246
+        proj4326 = geometry_pb2.SpatialReferenceData(wkid=4326)
+        expected_data = geometry_pb2.EnvelopeData(xmin=xmin,
+                                                  ymin=ymin,
+                                                  xmax=xmax,
+                                                  ymax=ymax,
+                                                  sr=proj4326)
+        polygon1 = Polygon.from_envelope_data(expected_data)
+        polygon2 = Polygon.from_envelope_data(polygon1.envelope_data)
+        self.assertTrue(polygon1.equals(polygon2))
+        polygon3 = Polygon.from_bounds(xmin=xmin,
+                                       ymin=ymin,
+                                       xmax=xmax,
+                                       ymax=ymax,
+                                       sr=proj4326).project(to_sr=proj4326).geoms[0]
+        self.assertTrue(polygon2.equals(polygon3))
+
+        rows, columns = 5304, 7052
+        gsd = 15
+        px_row, px_column = rows / 2.0, columns / 2.0
+        x_plus = (columns - px_column) * gsd * 0.01
+        # remember origin of image is like a matrix, with y increasing as you move down the image from the origin in the
+        # upper left
+        y_minus = (rows - px_row) * gsd * 0.01
+        x_minus = px_column * gsd * 0.01
+        y_plus = px_row * gsd * 0.01
+
+        sr = geometry_pb2.SpatialReferenceData(custom=geometry_pb2.SpatialReferenceData.Custom(lon_0=40, lat_0=20))
+        point_center = Point(40, 20, wkid=4326).project(to_sr=sr)
+
+        polygon4 = polygon2.project(to_sr=sr)
+        polygon5 = polygon4.project(to_sr=proj4326)
+        self.assertTrue(polygon5.s_buffer(0.0000001).s_contains(polygon3))
+
+        ymax = point_center.y + y_plus
+        xmax = point_center.x + x_plus
+        ymin = point_center.y - y_minus
+        xmin = point_center.x - x_minus
+        polygon6 = Polygon.from_envelope_data(geometry_pb2.EnvelopeData(xmin=xmin,
+                                                                        ymin=ymin,
+                                                                        xmax=xmax,
+                                                                        ymax=ymax,
+                                                                        sr=sr)).project(to_sr=proj4326)
+        polygon7 = Polygon.from_bounds(xmin=xmin,
+                                       ymin=ymin,
+                                       xmax=xmax,
+                                       ymax=ymax,
+                                       sr=sr)
+        polygon7 = polygon7.project(to_sr=proj4326)
+        self.assertTrue(polygon6.s_buffer(0.0000001).s_contains(polygon7))
+        print(polygon6[0].s_area)
+
+        print(polygon1.s_area)
+        self.assertTrue(polygon7.s_buffer(0.001).contains(polygon1, operation_sr=proj4326))
+

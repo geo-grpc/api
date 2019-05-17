@@ -832,6 +832,12 @@ class BaseGeometry(object):
         geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
+    def simplify(self):
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                  operator=geometry_pb2.SIMPLIFY)
+        geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
     def area(self, geodetic=True):
         """
         get the area of the polygon, defaults to geodetic area.
@@ -863,6 +869,24 @@ class BaseGeometry(object):
         geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
+    def symmetric_difference(self,
+                             other_geom,
+                             operation_sr: geometry_pb2.SpatialReferenceData = None,
+                             result_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._two_geom_op(other_geom=other_geom,
+                                 operator_type=geometry_pb2.SYMMETRIC_DIFFERENCE,
+                                 operation_sr=operation_sr,
+                                 result_sr=result_sr)
+
+    def difference(self,
+                   other_geom,
+                   operation_sr: geometry_pb2.SpatialReferenceData = None,
+                   result_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._two_geom_op(other_geom=other_geom,
+                                 operator_type=geometry_pb2.DIFFERENCE,
+                                 operation_sr=operation_sr,
+                                 result_sr=result_sr)
+
     def intersection(self,
                      other_geom,
                      operation_sr: geometry_pb2.SpatialReferenceData = None,
@@ -877,9 +901,19 @@ class BaseGeometry(object):
         :param result_sr: the resulting spatial reference of the output geometry
         :return:
         """
+        return self._two_geom_op(other_geom=other_geom,
+                                 operator_type=geometry_pb2.INTERSECTION,
+                                 operation_sr=operation_sr,
+                                 result_sr=result_sr)
+
+    def _two_geom_op(self,
+                     other_geom,
+                     operator_type: geometry_pb2.OperatorType,
+                     operation_sr: geometry_pb2.SpatialReferenceData = None,
+                     result_sr: geometry_pb2.SpatialReferenceData = None):
         op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                   right_geometry=other_geom.geometry_data,
-                                                  operator=geometry_pb2.INTERSECTION,
+                                                  operator=operator_type,
                                                   operation_sr=operation_sr,
                                                   result_sr=result_sr)
         return BaseGeometry.import_protobuf(
@@ -895,9 +929,45 @@ class BaseGeometry(object):
         reference for execution of equality
         :return:
         """
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.EQUALS, operation_sr=operation_sr)
+
+    def contains(self,
+                 other_geom,
+                 operation_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.CONTAINS, operation_sr=operation_sr)
+
+    def within(self,
+               other_geom,
+               operation_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.WITHIN, operation_sr=operation_sr)
+
+    def touches(self,
+                other_geom,
+                operation_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.TOUCHES, operation_sr=operation_sr)
+
+    def overlaps(self,
+                 other_geom,
+                 operation_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.OVERLAPS, operation_sr=operation_sr)
+
+    def crosses(self,
+                other_geom,
+                operation_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.CROSSES, operation_sr=operation_sr)
+
+    def disjoint(self,
+                 other_geom,
+                 operation_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.DISJOINT, operation_sr=operation_sr)
+
+    def _relate(self,
+                other_geom,
+                relate_type: geometry_pb2.OperatorType,
+                operation_sr: geometry_pb2.SpatialReferenceData = None):
         op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                   right_geometry=other_geom.geometry_data,
-                                                  operator=geometry_pb2.EQUALS,
+                                                  operator=relate_type,
                                                   operation_sr=operation_sr)
         return geometry_init.geometry_service.stub.GeometryOperationUnary(op_request).spatial_relationship
 
@@ -907,7 +977,6 @@ class BaseGeometry(object):
 
     @property
     def envelope_data(self):
-        # """Returns minimum bounding region (minx, miny, maxx, maxy)"""
         return geometry_pb2.EnvelopeData(xmin=self.bounds[0],
                                          ymin=self.bounds[1],
                                          xmax=self.bounds[2],
