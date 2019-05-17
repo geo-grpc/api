@@ -961,6 +961,11 @@ class BaseGeometry(object):
                  operation_sr: geometry_pb2.SpatialReferenceData = None):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.DISJOINT, operation_sr=operation_sr)
 
+    def intersects(self,
+                   other_geom,
+                   operation_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.INTERSECTS, operation_sr=operation_sr)
+
     def _relate(self,
                 other_geom,
                 relate_type: geometry_pb2.OperatorType,
