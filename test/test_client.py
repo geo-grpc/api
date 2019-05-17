@@ -635,4 +635,3 @@ class TestBasic(unittest.TestCase):
 
         print(polygon1.s_area)
         self.assertTrue(polygon7.s_buffer(0.001).contains(polygon1, operation_sr=proj4326))
-
