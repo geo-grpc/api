@@ -1,0 +1,3616 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#geometry.proto">geometry.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#epl.protobuf.EnvelopeData"><span class="badge">M</span>EnvelopeData</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.FileRequestChunk"><span class="badge">M</span>FileRequestChunk</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryData"><span class="badge">M</span>GeometryData</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest"><span class="badge">M</span>GeometryRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.BufferParams"><span class="badge">M</span>GeometryRequest.BufferParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.ClipParams"><span class="badge">M</span>GeometryRequest.ClipParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.ConvexParams"><span class="badge">M</span>GeometryRequest.ConvexParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.CutParams"><span class="badge">M</span>GeometryRequest.CutParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.DensifyParams"><span class="badge">M</span>GeometryRequest.DensifyParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.GeneralizeByAreaParams"><span class="badge">M</span>GeometryRequest.GeneralizeByAreaParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.GeneralizeParams"><span class="badge">M</span>GeometryRequest.GeneralizeParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.GeodeticBufferParams"><span class="badge">M</span>GeometryRequest.GeodeticBufferParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.IntersectionParams"><span class="badge">M</span>GeometryRequest.IntersectionParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.OffsetParams"><span class="badge">M</span>GeometryRequest.OffsetParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.RandomPointsParams"><span class="badge">M</span>GeometryRequest.RandomPointsParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.RelateParams"><span class="badge">M</span>GeometryRequest.RelateParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.SimplifyParams"><span class="badge">M</span>GeometryRequest.SimplifyParams</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryResponse"><span class="badge">M</span>GeometryResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryResponse.RelateMapEntry"><span class="badge">M</span>GeometryResponse.RelateMapEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.SpatialReferenceData"><span class="badge">M</span>SpatialReferenceData</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.SpatialReferenceData.Custom"><span class="badge">M</span>SpatialReferenceData.Custom</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#epl.protobuf.Encoding"><span class="badge">E</span>Encoding</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.FileRequestChunk.FileType"><span class="badge">E</span>FileRequestChunk.FileType</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.OffsetParams.OffsetJoinType"><span class="badge">E</span>GeometryRequest.OffsetParams.OffsetJoinType</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.OperatorType"><span class="badge">E</span>OperatorType</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.SpatialReferenceData.CSType"><span class="badge">E</span>SpatialReferenceData.CSType</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#geometry_service.proto">geometry_service.proto</a>
+            <ul>
+              
+              
+              
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryService"><span class="badge">S</span>GeometryService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#naip.proto">naip.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#epl.protobuf.NaipProperties"><span class="badge">M</span>NaipProperties</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.NaipRequest"><span class="badge">M</span>NaipRequest</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#query.proto">query.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#epl.protobuf.DoubleField"><span class="badge">M</span>DoubleField</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.FloatField"><span class="badge">M</span>FloatField</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.StringField"><span class="badge">M</span>StringField</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.TimestampField"><span class="badge">M</span>TimestampField</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.UInt32Field"><span class="badge">M</span>UInt32Field</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#epl.protobuf.FieldRelationship"><span class="badge">E</span>FieldRelationship</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.SortDirection"><span class="badge">E</span>SortDirection</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#stac.proto">stac.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#epl.protobuf.Asset"><span class="badge">M</span>Asset</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.BandDetails"><span class="badge">M</span>BandDetails</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Dtr"><span class="badge">M</span>Dtr</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Eo"><span class="badge">M</span>Eo</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.EoRequest"><span class="badge">M</span>EoRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Sar"><span class="badge">M</span>Sar</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.StacItem"><span class="badge">M</span>StacItem</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.StacItem.AssetsEntry"><span class="badge">M</span>StacItem.AssetsEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.StacRequest"><span class="badge">M</span>StacRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.StacUpsertResponse"><span class="badge">M</span>StacUpsertResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#epl.protobuf.AssetType"><span class="badge">E</span>AssetType</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.CloudPlatform"><span class="badge">E</span>CloudPlatform</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Eo.Band"><span class="badge">E</span>Eo.Band</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Eo.Constellation"><span class="badge">E</span>Eo.Constellation</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Eo.Instrument"><span class="badge">E</span>Eo.Instrument</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Eo.Platform"><span class="badge">E</span>Eo.Platform</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Sar.Instrument"><span class="badge">E</span>Sar.Instrument</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.Sar.Platform"><span class="badge">E</span>Sar.Platform</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#stac_service.proto">stac_service.proto</a>
+            <ul>
+              
+              
+              
+              
+                <li>
+                  <a href="#epl.protobuf.StacService"><span class="badge">S</span>StacService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="geometry.proto">geometry.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="epl.protobuf.EnvelopeData">EnvelopeData</h3>
+        <p>Container for Envelope data (bounding box), x and y min and max and an optional spatial reference</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>xmin</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>min x value </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ymin</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>min y value </p></td>
+                </tr>
+              
+                <tr>
+                  <td>xmax</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>max x value </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ymax</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>max y value </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sr</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData">SpatialReferenceData</a></td>
+                  <td></td>
+                  <td><p>spatial reference of envelope </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.FileRequestChunk">FileRequestChunk</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>nested_request</td>
+                  <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>result_encoding_type</td>
+                  <td><a href="#epl.protobuf.Encoding">Encoding</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>input_sr</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData">SpatialReferenceData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>result_sr</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData">SpatialReferenceData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>file_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_last_chunk</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryData">GeometryData</h3>
+        <p>Container for Geometry data, has id, encoded geometry coordinates and shape, spatial reference and envelope</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>geometry_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>geometry id as an integer </p></td>
+                </tr>
+              
+                <tr>
+                  <td>feature_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>feature id as a string (for guids and other ids that aren&#39;t numeric) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wkt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>well known text format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry </p></td>
+                </tr>
+              
+                <tr>
+                  <td>geojson</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>geojson format for geometry encoding, https://en.wikipedia.org/wiki/GeoJSON </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wkb</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>well known binary format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry#Well-known_binary </p></td>
+                </tr>
+              
+                <tr>
+                  <td>esri_shape</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>ESRI shape binary format for geometry encoding (fastest decoding and encoding for geometry service) https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sr</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData">SpatialReferenceData</a></td>
+                  <td></td>
+                  <td><p>spatial reference of geometry </p></td>
+                </tr>
+              
+                <tr>
+                  <td>envelope</td>
+                  <td><a href="#epl.protobuf.EnvelopeData">EnvelopeData</a></td>
+                  <td></td>
+                  <td><p>envelope or bounding box of geometry </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest">GeometryRequest</h3>
+        <p>response message for insertion and updates to stac db</p><p>oneof block not currently used: https://github.com/golang/protobuf/issues/283</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>geometry</td>
+                  <td><a href="#epl.protobuf.GeometryData">GeometryData</a></td>
+                  <td></td>
+                  <td><p>geometry to be operated on </p></td>
+                </tr>
+              
+                <tr>
+                  <td>left_geometry</td>
+                  <td><a href="#epl.protobuf.GeometryData">GeometryData</a></td>
+                  <td></td>
+                  <td><p>if there are two geometries to operate on, then this is the first geometry </p></td>
+                </tr>
+              
+                <tr>
+                  <td>geometry_request</td>
+                  <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a></td>
+                  <td></td>
+                  <td><p>the result of the geometry request is to be operated on by this request </p></td>
+                </tr>
+              
+                <tr>
+                  <td>left_geometry_request</td>
+                  <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a></td>
+                  <td></td>
+                  <td><p>if there are two geometries, the left geometry request is to be operated on by this request </p></td>
+                </tr>
+              
+                <tr>
+                  <td>right_geometry</td>
+                  <td><a href="#epl.protobuf.GeometryData">GeometryData</a></td>
+                  <td></td>
+                  <td><p>if there are two geometries to operate on, then this is the second geometry </p></td>
+                </tr>
+              
+                <tr>
+                  <td>right_geometry_request</td>
+                  <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a></td>
+                  <td></td>
+                  <td><p>if there are two geometries, the right geometry request is to be operated on by this request </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operator</td>
+                  <td><a href="#epl.protobuf.OperatorType">OperatorType</a></td>
+                  <td></td>
+                  <td><p>(default is PROJECT) geometry operation to perform on input geometries </p></td>
+                </tr>
+              
+                <tr>
+                  <td>result_encoding</td>
+                  <td><a href="#epl.protobuf.Encoding">Encoding</a></td>
+                  <td></td>
+                  <td><p>(default is wkb) encoding, wkt, wkb, esri_shape, etc </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operation_sr</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData">SpatialReferenceData</a></td>
+                  <td></td>
+                  <td><p>(optional) the spatial reference the geometric operation should take place in. If both inputs are in different spatial references, you can use this to define a common reference system for the geometric operation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>result_sr</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData">SpatialReferenceData</a></td>
+                  <td></td>
+                  <td><p>(optional) after the operation has been completed, project the results to a new spatial reference. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>buffer_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.BufferParams">GeometryRequest.BufferParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>convex_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.ConvexParams">GeometryRequest.ConvexParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>relate_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.RelateParams">GeometryRequest.RelateParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>random_points_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.RandomPointsParams">GeometryRequest.RandomPointsParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>generalize_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.GeneralizeParams">GeometryRequest.GeneralizeParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>intersection_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.IntersectionParams">GeometryRequest.IntersectionParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.OffsetParams">GeometryRequest.OffsetParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cut_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.CutParams">GeometryRequest.CutParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>clip_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.ClipParams">GeometryRequest.ClipParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>densify_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.DensifyParams">GeometryRequest.DensifyParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>simplify_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.SimplifyParams">GeometryRequest.SimplifyParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>generalize_by_area_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.GeneralizeByAreaParams">GeometryRequest.GeneralizeByAreaParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.BufferParams">GeometryRequest.BufferParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>distance</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_deviation</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>union_result</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_vertices_in_full_circle</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.ClipParams">GeometryRequest.ClipParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>envelope</td>
+                  <td><a href="#epl.protobuf.EnvelopeData">EnvelopeData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.ConvexParams">GeometryRequest.ConvexParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>merge</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.CutParams">GeometryRequest.CutParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>consider_touch</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.DensifyParams">GeometryRequest.DensifyParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>max_length</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.GeneralizeByAreaParams">GeometryRequest.GeneralizeByAreaParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>percent_reduction</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_degenerates</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_point_count</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.GeneralizeParams">GeometryRequest.GeneralizeParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>max_deviation</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_degenerates</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.GeodeticBufferParams">GeometryRequest.GeodeticBufferParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>distance</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_deviation</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>union_result</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_vertices_in_full_circle</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.IntersectionParams">GeometryRequest.IntersectionParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>dimension_mask</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.OffsetParams">GeometryRequest.OffsetParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>distance</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>join_type</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.OffsetParams.OffsetJoinType">GeometryRequest.OffsetParams.OffsetJoinType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bevel_ratio</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>flatten_error</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.RandomPointsParams">GeometryRequest.RandomPointsParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>points_per_square_km</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>seed</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.RelateParams">GeometryRequest.RelateParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>de_9im</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.SimplifyParams">GeometryRequest.SimplifyParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>force</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryResponse">GeometryResponse</h3>
+        <p>response message geometry request</p><p>oneof https://github.com/golang/protobuf/issues/283</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>geometry</td>
+                  <td><a href="#epl.protobuf.GeometryData">GeometryData</a></td>
+                  <td></td>
+                  <td><p>if geometry result, then this field holds the geometry data </p></td>
+                </tr>
+              
+                <tr>
+                  <td>spatial_relationship</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>if a topo spatial relationship request, then this field holds the true or false result </p></td>
+                </tr>
+              
+                <tr>
+                  <td>measure</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>a measure result will be a float for area and length requests </p></td>
+                </tr>
+              
+                <tr>
+                  <td>relate_map</td>
+                  <td><a href="#epl.protobuf.GeometryResponse.RelateMapEntry">GeometryResponse.RelateMapEntry</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>envelope</td>
+                  <td><a href="#epl.protobuf.EnvelopeData">EnvelopeData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryResponse.RelateMapEntry">GeometryResponse.RelateMapEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.SpatialReferenceData">SpatialReferenceData</h3>
+        <p>Spatial Reference system. Used with a geometry to define the reference system of the geometry's coordinates</p><p>oneof block not currently used: https://github.com/golang/protobuf/issues/283</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>wkid</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>wkid (well know id), or srid (spatial reference id) of the projected or geographic coordinate system </p></td>
+                </tr>
+              
+                <tr>
+                  <td>proj4</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html </p></td>
+                </tr>
+              
+                <tr>
+                  <td>custom</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData.Custom">SpatialReferenceData.Custom</a></td>
+                  <td></td>
+                  <td><p>custom projection </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wkt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>well-known text string of spatial reference </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.SpatialReferenceData.Custom">SpatialReferenceData.Custom</h3>
+        <p>Projected coordinate system that doesn't have a wkid / srid</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lon_0</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>longitude of center of projection (central meridian) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lat_0</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>latitude of center of projection (latitude of origin) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cs_type</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData.CSType">SpatialReferenceData.CSType</a></td>
+                  <td></td>
+                  <td><p>enum defining the type of projection </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="epl.protobuf.Encoding">Encoding</h3>
+        <p>type of geometry encodings</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_ENCODING</td>
+                <td>0</td>
+                <td><p>unknown type.</p></td>
+              </tr>
+            
+              <tr>
+                <td>WKB</td>
+                <td>1</td>
+                <td><p>well-known binary</p></td>
+              </tr>
+            
+              <tr>
+                <td>WKT</td>
+                <td>2</td>
+                <td><p>well-known text</p></td>
+              </tr>
+            
+              <tr>
+                <td>GEOJSON</td>
+                <td>3</td>
+                <td><p>geojson</p></td>
+              </tr>
+            
+              <tr>
+                <td>ESRI_SHAPE</td>
+                <td>4</td>
+                <td><p>esri shape binary</p></td>
+              </tr>
+            
+              <tr>
+                <td>ENVELOPE</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.FileRequestChunk.FileType">FileRequestChunk.FileType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SHAPEFILE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.GeometryRequest.OffsetParams.OffsetJoinType">GeometryRequest.OffsetParams.OffsetJoinType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ROUND</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>BEVEL</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MITER</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SQUARE</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.OperatorType">OperatorType</h3>
+        <p>type of geometry operators</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_OPERATOR</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT</td>
+                <td>1</td>
+                <td><p>project geometry</p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPORT_TO_JSON</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>IMPORT_FROM_JSON</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPORT_TO_ESRI_SHAPE</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>IMPORT_FROM_ESRI_SHAPE</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UNION</td>
+                <td>6</td>
+                <td><p>union one or more geometries</p></td>
+              </tr>
+            
+              <tr>
+                <td>DIFFERENCE</td>
+                <td>7</td>
+                <td><p>difference two geometries</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROXIMITY_2D</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RELATE</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EQUALS</td>
+                <td>10</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DISJOINT</td>
+                <td>11</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>INTERSECTS</td>
+                <td>12</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WITHIN</td>
+                <td>13</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CONTAINS</td>
+                <td>14</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CROSSES</td>
+                <td>15</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TOUCHES</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OVERLAPS</td>
+                <td>17</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>BUFFER</td>
+                <td>18</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DISTANCE</td>
+                <td>19</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>INTERSECTION</td>
+                <td>20</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CLIP</td>
+                <td>21</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CUT</td>
+                <td>22</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DENSIFY_BY_LENGTH</td>
+                <td>23</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GEODESIC_BUFFER</td>
+                <td>26</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GEODETIC_DENSIFY_BY_LENGTH</td>
+                <td>27</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GEODETIC_AREA</td>
+                <td>30</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SIMPLIFY</td>
+                <td>31</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SIMPLIFY_OGC</td>
+                <td>32</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OFFSET</td>
+                <td>33</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GENERALIZE</td>
+                <td>34</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GENERALIZE_BY_AREA</td>
+                <td>35</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPORT_TO_WKB</td>
+                <td>36</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>IMPORT_FROM_WKB</td>
+                <td>37</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPORT_TO_WKT</td>
+                <td>38</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>IMPORT_FROM_WKT</td>
+                <td>39</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>IMPORT_FROM_GEOJSON</td>
+                <td>40</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPORT_TO_GEOJSON</td>
+                <td>41</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SYMMETRIC_DIFFERENCE</td>
+                <td>42</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CONVEX_HULL</td>
+                <td>43</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>BOUNDARY</td>
+                <td>44</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RANDOM_POINTS</td>
+                <td>45</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ENCLOSING_CIRCLE</td>
+                <td>46</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.SpatialReferenceData.CSType">SpatialReferenceData.CSType</h3>
+        <p>Projection names</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>LAMBERT_AZI</td>
+                <td>0</td>
+                <td><p>default is Lambert Azimuthal Equal Area Projection, with x origin x_0=4321000 and y origin y_0=3210000</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="geometry_service.proto">geometry_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+
+      
+
+      
+
+      
+        <h3 id="epl.protobuf.GeometryService">GeometryService</h3>
+        <p>gRPC Interfaces for working with geometry operators</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Operate</td>
+                <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a></td>
+                <td><a href="#epl.protobuf.GeometryResponse">GeometryResponse</a></td>
+                <td><p>Execute a single blocking geometry operation</p></td>
+              </tr>
+            
+              <tr>
+                <td>OperateBiStream</td>
+                <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a> stream</td>
+                <td><a href="#epl.protobuf.GeometryResponse">GeometryResponse</a> stream</td>
+                <td><p>stream in operator requests and get back a stream of results</p></td>
+              </tr>
+            
+              <tr>
+                <td>OperateBiStreamFlow</td>
+                <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a> stream</td>
+                <td><a href="#epl.protobuf.GeometryResponse">GeometryResponse</a> stream</td>
+                <td><p>manual flow control bi-directional stream. example
+go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grpc-io/6_B46Oszb4k ?</p></td>
+              </tr>
+            
+              <tr>
+                <td>OperateServerStream</td>
+                <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a></td>
+                <td><a href="#epl.protobuf.GeometryResponse">GeometryResponse</a> stream</td>
+                <td><p>Maybe a cut operation that returns a lot of different geometries? for now, this is not implemented.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OperateClientStream</td>
+                <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a> stream</td>
+                <td><a href="#epl.protobuf.GeometryResponse">GeometryResponse</a></td>
+                <td><p>Maybe something like a union operation. for now, this is not implemented.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FileOperateBiStreamFlow</td>
+                <td><a href="#epl.protobuf.FileRequestChunk">FileRequestChunk</a> stream</td>
+                <td><a href="#epl.protobuf.GeometryResponse">GeometryResponse</a> stream</td>
+                <td><p>stream in file chunks for a geometry file type and stream back results for each geometry encountered</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="naip.proto">naip.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="epl.protobuf.NaipProperties">NaipProperties</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>src_img_date</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>usgsid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.NaipRequest">NaipRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>src_image_date</td>
+                  <td><a href="#epl.protobuf.TimestampField">TimestampField</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>usgsid</td>
+                  <td><a href="#epl.protobuf.StringField">StringField</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="query.proto">query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="epl.protobuf.DoubleField">DoubleField</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rel_type</td>
+                  <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>between_value1</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>between_value2</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort_direction</td>
+                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.FloatField">FloatField</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rel_type</td>
+                  <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>between_value1</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>between_value2</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort_direction</td>
+                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.StringField">StringField</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rel_type</td>
+                  <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort_direction</td>
+                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.TimestampField">TimestampField</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rel_type</td>
+                  <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>between_value1</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>between_value2</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort_direction</td>
+                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.UInt32Field">UInt32Field</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rel_type</td>
+                  <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>between_value1</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>between_value2</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort_direction</td>
+                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="epl.protobuf.FieldRelationship">FieldRelationship</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>EQ</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LT_OR_EQ</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GT_OR_EQ</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LT</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GT</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>BETWEEN</td>
+                <td>32</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_BETWEEN</td>
+                <td>64</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_EQ</td>
+                <td>128</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>STARTS_WITH</td>
+                <td>256</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.SortDirection">SortDirection</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NOT_SORTED</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DESC</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ASC</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="stac.proto">stac.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="epl.protobuf.Asset">Asset</h3>
+        <p>message for an asset of a stac item.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>href</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>href for downloading item </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>asset type </p></td>
+                </tr>
+              
+                <tr>
+                  <td>eo_bands</td>
+                  <td><a href="#epl.protobuf.Eo.Band">Eo.Band</a></td>
+                  <td></td>
+                  <td><p>band(s) of data in asset. https://github.com/radiantearth/stac-spec/blob/612ee4fb4f979c049d2416e7f5374a5301b8a277/extensions/eo/README.md </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_type</td>
+                  <td><a href="#epl.protobuf.AssetType">AssetType</a></td>
+                  <td></td>
+                  <td><p>enum for asset type </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cloud_platform</td>
+                  <td><a href="#epl.protobuf.CloudPlatform">CloudPlatform</a></td>
+                  <td></td>
+                  <td><p>cloud platform enum (Google cloud, Azure, etc) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bucket_owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>owner of the bucket </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bucket_region</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bucket region. useful when concerned about egress </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bucket</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bucket name </p></td>
+                </tr>
+              
+                <tr>
+                  <td>object_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>path to the object in the bucket </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.BandDetails">BandDetails</h3>
+        <p>Right now this isn't included in the response as it's a bit messy</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>common_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gsd</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>accuracy</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>center_wavelength</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>full_width_half_max</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.Dtr">Dtr</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>start</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>end</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.Eo">Eo</h3>
+        <p>message for electro optical details of stac items.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>epsg</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>epsg code for the spatial reference of the data </p></td>
+                </tr>
+              
+                <tr>
+                  <td>platform</td>
+                  <td><a href="#epl.protobuf.Eo.Platform">Eo.Platform</a></td>
+                  <td></td>
+                  <td><p>platform from which the data was collected </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instrument</td>
+                  <td><a href="#epl.protobuf.Eo.Instrument">Eo.Instrument</a></td>
+                  <td></td>
+                  <td><p>instrument which collected the data </p></td>
+                </tr>
+              
+                <tr>
+                  <td>constellation</td>
+                  <td><a href="#epl.protobuf.Eo.Constellation">Eo.Constellation</a></td>
+                  <td></td>
+                  <td><p>constellation of data collectors </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sun_azimuth</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p>sun azimuth (at point of sensor?) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sun_elevation</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p>sun elevation (at point of sensor?) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gsd</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p>ground sampling distance </p></td>
+                </tr>
+              
+                <tr>
+                  <td>off_nadir</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p>off nadir angle of data </p></td>
+                </tr>
+              
+                <tr>
+                  <td>azimuth</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p>azimuth of the collection platform when sensor collected data (top of image in direction of azimuth) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cloud_cover</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p>percent cloud cover. 0 no clouds, 100 completely covered </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bands</td>
+                  <td><a href="#epl.protobuf.Eo.Band">Eo.Band</a></td>
+                  <td></td>
+                  <td><p>bands of data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.EoRequest">EoRequest</h3>
+        <p>sub message request for specifying electro-optical details in stac request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>epsg</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>epsg number of data </p></td>
+                </tr>
+              
+                <tr>
+                  <td>platform</td>
+                  <td><a href="#epl.protobuf.Eo.Platform">Eo.Platform</a></td>
+                  <td></td>
+                  <td><p>only data from the platform specified </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instrument</td>
+                  <td><a href="#epl.protobuf.Eo.Instrument">Eo.Instrument</a></td>
+                  <td></td>
+                  <td><p>only data from the instrument specified </p></td>
+                </tr>
+              
+                <tr>
+                  <td>constellation</td>
+                  <td><a href="#epl.protobuf.Eo.Constellation">Eo.Constellation</a></td>
+                  <td></td>
+                  <td><p>only data from the constellation specified </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sun_azimuth</td>
+                  <td><a href="#epl.protobuf.FloatField">FloatField</a></td>
+                  <td></td>
+                  <td><p>data with a sun_azimuth equal to or in the range specified in sun_azimuth </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sun_elevation</td>
+                  <td><a href="#epl.protobuf.FloatField">FloatField</a></td>
+                  <td></td>
+                  <td><p>data with a sun_elevation equal to or in the range specified in sun_elevation </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gsd</td>
+                  <td><a href="#epl.protobuf.FloatField">FloatField</a></td>
+                  <td></td>
+                  <td><p>data with a gsd equal to or in the range specified in gsd </p></td>
+                </tr>
+              
+                <tr>
+                  <td>off_nadir</td>
+                  <td><a href="#epl.protobuf.FloatField">FloatField</a></td>
+                  <td></td>
+                  <td><p>data with a off_nadir equal to or in the range specified in off_nadir </p></td>
+                </tr>
+              
+                <tr>
+                  <td>azimuth</td>
+                  <td><a href="#epl.protobuf.FloatField">FloatField</a></td>
+                  <td></td>
+                  <td><p>data with a azimuth equal to or in the range specified in azimuth </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cloud_cover</td>
+                  <td><a href="#epl.protobuf.FloatField">FloatField</a></td>
+                  <td></td>
+                  <td><p>data with a cloud_cover equal to or in the range specified in cloud_cover </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bands</td>
+                  <td><a href="#epl.protobuf.Eo.Band">Eo.Band</a></td>
+                  <td></td>
+                  <td><p>data that possesses the bands specified in bands </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.Sar">Sar</h3>
+        <p>place holder for SAR</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>platform</td>
+                  <td><a href="#epl.protobuf.Sar.Platform">Sar.Platform</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.StacItem">StacItem</h3>
+        <p>Spatio-Temporal Asset Catalog Item. This data item has a spatial and temporal extent. It has a unique identifier</p><p>downloadable assets. It may have an extension with details beyond the spatial and temporal extents. It may have</p><p>additional properties in the properties field</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>geometry</td>
+                  <td><a href="#epl.protobuf.GeometryData">GeometryData</a></td>
+                  <td></td>
+                  <td><p>the spatial shape of the item. must have a spatial reference defined. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bbox</td>
+                  <td><a href="#epl.protobuf.EnvelopeData">EnvelopeData</a></td>
+                  <td></td>
+                  <td><p>the bounding box of the spatial shape of the item. must have a spatial reference defined. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>properties</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>the properties of an item that are not defined within the stac specification. Requires marshalling and un-marshalling https://developers.google.com/protocol-buffers/docs/proto3#any </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#epl.protobuf.StacItem.AssetsEntry">StacItem.AssetsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter &#39;Asset types&#39;. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>datetime</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>The searchable date and time of the assets, in UTC </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>(optional) A human readable title describing the item. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>collection</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>(optional) The id of the STAC Collection this Item references to (see collection relation type below). This field is required if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>observed</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>timestamp at which data was observed (optional if datetime set) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>processed</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>timestamp when it was processed (when assets were generated) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>last timestamp when stac metadata itself was updated </p></td>
+                </tr>
+              
+                <tr>
+                  <td>eo</td>
+                  <td><a href="#epl.protobuf.Eo">Eo</a></td>
+                  <td></td>
+                  <td><p>electro-optical data message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sar</td>
+                  <td><a href="#epl.protobuf.Sar">Sar</a></td>
+                  <td></td>
+                  <td><p>Synthetic Aperture Radar data message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>dtr</td>
+                  <td><a href="#epl.protobuf.Dtr">Dtr</a></td>
+                  <td></td>
+                  <td><p>Date time range </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.StacItem.AssetsEntry">StacItem.AssetsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#epl.protobuf.Asset">Asset</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.StacRequest">StacRequest</h3>
+        <p>message for making a request for stac items.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>if id matches, return the one matching stac item </p></td>
+                </tr>
+              
+                <tr>
+                  <td>geometry</td>
+                  <td><a href="#epl.protobuf.GeometryData">GeometryData</a></td>
+                  <td></td>
+                  <td><p>search by the spatial extent as defined by geometry </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bbox</td>
+                  <td><a href="#epl.protobuf.EnvelopeData">EnvelopeData</a></td>
+                  <td></td>
+                  <td><p>search by the spatial extent as defined by the envelope bounds </p></td>
+                </tr>
+              
+                <tr>
+                  <td>geometry_request</td>
+                  <td><a href="#epl.protobuf.GeometryRequest">GeometryRequest</a></td>
+                  <td></td>
+                  <td><p>search by a geometry request. this sends a geometry operator to a geometry service, and the returned geometry is in turn used as the spatial extent </p></td>
+                </tr>
+              
+                <tr>
+                  <td>properties</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>search by properties specified by user using a request object known by user and the Any marshalling pattern </p></td>
+                </tr>
+              
+                <tr>
+                  <td>datetime</td>
+                  <td><a href="#epl.protobuf.TimestampField">TimestampField</a></td>
+                  <td></td>
+                  <td><p>search for the datetime that matched by bounds defined by the exact timestamp or a range of timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>observed</td>
+                  <td><a href="#epl.protobuf.TimestampField">TimestampField</a></td>
+                  <td></td>
+                  <td><p>search for the moment the data was observed by bounds defined by the exact timestamp or a range of timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>processed</td>
+                  <td><a href="#epl.protobuf.TimestampField">TimestampField</a></td>
+                  <td></td>
+                  <td><p>search for the moment the data was processed by bounds defined by the exact timestamp or a range of timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated</td>
+                  <td><a href="#epl.protobuf.TimestampField">TimestampField</a></td>
+                  <td></td>
+                  <td><p>search for the moment the stac item metadata was updated by bounds defined by the exact timestamp or a range of timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>eo</td>
+                  <td><a href="#epl.protobuf.EoRequest">EoRequest</a></td>
+                  <td></td>
+                  <td><p>use certain electro-optical search parameters in your query </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>limit the number of results returned </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>the offset from which the query should start </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.StacUpsertResponse">StacUpsertResponse</h3>
+        <p>response message for insertion and updates to stac db</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="epl.protobuf.AssetType">AssetType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_ASSET</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>JPEG</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GEOTIFF</td>
+                <td>2</td>
+                <td><p>geotiff https://www.gdal.org/frmt_gtiff.html</p></td>
+              </tr>
+            
+              <tr>
+                <td>LERC</td>
+                <td>3</td>
+                <td><p>Limited Error Raster Compression</p></td>
+              </tr>
+            
+              <tr>
+                <td>MRF</td>
+                <td>4</td>
+                <td><p>metadata raster file https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-metadata-file-mrf</p></td>
+              </tr>
+            
+              <tr>
+                <td>MRF_IDX</td>
+                <td>5</td>
+                <td><p>metadata raster file index https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-index-file-idx</p></td>
+              </tr>
+            
+              <tr>
+                <td>MRF_XML</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CO_GEOTIFF</td>
+                <td>7</td>
+                <td><p>cloud optimized geotiff https://www.cogeo.org/</p></td>
+              </tr>
+            
+              <tr>
+                <td>RAW</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>THUMBNAIL</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TIFF</td>
+                <td>10</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>JPEG_2000</td>
+                <td>11</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>XML</td>
+                <td>12</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.CloudPlatform">CloudPlatform</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_CLOUD_PLATFORM</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AWS</td>
+                <td>1</td>
+                <td><p>Amazon Web Services</p></td>
+              </tr>
+            
+              <tr>
+                <td>GCP</td>
+                <td>2</td>
+                <td><p>Google Cloud Platform</p></td>
+              </tr>
+            
+              <tr>
+                <td>AZURE</td>
+                <td>3</td>
+                <td><p>Microsoft&#39;s Azure</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.Eo.Band">Eo.Band</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_BAND</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>COASTAL</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>BLUE</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GREEN</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RED</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RGB</td>
+                <td>28</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>NEAR_INFRARED</td>
+                <td>32</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RGBIR</td>
+                <td>60</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SWIR_16</td>
+                <td>64</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SWIR_22</td>
+                <td>128</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PANCHROMATIC</td>
+                <td>256</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CIRRUS</td>
+                <td>512</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LWIR_11</td>
+                <td>1024</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LWIR_12</td>
+                <td>2048</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.Eo.Constellation">Eo.Constellation</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_CONSTELLATION</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>NAIP</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PNOA</td>
+                <td>8</td>
+                <td><p>spanish aerial dataset</p></td>
+              </tr>
+            
+              <tr>
+                <td>SWIFT</td>
+                <td>16</td>
+                <td><p>swiftera dataset</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.Eo.Instrument">Eo.Instrument</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_INSTRUMENT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OLI</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TIRS</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>POM_1</td>
+                <td>8</td>
+                <td><p>swiftera instrument</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.Eo.Platform">Eo.Platform</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_PLATFORM</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_1</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_2</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_3</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_123</td>
+                <td>14</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_4</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_5</td>
+                <td>32</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_45</td>
+                <td>48</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_7</td>
+                <td>64</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LANDSAT_8</td>
+                <td>128</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SWIFT_2</td>
+                <td>256</td>
+                <td><p>swiftera platform</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.Sar.Instrument">Sar.Instrument</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_INSTRUMENT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.Sar.Platform">Sar.Platform</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_PLATFORM</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ENVISAT</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SENTINEL_1A</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="stac_service.proto">stac_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+
+      
+
+      
+
+      
+        <h3 id="epl.protobuf.StacService">StacService</h3>
+        <p>gRPC Interfaces for working with stac metadata</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Search</td>
+                <td><a href="#epl.protobuf.StacRequest">StacRequest</a></td>
+                <td><a href="#epl.protobuf.StacItem">StacItem</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Insert</td>
+                <td><a href="#epl.protobuf.StacItem">StacItem</a> stream</td>
+                <td><a href="#epl.protobuf.StacUpsertResponse">StacUpsertResponse</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#epl.protobuf.StacItem">StacItem</a> stream</td>
+                <td><a href="#epl.protobuf.StacUpsertResponse">StacUpsertResponse</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SearchOne</td>
+                <td><a href="#epl.protobuf.StacRequest">StacRequest</a></td>
+                <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>InsertOne</td>
+                <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
+                <td><a href="#epl.protobuf.StacUpsertResponse">StacUpsertResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateOne</td>
+                <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
+                <td><a href="#epl.protobuf.StacUpsertResponse">StacUpsertResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++ Type</td><td>Java Type</td><td>Python Type</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+
