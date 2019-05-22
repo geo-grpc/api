@@ -838,6 +838,12 @@ class BaseGeometry(object):
         geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
+    def convex(self):
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                  operator=geometry_pb2.CONVEX_HULL)
+        geometry_response = geometry_init.geometry_service.stub.GeometryOperationUnary(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
     def area(self, geodetic=True):
         """
         get the area of the polygon, defaults to geodetic area.

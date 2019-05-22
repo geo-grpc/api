@@ -27,7 +27,7 @@ class MultiLineString(BaseMultipartGeometry):
         A sequence of LineStrings
     """
 
-    def __init__(self, lines=None, sr=geometry_pb2.SpatialReferenceData):
+    def __init__(self, lines=None, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
         """
         Parameters
         ----------
@@ -42,7 +42,7 @@ class MultiLineString(BaseMultipartGeometry):
 
           >>> lines = MultiLineString( [[[0.0, 0.0], [1.0, 2.0]]] )
         """
-        super(MultiLineString, self).__init__(sr=sr)
+        super(MultiLineString, self).__init__(sr=sr, wkid=wkid, proj4=proj4)
 
         if not lines:
             # allow creation of empty multilinestrings, to support unpickling

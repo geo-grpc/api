@@ -27,7 +27,7 @@ class MultiPoint(BaseMultipartGeometry):
         A sequence of Points
     """
 
-    def __init__(self, points=None, sr: geometry_pb2.SpatialReferenceData=None):
+    def __init__(self, points=None, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
         """
         Parameters
         ----------
@@ -46,7 +46,7 @@ class MultiPoint(BaseMultipartGeometry):
           >>> type(ob.geoms[0]) == Point
           True
         """
-        super(MultiPoint, self).__init__(sr=sr)
+        super(MultiPoint, self).__init__(sr=sr, wkid=wkid, proj4=proj4)
 
         if points is None or len(points) == 0:
             # allow creation of empty multipoints, to support unpickling

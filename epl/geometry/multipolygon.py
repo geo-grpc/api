@@ -26,7 +26,12 @@ class MultiPolygon(BaseMultipartGeometry):
         A sequence of `Polygon` instances
     """
 
-    def __init__(self, polygons=None, context_type='polygons', sr: geometry_pb2.SpatialReferenceData=None):
+    def __init__(self,
+                 polygons=None,
+                 context_type='polygons',
+                 sr: geometry_pb2.SpatialReferenceData = None,
+                 wkid: int = 0,
+                 proj4: str = ""):
         """
         Parameters
         ----------
@@ -50,7 +55,7 @@ class MultiPolygon(BaseMultipartGeometry):
           >>> type(ob.geoms[0]) == Polygon
           True
         """
-        super(MultiPolygon, self).__init__(sr=sr)
+        super(MultiPolygon, self).__init__(sr=sr, wkid=wkid, proj4=proj4)
 
         if not polygons:
             # allow creation of empty multipolygons, to support unpickling

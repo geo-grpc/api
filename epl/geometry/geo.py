@@ -1,7 +1,7 @@
 """
 Geometry factories based on the geo interface
 """
-
+from epl.protobuf.geometry_pb2 import SpatialReferenceData
 from .point import Point, asPoint
 from .linestring import LineString, asLineString
 from .polygon import Polygon, asPolygon
@@ -19,7 +19,7 @@ def box(minx, miny, maxx, maxy, ccw=True):
     return Polygon(coords)
 
 
-def shape(context):
+def shape(context, sr: SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
     """Returns a new, independent geometry with coordinates *copied* from the
     context.
     """
@@ -29,22 +29,22 @@ def shape(context):
         ob = context
     geom_type = ob.get("type").lower()
     if geom_type == "point":
-        return Point(ob["coordinates"])
+        return Point(ob["coordinates"], sr=sr, wkid=wkid, proj4=proj4)
     elif geom_type == "linestring":
-        return LineString(ob["coordinates"])
+        return LineString(ob["coordinates"], sr=sr, wkid=wkid, proj4=proj4)
     elif geom_type == "polygon":
         if not ob["coordinates"]:
-            return Polygon()
+            return Polygon(sr=sr, wkid=wkid, proj4=proj4)
         else:
-            return Polygon(ob["coordinates"][0], ob["coordinates"][1:])
+            return Polygon(ob["coordinates"][0], ob["coordinates"][1:], sr=sr, wkid=wkid, proj4=proj4)
     elif geom_type == "multipoint":
-        return MultiPoint(ob["coordinates"])
+        return MultiPoint(ob["coordinates"], sr=sr, wkid=wkid, proj4=proj4)
     elif geom_type == "multilinestring":
-        return MultiLineString(ob["coordinates"])
+        return MultiLineString(ob["coordinates"], sr=sr, wkid=wkid, proj4=proj4)
     elif geom_type == "multipolygon":
-        return MultiPolygon(ob["coordinates"], context_type='geojson')
+        return MultiPolygon(ob["coordinates"], context_type='geojson', sr=sr, wkid=wkid, proj4=proj4)
     elif geom_type == "geometrycollection":
-        geoms = [shape(g) for g in ob.get("geometries", [])]
+        geoms = [shape(g, sr=sr, wkid=wkid, proj4=proj4) for g in ob.get("geometries", [])]
         return GeometryCollection(geoms)
     else:
         raise ValueError("Unknown geometry type: %s" % geom_type)

@@ -19,8 +19,10 @@
 
 import os
 import unittest
-import grpc
 import math
+import requests
+
+import grpc
 
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
@@ -635,3 +637,14 @@ class TestBasic(unittest.TestCase):
 
         print(polygon1.s_area)
         self.assertTrue(polygon7.s_buffer(0.001).contains(polygon1, operation_sr=proj4326))
+
+    def test_spain_json(self):
+        # grab the Taos, NM county outline from a geojson hosted on github
+        r = requests.get("https://raw.githubusercontent.com/johan/world.geo.json/master/countries/ESP.geo.json")
+        spain_geom = r.json()
+        spain_shape = geometry.shape(spain_geom['features'][0]['geometry'], wkid=4326)
+        self.assertEqual(spain_shape.sr.wkid, 4326)
+        number = spain_shape.area()
+        self.assertGreaterEqual(number, 10)
+
+        new_geom = spain_shape.buffer(45)
