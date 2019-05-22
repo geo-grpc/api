@@ -9,8 +9,15 @@ docker run -p 8980:8980 -d echoparklabs/geometry-service-java
 
 ## Install Python gRPC Geometry Client
 
+install using pip (depends on shapely, epl.protobuf and grpc)
+```bash
+pip install epl.geometry
+```
+
+install for development
 ```bash
 pip install -r requirements.txt
+pip install -r requirements-test.txt
 ```
 
 ## Install and run demo
