@@ -63,7 +63,7 @@ class TestBasic(unittest.TestCase):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
 
         print("make wkt request")
-        response = stub.GeometryOperationUnary(op_request)
+        response = stub.Operate(op_request)
         # print response
         print("Client received wkt response:\n", response)
         result_buffered = loads(response.geometry.wkt)
@@ -85,7 +85,7 @@ class TestBasic(unittest.TestCase):
         stub = geometry_grpc.GeometryServiceStub(self.channel)
 
         print("make wkt request")
-        response = stub.GeometryOperationUnary(op_request)
+        response = stub.Operate(op_request)
         new_polygon = Polygon.import_protobuf(response.geometry)
         shapely_buffer = polygon.s_buffer(1.2)
         self.assertAlmostEqual(shapely_buffer.s_area, new_polygon.s_area, 2)
@@ -128,7 +128,7 @@ class TestBasic(unittest.TestCase):
             result_encoding=geometry_pb2.WKT)
 
         print("make project request")
-        response2 = stub.GeometryOperationUnary(op_request_project)
+        response2 = stub.Operate(op_request_project)
         print("Client received project response:\n", response2)
 
         expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, 9.898748937075354 -0.904618578893133))"
@@ -141,7 +141,7 @@ class TestBasic(unittest.TestCase):
             operator=geometry_pb2.EQUALS,
             operation_sr=output_sr)
 
-        response3 = stub.GeometryOperationUnary(op_equals)
+        response3 = stub.Operate(op_equals)
 
         self.assertTrue(response3.spatial_relationship)
 
@@ -162,7 +162,7 @@ class TestBasic(unittest.TestCase):
             operator=geometry_pb2.EQUALS,
             operation_sr=output_sr)
         stub = geometry_grpc.GeometryServiceStub(self.channel)
-        response3 = stub.GeometryOperationUnary(op_equals)
+        response3 = stub.Operate(op_equals)
         self.assertTrue(response3.spatial_relationship)
 
         op_simplify = geometry_pb2.GeometryRequest(
@@ -170,7 +170,7 @@ class TestBasic(unittest.TestCase):
             operation_sr=output_sr,
             operator=geometry_pb2.SIMPLIFY
         )
-        response4 = stub.GeometryOperationUnary(op_simplify)
+        response4 = stub.Operate(op_simplify)
         multi_line = MultiLineString.import_protobuf(response4.geometry)
         self.assertAlmostEqual(polyline.s_length, multi_line.s_length, 8)
 
@@ -198,7 +198,7 @@ class TestBasic(unittest.TestCase):
             result_encoding=geometry_pb2.WKT)
 
         print("make project request")
-        response2 = stub.GeometryOperationUnary(op_request_project)
+        response2 = stub.Operate(op_request_project)
         print("Client received project response:\n", response2)
 
         # expected = "MULTILINESTRING ((9 0, 8.101251062924646 0.904618578893133, " \
@@ -213,7 +213,7 @@ class TestBasic(unittest.TestCase):
             operation_sr=output_sr)
 
         try:
-            _ = stub.GeometryOperationUnary(op_equals)
+            _ = stub.Operate(op_equals)
             self.assertTrue(False)
         except grpc.RpcError as e:
             self.assertTrue(e.details().startswith('geometryOperationUnary error : either both spatial references are '
@@ -246,7 +246,7 @@ class TestBasic(unittest.TestCase):
             result_encoding=geometry_pb2.WKT)
 
         print("make project request")
-        response = stub.GeometryOperationUnary(op_request_outer)
+        response = stub.Operate(op_request_outer)
         print("Client received project response:\n", response)
         round_trip_result_wkt = loads(response.geometry.wkt)
 
@@ -255,7 +255,7 @@ class TestBasic(unittest.TestCase):
             operator=geometry_pb2.PROJECT,
             operation_sr=service_sr,
             result_encoding=geometry_pb2.WKB)
-        response = stub.GeometryOperationUnary(op_request_outer)
+        response = stub.Operate(op_request_outer)
         round_trip_result = wkbloads(response.geometry.wkb)
         self.assertIsNotNone(round_trip_result)
 
@@ -301,7 +301,7 @@ class TestBasic(unittest.TestCase):
     #         operator=geometry_pb2.GeometryRequest.Simplify'),
     #         operation_sr=service_sr,
     #         result_encoding=geometry_pb2.WKB)
-    #     response = stub.GeometryOperationUnary(op_request_outer)
+    #     response = stub.Operate(op_request_outer)
     #     patches = wkbloads(response.geometry.wkb)
     #     shape_end = datetime.datetime.now()
     #     shape_delta = shape_end - shape_start
@@ -317,7 +317,7 @@ class TestBasic(unittest.TestCase):
     #                                        operator=geometry_pb2.GeometryRequest.Union'))
     #
     #     epl_start = datetime.datetime.now()
-    #     response = stub.GeometryOperationUnary(op_request_union)
+    #     response = stub.Operate(op_request_union)
     #     unioned_result = wkbloads(response.geometry.wkb)
     #
     #     epl_end = datetime.datetime.now()
@@ -369,7 +369,7 @@ class TestBasic(unittest.TestCase):
                     result_encoding=geometry_pb2.WKT)
 
                 # print("make project request")
-                response = stub.GeometryOperationUnary(op_request_outer)
+                response = stub.Operate(op_request_outer)
                 # print("Client received project response:\n", response)
                 point_projected = loads(response.geometry.wkt)
                 if response.geometry.wkt == 'POINT EMPTY':
