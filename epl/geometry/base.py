@@ -912,6 +912,15 @@ class BaseGeometry(object):
                                  operation_sr=operation_sr,
                                  result_sr=result_sr)
 
+    def union(self,
+              other_geom,
+              operation_sr: geometry_pb2.SpatialReferenceData = None,
+              result_sr: geometry_pb2.SpatialReferenceData = None):
+        return self._two_geom_op(other_geom=other_geom,
+                                 operator_type=geometry_pb2.UNION,
+                                 operation_sr=operation_sr,
+                                 result_sr=result_sr)
+
     def _two_geom_op(self,
                      other_geom,
                      operator_type: geometry_pb2.OperatorType,
