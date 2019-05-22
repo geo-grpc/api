@@ -15,23 +15,33 @@ class GeometryServiceStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.GeometryOperationUnary = channel.unary_unary(
-        '/epl.protobuf.GeometryService/GeometryOperationUnary',
+    self.Operate = channel.unary_unary(
+        '/epl.protobuf.GeometryService/Operate',
         request_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.FromString,
         )
-    self.GeometryOperationBiStream = channel.stream_stream(
-        '/epl.protobuf.GeometryService/GeometryOperationBiStream',
+    self.OperateBiStream = channel.stream_stream(
+        '/epl.protobuf.GeometryService/OperateBiStream',
         request_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.FromString,
         )
-    self.GeometryOperationBiStreamFlow = channel.stream_stream(
-        '/epl.protobuf.GeometryService/GeometryOperationBiStreamFlow',
+    self.OperateBiStreamFlow = channel.stream_stream(
+        '/epl.protobuf.GeometryService/OperateBiStreamFlow',
         request_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.FromString,
         )
-    self.FileOperationBiStreamFlow = channel.stream_stream(
-        '/epl.protobuf.GeometryService/FileOperationBiStreamFlow',
+    self.OperateServerStream = channel.unary_stream(
+        '/epl.protobuf.GeometryService/OperateServerStream',
+        request_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.SerializeToString,
+        response_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.FromString,
+        )
+    self.OperateClientStream = channel.stream_unary(
+        '/epl.protobuf.GeometryService/OperateClientStream',
+        request_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.SerializeToString,
+        response_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.FromString,
+        )
+    self.FileOperateBiStreamFlow = channel.stream_stream(
+        '/epl.protobuf.GeometryService/FileOperateBiStreamFlow',
         request_serializer=epl_dot_protobuf_dot_geometry__pb2.FileRequestChunk.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.FromString,
         )
@@ -42,21 +52,21 @@ class GeometryServiceServicer(object):
   gRPC Interfaces for working with geometry operators
   """
 
-  def GeometryOperationUnary(self, request, context):
+  def Operate(self, request, context):
     """Execute a single blocking geometry operation
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def GeometryOperationBiStream(self, request_iterator, context):
+  def OperateBiStream(self, request_iterator, context):
     """stream in operator requests and get back a stream of results
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def GeometryOperationBiStreamFlow(self, request_iterator, context):
+  def OperateBiStreamFlow(self, request_iterator, context):
     """manual flow control bi-directional stream. example
     go shouldn't use this because of https://groups.google.com/forum/#!topic/grpc-io/6_B46Oszb4k ?
     """
@@ -64,14 +74,22 @@ class GeometryServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def FileOperationBiStreamFlow(self, request_iterator, context):
+  def OperateServerStream(self, request, context):
     """Maybe a cut operation that returns a lot of different geometries? for now, this is not implemented.
-    rpc GeometryOperationServerStream(epl.protobuf.GeometryRequest) returns (stream epl.protobuf.GeometryResponse) {}
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
-    Maybe something like a union operation. for now, this is not implemented.
-    rpc GeometryOperationClientStream(stream epl.protobuf.GeometryRequest) returns (epl.protobuf.GeometryResponse) {}
+  def OperateClientStream(self, request_iterator, context):
+    """Maybe something like a union operation. for now, this is not implemented.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
-    stream in file chunks for a geometry file type and stream back results for each geometry encountered
+  def FileOperateBiStreamFlow(self, request_iterator, context):
+    """stream in file chunks for a geometry file type and stream back results for each geometry encountered
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -80,23 +98,33 @@ class GeometryServiceServicer(object):
 
 def add_GeometryServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'GeometryOperationUnary': grpc.unary_unary_rpc_method_handler(
-          servicer.GeometryOperationUnary,
+      'Operate': grpc.unary_unary_rpc_method_handler(
+          servicer.Operate,
           request_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.FromString,
           response_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.SerializeToString,
       ),
-      'GeometryOperationBiStream': grpc.stream_stream_rpc_method_handler(
-          servicer.GeometryOperationBiStream,
+      'OperateBiStream': grpc.stream_stream_rpc_method_handler(
+          servicer.OperateBiStream,
           request_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.FromString,
           response_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.SerializeToString,
       ),
-      'GeometryOperationBiStreamFlow': grpc.stream_stream_rpc_method_handler(
-          servicer.GeometryOperationBiStreamFlow,
+      'OperateBiStreamFlow': grpc.stream_stream_rpc_method_handler(
+          servicer.OperateBiStreamFlow,
           request_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.FromString,
           response_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.SerializeToString,
       ),
-      'FileOperationBiStreamFlow': grpc.stream_stream_rpc_method_handler(
-          servicer.FileOperationBiStreamFlow,
+      'OperateServerStream': grpc.unary_stream_rpc_method_handler(
+          servicer.OperateServerStream,
+          request_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.FromString,
+          response_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.SerializeToString,
+      ),
+      'OperateClientStream': grpc.stream_unary_rpc_method_handler(
+          servicer.OperateClientStream,
+          request_deserializer=epl_dot_protobuf_dot_geometry__pb2.GeometryRequest.FromString,
+          response_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.SerializeToString,
+      ),
+      'FileOperateBiStreamFlow': grpc.stream_stream_rpc_method_handler(
+          servicer.FileOperateBiStreamFlow,
           request_deserializer=epl_dot_protobuf_dot_geometry__pb2.FileRequestChunk.FromString,
           response_serializer=epl_dot_protobuf_dot_geometry__pb2.GeometryResponse.SerializeToString,
       ),

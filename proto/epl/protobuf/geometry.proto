@@ -76,7 +76,7 @@ message SpatialReferenceData {
 
     // Projection names
     enum CSType {
-        // default is Lambert Azimuthal Equal Area Projection
+        // default is Lambert Azimuthal Equal Area Projection, with x origin x_0=4321000 and y origin y_0=3210000
         LAMBERT_AZI = 0;
     }
 
@@ -86,6 +86,7 @@ message SpatialReferenceData {
         double lon_0 = 1;
         // latitude of center of projection (latitude of origin)
         double lat_0 = 2;
+
         // enum defining the type of projection
         CSType cs_type = 3;
     }
@@ -148,14 +149,16 @@ enum OperatorType {
     CLIP = 21;
     CUT = 22;
     DENSIFY_BY_LENGTH = 23;
-    DENSIFY_BY_ANGLE = 24;
+
+    // DENSIFY_BY_ANGLE = 24;
     // LABEL_POINT = 25;
+
     GEODESIC_BUFFER = 26;
     GEODETIC_DENSIFY_BY_LENGTH = 27;
 
     // SHAPE_PRESERVING_DENSIFY = 28;
-
     // GEODETIC_LENGTH = 29;
+
     GEODETIC_AREA = 30;
     SIMPLIFY = 31;
     SIMPLIFY_OGC = 32;
@@ -175,6 +178,9 @@ enum OperatorType {
     ENCLOSING_CIRCLE = 46;
 }
 
+/**
+ * response message for insertion and updates to stac db
+ */
 message GeometryRequest {
     // oneof block not currently used: https://github.com/golang/protobuf/issues/283
 
@@ -283,7 +289,7 @@ message GeometryRequest {
         bool force = 1;
     }
 
-    //    oneof params {
+    // oneof https://github.com/golang/protobuf/issues/283
 
     BufferParams buffer_params = 11;
     ConvexParams convex_params = 12;
@@ -301,19 +307,24 @@ message GeometryRequest {
     //    }
 }
 
+/**
+ * response message geometry request
+ */
 message GeometryResponse {
-    // oneof
+    // oneof https://github.com/golang/protobuf/issues/283
 
+    // if geometry result, then this field holds the geometry data
     GeometryData geometry = 1;
-
+    // if a topo spatial relationship request, then this field holds the true or false result
     bool spatial_relationship = 2;
-
+    // a measure result will be a float for area and length requests
     double measure = 3;
 
     map<int64, bool> relate_map = 4;
+
     EnvelopeData envelope = 5;
 
-    // oneof
+    // oneof https://github.com/golang/protobuf/issues/283
 }
 
 message FileRequestChunk {

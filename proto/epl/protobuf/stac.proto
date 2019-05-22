@@ -67,46 +67,60 @@ message StacItem {
     // (optional) The id of the STAC Collection this Item references to (see collection relation type below). This field is required if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection.
     string collection = 10;
 
-    // non-standard
+    // timestamp at which data was observed (optional if datetime set)
     google.protobuf.Timestamp observed = 11;
+    // timestamp when it was processed (when assets were generated)
     google.protobuf.Timestamp processed = 12;
+    // last timestamp when stac metadata itself was updated
     google.protobuf.Timestamp updated = 13;
 
+    // electro-optical data message
     Eo eo = 14;
+    // Synthetic Aperture Radar data message
     Sar sar = 15;
+    // Date time range
     Dtr dtr = 16;
 }
 
+/**
+ * message for making a request for stac items.
+ */
 message StacRequest {
-    StringField id = 1;
+    // if id matches, return the one matching stac item
+    string id = 1;
 
-    //    oneof
+    // oneof https://github.com/golang/protobuf/issues/283
+
+    // search by the spatial extent as defined by geometry
     epl.protobuf.GeometryData geometry = 2;
+    // search by the spatial extent as defined by the envelope bounds
     epl.protobuf.EnvelopeData bbox = 3;
+    // search by a geometry request. this sends a geometry operator to a geometry service, and the returned geometry is in turn used as the spatial extent
     epl.protobuf.GeometryRequest geometry_request = 4;
-    // end oneof
 
-    google.protobuf.Any properties_request = 5;
+    // end oneof https://github.com/golang/protobuf/issues/283
 
+    // search by properties specified by user using a request object known by user and the Any marshalling pattern
+    google.protobuf.Any properties = 5;
+
+    // search for the datetime that matched by bounds defined by the exact timestamp or a range of timestamp
     TimestampField datetime = 6;
+    // search for the moment the data was observed by bounds defined by the exact timestamp or a range of timestamp
     TimestampField observed = 7;
+    // search for the moment the data was processed by bounds defined by the exact timestamp or a range of timestamp
     TimestampField processed = 8;
+    // search for the moment the stac item metadata was updated by bounds defined by the exact timestamp or a range of timestamp
     TimestampField updated = 9;
 
-    EoRequest eo_request = 10;
+    // use certain electro-optical search parameters in your query
+    EoRequest eo = 10;
 
+    // limit the number of results returned
     uint32 limit = 11;
+    // the offset from which the query should start
     uint64 offset = 12;
 }
 
-/*
-https://groups.google.com/forum/#!topic/protobuf/bO2L6-_t91Q
-When mixing proto2 and proto3, there's a checklist of don't (like no 'required' fields)
-1. All fields should be optional.
-2. Do not use custom default values.
-3. All enums should have first element with tag = 0.
-4. Do not use extension for anything except custom options.
-*/
 
 // Right now this isn't included in the response as it's a bit messy
 message BandDetails {
@@ -119,19 +133,28 @@ message BandDetails {
     google.protobuf.FloatValue full_width_half_max = 7;
 }
 
+/**
+ * message for an asset of a stac item.
+ */
 message Asset {
+    // href for downloading item
     string href = 1;
+    // asset type
     string type = 2;
-    // https://github.com/radiantearth/stac-spec/blob/612ee4fb4f979c049d2416e7f5374a5301b8a277/extensions/eo/README.md
+    // band(s) of data in asset. https://github.com/radiantearth/stac-spec/blob/612ee4fb4f979c049d2416e7f5374a5301b8a277/extensions/eo/README.md
     Eo.Band eo_bands = 3;
-
+    // enum for asset type
     AssetType asset_type = 4;
 
-    // non-standard
+    // cloud platform enum (Google cloud, Azure, etc)
     CloudPlatform cloud_platform = 5;
+    // owner of the bucket
     string bucket_owner = 6;
+    // bucket region. useful when concerned about egress
     string bucket_region = 7;
+    // bucket name
     string bucket = 8;
+    // path to the object in the bucket
     string object_path = 9;
 }
 
@@ -140,12 +163,18 @@ message Dtr {
     google.protobuf.Timestamp end = 2;
 }
 
+/**
+ * response message for insertion and updates to stac db
+ */
 message StacUpsertResponse {
     string status = 1;
     int32 status_code = 2;
     string data_id = 3;
 }
 
+/**
+ * place holder for SAR
+ */
 message Sar {
     enum Platform {
         UNKNOWN_PLATFORM = 0;
@@ -159,6 +188,9 @@ message Sar {
     }
 }
 
+/**
+ * message for electro optical details of stac items.
+ */
 message Eo {
     enum Platform {
         UNKNOWN_PLATFORM = 0;
@@ -171,6 +203,7 @@ message Eo {
         LANDSAT_45 = 48;
         LANDSAT_7 = 64;
         LANDSAT_8 = 128;
+        // swiftera platform
         SWIFT_2 = 256;
     }
 
@@ -178,6 +211,7 @@ message Eo {
         UNKNOWN_INSTRUMENT = 0;
         OLI = 2;
         TIRS = 4;
+        // swiftera instrument
         POM_1 = 8;
     }
 
@@ -185,7 +219,9 @@ message Eo {
         UNKNOWN_CONSTELLATION = 0;
         LANDSAT = 2;
         NAIP = 4;
+        // spanish aerial dataset
         PNOA = 8;
+        // swiftera dataset
         SWIFT = 16;
     }
 
@@ -206,54 +242,84 @@ message Eo {
         LWIR_12 = 2048;
     }
 
+    // epsg code for the spatial reference of the data
     uint32 epsg = 1;
+    // platform from which the data was collected
     Platform platform = 2;
+    // instrument which collected the data
     Instrument instrument = 3;
+    // constellation of data collectors
     Constellation constellation = 4;
 
+    // sun azimuth (at point of sensor?)
     google.protobuf.FloatValue sun_azimuth = 5;
+    // sun elevation (at point of sensor?)
     google.protobuf.FloatValue sun_elevation = 6;
+    // ground sampling distance
     google.protobuf.FloatValue gsd = 7;
+    // off nadir angle of data
     google.protobuf.FloatValue off_nadir = 8;
+    // azimuth of the collection platform when sensor collected data (top of image in direction of azimuth)
     google.protobuf.FloatValue azimuth = 9;
+    // percent cloud cover. 0 no clouds, 100 completely covered
     google.protobuf.FloatValue cloud_cover = 10;
-
+    // bands of data
     Band bands = 11;
 }
 
+/**
+ * sub message request for specifying electro-optical details in stac request
+ */
 message EoRequest {
+    // epsg number of data
     int32 epsg = 1;
+    // only data from the platform specified
     Eo.Platform platform = 2;
+    // only data from the instrument specified
     Eo.Instrument instrument = 3;
+    // only data from the constellation specified
     Eo.Constellation constellation = 4;
 
+    // data with a sun_azimuth equal to or in the range specified in sun_azimuth
     FloatField sun_azimuth = 5;
+    // data with a sun_elevation equal to or in the range specified in sun_elevation
     FloatField sun_elevation = 6;
+    // data with a gsd equal to or in the range specified in gsd
     FloatField gsd = 7;
+    // data with a off_nadir equal to or in the range specified in off_nadir
     FloatField off_nadir = 8;
+    // data with a azimuth equal to or in the range specified in azimuth
     FloatField azimuth = 9;
+    // data with a cloud_cover equal to or in the range specified in cloud_cover
     FloatField cloud_cover = 10;
-
+    // data that possesses the bands specified in bands
     Eo.Band bands = 11;
 }
 
 enum AssetType {
     UNKNOWN_ASSET = 0;
     JPEG = 1;
+    // geotiff https://www.gdal.org/frmt_gtiff.html
     GEOTIFF = 2;
+    // Limited Error Raster Compression
     LERC = 3;
+    // metadata raster file https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-metadata-file-mrf
     MRF = 4;
+    // metadata raster file index https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-index-file-idx
     MRF_IDX = 5;
     MRF_XML = 6;
+    // cloud optimized geotiff https://www.cogeo.org/
     CO_GEOTIFF = 7;
     RAW = 8;
     THUMBNAIL = 9;
     TIFF = 10;
+    JPEG_2000 = 11;
+    XML = 12;
 }
 
 enum CloudPlatform {
     UNKNOWN_CLOUD_PLATFORM = 0;
-    AWS = 1;
-    GCP = 2;
-    AZURE = 3;
+    AWS = 1; // Amazon Web Services
+    GCP = 2; // Google Cloud Platform
+    AZURE = 3; // Microsoft's Azure
 }

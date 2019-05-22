@@ -20,13 +20,28 @@ class StacServiceStub(object):
         request_serializer=epl_dot_protobuf_dot_stac__pb2.StacRequest.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
         )
-    self.Insert = channel.unary_unary(
+    self.Insert = channel.stream_stream(
         '/epl.protobuf.StacService/Insert',
         request_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.FromString,
         )
-    self.Update = channel.unary_unary(
+    self.Update = channel.stream_stream(
         '/epl.protobuf.StacService/Update',
+        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
+        response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.FromString,
+        )
+    self.SearchOne = channel.unary_unary(
+        '/epl.protobuf.StacService/SearchOne',
+        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacRequest.SerializeToString,
+        response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
+        )
+    self.InsertOne = channel.unary_unary(
+        '/epl.protobuf.StacService/InsertOne',
+        request_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
+        response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.FromString,
+        )
+    self.UpdateOne = channel.unary_unary(
+        '/epl.protobuf.StacService/UpdateOne',
         request_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.FromString,
         )
@@ -44,14 +59,35 @@ class StacServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def Insert(self, request, context):
+  def Insert(self, request_iterator, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def Update(self, request, context):
+  def Update(self, request_iterator, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SearchOne(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def InsertOne(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateOne(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -66,13 +102,28 @@ def add_StacServiceServicer_to_server(servicer, server):
           request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacRequest.FromString,
           response_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
       ),
-      'Insert': grpc.unary_unary_rpc_method_handler(
+      'Insert': grpc.stream_stream_rpc_method_handler(
           servicer.Insert,
           request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
           response_serializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.SerializeToString,
       ),
-      'Update': grpc.unary_unary_rpc_method_handler(
+      'Update': grpc.stream_stream_rpc_method_handler(
           servicer.Update,
+          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
+          response_serializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.SerializeToString,
+      ),
+      'SearchOne': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchOne,
+          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacRequest.FromString,
+          response_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
+      ),
+      'InsertOne': grpc.unary_unary_rpc_method_handler(
+          servicer.InsertOne,
+          request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
+          response_serializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.SerializeToString,
+      ),
+      'UpdateOne': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateOne,
           request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
           response_serializer=epl_dot_protobuf_dot_stac__pb2.StacUpsertResponse.SerializeToString,
       ),

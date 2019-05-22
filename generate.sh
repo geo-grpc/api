@@ -11,8 +11,10 @@ python -mgrpc_tools.protoc -I=./proto --python_out=./python \
     ./proto/epl/protobuf/geometry.proto \
     ./proto/epl/protobuf/query.proto \
     ./proto/epl/protobuf/stac.proto \
-    ./proto/epl/protobuf/naip.proto \
+    ./proto/epl/protobuf/naip.proto
 
 python -mgrpc_tools.protoc -I=./proto --grpc_python_out=./python \
     ./proto/epl/protobuf/geometry_service.proto \
     ./proto/epl/protobuf/stac_service.proto
+
+#docker run --rm   -v $(pwd)/doc:/out   -v $(pwd)/proto/epl/protobuf:/protos   pseudomuto/protoc-gen-doc

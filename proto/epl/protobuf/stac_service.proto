@@ -35,6 +35,10 @@ import "epl/protobuf/stac.proto";
 */
 service StacService {
     rpc Search(epl.protobuf.StacRequest) returns (stream epl.protobuf.StacItem) {}
-    rpc Insert(epl.protobuf.StacItem) returns (epl.protobuf.StacUpsertResponse) {}
-    rpc Update(epl.protobuf.StacItem) returns (epl.protobuf.StacUpsertResponse) {}
+    rpc Insert(stream epl.protobuf.StacItem) returns (stream epl.protobuf.StacUpsertResponse) {}
+    rpc Update(stream epl.protobuf.StacItem) returns (stream epl.protobuf.StacUpsertResponse) {}
+
+    rpc SearchOne(epl.protobuf.StacRequest) returns (epl.protobuf.StacItem) {}
+    rpc InsertOne(epl.protobuf.StacItem) returns (epl.protobuf.StacUpsertResponse) {}
+    rpc UpdateOne(epl.protobuf.StacItem) returns (epl.protobuf.StacUpsertResponse) {}
 }
