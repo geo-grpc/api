@@ -648,6 +648,7 @@ class TestBasic(unittest.TestCase):
         self.assertGreaterEqual(number, 10)
 
         new_geom = spain_shape.buffer(45)
+        self.assertTrue(new_geom.contains(spain_shape))
 
     def test_union(self):
         p = Point(0, 0, wkid=4326).buffer(400)
@@ -660,4 +661,3 @@ class TestBasic(unittest.TestCase):
 
         # TODO geodetic area densify bug
         # self.assertEqual(p.area() + p2.area(), unioned.area())
-
