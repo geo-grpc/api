@@ -17,6 +17,7 @@ pip install -r requirements.txt
 ```bash
 pip install -r requirements.txt
 pip install -r requirements-demo.txt
+jupyter notebook
 ```
 
 if you have virtualenv installed
@@ -30,5 +31,6 @@ pip uninstall cartopy
 pip uninstall shapely
 pip install shapely --no-binary shapely
 pip install cartopy --no-binary cartopy
+jupyter notebook
 ```
 
