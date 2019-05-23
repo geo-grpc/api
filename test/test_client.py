@@ -661,3 +661,19 @@ class TestBasic(unittest.TestCase):
 
         # TODO geodetic area densify bug
         # self.assertEqual(p.area() + p2.area(), unioned.area())
+
+    def test_distance(self):
+        point1 = Point(152.352298, -24.875975, wkid=4326)
+        point2 = Point(151.960336, -24.993289, wkid=4326)
+        distance = point1.distance(point2)
+
+        # TODO, geodetic distance should be exactly equal to 41667.730
+        self.assertAlmostEqual(41667.730, distance, 1)
+
+        point3 = point2.project(to_wkid=3857)
+        distance = point3.distance(point1)
+        # TODO, geodetic distance should be exactly equal to 41667.730
+        self.assertAlmostEqual(41667.730, distance, 1)
+
+        distance_old = point1.distance(point2, geodetic=False)
+        self.assertAlmostEqual(0.409141520796879, distance_old, 9)

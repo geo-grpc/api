@@ -227,13 +227,7 @@ class BaseGeometry(object):
                  wkid: int = 0,
                  proj4: str = ""):
         super(BaseGeometry, self).__init__()
-        if sr is None and wkid == 0 and len(proj4) == 0:
-            raise ValueError("must define a spatial reference for geometry on creation")
-        if sr is None and wkid > 0:
-            sr = geometry_pb2.SpatialReferenceData(wkid=wkid)
-        elif sr is None and len(proj4) > 0:
-            sr = geometry_pb2.SpatialReferenceData(proj4=proj4)
-        self._sr = sr
+        self._sr = get_sr(sr=sr, wkid=wkid, proj4=proj4)
 
     def empty(self, val=EMPTY):
         # TODO: defer cleanup to the implementation. We shouldn't be
@@ -825,7 +819,8 @@ class BaseGeometry(object):
         geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
-    def project(self, to_sr: geometry_pb2.SpatialReferenceData):
+    def project(self, to_sr: geometry_pb2.SpatialReferenceData = None, to_wkid: int = 0, to_proj4: str = ""):
+        to_sr = get_sr(sr=to_sr, wkid=to_wkid, proj4=to_proj4)
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.PROJECT,
                                                   result_sr=to_sr)
@@ -864,6 +859,25 @@ class BaseGeometry(object):
                                                result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
         area_response = geometry_init.geometry_service.stub.Operate(op_area)
         return area_response.measure
+
+    def distance(self, other_geom, geodetic=True):
+        if geodetic:
+            return self.geodetic_distance(other_geom=other_geom)
+        return self.s_distance(other_geom)
+
+    def geodetic_distance(self, other_geom):
+        # TODO, requires proper implementation in Geometry Service
+        centroid = self.union(other_geom, result_sr=geometry_pb2.SpatialReferenceData(wkid=4326)).centroid
+        local_sr = geometry_pb2.SpatialReferenceData(
+            custom=geometry_pb2.SpatialReferenceData.Custom(lon_0=centroid.x,
+                                                            lat_0=centroid.y))
+
+        op_distance = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
+                                                   right_geometry=other_geom.geometry_data,
+                                                   operator=geometry_pb2.DISTANCE,
+                                                   operation_sr=local_sr)
+        distance_response = geometry_init.geometry_service.stub.Operate(op_distance)
+        return distance_response.measure
 
     def geodetic_buffer(self, distance_m):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
@@ -1265,3 +1279,13 @@ class RPCReader(object):
                 "Could not create geometry because of errors "
                 "while reading input.")
         return geom
+
+
+def get_sr(sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
+    if sr is None and wkid == 0 and len(proj4) == 0:
+        raise ValueError("must define a spatial reference for geometry on creation")
+    if sr is None and wkid > 0:
+        sr = geometry_pb2.SpatialReferenceData(wkid=wkid)
+    elif sr is None and len(proj4) > 0:
+        sr = geometry_pb2.SpatialReferenceData(proj4=proj4)
+    return sr
