@@ -677,3 +677,15 @@ class TestBasic(unittest.TestCase):
 
         distance_old = point1.distance(point2, geodetic=False)
         self.assertAlmostEqual(0.409141520796879, distance_old, 9)
+
+    def test_shift(self):
+        point1 = Point(152.352298, -24.875975, wkid=4326)
+        point2 = point1.translate(1, 1, geodetic=False)
+        self.assertEqual(point2.x, point1.x + 1)
+        self.assertEqual(point2.y, point1.y + 1)
+
+        point2 = point1.translate(501, 0)
+        self.assertTrue(point1.disjoint(point2))
+        self.assertTrue(point1.buffer(500).disjoint(point2))
+        self.assertTrue(point1.buffer(501).touches(point2))
+        self.assertTrue(point1.buffer(502).contains(point2))

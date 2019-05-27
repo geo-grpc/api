@@ -1030,6 +1030,33 @@ class BaseGeometry(object):
         b = self.bounds
         return b[0], b[2], b[1], b[3]
 
+    def translate(self, x_offset=0.0, y_offset=0.0, geodetic=True):
+        """
+        translates (or offset) a geometry by the values. If geodetic (default), then offsets are in meters, otherwise,
+        offsets are in unit of spatial reference (for wgs-84, unit is degrees)
+        :param x_offset: offset in x direction (or in longitude direction). Offset is added to all x values in geometry
+        :param y_offset: offset in y direction (or in latitude direction). Offset is added to all y values in geometry
+        :param geodetic: project geometry to wgs-84 and shift geometry by meters. If set to false, offsets are executed
+        in spatial reference of geometry
+        :return: new geometry
+        """
+        local_sr = None
+        if geodetic:
+            centroid = self.project(to_sr=geometry_pb2.SpatialReferenceData(wkid=4326)).centroid
+            local_sr = geometry_pb2.SpatialReferenceData(
+                custom=geometry_pb2.SpatialReferenceData.Custom(lon_0=centroid.x,
+                                                                lat_0=centroid.y))
+
+        affine_transform_params = geometry_pb2.GeometryRequest.AffineTransformParams(x_offset=x_offset,
+                                                                                     y_offset=y_offset)
+        op_translate = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                    affine_transform_params=affine_transform_params,
+                                                    operator=geometry_pb2.AFFINE_TRANSFORM,
+                                                    operation_sr=local_sr,
+                                                    result_sr=self.sr)
+        geometry_response = geometry_init.geometry_service.stub.Operate(op_translate)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
 
 class BaseMultipartGeometry(BaseGeometry):
 
@@ -1234,10 +1261,12 @@ class RPCReader(object):
         """Create Reader"""
         self._lgeos = lgeos
         self._geometry_data = geometry_data
+        # TODO, manage geometry_data with geojson and esrishape
         if len(self._geometry_data.wkt) > 0:
             self._reader_wkt = self._lgeos.GEOSWKTReader_create()
         elif len(geometry_data.wkb) > 0:
             self._reader_wkb = self._lgeos.GEOSWKBReader_create()
+        # TODO raise an exception here
 
     def __del__(self):
         """Destroy Reader"""
