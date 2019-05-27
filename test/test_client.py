@@ -689,3 +689,13 @@ class TestBasic(unittest.TestCase):
         self.assertTrue(point1.buffer(500).disjoint(point2))
         self.assertTrue(point1.buffer(501).touches(point2))
         self.assertTrue(point1.buffer(502).contains(point2))
+
+    def test_length(self):
+        polyline = LineString([(0, 0), (1, 0)], wkid=4326)
+        self.assertEqual(111319.4907932264, polyline.length())
+
+        polyline_projected = polyline.project(to_wkid=3857)
+        self.assertAlmostEqual(111319.4907932264, polyline_projected.length(), 8)
+
+        polyline = LineString([(0, 0), (1, 0)], wkid=4326)
+        self.assertEqual(1, polyline.length(geodetic=False))

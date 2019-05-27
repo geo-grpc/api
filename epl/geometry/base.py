@@ -1057,6 +1057,14 @@ class BaseGeometry(object):
         geometry_response = geometry_init.geometry_service.stub.Operate(op_translate)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
+    def length(self, geodetic=True):
+        if not geodetic:
+            return self.s_length
+        op_length = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                 operator=geometry_pb2.GEODETIC_LENGTH)
+        geometry_response = geometry_init.geometry_service.stub.Operate(op_length)
+        return geometry_response.measure
+
 
 class BaseMultipartGeometry(BaseGeometry):
 
