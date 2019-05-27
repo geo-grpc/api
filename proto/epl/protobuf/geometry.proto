@@ -176,6 +176,7 @@ enum OperatorType {
     BOUNDARY = 44;
     RANDOM_POINTS = 45;
     ENCLOSING_CIRCLE = 46;
+    AFFINE_TRANSFORM = 47;
 }
 
 /**
@@ -289,6 +290,14 @@ message GeometryRequest {
         bool force = 1;
     }
 
+    message AffineTransformParams {
+        //        repeated double transform_matrix = 1; // @exclude deprecated
+        reserved 1;
+        bool geodetic = 2;
+        double x_offset = 3;
+        double y_offset = 4;
+    }
+
     // oneof https://github.com/golang/protobuf/issues/283
 
     BufferParams buffer_params = 11;
@@ -303,8 +312,9 @@ message GeometryRequest {
     DensifyParams densify_params = 20;
     SimplifyParams simplify_params = 21;
     GeneralizeByAreaParams generalize_by_area_params = 22;
+    AffineTransformParams affine_transform_params = 23;
 
-    //    }
+    // end oneof https://github.com/golang/protobuf/issues/283
 }
 
 /**
@@ -324,7 +334,7 @@ message GeometryResponse {
 
     EnvelopeData envelope = 5;
 
-    // oneof https://github.com/golang/protobuf/issues/283
+    // end oneof https://github.com/golang/protobuf/issues/283
 }
 
 message FileRequestChunk {
