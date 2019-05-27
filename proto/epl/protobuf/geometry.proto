@@ -177,6 +177,7 @@ enum OperatorType {
     RANDOM_POINTS = 45;
     ENCLOSING_CIRCLE = 46;
     AFFINE_TRANSFORM = 47;
+    GEODETIC_LENGTH = 48;
 }
 
 /**
