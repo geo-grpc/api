@@ -17,6 +17,7 @@
 # email: info@echoparklabs.io
 
 
+import json
 import os
 import unittest
 import math
@@ -699,3 +700,28 @@ class TestBasic(unittest.TestCase):
 
         polyline = LineString([(0, 0), (1, 0)], wkid=4326)
         self.assertEqual(1, polyline.length(geodetic=False))
+
+    def test_geojson(self):
+        point1 = Point(152.352298, -24.875975, wkid=4326)
+        geoj = point1.__geo_interface__
+        self.assertEquals(json.dumps(geoj), '{"type": "Point", "coordinates": [152.352298, -24.875975]}')
+
+    def test_intersection(self):
+        envelope_wkt = "POLYGON ((649657.9958662051 4650771.385128138, 649657.9958662051 4651419.659440621, " \
+                       "650567.1344525344 4651419.659440621, 650567.1344525344 4650771.385128138, 649657.9958662051 " \
+                       "4650771.385128138)) "
+        sr = geometry_pb2.SpatialReferenceData(proj4="+proj=utm +zone=30 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m "
+                                                     "+no_defs")
+        polygon_data_1 = geometry_pb2.GeometryData(wkt=envelope_wkt, sr=sr)
+        polygon_1 = Polygon.import_protobuf(polygon_data_1)
+        polyton_2_wkt = "POLYGON ((-1.19294172319649 41.83288173182827, -0.847841728602983 41.83288173182827, " \
+                        "-0.847841728602983 42.00038957049547, -1.19294172319649 42.00038957049547, " \
+                        "-1.19294172319649 41.83288173182827))"
+        polygon_data_2 = geometry_pb2.GeometryData(wkt=polyton_2_wkt, sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polyton_2 = Polygon.import_protobuf(polygon_data_2)
+        try:
+            _ = polygon_1.intersection(polyton_2)
+        except grpc.RpcError as e:
+            self.assertTrue(e.details().startswith("geometryOperationUnary error : for spatial operations the left "
+                                                   "and right spatial reference must equal one another if the "
+                                                   "operation and the result spatial reference aren't defined"))
