@@ -706,7 +706,7 @@ class TestBasic(unittest.TestCase):
         geoj = point1.__geo_interface__
         self.assertEquals(json.dumps(geoj), '{"type": "Point", "coordinates": [152.352298, -24.875975]}')
 
-    def test_intersection(self):
+    def test_intersection_exception(self):
         envelope_wkt = "POLYGON ((649657.9958662051 4650771.385128138, 649657.9958662051 4651419.659440621, " \
                        "650567.1344525344 4651419.659440621, 650567.1344525344 4650771.385128138, 649657.9958662051 " \
                        "4650771.385128138)) "
