@@ -704,7 +704,9 @@ class TestBasic(unittest.TestCase):
     def test_geojson(self):
         point1 = Point(152.352298, -24.875975, wkid=4326)
         geoj = point1.__geo_interface__
-        self.assertEquals(json.dumps(geoj), '{"type": "Point", "coordinates": [152.352298, -24.875975]}')
+        b_pass = (json.dumps(geoj) == '{"type": "Point", "coordinates": [152.352298, -24.875975]}') or \
+                 (json.dumps(geoj) == '{"coordinates": [152.352298, -24.875975], "type": "Point"}')
+        self.assertTrue(b_pass)
 
     def test_intersection_exception(self):
         envelope_wkt = "POLYGON ((649657.9958662051 4650771.385128138, 649657.9958662051 4651419.659440621, " \
