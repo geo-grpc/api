@@ -586,6 +586,7 @@ class TestBasic(unittest.TestCase):
         xmax = 40.00569928441138
         ymax = 20.003593250811246
         proj4326 = geometry_pb2.SpatialReferenceData(wkid=4326)
+        proj3857 = geometry_pb2.SpatialReferenceData(wkid=3857)
         expected_data = geometry_pb2.EnvelopeData(xmin=xmin,
                                                   ymin=ymin,
                                                   xmax=xmax,
@@ -598,7 +599,7 @@ class TestBasic(unittest.TestCase):
                                        ymin=ymin,
                                        xmax=xmax,
                                        ymax=ymax,
-                                       sr=proj4326).project(to_sr=proj4326).geoms[0]
+                                       sr=proj4326).project(to_sr=proj3857).project(to_sr=proj4326).geoms[0]
         self.assertTrue(polygon2.equals(polygon3))
 
         rows, columns = 5304, 7052
