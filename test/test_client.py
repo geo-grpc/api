@@ -727,3 +727,12 @@ class TestBasic(unittest.TestCase):
             self.assertTrue(e.details().startswith("geometryOperationUnary error : for spatial operations the left "
                                                    "and right spatial reference must equal one another if the "
                                                    "operation and the result spatial reference aren't defined"))
+
+    def test_union_none(self):
+        polygon = Point(1, 1, sr=geometry_pb2.SpatialReferenceData(wkid=4326)).buffer(200)
+        union = polygon.union(None)
+        self.assertEquals(polygon, union)
+        union = polygon.union(None, result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        self.assertEquals(polygon, union)
+        union = polygon.union(None, result_sr=geometry_pb2.SpatialReferenceData(wkid=3857))
+        self.assertNotEqual(polygon, union)

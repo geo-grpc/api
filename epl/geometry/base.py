@@ -226,7 +226,6 @@ class BaseGeometry(object):
                  sr: geometry_pb2.SpatialReferenceData,
                  wkid: int = 0,
                  proj4: str = ""):
-        super(BaseGeometry, self).__init__()
         self._sr = get_sr(sr=sr, wkid=wkid, proj4=proj4)
 
     def empty(self, val=EMPTY):
@@ -821,6 +820,10 @@ class BaseGeometry(object):
 
     def project(self, to_sr: geometry_pb2.SpatialReferenceData = None, to_wkid: int = 0, to_proj4: str = ""):
         to_sr = get_sr(sr=to_sr, wkid=to_wkid, proj4=to_proj4)
+        if sr_eq(self.sr, to_sr):
+            # notice, no copy made here, whereas, project always copies the data
+            return self
+
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.PROJECT,
                                                   result_sr=to_sr)
@@ -930,6 +933,11 @@ class BaseGeometry(object):
               other_geom,
               operation_sr: geometry_pb2.SpatialReferenceData = None,
               result_sr: geometry_pb2.SpatialReferenceData = None):
+        if other_geom is None:
+            if result_sr:
+                return self.project(to_sr=result_sr)
+            return self
+
         return self._two_geom_op(other_geom=other_geom,
                                  operator_type=geometry_pb2.UNION,
                                  operation_sr=operation_sr,
@@ -1326,3 +1334,13 @@ def get_sr(sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: s
     elif sr is None and len(proj4) > 0:
         sr = geometry_pb2.SpatialReferenceData(proj4=proj4)
     return sr
+
+
+def sr_eq(sr: geometry_pb2.SpatialReferenceData, other_sr: geometry_pb2.SpatialReferenceData):
+    if sr.wkid != other_sr.wkid:
+        return False
+    if sr.proj4 != other_sr.proj4:
+        return False
+    if sr.wkt != other_sr.wkt:
+        return False
+    return True
