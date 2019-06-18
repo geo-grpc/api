@@ -100,6 +100,7 @@ message StacRequest {
 
     // end oneof https://github.com/golang/protobuf/issues/283
 
+
     // search by properties specified by user using a request object known by user and the Any marshalling pattern
     google.protobuf.Any properties = 5;
 
@@ -156,6 +157,8 @@ message Asset {
     string bucket = 8;
     // path to the object in the bucket
     string object_path = 9;
+    // requester_pays pertains to egress cost. Some buckets are hosted with the egress costs assigned to the requester. some hosts pay the regress costs for the requester.
+    bool requester_pays = 10;
 }
 
 message Dtr {
@@ -211,8 +214,14 @@ message Eo {
         UNKNOWN_INSTRUMENT = 0;
         OLI = 2;
         TIRS = 4;
+        OLI_TIRS = 6;
+
         // swiftera instrument
         POM_1 = 8;
+
+        TM = 16;
+        ETM = 32;
+        MSS = 64;
     }
 
     enum Constellation {
