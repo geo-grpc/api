@@ -34,6 +34,24 @@ import epl.protobuf.geometry_service_pb2_grpc as geometry_grpc
 import numpy as np
 
 
+def extract_poly_coords(geom):
+    if geom.type == 'Polygon':
+        exterior_coords = geom.exterior.coords[:]
+        interior_coords = []
+        for interior in geom.interiors:
+            interior_coords += interior.coords[:]
+    elif geom.type == 'MultiPolygon':
+        exterior_coords = []
+        interior_coords = []
+        for part in geom:
+            epc = extract_poly_coords(part)  # Recursive call
+            exterior_coords += epc['exterior_coords']
+            interior_coords += epc['interior_coords']
+    else:
+        raise ValueError('Unhandled geometry type: ' + repr(geom.type))
+    return {'exterior_coords': exterior_coords,
+            'interior_coords': interior_coords}
+
 class TestBasic(unittest.TestCase):
     channel = None
 
@@ -737,3 +755,13 @@ class TestBasic(unittest.TestCase):
         self.assertEquals(polygon, union)
         union = polygon.union(None, result_sr=geometry_pb2.SpatialReferenceData(wkid=3857))
         self.assertNotEqual(polygon, union)
+
+    def test_generalize(self):
+        polygon = Point(1, 1, sr=geometry_pb2.SpatialReferenceData(wkid=4326)).buffer(400)
+        polygon_general = polygon.generalize(percent_reduction=95)
+        self.assertGreater(polygon.area(geodetic=False), polygon_general.area(geodetic=False))
+
+        polygon_general = polygon.generalize(max_point_count=5)
+        self.assertGreater(polygon.area(geodetic=False), polygon_general.area(geodetic=False))
+        # todo first and last coordinate the same
+        self.assertLessEqual(len(extract_poly_coords(polygon_general)['exterior_coords']), 6)

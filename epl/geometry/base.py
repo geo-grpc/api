@@ -1013,6 +1013,20 @@ class BaseGeometry(object):
                                                   operation_sr=operation_sr)
         return geometry_init.geometry_service.stub.Operate(op_request).spatial_relationship
 
+    def generalize(self, percent_reduction=0, max_point_count=0, remove_degenerates=True):
+        generalize_by_area_params = geometry_pb2.GeometryRequest.GeneralizeByAreaParams(
+            percent_reduction=percent_reduction,
+            max_point_count=max_point_count,
+            remove_degenerates=remove_degenerates
+        )
+
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                  operator=geometry_pb2.GENERALIZE_BY_AREA,
+                                                  generalize_by_area_params=generalize_by_area_params)
+
+        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
     @property
     def geometry_data(self) -> geometry_pb2.GeometryData:
         return geometry_pb2.GeometryData(wkb=self.wkb, sr=self._sr)
