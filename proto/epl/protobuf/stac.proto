@@ -149,8 +149,8 @@ message Asset {
 
     // cloud platform enum (Google cloud, Azure, etc)
     CloudPlatform cloud_platform = 5;
-    // owner of the bucket
-    string bucket_owner = 6;
+    // manager of the bucket
+    string bucket_manager = 6;
     // bucket region. useful when concerned about egress
     string bucket_region = 7;
     // bucket name
