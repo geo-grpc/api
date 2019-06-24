@@ -326,6 +326,7 @@ enum AssetType {
     TIFF = 10;
     JPEG_2000 = 11;
     XML = 12;
+    TXT = 13;
 }
 
 enum CloudPlatform {
