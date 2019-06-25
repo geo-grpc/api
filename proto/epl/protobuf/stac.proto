@@ -80,6 +80,8 @@ message StacItem {
     Sar sar = 15;
     // Date time range
     Dtr dtr = 16;
+
+    Landsat landsat = 17;
 }
 
 /**
@@ -120,6 +122,8 @@ message StacRequest {
     uint32 limit = 11;
     // the offset from which the query should start
     uint64 offset = 12;
+
+    LandsatRequest landsat = 13;
 }
 
 
@@ -189,6 +193,31 @@ message Sar {
     enum Instrument {
         UNKNOWN_INSTRUMENT = 0;
     }
+}
+
+message Landsat {
+    enum ProcessingLevel {
+        UKNOWN_LEVEL = 0;
+        L1G = 1;
+        L1TP = 2;
+        L1T = 3;
+        L1GT = 4;
+        L1GS = 5;
+    }
+    // id of scene should be id of stac item, but there may be a use case where someone does not want that
+    string scene_id = 1;
+    string product_id = 2;
+    ProcessingLevel processing_level = 3;
+    int32 wrs_path = 4;
+    int32 wrs_row = 5;
+}
+
+message LandsatRequest {
+    string scene_id = 1;
+    string product_id = 2;
+    Landsat.ProcessingLevel processing_level = 3;
+    int32 wrs_path = 4;
+    int32 wrs_row = 5;
 }
 
 /**
