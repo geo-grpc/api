@@ -25,7 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='epl.protobuf',
   syntax='proto3',
   serialized_options=_b('\n\020com.epl.protobufB\tStacProtoP\001Z+github.com/geo-grpc/api/golang/epl/protobuf\242\002\004STPB'),
-  serialized_pb=_b('\n\x17\x65pl/protobuf/stac.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x19google/protobuf/any.proto\x1a\x1b\x65pl/protobuf/geometry.proto\x1a\x18\x65pl/protobuf/query.proto\"\xf7\x04\n\x08StacItem\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x08geometry\x18\x03 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12(\n\x04\x62\x62ox\x18\x04 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x12(\n\nproperties\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x32\n\x06\x61ssets\x18\x07 \x03(\x0b\x32\".epl.protobuf.StacItem.AssetsEntry\x12,\n\x08\x64\x61tetime\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\r\n\x05title\x18\t \x01(\t\x12\x12\n\ncollection\x18\n \x01(\t\x12,\n\x08observed\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12-\n\tprocessed\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07updated\x18\r \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1c\n\x02\x65o\x18\x0e \x01(\x0b\x32\x10.epl.protobuf.Eo\x12\x1e\n\x03sar\x18\x0f \x01(\x0b\x32\x11.epl.protobuf.Sar\x12\x1e\n\x03\x64tr\x18\x10 \x01(\x0b\x32\x11.epl.protobuf.Dtr\x12&\n\x07landsat\x18\x11 \x01(\x0b\x32\x15.epl.protobuf.Landsat\x1a\x42\n\x0b\x41ssetsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.epl.protobuf.Asset:\x02\x38\x01J\x04\x08\x06\x10\x07\"\x87\x04\n\x0bStacRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x08geometry\x18\x02 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12(\n\x04\x62\x62ox\x18\x03 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x12\x37\n\x10geometry_request\x18\x04 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12(\n\nproperties\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12.\n\x08\x64\x61tetime\x18\x06 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12.\n\x08observed\x18\x07 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12/\n\tprocessed\x18\x08 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12-\n\x07updated\x18\t \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12#\n\x02\x65o\x18\n \x01(\x0b\x32\x17.epl.protobuf.EoRequest\x12\r\n\x05limit\x18\x0b \x01(\r\x12\x0e\n\x06offset\x18\x0c \x01(\x04\x12-\n\x07landsat\x18\r \x01(\x0b\x32\x1c.epl.protobuf.LandsatRequest\"\x90\x02\n\x0b\x42\x61ndDetails\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x63ommon_name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12(\n\x03gsd\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08\x61\x63\x63uracy\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x36\n\x11\x63\x65nter_wavelength\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x38\n\x13\x66ull_width_half_max\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\"\x9a\x02\n\x05\x41sset\x12\x0c\n\x04href\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\'\n\x08\x65o_bands\x18\x03 \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\x12+\n\nasset_type\x18\x04 \x01(\x0e\x32\x17.epl.protobuf.AssetType\x12\x33\n\x0e\x63loud_platform\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.CloudPlatform\x12\x16\n\x0e\x62ucket_manager\x18\x06 \x01(\t\x12\x15\n\rbucket_region\x18\x07 \x01(\t\x12\x0e\n\x06\x62ucket\x18\x08 \x01(\t\x12\x13\n\x0bobject_path\x18\t \x01(\t\x12\x16\n\x0erequester_pays\x18\n \x01(\x08\"Y\n\x03\x44tr\x12)\n\x05start\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"J\n\x12StacUpsertResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\x12\x13\n\x0bstatus_code\x18\x02 \x01(\x05\x12\x0f\n\x07\x64\x61ta_id\x18\x03 \x01(\t\"\x99\x01\n\x03Sar\x12,\n\x08platform\x18\x01 \x01(\x0e\x32\x1a.epl.protobuf.Sar.Platform\">\n\x08Platform\x12\x14\n\x10UNKNOWN_PLATFORM\x10\x00\x12\x0b\n\x07\x45NVISAT\x10\x01\x12\x0f\n\x0bSENTINEL_1A\x10\x02\"$\n\nInstrument\x12\x16\n\x12UNKNOWN_INSTRUMENT\x10\x00\"\xe8\x01\n\x07Landsat\x12\x10\n\x08scene_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\x12?\n\x10processing_level\x18\x03 \x01(\x0e\x32%.epl.protobuf.Landsat.ProcessingLevel\x12\x10\n\x08wrs_path\x18\x04 \x01(\x05\x12\x0f\n\x07wrs_row\x18\x05 \x01(\x05\"S\n\x0fProcessingLevel\x12\x10\n\x0cUKNOWN_LEVEL\x10\x00\x12\x07\n\x03L1G\x10\x01\x12\x08\n\x04L1TP\x10\x02\x12\x07\n\x03L1T\x10\x03\x12\x08\n\x04L1GT\x10\x04\x12\x08\n\x04L1GS\x10\x05\"\x9a\x01\n\x0eLandsatRequest\x12\x10\n\x08scene_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\x12?\n\x10processing_level\x18\x03 \x01(\x0e\x32%.epl.protobuf.Landsat.ProcessingLevel\x12\x10\n\x08wrs_path\x18\x04 \x01(\x05\x12\x0f\n\x07wrs_row\x18\x05 \x01(\x05\"\xae\x08\n\x02\x45o\x12\x0c\n\x04\x65psg\x18\x01 \x01(\r\x12+\n\x08platform\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.Eo.Platform\x12/\n\ninstrument\x18\x03 \x01(\x0e\x32\x1b.epl.protobuf.Eo.Instrument\x12\x35\n\rconstellation\x18\x04 \x01(\x0e\x32\x1e.epl.protobuf.Eo.Constellation\x12\x30\n\x0bsun_azimuth\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x32\n\rsun_elevation\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12(\n\x03gsd\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12.\n\toff_nadir\x18\x08 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12,\n\x07\x61zimuth\x18\t \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x30\n\x0b\x63loud_cover\x18\n \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12$\n\x05\x62\x61nds\x18\x0b \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\"\xb9\x01\n\x08Platform\x12\x14\n\x10UNKNOWN_PLATFORM\x10\x00\x12\r\n\tLANDSAT_1\x10\x02\x12\r\n\tLANDSAT_2\x10\x04\x12\r\n\tLANDSAT_3\x10\x08\x12\x0f\n\x0bLANDSAT_123\x10\x0e\x12\r\n\tLANDSAT_4\x10\x10\x12\r\n\tLANDSAT_5\x10 \x12\x0e\n\nLANDSAT_45\x10\x30\x12\r\n\tLANDSAT_7\x10@\x12\x0e\n\tLANDSAT_8\x10\x80\x01\x12\x0c\n\x07SWIFT_2\x10\x80\x02\"j\n\nInstrument\x12\x16\n\x12UNKNOWN_INSTRUMENT\x10\x00\x12\x07\n\x03OLI\x10\x02\x12\x08\n\x04TIRS\x10\x04\x12\x0c\n\x08OLI_TIRS\x10\x06\x12\t\n\x05POM_1\x10\x08\x12\x06\n\x02TM\x10\x10\x12\x07\n\x03\x45TM\x10 \x12\x07\n\x03MSS\x10@\"V\n\rConstellation\x12\x19\n\x15UNKNOWN_CONSTELLATION\x10\x00\x12\x0b\n\x07LANDSAT\x10\x02\x12\x08\n\x04NAIP\x10\x04\x12\x08\n\x04PNOA\x10\x08\x12\t\n\x05SWIFT\x10\x10\"\xbe\x01\n\x04\x42\x61nd\x12\x10\n\x0cUNKNOWN_BAND\x10\x00\x12\x0b\n\x07\x43OASTAL\x10\x02\x12\x08\n\x04\x42LUE\x10\x04\x12\t\n\x05GREEN\x10\x08\x12\x07\n\x03RED\x10\x10\x12\x07\n\x03RGB\x10\x1c\x12\x07\n\x03NIR\x10 \x12\t\n\x05NIR_2\x10!\x12\t\n\x05RGBIR\x10<\x12\n\n\x06SWIR_1\x10@\x12\x0b\n\x06SWIR_2\x10\x80\x01\x12\x11\n\x0cPANCHROMATIC\x10\x80\x02\x12\x0b\n\x06\x43IRRUS\x10\x80\x04\x12\x0b\n\x06LWIR_1\x10\x80\x08\x12\x0b\n\x06LWIR_2\x10\x80\x10\"\xe2\x03\n\tEoRequest\x12\x0c\n\x04\x65psg\x18\x01 \x01(\x05\x12+\n\x08platform\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.Eo.Platform\x12/\n\ninstrument\x18\x03 \x01(\x0e\x32\x1b.epl.protobuf.Eo.Instrument\x12\x35\n\rconstellation\x18\x04 \x01(\x0e\x32\x1e.epl.protobuf.Eo.Constellation\x12-\n\x0bsun_azimuth\x18\x05 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12/\n\rsun_elevation\x18\x06 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12%\n\x03gsd\x18\x07 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12+\n\toff_nadir\x18\x08 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12)\n\x07\x61zimuth\x18\t \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12-\n\x0b\x63loud_cover\x18\n \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12$\n\x05\x62\x61nds\x18\x0b \x01(\x0e\x32\x15.epl.protobuf.Eo.Band*\xb5\x01\n\tAssetType\x12\x11\n\rUNKNOWN_ASSET\x10\x00\x12\x08\n\x04JPEG\x10\x01\x12\x0b\n\x07GEOTIFF\x10\x02\x12\x08\n\x04LERC\x10\x03\x12\x07\n\x03MRF\x10\x04\x12\x0b\n\x07MRF_IDX\x10\x05\x12\x0b\n\x07MRF_XML\x10\x06\x12\x0e\n\nCO_GEOTIFF\x10\x07\x12\x07\n\x03RAW\x10\x08\x12\r\n\tTHUMBNAIL\x10\t\x12\x08\n\x04TIFF\x10\n\x12\r\n\tJPEG_2000\x10\x0b\x12\x07\n\x03XML\x10\x0c\x12\x07\n\x03TXT\x10\r*H\n\rCloudPlatform\x12\x1a\n\x16UNKNOWN_CLOUD_PLATFORM\x10\x00\x12\x07\n\x03\x41WS\x10\x01\x12\x07\n\x03GCP\x10\x02\x12\t\n\x05\x41ZURE\x10\x03\x42S\n\x10\x63om.epl.protobufB\tStacProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x04STPBb\x06proto3')
+  serialized_pb=_b('\n\x17\x65pl/protobuf/stac.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x19google/protobuf/any.proto\x1a\x1b\x65pl/protobuf/geometry.proto\x1a\x18\x65pl/protobuf/query.proto\"\xf7\x04\n\x08StacItem\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x08geometry\x18\x03 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12(\n\x04\x62\x62ox\x18\x04 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x12(\n\nproperties\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x32\n\x06\x61ssets\x18\x07 \x03(\x0b\x32\".epl.protobuf.StacItem.AssetsEntry\x12,\n\x08\x64\x61tetime\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\r\n\x05title\x18\t \x01(\t\x12\x12\n\ncollection\x18\n \x01(\t\x12,\n\x08observed\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12-\n\tprocessed\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07updated\x18\r \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1c\n\x02\x65o\x18\x0e \x01(\x0b\x32\x10.epl.protobuf.Eo\x12\x1e\n\x03sar\x18\x0f \x01(\x0b\x32\x11.epl.protobuf.Sar\x12\x1e\n\x03\x64tr\x18\x10 \x01(\x0b\x32\x11.epl.protobuf.Dtr\x12&\n\x07landsat\x18\x11 \x01(\x0b\x32\x15.epl.protobuf.Landsat\x1a\x42\n\x0b\x41ssetsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\"\n\x05value\x18\x02 \x01(\x0b\x32\x13.epl.protobuf.Asset:\x02\x38\x01J\x04\x08\x06\x10\x07\"\x87\x04\n\x0bStacRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12,\n\x08geometry\x18\x02 \x01(\x0b\x32\x1a.epl.protobuf.GeometryData\x12(\n\x04\x62\x62ox\x18\x03 \x01(\x0b\x32\x1a.epl.protobuf.EnvelopeData\x12\x37\n\x10geometry_request\x18\x04 \x01(\x0b\x32\x1d.epl.protobuf.GeometryRequest\x12(\n\nproperties\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12.\n\x08\x64\x61tetime\x18\x06 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12.\n\x08observed\x18\x07 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12/\n\tprocessed\x18\x08 \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12-\n\x07updated\x18\t \x01(\x0b\x32\x1c.epl.protobuf.TimestampField\x12#\n\x02\x65o\x18\n \x01(\x0b\x32\x17.epl.protobuf.EoRequest\x12\r\n\x05limit\x18\x0b \x01(\r\x12\x0e\n\x06offset\x18\x0c \x01(\x04\x12-\n\x07landsat\x18\r \x01(\x0b\x32\x1c.epl.protobuf.LandsatRequest\"\x90\x02\n\x0b\x42\x61ndDetails\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x63ommon_name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12(\n\x03gsd\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08\x61\x63\x63uracy\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x36\n\x11\x63\x65nter_wavelength\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x38\n\x13\x66ull_width_half_max\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\"\x9a\x02\n\x05\x41sset\x12\x0c\n\x04href\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\'\n\x08\x65o_bands\x18\x03 \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\x12+\n\nasset_type\x18\x04 \x01(\x0e\x32\x17.epl.protobuf.AssetType\x12\x33\n\x0e\x63loud_platform\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.CloudPlatform\x12\x16\n\x0e\x62ucket_manager\x18\x06 \x01(\t\x12\x15\n\rbucket_region\x18\x07 \x01(\t\x12\x0e\n\x06\x62ucket\x18\x08 \x01(\t\x12\x13\n\x0bobject_path\x18\t \x01(\t\x12\x16\n\x0erequester_pays\x18\n \x01(\x08\"Y\n\x03\x44tr\x12)\n\x05start\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x03\x65nd\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"F\n\x0eStacDbResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\x12\x13\n\x0bstatus_code\x18\x02 \x01(\x05\x12\x0f\n\x07\x64\x61ta_id\x18\x03 \x01(\t\"\x99\x01\n\x03Sar\x12,\n\x08platform\x18\x01 \x01(\x0e\x32\x1a.epl.protobuf.Sar.Platform\">\n\x08Platform\x12\x14\n\x10UNKNOWN_PLATFORM\x10\x00\x12\x0b\n\x07\x45NVISAT\x10\x01\x12\x0f\n\x0bSENTINEL_1A\x10\x02\"$\n\nInstrument\x12\x16\n\x12UNKNOWN_INSTRUMENT\x10\x00\"\xd5\x08\n\x02\x45o\x12\x0c\n\x04\x65psg\x18\x01 \x01(\r\x12+\n\x08platform\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.Eo.Platform\x12/\n\ninstrument\x18\x03 \x01(\x0e\x32\x1b.epl.protobuf.Eo.Instrument\x12\x35\n\rconstellation\x18\x04 \x01(\x0e\x32\x1e.epl.protobuf.Eo.Constellation\x12\x30\n\x0bsun_azimuth\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x32\n\rsun_elevation\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12(\n\x03gsd\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12.\n\toff_nadir\x18\x08 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12,\n\x07\x61zimuth\x18\t \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x30\n\x0b\x63loud_cover\x18\n \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12$\n\x05\x62\x61nds\x18\x0b \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\x12.\n\x02sr\x18\x0c \x01(\x0b\x32\".epl.protobuf.SpatialReferenceData\"\xb9\x01\n\x08Platform\x12\x14\n\x10UNKNOWN_PLATFORM\x10\x00\x12\r\n\tLANDSAT_1\x10\x02\x12\r\n\tLANDSAT_2\x10\x04\x12\r\n\tLANDSAT_3\x10\x08\x12\x0f\n\x0bLANDSAT_123\x10\x0e\x12\r\n\tLANDSAT_4\x10\x10\x12\r\n\tLANDSAT_5\x10 \x12\x0e\n\nLANDSAT_45\x10\x30\x12\r\n\tLANDSAT_7\x10@\x12\x0e\n\tLANDSAT_8\x10\x80\x01\x12\x0c\n\x07SWIFT_2\x10\x80\x02\"j\n\nInstrument\x12\x16\n\x12UNKNOWN_INSTRUMENT\x10\x00\x12\x07\n\x03OLI\x10\x02\x12\x08\n\x04TIRS\x10\x04\x12\x0c\n\x08OLI_TIRS\x10\x06\x12\t\n\x05POM_1\x10\x08\x12\x06\n\x02TM\x10\x10\x12\x07\n\x03\x45TM\x10 \x12\x07\n\x03MSS\x10@\"V\n\rConstellation\x12\x19\n\x15UNKNOWN_CONSTELLATION\x10\x00\x12\x0b\n\x07LANDSAT\x10\x02\x12\x08\n\x04NAIP\x10\x04\x12\x08\n\x04PNOA\x10\x08\x12\t\n\x05SWIFT\x10\x10\"\xb5\x01\n\x04\x42\x61nd\x12\x10\n\x0cUNKNOWN_BAND\x10\x00\x12\x0b\n\x07\x43OASTAL\x10\x02\x12\x08\n\x04\x42LUE\x10\x04\x12\t\n\x05GREEN\x10\x08\x12\x07\n\x03RED\x10\x10\x12\x07\n\x03RGB\x10\x1c\x12\x07\n\x03NIR\x10 \x12\t\n\x05NIR_2\x10!\x12\t\n\x05RGBIR\x10<\x12\n\n\x06SWIR_1\x10@\x12\x0b\n\x06SWIR_2\x10\x80\x01\x12\x08\n\x03PAN\x10\x80\x02\x12\x0b\n\x06\x43IRRUS\x10\x80\x04\x12\x0b\n\x06LWIR_1\x10\x80\x08\x12\x0b\n\x06LWIR_2\x10\x80\x10\"\xe2\x03\n\tEoRequest\x12\x0c\n\x04\x65psg\x18\x01 \x01(\x05\x12+\n\x08platform\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.Eo.Platform\x12/\n\ninstrument\x18\x03 \x01(\x0e\x32\x1b.epl.protobuf.Eo.Instrument\x12\x35\n\rconstellation\x18\x04 \x01(\x0e\x32\x1e.epl.protobuf.Eo.Constellation\x12-\n\x0bsun_azimuth\x18\x05 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12/\n\rsun_elevation\x18\x06 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12%\n\x03gsd\x18\x07 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12+\n\toff_nadir\x18\x08 \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12)\n\x07\x61zimuth\x18\t \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12-\n\x0b\x63loud_cover\x18\n \x01(\x0b\x32\x18.epl.protobuf.FloatField\x12$\n\x05\x62\x61nds\x18\x0b \x01(\x0e\x32\x15.epl.protobuf.Eo.Band\"\xab\x02\n\x07Landsat\x12\x10\n\x08scene_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\x12?\n\x10processing_level\x18\x03 \x01(\x0e\x32%.epl.protobuf.Landsat.ProcessingLevel\x12\x10\n\x08wrs_path\x18\x04 \x01(\x05\x12\x0f\n\x07wrs_row\x18\x05 \x01(\x05\x12\x35\n\x10\x63loud_cover_land\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\"_\n\x0fProcessingLevel\x12\x1c\n\x18UNKNOWN_PROCESSING_LEVEL\x10\x00\x12\x07\n\x03L1G\x10\x01\x12\x08\n\x04L1TP\x10\x02\x12\x07\n\x03L1T\x10\x03\x12\x08\n\x04L1GT\x10\x04\x12\x08\n\x04L1GS\x10\x05\"\xce\x01\n\x0eLandsatRequest\x12\x10\n\x08scene_id\x18\x01 \x01(\t\x12\x12\n\nproduct_id\x18\x02 \x01(\t\x12?\n\x10processing_level\x18\x03 \x01(\x0e\x32%.epl.protobuf.Landsat.ProcessingLevel\x12\x10\n\x08wrs_path\x18\x04 \x01(\x05\x12\x0f\n\x07wrs_row\x18\x05 \x01(\x05\x12\x32\n\x10\x63loud_cover_land\x18\x06 \x01(\x0b\x32\x18.epl.protobuf.FloatField*\xbe\x01\n\tAssetType\x12\x11\n\rUNKNOWN_ASSET\x10\x00\x12\x08\n\x04JPEG\x10\x01\x12\x0b\n\x07GEOTIFF\x10\x02\x12\x08\n\x04LERC\x10\x03\x12\x07\n\x03MRF\x10\x04\x12\x0b\n\x07MRF_IDX\x10\x05\x12\x0b\n\x07MRF_XML\x10\x06\x12\x0e\n\nCO_GEOTIFF\x10\x07\x12\x07\n\x03RAW\x10\x08\x12\r\n\tTHUMBNAIL\x10\t\x12\x08\n\x04TIFF\x10\n\x12\r\n\tJPEG_2000\x10\x0b\x12\x07\n\x03XML\x10\x0c\x12\x07\n\x03TXT\x10\r\x12\x07\n\x03PNG\x10\x0e*H\n\rCloudPlatform\x12\x1a\n\x16UNKNOWN_CLOUD_PLATFORM\x10\x00\x12\x07\n\x03\x41WS\x10\x01\x12\x07\n\x03GCP\x10\x02\x12\t\n\x05\x41ZURE\x10\x03\x42S\n\x10\x63om.epl.protobufB\tStacProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x04STPBb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,epl_dot_protobuf_dot_geometry__pb2.DESCRIPTOR,epl_dot_protobuf_dot_query__pb2.DESCRIPTOR,])
 
@@ -91,11 +91,15 @@ _ASSETTYPE = _descriptor.EnumDescriptor(
       name='TXT', index=13, number=13,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='PNG', index=14, number=14,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4178,
-  serialized_end=4359,
+  serialized_start=4332,
+  serialized_end=4522,
 )
 _sym_db.RegisterEnumDescriptor(_ASSETTYPE)
 
@@ -125,8 +129,8 @@ _CLOUDPLATFORM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4361,
-  serialized_end=4433,
+  serialized_start=4524,
+  serialized_end=4596,
 )
 _sym_db.RegisterEnumDescriptor(_CLOUDPLATFORM)
 
@@ -145,6 +149,7 @@ TIFF = 10
 JPEG_2000 = 11
 XML = 12
 TXT = 13
+PNG = 14
 UNKNOWN_CLOUD_PLATFORM = 0
 AWS = 1
 GCP = 2
@@ -172,8 +177,8 @@ _SAR_PLATFORM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2125,
-  serialized_end=2187,
+  serialized_start=2121,
+  serialized_end=2183,
 )
 _sym_db.RegisterEnumDescriptor(_SAR_PLATFORM)
 
@@ -190,48 +195,10 @@ _SAR_INSTRUMENT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2189,
-  serialized_end=2225,
+  serialized_start=2185,
+  serialized_end=2221,
 )
 _sym_db.RegisterEnumDescriptor(_SAR_INSTRUMENT)
-
-_LANDSAT_PROCESSINGLEVEL = _descriptor.EnumDescriptor(
-  name='ProcessingLevel',
-  full_name='epl.protobuf.Landsat.ProcessingLevel',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='UKNOWN_LEVEL', index=0, number=0,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='L1G', index=1, number=1,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='L1TP', index=2, number=2,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='L1T', index=3, number=3,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='L1GT', index=4, number=4,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='L1GS', index=5, number=5,
-      serialized_options=None,
-      type=None),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=2377,
-  serialized_end=2460,
-)
-_sym_db.RegisterEnumDescriptor(_LANDSAT_PROCESSINGLEVEL)
 
 _EO_PLATFORM = _descriptor.EnumDescriptor(
   name='Platform',
@@ -286,8 +253,8 @@ _EO_PLATFORM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3116,
-  serialized_end=3301,
+  serialized_start=2768,
+  serialized_end=2953,
 )
 _sym_db.RegisterEnumDescriptor(_EO_PLATFORM)
 
@@ -332,8 +299,8 @@ _EO_INSTRUMENT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3303,
-  serialized_end=3409,
+  serialized_start=2955,
+  serialized_end=3061,
 )
 _sym_db.RegisterEnumDescriptor(_EO_INSTRUMENT)
 
@@ -366,8 +333,8 @@ _EO_CONSTELLATION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3411,
-  serialized_end=3497,
+  serialized_start=3063,
+  serialized_end=3149,
 )
 _sym_db.RegisterEnumDescriptor(_EO_CONSTELLATION)
 
@@ -422,7 +389,7 @@ _EO_BAND = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='PANCHROMATIC', index=11, number=256,
+      name='PAN', index=11, number=256,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
@@ -440,10 +407,48 @@ _EO_BAND = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3500,
-  serialized_end=3690,
+  serialized_start=3152,
+  serialized_end=3333,
 )
 _sym_db.RegisterEnumDescriptor(_EO_BAND)
+
+_LANDSAT_PROCESSINGLEVEL = _descriptor.EnumDescriptor(
+  name='ProcessingLevel',
+  full_name='epl.protobuf.Landsat.ProcessingLevel',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='UNKNOWN_PROCESSING_LEVEL', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='L1G', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='L1TP', index=2, number=2,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='L1T', index=3, number=3,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='L1GT', index=4, number=4,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='L1GS', index=5, number=5,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=4025,
+  serialized_end=4120,
+)
+_sym_db.RegisterEnumDescriptor(_LANDSAT_PROCESSINGLEVEL)
 
 
 _STACITEM_ASSETSENTRY = _descriptor.Descriptor(
@@ -932,29 +937,29 @@ _DTR = _descriptor.Descriptor(
 )
 
 
-_STACUPSERTRESPONSE = _descriptor.Descriptor(
-  name='StacUpsertResponse',
-  full_name='epl.protobuf.StacUpsertResponse',
+_STACDBRESPONSE = _descriptor.Descriptor(
+  name='StacDbResponse',
+  full_name='epl.protobuf.StacDbResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='epl.protobuf.StacUpsertResponse.status', index=0,
+      name='status', full_name='epl.protobuf.StacDbResponse.status', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='status_code', full_name='epl.protobuf.StacUpsertResponse.status_code', index=1,
+      name='status_code', full_name='epl.protobuf.StacDbResponse.status_code', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='data_id', full_name='epl.protobuf.StacUpsertResponse.data_id', index=2,
+      name='data_id', full_name='epl.protobuf.StacDbResponse.data_id', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -973,7 +978,7 @@ _STACUPSERTRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1995,
-  serialized_end=2069,
+  serialized_end=2065,
 )
 
 
@@ -1005,127 +1010,8 @@ _SAR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2072,
-  serialized_end=2225,
-)
-
-
-_LANDSAT = _descriptor.Descriptor(
-  name='Landsat',
-  full_name='epl.protobuf.Landsat',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='scene_id', full_name='epl.protobuf.Landsat.scene_id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='product_id', full_name='epl.protobuf.Landsat.product_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='processing_level', full_name='epl.protobuf.Landsat.processing_level', index=2,
-      number=3, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='wrs_path', full_name='epl.protobuf.Landsat.wrs_path', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='wrs_row', full_name='epl.protobuf.Landsat.wrs_row', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _LANDSAT_PROCESSINGLEVEL,
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2228,
-  serialized_end=2460,
-)
-
-
-_LANDSATREQUEST = _descriptor.Descriptor(
-  name='LandsatRequest',
-  full_name='epl.protobuf.LandsatRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='scene_id', full_name='epl.protobuf.LandsatRequest.scene_id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='product_id', full_name='epl.protobuf.LandsatRequest.product_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='processing_level', full_name='epl.protobuf.LandsatRequest.processing_level', index=2,
-      number=3, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='wrs_path', full_name='epl.protobuf.LandsatRequest.wrs_path', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='wrs_row', full_name='epl.protobuf.LandsatRequest.wrs_row', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2463,
-  serialized_end=2617,
+  serialized_start=2068,
+  serialized_end=2221,
 )
 
 
@@ -1213,6 +1099,13 @@ _EO = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sr', full_name='epl.protobuf.Eo.sr', index=11,
+      number=12, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1229,8 +1122,8 @@ _EO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2620,
-  serialized_end=3690,
+  serialized_start=2224,
+  serialized_end=3333,
 )
 
 
@@ -1330,8 +1223,141 @@ _EOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3693,
-  serialized_end=4175,
+  serialized_start=3336,
+  serialized_end=3818,
+)
+
+
+_LANDSAT = _descriptor.Descriptor(
+  name='Landsat',
+  full_name='epl.protobuf.Landsat',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='scene_id', full_name='epl.protobuf.Landsat.scene_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='product_id', full_name='epl.protobuf.Landsat.product_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='processing_level', full_name='epl.protobuf.Landsat.processing_level', index=2,
+      number=3, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='wrs_path', full_name='epl.protobuf.Landsat.wrs_path', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='wrs_row', full_name='epl.protobuf.Landsat.wrs_row', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='cloud_cover_land', full_name='epl.protobuf.Landsat.cloud_cover_land', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _LANDSAT_PROCESSINGLEVEL,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3821,
+  serialized_end=4120,
+)
+
+
+_LANDSATREQUEST = _descriptor.Descriptor(
+  name='LandsatRequest',
+  full_name='epl.protobuf.LandsatRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='scene_id', full_name='epl.protobuf.LandsatRequest.scene_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='product_id', full_name='epl.protobuf.LandsatRequest.product_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='processing_level', full_name='epl.protobuf.LandsatRequest.processing_level', index=2,
+      number=3, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='wrs_path', full_name='epl.protobuf.LandsatRequest.wrs_path', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='wrs_row', full_name='epl.protobuf.LandsatRequest.wrs_row', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='cloud_cover_land', full_name='epl.protobuf.LandsatRequest.cloud_cover_land', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4123,
+  serialized_end=4329,
 )
 
 _STACITEM_ASSETSENTRY.fields_by_name['value'].message_type = _ASSET
@@ -1370,9 +1396,6 @@ _DTR.fields_by_name['end'].message_type = google_dot_protobuf_dot_timestamp__pb2
 _SAR.fields_by_name['platform'].enum_type = _SAR_PLATFORM
 _SAR_PLATFORM.containing_type = _SAR
 _SAR_INSTRUMENT.containing_type = _SAR
-_LANDSAT.fields_by_name['processing_level'].enum_type = _LANDSAT_PROCESSINGLEVEL
-_LANDSAT_PROCESSINGLEVEL.containing_type = _LANDSAT
-_LANDSATREQUEST.fields_by_name['processing_level'].enum_type = _LANDSAT_PROCESSINGLEVEL
 _EO.fields_by_name['platform'].enum_type = _EO_PLATFORM
 _EO.fields_by_name['instrument'].enum_type = _EO_INSTRUMENT
 _EO.fields_by_name['constellation'].enum_type = _EO_CONSTELLATION
@@ -1383,6 +1406,7 @@ _EO.fields_by_name['off_nadir'].message_type = google_dot_protobuf_dot_wrappers_
 _EO.fields_by_name['azimuth'].message_type = google_dot_protobuf_dot_wrappers__pb2._FLOATVALUE
 _EO.fields_by_name['cloud_cover'].message_type = google_dot_protobuf_dot_wrappers__pb2._FLOATVALUE
 _EO.fields_by_name['bands'].enum_type = _EO_BAND
+_EO.fields_by_name['sr'].message_type = epl_dot_protobuf_dot_geometry__pb2._SPATIALREFERENCEDATA
 _EO_PLATFORM.containing_type = _EO
 _EO_INSTRUMENT.containing_type = _EO
 _EO_CONSTELLATION.containing_type = _EO
@@ -1397,17 +1421,22 @@ _EOREQUEST.fields_by_name['off_nadir'].message_type = epl_dot_protobuf_dot_query
 _EOREQUEST.fields_by_name['azimuth'].message_type = epl_dot_protobuf_dot_query__pb2._FLOATFIELD
 _EOREQUEST.fields_by_name['cloud_cover'].message_type = epl_dot_protobuf_dot_query__pb2._FLOATFIELD
 _EOREQUEST.fields_by_name['bands'].enum_type = _EO_BAND
+_LANDSAT.fields_by_name['processing_level'].enum_type = _LANDSAT_PROCESSINGLEVEL
+_LANDSAT.fields_by_name['cloud_cover_land'].message_type = google_dot_protobuf_dot_wrappers__pb2._FLOATVALUE
+_LANDSAT_PROCESSINGLEVEL.containing_type = _LANDSAT
+_LANDSATREQUEST.fields_by_name['processing_level'].enum_type = _LANDSAT_PROCESSINGLEVEL
+_LANDSATREQUEST.fields_by_name['cloud_cover_land'].message_type = epl_dot_protobuf_dot_query__pb2._FLOATFIELD
 DESCRIPTOR.message_types_by_name['StacItem'] = _STACITEM
 DESCRIPTOR.message_types_by_name['StacRequest'] = _STACREQUEST
 DESCRIPTOR.message_types_by_name['BandDetails'] = _BANDDETAILS
 DESCRIPTOR.message_types_by_name['Asset'] = _ASSET
 DESCRIPTOR.message_types_by_name['Dtr'] = _DTR
-DESCRIPTOR.message_types_by_name['StacUpsertResponse'] = _STACUPSERTRESPONSE
+DESCRIPTOR.message_types_by_name['StacDbResponse'] = _STACDBRESPONSE
 DESCRIPTOR.message_types_by_name['Sar'] = _SAR
-DESCRIPTOR.message_types_by_name['Landsat'] = _LANDSAT
-DESCRIPTOR.message_types_by_name['LandsatRequest'] = _LANDSATREQUEST
 DESCRIPTOR.message_types_by_name['Eo'] = _EO
 DESCRIPTOR.message_types_by_name['EoRequest'] = _EOREQUEST
+DESCRIPTOR.message_types_by_name['Landsat'] = _LANDSAT
+DESCRIPTOR.message_types_by_name['LandsatRequest'] = _LANDSATREQUEST
 DESCRIPTOR.enum_types_by_name['AssetType'] = _ASSETTYPE
 DESCRIPTOR.enum_types_by_name['CloudPlatform'] = _CLOUDPLATFORM
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -1455,12 +1484,12 @@ Dtr = _reflection.GeneratedProtocolMessageType('Dtr', (_message.Message,), dict(
   ))
 _sym_db.RegisterMessage(Dtr)
 
-StacUpsertResponse = _reflection.GeneratedProtocolMessageType('StacUpsertResponse', (_message.Message,), dict(
-  DESCRIPTOR = _STACUPSERTRESPONSE,
+StacDbResponse = _reflection.GeneratedProtocolMessageType('StacDbResponse', (_message.Message,), dict(
+  DESCRIPTOR = _STACDBRESPONSE,
   __module__ = 'epl.protobuf.stac_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.StacUpsertResponse)
+  # @@protoc_insertion_point(class_scope:epl.protobuf.StacDbResponse)
   ))
-_sym_db.RegisterMessage(StacUpsertResponse)
+_sym_db.RegisterMessage(StacDbResponse)
 
 Sar = _reflection.GeneratedProtocolMessageType('Sar', (_message.Message,), dict(
   DESCRIPTOR = _SAR,
@@ -1468,20 +1497,6 @@ Sar = _reflection.GeneratedProtocolMessageType('Sar', (_message.Message,), dict(
   # @@protoc_insertion_point(class_scope:epl.protobuf.Sar)
   ))
 _sym_db.RegisterMessage(Sar)
-
-Landsat = _reflection.GeneratedProtocolMessageType('Landsat', (_message.Message,), dict(
-  DESCRIPTOR = _LANDSAT,
-  __module__ = 'epl.protobuf.stac_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.Landsat)
-  ))
-_sym_db.RegisterMessage(Landsat)
-
-LandsatRequest = _reflection.GeneratedProtocolMessageType('LandsatRequest', (_message.Message,), dict(
-  DESCRIPTOR = _LANDSATREQUEST,
-  __module__ = 'epl.protobuf.stac_pb2'
-  # @@protoc_insertion_point(class_scope:epl.protobuf.LandsatRequest)
-  ))
-_sym_db.RegisterMessage(LandsatRequest)
 
 Eo = _reflection.GeneratedProtocolMessageType('Eo', (_message.Message,), dict(
   DESCRIPTOR = _EO,
@@ -1496,6 +1511,20 @@ EoRequest = _reflection.GeneratedProtocolMessageType('EoRequest', (_message.Mess
   # @@protoc_insertion_point(class_scope:epl.protobuf.EoRequest)
   ))
 _sym_db.RegisterMessage(EoRequest)
+
+Landsat = _reflection.GeneratedProtocolMessageType('Landsat', (_message.Message,), dict(
+  DESCRIPTOR = _LANDSAT,
+  __module__ = 'epl.protobuf.stac_pb2'
+  # @@protoc_insertion_point(class_scope:epl.protobuf.Landsat)
+  ))
+_sym_db.RegisterMessage(Landsat)
+
+LandsatRequest = _reflection.GeneratedProtocolMessageType('LandsatRequest', (_message.Message,), dict(
+  DESCRIPTOR = _LANDSATREQUEST,
+  __module__ = 'epl.protobuf.stac_pb2'
+  # @@protoc_insertion_point(class_scope:epl.protobuf.LandsatRequest)
+  ))
+_sym_db.RegisterMessage(LandsatRequest)
 
 
 DESCRIPTOR._options = None
