@@ -5,6 +5,7 @@ from ctypes import c_double
 
 from epl.protobuf import geometry_pb2
 from epl.geometry.base import BaseGeometry, geos_geom_from_py
+from epl.geometry.linestring import LineString
 
 from shapely.errors import DimensionError
 from shapely.geos import lgeos
@@ -184,8 +185,8 @@ class Point(BaseGeometry):
             raise ValueError("points must have the same dimension")
 
         if self._ndim == 2:
-            return Point(self.x + other.x / 2.0, self.y + other.y / 2.0, sr=self.sr)
-        return Point(self.x + other.x / 2.0, self.y + other.y / 2.0, self.z + other.z / 2.0, sr=self.sr)
+            return Point((self.x + other.x) / 2.0, (self.y + other.y) / 2.0, sr=self.sr)
+        return Point((self.x + other.x) / 2.0, (self.y + other.y) / 2.0, (self.z + other.z) / 2.0, sr=self.sr)
 
 
 class PointAdapter(CachingGeometryProxy, Point):
