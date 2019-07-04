@@ -765,3 +765,12 @@ class TestBasic(unittest.TestCase):
         self.assertGreater(polygon.area(geodetic=False), polygon_general.area(geodetic=False))
         # todo first and last coordinate the same
         self.assertLessEqual(len(extract_poly_coords(polygon_general)['exterior_coords']), 6)
+
+    def test_geodetic_inverse(self):
+        sr = geometry_pb2.SpatialReferenceData(wkid=4326)
+        point1 = Point(0, 0, sr=sr)
+        point2 = Point(-1, 0, sr=sr)
+        az12, az21, distance = point1.geodetic_inverse(point2)
+        self.assertAlmostEqual(111319.4907932264, distance, 14)
+        self.assertAlmostEqual(-math.pi / 2, az12, 14)
+        self.assertAlmostEqual(math.pi / 2, az21, 14)

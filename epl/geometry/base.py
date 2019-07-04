@@ -1029,10 +1029,19 @@ class BaseGeometry(object):
 
     @property
     def geometry_data(self) -> geometry_pb2.GeometryData:
+        """
+        create a GeometryData protobuf object from the current geometry
+        :return: GeometryData object with a defined spatial reference
+        """
         return geometry_pb2.GeometryData(wkb=self.wkb, sr=self._sr)
 
     @property
     def envelope_data(self):
+        """
+        create a EnvelopeData protobuf object from the current geometry with
+        the spatial reference defined from the geometry spatial reference
+        :return: EnvelopeData protobuf object
+        """
         return geometry_pb2.EnvelopeData(xmin=self.bounds[0],
                                          ymin=self.bounds[1],
                                          xmax=self.bounds[2],

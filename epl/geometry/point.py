@@ -10,6 +10,8 @@ from shapely.errors import DimensionError
 from shapely.geos import lgeos
 from shapely.geometry.proxy import CachingGeometryProxy
 
+from epl import geometry as geometry_init
+
 __all__ = ['Point', 'asPoint']
 
 
@@ -77,7 +79,7 @@ class Point(BaseGeometry):
         return {
             'type': 'Point',
             'coordinates': self.coords[0]
-            }
+        }
 
     def svg(self, scale_factor=1., fill_color=None):
         """Returns SVG circle element for the Point geometry.
@@ -97,7 +99,7 @@ class Point(BaseGeometry):
         return (
             '<circle cx="{0.x}" cy="{0.y}" r="{1}" '
             'stroke="#555555" stroke-width="{2}" fill="{3}" opacity="0.6" />'
-            ).format(self, 3. * scale_factor, 1. * scale_factor, fill_color)
+        ).format(self, 3. * scale_factor, 1. * scale_factor, fill_color)
 
     @property
     def ctypes(self):
@@ -120,6 +122,7 @@ class Point(BaseGeometry):
             ai = self.array_interface_base
             ai.update({'shape': (self._ndim,)})
         return ai
+
     __array_interface__ = property(array_interface)
 
     @property
@@ -153,9 +156,25 @@ class Point(BaseGeometry):
         """
         return self.coords.xy
 
+    def geodetic_inverse(self, other):
+        """
+        get the azimuth from this point to other, the azimuth from other to this point, and the distance. uses
+        geodetic inverse calculations based off of the flattening of the ellipsoid associated with the data provided.
+        azimuths are in radians. 0 is north, PI is south, PI/2 is east, -PI/2 is west
+        :param other: Point geometry (other types not accepted)
+        :return: azimuth from this point to other, azimuth from other to this point, distance in meters between points
+        """
+        if not isinstance(other, Point):
+            raise ValueError("other geometry must be point")
+        op_inverse = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
+                                                  right_geometry=other.geometry_data,
+                                                  operator=geometry_pb2.GEODETIC_INVERSE)
+        geometry_response = geometry_init.geometry_service.stub.Operate(op_inverse)
+        results = geometry_response.geodetic_inverse
+        return results.az12, results.az21, results.distance
+
 
 class PointAdapter(CachingGeometryProxy, Point):
-
     _other_owned = False
 
     def __init__(self, context):
