@@ -173,6 +173,20 @@ class Point(BaseGeometry):
         results = geometry_response.geodetic_inverse
         return results.az12, results.az21, results.distance
 
+    # TODO, make this geodetic
+    def midpoint(self, other, geodetic=True):
+        if geodetic:
+            raise NotImplementedError("geodetic not yet implemented")
+        if not isinstance(other, Point):
+            raise ValueError("other geometry must be point")
+
+        if self._ndim != other._ndim:
+            raise ValueError("points must have the same dimension")
+
+        if self._ndim == 2:
+            return Point(self.x + other.x / 2.0, self.y + other.y / 2.0, sr=self.sr)
+        return Point(self.x + other.x / 2.0, self.y + other.y / 2.0, self.z + other.z / 2.0, sr=self.sr)
+
 
 class PointAdapter(CachingGeometryProxy, Point):
     _other_owned = False

@@ -774,3 +774,11 @@ class TestBasic(unittest.TestCase):
         self.assertAlmostEqual(111319.4907932264, distance, 14)
         self.assertAlmostEqual(-math.pi / 2, az12, 14)
         self.assertAlmostEqual(math.pi / 2, az21, 14)
+
+    def test_midpoint(self):
+        sr = geometry_pb2.SpatialReferenceData(wkid=4326)
+        point1 = Point(0, 0, sr=sr)
+        point2 = Point(-1, 0, sr=sr)
+        midPoint = point1.midpoint(point2, geodetic=False)
+        self.assertEquals(-0.5, midPoint.x)
+        self.assertEquals(0, midPoint.y)
