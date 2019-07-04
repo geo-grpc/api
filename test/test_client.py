@@ -798,5 +798,5 @@ class TestBasic(unittest.TestCase):
                                                                                   mid_point.y,
                                                                                   math.degrees(azi12))
 
-        self.assertEquals(proj4, "+proj=omerc +lonc=-1.466778964596325 +lat_0=42.023578643771735 +alpha=0.0 "
-                                 "+ellps=GRS80")
+        self.assertEquals(proj4, "+proj=omerc +lonc=-1.466778964596325 +lat_0=42.023578643771735 "
+                                 "+alpha=179.99994701173003 +ellps=GRS80")
