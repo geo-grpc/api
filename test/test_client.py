@@ -788,3 +788,15 @@ class TestBasic(unittest.TestCase):
         self.assertEquals(0, midPoint.z)
         self.assertEquals(-1.466778964596325, midPoint.x)
         self.assertEquals(42.023578643771735, midPoint.y)
+
+    def test_geodetic_inverse_wkb(self):
+        bottom = Point(-1.466778964645005, 42.0236178190542, 0, wkid=4326)
+        top = Point(-1.466778964547645, 42.02353946848927, 0, wkid=4326)
+        azi12, _, _ = bottom.geodetic_inverse(top)
+        mid_point = bottom.midpoint(top, geodetic=False).project(to_wkid=4326)
+        proj4 = "+proj=omerc +lonc={0} +lat_0={1} +alpha={2} +ellps=GRS80".format(mid_point.x,
+                                                                                  mid_point.y,
+                                                                                  math.degrees(azi12))
+
+        self.assertEquals(proj4, "+proj=omerc +lonc=-1.466778964596325 +lat_0=42.023578643771735 +alpha=0.0 "
+                                 "+ellps=GRS80")

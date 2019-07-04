@@ -167,8 +167,9 @@ class Point(BaseGeometry):
         """
         if not isinstance(other, Point):
             raise ValueError("other geometry must be point")
-        op_inverse = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
-                                                  right_geometry=other.geometry_data,
+        # TODO, if a point has a z values, the wkb encoding fails. investigate bug
+        op_inverse = geometry_pb2.GeometryRequest(left_geometry=geometry_pb2.GeometryData(sr=self.sr, wkt=self.wkt),
+                                                  right_geometry=geometry_pb2.GeometryData(sr=self.sr, wkt=self.wkt),
                                                   operator=geometry_pb2.GEODETIC_INVERSE)
         geometry_response = geometry_init.geometry_service.stub.Operate(op_inverse)
         results = geometry_response.geodetic_inverse
