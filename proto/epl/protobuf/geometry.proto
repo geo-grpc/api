@@ -178,6 +178,7 @@ enum OperatorType {
     ENCLOSING_CIRCLE = 46;
     AFFINE_TRANSFORM = 47;
     GEODETIC_LENGTH = 48;
+    GEODETIC_INVERSE = 49;
 }
 
 /**
@@ -318,6 +319,15 @@ message GeometryRequest {
     // end oneof https://github.com/golang/protobuf/issues/283
 }
 
+message GeodeticInverse {
+    // Azimuth from the first to the second point
+    double az12 = 1;
+    // Azimuth from the second to the first point
+    double az21 = 2;
+    // Geodesic distance
+    double distance = 3;
+}
+
 /**
  * response message geometry request
  */
@@ -334,6 +344,8 @@ message GeometryResponse {
     map<int64, bool> relate_map = 4;
 
     EnvelopeData envelope = 5;
+
+    GeodeticInverse geodetic_inverse = 6;
 
     // end oneof https://github.com/golang/protobuf/issues/283
 }
