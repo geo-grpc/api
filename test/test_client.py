@@ -52,6 +52,7 @@ def extract_poly_coords(geom):
     return {'exterior_coords': exterior_coords,
             'interior_coords': interior_coords}
 
+
 class TestBasic(unittest.TestCase):
     channel = None
 
