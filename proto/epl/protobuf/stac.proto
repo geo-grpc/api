@@ -335,6 +335,9 @@ enum AssetType {
     XML = 12;
     TXT = 13;
     PNG = 14;
+    // GDAL overview file https://gdal.org/programs/gdaladdo.html
+    OVERVIEW = 15;
+    JSON = 16;
 }
 
 enum CloudPlatform {
