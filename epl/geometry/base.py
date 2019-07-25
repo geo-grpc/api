@@ -13,6 +13,7 @@ import sys
 from warnings import warn
 from functools import wraps
 
+from typing import Iterable
 from shapely.coords import CoordinateSequence
 from shapely.geos import WKBWriter, WKTWriter
 from shapely.geos import lgeos
@@ -942,6 +943,18 @@ class BaseGeometry(object):
                                  operator_type=geometry_pb2.UNION,
                                  operation_sr=operation_sr,
                                  result_sr=result_sr)
+
+    @staticmethod
+    def _gen_union(geometry_iterator: Iterable):
+        for geometry in geometry_iterator:
+            yield geometry_pb2.GeometryRequest(geometry=geometry.geometry_data,
+                                               operator=geometry_pb2.UNION)
+        return
+
+    @staticmethod
+    def cascaded_union(geometry_iterator: Iterable):
+        geometry_response = geometry_init.geometry_service.stub.OperateClientStream(BaseGeometry._gen_union(geometry_iterator))
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def _two_geom_op(self,
                      other_geom,

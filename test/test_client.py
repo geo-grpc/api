@@ -19,6 +19,9 @@
 
 import json
 import os
+import random
+import time
+import timeit
 import unittest
 import math
 import requests
@@ -801,3 +804,28 @@ class TestBasic(unittest.TestCase):
 
         self.assertEquals(proj4, "+proj=omerc +lonc=-1.466778964596325 +lat_0=42.023578643771735 "
                                  "+alpha=179.99994701173003 +ellps=GRS80")
+
+    def test_cascaded_union(self):
+        test = []
+        for i in range(0, 400):
+            lon, lat = random.random(), random.random()
+            point = Point(lon, lat, wkid=4326)
+            buffered = point.s_buffer(1)
+            test.append(buffered)
+
+        # initializing time using gmtime()
+        t = time.process_time()
+        Polygon.cascaded_union(test)
+        elapsed_time = time.process_time() - t
+        print("\ntime remote {}\n".format(elapsed_time))
+        response = Polygon.cascaded_union(test)
+        buffed = response.s_buffer(0.001)
+        for geom in test:
+            self.assertTrue(buffed.contains(geom))
+
+        from shapely.ops import cascaded_union
+        t = time.process_time()
+        cascaded_union(test)
+        elapsed_time = time.process_time() - t
+        print("\ntime local {}\n".format(elapsed_time))
+
