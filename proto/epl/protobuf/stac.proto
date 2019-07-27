@@ -29,6 +29,7 @@ option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
 package epl.protobuf;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/any.proto";
 
@@ -69,6 +70,8 @@ message StacItem {
 
     // timestamp at which data was observed (optional if datetime set)
     google.protobuf.Timestamp observed = 11;
+    google.protobuf.Duration duration = 18;
+
     // timestamp when it was processed (when assets were generated)
     google.protobuf.Timestamp processed = 12;
     // last timestamp when stac metadata itself was updated
@@ -78,8 +81,8 @@ message StacItem {
     Eo eo = 14;
     // Synthetic Aperture Radar data message
     Sar sar = 15;
-    // Date time range
-    Dtr dtr = 16;
+    // Date time range (deprecated in favor of observed + duration
+    reserved 16;
 
     Landsat landsat = 17;
 }
@@ -165,7 +168,7 @@ message Asset {
     bool requester_pays = 10;
 }
 
-message Dtr {
+message DatetimeRange {
     google.protobuf.Timestamp start = 1;
     google.protobuf.Timestamp end = 2;
 }
