@@ -21,7 +21,6 @@ import json
 import os
 import random
 import time
-import timeit
 import unittest
 import math
 import requests
@@ -807,7 +806,7 @@ class TestBasic(unittest.TestCase):
 
     def test_cascaded_union(self):
         test = []
-        for i in range(0, 400):
+        for i in range(0, 1400):
             lon, lat = random.random(), random.random()
             point = Point(lon, lat, wkid=4326)
             buffered = point.s_buffer(1)
@@ -815,17 +814,24 @@ class TestBasic(unittest.TestCase):
 
         # initializing time using gmtime()
         t = time.process_time()
-        Polygon.cascaded_union(test)
-        elapsed_time = time.process_time() - t
-        print("\ntime remote {}\n".format(elapsed_time))
         response = Polygon.cascaded_union(test)
+        elapsed_remote_time = time.process_time() - t
+        print("\ntime remote {}\n".format(elapsed_remote_time))
+
+        from shapely.ops import cascaded_union
+        t = time.process_time()
+        value = cascaded_union(test)
+        elapsed_local_time = time.process_time() - t
+        print("\ntime local {}\n".format(elapsed_local_time))
+        self.assertLess(elapsed_remote_time, elapsed_local_time)
+
         buffed = response.s_buffer(0.001)
         for geom in test:
             self.assertTrue(buffed.contains(geom))
 
-        from shapely.ops import cascaded_union
-        t = time.process_time()
-        cascaded_union(test)
-        elapsed_time = time.process_time() - t
-        print("\ntime local {}\n".format(elapsed_time))
-
+    def test_triangulate(self):
+        from shapely.ops import triangulate
+        import pprint
+        points = MultiPoint([(0, 0), (1, 1), (0, 2), (2, 2), (3, 1), (1, 0)], wkid=4326)
+        triangles = triangulate(points)
+        pprint.pprint([triangle.wkt for triangle in triangles])

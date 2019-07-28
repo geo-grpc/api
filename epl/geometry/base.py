@@ -945,15 +945,18 @@ class BaseGeometry(object):
                                  result_sr=result_sr)
 
     @staticmethod
-    def _gen_union(geometry_iterator: Iterable):
-        for geometry in geometry_iterator:
+    def _gen_union(geometry_iterable: Iterable):
+        for geometry in geometry_iterable:
             yield geometry_pb2.GeometryRequest(geometry=geometry.geometry_data,
                                                operator=geometry_pb2.UNION)
-        return
 
     @staticmethod
-    def cascaded_union(geometry_iterator: Iterable):
-        geometry_response = geometry_init.geometry_service.stub.OperateClientStream(BaseGeometry._gen_union(geometry_iterator))
+    def cascaded_union(geometry_iterable: Iterable):
+        geometry_response = geometry_init\
+            .geometry_service\
+            .stub\
+            .OperateClientStream(BaseGeometry._gen_union(geometry_iterable))
+
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def _two_geom_op(self,
