@@ -30,7 +30,7 @@ class StacServiceStub(object):
         request_serializer=epl_dot_protobuf_dot_stac__pb2.StacItem.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacDbResponse.FromString,
         )
-    self.Count = channel.unary_stream(
+    self.Count = channel.unary_unary(
         '/epl.protobuf.StacService/Count',
         request_serializer=epl_dot_protobuf_dot_stac__pb2.StacRequest.SerializeToString,
         response_deserializer=epl_dot_protobuf_dot_stac__pb2.StacDbResponse.FromString,
@@ -136,7 +136,7 @@ def add_StacServiceServicer_to_server(servicer, server):
           request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacItem.FromString,
           response_serializer=epl_dot_protobuf_dot_stac__pb2.StacDbResponse.SerializeToString,
       ),
-      'Count': grpc.unary_stream_rpc_method_handler(
+      'Count': grpc.unary_unary_rpc_method_handler(
           servicer.Count,
           request_deserializer=epl_dot_protobuf_dot_stac__pb2.StacRequest.FromString,
           response_serializer=epl_dot_protobuf_dot_stac__pb2.StacDbResponse.SerializeToString,
