@@ -835,3 +835,9 @@ class TestBasic(unittest.TestCase):
         points = MultiPoint([(0, 0), (1, 1), (0, 2), (2, 2), (3, 1), (1, 0)], wkid=4326)
         triangles = triangulate(points)
         pprint.pprint([triangle.wkt for triangle in triangles])
+
+    def test_import_wkt(self):
+        wkt = 'POLYGON((-97.76475265848251 30.329368555095282,-97.81075790750594 30.24754609592361,-97.73591354715438 ' \
+              '30.21669674922466,-97.6816685520372 30.294987720261897,-97.76475265848251 30.329368555095282)) '
+        data = Polygon.import_wkt(wkt, wkid=4326)
+        self.assertEquals(data.sr.wkid, 4326)

@@ -778,13 +778,13 @@ class BaseGeometry(object):
         return rpc_reader.read()
 
     @staticmethod
-    def import_wkt(wkt: str, sr: geometry_pb2.SpatialReferenceData, wkid: int = 0, proj4: str = ""):
+    def import_wkt(wkt: str, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
         # TODO. this is messy. should be using RPCReader for this
         sr = get_sr(sr=sr, wkid=wkid, proj4=proj4)
         return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkt=wkt, sr=sr))
 
     @staticmethod
-    def import_wkb(wkb: bytes, sr: geometry_pb2.SpatialReferenceData, wkid: int = 0, proj4: str = ""):
+    def import_wkb(wkb: bytes, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
         # TODO. this is messy. should be using RPCReader for this
         sr = get_sr(sr=sr, wkid=wkid, proj4=proj4)
         return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkb=wkb, sr=sr))
