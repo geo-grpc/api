@@ -127,6 +127,8 @@ message StacRequest {
     uint64 offset = 12;
 
     LandsatRequest landsat = 13;
+
+    string collection = 14;
 }
 
 
