@@ -6,3 +6,8 @@ Build new versions using:
 ```bash
 ./generate.sh
 ```
+
+Update documnetation:
+```bash
+docker run --rm   -v $(pwd)/docs:/out   -v $(pwd)/proto:/protos   pseudomuto/protoc-gen-doc --proto_path=/protos/ epl/protobuf/geometry.proto epl/protobuf/geometry_service.proto epl/protobuf/query.proto epl/protobuf/stac.proto epl/protobuf/stac_service.proto
+```
