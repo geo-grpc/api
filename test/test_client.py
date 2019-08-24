@@ -20,7 +20,6 @@
 import json
 import os
 import random
-import time
 import unittest
 import math
 import requests
