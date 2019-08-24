@@ -175,7 +175,7 @@
         
           
           <li>
-            <a href="#geometry.proto">geometry.proto</a>
+            <a href="#epl%2fprotobuf%2fgeometry.proto">epl/protobuf/geometry.proto</a>
             <ul>
               
                 <li>
@@ -187,11 +187,19 @@
                 </li>
               
                 <li>
+                  <a href="#epl.protobuf.GeodeticInverse"><span class="badge">M</span>GeodeticInverse</a>
+                </li>
+              
+                <li>
                   <a href="#epl.protobuf.GeometryData"><span class="badge">M</span>GeometryData</a>
                 </li>
               
                 <li>
                   <a href="#epl.protobuf.GeometryRequest"><span class="badge">M</span>GeometryRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.GeometryRequest.AffineTransformParams"><span class="badge">M</span>GeometryRequest.AffineTransformParams</a>
                 </li>
               
                 <li>
@@ -280,6 +288,10 @@
                 </li>
               
                 <li>
+                  <a href="#epl.protobuf.SimpleState"><span class="badge">E</span>SimpleState</a>
+                </li>
+              
+                <li>
                   <a href="#epl.protobuf.SpatialReferenceData.CSType"><span class="badge">E</span>SpatialReferenceData.CSType</a>
                 </li>
               
@@ -290,7 +302,7 @@
         
           
           <li>
-            <a href="#geometry_service.proto">geometry_service.proto</a>
+            <a href="#epl%2fprotobuf%2fgeometry_service.proto">epl/protobuf/geometry_service.proto</a>
             <ul>
               
               
@@ -305,26 +317,7 @@
         
           
           <li>
-            <a href="#naip.proto">naip.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#epl.protobuf.NaipProperties"><span class="badge">M</span>NaipProperties</a>
-                </li>
-              
-                <li>
-                  <a href="#epl.protobuf.NaipRequest"><span class="badge">M</span>NaipRequest</a>
-                </li>
-              
-              
-              
-              
-            </ul>
-          </li>
-        
-          
-          <li>
-            <a href="#query.proto">query.proto</a>
+            <a href="#epl%2fprotobuf%2fquery.proto">epl/protobuf/query.proto</a>
             <ul>
               
                 <li>
@@ -363,7 +356,7 @@
         
           
           <li>
-            <a href="#stac.proto">stac.proto</a>
+            <a href="#epl%2fprotobuf%2fstac.proto">epl/protobuf/stac.proto</a>
             <ul>
               
                 <li>
@@ -375,7 +368,7 @@
                 </li>
               
                 <li>
-                  <a href="#epl.protobuf.Dtr"><span class="badge">M</span>Dtr</a>
+                  <a href="#epl.protobuf.DatetimeRange"><span class="badge">M</span>DatetimeRange</a>
                 </li>
               
                 <li>
@@ -387,7 +380,19 @@
                 </li>
               
                 <li>
+                  <a href="#epl.protobuf.Landsat"><span class="badge">M</span>Landsat</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.LandsatRequest"><span class="badge">M</span>LandsatRequest</a>
+                </li>
+              
+                <li>
                   <a href="#epl.protobuf.Sar"><span class="badge">M</span>Sar</a>
+                </li>
+              
+                <li>
+                  <a href="#epl.protobuf.StacDbResponse"><span class="badge">M</span>StacDbResponse</a>
                 </li>
               
                 <li>
@@ -400,10 +405,6 @@
               
                 <li>
                   <a href="#epl.protobuf.StacRequest"><span class="badge">M</span>StacRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#epl.protobuf.StacUpsertResponse"><span class="badge">M</span>StacUpsertResponse</a>
                 </li>
               
               
@@ -432,6 +433,10 @@
                 </li>
               
                 <li>
+                  <a href="#epl.protobuf.Landsat.ProcessingLevel"><span class="badge">E</span>Landsat.ProcessingLevel</a>
+                </li>
+              
+                <li>
                   <a href="#epl.protobuf.Sar.Instrument"><span class="badge">E</span>Sar.Instrument</a>
                 </li>
               
@@ -446,7 +451,7 @@
         
           
           <li>
-            <a href="#stac_service.proto">stac_service.proto</a>
+            <a href="#epl%2fprotobuf%2fstac_service.proto">epl/protobuf/stac_service.proto</a>
             <ul>
               
               
@@ -466,7 +471,7 @@
     
       
       <div class="file-heading">
-        <h2 id="geometry.proto">geometry.proto</h2><a href="#title">Top</a>
+        <h2 id="epl/protobuf/geometry.proto">epl/protobuf/geometry.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
@@ -603,6 +608,44 @@
 
         
       
+        <h3 id="epl.protobuf.GeodeticInverse">GeodeticInverse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>az12</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Azimuth from the first to the second point </p></td>
+                </tr>
+              
+                <tr>
+                  <td>az21</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Azimuth from the second to the first point </p></td>
+                </tr>
+              
+                <tr>
+                  <td>distance</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Geodesic distance </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="epl.protobuf.GeometryData">GeometryData</h3>
         <p>Container for Geometry data, has id, encoded geometry coordinates and shape, spatial reference and envelope</p>
 
@@ -667,6 +710,13 @@
                   <td><a href="#epl.protobuf.EnvelopeData">EnvelopeData</a></td>
                   <td></td>
                   <td><p>envelope or bounding box of geometry </p></td>
+                </tr>
+              
+                <tr>
+                  <td>simple</td>
+                  <td><a href="#epl.protobuf.SimpleState">SimpleState</a></td>
+                  <td></td>
+                  <td><p>state of the geometry topological correctness. at geometry creation, it is unknown if it is simple </p></td>
                 </tr>
               
             </tbody>
@@ -836,6 +886,51 @@
                 <tr>
                   <td>generalize_by_area_params</td>
                   <td><a href="#epl.protobuf.GeometryRequest.GeneralizeByAreaParams">GeometryRequest.GeneralizeByAreaParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>affine_transform_params</td>
+                  <td><a href="#epl.protobuf.GeometryRequest.AffineTransformParams">GeometryRequest.AffineTransformParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.GeometryRequest.AffineTransformParams">GeometryRequest.AffineTransformParams</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>geodetic</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>x_offset</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>y_offset</td>
+                  <td><a href="#double">double</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1291,6 +1386,13 @@
                 <tr>
                   <td>envelope</td>
                   <td><a href="#epl.protobuf.EnvelopeData">EnvelopeData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>geodetic_inverse</td>
+                  <td><a href="#epl.protobuf.GeodeticInverse">GeodeticInverse</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1783,6 +1885,118 @@
                 <td><p></p></td>
               </tr>
             
+              <tr>
+                <td>AFFINE_TRANSFORM</td>
+                <td>47</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GEODETIC_LENGTH</td>
+                <td>48</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GEODETIC_INVERSE</td>
+                <td>49</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="epl.protobuf.SimpleState">SimpleState</h3>
+        <p>the state of a geometry topological correctness</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SIMPLE_UNKNOWN</td>
+                <td>0</td>
+                <td><p>on creation, after projection and after generalization a geometry has state simple unknown (not know if simple or not)</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEAK_SIMPLE</td>
+                <td>1</td>
+                <td><p>weak simple (no self intersections, ring orientation is correct, but ring order is not)</p></td>
+              </tr>
+            
+              <tr>
+                <td>STRONG_SIMPLE</td>
+                <td>2</td>
+                <td><p>same as weak simple &#43; OGC ring order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>NON_SIMPLE</td>
+                <td>3</td>
+                <td><p>is_simple method has been run on the geometry and it is known to be non-simple, but the reason is unknown</p></td>
+              </tr>
+            
+              <tr>
+                <td>STRUCTURE_FLAW</td>
+                <td>4</td>
+                <td><p>non-simple, because the structure is bad (0 size path, for example).</p></td>
+              </tr>
+            
+              <tr>
+                <td>DEGENERATE_SEGMENTS</td>
+                <td>5</td>
+                <td><p>Non-simple, because there are degenerate segments.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CLUSTERING</td>
+                <td>6</td>
+                <td><p>Non-simple, because not clustered properly, that is there are non-coincident vertices closer than tolerance.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CRACKING</td>
+                <td>7</td>
+                <td><p>Non-simple, because not cracked properly (intersecting segments, overlaping segments)</p></td>
+              </tr>
+            
+              <tr>
+                <td>CROSS_OVER</td>
+                <td>8</td>
+                <td><p>Non-simple, because there are crossovers (self intersections that are not cracking case).</p></td>
+              </tr>
+            
+              <tr>
+                <td>RING_ORIENTATION</td>
+                <td>9</td>
+                <td><p>Non-simple, because holes or exteriors have wrong orientation.
+
+/**
+    * The geometry is simple, but not strong-simple, because exteriors
+    * and holes are not in the correct order, and separation into sub polygons is not possible.
+    * Geometry needs to be resimplified with the bForceTest = true to fix this.
+    */
+   RingOrder,
+   /**
+    * There is a self tangency or cross-over situation (strong simple, but not OGC simple)
+    * Only OperatorSimplifyOGC returns this.
+    */
+   OGCPolylineSelfTangency,
+   /**
+    * There is a self tangency situation (strong simple, but not OGC simple)
+    * Only OperatorSimplifyOGC returns this.
+    */
+   OGCPolygonSelfTangency,
+   /**
+    * Touching interioir rings make a disconnected point set from polygon interior
+    * (strong simple, but not OGC simple).
+    * Only OperatorSimplifyOGC returns this.
+    */
+   OGCDisconnectedInterior</p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -1810,7 +2024,7 @@
     
       
       <div class="file-heading">
-        <h2 id="geometry_service.proto">geometry_service.proto</h2><a href="#title">Top</a>
+        <h2 id="epl/protobuf/geometry_service.proto">epl/protobuf/geometry_service.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
@@ -1879,83 +2093,7 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
     
       
       <div class="file-heading">
-        <h2 id="naip.proto">naip.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="epl.protobuf.NaipProperties">NaipProperties</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>src_img_date</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>usgsid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="epl.protobuf.NaipRequest">NaipRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>src_image_date</td>
-                  <td><a href="#epl.protobuf.TimestampField">TimestampField</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>usgsid</td>
-                  <td><a href="#epl.protobuf.StringField">StringField</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-
-      
-
-      
-    
-      
-      <div class="file-heading">
-        <h2 id="query.proto">query.proto</h2><a href="#title">Top</a>
+        <h2 id="epl/protobuf/query.proto">epl/protobuf/query.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
@@ -2309,7 +2447,7 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
     
       
       <div class="file-heading">
-        <h2 id="stac.proto">stac.proto</h2><a href="#title">Top</a>
+        <h2 id="epl/protobuf/stac.proto">epl/protobuf/stac.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
@@ -2360,10 +2498,10 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                 </tr>
               
                 <tr>
-                  <td>bucket_owner</td>
+                  <td>bucket_manager</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>owner of the bucket </p></td>
+                  <td><p>manager of the bucket </p></td>
                 </tr>
               
                 <tr>
@@ -2385,6 +2523,13 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>path to the object in the bucket </p></td>
+                </tr>
+              
+                <tr>
+                  <td>requester_pays</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>requester_pays pertains to egress cost. Some buckets are hosted with the egress costs assigned to the requester. some hosts pay the regress costs for the requester. </p></td>
                 </tr>
               
             </tbody>
@@ -2460,7 +2605,7 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
 
         
       
-        <h3 id="epl.protobuf.Dtr">Dtr</h3>
+        <h3 id="epl.protobuf.DatetimeRange">DatetimeRange</h3>
         <p></p>
 
         
@@ -2578,6 +2723,13 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                   <td><p>bands of data </p></td>
                 </tr>
               
+                <tr>
+                  <td>sr</td>
+                  <td><a href="#epl.protobuf.SpatialReferenceData">SpatialReferenceData</a></td>
+                  <td></td>
+                  <td><p>spatial reference. if the data is stored with a custom projection (epsg should be removed and use sr instead) </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2679,6 +2831,124 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
 
         
       
+        <h3 id="epl.protobuf.Landsat">Landsat</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>scene_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id of scene should be id of stac item, but there may be a use case where someone does not want that </p></td>
+                </tr>
+              
+                <tr>
+                  <td>product_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>processing_level</td>
+                  <td><a href="#epl.protobuf.Landsat.ProcessingLevel">Landsat.ProcessingLevel</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wrs_path</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wrs_row</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cloud_cover_land</td>
+                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.LandsatRequest">LandsatRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>scene_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>product_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>processing_level</td>
+                  <td><a href="#epl.protobuf.Landsat.ProcessingLevel">Landsat.ProcessingLevel</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wrs_path</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wrs_row</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cloud_cover_land</td>
+                  <td><a href="#epl.protobuf.FloatField">FloatField</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="epl.protobuf.Sar">Sar</h3>
         <p>place holder for SAR</p>
 
@@ -2692,6 +2962,51 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                 <tr>
                   <td>platform</td>
                   <td><a href="#epl.protobuf.Sar.Platform">Sar.Platform</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.StacDbResponse">StacDbResponse</h3>
+        <p>response message for insertion and updates to stac db</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>count</td>
+                  <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2777,6 +3092,13 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                 </tr>
               
                 <tr>
+                  <td>duration</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>processed</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
@@ -2805,10 +3127,10 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                 </tr>
               
                 <tr>
-                  <td>dtr</td>
-                  <td><a href="#epl.protobuf.Dtr">Dtr</a></td>
+                  <td>landsat</td>
+                  <td><a href="#epl.protobuf.Landsat">Landsat</a></td>
                   <td></td>
-                  <td><p>Date time range </p></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -2943,39 +3265,15 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                   <td><p>the offset from which the query should start </p></td>
                 </tr>
               
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="epl.protobuf.StacUpsertResponse">StacUpsertResponse</h3>
-        <p>response message for insertion and updates to stac db</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
                 <tr>
-                  <td>status</td>
-                  <td><a href="#string">string</a></td>
+                  <td>landsat</td>
+                  <td><a href="#epl.protobuf.LandsatRequest">LandsatRequest</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>status_code</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data_id</td>
+                  <td>collection</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -3076,6 +3374,36 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                 <td><p></p></td>
               </tr>
             
+              <tr>
+                <td>TXT</td>
+                <td>13</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PNG</td>
+                <td>14</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OVERVIEW</td>
+                <td>15</td>
+                <td><p>GDAL overview file https://gdal.org/programs/gdaladdo.html</p></td>
+              </tr>
+            
+              <tr>
+                <td>JSON</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>HTML</td>
+                <td>17</td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -3159,9 +3487,15 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
               </tr>
             
               <tr>
-                <td>NEAR_INFRARED</td>
+                <td>NIR</td>
                 <td>32</td>
                 <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>NIR_2</td>
+                <td>33</td>
+                <td><p>special case for landsat 1-3</p></td>
               </tr>
             
               <tr>
@@ -3171,19 +3505,19 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
               </tr>
             
               <tr>
-                <td>SWIR_16</td>
+                <td>SWIR_1</td>
                 <td>64</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>SWIR_22</td>
+                <td>SWIR_2</td>
                 <td>128</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>PANCHROMATIC</td>
+                <td>PAN</td>
                 <td>256</td>
                 <td><p></p></td>
               </tr>
@@ -3195,13 +3529,13 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
               </tr>
             
               <tr>
-                <td>LWIR_11</td>
+                <td>LWIR_1</td>
                 <td>1024</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>LWIR_12</td>
+                <td>LWIR_2</td>
                 <td>2048</td>
                 <td><p></p></td>
               </tr>
@@ -3277,9 +3611,33 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
               </tr>
             
               <tr>
+                <td>OLI_TIRS</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
                 <td>POM_1</td>
                 <td>8</td>
                 <td><p>swiftera instrument</p></td>
+              </tr>
+            
+              <tr>
+                <td>TM</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ETM</td>
+                <td>32</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MSS</td>
+                <td>64</td>
+                <td><p></p></td>
               </tr>
             
           </tbody>
@@ -3362,6 +3720,53 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
           </tbody>
         </table>
       
+        <h3 id="epl.protobuf.Landsat.ProcessingLevel">Landsat.ProcessingLevel</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN_PROCESSING_LEVEL</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>L1G</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>L1TP</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>L1T</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>L1GT</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>L1GS</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="epl.protobuf.Sar.Instrument">Sar.Instrument</h3>
         <p></p>
         <table class="enum-table">
@@ -3415,7 +3820,7 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
     
       
       <div class="file-heading">
-        <h2 id="stac_service.proto">stac_service.proto</h2><a href="#title">Top</a>
+        <h2 id="epl/protobuf/stac_service.proto">epl/protobuf/stac_service.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
@@ -3444,14 +3849,28 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
               <tr>
                 <td>Insert</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a> stream</td>
-                <td><a href="#epl.protobuf.StacUpsertResponse">StacUpsertResponse</a> stream</td>
+                <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a> stream</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>Update</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a> stream</td>
-                <td><a href="#epl.protobuf.StacUpsertResponse">StacUpsertResponse</a> stream</td>
+                <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Count</td>
+                <td><a href="#epl.protobuf.StacRequest">StacRequest</a></td>
+                <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteOne</td>
+                <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
+                <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -3465,14 +3884,14 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
               <tr>
                 <td>InsertOne</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
-                <td><a href="#epl.protobuf.StacUpsertResponse">StacUpsertResponse</a></td>
+                <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>UpdateOne</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
-                <td><a href="#epl.protobuf.StacUpsertResponse">StacUpsertResponse</a></td>
+                <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a></td>
                 <td><p></p></td>
               </tr>
             
