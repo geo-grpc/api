@@ -820,7 +820,7 @@ class TestBasic(unittest.TestCase):
 
         from shapely.ops import cascaded_union
         t = time.process_time()
-        value = cascaded_union(test)
+        cascaded_union(test)
         elapsed_local_time = time.process_time() - t
         print("\ntime local {}\n".format(elapsed_local_time))
         self.assertLess(elapsed_remote_time, elapsed_local_time)
@@ -841,3 +841,14 @@ class TestBasic(unittest.TestCase):
               '30.21669674922466,-97.6816685520372 30.294987720261897,-97.76475265848251 30.329368555095282)) '
         data = Polygon.import_wkt(wkt, wkid=4326)
         self.assertEquals(data.sr.wkid, 4326)
+
+    def test_3857(self):
+        austin_wkt = "MULTIPOLYGON (((-98.2051285429566 29.57121580080253, -97.3978573732647 29.68847714051914, " \
+                 "-97.3977 29.6885, -97.4063567134265 29.72277351846413, -97.41658596096325 29.76327298830345, " \
+                 "-97.74749926396314 31.07341953487447, -98.20511113234716 31.13991547322948, -98.66270777486596 " \
+                 "31.07342522906833, -98.99370927257297 29.76327229595237, -99.00405966608577 29.72230390603985, " \
+                 "-99.01260000000001 29.6885, -99.01244262644467 29.68847714169182, -98.2051285429566 " \
+                 "29.57121580080253)))"
+        polygon = Polygon.import_wkt(wkt=austin_wkt, wkid=4326)
+        boundingbox = polygon.project(to_wkid=3857)
+        print(boundingbox.buffer(-2000).bounds)
