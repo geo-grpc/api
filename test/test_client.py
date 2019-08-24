@@ -812,18 +812,7 @@ class TestBasic(unittest.TestCase):
             buffered = point.s_buffer(1)
             test.append(buffered)
 
-        # initializing time using gmtime()
-        t = time.process_time()
         response = Polygon.cascaded_union(test)
-        elapsed_remote_time = time.process_time() - t
-        print("\ntime remote {}\n".format(elapsed_remote_time))
-
-        from shapely.ops import cascaded_union
-        t = time.process_time()
-        cascaded_union(test)
-        elapsed_local_time = time.process_time() - t
-        print("\ntime local {}\n".format(elapsed_local_time))
-        self.assertLess(elapsed_remote_time, elapsed_local_time)
 
         buffed = response.s_buffer(0.001)
         for geom in test:
@@ -837,8 +826,9 @@ class TestBasic(unittest.TestCase):
         pprint.pprint([triangle.wkt for triangle in triangles])
 
     def test_import_wkt(self):
-        wkt = 'POLYGON((-97.76475265848251 30.329368555095282,-97.81075790750594 30.24754609592361,-97.73591354715438 ' \
-              '30.21669674922466,-97.6816685520372 30.294987720261897,-97.76475265848251 30.329368555095282)) '
+        wkt = 'POLYGON((-97.76475265848251 30.329368555095282,-97.81075790750594 30.24754609592361,' \
+              '-97.73591354715438 30.21669674922466,-97.6816685520372 30.294987720261897,-97.76475265848251 ' \
+              '30.329368555095282)) '
         data = Polygon.import_wkt(wkt, wkid=4326)
         self.assertEquals(data.sr.wkid, 4326)
 
