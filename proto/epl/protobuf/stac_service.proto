@@ -34,13 +34,37 @@ import "epl/protobuf/stac.proto";
  gRPC Interfaces for working with stac metadata
 */
 service StacService {
+    /*
+    using a search request, stream all the results that match the search filter
+    */
     rpc Search(epl.protobuf.StacRequest) returns (stream epl.protobuf.StacItem) {}
+    /*
+    insert a stream of items into the STAC service
+    */
     rpc Insert(stream epl.protobuf.StacItem) returns (stream epl.protobuf.StacDbResponse) {}
+    /*
+    update a stream of items in the STAC service
+    */
     rpc Update(stream epl.protobuf.StacItem) returns (stream epl.protobuf.StacDbResponse) {}
-    rpc Count(epl.protobuf.StacRequest) returns (epl.protobuf.StacDbResponse) {}
 
+    /*
+    count all the items in the Stac service according to the StacRequest filter
+    */
+    rpc Count(epl.protobuf.StacRequest) returns (epl.protobuf.StacDbResponse) {}
+    /*
+    delete an item from the STAC service
+    */
     rpc DeleteOne(epl.protobuf.StacItem) returns (epl.protobuf.StacDbResponse) {}
+    /*
+    using a search request get the first item that matches the request
+    */
     rpc SearchOne(epl.protobuf.StacRequest) returns (epl.protobuf.StacItem) {}
+    /*
+    Insert one item into the STAC service
+    */
     rpc InsertOne(epl.protobuf.StacItem) returns (epl.protobuf.StacDbResponse) {}
+    /*
+    Update one item in the STAC service
+    */
     rpc UpdateOne(epl.protobuf.StacItem) returns (epl.protobuf.StacDbResponse) {}
 }

@@ -329,10 +329,6 @@
                 </li>
               
                 <li>
-                  <a href="#epl.protobuf.StringField"><span class="badge">M</span>StringField</a>
-                </li>
-              
-                <li>
                   <a href="#epl.protobuf.TimestampField"><span class="badge">M</span>TimestampField</a>
                 </li>
               
@@ -361,10 +357,6 @@
               
                 <li>
                   <a href="#epl.protobuf.Asset"><span class="badge">M</span>Asset</a>
-                </li>
-              
-                <li>
-                  <a href="#epl.protobuf.BandDetails"><span class="badge">M</span>BandDetails</a>
                 </li>
               
                 <li>
@@ -2112,35 +2104,36 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Singular double value that, combined with rel_type, allows you to search for floats that relate to this `value`.
+`value` field cannot be combined with BETWEEN or the NOT_BETWEEN FieldRelationship `rel_type`. That means
+you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_type` </p></td>
                 </tr>
               
                 <tr>
                   <td>rel_type</td>
                   <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>relationship type of the query.
+EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
+BETWEEN or NOT_BETWEEN for `start` with `stop` </p></td>
                 </tr>
               
                 <tr>
-                  <td>between_value1</td>
+                  <td>start</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>For searching by a range. `start` with BETWEEN searches for everything in the range from `start` to `stop`
+`start` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+by a `stop` value </p></td>
                 </tr>
               
                 <tr>
-                  <td>between_value2</td>
+                  <td>stop</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort_direction</td>
-                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td><p>For searching by a range. `stop` with BETWEEN searches for everything in the range from `start` to `stop`
+`stop` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+by a `start` value </p></td>
                 </tr>
               
             </tbody>
@@ -2151,7 +2144,7 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
         
       
         <h3 id="epl.protobuf.FloatField">FloatField</h3>
-        <p></p>
+        <p>Query language for float fields.</p>
 
         
           <table class="field-table">
@@ -2164,73 +2157,36 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                   <td>value</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Singular float value that, combined with rel_type, allows you to search for floats that relate to this `value`.
+`value` field cannot be combined with BETWEEN or the NOT_BETWEEN FieldRelationship `rel_type`. That means
+you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_type` </p></td>
                 </tr>
               
                 <tr>
                   <td>rel_type</td>
                   <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>relationship type of the query.
+EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
+BETWEEN or NOT_BETWEEN for `start` with `stop` </p></td>
                 </tr>
               
                 <tr>
-                  <td>between_value1</td>
+                  <td>start</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>For searching by a range. `start` with BETWEEN searches for everything in the range from `start` to `stop`
+`start` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+by a `stop` value </p></td>
                 </tr>
               
                 <tr>
-                  <td>between_value2</td>
+                  <td>stop</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort_direction</td>
-                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="epl.protobuf.StringField">StringField</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>rel_type</td>
-                  <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort_direction</td>
-                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td><p>For searching by a range. `stop` with BETWEEN searches for everything in the range from `start` to `stop`
+`stop` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+by a `start` value </p></td>
                 </tr>
               
             </tbody>
@@ -2254,35 +2210,36 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                   <td>value</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Singular Timestamp value that, combined with rel_type, allows you to search for floats that relate to this `value`.
+`value` field cannot be combined with BETWEEN or the NOT_BETWEEN FieldRelationship `rel_type`. That means
+you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_type` </p></td>
                 </tr>
               
                 <tr>
                   <td>rel_type</td>
                   <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>relationship type of the query.
+EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
+BETWEEN or NOT_BETWEEN for `start` with `stop` </p></td>
                 </tr>
               
                 <tr>
-                  <td>between_value1</td>
+                  <td>start</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>For searching by a range. `start` with BETWEEN searches for everything in the range from `start` to `stop`
+`start` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+by a `stop` value </p></td>
                 </tr>
               
                 <tr>
-                  <td>between_value2</td>
+                  <td>stop</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort_direction</td>
-                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td><p>For searching by a range. `stop` with BETWEEN searches for everything in the range from `start` to `stop`
+`stop` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+by a `start` value </p></td>
                 </tr>
               
             </tbody>
@@ -2306,35 +2263,36 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                   <td>value</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Singular unint32 value that, combined with rel_type, allows you to search for floats that relate to this `value`.
+`value` field cannot be combined with BETWEEN or the NOT_BETWEEN FieldRelationship `rel_type`. That means
+you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_type` </p></td>
                 </tr>
               
                 <tr>
                   <td>rel_type</td>
                   <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>relationship type of the query.
+EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
+BETWEEN or NOT_BETWEEN for `start` with `stop` </p></td>
                 </tr>
               
                 <tr>
-                  <td>between_value1</td>
+                  <td>start</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>For searching by a range. `start` with BETWEEN searches for everything in the range from `start` to `stop`
+`start` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+by a `stop` value </p></td>
                 </tr>
               
                 <tr>
-                  <td>between_value2</td>
+                  <td>stop</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort_direction</td>
-                  <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td><p>For searching by a range. `stop` with BETWEEN searches for everything in the range from `start` to `stop`
+`stop` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+by a `start` value </p></td>
                 </tr>
               
             </tbody>
@@ -2347,7 +2305,7 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
 
       
         <h3 id="epl.protobuf.FieldRelationship">FieldRelationship</h3>
-        <p></p>
+        <p>Default Value is equals, `EQ`, so if you don't set rel_type, it is assumed you mean equals.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -2357,62 +2315,56 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
               <tr>
                 <td>EQ</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>for use with `value` field. return anything equaling the `value`</p></td>
               </tr>
             
               <tr>
                 <td>LT_OR_EQ</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>for use with `value` field. return anything less than or equal to the `value`</p></td>
               </tr>
             
               <tr>
                 <td>GT_OR_EQ</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>for use with `value` field. return anything greater than or equal to the `value`</p></td>
               </tr>
             
               <tr>
                 <td>LT</td>
                 <td>8</td>
-                <td><p></p></td>
+                <td><p>for use with `value` field. return anything less than the `value`</p></td>
               </tr>
             
               <tr>
                 <td>GT</td>
                 <td>16</td>
-                <td><p></p></td>
+                <td><p>for use with `value` field. return anything greater than the `value`</p></td>
               </tr>
             
               <tr>
                 <td>BETWEEN</td>
                 <td>32</td>
-                <td><p></p></td>
+                <td><p>for use with `start` and `stop`. return anything between `start` and `stop`</p></td>
               </tr>
             
               <tr>
                 <td>NOT_BETWEEN</td>
                 <td>64</td>
-                <td><p></p></td>
+                <td><p>for use with `start` and `stop`. return anything not between `start` and `stop`</p></td>
               </tr>
             
               <tr>
                 <td>NOT_EQ</td>
                 <td>128</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>STARTS_WITH</td>
-                <td>256</td>
-                <td><p></p></td>
+                <td><p>for use with `value` field. return everything not equal to the `value1</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="epl.protobuf.SortDirection">SortDirection</h3>
-        <p></p>
+        <p>Not currently in use</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -2530,72 +2482,6 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>requester_pays pertains to egress cost. Some buckets are hosted with the egress costs assigned to the requester. some hosts pay the regress costs for the requester. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="epl.protobuf.BandDetails">BandDetails</h3>
-        <p>Right now this isn't included in the response as it's a bit messy</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>common_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>gsd</td>
-                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>accuracy</td>
-                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>center_wavelength</td>
-                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>full_width_half_max</td>
-                  <td><a href="#google.protobuf.FloatValue">google.protobuf.FloatValue</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -3347,13 +3233,13 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
               <tr>
                 <td>RAW</td>
                 <td>8</td>
-                <td><p></p></td>
+                <td><p>Generic raw data</p></td>
               </tr>
             
               <tr>
                 <td>THUMBNAIL</td>
                 <td>9</td>
-                <td><p></p></td>
+                <td><p>thumbnail. could be jpg or png</p></td>
               </tr>
             
               <tr>
@@ -3843,56 +3729,56 @@ go shouldn&#39;t use this because of https://groups.google.com/forum/#!topic/grp
                 <td>Search</td>
                 <td><a href="#epl.protobuf.StacRequest">StacRequest</a></td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a> stream</td>
-                <td><p></p></td>
+                <td><p>using a search request, stream all the results that match the search filter</p></td>
               </tr>
             
               <tr>
                 <td>Insert</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a> stream</td>
                 <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a> stream</td>
-                <td><p></p></td>
+                <td><p>insert a stream of items into the STAC service</p></td>
               </tr>
             
               <tr>
                 <td>Update</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a> stream</td>
                 <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a> stream</td>
-                <td><p></p></td>
+                <td><p>update a stream of items in the STAC service</p></td>
               </tr>
             
               <tr>
                 <td>Count</td>
                 <td><a href="#epl.protobuf.StacRequest">StacRequest</a></td>
                 <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a></td>
-                <td><p></p></td>
+                <td><p>count all the items in the Stac service according to the StacRequest filter</p></td>
               </tr>
             
               <tr>
                 <td>DeleteOne</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
                 <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a></td>
-                <td><p></p></td>
+                <td><p>delete an item from the STAC service</p></td>
               </tr>
             
               <tr>
                 <td>SearchOne</td>
                 <td><a href="#epl.protobuf.StacRequest">StacRequest</a></td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
-                <td><p></p></td>
+                <td><p>using a search request get the first item that matches the request</p></td>
               </tr>
             
               <tr>
                 <td>InsertOne</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
                 <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a></td>
-                <td><p></p></td>
+                <td><p>Insert one item into the STAC service</p></td>
               </tr>
             
               <tr>
                 <td>UpdateOne</td>
                 <td><a href="#epl.protobuf.StacItem">StacItem</a></td>
                 <td><a href="#epl.protobuf.StacDbResponse">StacDbResponse</a></td>
-                <td><p></p></td>
+                <td><p>Update one item in the STAC service</p></td>
               </tr>
             
           </tbody>

@@ -132,16 +132,16 @@ message StacRequest {
 }
 
 
-// Right now this isn't included in the response as it's a bit messy
-message BandDetails {
-    string name = 1;
-    string common_name = 2;
-    string description = 3;
-    google.protobuf.FloatValue gsd = 4;
-    google.protobuf.FloatValue accuracy = 5;
-    google.protobuf.FloatValue center_wavelength = 6;
-    google.protobuf.FloatValue full_width_half_max = 7;
-}
+//// Right now this isn't included in the response as it's a bit messy
+//message BandDetails {
+//    string name = 1;
+//    string common_name = 2;
+//    string description = 3;
+//    google.protobuf.FloatValue gsd = 4;
+//    google.protobuf.FloatValue accuracy = 5;
+//    google.protobuf.FloatValue center_wavelength = 6;
+//    google.protobuf.FloatValue full_width_half_max = 7;
+//}
 
 /**
  * message for an asset of a stac item.
@@ -323,26 +323,21 @@ message EoRequest {
 enum AssetType {
     UNKNOWN_ASSET = 0;
     JPEG = 1;
-    // geotiff https://www.gdal.org/frmt_gtiff.html
-    GEOTIFF = 2;
-    // Limited Error Raster Compression
-    LERC = 3;
-    // metadata raster file https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-metadata-file-mrf
-    MRF = 4;
-    // metadata raster file index https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-index-file-idx
-    MRF_IDX = 5;
+
+    GEOTIFF = 2; // geotiff https://www.gdal.org/frmt_gtiff.html
+    LERC = 3;// Limited Error Raster Compression
+    MRF = 4; // metadata raster file https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-metadata-file-mrf
+    MRF_IDX = 5; // metadata raster file index https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-index-file-idx
     MRF_XML = 6;
-    // cloud optimized geotiff https://www.cogeo.org/
-    CO_GEOTIFF = 7;
-    RAW = 8;
-    THUMBNAIL = 9;
+    CO_GEOTIFF = 7; // cloud optimized geotiff https://www.cogeo.org/
+    RAW = 8; // Generic raw data
+    THUMBNAIL = 9; // thumbnail. could be jpg or png
     TIFF = 10;
     JPEG_2000 = 11;
     XML = 12;
     TXT = 13;
     PNG = 14;
-    // GDAL overview file https://gdal.org/programs/gdaladdo.html
-    OVERVIEW = 15;
+    OVERVIEW = 15; // GDAL overview file https://gdal.org/programs/gdaladdo.html
     JSON = 16;
     HTML = 17;
 }

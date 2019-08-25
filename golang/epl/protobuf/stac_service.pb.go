@@ -35,13 +35,29 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type StacServiceClient interface {
+	//
+	// using a search request, stream all the results that match the search filter
 	Search(ctx context.Context, in *StacRequest, opts ...grpc.CallOption) (StacService_SearchClient, error)
+	//
+	// insert a stream of items into the STAC service
 	Insert(ctx context.Context, opts ...grpc.CallOption) (StacService_InsertClient, error)
+	//
+	// update a stream of items in the STAC service
 	Update(ctx context.Context, opts ...grpc.CallOption) (StacService_UpdateClient, error)
+	//
+	// count all the items in the Stac service according to the StacRequest filter
 	Count(ctx context.Context, in *StacRequest, opts ...grpc.CallOption) (*StacDbResponse, error)
+	//
+	// delete an item from the STAC service
 	DeleteOne(ctx context.Context, in *StacItem, opts ...grpc.CallOption) (*StacDbResponse, error)
+	//
+	// using a search request get the first item that matches the request
 	SearchOne(ctx context.Context, in *StacRequest, opts ...grpc.CallOption) (*StacItem, error)
+	//
+	// Insert one item into the STAC service
 	InsertOne(ctx context.Context, in *StacItem, opts ...grpc.CallOption) (*StacDbResponse, error)
+	//
+	// Update one item in the STAC service
 	UpdateOne(ctx context.Context, in *StacItem, opts ...grpc.CallOption) (*StacDbResponse, error)
 }
 
@@ -194,13 +210,29 @@ func (c *stacServiceClient) UpdateOne(ctx context.Context, in *StacItem, opts ..
 
 // StacServiceServer is the server API for StacService service.
 type StacServiceServer interface {
+	//
+	// using a search request, stream all the results that match the search filter
 	Search(*StacRequest, StacService_SearchServer) error
+	//
+	// insert a stream of items into the STAC service
 	Insert(StacService_InsertServer) error
+	//
+	// update a stream of items in the STAC service
 	Update(StacService_UpdateServer) error
+	//
+	// count all the items in the Stac service according to the StacRequest filter
 	Count(context.Context, *StacRequest) (*StacDbResponse, error)
+	//
+	// delete an item from the STAC service
 	DeleteOne(context.Context, *StacItem) (*StacDbResponse, error)
+	//
+	// using a search request get the first item that matches the request
 	SearchOne(context.Context, *StacRequest) (*StacItem, error)
+	//
+	// Insert one item into the STAC service
 	InsertOne(context.Context, *StacItem) (*StacDbResponse, error)
+	//
+	// Update one item in the STAC service
 	UpdateOne(context.Context, *StacItem) (*StacDbResponse, error)
 }
 
@@ -419,10 +451,10 @@ var _StacService_serviceDesc = grpc.ServiceDesc{
 }
 
 func init() {
-	proto.RegisterFile("epl/protobuf/stac_service.proto", fileDescriptor_stac_service_21a5c4766795f4a3)
+	proto.RegisterFile("epl/protobuf/stac_service.proto", fileDescriptor_stac_service_d8c84c09f1bcf066)
 }
 
-var fileDescriptor_stac_service_21a5c4766795f4a3 = []byte{
+var fileDescriptor_stac_service_d8c84c09f1bcf066 = []byte{
 	// 276 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x92, 0xcd, 0x4a, 0xc4, 0x30,
 	0x14, 0x85, 0xa7, 0xfe, 0x14, 0x1a, 0x5d, 0x0c, 0x59, 0x28, 0x16, 0x41, 0x98, 0x95, 0x20, 0x36,

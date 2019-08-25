@@ -30,58 +30,152 @@ package epl.protobuf;
 
 import "google/protobuf/timestamp.proto";
 
+/*
+Not currently in use
+*/
 enum SortDirection {
     NOT_SORTED = 0;
     DESC = 1;
     ASC = 2;
 }
 
+/*
+Default Value is equals, `EQ`, so if you don't set rel_type, it is assumed you mean equals.
+*/
 enum FieldRelationship {
-    EQ = 0;
-    LT_OR_EQ = 2;
-    GT_OR_EQ = 4;
-    LT = 8;
-    GT = 16;
-    BETWEEN = 32;
-    NOT_BETWEEN = 64;
-    NOT_EQ = 128;
-    STARTS_WITH = 256;
+    EQ = 0; // for use with `value` field. return anything equaling the `value`
+    LT_OR_EQ = 2; // for use with `value` field. return anything less than or equal to the `value`
+    GT_OR_EQ = 4; // for use with `value` field. return anything greater than or equal to the `value`
+    LT = 8; // for use with `value` field. return anything less than the `value`
+    GT = 16; // for use with `value` field. return anything greater than the `value`
+    BETWEEN = 32; // for use with `start` and `stop`. return anything between `start` and `stop`
+    NOT_BETWEEN = 64; // for use with `start` and `stop`. return anything not between `start` and `stop`
+    NOT_EQ = 128; // for use with `value` field. return everything not equal to the `value1
+//    STARTS_WITH = 256;
 }
 
-message StringField {
-    string value = 1;
-    FieldRelationship rel_type = 2;
-    SortDirection sort_direction = 4;
-}
 
+//message StringField {
+//    string value = 1;
+//    FieldRelationship rel_type = 2;
+//    SortDirection sort_direction = 4;
+//}
+
+/*
+Query language for float fields.
+*/
 message FloatField {
+    /*
+    Singular float value that, combined with rel_type, allows you to search for floats that relate to this `value`.
+    `value` field cannot be combined with BETWEEN or the NOT_BETWEEN FieldRelationship `rel_type`. That means
+    you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_type`
+    */
     float value = 1;
+    /*
+    relationship type of the query.
+    EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
+    BETWEEN or NOT_BETWEEN for `start` with `stop`
+    */
     FieldRelationship rel_type = 2;
-    float between_value1 = 3;
-    float between_value2 = 4;
-    SortDirection sort_direction = 5;
+    /*
+    For searching by a range. `start` with BETWEEN searches for everything in the range from `start` to `stop`
+    `start` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+    by a `stop` value
+    */
+    float start = 3;
+    /*
+    For searching by a range. `stop` with BETWEEN searches for everything in the range from `start` to `stop`
+    `stop` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+    by a `start` value
+    */
+    float stop = 4;
+    reserved 5;
+    // SortDirection sort_direction = 5;
 }
 
 message DoubleField {
+    /*
+    Singular double value that, combined with rel_type, allows you to search for floats that relate to this `value`.
+    `value` field cannot be combined with BETWEEN or the NOT_BETWEEN FieldRelationship `rel_type`. That means
+    you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_type`
+    */
     double value = 1;
+    /*
+    relationship type of the query.
+    EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
+    BETWEEN or NOT_BETWEEN for `start` with `stop`
+    */
     FieldRelationship rel_type = 2;
-    double between_value1 = 3;
-    double between_value2 = 4;
-    SortDirection sort_direction = 5;
+    /*
+    For searching by a range. `start` with BETWEEN searches for everything in the range from `start` to `stop`
+    `start` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+    by a `stop` value
+    */
+    double start = 3;
+    /*
+    For searching by a range. `stop` with BETWEEN searches for everything in the range from `start` to `stop`
+    `stop` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+    by a `start` value
+    */
+    double stop = 4;
+    reserved 5;
+    // SortDirection sort_direction = 5;
 }
 
 message TimestampField {
+    /*
+    Singular Timestamp value that, combined with rel_type, allows you to search for floats that relate to this `value`.
+    `value` field cannot be combined with BETWEEN or the NOT_BETWEEN FieldRelationship `rel_type`. That means
+    you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_type`
+    */
     google.protobuf.Timestamp value = 1;
+    /*
+    relationship type of the query.
+    EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
+    BETWEEN or NOT_BETWEEN for `start` with `stop`
+    */
     FieldRelationship rel_type = 2;
-    google.protobuf.Timestamp between_value1 = 3;
-    google.protobuf.Timestamp between_value2 = 4;
-    SortDirection sort_direction = 5;
+    /*
+    For searching by a range. `start` with BETWEEN searches for everything in the range from `start` to `stop`
+    `start` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+    by a `stop` value
+    */
+    google.protobuf.Timestamp start = 3;
+    /*
+    For searching by a range. `stop` with BETWEEN searches for everything in the range from `start` to `stop`
+    `stop` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+    by a `start` value
+    */
+    google.protobuf.Timestamp stop = 4;
+    reserved 5;
+    // SortDirection sort_direction = 5;
 }
 
 message UInt32Field {
+    /*
+    Singular unint32 value that, combined with rel_type, allows you to search for floats that relate to this `value`.
+    `value` field cannot be combined with BETWEEN or the NOT_BETWEEN FieldRelationship `rel_type`. That means
+    you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_type`
+    */
     uint32 value = 1;
+    /*
+    relationship type of the query.
+    EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
+    BETWEEN or NOT_BETWEEN for `start` with `stop`
+    */
     FieldRelationship rel_type = 2;
-    uint32 between_value1 = 3;
-    uint32 between_value2 = 4;
-    SortDirection sort_direction = 5;
+    /*
+    For searching by a range. `start` with BETWEEN searches for everything in the range from `start` to `stop`
+    `start` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+    by a `stop` value
+    */
+    uint32 start = 3;
+    /*
+    For searching by a range. `stop` with BETWEEN searches for everything in the range from `start` to `stop`
+    `stop` with NOT_BETWEEN searches for everything not in the range from `start` and `stop`. must be accompanied
+    by a `start` value
+    */
+    uint32 stop = 4;
+    reserved 5;
+    // SortDirection sort_direction = 5;
 }

@@ -63,57 +63,65 @@ class StacServiceServicer(object):
   """
 
   def Search(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    using a search request, stream all the results that match the search filter
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Insert(self, request_iterator, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    insert a stream of items into the STAC service
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Update(self, request_iterator, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    update a stream of items in the STAC service
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def Count(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    count all the items in the Stac service according to the StacRequest filter
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def DeleteOne(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    delete an item from the STAC service
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SearchOne(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    using a search request get the first item that matches the request
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def InsertOne(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Insert one item into the STAC service
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def UpdateOne(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
+    """
+    Update one item in the STAC service
+    """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
