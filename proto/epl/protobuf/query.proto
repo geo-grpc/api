@@ -89,8 +89,10 @@ message FloatField {
     by a `start` value
     */
     float stop = 4;
-    reserved 5;
-    // SortDirection sort_direction = 5;
+    /*
+    sort direction for the return values
+    */
+    SortDirection sort_direction = 5;
 }
 
 message DoubleField {
@@ -118,8 +120,10 @@ message DoubleField {
     by a `start` value
     */
     double stop = 4;
-    reserved 5;
-    // SortDirection sort_direction = 5;
+    /*
+    sort direction for the return values
+    */
+    SortDirection sort_direction = 5;
 }
 
 message TimestampField {
@@ -147,8 +151,10 @@ message TimestampField {
     by a `start` value
     */
     google.protobuf.Timestamp stop = 4;
-    reserved 5;
-    // SortDirection sort_direction = 5;
+    /*
+    sort direction for the return values
+    */
+    SortDirection sort_direction = 5;
 }
 
 message UInt32Field {
@@ -176,6 +182,8 @@ message UInt32Field {
     by a `start` value
     */
     uint32 stop = 4;
-    reserved 5;
-    // SortDirection sort_direction = 5;
+    /*
+    sort direction for the return values
+    */
+    SortDirection sort_direction = 5;
 }

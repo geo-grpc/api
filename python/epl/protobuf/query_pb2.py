@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='epl.protobuf',
   syntax='proto3',
   serialized_options=_b('\n\020com.epl.protobufB\nQueryProtoP\001Z+github.com/geo-grpc/api/golang/epl/protobuf\242\002\003QPB'),
-  serialized_pb=_b('\n\x18\x65pl/protobuf/query.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\"q\n\nFloatField\x12\r\n\x05value\x18\x01 \x01(\x02\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\x02\x12\x0c\n\x04stop\x18\x04 \x01(\x02J\x04\x08\x05\x10\x06\"r\n\x0b\x44oubleField\x12\r\n\x05value\x18\x01 \x01(\x01\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\x01\x12\x0c\n\x04stop\x18\x04 \x01(\x01J\x04\x08\x05\x10\x06\"\xc9\x01\n\x0eTimestampField\x12)\n\x05value\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12)\n\x05start\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12(\n\x04stop\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampJ\x04\x08\x05\x10\x06\"r\n\x0bUInt32Field\x12\r\n\x05value\x18\x01 \x01(\r\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\r\x12\x0c\n\x04stop\x18\x04 \x01(\rJ\x04\x08\x05\x10\x06*2\n\rSortDirection\x12\x0e\n\nNOT_SORTED\x10\x00\x12\x08\n\x04\x44\x45SC\x10\x01\x12\x07\n\x03\x41SC\x10\x02*r\n\x11\x46ieldRelationship\x12\x06\n\x02\x45Q\x10\x00\x12\x0c\n\x08LT_OR_EQ\x10\x02\x12\x0c\n\x08GT_OR_EQ\x10\x04\x12\x06\n\x02LT\x10\x08\x12\x06\n\x02GT\x10\x10\x12\x0b\n\x07\x42\x45TWEEN\x10 \x12\x0f\n\x0bNOT_BETWEEN\x10@\x12\x0b\n\x06NOT_EQ\x10\x80\x01\x42S\n\x10\x63om.epl.protobufB\nQueryProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x03QPBb\x06proto3')
+  serialized_pb=_b('\n\x18\x65pl/protobuf/query.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa0\x01\n\nFloatField\x12\r\n\x05value\x18\x01 \x01(\x02\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\x02\x12\x0c\n\x04stop\x18\x04 \x01(\x02\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xa1\x01\n\x0b\x44oubleField\x12\r\n\x05value\x18\x01 \x01(\x01\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\x01\x12\x0c\n\x04stop\x18\x04 \x01(\x01\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xf8\x01\n\x0eTimestampField\x12)\n\x05value\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12)\n\x05start\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12(\n\x04stop\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xa1\x01\n\x0bUInt32Field\x12\r\n\x05value\x18\x01 \x01(\r\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\r\x12\x0c\n\x04stop\x18\x04 \x01(\r\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection*2\n\rSortDirection\x12\x0e\n\nNOT_SORTED\x10\x00\x12\x08\n\x04\x44\x45SC\x10\x01\x12\x07\n\x03\x41SC\x10\x02*r\n\x11\x46ieldRelationship\x12\x06\n\x02\x45Q\x10\x00\x12\x0c\n\x08LT_OR_EQ\x10\x02\x12\x0c\n\x08GT_OR_EQ\x10\x04\x12\x06\n\x02LT\x10\x08\x12\x06\n\x02GT\x10\x10\x12\x0b\n\x07\x42\x45TWEEN\x10 \x12\x0f\n\x0bNOT_BETWEEN\x10@\x12\x0b\n\x06NOT_EQ\x10\x80\x01\x42S\n\x10\x63om.epl.protobufB\nQueryProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x03QPBb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -46,8 +46,8 @@ _SORTDIRECTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=626,
-  serialized_end=676,
+  serialized_start=817,
+  serialized_end=867,
 )
 _sym_db.RegisterEnumDescriptor(_SORTDIRECTION)
 
@@ -93,8 +93,8 @@ _FIELDRELATIONSHIP = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=678,
-  serialized_end=792,
+  serialized_start=869,
+  serialized_end=983,
 )
 _sym_db.RegisterEnumDescriptor(_FIELDRELATIONSHIP)
 
@@ -148,6 +148,13 @@ _FLOATFIELD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sort_direction', full_name='epl.protobuf.FloatField.sort_direction', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -160,8 +167,8 @@ _FLOATFIELD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=75,
-  serialized_end=188,
+  serialized_start=76,
+  serialized_end=236,
 )
 
 
@@ -200,6 +207,13 @@ _DOUBLEFIELD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sort_direction', full_name='epl.protobuf.DoubleField.sort_direction', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -212,8 +226,8 @@ _DOUBLEFIELD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=190,
-  serialized_end=304,
+  serialized_start=239,
+  serialized_end=400,
 )
 
 
@@ -252,6 +266,13 @@ _TIMESTAMPFIELD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sort_direction', full_name='epl.protobuf.TimestampField.sort_direction', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -264,8 +285,8 @@ _TIMESTAMPFIELD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=307,
-  serialized_end=508,
+  serialized_start=403,
+  serialized_end=651,
 )
 
 
@@ -304,6 +325,13 @@ _UINT32FIELD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sort_direction', full_name='epl.protobuf.UInt32Field.sort_direction', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -316,17 +344,21 @@ _UINT32FIELD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=510,
-  serialized_end=624,
+  serialized_start=654,
+  serialized_end=815,
 )
 
 _FLOATFIELD.fields_by_name['rel_type'].enum_type = _FIELDRELATIONSHIP
+_FLOATFIELD.fields_by_name['sort_direction'].enum_type = _SORTDIRECTION
 _DOUBLEFIELD.fields_by_name['rel_type'].enum_type = _FIELDRELATIONSHIP
+_DOUBLEFIELD.fields_by_name['sort_direction'].enum_type = _SORTDIRECTION
 _TIMESTAMPFIELD.fields_by_name['value'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _TIMESTAMPFIELD.fields_by_name['rel_type'].enum_type = _FIELDRELATIONSHIP
 _TIMESTAMPFIELD.fields_by_name['start'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _TIMESTAMPFIELD.fields_by_name['stop'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_TIMESTAMPFIELD.fields_by_name['sort_direction'].enum_type = _SORTDIRECTION
 _UINT32FIELD.fields_by_name['rel_type'].enum_type = _FIELDRELATIONSHIP
+_UINT32FIELD.fields_by_name['sort_direction'].enum_type = _SORTDIRECTION
 DESCRIPTOR.message_types_by_name['FloatField'] = _FLOATFIELD
 DESCRIPTOR.message_types_by_name['DoubleField'] = _DOUBLEFIELD
 DESCRIPTOR.message_types_by_name['TimestampField'] = _TIMESTAMPFIELD
