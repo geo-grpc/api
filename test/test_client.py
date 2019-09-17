@@ -846,17 +846,20 @@ class TestBasic(unittest.TestCase):
         pt1 = Point(0, 0, wkid=4326)
         pt2 = Point(1, 0, wkid=4326)
         az12, az21, dist = pt1.geodetic_inverse(pt2)
-
         self.assertEquals(math.degrees(az12), 90)
+        self.assertEquals(math.degrees(az21), -90)
+
         pt2 = Point(0, 1, wkid=4326)
         az12, az21, dist = pt1.geodetic_inverse(pt2)
-
         self.assertEquals(math.degrees(az12), 0)
+        self.assertEquals(math.degrees(az21), -180)
+
         pt2 = Point(0, -1, wkid=4326)
         az12, az21, dist = pt1.geodetic_inverse(pt2)
-
         self.assertEquals(math.degrees(az12), 180)
+        self.assertEquals(math.degrees(az21), 0)
+
         pt2 = Point(-1, 0, wkid=4326)
         az12, az21, dist = pt1.geodetic_inverse(pt2)
-
         self.assertEquals(360 + math.degrees(az12), 270)
+        self.assertEquals(math.degrees(az21), 90)
