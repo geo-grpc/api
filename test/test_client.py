@@ -842,7 +842,7 @@ class TestBasic(unittest.TestCase):
         boundingbox = polygon.project(to_wkid=3857)
         print(boundingbox.buffer(-2000).bounds)
 
-    def test_geodetic_inverse(self):
+    def test_geodetic_inverse_multiple(self):
         pt1 = Point(0, 0, wkid=4326)
         pt2 = Point(1, 0, wkid=4326)
         az12, az21, dist = pt1.geodetic_inverse(pt2)
