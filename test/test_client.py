@@ -841,3 +841,22 @@ class TestBasic(unittest.TestCase):
         polygon = Polygon.import_wkt(wkt=austin_wkt, wkid=4326)
         boundingbox = polygon.project(to_wkid=3857)
         print(boundingbox.buffer(-2000).bounds)
+
+    def test_geodetic_inverse(self):
+        pt1 = Point(0, 0, wkid=4326)
+        pt2 = Point(1, 0, wkid=4326)
+        az12, az21, dist = pt1.geodetic_inverse(pt2)
+
+        self.assertEquals(math.degrees(az12), 90)
+        pt2 = Point(0, 1, wkid=4326)
+        az12, az21, dist = pt1.geodetic_inverse(pt2)
+
+        self.assertEquals(math.degrees(az12), 0)
+        pt2 = Point(0, -1, wkid=4326)
+        az12, az21, dist = pt1.geodetic_inverse(pt2)
+
+        self.assertEquals(math.degrees(az12), 180)
+        pt2 = Point(-1, 0, wkid=4326)
+        az12, az21, dist = pt1.geodetic_inverse(pt2)
+
+        self.assertEquals(360 + math.degrees(az12), 270)
