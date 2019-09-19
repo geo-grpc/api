@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='epl.protobuf',
   syntax='proto3',
   serialized_options=_b('\n\020com.epl.protobufB\nQueryProtoP\001Z+github.com/geo-grpc/api/golang/epl/protobuf\242\002\003QPB'),
-  serialized_pb=_b('\n\x18\x65pl/protobuf/query.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\"\xad\x01\n\nFloatField\x12\r\n\x05value\x18\x01 \x01(\x02\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\x02\x12\x0c\n\x04stop\x18\x04 \x01(\x02\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\x12\x0b\n\x03set\x18\x06 \x03(\x02\"\xae\x01\n\x0b\x44oubleField\x12\r\n\x05value\x18\x01 \x01(\x01\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\x01\x12\x0c\n\x04stop\x18\x04 \x01(\x01\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\x12\x0b\n\x03set\x18\x06 \x03(\x01\"\xf8\x01\n\x0eTimestampField\x12)\n\x05value\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12)\n\x05start\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12(\n\x04stop\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xae\x01\n\x0bUInt32Field\x12\r\n\x05value\x18\x01 \x01(\r\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\r\x12\x0c\n\x04stop\x18\x04 \x01(\r\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\x12\x0b\n\x03set\x18\x06 \x03(\r*2\n\rSortDirection\x12\x0e\n\nNOT_SORTED\x10\x00\x12\x08\n\x04\x44\x45SC\x10\x01\x12\x07\n\x03\x41SC\x10\x02*\x88\x01\n\x11\x46ieldRelationship\x12\x06\n\x02\x45Q\x10\x00\x12\x0c\n\x08LT_OR_EQ\x10\x02\x12\x0c\n\x08GT_OR_EQ\x10\x04\x12\x06\n\x02LT\x10\x08\x12\x06\n\x02GT\x10\x10\x12\x0b\n\x07\x42\x45TWEEN\x10 \x12\x0f\n\x0bNOT_BETWEEN\x10@\x12\x0b\n\x06NOT_EQ\x10\x80\x01\x12\x07\n\x02IN\x10\x80\x02\x12\x0b\n\x06NOT_IN\x10\x80\x04\x42S\n\x10\x63om.epl.protobufB\nQueryProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x03QPBb\x06proto3')
+  serialized_pb=_b('\n\x18\x65pl/protobuf/query.proto\x12\x0c\x65pl.protobuf\x1a\x1fgoogle/protobuf/timestamp.proto\"\xad\x01\n\nFloatField\x12\r\n\x05value\x18\x01 \x01(\x02\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\x02\x12\x0c\n\x04stop\x18\x04 \x01(\x02\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\x12\x0b\n\x03set\x18\x06 \x03(\x02\"\xae\x01\n\x0b\x44oubleField\x12\r\n\x05value\x18\x01 \x01(\x01\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\x01\x12\x0c\n\x04stop\x18\x04 \x01(\x01\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\x12\x0b\n\x03set\x18\x06 \x03(\x01\"\xf8\x01\n\x0eTimestampField\x12)\n\x05value\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12)\n\x05start\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12(\n\x04stop\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\"\xae\x01\n\x0bUInt32Field\x12\r\n\x05value\x18\x01 \x01(\r\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\r\n\x05start\x18\x03 \x01(\r\x12\x0c\n\x04stop\x18\x04 \x01(\r\x12\x33\n\x0esort_direction\x18\x05 \x01(\x0e\x32\x1b.epl.protobuf.SortDirection\x12\x0b\n\x03set\x18\x06 \x03(\r\"\\\n\x0bStringField\x12\r\n\x05value\x18\x01 \x01(\t\x12\x31\n\x08rel_type\x18\x02 \x01(\x0e\x32\x1f.epl.protobuf.FieldRelationship\x12\x0b\n\x03set\x18\x06 \x03(\t*2\n\rSortDirection\x12\x0e\n\nNOT_SORTED\x10\x00\x12\x08\n\x04\x44\x45SC\x10\x01\x12\x07\n\x03\x41SC\x10\x02*\xa2\x01\n\x11\x46ieldRelationship\x12\x06\n\x02\x45Q\x10\x00\x12\x0c\n\x08LT_OR_EQ\x10\x02\x12\x0c\n\x08GT_OR_EQ\x10\x04\x12\x06\n\x02LT\x10\x08\x12\x06\n\x02GT\x10\x10\x12\x0b\n\x07\x42\x45TWEEN\x10 \x12\x0f\n\x0bNOT_BETWEEN\x10@\x12\x0b\n\x06NOT_EQ\x10\x80\x01\x12\x07\n\x02IN\x10\x80\x02\x12\x0b\n\x06NOT_IN\x10\x80\x04\x12\t\n\x04LIKE\x10\x80\x08\x12\r\n\x08NOT_LIKE\x10\x80\x10\x42S\n\x10\x63om.epl.protobufB\nQueryProtoP\x01Z+github.com/geo-grpc/api/golang/epl/protobuf\xa2\x02\x03QPBb\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -46,8 +46,8 @@ _SORTDIRECTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=856,
-  serialized_end=906,
+  serialized_start=950,
+  serialized_end=1000,
 )
 _sym_db.RegisterEnumDescriptor(_SORTDIRECTION)
 
@@ -98,11 +98,19 @@ _FIELDRELATIONSHIP = _descriptor.EnumDescriptor(
       name='NOT_IN', index=9, number=512,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LIKE', index=10, number=1024,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='NOT_LIKE', index=11, number=2048,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=909,
-  serialized_end=1045,
+  serialized_start=1003,
+  serialized_end=1165,
 )
 _sym_db.RegisterEnumDescriptor(_FIELDRELATIONSHIP)
 
@@ -120,6 +128,8 @@ NOT_BETWEEN = 64
 NOT_EQ = 128
 IN = 256
 NOT_IN = 512
+LIKE = 1024
+NOT_LIKE = 2048
 
 
 
@@ -379,6 +389,51 @@ _UINT32FIELD = _descriptor.Descriptor(
   serialized_end=854,
 )
 
+
+_STRINGFIELD = _descriptor.Descriptor(
+  name='StringField',
+  full_name='epl.protobuf.StringField',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='epl.protobuf.StringField.value', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='rel_type', full_name='epl.protobuf.StringField.rel_type', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='set', full_name='epl.protobuf.StringField.set', index=2,
+      number=6, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=856,
+  serialized_end=948,
+)
+
 _FLOATFIELD.fields_by_name['rel_type'].enum_type = _FIELDRELATIONSHIP
 _FLOATFIELD.fields_by_name['sort_direction'].enum_type = _SORTDIRECTION
 _DOUBLEFIELD.fields_by_name['rel_type'].enum_type = _FIELDRELATIONSHIP
@@ -390,10 +445,12 @@ _TIMESTAMPFIELD.fields_by_name['stop'].message_type = google_dot_protobuf_dot_ti
 _TIMESTAMPFIELD.fields_by_name['sort_direction'].enum_type = _SORTDIRECTION
 _UINT32FIELD.fields_by_name['rel_type'].enum_type = _FIELDRELATIONSHIP
 _UINT32FIELD.fields_by_name['sort_direction'].enum_type = _SORTDIRECTION
+_STRINGFIELD.fields_by_name['rel_type'].enum_type = _FIELDRELATIONSHIP
 DESCRIPTOR.message_types_by_name['FloatField'] = _FLOATFIELD
 DESCRIPTOR.message_types_by_name['DoubleField'] = _DOUBLEFIELD
 DESCRIPTOR.message_types_by_name['TimestampField'] = _TIMESTAMPFIELD
 DESCRIPTOR.message_types_by_name['UInt32Field'] = _UINT32FIELD
+DESCRIPTOR.message_types_by_name['StringField'] = _STRINGFIELD
 DESCRIPTOR.enum_types_by_name['SortDirection'] = _SORTDIRECTION
 DESCRIPTOR.enum_types_by_name['FieldRelationship'] = _FIELDRELATIONSHIP
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -425,6 +482,13 @@ UInt32Field = _reflection.GeneratedProtocolMessageType('UInt32Field', (_message.
   # @@protoc_insertion_point(class_scope:epl.protobuf.UInt32Field)
   ))
 _sym_db.RegisterMessage(UInt32Field)
+
+StringField = _reflection.GeneratedProtocolMessageType('StringField', (_message.Message,), dict(
+  DESCRIPTOR = _STRINGFIELD,
+  __module__ = 'epl.protobuf.query_pb2'
+  # @@protoc_insertion_point(class_scope:epl.protobuf.StringField)
+  ))
+_sym_db.RegisterMessage(StringField)
 
 
 DESCRIPTOR._options = None

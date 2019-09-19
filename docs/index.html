@@ -329,6 +329,10 @@
                 </li>
               
                 <li>
+                  <a href="#epl.protobuf.StringField"><span class="badge">M</span>StringField</a>
+                </li>
+              
+                <li>
                   <a href="#epl.protobuf.TimestampField"><span class="badge">M</span>TimestampField</a>
                 </li>
               
@@ -2129,7 +2133,8 @@ you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_ty
                   <td></td>
                   <td><p>relationship type of the query.
 EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
-BETWEEN or NOT_BETWEEN for `start` with `stop` </p></td>
+BETWEEN or NOT_BETWEEN for `start` with `stop`
+IN or NOT_IN for use with `set` </p></td>
                 </tr>
               
                 <tr>
@@ -2196,7 +2201,8 @@ you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_ty
                   <td></td>
                   <td><p>relationship type of the query.
 EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
-BETWEEN or NOT_BETWEEN for `start` with `stop` </p></td>
+BETWEEN or NOT_BETWEEN for `start` with `stop`
+IN or NOT_IN for use with `set` </p></td>
                 </tr>
               
                 <tr>
@@ -2229,6 +2235,47 @@ by a `start` value </p></td>
                   <td><a href="#float">float</a></td>
                   <td>repeated</td>
                   <td><p>&#39;IN&#39; or &#39;NOT IN&#39; sql operations </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="epl.protobuf.StringField">StringField</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>for use with EQ, NOT_EQ, LIKE and NOT_LIKE </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rel_type</td>
+                  <td><a href="#epl.protobuf.FieldRelationship">FieldRelationship</a></td>
+                  <td></td>
+                  <td><p>relationship type of the query.
+EQ, NOT_EQ for `value`
+IN or NOT_IN for use with `set`
+LIKE or NOT_LIKE test if the string in `value` matches or does not match the supplied pattern </p></td>
+                </tr>
+              
+                <tr>
+                  <td>set</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>For use with &#39;IN&#39; or &#39;NOT IN&#39; sql operations </p></td>
                 </tr>
               
             </tbody>
@@ -2323,7 +2370,8 @@ you can use the EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ FieldRelationship `rel_ty
                   <td></td>
                   <td><p>relationship type of the query.
 EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
-BETWEEN or NOT_BETWEEN for `start` with `stop` </p></td>
+BETWEEN or NOT_BETWEEN for `start` with `stop`
+IN or NOT_IN for use with `set` </p></td>
                 </tr>
               
                 <tr>
@@ -2433,6 +2481,18 @@ by a `start` value </p></td>
                 <td>NOT_IN</td>
                 <td>512</td>
                 <td><p>for use with `set` field</p></td>
+              </tr>
+            
+              <tr>
+                <td>LIKE</td>
+                <td>1024</td>
+                <td><p>for use with `value` and StringField</p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_LIKE</td>
+                <td>2048</td>
+                <td><p>for use with `value` and StringField</p></td>
               </tr>
             
           </tbody>
@@ -3238,6 +3298,13 @@ by a `start` value </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id_complex</td>
+                  <td><a href="#epl.protobuf.StringField">StringField</a></td>
+                  <td></td>
+                  <td><p>more complex id search. allows for searching by pattern or by IN or NOT_IN sets </p></td>
                 </tr>
               
             </tbody>

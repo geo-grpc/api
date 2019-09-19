@@ -129,6 +129,9 @@ message StacRequest {
     LandsatRequest landsat = 13;
 
     string collection = 14;
+
+    // more complex id search. allows for searching by pattern or by IN or NOT_IN sets
+    StringField id_complex =15;
 }
 
 

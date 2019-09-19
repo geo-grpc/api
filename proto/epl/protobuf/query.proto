@@ -53,15 +53,9 @@ enum FieldRelationship {
     NOT_EQ = 128; // for use with `value` field. return everything not equal to the `value1
     IN = 256; // for use with with `set` field
     NOT_IN = 512; // for use with `set` field
-//    STARTS_WITH = 256;
+    LIKE = 1024; // for use with `value` and StringField
+    NOT_LIKE = 2048; // for use with `value` and StringField
 }
-
-
-//message StringField {
-//    string value = 1;
-//    FieldRelationship rel_type = 2;
-//    SortDirection sort_direction = 4;
-//}
 
 /*
 Query language for float fields.
@@ -77,6 +71,7 @@ message FloatField {
     relationship type of the query.
     EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
     BETWEEN or NOT_BETWEEN for `start` with `stop`
+    IN or NOT_IN for use with `set`
     */
     FieldRelationship rel_type = 2;
     /*
@@ -112,6 +107,7 @@ message DoubleField {
     relationship type of the query.
     EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
     BETWEEN or NOT_BETWEEN for `start` with `stop`
+    IN or NOT_IN for use with `set`
     */
     FieldRelationship rel_type = 2;
     /*
@@ -178,6 +174,7 @@ message UInt32Field {
     relationship type of the query.
     EQ, LT_OR_EQ, GT_OR_EQ, LT, GT, NOT_EQ for `value`
     BETWEEN or NOT_BETWEEN for `start` with `stop`
+    IN or NOT_IN for use with `set`
     */
     FieldRelationship rel_type = 2;
     /*
@@ -200,4 +197,22 @@ message UInt32Field {
     'IN' or 'NOT IN' sql operations
     */
     repeated uint32 set = 6;
+}
+
+message StringField {
+    /*
+    for use with EQ, NOT_EQ, LIKE and NOT_LIKE
+    */
+    string value = 1;
+    /*
+    relationship type of the query.
+    EQ, NOT_EQ for `value`
+    IN or NOT_IN for use with `set`
+    LIKE or NOT_LIKE test if the string in `value` matches or does not match the supplied pattern
+    */
+    FieldRelationship rel_type = 2;
+    /*
+    For use with 'IN' or 'NOT IN' sql operations
+    */
+    repeated string set = 6;
 }
