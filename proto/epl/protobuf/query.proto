@@ -51,6 +51,8 @@ enum FieldRelationship {
     BETWEEN = 32; // for use with `start` and `stop`. return anything between `start` and `stop`
     NOT_BETWEEN = 64; // for use with `start` and `stop`. return anything not between `start` and `stop`
     NOT_EQ = 128; // for use with `value` field. return everything not equal to the `value1
+    IN = 256; // for use with with `set` field
+    NOT_IN = 512; // for use with `set` field
 //    STARTS_WITH = 256;
 }
 
@@ -93,6 +95,10 @@ message FloatField {
     sort direction for the return values
     */
     SortDirection sort_direction = 5;
+    /*
+    'IN' or 'NOT IN' sql operations
+    */
+    repeated float set = 6;
 }
 
 message DoubleField {
@@ -124,6 +130,10 @@ message DoubleField {
     sort direction for the return values
     */
     SortDirection sort_direction = 5;
+    /*
+    'IN' or 'NOT IN' sql operations
+    */
+    repeated double set = 6;
 }
 
 message TimestampField {
@@ -186,4 +196,8 @@ message UInt32Field {
     sort direction for the return values
     */
     SortDirection sort_direction = 5;
+    /*
+    'IN' or 'NOT IN' sql operations
+    */
+    repeated uint32 set = 6;
 }

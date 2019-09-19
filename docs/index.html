@@ -513,6 +513,20 @@
                   <td><p>spatial reference of envelope </p></td>
                 </tr>
               
+                <tr>
+                  <td>zmin</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>zmax</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2143,6 +2157,13 @@ by a `start` value </p></td>
                   <td><p>sort direction for the return values </p></td>
                 </tr>
               
+                <tr>
+                  <td>set</td>
+                  <td><a href="#double">double</a></td>
+                  <td>repeated</td>
+                  <td><p>&#39;IN&#39; or &#39;NOT IN&#39; sql operations </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2201,6 +2222,13 @@ by a `start` value </p></td>
                   <td><a href="#epl.protobuf.SortDirection">SortDirection</a></td>
                   <td></td>
                   <td><p>sort direction for the return values </p></td>
+                </tr>
+              
+                <tr>
+                  <td>set</td>
+                  <td><a href="#float">float</a></td>
+                  <td>repeated</td>
+                  <td><p>&#39;IN&#39; or &#39;NOT IN&#39; sql operations </p></td>
                 </tr>
               
             </tbody>
@@ -2323,6 +2351,13 @@ by a `start` value </p></td>
                   <td><p>sort direction for the return values </p></td>
                 </tr>
               
+                <tr>
+                  <td>set</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>repeated</td>
+                  <td><p>&#39;IN&#39; or &#39;NOT IN&#39; sql operations </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2386,6 +2421,18 @@ by a `start` value </p></td>
                 <td>NOT_EQ</td>
                 <td>128</td>
                 <td><p>for use with `value` field. return everything not equal to the `value1</p></td>
+              </tr>
+            
+              <tr>
+                <td>IN</td>
+                <td>256</td>
+                <td><p>for use with with `set` field</p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_IN</td>
+                <td>512</td>
+                <td><p>for use with `set` field</p></td>
               </tr>
             
           </tbody>

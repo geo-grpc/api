@@ -160,6 +160,9 @@ message EnvelopeData {
 
     // spatial reference of envelope
     SpatialReferenceData sr = 5;
+
+    double zmin = 6;
+    double zmax = 7;
 }
 
 /*
