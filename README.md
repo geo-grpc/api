@@ -1,6 +1,28 @@
 # Python gRPC Geometry Client
 Why wrap shapely? We wanted three different abilities. Protobuf support, a required spatial reference and spatial reference aware geometry operations.
 
+### Install
+
+#### Linux or Max
+```bash
+pip install epl.geometry
+```
+
+#### Windows
+- Find out your whether you are using Windows 32-bit or 64-bit. Go to Settings => System => About => System Type .
+- Find out your python version. Open Command prompt, enter python --version and remember the first two numbers. For example my version is Python 3.7.3 so I should remember the number 37:
+```bash
+pip install wheel
+```
+- Go here and download the wheel corresponding to items 1–2. For example, I have 64-bit OS and Python 3.7.3 so I need to download file Shapely-1.6.4.post2-cp37-cp37m-win_amd64.whl .
+```bash
+pip install <path-to-Downloads>\<filename_from_item_4> .
+```
+For example:
+```bash
+pip install C:\Users\Dalya\Downloads\Shapely-1.6.4.post2-cp37-cp37m-win_amd64.whl .
+```
+
 ### Protobuf
 We wanted to import, export and operate on protobuf geometries and envelopes. Our microservices communicate using protobufs, so it made sense for us to have a helper library that allowed us to work with the geometries on our client and quickly construct protobufs for messaging.
 
