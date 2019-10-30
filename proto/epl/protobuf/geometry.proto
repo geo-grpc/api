@@ -116,7 +116,7 @@ enum SimpleState {
 message SpatialReferenceData {
     // oneof block not currently used: https://github.com/golang/protobuf/issues/283
 
-    // wkid (well know id), or srid (spatial reference id) of the projected or geographic coordinate system
+    // epsg wkid (well know id), or srid (spatial reference id) of the projected or geographic coordinate system
     int32 wkid = 1;
     // proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html
     string proj4 = 2;
@@ -124,6 +124,8 @@ message SpatialReferenceData {
     Custom custom = 3;
     // well-known text string of spatial reference
     string wkt = 4;
+    // esri wkid (if not yet approved by epsg)
+    int32 esri_wkid = 5;
 
     // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
 
