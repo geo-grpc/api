@@ -343,6 +343,7 @@ enum AssetType {
     OVERVIEW = 15; // GDAL overview file https://gdal.org/programs/gdaladdo.html
     JSON = 16;
     HTML = 17;
+    WEBP = 18;
 }
 
 enum CloudPlatform {
