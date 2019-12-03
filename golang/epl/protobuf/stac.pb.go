@@ -93,7 +93,7 @@ func (x AssetType) String() string {
 	return proto.EnumName(AssetType_name, int32(x))
 }
 func (AssetType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{0}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{0}
 }
 
 type CloudPlatform int32
@@ -122,7 +122,7 @@ func (x CloudPlatform) String() string {
 	return proto.EnumName(CloudPlatform_name, int32(x))
 }
 func (CloudPlatform) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{1}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{1}
 }
 
 type Sar_Platform int32
@@ -148,7 +148,7 @@ func (x Sar_Platform) String() string {
 	return proto.EnumName(Sar_Platform_name, int32(x))
 }
 func (Sar_Platform) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{5, 0}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{5, 0}
 }
 
 type Sar_Instrument int32
@@ -168,7 +168,7 @@ func (x Sar_Instrument) String() string {
 	return proto.EnumName(Sar_Instrument_name, int32(x))
 }
 func (Sar_Instrument) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{5, 1}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{5, 1}
 }
 
 type Eo_Platform int32
@@ -219,7 +219,7 @@ func (x Eo_Platform) String() string {
 	return proto.EnumName(Eo_Platform_name, int32(x))
 }
 func (Eo_Platform) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{6, 0}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{6, 0}
 }
 
 type Eo_Instrument int32
@@ -261,7 +261,7 @@ func (x Eo_Instrument) String() string {
 	return proto.EnumName(Eo_Instrument_name, int32(x))
 }
 func (Eo_Instrument) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{6, 1}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{6, 1}
 }
 
 type Eo_Constellation int32
@@ -295,7 +295,7 @@ func (x Eo_Constellation) String() string {
 	return proto.EnumName(Eo_Constellation_name, int32(x))
 }
 func (Eo_Constellation) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{6, 2}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{6, 2}
 }
 
 type Eo_Band int32
@@ -358,7 +358,7 @@ func (x Eo_Band) String() string {
 	return proto.EnumName(Eo_Band_name, int32(x))
 }
 func (Eo_Band) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{6, 3}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{6, 3}
 }
 
 type Landsat_ProcessingLevel int32
@@ -393,7 +393,7 @@ func (x Landsat_ProcessingLevel) String() string {
 	return proto.EnumName(Landsat_ProcessingLevel_name, int32(x))
 }
 func (Landsat_ProcessingLevel) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{8, 0}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{8, 0}
 }
 
 // *
@@ -438,7 +438,7 @@ func (m *StacItem) Reset()         { *m = StacItem{} }
 func (m *StacItem) String() string { return proto.CompactTextString(m) }
 func (*StacItem) ProtoMessage()    {}
 func (*StacItem) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{0}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{0}
 }
 func (m *StacItem) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StacItem.Unmarshal(m, b)
@@ -603,7 +603,7 @@ func (m *StacRequest) Reset()         { *m = StacRequest{} }
 func (m *StacRequest) String() string { return proto.CompactTextString(m) }
 func (*StacRequest) ProtoMessage()    {}
 func (*StacRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{1}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{1}
 }
 func (m *StacRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StacRequest.Unmarshal(m, b)
@@ -760,7 +760,7 @@ func (m *Asset) Reset()         { *m = Asset{} }
 func (m *Asset) String() string { return proto.CompactTextString(m) }
 func (*Asset) ProtoMessage()    {}
 func (*Asset) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{2}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{2}
 }
 func (m *Asset) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Asset.Unmarshal(m, b)
@@ -862,7 +862,7 @@ func (m *DatetimeRange) Reset()         { *m = DatetimeRange{} }
 func (m *DatetimeRange) String() string { return proto.CompactTextString(m) }
 func (*DatetimeRange) ProtoMessage()    {}
 func (*DatetimeRange) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{3}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{3}
 }
 func (m *DatetimeRange) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DatetimeRange.Unmarshal(m, b)
@@ -912,7 +912,7 @@ func (m *StacDbResponse) Reset()         { *m = StacDbResponse{} }
 func (m *StacDbResponse) String() string { return proto.CompactTextString(m) }
 func (*StacDbResponse) ProtoMessage()    {}
 func (*StacDbResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{4}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{4}
 }
 func (m *StacDbResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StacDbResponse.Unmarshal(m, b)
@@ -973,7 +973,7 @@ func (m *Sar) Reset()         { *m = Sar{} }
 func (m *Sar) String() string { return proto.CompactTextString(m) }
 func (*Sar) ProtoMessage()    {}
 func (*Sar) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{5}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{5}
 }
 func (m *Sar) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Sar.Unmarshal(m, b)
@@ -1011,15 +1011,15 @@ type Eo struct {
 	Instrument Eo_Instrument `protobuf:"varint,3,opt,name=instrument,proto3,enum=epl.protobuf.Eo_Instrument" json:"instrument,omitempty"`
 	// constellation of data collectors
 	Constellation Eo_Constellation `protobuf:"varint,4,opt,name=constellation,proto3,enum=epl.protobuf.Eo_Constellation" json:"constellation,omitempty"`
-	// sun azimuth (at point of sensor?)
+	// Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
 	SunAzimuth *wrappers.FloatValue `protobuf:"bytes,5,opt,name=sun_azimuth,json=sunAzimuth,proto3" json:"sun_azimuth,omitempty"`
-	// sun elevation (at point of sensor?)
+	// Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).
 	SunElevation *wrappers.FloatValue `protobuf:"bytes,6,opt,name=sun_elevation,json=sunElevation,proto3" json:"sun_elevation,omitempty"`
 	// ground sampling distance
 	Gsd *wrappers.FloatValue `protobuf:"bytes,7,opt,name=gsd,proto3" json:"gsd,omitempty"`
-	// off nadir angle of data
+	// Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
 	OffNadir *wrappers.FloatValue `protobuf:"bytes,8,opt,name=off_nadir,json=offNadir,proto3" json:"off_nadir,omitempty"`
-	// azimuth of the collection platform when sensor collected data (top of image in direction of azimuth)
+	// The angle measured from the sub-sensor point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).
 	Azimuth *wrappers.FloatValue `protobuf:"bytes,9,opt,name=azimuth,proto3" json:"azimuth,omitempty"`
 	// percent cloud cover. 0 no clouds, 100 completely covered
 	CloudCover *wrappers.FloatValue `protobuf:"bytes,10,opt,name=cloud_cover,json=cloudCover,proto3" json:"cloud_cover,omitempty"`
@@ -1036,7 +1036,7 @@ func (m *Eo) Reset()         { *m = Eo{} }
 func (m *Eo) String() string { return proto.CompactTextString(m) }
 func (*Eo) ProtoMessage()    {}
 func (*Eo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{6}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{6}
 }
 func (m *Eo) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Eo.Unmarshal(m, b)
@@ -1174,7 +1174,7 @@ func (m *EoRequest) Reset()         { *m = EoRequest{} }
 func (m *EoRequest) String() string { return proto.CompactTextString(m) }
 func (*EoRequest) ProtoMessage()    {}
 func (*EoRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{7}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{7}
 }
 func (m *EoRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_EoRequest.Unmarshal(m, b)
@@ -1288,7 +1288,7 @@ func (m *Landsat) Reset()         { *m = Landsat{} }
 func (m *Landsat) String() string { return proto.CompactTextString(m) }
 func (*Landsat) ProtoMessage()    {}
 func (*Landsat) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{8}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{8}
 }
 func (m *Landsat) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Landsat.Unmarshal(m, b)
@@ -1366,7 +1366,7 @@ func (m *LandsatRequest) Reset()         { *m = LandsatRequest{} }
 func (m *LandsatRequest) String() string { return proto.CompactTextString(m) }
 func (*LandsatRequest) ProtoMessage()    {}
 func (*LandsatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_stac_e68be7cc80a4980d, []int{9}
+	return fileDescriptor_stac_3384f9017715c3a6, []int{9}
 }
 func (m *LandsatRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_LandsatRequest.Unmarshal(m, b)
@@ -1451,9 +1451,9 @@ func init() {
 	proto.RegisterEnum("epl.protobuf.Landsat_ProcessingLevel", Landsat_ProcessingLevel_name, Landsat_ProcessingLevel_value)
 }
 
-func init() { proto.RegisterFile("epl/protobuf/stac.proto", fileDescriptor_stac_e68be7cc80a4980d) }
+func init() { proto.RegisterFile("epl/protobuf/stac.proto", fileDescriptor_stac_3384f9017715c3a6) }
 
-var fileDescriptor_stac_e68be7cc80a4980d = []byte{
+var fileDescriptor_stac_3384f9017715c3a6 = []byte{
 	// 2062 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x58, 0xcf, 0x76, 0xdb, 0xc6,
 	0xf5, 0x0e, 0xff, 0x83, 0x97, 0x22, 0x35, 0x9e, 0x9f, 0x13, 0x53, 0x72, 0xe2, 0xe8, 0xc7, 0x34,

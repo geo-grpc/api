@@ -276,15 +276,15 @@ message Eo {
     // constellation of data collectors
     Constellation constellation = 4;
 
-    // sun azimuth (at point of sensor?)
+    // Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
     google.protobuf.FloatValue sun_azimuth = 5;
-    // sun elevation (at point of sensor?)
+    // Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).
     google.protobuf.FloatValue sun_elevation = 6;
     // ground sampling distance
     google.protobuf.FloatValue gsd = 7;
-    // off nadir angle of data
+    // Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
     google.protobuf.FloatValue off_nadir = 8;
-    // azimuth of the collection platform when sensor collected data (top of image in direction of azimuth)
+    // The angle measured from the sub-sensor point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).
     google.protobuf.FloatValue azimuth = 9;
     // percent cloud cover. 0 no clouds, 100 completely covered
     google.protobuf.FloatValue cloud_cover = 10;
