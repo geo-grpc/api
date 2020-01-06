@@ -1,0 +1,17 @@
+[package]
+name = "stac-jrpc-api"
+version = "0.1.0"
+authors = ["sunny-g <sunny.gonna@gmail.com>"]
+edition = "2018"
+build = "build.rs"
+
+[dependencies]
+grpcio = { version = "0.4", features = ["openssl"] }
+protobuf = { version = "2", features = ["with-serde"] }
+serde = "1.0"
+serde_derive = "1.0"
+
+[build-dependencies]
+lazy_static = "1.4"
+protobuf-codegen = { version = "2" }
+protoc-grpcio = "1.1"
