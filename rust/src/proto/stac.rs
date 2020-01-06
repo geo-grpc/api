@@ -19,6 +19,8 @@
 #![allow(unused_results)]
 //! Generated file from `epl/protobuf/stac.proto`
 
+// NOTE: THE FOLLOWING LINE WAS HAND-WRITTEN, DO NOT OMIT
+use serde::{Deserialize, Serialize};
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 

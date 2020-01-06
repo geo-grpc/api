@@ -1,7 +1,5 @@
 mod proto;
 
-pub(crate) use futures;
-
 pub use proto::geometry::*;
 pub use proto::geometry_service::*;
 pub use proto::geometry_service_grpc::*;
