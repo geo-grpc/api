@@ -1,6 +1,10 @@
 extern crate protoc_grpcio;
 
 fn main() {
+    if !std::env::var("REBUILD").and(Ok(true)).unwrap_or_default() {
+        return;
+    }
+
     let proto_lib_root = "src/proto";
     let proto_root = "../proto";
     let proto_files = [

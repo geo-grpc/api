@@ -6,6 +6,10 @@ edition = "2018"
 publish = false
 build = "build.rs"
 
+[lib]
+name = "stac_proto"
+path = "src/lib.rs"
+
 [dependencies]
 futures = "0.1"
 grpcio = { version = "0.4", features = ["openssl"] }
