@@ -12,8 +12,7 @@ lazy_static! {
 #[cfg(test)]
 mod tests {
     use super::TOKEN;
-    use futures03::{compat::Stream01CompatExt, executor, pin_mut, task::Poll, Stream, StreamExt};
-    use futures03_test::{stream::StreamTestExt, task::noop_context};
+    use futures03::{compat::Stream01CompatExt, executor, StreamExt};
     use grpcio::{CallOption, ChannelBuilder, EnvBuilder, Error, MetadataBuilder};
     use stac_proto::*;
 
@@ -29,14 +28,17 @@ mod tests {
         metadata_builder
             .add_str("Authorization", TOKEN.as_str())
             .unwrap_or_else(|_| panic!("unable to set token as an `Authorization` header"));
-        let opts = CallOption::default().headers(metadata_builder.build());
+        let metadata = metadata_builder.build();
+        let opts = CallOption::default().headers(metadata);
 
-        // result stream into vec
-        let res_stream = client.search_opt(&StacRequest::default(), opts)?.compat();
-        let mut vec = executor::block_on(res_stream.collect::<Vec<Result<StacItem, Error>>>());
+        let req = &StacRequest::default();
+
+        // collect result stream into vec
+        let res = client.search_opt(&req, opts)?.compat();
+        let vec = executor::block_on(res.collect::<Vec<Result<StacItem, Error>>>());
 
         assert!(!vec.is_empty(), "Failed to retrieve any stac items");
-        for (count, item) in vec.into_iter().enumerate() {
+        for item in vec.into_iter() {
             assert!(item.is_ok(), format!("Erroneous result: {:?}", item));
             println!("stac item ID: {:?}", item.unwrap().get_id());
         }
