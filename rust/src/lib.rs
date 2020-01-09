@@ -1,3 +1,5 @@
+//! stac-proto
+
 mod proto;
 
 pub use proto::geometry::*;
