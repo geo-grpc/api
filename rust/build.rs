@@ -1,7 +1,7 @@
 extern crate protoc_grpcio;
 
 fn main() {
-    if !std::env::var("REBUILD").and(Ok(true)).unwrap_or_default() {
+    if std::env::var("REBUILD").is_err() {
         return;
     }
 
@@ -26,4 +26,11 @@ fn main() {
         }),
     )
     .expect("Failed to compile gRPC definitions!");
+
+    println!(
+        "gRPC definitions successfully created!\
+         Be sure to add a `use serde::{{Serialize, Deserialize}};` line to the \
+         non-service modules.\
+         "
+    )
 }
