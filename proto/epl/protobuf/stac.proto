@@ -268,7 +268,7 @@ message Eo {
     }
 
     // epsg code for the spatial reference of the data
-    uint32 epsg = 1;
+    uint32 epsg = 1 [deprecated=true];
     // platform from which the data was collected
     Platform platform = 2;
     // instrument which collected the data
