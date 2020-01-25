@@ -1,0 +1,381 @@
+/*
+Copyright 2017-2019 Echo Park Labs
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+For additional information, contact:
+
+email: info@echoparklabs.io
+*/
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.v1.epl.protobuf";
+option java_outer_classname = "StacProto";
+option objc_class_prefix = "STPB";
+option go_package = "github.com/geo-grpc/api/golang/v1/epl/protobuf";
+
+package v1.epl.protobuf;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/any.proto";
+
+import "v1/epl/protobuf/geometry.proto";
+import "v1/epl/protobuf/query.proto";
+
+/**
+ * Spatio-Temporal Asset Catalog Item. This data item has a spatial and temporal extent. It has a unique identifier
+ * downloadable assets. It may have an extension with details beyond the spatial and temporal extents. It may have
+ * additional properties in the properties field
+ */
+message StacItem {
+    // Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs.
+    string id = 1;
+
+    // 'type" ignored as this isn't geojson
+
+    // the spatial shape of the item. must have a spatial reference defined.
+    v1.epl.protobuf.GeometryData geometry = 3;
+    // the bounding box of the spatial shape of the item. must have a spatial reference defined.
+    v1.epl.protobuf.EnvelopeData bbox = 4;
+    // the properties of an item that are not defined within the stac specification. Requires marshalling and un-marshalling https://developers.google.com/protocol-buffers/docs/proto3#any
+    google.protobuf.Any properties = 5;
+
+    // links ignored because we're using grpc, but maybe it shouldn't be in cases of using protobuf without grpc?
+    reserved 6;
+
+    // Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter 'Asset types'.
+    map<string, Asset> assets = 7;
+
+    // The searchable date and time of the assets, in UTC
+    google.protobuf.Timestamp datetime = 8;
+
+    // (optional) A human readable title describing the item.
+    string title = 9;
+    // (optional) The id of the STAC Collection this Item references to (see collection relation type below). This field is required if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection.
+    string collection = 10;
+
+    // timestamp at which data was observed (optional if datetime set)
+    google.protobuf.Timestamp observed = 11;
+    google.protobuf.Duration duration = 18;
+
+    // timestamp when it was processed (when assets were generated)
+    google.protobuf.Timestamp processed = 12;
+    // last timestamp when stac metadata itself was updated
+    google.protobuf.Timestamp updated = 13;
+
+    // electro-optical data message
+    Eo eo = 14;
+    // Synthetic Aperture Radar data message
+    Sar sar = 15;
+    // Date time range (deprecated in favor of observed + duration
+    reserved 16;
+
+    Landsat landsat = 17;
+}
+
+/**
+ * message for making a request for stac items.
+ */
+message StacRequest {
+    // if id matches, return the one matching stac item
+    string id = 1;
+
+    // oneof https://github.com/golang/protobuf/issues/283
+
+    // search by the spatial extent as defined by geometry
+    v1.epl.protobuf.GeometryData geometry = 2;
+    // search by the spatial extent as defined by the envelope bounds
+    v1.epl.protobuf.EnvelopeData bbox = 3;
+    // search by a geometry request. this sends a geometry operator to a geometry service, and the returned geometry is in turn used as the spatial extent
+    v1.epl.protobuf.GeometryRequest geometry_request = 4;
+
+    // end oneof https://github.com/golang/protobuf/issues/283
+
+
+    // search by properties specified by user using a request object known by user and the Any marshalling pattern
+    google.protobuf.Any properties = 5;
+
+    // search for the datetime that matched by bounds defined by the exact timestamp or a range of timestamp
+    TimestampFilter datetime = 6;
+    // search for the moment the data was observed by bounds defined by the exact timestamp or a range of timestamp
+    TimestampFilter observed = 7;
+    // search for the moment the data was processed by bounds defined by the exact timestamp or a range of timestamp
+    TimestampFilter processed = 8;
+    // search for the moment the stac item metadata was updated by bounds defined by the exact timestamp or a range of timestamp
+    TimestampFilter updated = 9;
+
+    // use certain electro-optical search parameters in your query
+    EoRequest eo = 10;
+
+    // limit the number of results returned
+    uint32 limit = 11;
+    // the offset from which the query should start
+    uint64 offset = 12;
+
+    LandsatRequest landsat = 13;
+
+    string collection = 14;
+
+    // more complex id search. allows for searching by pattern or by IN or NOT_IN sets
+    StringFilter id_complex = 15;
+}
+
+
+//// Right now this isn't included in the response as it's a bit messy
+//message BandDetails {
+//    string name = 1;
+//    string common_name = 2;
+//    string description = 3;
+//    google.protobuf.FloatValue gsd = 4;
+//    google.protobuf.FloatValue accuracy = 5;
+//    google.protobuf.FloatValue center_wavelength = 6;
+//    google.protobuf.FloatValue full_width_half_max = 7;
+//}
+
+/**
+ * message for an asset of a stac item.
+ */
+message Asset {
+    // href for downloading item
+    string href = 1;
+    // asset type
+    string type = 2;
+    // band(s) of data in asset. https://github.com/radiantearth/stac-spec/blob/612ee4fb4f979c049d2416e7f5374a5301b8a277/extensions/eo/README.md
+    Eo.Band eo_bands = 3;
+    // enum for asset type
+    AssetType asset_type = 4;
+
+    // cloud platform enum (Google cloud, Azure, etc)
+    CloudPlatform cloud_platform = 5;
+    // manager of the bucket
+    string bucket_manager = 6;
+    // bucket region. useful when concerned about egress
+    string bucket_region = 7;
+    // bucket name
+    string bucket = 8;
+    // path to the object in the bucket
+    string object_path = 9;
+    // requester_pays pertains to egress cost. Some buckets are hosted with the egress costs assigned to the requester. some hosts pay the regress costs for the requester.
+    bool requester_pays = 10;
+}
+
+message DatetimeRange {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
+/**
+ * response message for insertion and updates to stac db
+ */
+message StacDbResponse {
+    string status = 1;
+    int32 status_code = 2;
+    string data_id = 3;
+    uint64 count = 4;
+}
+
+/**
+ * place holder for SAR
+ */
+message Sar {
+    enum Platform {
+        UNKNOWN_PLATFORM = 0;
+        ENVISAT = 1;
+        SENTINEL_1A = 2;
+    }
+    Platform platform = 1;
+
+    enum Instrument {
+        UNKNOWN_INSTRUMENT = 0;
+    }
+}
+
+/**
+ * message for electro optical details of stac items.
+ */
+message Eo {
+    enum Platform {
+        UNKNOWN_PLATFORM = 0;
+        LANDSAT_1 = 2;
+        LANDSAT_2 = 4;
+        LANDSAT_3 = 8;
+        LANDSAT_123 = 14;
+        LANDSAT_4 = 16;
+        LANDSAT_5 = 32;
+        LANDSAT_45 = 48;
+        LANDSAT_7 = 64;
+        LANDSAT_8 = 128;
+
+        // swiftera platform
+        SWIFT_2 = 256;
+    }
+
+    enum Instrument {
+        UNKNOWN_INSTRUMENT = 0;
+        OLI = 2;
+        TIRS = 4;
+        OLI_TIRS = 6;
+
+        // swiftera instrument
+        POM_1 = 8;
+
+        TM = 16;
+        ETM = 32;
+        MSS = 64;
+    }
+
+    enum Constellation {
+        UNKNOWN_CONSTELLATION = 0;
+        LANDSAT = 2;
+        NAIP = 4;
+        // spanish aerial dataset
+        PNOA = 8;
+        // swiftera dataset
+        SWIFT = 16;
+    }
+
+    enum Band {
+        UNKNOWN_BAND = 0;
+        COASTAL = 2;
+        BLUE = 4;
+        GREEN = 8;
+        RED = 16;
+        RGB = 28;
+        NIR = 32;
+        // special case for landsat 1-3
+        NIR_2 = 33;
+        RGBIR = 60;
+        SWIR_1 = 64;
+        SWIR_2 = 128;
+        PAN = 256;
+        CIRRUS = 512;
+        LWIR_1 = 1024;
+        LWIR_2 = 2048;
+    }
+
+    // epsg code for the spatial reference of the data
+    uint32 epsg = 1 [deprecated=true];
+    // platform from which the data was collected
+    Platform platform = 2;
+    // instrument which collected the data
+    Instrument instrument = 3;
+    // constellation of data collectors
+    Constellation constellation = 4;
+
+    // Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
+    google.protobuf.FloatValue sun_azimuth = 5;
+    // Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).
+    google.protobuf.FloatValue sun_elevation = 6;
+    // ground sampling distance
+    google.protobuf.FloatValue gsd = 7;
+    // Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
+    google.protobuf.FloatValue off_nadir = 8;
+    // The angle measured from the sub-sensor point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).
+    google.protobuf.FloatValue azimuth = 9;
+    // percent cloud cover. 0 no clouds, 100 completely covered
+    google.protobuf.FloatValue cloud_cover = 10;
+    // bands of data
+    Band bands = 11;
+    // spatial reference. if the data is stored with a custom projection (epsg should be removed and use sr instead)
+    v1.epl.protobuf.SpatialReferenceData sr = 12;
+}
+
+/**
+ * sub message request for specifying electro-optical details in stac request
+ */
+message EoRequest {
+    // epsg number of data
+    int32 epsg = 1;
+    // only data from the platform specified
+    Eo.Platform platform = 2;
+    // only data from the instrument specified
+    Eo.Instrument instrument = 3;
+    // only data from the constellation specified
+    Eo.Constellation constellation = 4;
+
+    // data with a sun_azimuth equal to or in the range specified in sun_azimuth
+    FloatFilter sun_azimuth = 5;
+    // data with a sun_elevation equal to or in the range specified in sun_elevation
+    FloatFilter sun_elevation = 6;
+    // data with a gsd equal to or in the range specified in gsd
+    FloatFilter gsd = 7;
+    // data with a off_nadir equal to or in the range specified in off_nadir
+    FloatFilter off_nadir = 8;
+    // data with a azimuth equal to or in the range specified in azimuth
+    FloatFilter azimuth = 9;
+    // data with a cloud_cover equal to or in the range specified in cloud_cover
+    FloatFilter cloud_cover = 10;
+    // data that possesses the bands specified in bands
+    Eo.Band bands = 11;
+}
+
+enum AssetType {
+    UNKNOWN_ASSET = 0;
+    JPEG = 1;
+
+    GEOTIFF = 2; // geotiff https://www.gdal.org/frmt_gtiff.html
+    LERC = 3;// Limited Error Raster Compression
+    MRF = 4; // metadata raster file https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-metadata-file-mrf
+    MRF_IDX = 5; // metadata raster file index https://github.com/nasa-gibs/mrf/blob/master/spec/mrf_spec.md#mrf-index-file-idx
+    MRF_XML = 6;
+    CO_GEOTIFF = 7; // cloud optimized geotiff https://www.cogeo.org/
+    RAW = 8; // Generic raw data
+    THUMBNAIL = 9; // thumbnail. could be jpg or png
+    TIFF = 10;
+    JPEG_2000 = 11;
+    XML = 12;
+    TXT = 13;
+    PNG = 14;
+    OVERVIEW = 15; // GDAL overview file https://gdal.org/programs/gdaladdo.html
+    JSON = 16;
+    HTML = 17;
+    WEBP = 18;
+}
+
+enum CloudPlatform {
+    UNKNOWN_CLOUD_PLATFORM = 0;
+    AWS = 1; // Amazon Web Services
+    GCP = 2; // Google Cloud Platform
+    AZURE = 3; // Microsoft's Azure
+}
+
+message Landsat {
+    enum ProcessingLevel {
+        UNKNOWN_PROCESSING_LEVEL = 0;
+        L1G = 1;
+        L1TP = 2;
+        L1T = 3;
+        L1GT = 4;
+        L1GS = 5;
+    }
+    // id of scene should be id of stac item, but there may be a use case where someone does not want that
+    string scene_id = 1;
+    string product_id = 2;
+    ProcessingLevel processing_level = 3;
+    int32 wrs_path = 4;
+    int32 wrs_row = 5;
+    google.protobuf.FloatValue cloud_cover_land = 6;
+}
+
+message LandsatRequest {
+    string scene_id = 1;
+    string product_id = 2;
+    Landsat.ProcessingLevel processing_level = 3;
+    int32 wrs_path = 4;
+    int32 wrs_row = 5;
+    FloatFilter cloud_cover_land = 6;
+}

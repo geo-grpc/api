@@ -1,0 +1,70 @@
+/*
+Copyright 2017-2019 Echo Park Labs
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+For additional information, contact:
+
+email: info@echoparklabs.io
+*/
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.v1.epl.protobuf";
+option java_outer_classname = "StacServiceProto";
+option objc_class_prefix = "STS";
+option go_package = "github.com/geo-grpc/api/golang/v1/epl/protobuf";
+
+package v1.epl.protobuf;
+
+import "v1/epl/protobuf/stac.proto";
+
+/*
+ gRPC Interfaces for working with stac metadata
+*/
+service StacService {
+    /*
+    using a search request, stream all the results that match the search filter
+    */
+    rpc Search(v1.epl.protobuf.StacRequest) returns (stream v1.epl.protobuf.StacItem) {}
+    /*
+    insert a stream of items into the STAC service
+    */
+    rpc Insert(stream v1.epl.protobuf.StacItem) returns (stream v1.epl.protobuf.StacDbResponse) {}
+    /*
+    update a stream of items in the STAC service
+    */
+    rpc Update(stream v1.epl.protobuf.StacItem) returns (stream v1.epl.protobuf.StacDbResponse) {}
+
+    /*
+    count all the items in the Stac service according to the StacRequest filter
+    */
+    rpc Count(v1.epl.protobuf.StacRequest) returns (v1.epl.protobuf.StacDbResponse) {}
+    /*
+    delete an item from the STAC service
+    */
+    rpc DeleteOne(v1.epl.protobuf.StacItem) returns (v1.epl.protobuf.StacDbResponse) {}
+    /*
+    using a search request get the first item that matches the request
+    */
+    rpc SearchOne(v1.epl.protobuf.StacRequest) returns (v1.epl.protobuf.StacItem) {}
+    /*
+    Insert one item into the STAC service
+    */
+    rpc InsertOne(v1.epl.protobuf.StacItem) returns (v1.epl.protobuf.StacDbResponse) {}
+    /*
+    Update one item in the STAC service
+    */
+    rpc UpdateOne(v1.epl.protobuf.StacItem) returns (v1.epl.protobuf.StacDbResponse) {}
+}
