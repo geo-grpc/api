@@ -48,7 +48,7 @@ message StacItem {
     // 'type" ignored as this isn't geojson
 
     // the spatial shape of the item. must have a spatial reference defined.
-    v1.epl.protobuf.GeometryData geometry = 3;
+    v1.epl.protobuf.GeometryData geometry_data = 3;
     // the bounding box of the spatial shape of the item. must have a spatial reference defined.
     v1.epl.protobuf.EnvelopeData bbox = 4;
     // the properties of an item that are not defined within the stac specification. Requires marshalling and un-marshalling https://developers.google.com/protocol-buffers/docs/proto3#any
@@ -97,7 +97,7 @@ message StacRequest {
     // oneof https://github.com/golang/protobuf/issues/283
 
     // search by the spatial extent as defined by geometry
-    v1.epl.protobuf.GeometryData geometry = 2;
+    v1.epl.protobuf.GeometryData geometry_data = 2;
     // search by the spatial extent as defined by the envelope bounds
     v1.epl.protobuf.EnvelopeData bbox = 3;
     // search by a geometry request. this sends a geometry operator to a geometry service, and the returned geometry is in turn used as the spatial extent
@@ -204,6 +204,45 @@ message Sar {
     }
 }
 
+/*
+
+Field Name	Type	Description
+sat:off_nadir_angle	number	The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
+sat:incidence_angle	number	The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90).
+sat:azimuth_angle	number	Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).
+sat:sun_azimuth_angle	number	Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
+sat:sun_elevation_angle	number	Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).
+sat:orbit_state	string	The state of the orbit. Either ascending or descending for polar orbiting satellites, or geostationary for geosynchronous satellites
+sat:relative_orbit	integer	The relative orbit number at the time of acquisition.
+*/
+message Sat {
+    enum OrbitState {
+        UKNOWN_ORBIT_STATE = 0;
+        ASCENDING_ORBIT = 1;
+        DESCENDING_ORBIT = 2;
+        GEOSTATIONARY_ORBIT = 3;
+    }
+    // Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
+    google.protobuf.FloatValue off_nadir = 1;
+    // The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90).
+    google.protobuf.FloatValue incidence = 2;
+    // The angle measured from the sub-sensor point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).
+    google.protobuf.FloatValue azimuth = 3;
+    // Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
+    google.protobuf.FloatValue sun_azimuth = 4;
+    // Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).
+    google.protobuf.FloatValue sun_elevation = 5;
+    // The state of the orbit. Either ascending or descending for polar orbiting satellites, or geostationary for geosynchronous satellites
+    google.protobuf.UInt32Value relative_orbit = 6;
+    // The state of the orbit. Either ascending or descending for polar orbiting satellites, or geostationary for geosynchronous satellites
+    // ground sampling distance
+    google.protobuf.FloatValue gsd = 7;
+
+
+    // percent cloud cover. 0 no clouds, 100 completely covered
+    google.protobuf.FloatValue cloud_cover = 10;
+}
+
 /**
  * message for electro optical details of stac items.
  */
@@ -275,19 +314,6 @@ message Eo {
     Instrument instrument = 3;
     // constellation of data collectors
     Constellation constellation = 4;
-
-    // Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
-    google.protobuf.FloatValue sun_azimuth = 5;
-    // Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).
-    google.protobuf.FloatValue sun_elevation = 6;
-    // ground sampling distance
-    google.protobuf.FloatValue gsd = 7;
-    // Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
-    google.protobuf.FloatValue off_nadir = 8;
-    // The angle measured from the sub-sensor point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).
-    google.protobuf.FloatValue azimuth = 9;
-    // percent cloud cover. 0 no clouds, 100 completely covered
-    google.protobuf.FloatValue cloud_cover = 10;
     // bands of data
     Band bands = 11;
     // spatial reference. if the data is stored with a custom projection (epsg should be removed and use sr instead)
