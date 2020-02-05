@@ -381,11 +381,19 @@ message LandsatRequest {
 }
 
 message Mosaic {
-    string quad_key = 1;
-    repeated int32 zooms = 2;
-    DatetimeRange observation_range = 3;
+    // name of the mosaic this item is a member of
+    string name = 1;
+    // the quad_key of this specific item
+    string quad_key = 2;
+    // an array of the zooms contained within the asset(s)
+    repeated int32 zooms = 3;
+    // the datetime range of the data
+    DatetimeRange observation_range = 4;
 }
 
 message MosaicRequest {
-    string quad_key = 1;
+    // mosaic to search for
+    string name = 1;
+    // quad_key to search by
+    string quad_key = 2;
 }
