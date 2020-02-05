@@ -5,3 +5,5 @@ require (
 	golang.org/x/net v0.0.0-20190310074541-c10a0554eabf
 	google.golang.org/grpc v1.19.0
 )
+
+go 1.13

@@ -268,7 +268,7 @@ message Eo {
     }
 
     // epsg code for the spatial reference of the data
-    uint32 epsg = 1;
+    uint32 epsg = 1 [deprecated=true];
     // platform from which the data was collected
     Platform platform = 2;
     // instrument which collected the data
@@ -378,4 +378,14 @@ message LandsatRequest {
     int32 wrs_path = 4;
     int32 wrs_row = 5;
     FloatField cloud_cover_land = 6;
+}
+
+message Mosaic {
+    string quad_key = 1;
+    repeated int32 zooms = 2;
+    DatetimeRange observation_range = 3;
+}
+
+message MosaicRequest {
+    string quad_key = 1;
 }
