@@ -389,6 +389,8 @@ message Mosaic {
     repeated int32 zooms = 3;
     // the datetime range of the data
     DatetimeRange observation_range = 4;
+    // scene provenance. ordered list of STAC item ids that contribute to the mosaic. The 0th STAC item in provenance_ids is the front-most contributor to the mosaic, the last STAC item in bottom contributor and is likely to be partially covered by other contributing scenes
+    repeated string provenance_ids = 5;
 }
 
 message MosaicRequest {
