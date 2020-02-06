@@ -173,10 +173,6 @@ message Asset {
     bool requester_pays = 10;
 }
 
-message DatetimeRange {
-    google.protobuf.Timestamp start = 1;
-    google.protobuf.Timestamp end = 2;
-}
 
 /**
  * response message for insertion and updates to stac db
@@ -388,7 +384,7 @@ message Mosaic {
     // an array of the zooms contained within the asset(s)
     repeated int32 zooms = 3;
     // the datetime range of the data
-    DatetimeRange observation_range = 4;
+    google.protobuf.Duration observation_range = 4;
     // scene provenance. ordered list of STAC item ids that contribute to the mosaic. The 0th STAC item in provenance_ids is the front-most contributor to the mosaic, the last STAC item in bottom contributor and is likely to be partially covered by other contributing scenes
     repeated string provenance_ids = 5;
 }
