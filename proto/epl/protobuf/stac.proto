@@ -85,6 +85,7 @@ message StacItem {
     reserved 16;
 
     Landsat landsat = 17;
+    Mosaic mosaic = 19;
 }
 
 /**
