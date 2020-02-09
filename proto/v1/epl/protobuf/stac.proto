@@ -42,7 +42,9 @@ import "v1/epl/protobuf/query.proto";
  * additional properties in the properties field
  */
 message StacItem {
-    // Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs.
+    // Provider identifier. As most geospatial assets are already defined by some identification scheme by the data
+    // provider it is recommended to simply use that ID. Data providers are advised to include sufficient information
+    // to make their IDs globally unique, including things like unique satellite IDs.
     string id = 1;
 
     // 'type" ignored as this isn't geojson
@@ -51,13 +53,15 @@ message StacItem {
     v1.epl.protobuf.GeometryData geometry_data = 3;
     // the bounding box of the spatial shape of the item. must have a spatial reference defined.
     v1.epl.protobuf.EnvelopeData bbox = 4;
-    // the properties of an item that are not defined within the stac specification. Requires marshalling and un-marshalling https://developers.google.com/protocol-buffers/docs/proto3#any
+    // the properties of an item that are not defined within the stac specification. Requires marshalling and
+    // un-marshalling https://developers.google.com/protocol-buffers/docs/proto3#any
     google.protobuf.Any properties = 5;
 
     // links ignored because we're using grpc, but maybe it shouldn't be in cases of using protobuf without grpc?
     reserved 6;
 
-    // Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter 'Asset types'.
+    // Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed
+    // in the chapter 'Asset types'.
     map<string, Asset> assets = 7;
 
     // The searchable date and time of the assets, in UTC
@@ -65,7 +69,9 @@ message StacItem {
 
     // (optional) A human readable title describing the item.
     string title = 9;
-    // (optional) The id of the STAC Collection this Item references to (see collection relation type below). This field is required if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection.
+    // (optional) The id of the STAC Collection this Item references to (see collection relation type below). This
+    // field is required if such a relation type is present. This field provides an easy way for a user to search for
+    // any Items that belong in a specified Collection.
     string collection = 10;
 
     // timestamp at which data was observed (optional if datetime set)
@@ -100,7 +106,8 @@ message StacRequest {
     v1.epl.protobuf.GeometryData geometry_data = 2;
     // search by the spatial extent as defined by the envelope bounds
     v1.epl.protobuf.EnvelopeData bbox = 3;
-    // search by a geometry request. this sends a geometry operator to a geometry service, and the returned geometry is in turn used as the spatial extent
+    // search by a geometry request. this sends a geometry operator to a geometry service, and the returned geometry
+    // is in turn used as the spatial extent
     v1.epl.protobuf.GeometryRequest geometry_request = 4;
 
     // end oneof https://github.com/golang/protobuf/issues/283
@@ -115,7 +122,8 @@ message StacRequest {
     TimestampFilter observed = 7;
     // search for the moment the data was processed by bounds defined by the exact timestamp or a range of timestamp
     TimestampFilter processed = 8;
-    // search for the moment the stac item metadata was updated by bounds defined by the exact timestamp or a range of timestamp
+    // search for the moment the stac item metadata was updated by bounds defined by the exact timestamp or a range of
+    // timestamp
     TimestampFilter updated = 9;
 
     // use certain electro-optical search parameters in your query
@@ -134,17 +142,41 @@ message StacRequest {
     StringFilter id_complex = 15;
 }
 
+message Sat {
+    enum OrbitState {
+        UKNOWN_ORBIT_STATE = 0;
+        ASCENDING_ORBIT = 1;
+        DESCENDING_ORBIT = 2;
+        GEOSTATIONARY_ORBIT = 3;
+    }
 
-//// Right now this isn't included in the response as it's a bit messy
-//message BandDetails {
-//    string name = 1;
-//    string common_name = 2;
-//    string description = 3;
-//    google.protobuf.FloatValue gsd = 4;
-//    google.protobuf.FloatValue accuracy = 5;
-//    google.protobuf.FloatValue center_wavelength = 6;
-//    google.protobuf.FloatValue full_width_half_max = 7;
-//}
+    // The relative orbit number at the time of acquisition.
+    google.protobuf.UInt32Value relative_orbit = 6;
+
+    // The state of the orbit. Either ascending or descending for polar orbiting satellites, or geostationary for
+    // geosynchronous satellites
+    OrbitState orbit_state = 1;
+}
+
+message SatRequest {
+
+}
+
+message SensorAngles {
+    // Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in
+    // degrees (0-90).
+    google.protobuf.FloatValue off_nadir = 1;
+    // The angle measured from the sub-sensor point (point on the ground below the platform) between the scene center
+    // and true north. Measured clockwise from north in degrees (0-360).
+    google.protobuf.FloatValue azimuth = 2;
+    // The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight
+    // back to the satellite at the scene center. Measured in degrees (0-90).
+    google.protobuf.FloatValue incidence = 3;
+}
+
+message SensorAnglesRequest {
+
+}
 
 /**
  * message for an asset of a stac item.
@@ -154,7 +186,8 @@ message Asset {
     string href = 1;
     // asset type
     string type = 2;
-    // band(s) of data in asset. https://github.com/radiantearth/stac-spec/blob/612ee4fb4f979c049d2416e7f5374a5301b8a277/extensions/eo/README.md
+    // band(s) of data in asset.
+    // https://github.com/radiantearth/stac-spec/blob/612ee4fb4f979c049d2416e7f5374a5301b8a277/extensions/eo/README.md
     Eo.Band eo_bands = 3;
     // enum for asset type
     AssetType asset_type = 4;
@@ -169,7 +202,8 @@ message Asset {
     string bucket = 8;
     // path to the object in the bucket
     string object_path = 9;
-    // requester_pays pertains to egress cost. Some buckets are hosted with the egress costs assigned to the requester. some hosts pay the regress costs for the requester.
+    // requester_pays pertains to egress cost. Some buckets are hosted with the egress costs assigned to the requester.
+    // some hosts pay the regress costs for the requester.
     bool requester_pays = 10;
 }
 
@@ -202,45 +236,6 @@ message Sar {
     enum Instrument {
         UNKNOWN_INSTRUMENT = 0;
     }
-}
-
-/*
-
-Field Name	Type	Description
-sat:off_nadir_angle	number	The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
-sat:incidence_angle	number	The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90).
-sat:azimuth_angle	number	Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).
-sat:sun_azimuth_angle	number	Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
-sat:sun_elevation_angle	number	Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).
-sat:orbit_state	string	The state of the orbit. Either ascending or descending for polar orbiting satellites, or geostationary for geosynchronous satellites
-sat:relative_orbit	integer	The relative orbit number at the time of acquisition.
-*/
-message Sat {
-    enum OrbitState {
-        UKNOWN_ORBIT_STATE = 0;
-        ASCENDING_ORBIT = 1;
-        DESCENDING_ORBIT = 2;
-        GEOSTATIONARY_ORBIT = 3;
-    }
-    // Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
-    google.protobuf.FloatValue off_nadir = 1;
-    // The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90).
-    google.protobuf.FloatValue incidence = 2;
-    // The angle measured from the sub-sensor point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).
-    google.protobuf.FloatValue azimuth = 3;
-    // Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
-    google.protobuf.FloatValue sun_azimuth = 4;
-    // Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).
-    google.protobuf.FloatValue sun_elevation = 5;
-    // The state of the orbit. Either ascending or descending for polar orbiting satellites, or geostationary for geosynchronous satellites
-    google.protobuf.UInt32Value relative_orbit = 6;
-    // The state of the orbit. Either ascending or descending for polar orbiting satellites, or geostationary for geosynchronous satellites
-    // ground sampling distance
-    google.protobuf.FloatValue gsd = 7;
-
-
-    // percent cloud cover. 0 no clouds, 100 completely covered
-    google.protobuf.FloatValue cloud_cover = 10;
 }
 
 /**
@@ -405,3 +400,14 @@ message LandsatRequest {
     int32 wrs_row = 5;
     FloatFilter cloud_cover_land = 6;
 }
+
+//// Right now this isn't included in the response as it's a bit messy
+//message BandDetails {
+//    string name = 1;
+//    string common_name = 2;
+//    string description = 3;
+//    google.protobuf.FloatValue gsd = 4;
+//    google.protobuf.FloatValue accuracy = 5;
+//    google.protobuf.FloatValue center_wavelength = 6;
+//    google.protobuf.FloatValue full_width_half_max = 7;
+//}
