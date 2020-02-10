@@ -194,7 +194,7 @@ const (
 	Eo_LANDSAT_45       Eo_Platform = 48
 	Eo_LANDSAT_7        Eo_Platform = 64
 	Eo_LANDSAT_8        Eo_Platform = 128
-	// swiftera platform
+	// Near Space Labs platform
 	Eo_SWIFT_2 Eo_Platform = 256
 )
 
@@ -241,7 +241,7 @@ const (
 	Eo_OLI                Eo_Instrument = 2
 	Eo_TIRS               Eo_Instrument = 4
 	Eo_OLI_TIRS           Eo_Instrument = 6
-	// swiftera instrument
+	// Near Space Labs instrument
 	Eo_POM_1 Eo_Instrument = 8
 	Eo_TM    Eo_Instrument = 16
 	Eo_ETM   Eo_Instrument = 32
@@ -286,7 +286,7 @@ const (
 	Eo_NAIP                  Eo_Constellation = 4
 	// spanish aerial dataset
 	Eo_PNOA Eo_Constellation = 8
-	// swiftera dataset
+	// Near Space Labs dataset
 	Eo_SWIFT Eo_Constellation = 16
 )
 

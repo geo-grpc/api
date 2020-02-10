@@ -224,7 +224,7 @@ message Eo {
         LANDSAT_7 = 64;
         LANDSAT_8 = 128;
 
-        // swiftera platform
+        // Near Space Labs platform
         SWIFT_2 = 256;
     }
 
@@ -234,7 +234,7 @@ message Eo {
         TIRS = 4;
         OLI_TIRS = 6;
 
-        // swiftera instrument
+        // Near Space Labs instrument
         POM_1 = 8;
 
         TM = 16;
@@ -248,7 +248,7 @@ message Eo {
         NAIP = 4;
         // spanish aerial dataset
         PNOA = 8;
-        // swiftera dataset
+        // Near Space Labs dataset
         SWIFT = 16;
     }
 
