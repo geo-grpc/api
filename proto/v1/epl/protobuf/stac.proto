@@ -64,6 +64,51 @@ enum CloudPlatform {
     AWS = 1; // Amazon Web Services
     GCP = 2; // Google Cloud Platform
     AZURE = 3; // Microsoft's Azure
+    IBM = 4; // IBM
+}
+
+enum Platform {
+    UNKNOWN_PLATFORM = 0;
+    LANDSAT_1 = 2;
+    LANDSAT_2 = 4;
+    LANDSAT_3 = 8;
+    LANDSAT_123 = 14;
+    LANDSAT_4 = 16;
+    LANDSAT_5 = 32;
+    LANDSAT_45 = 48;
+    LANDSAT_7 = 64;
+    LANDSAT_8 = 128;
+
+    // near space labs platform
+    SWIFT_2 = 256;
+}
+
+enum Instrument {
+    UNKNOWN_INSTRUMENT = 0;
+    OLI = 2;
+    TIRS = 4;
+    OLI_TIRS = 6;
+
+    // near space labs instrument
+    POM_1 = 8;
+
+    TM = 16;
+    ETM = 32;
+    MSS = 64;
+}
+
+enum Constellation {
+    UNKNOWN_CONSTELLATION = 0;
+    LANDSAT = 2;
+}
+
+enum Mission {
+    UNKNOWN_MISSION = 0;
+    NAIP = 4;
+    // spanish aerial dataset
+    PNOA = 8;
+    // near space labs dataset
+    SWIFT = 16;
 }
 
 /**
@@ -83,7 +128,7 @@ message StacItem {
     v1.epl.protobuf.GeometryData geometry = 3;
     // the bounding box of the spatial shape of the item. must have a spatial reference defined.
     v1.epl.protobuf.EnvelopeData bbox = 4;
-    // the properties of an item that are not defined within the stac specification. Requires marshalling and
+    // the properties of an item that are not defined within the STAC specification. Requires marshalling and
     // un-marshalling https://developers.google.com/protocol-buffers/docs/proto3#any
     google.protobuf.Any properties = 5;
 
@@ -110,7 +155,7 @@ message StacItem {
 
     // timestamp when it was processed (when assets were generated)
     google.protobuf.Timestamp processed = 12;
-    // last timestamp when stac metadata itself was updated
+    // last timestamp when STAC metadata itself was updated
     google.protobuf.Timestamp updated = 13;
 
     // electro-optical data message
@@ -126,13 +171,21 @@ message StacItem {
     SensorAngles sa = 22;
     // spatial reference. if the data is stored with a custom projection (epsg should be removed and use sr instead)
     v1.epl.protobuf.SpatialReferenceData sr = 21;
+
+    // platform from which the data was collected
+    Platform platform = 23;
+    // instrument which collected the data
+    Instrument instrument = 24;
+    // constellation of data collectors
+    Constellation constellation = 25;
+    Mission mission = 26;
 }
 
 /**
- * message for making a request for stac items.
+ * message for making a request for STAC items.
  */
 message StacRequest {
-    // if id matches, return the one matching stac item
+    // if id matches, return the one matching STAC item
     string id = 1;
 
     // oneof https://github.com/golang/protobuf/issues/283
@@ -157,7 +210,7 @@ message StacRequest {
     TimestampFilter observed = 7;
     // search for the moment the data was processed by bounds defined by the exact timestamp or a range of timestamp
     TimestampFilter processed = 8;
-    // search for the moment the stac item metadata was updated by bounds defined by the exact timestamp or a range of
+    // search for the moment the STAC item metadata was updated by bounds defined by the exact timestamp or a range of
     // timestamp
     TimestampFilter updated = 9;
 
@@ -182,6 +235,14 @@ message StacRequest {
     SensorAnglesRequest sa = 18;
     // spatial reference. if the data is stored with a custom projection (epsg should be removed and use sr instead)
     v1.epl.protobuf.SpatialReferenceData sr = 21;
+
+    // only data from the platform specified
+    Platform platform = 23;
+    // only data from the instrument specified
+    Instrument instrument = 24;
+    // only data from the constellation specified
+    Constellation constellation = 25;
+    Mission mission = 26;
 }
 
 message SensorAngles {
@@ -231,49 +292,9 @@ message SatRequest {
 }
 
 /**
- * message for electro optical details of stac items.
+ * message for electro-optical details of STAC items.
  */
 message Eo {
-    enum Platform {
-        UNKNOWN_PLATFORM = 0;
-        LANDSAT_1 = 2;
-        LANDSAT_2 = 4;
-        LANDSAT_3 = 8;
-        LANDSAT_123 = 14;
-        LANDSAT_4 = 16;
-        LANDSAT_5 = 32;
-        LANDSAT_45 = 48;
-        LANDSAT_7 = 64;
-        LANDSAT_8 = 128;
-
-        // swiftera platform
-        SWIFT_2 = 256;
-    }
-
-    enum Instrument {
-        UNKNOWN_INSTRUMENT = 0;
-        OLI = 2;
-        TIRS = 4;
-        OLI_TIRS = 6;
-
-        // swiftera instrument
-        POM_1 = 8;
-
-        TM = 16;
-        ETM = 32;
-        MSS = 64;
-    }
-
-    enum Constellation {
-        UNKNOWN_CONSTELLATION = 0;
-        LANDSAT = 2;
-        NAIP = 4;
-        // spanish aerial dataset
-        PNOA = 8;
-        // swiftera dataset
-        SWIFT = 16;
-    }
-
     enum Band {
         // band type not specified. default value. if used in query, any band type is acceptable
         UNKNOWN_BAND = 0;
@@ -293,13 +314,6 @@ message Eo {
         LWIR_1 = 1024;
         LWIR_2 = 2048;
     }
-
-    // platform from which the data was collected
-    Platform platform = 1;
-    // instrument which collected the data
-    Instrument instrument = 2;
-    // constellation of data collectors
-    Constellation constellation = 3;
     // percent cloud cover. 0 no clouds, 100 completely covered
     google.protobuf.FloatValue cloud_cover = 4;
     // Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun.
@@ -315,16 +329,9 @@ message Eo {
 }
 
 /**
- * sub message request for specifying electro-optical details in stac request
+ * sub message request for specifying electro-optical details in STAC request
  */
 message EoRequest {
-    // only data from the platform specified
-    Eo.Platform platform = 1;
-    // only data from the instrument specified
-    Eo.Instrument instrument = 2;
-    // only data from the constellation specified
-    Eo.Constellation constellation = 3;
-
     // data with a sun_azimuth equal to or in the range specified in sun_azimuth
     FloatFilter sun_azimuth = 4;
     // data with a sun_elevation equal to or in the range specified in sun_elevation
@@ -338,7 +345,7 @@ message EoRequest {
 }
 
 /**
- * message for an asset of a stac item.
+ * message for an asset of a STAC item.
  */
 message Asset {
     // href for downloading item
@@ -372,7 +379,7 @@ message DatetimeRange {
 }
 
 /**
- * response message for insertion and updates to stac db
+ * response message for insertion and updates to STAC db
  */
 message StacDbResponse {
     string status = 1;
@@ -406,7 +413,7 @@ message Landsat {
         L1GT = 4;
         L1GS = 5;
     }
-    // id of scene should be id of stac item, but there may be a use case where someone does not want that
+    // id of scene should be id of STAC item, but there may be a use case where someone does not want that
     string scene_id = 1;
     string product_id = 2;
     ProcessingLevel processing_level = 3;
