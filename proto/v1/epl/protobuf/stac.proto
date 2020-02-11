@@ -168,7 +168,7 @@ message StacItem {
     Landsat landsat = 17;
     Mosaic mosaic = 19;
     Sat sat = 20;
-    SensorAngles sa = 22;
+    View view = 22;
     // spatial reference. if the data is stored with a custom projection (epsg should be removed and use sr instead)
     v1.epl.protobuf.SpatialReferenceData sr = 21;
 
@@ -232,7 +232,7 @@ message StacRequest {
     MosaicRequest mosaic = 16;
 
     SatRequest sat = 17;
-    SensorAnglesRequest sa = 18;
+    ViewRequest view = 18;
     // spatial reference. if the data is stored with a custom projection (epsg should be removed and use sr instead)
     v1.epl.protobuf.SpatialReferenceData sr = 21;
 
@@ -245,7 +245,7 @@ message StacRequest {
     Mission mission = 26;
 }
 
-message SensorAngles {
+message View {
     // Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in
     // degrees (0-90).
     google.protobuf.FloatValue off_nadir = 1;
@@ -254,16 +254,26 @@ message SensorAngles {
     google.protobuf.FloatValue azimuth = 2;
     // The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight
     // back to the satellite at the scene center. Measured in degrees (0-90).
-    google.protobuf.FloatValue incidence = 3;
+    google.protobuf.FloatValue incidence_angle = 3;
+    // Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun.
+    // Measured clockwise in degrees (0-360).
+    google.protobuf.FloatValue sun_azimuth = 4;
+    // Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon
+    // in degrees (0-90).
+    google.protobuf.FloatValue sun_elevation = 5;
 }
 
-message SensorAnglesRequest {
+message ViewRequest {
     // data with a off_nadir equal to or in the range specified in off_nadir
     FloatFilter off_nadir = 1;
     // data with a azimuth equal to or in the range specified in azimuth
     FloatFilter azimuth = 2;
     // data with a incidence equal to or in the range specified in incidence
-    FloatFilter incidence = 3;
+    FloatFilter incidence_angle = 3;
+    // data with a sun_azimuth equal to or in the range specified in sun_azimuth
+    FloatFilter sun_azimuth = 4;
+    // data with a sun_elevation equal to or in the range specified in sun_elevation
+    FloatFilter sun_elevation = 5;
 }
 
 message Sat {
@@ -315,33 +325,23 @@ message Eo {
         LWIR_2 = 2048;
     }
     // percent cloud cover. 0 no clouds, 100 completely covered
-    google.protobuf.FloatValue cloud_cover = 4;
-    // Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun.
-    // Measured clockwise in degrees (0-360).
-    google.protobuf.FloatValue sun_azimuth = 5;
-    // Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon
-    // in degrees (0-90).
-    google.protobuf.FloatValue sun_elevation = 6;
+    google.protobuf.FloatValue cloud_cover = 1;
     // ground sampling distance
-    google.protobuf.FloatValue gsd = 7;
+    google.protobuf.FloatValue gsd = 2;
     // band or bands represented in data. If multiple bands, then use a bitwise operator
-    Band bands = 8;
+    Band bands = 3;
 }
 
 /**
  * sub message request for specifying electro-optical details in STAC request
  */
 message EoRequest {
-    // data with a sun_azimuth equal to or in the range specified in sun_azimuth
-    FloatFilter sun_azimuth = 4;
-    // data with a sun_elevation equal to or in the range specified in sun_elevation
-    FloatFilter sun_elevation = 5;
     // data with a gsd equal to or in the range specified in gsd
-    FloatFilter gsd = 6;
+    FloatFilter gsd = 1;
     // data with a cloud_cover equal to or in the range specified in cloud_cover
-    FloatFilter cloud_cover = 7;
+    FloatFilter cloud_cover = 2;
     // data that possesses the bands specified in bands
-    Eo.Band bands = 8;
+    Eo.Band bands = 3;
 }
 
 /**
