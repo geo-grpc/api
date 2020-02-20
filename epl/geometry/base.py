@@ -5,6 +5,8 @@ geometry objects, but has no effect on geometric analysis. All
 operations are performed in the x-y plane. Thus, geometries with
 different z values may intersect or be equal.
 """
+from __future__ import annotations
+
 import importlib
 
 from binascii import a2b_hex
@@ -300,13 +302,7 @@ class BaseGeometry(object):
     __hash__ = None
 
     def sr_eq(self, other_sr: geometry_pb2.SpatialReferenceData):
-        if self.sr.wkid > 0:
-            return self.sr.wkid == other_sr.wkid
-        elif len(self.sr.proj4) > 0:
-            return self.sr.proj4 == other_sr.proj4
-        elif len(self.sr.wkt) > 0:
-            return self.sr.wkt == other_sr.wkt
-        return False
+        return sr_eq(self.sr, other_sr)
 
     # Array and ctypes interfaces
     # ---------------------------
@@ -862,12 +858,12 @@ class BaseGeometry(object):
         area_response = geometry_init.geometry_service.stub.Operate(op_area)
         return area_response.measure
 
-    def distance(self, other_geom, geodetic=True):
+    def distance(self, other_geom: BaseGeometry, geodetic=True):
         if geodetic:
             return self.geodetic_distance(other_geom=other_geom)
         return self.s_distance(other_geom)
 
-    def geodetic_distance(self, other_geom):
+    def geodetic_distance(self, other_geom: BaseGeometry):
         # TODO, requires proper implementation in Geometry Service
         centroid = self.union(other_geom, result_sr=geometry_pb2.SpatialReferenceData(wkid=4326)).centroid
         local_sr = geometry_pb2.SpatialReferenceData(
@@ -892,7 +888,7 @@ class BaseGeometry(object):
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def symmetric_difference(self,
-                             other_geom,
+                             other_geom: BaseGeometry,
                              operation_sr: geometry_pb2.SpatialReferenceData = None,
                              result_sr: geometry_pb2.SpatialReferenceData = None):
         return self._two_geom_op(other_geom=other_geom,
@@ -901,7 +897,7 @@ class BaseGeometry(object):
                                  result_sr=result_sr)
 
     def difference(self,
-                   other_geom,
+                   other_geom: BaseGeometry,
                    operation_sr: geometry_pb2.SpatialReferenceData = None,
                    result_sr: geometry_pb2.SpatialReferenceData = None):
         return self._two_geom_op(other_geom=other_geom,
@@ -910,7 +906,7 @@ class BaseGeometry(object):
                                  result_sr=result_sr)
 
     def intersection(self,
-                     other_geom,
+                     other_geom: BaseGeometry,
                      operation_sr: geometry_pb2.SpatialReferenceData = None,
                      result_sr: geometry_pb2.SpatialReferenceData = None):
         """
@@ -929,7 +925,7 @@ class BaseGeometry(object):
                                  result_sr=result_sr)
 
     def union(self,
-              other_geom,
+              other_geom: BaseGeometry,
               operation_sr: geometry_pb2.SpatialReferenceData = None,
               result_sr: geometry_pb2.SpatialReferenceData = None):
         if other_geom is None:
@@ -950,28 +946,38 @@ class BaseGeometry(object):
 
     @staticmethod
     def cascaded_union(geometry_iterable: Iterable):
-        geometry_response = geometry_init\
-            .geometry_service\
-            .stub\
+        geometry_response = geometry_init \
+            .geometry_service \
+            .stub \
             .OperateClientStream(BaseGeometry._gen_union(geometry_iterable))
 
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
+    def _operation_sr(self,
+                      other_geom: BaseGeometry,
+                      operation_sr: geometry_pb2.SpatialReferenceData = None):
+        if operation_sr is None and not self.sr_eq(other_geom.sr):
+            operation_sr = self.sr
+            warn("left and right geometries have different sr and operation_sr is None. defaulting "
+                 "operation_sr to the left geometry sr: \n{}".format(self.sr))
+        return operation_sr
+
     def _two_geom_op(self,
-                     other_geom,
+                     other_geom: BaseGeometry,
                      operator_type: geometry_pb2.OperatorType,
                      operation_sr: geometry_pb2.SpatialReferenceData = None,
                      result_sr: geometry_pb2.SpatialReferenceData = None):
+        operation_sr = self._operation_sr(other_geom=other_geom, operation_sr=operation_sr)
+
         op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                   right_geometry=other_geom.geometry_data,
                                                   operator=operator_type,
                                                   operation_sr=operation_sr,
                                                   result_sr=result_sr)
-        return BaseGeometry.import_protobuf(
-            geometry_init.geometry_service.stub.Operate(op_request).geometry)
+        return BaseGeometry.import_protobuf(geometry_init.geometry_service.stub.Operate(op_request).geometry)
 
     def equals(self,
-               other_geom,
+               other_geom: BaseGeometry,
                operation_sr: geometry_pb2.SpatialReferenceData = None):
         """
         Returns True if geometries are equal, else False.
@@ -983,44 +989,46 @@ class BaseGeometry(object):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.EQUALS, operation_sr=operation_sr)
 
     def contains(self,
-                 other_geom,
+                 other_geom: BaseGeometry,
                  operation_sr: geometry_pb2.SpatialReferenceData = None):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.CONTAINS, operation_sr=operation_sr)
 
     def within(self,
-               other_geom,
+               other_geom: BaseGeometry,
                operation_sr: geometry_pb2.SpatialReferenceData = None):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.WITHIN, operation_sr=operation_sr)
 
     def touches(self,
-                other_geom,
+                other_geom: BaseGeometry,
                 operation_sr: geometry_pb2.SpatialReferenceData = None):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.TOUCHES, operation_sr=operation_sr)
 
     def overlaps(self,
-                 other_geom,
+                 other_geom: BaseGeometry,
                  operation_sr: geometry_pb2.SpatialReferenceData = None):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.OVERLAPS, operation_sr=operation_sr)
 
     def crosses(self,
-                other_geom,
+                other_geom: BaseGeometry,
                 operation_sr: geometry_pb2.SpatialReferenceData = None):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.CROSSES, operation_sr=operation_sr)
 
     def disjoint(self,
-                 other_geom,
+                 other_geom: BaseGeometry,
                  operation_sr: geometry_pb2.SpatialReferenceData = None):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.DISJOINT, operation_sr=operation_sr)
 
     def intersects(self,
-                   other_geom,
+                   other_geom: BaseGeometry,
                    operation_sr: geometry_pb2.SpatialReferenceData = None):
         return self._relate(other_geom=other_geom, relate_type=geometry_pb2.INTERSECTS, operation_sr=operation_sr)
 
     def _relate(self,
-                other_geom,
+                other_geom: BaseGeometry,
                 relate_type: geometry_pb2.OperatorType,
                 operation_sr: geometry_pb2.SpatialReferenceData = None):
+        operation_sr = self._operation_sr(other_geom=other_geom, operation_sr=operation_sr)
+
         op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                   right_geometry=other_geom.geometry_data,
                                                   operator=relate_type,
@@ -1174,13 +1182,7 @@ class BaseMultipartGeometry(BaseGeometry):
         )
 
     def _sr_eq__(self, other):
-        if self.sr.wkid > 0:
-            return self.sr.wkid == other.sr.wkid
-        elif len(self.sr.proj4) > 0:
-            return self.sr.proj4 == other.sr.proj4
-        elif len(self.sr.wkt) > 0:
-            return self.sr.wkt == other.sr.wkt
-        return False
+        return sr_eq(self.sr, other.sr)
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -1374,10 +1376,10 @@ def get_sr(sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: s
 
 
 def sr_eq(sr: geometry_pb2.SpatialReferenceData, other_sr: geometry_pb2.SpatialReferenceData):
-    if sr.wkid != other_sr.wkid:
-        return False
-    if sr.proj4 != other_sr.proj4:
-        return False
-    if sr.wkt != other_sr.wkt:
-        return False
-    return True
+    if sr.wkid > 0:
+        return sr.wkid == other_sr.wkid
+    elif len(sr.proj4) > 0:
+        return sr.proj4 == other_sr.proj4
+    elif len(sr.wkt) > 0:
+        return sr.wkt == other_sr.wkt
+    return False

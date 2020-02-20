@@ -23,6 +23,7 @@ import random
 import unittest
 import math
 import requests
+import warnings
 
 import grpc
 
@@ -737,17 +738,21 @@ class TestBasic(unittest.TestCase):
                                                      "+no_defs")
         polygon_data_1 = geometry_pb2.GeometryData(wkt=envelope_wkt, sr=sr)
         polygon_1 = Polygon.import_protobuf(polygon_data_1)
-        polyton_2_wkt = "POLYGON ((-1.19294172319649 41.83288173182827, -0.847841728602983 41.83288173182827, " \
+        polygon_2_wkt = "POLYGON ((-1.19294172319649 41.83288173182827, -0.847841728602983 41.83288173182827, " \
                         "-0.847841728602983 42.00038957049547, -1.19294172319649 42.00038957049547, " \
                         "-1.19294172319649 41.83288173182827))"
-        polygon_data_2 = geometry_pb2.GeometryData(wkt=polyton_2_wkt, sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        polyton_2 = Polygon.import_protobuf(polygon_data_2)
+        polygon_data_2 = geometry_pb2.GeometryData(wkt=polygon_2_wkt, sr=geometry_pb2.SpatialReferenceData(wkid=4326))
+        polygon_2 = Polygon.import_protobuf(polygon_data_2)
+        b_warned = False
+        warnings.filterwarnings('error')
         try:
-            _ = polygon_1.intersection(polyton_2)
-        except grpc.RpcError as e:
-            self.assertTrue(e.details().startswith("geometryOperationUnary error : for spatial operations the left "
-                                                   "and right spatial reference must equal one another if the "
-                                                   "operation and the result spatial reference aren't defined"))
+            _ = polygon_1.intersection(polygon_2)
+        except Warning:
+            b_warned = True
+        self.assertTrue(b_warned)
+        warnings.filterwarnings("ignore")
+        result = polygon_1.intersection(polygon_2)
+        self.assertTrue(result.sr_eq(polygon_1.sr))
 
     def test_union_none(self):
         polygon = Point(1, 1, sr=geometry_pb2.SpatialReferenceData(wkid=4326)).buffer(200)
@@ -863,3 +868,8 @@ class TestBasic(unittest.TestCase):
         az12, az21, dist = pt1.geodetic_inverse(pt2)
         self.assertEquals(360 + math.degrees(az12), 270)
         self.assertEquals(math.degrees(az21), 90)
+
+    def test_sr(self):
+        pt2 = Point(-1, 0, wkid=4326)
+        pt1 = Point(0, -1, wkid=3857)
+        self.assertFalse(pt1.sr_eq(pt2.sr))
