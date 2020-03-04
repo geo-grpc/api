@@ -1,3 +1,23 @@
+/*
+Copyright 2017-2020 Echo Park Labs
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+For additional information, contact:
+
+email: davidraleigh@gmail.com
+*/
+
 package org.epl.geometry;
 
 import com.esri.core.geometry.*;
@@ -432,63 +452,63 @@ public class TestProjection extends TestCase {
 
     }
 
-//    @Test
-//    public void testEqualAreaProjection() {
-//        //        POINT (-70.651886936570745 43.134525834585826)
-//        Point point = new Point(-70.651886936570745, 43.1345088834585826);
-//        SpatialReferenceEx utmZone = SpatialReferenceEx.createUTM(point);
-//        SpatialReferenceEx spatialReferenceWGS84 = SpatialReferenceEx.create(4326);
-//        ProjectionTransformation projectionTransformationUTM = new ProjectionTransformation(spatialReferenceWGS84, utmZone);
+    @Test
+    public void testEqualAreaProjection() {
+        //        POINT (-70.651886936570745 43.134525834585826)
+        Point point = new Point(-70.651886936570745, 43.1345088834585826);
+        SpatialReferenceEx utmZone = SpatialReferenceEx.createUTM(point);
+        SpatialReferenceEx spatialReferenceWGS84 = SpatialReferenceEx.create(4326);
+        ProjectionTransformation projectionTransformationUTM = new ProjectionTransformation(spatialReferenceWGS84, utmZone);
+
+        ProjectionTransformation projectionTransformationEA = ProjectionTransformation.getEqualArea(point, spatialReferenceWGS84);
+
+        Geometry geodesicBuffered = OperatorGeodesicBuffer.local().execute(
+                point,
+                spatialReferenceWGS84,
+                GeodeticCurveType.Geodesic,
+                135.7,
+                0.07,
+                false,
+                null);
+
+        Geometry utmPoint = GeometryEngineEx.project(point, spatialReferenceWGS84, utmZone);
+        Geometry utmPoint2 = OperatorProject.local().execute(point, projectionTransformationUTM, null);
+        assertTrue(utmPoint.equals(utmPoint2));
+
+        Geometry utmReprojected = GeometryEngineEx.project(utmPoint, utmZone, spatialReferenceWGS84);
+        Geometry utmReprojected2 = OperatorProject.local().execute(utmPoint2, projectionTransformationUTM.getReverse(), null);
+        assertTrue(utmReprojected.equals(utmReprojected2));
+
+        Geometry utmBuffer = OperatorBuffer.local().execute(utmPoint, utmZone.toSpatialReference(), 135.6, null);
+        Geometry reProjectedUTMBuffer = OperatorProject.local().execute(utmBuffer, projectionTransformationUTM.getReverse(), null);
+        double differenceVal = GeometryEngineEx.difference(reProjectedUTMBuffer, geodesicBuffered, spatialReferenceWGS84).calculateArea2D();
+        assertEquals(differenceVal, 0.0, 1e-14);
+
+        assertTrue(GeometryEngineEx.contains(geodesicBuffered, reProjectedUTMBuffer, spatialReferenceWGS84));
+
+        Geometry aziEAPoint = OperatorProject.local().execute(point, projectionTransformationEA, null);
+        Geometry aziEABuffere = OperatorBuffer.local().execute(aziEAPoint, null, 135.6, null);
+        assertEquals(aziEABuffere.calculateArea2D(), utmBuffer.calculateArea2D(), 1e-5);
+        Geometry reProjectedAZIBuffer = OperatorProject.local().execute(aziEABuffere, projectionTransformationEA.getReverse(), null);
+
+        Geometry projectedGeodesicAZI = OperatorProject.local().execute(geodesicBuffered, projectionTransformationEA, null);
+        Geometry reprojectedGeodesicAZI = OperatorProject.local().execute(projectedGeodesicAZI, projectionTransformationEA.getReverse(), null);
+        differenceVal = GeometryEngineEx.difference(reProjectedAZIBuffer, reprojectedGeodesicAZI, spatialReferenceWGS84).calculateArea2D();
+        assertEquals(differenceVal, 0.0, 1e-14);
+
+        differenceVal = GeometryEngineEx.difference(reProjectedAZIBuffer, geodesicBuffered, spatialReferenceWGS84).calculateArea2D();
+        assertEquals(differenceVal, 0.0, 1e-14);
+
+        assertTrue(GeometryEngineEx.contains(geodesicBuffered, reProjectedAZIBuffer, spatialReferenceWGS84));
+
+//        String wktInput = "POLYGON ((-70.651656936570745 43.135157834585826,-70.651570654984525 43.135150076925918,-70.651511247908587 43.135155437576621,-70.651490101488349 43.135169249238288,-70.651490181628759 43.135200763774868,-70.651510336532638 43.135249995303397,-70.651530872098633 43.135299226354952,-70.651527230781454 43.13533529757845,-70.651492643684321 43.135349305799508,-70.651420172717224 43.135354852495823,-70.651358095085072 43.135346745253884,-70.651247805462717 43.1353033127629,-70.651151361236941 43.135246176463966,-70.651124154255413 43.135206047556842,-70.651131534466685 43.135151913051203,-70.651155914561755 43.135115542493892,-70.651228730259774 43.135051460048707,-70.651305024993519 43.134973818456416,-70.651360674948108 43.134914489191551,-70.651385078643216 43.134864606853156,-70.651402827815218 43.134810322639233,-70.651410310326284 43.134688652284062,-70.651418383361829 43.134517448375689,-70.651411370788409 43.134413996600074,-70.651390876709428 43.134337752182525,-70.651346755889904 43.134225832686319,-70.651289063395154 43.134109606122337,-70.651241242017051 43.133988734078358,-70.651230854601764 43.133916846697829,-70.651221013347353 43.133822439140715,-70.651200519724128 43.133746194674302,-70.651218268699594 43.133691907971006,-70.651249886578313 43.133610413350418,-70.651273539332081 43.133547040518167,-70.651322422674269 43.133478800504768,-70.651363984222755 43.133424172537978,-70.651409243106613 43.133378494590104,-70.651437060507462 43.133355583224628,-70.651492145648632 43.133332275678633,-70.651599176252716 43.133326227462319,-70.651675204034788 43.133338636120527,-70.65179240423565 43.133381970944697,-70.651905761872953 43.133425353603045,-70.652022336036893 43.133459688797871,-70.652087607730962 43.133472252516562,-70.652149929372143 43.133489361765591,-70.652232540703992 43.133546699550045,-70.652400720753761 43.133656829257461,-70.652544825855031 43.133771806958798,-70.652698657471404 43.133891149422396,-70.652757214424 43.133939825915917,-70.652829643131227 43.133961291723317,-70.652898471779253 43.133991812912122,-70.652963804959569 43.134049399817712,-70.652994471176711 43.134089475795044,-70.653000937222828 43.134129903976664,-70.653000836372897 43.134197439788288,-70.652972837499135 43.134256375321229,-70.652903321638362 43.134342923487154,-70.652853489821567 43.134447199036558,-70.652811504521395 43.134528843881576,-70.652776716073816 43.134592380423527,-70.652745241323998 43.134664872485907,-70.652703717209832 43.134692485155824,-70.65263790191085 43.134702441934749,-70.652537796343609 43.13469488220742,-70.652481986521252 43.134691185475688,-70.652416288981371 43.134705643385693,-70.652347112331768 43.134733655368471,-70.652274294763117 43.134797738553125,-70.652239263183958 43.134852272522785,-70.652214826278225 43.134929165745028,-70.652217533236211 43.135001163954207,-70.652248296977746 43.135059250554882,-70.652327397729081 43.135157158057844,-70.652414500765317 43.135209927851037,-70.6524582645621 43.135222802033766,-70.652470512866358 43.135249637832572,-70.652646824360005 43.135404671730349,-70.652680946443695 43.135444700365824,-70.652691113545444 43.135494075980539,-70.652680299690047 43.135534756334458,-70.652642334694633 43.135580326883741,-70.6525831461027 43.135608197219,-70.65250042683256 43.135618395612582,-70.652403778584315 43.1356107883392,-70.652328034290349 43.135580366756479,-70.652207940292428 43.135501055652128,-70.652084166050003 43.135399292820672,-70.651994153636025 43.135324055019495,-70.651897729053019 43.13525341019011,-70.651815354685922 43.135205077192047,-70.651746646220062 43.135179051560065,-70.651656936570745 43.135157834585826))";
+//        Geometry input = OperatorImportFromWkt.local().execute(0, Geometry.Type.Unknown, wktInput, null);
+//        Geometry encircled = OperatorEnclosingCircle.local().execute(input, spatialReferenceWGS84, null);
 //
-//        ProjectionTransformation projectionTransformationEA = ProjectionTransformation.getEqualArea(point, spatialReferenceWGS84);
-//
-//        Geometry geodesicBuffered = OperatorGeodesicBuffer.local().execute(
-//                point,
-//                spatialReferenceWGS84,
-//                GeodeticCurveType.Geodesic,
-//                135.7,
-//                0.07,
-//                false,
-//                null);
-//
-//        Geometry utmPoint = GeometryEngineEx.project(point, spatialReferenceWGS84, utmZone);
-//        Geometry utmPoint2 = OperatorProject.local().execute(point, projectionTransformationUTM, null);
-//        assertTrue(utmPoint.equals(utmPoint2));
-//
-//        Geometry utmReprojected = GeometryEngineEx.project(utmPoint, utmZone, spatialReferenceWGS84);
-//        Geometry utmReprojected2 = OperatorProject.local().execute(utmPoint2, projectionTransformationUTM.getReverse(), null);
-//        assertTrue(utmReprojected.equals(utmReprojected2));
-//
-//        Geometry utmBuffer = OperatorBuffer.local().execute(utmPoint, utmZone.toSpatialReference(), 135.6, null);
-//        Geometry reProjectedUTMBuffer = OperatorProject.local().execute(utmBuffer, projectionTransformationUTM.getReverse(), null);
-//        double differenceVal = GeometryEngineEx.difference(reProjectedUTMBuffer, geodesicBuffered, spatialReferenceWGS84).calculateArea2D();
-//        assertEquals(differenceVal, 0.0, 1e-14);
-//
-//        assertTrue(GeometryEngineEx.contains(geodesicBuffered, reProjectedUTMBuffer, spatialReferenceWGS84));
-//
-//        Geometry aziEAPoint = OperatorProject.local().execute(point, projectionTransformationEA, null);
-//        Geometry aziEABuffere = OperatorBuffer.local().execute(aziEAPoint, null, 135.6, null);
-//        assertEquals(aziEABuffere.calculateArea2D(), utmBuffer.calculateArea2D(), 1e-5);
-//        Geometry reProjectedAZIBuffer = OperatorProject.local().execute(aziEABuffere, projectionTransformationEA.getReverse(), null);
-//
-//        Geometry projectedGeodesicAZI = OperatorProject.local().execute(geodesicBuffered, projectionTransformationEA, null);
-//        Geometry reprojectedGeodesicAZI = OperatorProject.local().execute(projectedGeodesicAZI, projectionTransformationEA.getReverse(), null);
-//        differenceVal = GeometryEngineEx.difference(reProjectedAZIBuffer, reprojectedGeodesicAZI, spatialReferenceWGS84).calculateArea2D();
-//        assertEquals(differenceVal, 0.0, 1e-14);
-//
-//        differenceVal = GeometryEngineEx.difference(reProjectedAZIBuffer, geodesicBuffered, spatialReferenceWGS84).calculateArea2D();
-//        assertEquals(differenceVal, 0.0, 1e-14);
-//
-//        assertTrue(GeometryEngineEx.contains(geodesicBuffered, reProjectedAZIBuffer, spatialReferenceWGS84));
-//
-////        String wktInput = "POLYGON ((-70.651656936570745 43.135157834585826,-70.651570654984525 43.135150076925918,-70.651511247908587 43.135155437576621,-70.651490101488349 43.135169249238288,-70.651490181628759 43.135200763774868,-70.651510336532638 43.135249995303397,-70.651530872098633 43.135299226354952,-70.651527230781454 43.13533529757845,-70.651492643684321 43.135349305799508,-70.651420172717224 43.135354852495823,-70.651358095085072 43.135346745253884,-70.651247805462717 43.1353033127629,-70.651151361236941 43.135246176463966,-70.651124154255413 43.135206047556842,-70.651131534466685 43.135151913051203,-70.651155914561755 43.135115542493892,-70.651228730259774 43.135051460048707,-70.651305024993519 43.134973818456416,-70.651360674948108 43.134914489191551,-70.651385078643216 43.134864606853156,-70.651402827815218 43.134810322639233,-70.651410310326284 43.134688652284062,-70.651418383361829 43.134517448375689,-70.651411370788409 43.134413996600074,-70.651390876709428 43.134337752182525,-70.651346755889904 43.134225832686319,-70.651289063395154 43.134109606122337,-70.651241242017051 43.133988734078358,-70.651230854601764 43.133916846697829,-70.651221013347353 43.133822439140715,-70.651200519724128 43.133746194674302,-70.651218268699594 43.133691907971006,-70.651249886578313 43.133610413350418,-70.651273539332081 43.133547040518167,-70.651322422674269 43.133478800504768,-70.651363984222755 43.133424172537978,-70.651409243106613 43.133378494590104,-70.651437060507462 43.133355583224628,-70.651492145648632 43.133332275678633,-70.651599176252716 43.133326227462319,-70.651675204034788 43.133338636120527,-70.65179240423565 43.133381970944697,-70.651905761872953 43.133425353603045,-70.652022336036893 43.133459688797871,-70.652087607730962 43.133472252516562,-70.652149929372143 43.133489361765591,-70.652232540703992 43.133546699550045,-70.652400720753761 43.133656829257461,-70.652544825855031 43.133771806958798,-70.652698657471404 43.133891149422396,-70.652757214424 43.133939825915917,-70.652829643131227 43.133961291723317,-70.652898471779253 43.133991812912122,-70.652963804959569 43.134049399817712,-70.652994471176711 43.134089475795044,-70.653000937222828 43.134129903976664,-70.653000836372897 43.134197439788288,-70.652972837499135 43.134256375321229,-70.652903321638362 43.134342923487154,-70.652853489821567 43.134447199036558,-70.652811504521395 43.134528843881576,-70.652776716073816 43.134592380423527,-70.652745241323998 43.134664872485907,-70.652703717209832 43.134692485155824,-70.65263790191085 43.134702441934749,-70.652537796343609 43.13469488220742,-70.652481986521252 43.134691185475688,-70.652416288981371 43.134705643385693,-70.652347112331768 43.134733655368471,-70.652274294763117 43.134797738553125,-70.652239263183958 43.134852272522785,-70.652214826278225 43.134929165745028,-70.652217533236211 43.135001163954207,-70.652248296977746 43.135059250554882,-70.652327397729081 43.135157158057844,-70.652414500765317 43.135209927851037,-70.6524582645621 43.135222802033766,-70.652470512866358 43.135249637832572,-70.652646824360005 43.135404671730349,-70.652680946443695 43.135444700365824,-70.652691113545444 43.135494075980539,-70.652680299690047 43.135534756334458,-70.652642334694633 43.135580326883741,-70.6525831461027 43.135608197219,-70.65250042683256 43.135618395612582,-70.652403778584315 43.1356107883392,-70.652328034290349 43.135580366756479,-70.652207940292428 43.135501055652128,-70.652084166050003 43.135399292820672,-70.651994153636025 43.135324055019495,-70.651897729053019 43.13525341019011,-70.651815354685922 43.135205077192047,-70.651746646220062 43.135179051560065,-70.651656936570745 43.135157834585826))";
-////        Geometry input = OperatorImportFromWkt.local().execute(0, Geometry.Type.Unknown, wktInput, null);
-////        Geometry encircled = OperatorEnclosingCircle.local().execute(input, spatialReferenceWGS84, null);
-////
-////        assertEquals(encircled.calculateArea2D(), buffered.calculateArea2D(), 1e-8);
-////        assertEquals(0.0, OperatorDifference.local().execute(encircled, buffered, spatialReferenceWGS84, null).calculateArea2D(), 1e-8);
-////        assertTrue(GeometryEngineEx.contains(buffered, encircled, spatialReferenceWGS84));
-//    }
+//        assertEquals(encircled.calculateArea2D(), buffered.calculateArea2D(), 1e-8);
+//        assertEquals(0.0, OperatorDifference.local().execute(encircled, buffered, spatialReferenceWGS84, null).calculateArea2D(), 1e-8);
+//        assertTrue(GeometryEngineEx.contains(buffered, encircled, spatialReferenceWGS84));
+    }
 
     @Test
     public void testETRS() {
