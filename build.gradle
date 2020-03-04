@@ -1,0 +1,54 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+// Inform IntelliJ projects about the generated code.
+apply plugin: 'idea'
+
+group = 'org.epl.geometry'
+version = '2.2.3'
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.addAll([
+            "-Xlint:unchecked",
+            "-Xlint:deprecation",
+            "--add-exports",
+            "java.base/jdk.internal.misc=ALL-UNNAMED"
+    ])
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    compile group: 'com.esri.geometry', name: 'esri-geometry-api', version: '2.2.3'
+    compile files('/Users/davidraleigh/code/davidraleigh/geometry-api-java/build/libs/jackson-core-2.9.6.jar')
+    compile files('/Users/davidraleigh/code/davidraleigh/geometry-api-java/build/libs/epl-geometry-api-2.2.3.jar')
+    compile files('/usr/local/lib/proj.jar')
+    testCompile group: 'org.json', name: 'json', version:'20170516'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+
+    // https://www.youtube.com/watch?v=4HG0YQVy8UM&feature=youtu.be
+    jvmArgs += ['--add-exports', 'java.base/jdk.internal.misc=ALL-UNNAMED']
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from configurations.runtime
+}
+
+build.dependsOn(copyToLib)
+
+tasks.withType(Test) {
+    systemProperty "java.library.path", "/usr/local/lib/"
+}
