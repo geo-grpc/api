@@ -2,7 +2,7 @@
 Geometry library with Projection and Geodetic methods inheriting from an [altered version](https://github.com/davidraleigh/geometry-api-java/tree/epl) of the ESRI geometry-api-java.
 
 ## Dependencies and Requirements
-- JDK of 11+
+- JDK of 9+
 - 5.2 Proj lib with JNI
 
 ## Building
