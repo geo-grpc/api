@@ -60,7 +60,6 @@ class OperatorBufferExLocal extends OperatorBufferEx {
                                   int max_vertices_in_full_circle,
                                   boolean b_union,
                                   ProgressTracker progressTracker) {
-        OperatorBuffer operatorBuffer = (OperatorBuffer)OperatorFactoryLocal.getInstance().getOperator(Operator.Type.Buffer);
-        return operatorBuffer.execute(inputGeometries, sr.toSpatialReference(), distances, max_deviation, max_vertices_in_full_circle, b_union, progressTracker);
+        return new OperatorBufferExCursor(inputGeometries, sr, distances, max_deviation, max_vertices_in_full_circle, b_union, progressTracker);
     }
 }

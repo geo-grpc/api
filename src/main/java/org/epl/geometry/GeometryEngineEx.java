@@ -302,4 +302,9 @@ public class GeometryEngineEx extends GeometryEngine {
 	                             SpatialReferenceEx spatialReference, double distance) {
 		return GeometryEngine.buffer(geometry, spatialReference.toSpatialReference(), distance);
 	}
+
+	public static Polygon geodesicBuffer(Geometry geometry, SpatialReferenceEx spatialReference, double d) {
+		OperatorGeodesicBuffer operatorGeodesicBuffer = (OperatorGeodesicBuffer)factoryEx.getOperator(OperatorEx.Type.GeodesicBuffer);
+		return (Polygon) operatorGeodesicBuffer.execute(geometry, spatialReference, 0, d, Double.NaN, false, null);
+	}
 }

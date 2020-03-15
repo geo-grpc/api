@@ -57,10 +57,10 @@ public class SpatialReferenceExImpl extends SpatialReferenceEx {
 	public SpatialReference toSpatialReference() {
 		if (m_userWkid != 0) {
 			return SpatialReference.create(m_userWkid);
-		} else if (m_userWkt.length() != 0) {
+		} else if (m_userWkt != null && m_userWkt.length() != 0) {
 			return SpatialReference.create(m_userWkt);
 		}
-		return SpatialReference.create(0);
+		return null;
 	}
 
 	// TODO If one was going to create member object for locking it would be

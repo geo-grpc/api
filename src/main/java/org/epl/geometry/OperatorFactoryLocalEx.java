@@ -86,8 +86,8 @@ public class OperatorFactoryLocalEx extends OperatorFactoryEx {
 //		st_supportedOperators.put(Type.ConvexHull, new OperatorConvexHullLocal());
 //		st_supportedOperators.put(Type.Boundary, new OperatorBoundaryLocal());
 //
-//		st_supportedOperators.put(OperatorEx.Type.RandomPoints, new OperatorRandomPointsLocal());
-//		st_supportedOperators.put(OperatorEx.Type.EnclosingCircle, new OperatorEnclosingCircleLocal());
+		st_supportedOperators.put(OperatorEx.Type.RandomPoints, new OperatorRandomPointsLocal());
+		st_supportedOperators.put(OperatorEx.Type.EnclosingCircle, new OperatorEnclosingCircleLocal());
 		st_supportedOperators.put(OperatorEx.Type.GeodeticInverse, new OperatorGeodeticInverseLocal());
 		st_supportedOperators.put(OperatorEx.Type.SimpleRelation, new OperatorSimpleRelationEx());
 

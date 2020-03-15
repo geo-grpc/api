@@ -24,14 +24,18 @@ import com.esri.core.geometry.*;
 
 class OperatorBufferExCursor extends GeometryCursor {
     OperatorBufferExCursor(GeometryCursor inputGeoms,
-                           SpatialReferenceEx sr,
+                           SpatialReferenceEx srEx,
                            double[] distances,
                            double max_deviation,
                            int max_vertices,
                            boolean b_union,
                            ProgressTracker progress_tracker) {
+        SpatialReference sr = null;
+        if (srEx != null)
+            sr = srEx.toSpatialReference();
+
         m_inputGeoms = ((OperatorBuffer) OperatorFactoryLocal.getInstance().getOperator(Operator.Type.Buffer)).
-                execute(inputGeoms, sr.toSpatialReference(), distances, max_deviation, max_vertices, b_union, progress_tracker);
+                execute(inputGeoms, sr, distances, max_deviation, max_vertices, b_union, progress_tracker);
     }
 
     @Override
