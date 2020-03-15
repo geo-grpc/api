@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     // https://stackoverflow.com/a/56787382/445372
-    implementation('com.esri.geometry:epl-geometry-api') {
+    implementation('org.epl.geometry:epl-geometry-api') {
         version {
             branch = 'epl'
         }
