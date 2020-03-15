@@ -1,5 +1,6 @@
 rootProject.name = 'epl-geometry-api-ex'
 
+// https://stackoverflow.com/a/56787382/445372
 sourceControl {
     gitRepository(uri("https://github.com/davidraleigh/geometry-api-java.git")) {
         producesModule("com.esri.geometry:epl-geometry-api")
