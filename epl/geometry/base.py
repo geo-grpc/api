@@ -810,7 +810,7 @@ class BaseGeometry(object):
                                                       distance=distance),
                                                   result_encoding=geometry_pb2.WKB)
 
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def project(self, to_sr: geometry_pb2.SpatialReferenceData = None, to_wkid: int = 0, to_proj4: str = ""):
@@ -822,19 +822,19 @@ class BaseGeometry(object):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.PROJECT,
                                                   result_sr=to_sr)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def simplify(self):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.SIMPLIFY)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def convex(self):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.CONVEX_HULL)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def area(self, geodetic=True):
@@ -855,7 +855,7 @@ class BaseGeometry(object):
         op_area = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                operator=geometry_pb2.GEODETIC_AREA,
                                                result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        area_response = geometry_init.geometry_service.stub.Operate(op_area)
+        area_response = geometry_init.geometry_service.operate(op_area)
         return area_response.measure
 
     def distance(self, other_geom: BaseGeometry, geodetic=True):
@@ -874,7 +874,7 @@ class BaseGeometry(object):
                                                    right_geometry=other_geom.geometry_data,
                                                    operator=geometry_pb2.DISTANCE,
                                                    operation_sr=local_sr)
-        distance_response = geometry_init.geometry_service.stub.Operate(op_distance)
+        distance_response = geometry_init.geometry_service.operate(op_distance)
         return distance_response.measure
 
     def geodetic_buffer(self, distance_m):
@@ -884,7 +884,7 @@ class BaseGeometry(object):
                                                       distance=distance_m),
                                                   result_encoding=geometry_pb2.WKB)
 
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def symmetric_difference(self,
@@ -974,7 +974,7 @@ class BaseGeometry(object):
                                                   operator=operator_type,
                                                   operation_sr=operation_sr,
                                                   result_sr=result_sr)
-        return BaseGeometry.import_protobuf(geometry_init.geometry_service.stub.Operate(op_request).geometry)
+        return BaseGeometry.import_protobuf(geometry_init.geometry_service.operate(op_request).geometry)
 
     def equals(self,
                other_geom: BaseGeometry,
@@ -1033,7 +1033,7 @@ class BaseGeometry(object):
                                                   right_geometry=other_geom.geometry_data,
                                                   operator=relate_type,
                                                   operation_sr=operation_sr)
-        return geometry_init.geometry_service.stub.Operate(op_request).spatial_relationship
+        return geometry_init.geometry_service.operate(op_request).spatial_relationship
 
     def generalize(self, percent_reduction=0, max_point_count=0, remove_degenerates=True):
         generalize_by_area_params = geometry_pb2.GeometryRequest.GeneralizeByAreaParams(
@@ -1046,7 +1046,7 @@ class BaseGeometry(object):
                                                   operator=geometry_pb2.GENERALIZE_BY_AREA,
                                                   generalize_by_area_params=generalize_by_area_params)
 
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     @property
@@ -1107,7 +1107,7 @@ class BaseGeometry(object):
                                                     operator=geometry_pb2.AFFINE_TRANSFORM,
                                                     operation_sr=local_sr,
                                                     result_sr=self.sr)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_translate)
+        geometry_response = geometry_init.geometry_service.operate(op_translate)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def length(self, geodetic=True):
@@ -1115,7 +1115,7 @@ class BaseGeometry(object):
             return self.s_length
         op_length = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                  operator=geometry_pb2.GEODETIC_LENGTH)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_length)
+        geometry_response = geometry_init.geometry_service.operate(op_length)
         return geometry_response.measure
 
 

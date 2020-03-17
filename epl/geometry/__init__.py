@@ -11,7 +11,7 @@ from .multipoint import MultiPoint, asMultiPoint
 from .multilinestring import MultiLineString, asMultiLineString
 from .multipolygon import MultiPolygon, asMultiPolygon
 from .collection import GeometryCollection
-from epl.protobuf import geometry_service_pb2_grpc
+from epl.protobuf import geometry_service_pb2_grpc, geometry_pb2
 
 __all__ = [
     'box', 'shape', 'asShape', 'Point', 'asPoint', 'LineString',
@@ -44,6 +44,9 @@ class __GeometryServiceStub(object):
         :return:
         """
         self._stub = geometry_service_pb2_grpc.GeometryServiceStub(channel)
+
+    def operate(self, operator_request: geometry_pb2.GeometryRequest, timeout=60):
+        return self._stub.Operate(operator_request, timeout=timeout)
 
 
 geometry_service = __GeometryServiceStub()
