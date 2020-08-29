@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-protoc -I proto/ proto/epl/protobuf/geometry.proto --go_out=$GOPATH/src
-protoc -I proto/ proto/epl/protobuf/query.proto --go_out=$GOPATH/src
-protoc -I proto/ proto/epl/protobuf/stac.proto --go_out=$GOPATH/src
-protoc -I proto/ proto/epl/protobuf/stac_service.proto --go_out=plugins=grpc:$GOPATH/src
-protoc -I proto/ proto/epl/protobuf/geometry_service.proto --go_out=plugins=grpc:$GOPATH/src
+### protoc.sh
+docker run --rm -it -v "${GOPATH}":/defs --entrypoint /bin/sh namely/protoc:1.28_2 -c "/defs/src/github.com/geo-grpc/api/proto/protoc.sh"
+### protoc.sh
 
-python -mgrpc_tools.protoc -I=./proto --python_out=./python \
-    ./proto/epl/protobuf/geometry.proto \
-    ./proto/epl/protobuf/query.proto \
-    ./proto/epl/protobuf/stac.proto
-
-python -mgrpc_tools.protoc -I=./proto --grpc_python_out=./python \
-    ./proto/epl/protobuf/geometry_service.proto \
-    ./proto/epl/protobuf/stac_service.proto
-
-docker run --rm   -v $(pwd)/docs:/out   -v $(pwd)/proto:/protos   pseudomuto/protoc-gen-doc --proto_path=/protos/ epl/protobuf/geometry.proto epl/protobuf/geometry_service.proto epl/protobuf/query.proto epl/protobuf/stac.proto epl/protobuf/stac_service.proto
+docker run --rm   -v "$(pwd)/.."/docs:/out -v "$(pwd)":/protos pseudomuto/protoc-gen-doc:1.3.1 \
+  --proto_path=/protos/ \
+  epl/protobuf/v1/geometry.proto \
+  epl/protobuf/v1/geometry_service.proto \
+  epl/protobuf/v1/query.proto \
+  epl/protobuf/v1/stac.proto \
+  epl/protobuf/v1/stac_service.proto \
+  st/protobuf/v1/flight_data.proto \
+  st/protobuf/v1/image_chain.proto \
+  st/protobuf/v1/swift_stac.proto \
+  st/protobuf/v1/chipper.proto \
+  st/protobuf/v1/image_science_service.proto
