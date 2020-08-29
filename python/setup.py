@@ -16,7 +16,7 @@ kwargs = {
     'author': 'David Raleigh',
     'author_email': 'davidraleigh@gmail.com',
     'license': 'Apache 2.0',
-    'version': '0.4.12',
+    'version': '1.0.0',
     'namespace_package': ['epl'],
     'python_requires': '>3.5.2',
     'packages': ['epl.protobuf.v1'],
