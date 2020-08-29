@@ -10,9 +10,4 @@ docker run --rm   -v "$(pwd)/.."/docs:/out -v "$(pwd)":/protos pseudomuto/protoc
   epl/protobuf/v1/geometry_service.proto \
   epl/protobuf/v1/query.proto \
   epl/protobuf/v1/stac.proto \
-  epl/protobuf/v1/stac_service.proto \
-  st/protobuf/v1/flight_data.proto \
-  st/protobuf/v1/image_chain.proto \
-  st/protobuf/v1/swift_stac.proto \
-  st/protobuf/v1/chipper.proto \
-  st/protobuf/v1/image_science_service.proto
+  epl/protobuf/v1/stac_service.proto
