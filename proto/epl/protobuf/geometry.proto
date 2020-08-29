@@ -21,12 +21,12 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.protobuf";
+option java_package = "com.epl.protobuf.v1";
 option java_outer_classname = "GeometryProto";
 option objc_class_prefix = "GMPB";
-option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
+option go_package = "github.com/geo-grpc/api/golang/epl/protobuf/v1";
 
-package epl.protobuf;
+package epl.protobuf.v1;
 
 /**
  * Container for Geometry data, has id, encoded geometry coordinates and shape, spatial reference and envelope
@@ -37,21 +37,19 @@ message GeometryData {
     // feature id as a string (for guids and other ids that aren't numeric)
     string feature_id = 2;
 
-    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
-
-    // well known text format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
-    string wkt = 3;
-    // geojson format for geometry encoding, https://en.wikipedia.org/wiki/GeoJSON
-    string geojson = 4;
-    // well known binary format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry#Well-known_binary
-    bytes wkb = 5;
-    // ESRI shape binary format for geometry encoding (fastest decoding and encoding for geometry service) https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
-    bytes esri_shape = 6;
-
-    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
+    oneof data {
+        // well known text format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
+        string wkt = 3;
+        // geojson format for geometry encoding, https://en.wikipedia.org/wiki/GeoJSON
+        string geojson = 4;
+        // well known binary format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry#Well-known_binary
+        bytes wkb = 5;
+        // ESRI shape binary format for geometry encoding (fastest decoding and encoding for geometry service) https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
+        bytes esri_shape = 6;
+    }
 
     // spatial reference of geometry
-    SpatialReferenceData sr = 7;
+    ProjectionData proj = 7;
 
     // reserved for xy array, z array, m array, vertex attributes?
     reserved 8 to 12;
@@ -113,21 +111,28 @@ enum SimpleState {
 /**
  * Spatial Reference system. Used with a geometry to define the reference system of the geometry's coordinates
  */
-message SpatialReferenceData {
-    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
+message ProjectionData {
+    oneof definition {
+        // epsg wkid (well know id), or srid (spatial reference id) of the projected or geographic coordinate system
+        int32 epsg = 1;
+        // proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html
+        string proj4 = 2;
+        // custom projection
+        Custom custom = 3;
+        // well-known text string of spatial reference
+        string wkt = 4;
+        // esri wkid (if not yet approved by epsg)
+    }
+    // int32 esri_wkid = 5;
+    // string wkt2 = 6;
+    // string projjson = 7;
+    reserved 5,6,7;
 
-    // epsg wkid (well know id), or srid (spatial reference id) of the projected or geographic coordinate system
-    int32 wkid = 1;
-    // proj string describing a projection or geographic coordinate system https://proj4.org/usage/projections.html
-    string proj4 = 2;
-    // custom projection
-    Custom custom = 3;
-    // well-known text string of spatial reference
-    string wkt = 4;
-    // esri wkid (if not yet approved by epsg)
-    int32 esri_wkid = 5;
-
-    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
+    GeometryData geometry = 10;
+    EnvelopeData bbox = 11;
+    GeometryData centroid = 12;
+    repeated uint32 shape = 8;
+    repeated double transform = 9;
 
     // Projection names
     enum CSType {
@@ -161,7 +166,7 @@ message EnvelopeData {
     double ymax = 4;
 
     // spatial reference of envelope
-    SpatialReferenceData sr = 5;
+    ProjectionData proj = 5;
 
     double zmin = 6;
     double zmax = 7;
@@ -176,7 +181,6 @@ enum Encoding {
     WKT = 2; // well-known text
     GEOJSON = 3; // geojson
     ESRI_SHAPE = 4; // esri shape binary
-    ENVELOPE = 5; // @exclude deprecated
 }
 
 /*
@@ -243,27 +247,23 @@ enum OperatorType {
  * response message for insertion and updates to stac db
  */
 message GeometryRequest {
-    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
+    oneof left {
+        // geometry to be operated on
+        GeometryData geometry = 1;
+        // if there are two geometries to operate on, then this is the first geometry
+        GeometryData left_geometry = 2;
+        // the result of the geometry request is to be operated on by this request
+        GeometryRequest geometry_request = 3;
+        // if there are two geometries, the left geometry request is to be operated on by this request
+        GeometryRequest left_geometry_request = 4;
+    }
 
-    // geometry to be operated on
-    GeometryData geometry = 1;
-    // if there are two geometries to operate on, then this is the first geometry
-    GeometryData left_geometry = 2;
-    // the result of the geometry request is to be operated on by this request
-    GeometryRequest geometry_request = 3;
-    // if there are two geometries, the left geometry request is to be operated on by this request
-    GeometryRequest left_geometry_request = 4;
-
-    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
-
-    // oneof block not currently used: https://github.com/golang/protobuf/issues/283
-
-    // if there are two geometries to operate on, then this is the second geometry
-    GeometryData right_geometry = 5;
-    // if there are two geometries, the right geometry request is to be operated on by this request
-    GeometryRequest right_geometry_request = 6;
-
-    // end oneof block not currently used: https://github.com/golang/protobuf/issues/283
+    oneof right {
+        // if there are two geometries to operate on, then this is the second geometry
+        GeometryData right_geometry = 5;
+        // if there are two geometries, the right geometry request is to be operated on by this request
+        GeometryRequest right_geometry_request = 6;
+    }
 
     // (default is PROJECT) geometry operation to perform on input geometries
     OperatorType operator = 7;
@@ -272,109 +272,27 @@ message GeometryRequest {
     Encoding result_encoding = 8;
 
     // (optional) the spatial reference the geometric operation should take place in. If both inputs are in different spatial references, you can use this to define a common reference system for the geometric operation.
-    SpatialReferenceData operation_sr = 9;
+    ProjectionData operation_proj = 9;
 
     // (optional) after the operation has been completed, project the results to a new spatial reference.
-    SpatialReferenceData result_sr = 10;
+    ProjectionData result_proj = 10;
 
-
-    message BufferParams {
-        double distance = 1;
-        double max_deviation = 2;
-        bool union_result = 3;
-        int32 max_vertices_in_full_circle = 4;
+    oneof params {
+        Params.Buffer buffer_params = 11;
+        Params.Convex convex_params = 12;
+        Params.Relate relate_params = 13;
+        Params.RandomPoints random_points_params = 14;
+        Params.Generalize generalize_params = 15;
+        Params.Intersection intersection_params = 16;
+        Params.Offset offset_params = 17;
+        Params.Cut cut_params = 18;
+        Params.Clip clip_params = 19;
+        Params.Densify densify_params = 20;
+        Params.Simplify simplify_params = 21;
+        Params.GeneralizeByArea generalize_by_area_params = 22;
+        Params.AffineTransform affine_transform_params = 23;
+        Params.GeodeticBuffer geodetic_buffer_params = 24;
     }
-
-    message GeodeticBufferParams {
-        double distance = 1;
-        double max_deviation = 2;
-        bool union_result = 3;
-        int32 max_vertices_in_full_circle = 4;
-    }
-
-    message ConvexParams {
-        bool merge = 1;
-    }
-
-    message RelateParams {
-        string de_9im = 1;
-    }
-
-    message RandomPointsParams {
-        double points_per_square_km = 1;
-        int64 seed = 2;
-    }
-
-    message GeneralizeParams {
-        double max_deviation = 1;
-        bool remove_degenerates = 2;
-    }
-
-    message GeneralizeByAreaParams {
-        double percent_reduction = 1;
-        bool remove_degenerates = 2;
-        int32 max_point_count = 3;
-    }
-
-    message IntersectionParams {
-        int32 dimension_mask = 1;
-    }
-
-    message OffsetParams {
-        enum OffsetJoinType {
-            ROUND = 0;
-            BEVEL = 1;
-            MITER = 2;
-            SQUARE =3;
-        }
-
-        double distance = 1;
-        OffsetJoinType join_type = 2;
-        double bevel_ratio = 3;
-        double flatten_error = 4;
-    }
-
-    message CutParams {
-        bool consider_touch = 1;
-    }
-
-    message ClipParams {
-        EnvelopeData envelope = 1;
-    }
-
-    message DensifyParams {
-        double max_length = 1;
-    }
-
-    message SimplifyParams {
-        bool force = 1;
-    }
-
-    message AffineTransformParams {
-        //        repeated double transform_matrix = 1; // @exclude deprecated
-        reserved 1;
-        bool geodetic = 2;
-        double x_offset = 3;
-        double y_offset = 4;
-    }
-
-    // oneof https://github.com/golang/protobuf/issues/283
-
-    BufferParams buffer_params = 11;
-    ConvexParams convex_params = 12;
-    RelateParams relate_params = 13;
-    RandomPointsParams random_points_params = 14;
-    GeneralizeParams generalize_params = 15;
-    IntersectionParams intersection_params = 16;
-    OffsetParams offset_params = 17;
-    CutParams cut_params = 18;
-    ClipParams clip_params = 19;
-    DensifyParams densify_params = 20;
-    SimplifyParams simplify_params = 21;
-    GeneralizeByAreaParams generalize_by_area_params = 22;
-    AffineTransformParams affine_transform_params = 23;
-
-    // end oneof https://github.com/golang/protobuf/issues/283
 }
 
 message GeodeticInverse {
@@ -390,22 +308,17 @@ message GeodeticInverse {
  * response message geometry request
  */
 message GeometryResponse {
-    // oneof https://github.com/golang/protobuf/issues/283
+    oneof result {
+        // if geometry result, then this field holds the geometry data
+        GeometryData geometry = 1;
+        // if a topo spatial relationship request, then this field holds the true or false result
+        bool spatial_relationship = 2;
+        // a measure result will be a float for area and length requests
+        double measure = 3;
 
-    // if geometry result, then this field holds the geometry data
-    GeometryData geometry = 1;
-    // if a topo spatial relationship request, then this field holds the true or false result
-    bool spatial_relationship = 2;
-    // a measure result will be a float for area and length requests
-    double measure = 3;
-
-    map<int64, bool> relate_map = 4;
-
-    EnvelopeData envelope = 5;
-
-    GeodeticInverse geodetic_inverse = 6;
-
-    // end oneof https://github.com/golang/protobuf/issues/283
+        GeodeticInverse geodetic_inverse = 4;
+    }
+    map<int64, bool> relate_map = 5;
 }
 
 message FileRequestChunk {
@@ -416,8 +329,8 @@ message FileRequestChunk {
     GeometryRequest nested_request = 1;
     Encoding result_encoding_type = 2;
 
-    SpatialReferenceData input_sr = 3;
-    SpatialReferenceData result_sr = 5;
+    ProjectionData input_proj = 3;
+    ProjectionData result_proj = 5;
 
     bytes data = 6;
     int64 size = 7;
@@ -426,3 +339,105 @@ message FileRequestChunk {
 
     bool is_last_chunk = 10;
 }
+
+message Params {
+    message Buffer {
+        // oneof https://github.com/golang/protobuf/issues/283
+        //        oneof densifier {
+
+        double distance = 1;
+        double max_deviation = 2;
+
+        // oneof https://github.com/golang/protobuf/issues/283
+        //        }
+        bool union_result = 3;
+        int32 max_vertices_in_full_circle = 4;
+    }
+
+    message GeodeticBuffer {
+        // oneof https://github.com/golang/protobuf/issues/283
+        //        oneof densifier {
+
+        double distance = 1;
+        double max_deviation = 2;
+
+        // oneof https://github.com/golang/protobuf/issues/283
+        //        }
+        bool union_result = 3;
+        int32 max_vertices_in_full_circle = 4;
+    }
+
+    message Convex {
+        bool merge = 1;
+    }
+
+    message Relate {
+        string de_9im = 1;
+    }
+
+    message RandomPoints {
+        double points_per_square_km = 1;
+        int64 seed = 2;
+    }
+
+    message Generalize {
+        double max_deviation = 1;
+        bool remove_degenerates = 2;
+    }
+
+    message GeneralizeByArea {
+        // oneof https://github.com/golang/protobuf/issues/283
+        //        oneof method {
+            double percent_reduction = 1;
+            int32 max_point_count = 2;
+
+        // oneof https://github.com/golang/protobuf/issues/283
+        //        }
+
+        bool remove_degenerates = 3;
+    }
+
+    message Intersection {
+        int32 dimension_mask = 1;
+    }
+
+    message Offset {
+        enum OffsetJoinType {
+            ROUND = 0;
+            BEVEL = 1;
+            MITER = 2;
+            SQUARE =3;
+        }
+
+        double distance = 1;
+        OffsetJoinType join_type = 2;
+        double bevel_ratio = 3;
+        double flatten_error = 4;
+    }
+
+    message Cut {
+        bool consider_touch = 1;
+    }
+
+    message Clip {
+        EnvelopeData envelope = 1;
+    }
+
+    message Densify {
+        double max_length = 1;
+    }
+
+    message Simplify {
+        bool force = 1;
+    }
+
+    message AffineTransform {
+        //        repeated double transform_matrix = 1; // @exclude deprecated
+        reserved 1;
+        bool geodetic = 2;
+        double x_offset = 3;
+        double y_offset = 4;
+    }
+
+}
+

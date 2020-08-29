@@ -21,14 +21,14 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.protobuf";
+option java_package = "com.epl.protobuf.v1";
 option java_outer_classname = "StacServiceProto";
 option objc_class_prefix = "STS";
-option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
+option go_package = "github.com/geo-grpc/api/golang/epl/protobuf/v1";
 
-package epl.protobuf;
+package epl.protobuf.v1;
 
-import "epl/protobuf/stac.proto";
+import "epl/protobuf/v1/stac.proto";
 
 /*
  gRPC Interfaces for working with stac metadata
@@ -37,34 +37,44 @@ service StacService {
     /*
     using a search request, stream all the results that match the search filter
     */
-    rpc Search(epl.protobuf.StacRequest) returns (stream epl.protobuf.StacItem) {}
+    rpc SearchItems(epl.protobuf.v1.StacRequest) returns (stream epl.protobuf.v1.StacItem) {}
+    rpc SearchCollections(epl.protobuf.v1.CollectionRequest) returns (stream epl.protobuf.v1.Collection) {}
+
     /*
     insert a stream of items into the STAC service
     */
-    rpc Insert(stream epl.protobuf.StacItem) returns (stream epl.protobuf.StacDbResponse) {}
+    rpc InsertItems(stream epl.protobuf.v1.StacItem) returns (stream epl.protobuf.v1.StacDbResponse) {}
     /*
     update a stream of items in the STAC service
     */
-    rpc Update(stream epl.protobuf.StacItem) returns (stream epl.protobuf.StacDbResponse) {}
+    rpc UpdateItems(stream epl.protobuf.v1.StacItem) returns (stream epl.protobuf.v1.StacDbResponse) {}
 
     /*
     count all the items in the Stac service according to the StacRequest filter
     */
-    rpc Count(epl.protobuf.StacRequest) returns (epl.protobuf.StacDbResponse) {}
+    rpc CountItems(epl.protobuf.v1.StacRequest) returns (epl.protobuf.v1.StacDbResponse) {}
     /*
     delete an item from the STAC service
     */
-    rpc DeleteOne(epl.protobuf.StacItem) returns (epl.protobuf.StacDbResponse) {}
+    rpc DeleteOneItem(epl.protobuf.v1.StacItem) returns (epl.protobuf.v1.StacDbResponse) {}
+
     /*
     using a search request get the first item that matches the request
     */
-    rpc SearchOne(epl.protobuf.StacRequest) returns (epl.protobuf.StacItem) {}
+    rpc SearchOneItem(epl.protobuf.v1.StacRequest) returns (epl.protobuf.v1.StacItem) {}
+
+
     /*
     Insert one item into the STAC service
     */
-    rpc InsertOne(epl.protobuf.StacItem) returns (epl.protobuf.StacDbResponse) {}
+    rpc InsertOneItem(epl.protobuf.v1.StacItem) returns (epl.protobuf.v1.StacDbResponse) {}
+    /*
+    Insert one item into the STAC service
+    */
+    rpc InsertOneCollection(epl.protobuf.v1.Collection) returns (epl.protobuf.v1.StacDbResponse) {}
+
     /*
     Update one item in the STAC service
     */
-    rpc UpdateOne(epl.protobuf.StacItem) returns (epl.protobuf.StacDbResponse) {}
+    rpc UpdateOneItem(epl.protobuf.v1.StacItem) returns (epl.protobuf.v1.StacDbResponse) {}
 }

@@ -21,35 +21,35 @@ email: info@echoparklabs.io
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.epl.protobuf";
+option java_package = "com.epl.protobuf.v1";
 option java_outer_classname = "GeometryServiceProto";
 option objc_class_prefix = "GMS";
-option go_package = "github.com/geo-grpc/api/golang/epl/protobuf";
+option go_package = "github.com/geo-grpc/api/golang/epl/protobuf/v1";
 
-package epl.protobuf;
+package epl.protobuf.v1;
 
-import "epl/protobuf/geometry.proto";
+import "epl/protobuf/v1/geometry.proto";
 
 /*
  gRPC Interfaces for working with geometry operators
 */
 service GeometryService {
     // Execute a single blocking geometry operation
-    rpc Operate(epl.protobuf.GeometryRequest) returns (epl.protobuf.GeometryResponse) {}
+    rpc Operate(epl.protobuf.v1.GeometryRequest) returns (epl.protobuf.v1.GeometryResponse) {}
 
     // stream in operator requests and get back a stream of results
-    rpc OperateBiStream(stream epl.protobuf.GeometryRequest) returns (stream epl.protobuf.GeometryResponse) {}
+    rpc OperateBiStream(stream epl.protobuf.v1.GeometryRequest) returns (stream epl.protobuf.v1.GeometryResponse) {}
 
     // manual flow control bi-directional stream. example
     // go shouldn't use this because of https://groups.google.com/forum/#!topic/grpc-io/6_B46Oszb4k ?
-    rpc OperateBiStreamFlow(stream epl.protobuf.GeometryRequest) returns (stream epl.protobuf.GeometryResponse) {}
+    rpc OperateBiStreamFlow(stream epl.protobuf.v1.GeometryRequest) returns (stream epl.protobuf.v1.GeometryResponse) {}
 
     // Maybe a cut operation that returns a lot of different geometries? for now, this is not implemented.
-    rpc OperateServerStream(epl.protobuf.GeometryRequest) returns (stream epl.protobuf.GeometryResponse) {}
+    rpc OperateServerStream(epl.protobuf.v1.GeometryRequest) returns (stream epl.protobuf.v1.GeometryResponse) {}
 
     // Maybe something like a union operation. for now, this is not implemented.
-    rpc OperateClientStream(stream epl.protobuf.GeometryRequest) returns (epl.protobuf.GeometryResponse) {}
+    rpc OperateClientStream(stream epl.protobuf.v1.GeometryRequest) returns (epl.protobuf.v1.GeometryResponse) {}
 
     // stream in file chunks for a geometry file type and stream back results for each geometry encountered
-    rpc FileOperateBiStreamFlow(stream epl.protobuf.FileRequestChunk) returns (stream epl.protobuf.GeometryResponse) {}
+    rpc FileOperateBiStreamFlow(stream epl.protobuf.v1.FileRequestChunk) returns (stream epl.protobuf.v1.GeometryResponse) {}
 }
