@@ -9,7 +9,7 @@ os.chdir(src_path)
 sys.path.insert(0, src_path)
 
 kwargs = {
-    'name': 'epl.protobuf',
+    'name': 'epl.protobuf.v1',
     'description': 'generated protobufs for geometry and STAC',
     'url': 'https://github.com/geo-grpc/api',
     'long_description': open('README.md').read(),
@@ -19,7 +19,7 @@ kwargs = {
     'version': '0.4.12',
     'namespace_package': ['epl'],
     'python_requires': '>3.5.2',
-    'packages': ['epl.protobuf'],
+    'packages': ['epl.protobuf.v1'],
     'install_requires': [
         'grpcio-tools',
         'protobuf'
