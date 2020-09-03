@@ -1,0 +1,51 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+// Inform IntelliJ projects about the generated code.
+apply plugin: 'idea'
+
+group = 'org.epl.geometry'
+version = '2.2.3'
+
+description = """The Esri Geometry API for Java enables developers to write custom applications for analysis of spatial data."""
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+// https://stackoverflow.com/questions/18689365/how-to-add-xlintunchecked-to-my-android-gradle-based-project
+// https://stackoverflow.com/a/34452265/445372
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.addAll([
+            "-Xlint:unchecked",
+            "-Xlint:deprecation",
+            "--add-exports",
+            "java.base/jdk.internal.misc=ALL-UNNAMED"
+    ])
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.9.6'
+
+    testCompile group: 'org.openjdk.jol', name: 'jol-core', version: '0.9'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+
+    // https://www.youtube.com/watch?v=4HG0YQVy8UM&feature=youtu.be
+    jvmArgs += ['--add-exports', 'java.base/jdk.internal.misc=ALL-UNNAMED']
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from configurations.runtime
+}
+
+build.dependsOn(copyToLib)
