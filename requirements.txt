@@ -3,5 +3,5 @@ grpcio-tools
 protobuf>=3.8.0
 Shapely==1.6.4.post2
 pytest
-../epl_protobuf/
+epl.protobuf.v1==1.0.0
 -e .
