@@ -3,7 +3,7 @@
 
 import sys
 
-from epl.protobuf import geometry_pb2
+from epl.protobuf.v1 import geometry_pb2
 from epl.geometry.base import BaseGeometry
 from epl.geometry.linestring import LineString, LineStringAdapter
 
@@ -29,8 +29,8 @@ class LinearRing(LineString):
 
     def __init__(self,
                  coordinates=None,
-                 sr: geometry_pb2.SpatialReferenceData = None,
-                 wkid: int = 0,
+                 proj: geometry_pb2.ProjectionData = None,
+                 epsg: int = 0,
                  proj4: str = ""):
         """
         Parameters
@@ -51,7 +51,7 @@ class LinearRing(LineString):
           >>> ring.length
           4.0
         """
-        BaseGeometry.__init__(self, sr=sr, wkid=wkid, proj4=proj4)
+        BaseGeometry.__init__(self, proj=proj, epsg=epsg, proj4=proj4)
         if coordinates is not None:
             self._set_coords(coordinates)
 
@@ -221,8 +221,8 @@ class Polygon(BaseGeometry):
     def __init__(self,
                  shell=None,
                  holes=None,
-                 sr: geometry_pb2.SpatialReferenceData = None,
-                 wkid: int = 0,
+                 proj: geometry_pb2.ProjectionData = None,
+                 epsg: int = 0,
                  proj4: str = ""):
         """
         Parameters
@@ -242,7 +242,7 @@ class Polygon(BaseGeometry):
           >>> polygon.area
           1.0
         """
-        BaseGeometry.__init__(self, sr=sr, wkid=wkid, proj4=proj4)
+        BaseGeometry.__init__(self, proj=proj, epsg=epsg, proj4=proj4)
 
         if shell is not None:
             ret = geos_polygon_from_py(shell, holes)
@@ -257,7 +257,7 @@ class Polygon(BaseGeometry):
             return None
         elif self._exterior is None or self._exterior() is None:
             g = lgeos.GEOSGetExteriorRing(self._geom)
-            ring = LinearRing(sr=self.sr)
+            ring = LinearRing(proj=self.proj)
             ring._geom = g
             ring.__p__ = self
             ring._other_owned = True
@@ -274,7 +274,7 @@ class Polygon(BaseGeometry):
     def __eq__(self, other):
         if not isinstance(other, Polygon):
             return False
-        if not self.sr_eq(other.sr):
+        if not self.proj_eq(other.proj):
             return False
         check_empty = (self.is_empty, other.is_empty)
         if all(check_empty):
@@ -361,13 +361,13 @@ class Polygon(BaseGeometry):
             ).format(2. * scale_factor, path, fill_color)
 
     @classmethod
-    def from_bounds(cls, xmin, ymin, xmax, ymax, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
+    def from_bounds(cls, xmin, ymin, xmax, ymax, proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
         """Construct a `Polygon()` from spatial bounds."""
         return cls([
             (xmin, ymin),
             (xmin, ymax),
             (xmax, ymax),
-            (xmax, ymin)], sr=sr, wkid=wkid, proj4=proj4)
+            (xmax, ymin)], proj=proj, epsg=epsg, proj4=proj4)
 
     @classmethod
     def from_envelope_data(cls, envelope_data: geometry_pb2.EnvelopeData):
@@ -375,7 +375,7 @@ class Polygon(BaseGeometry):
                                ymin=envelope_data.ymin,
                                xmax=envelope_data.xmax,
                                ymax=envelope_data.ymax,
-                               sr=envelope_data.sr)
+                               proj=envelope_data.proj)
 
 
 class PolygonAdapter(PolygonProxy, Polygon):

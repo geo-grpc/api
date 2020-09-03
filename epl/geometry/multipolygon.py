@@ -9,7 +9,7 @@ from shapely.wkb import loads as shapely_loads_wkb
 
 from epl.geometry import polygon
 from epl.geometry.base import BaseMultipartGeometry, geos_geom_from_py
-from epl.protobuf import geometry_pb2
+from epl.protobuf.v1 import geometry_pb2
 
 __all__ = ['MultiPolygon', 'asMultiPolygon']
 
@@ -29,8 +29,8 @@ class MultiPolygon(BaseMultipartGeometry):
     def __init__(self,
                  polygons=None,
                  context_type='polygons',
-                 sr: geometry_pb2.SpatialReferenceData = None,
-                 wkid: int = 0,
+                 proj: geometry_pb2.ProjectionData = None,
+                 epsg: int = 0,
                  proj4: str = ""):
         """
         Parameters
@@ -55,7 +55,7 @@ class MultiPolygon(BaseMultipartGeometry):
           >>> type(ob.geoms[0]) == Polygon
           True
         """
-        super(MultiPolygon, self).__init__(sr=sr, wkid=wkid, proj4=proj4)
+        super(MultiPolygon, self).__init__(proj=proj, epsg=epsg, proj4=proj4)
 
         if not polygons:
             # allow creation of empty multipolygons, to support unpickling
@@ -66,7 +66,7 @@ class MultiPolygon(BaseMultipartGeometry):
             self._geom, self._ndim = geos_multipolygon_from_py(polygons)
 
     def shape_factory(self, *args):
-        return polygon.Polygon(*args, sr=self.sr)
+        return polygon.Polygon(*args, proj=self.proj)
 
     @property
     def __geo_interface__(self):

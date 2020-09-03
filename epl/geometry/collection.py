@@ -4,7 +4,7 @@
 from ctypes import c_void_p
 
 from shapely.geos import lgeos
-from epl.protobuf import geometry_pb2
+from epl.protobuf.v1 import geometry_pb2
 from epl.geometry.base import BaseGeometry
 from epl.geometry.base import BaseMultipartGeometry
 from epl.geometry.base import HeterogeneousGeometrySequence
@@ -20,7 +20,7 @@ class GeometryCollection(BaseMultipartGeometry):
         A sequence of Shapely geometry instances
     """
 
-    def __init__(self, geoms=None, sr: geometry_pb2.SpatialReferenceData=None):
+    def __init__(self, geoms=None, proj: geometry_pb2.ProjectionData=None):
         """
         Parameters
         ----------
@@ -35,7 +35,7 @@ class GeometryCollection(BaseMultipartGeometry):
           >>> l = LineString([(52, -1), (49, 2)])
           >>> gc = GeometryCollection([p, l])
         """
-        BaseMultipartGeometry.__init__(self, sr=sr)
+        BaseMultipartGeometry.__init__(self, proj=proj)
         if not geoms:
             pass
         else:

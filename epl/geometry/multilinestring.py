@@ -10,7 +10,7 @@ from shapely.wkb import loads as shapely_loads_wkb
 
 from epl.geometry.base import BaseMultipartGeometry, geos_geom_from_py
 from epl.geometry import linestring
-from epl.protobuf import geometry_pb2
+from epl.protobuf.v1 import geometry_pb2
 
 __all__ = ['MultiLineString', 'asMultiLineString']
 
@@ -27,7 +27,7 @@ class MultiLineString(BaseMultipartGeometry):
         A sequence of LineStrings
     """
 
-    def __init__(self, lines=None, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
+    def __init__(self, lines=None, proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
         """
         Parameters
         ----------
@@ -42,7 +42,7 @@ class MultiLineString(BaseMultipartGeometry):
 
           >>> lines = MultiLineString( [[[0.0, 0.0], [1.0, 2.0]]] )
         """
-        super(MultiLineString, self).__init__(sr=sr, wkid=wkid, proj4=proj4)
+        super(MultiLineString, self).__init__(proj=proj, epsg=epsg, proj4=proj4)
 
         if not lines:
             # allow creation of empty multilinestrings, to support unpickling
@@ -51,7 +51,7 @@ class MultiLineString(BaseMultipartGeometry):
             self._geom, self._ndim = geos_multilinestring_from_py(lines)
 
     def shape_factory(self, *args):
-        return linestring.LineString(*args, sr=self.sr)
+        return linestring.LineString(*args, proj=self.proj)
 
     @property
     def __geo_interface__(self):
