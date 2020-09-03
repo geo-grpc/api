@@ -3,7 +3,7 @@
 
 from ctypes import c_double
 
-from epl.protobuf import geometry_pb2
+from epl.protobuf.v1 import geometry_pb2
 from epl.geometry.base import BaseGeometry, geos_geom_from_py
 from epl.geometry.linestring import LineString
 
@@ -40,8 +40,8 @@ class Point(BaseGeometry):
 
     def __init__(self,
                  *args,
-                 sr: geometry_pb2.SpatialReferenceData = None,
-                 wkid: int = 0,
+                 proj: geometry_pb2.ProjectionData = None,
+                 epsg: int = 0,
                  proj4: str = ""):
         """
         Parameters
@@ -52,7 +52,7 @@ class Point(BaseGeometry):
         2) 2 or more parameters: x, y, z : float
             Easting, northing, and elevation.
         """
-        BaseGeometry.__init__(self, sr=sr, wkid=wkid, proj4=proj4)
+        BaseGeometry.__init__(self, proj=proj, epsg=epsg, proj4=proj4)
         if len(args) > 0:
             self._set_coords(*args)
 
@@ -168,8 +168,8 @@ class Point(BaseGeometry):
         if not isinstance(other, Point):
             raise ValueError("other geometry must be point")
         # TODO, if a point has a z values, the wkb encoding fails. investigate bug
-        op_inverse = geometry_pb2.GeometryRequest(left_geometry=geometry_pb2.GeometryData(sr=self.sr, wkt=self.wkt),
-                                                  right_geometry=geometry_pb2.GeometryData(sr=other.sr, wkt=other.wkt),
+        op_inverse = geometry_pb2.GeometryRequest(left_geometry=geometry_pb2.GeometryData(proj=self.proj, wkt=self.wkt),
+                                                  right_geometry=geometry_pb2.GeometryData(proj=other.proj, wkt=other.wkt),
                                                   operator=geometry_pb2.GEODETIC_INVERSE)
         geometry_response = geometry_init.geometry_service.stub.Operate(op_inverse)
         results = geometry_response.geodetic_inverse
@@ -186,8 +186,8 @@ class Point(BaseGeometry):
             raise ValueError("points must have the same dimension")
 
         if self._ndim == 2:
-            return Point((self.x + other.x) / 2.0, (self.y + other.y) / 2.0, sr=self.sr)
-        return Point((self.x + other.x) / 2.0, (self.y + other.y) / 2.0, (self.z + other.z) / 2.0, sr=self.sr)
+            return Point((self.x + other.x) / 2.0, (self.y + other.y) / 2.0, proj=self.proj)
+        return Point((self.x + other.x) / 2.0, (self.y + other.y) / 2.0, (self.z + other.z) / 2.0, proj=self.proj)
 
 
 class PointAdapter(CachingGeometryProxy, Point):

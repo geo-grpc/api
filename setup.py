@@ -16,7 +16,7 @@ kwargs = {
     'author': 'David Raleigh',
     'author_email': 'davidraleigh@gmail.com',
     'license': 'Apache 2.0',
-    'version': '0.3.32',
+    'version': '1.0.0',
     'namespace_package': ['epl'],
     'python_requires': '>3.5.2',
     'packages': ['epl.geometry'],
@@ -24,7 +24,7 @@ kwargs = {
         'grpcio-tools',
         'protobuf',
         'shapely',
-        'epl.protobuf'
+        'epl.protobuf.v1'
     ],
     'zip_safe': False
 }

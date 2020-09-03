@@ -4,7 +4,7 @@
 from ctypes import byref, c_double, c_void_p, cast
 
 from shapely.geos import lgeos
-from epl.protobuf import geometry_pb2
+from epl.protobuf.v1 import geometry_pb2
 from epl.geometry.base import BaseMultipartGeometry, exceptNull, geos_geom_from_py
 from epl.geometry import point
 
@@ -27,7 +27,7 @@ class MultiPoint(BaseMultipartGeometry):
         A sequence of Points
     """
 
-    def __init__(self, points=None, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
+    def __init__(self, points=None, proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
         """
         Parameters
         ----------
@@ -46,7 +46,7 @@ class MultiPoint(BaseMultipartGeometry):
           >>> type(ob.geoms[0]) == Point
           True
         """
-        super(MultiPoint, self).__init__(sr=sr, wkid=wkid, proj4=proj4)
+        super(MultiPoint, self).__init__(proj=proj, epsg=epsg, proj4=proj4)
 
         if points is None or len(points) == 0:
             # allow creation of empty multipoints, to support unpickling
@@ -55,7 +55,7 @@ class MultiPoint(BaseMultipartGeometry):
             self._geom, self._ndim = geos_multipoint_from_py(points)
 
     def shape_factory(self, *args):
-        return point.Point(*args, sr=self.sr)
+        return point.Point(*args, proj=self.proj)
 
     @property
     def __geo_interface__(self):

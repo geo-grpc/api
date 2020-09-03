@@ -5,7 +5,10 @@ geometry objects, but has no effect on geometric analysis. All
 operations are performed in the x-y plane. Thus, geometries with
 different z values may intersect or be equal.
 """
+from __future__ import annotations
+
 import importlib
+import random
 
 from binascii import a2b_hex
 from ctypes import pointer, c_size_t, c_char_p, c_void_p
@@ -13,12 +16,12 @@ import sys
 from warnings import warn
 from functools import wraps
 
-from typing import Iterable
+from typing import Iterable, Iterator
 from shapely.coords import CoordinateSequence
 from shapely.geos import WKBWriter, WKTWriter
 from shapely.geos import lgeos
 from shapely.impl import DefaultImplementation, delegated
-from epl.protobuf import geometry_pb2
+from epl.protobuf.v1 import geometry_pb2
 from epl import geometry as geometry_init
 from shapely.wkb import loads as shapely_loads_wkb
 
@@ -78,11 +81,11 @@ def geometry_type_name(g):
 
 def geom_factory(g,
                  parent=None,
-                 sr: geometry_pb2.SpatialReferenceData = None):
+                 proj: geometry_pb2.ProjectionData = None):
     # Abstract geometry factory for use with topological methods below
     if not g:
         raise ValueError("No Shapely geometry can be created from null value")
-    ob = BaseGeometry(sr=sr)
+    ob = BaseGeometry(proj=proj)
     geom_type = geometry_type_name(g)
     # TODO: check cost of dynamic import by profiling
 
@@ -98,7 +101,7 @@ def geom_factory(g,
     return ob
 
 
-# def geom_from_wkt(data, sr: geometry_pb2.SpatialReferenceData):
+# def geom_from_wkt(data, proj: geometry_pb2.ProjectionData):
 #     warnings.warn("`geom_from_wkt` is deprecated. Use `geos.wkt_reader.read(data)`.", DeprecationWarning)
 #     if sys.version_info[0] >= 3:
 #         data = data.encode('ascii')
@@ -106,7 +109,7 @@ def geom_factory(g,
 #     if not geom:
 #         raise ValueError(
 #             "Could not create geometry because of errors while reading input.")
-#     return geom_factory(geom, sr=sr)
+#     return geom_factory(geom, proj=proj)
 
 
 def geom_to_wkt(ob):
@@ -224,10 +227,10 @@ class BaseGeometry(object):
     _lgeos = lgeos
 
     def __init__(self,
-                 sr: geometry_pb2.SpatialReferenceData,
-                 wkid: int = 0,
+                 proj: geometry_pb2.ProjectionData,
+                 epsg: int = 0,
                  proj4: str = ""):
-        self._sr = get_sr(sr=sr, wkid=wkid, proj4=proj4)
+        self._proj = get_proj(proj=proj, epsg=epsg, proj4=proj4)
 
     def empty(self, val=EMPTY):
         # TODO: defer cleanup to the implementation. We shouldn't be
@@ -243,10 +246,10 @@ class BaseGeometry(object):
     def __del__(self):
         self.empty(val=None)
         self.__p__ = None
-        self._sr = None
+        self._proj = None
 
     def __str__(self):
-        return "{0} {1}".format(self.wkt, str(self.sr))
+        return "{0} {1}".format(self.wkt, str(self.proj))
 
     # To support pickling
     def __reduce__(self):
@@ -291,7 +294,7 @@ class BaseGeometry(object):
         return (
                 type(other) == type(self) and
                 tuple(self.coords) == tuple(other.coords) and
-                self.sr_eq(other.sr)
+                self.proj_eq(other.proj)
         )
 
     def __ne__(self, other):
@@ -299,14 +302,8 @@ class BaseGeometry(object):
 
     __hash__ = None
 
-    def sr_eq(self, other_sr: geometry_pb2.SpatialReferenceData):
-        if self.sr.wkid > 0:
-            return self.sr.wkid == other_sr.wkid
-        elif len(self.sr.proj4) > 0:
-            return self.sr.proj4 == other_sr.proj4
-        elif len(self.sr.wkt) > 0:
-            return self.sr.wkt == other_sr.wkt
-        return False
+    def proj_eq(self, other_proj: geometry_pb2.ProjectionData):
+        return proj_eq(self.proj, other_proj)
 
     # Array and ctypes interfaces
     # ---------------------------
@@ -478,7 +475,7 @@ class BaseGeometry(object):
         collection of points. The boundary of a point is an empty (null)
         collection.
         """
-        return geom_factory(self.impl['boundary'](self), sr=self.sr)
+        return geom_factory(self.impl['boundary'](self), proj=self.proj)
 
     @property
     def bounds(self):
@@ -491,12 +488,12 @@ class BaseGeometry(object):
     @property
     def centroid(self):
         """Returns the geometric center of the object"""
-        return geom_factory(self.impl['centroid'](self), sr=self.sr)
+        return geom_factory(self.impl['centroid'](self), proj=self.proj)
 
     @delegated
     def representative_point(self):
         """Returns a point guaranteed to be within the object, cheaply."""
-        return geom_factory(self.impl['representative_point'](self), sr=self.sr)
+        return geom_factory(self.impl['representative_point'](self), proj=self.proj)
 
     @property
     def s_convex_hull(self):
@@ -506,12 +503,12 @@ class BaseGeometry(object):
         The convex hull of a three member multipoint, for example, is a
         triangular polygon.
         """
-        return geom_factory(self.impl['convex_hull'](self), sr=self.sr)
+        return geom_factory(self.impl['convex_hull'](self), proj=self.proj)
 
     @property
     def envelope(self):
         """A figure that envelopes the geometry"""
-        return geom_factory(self.impl['envelope'](self), sr=self.sr)
+        return geom_factory(self.impl['envelope'](self), proj=self.proj)
 
     def s_buffer(self, distance, resolution=16, quadsegs=None,
                  cap_style=CAP_STYLE.round, join_style=JOIN_STYLE.round,
@@ -564,7 +561,7 @@ class BaseGeometry(object):
             raise ValueError(
                 'Cannot compute offset from zero-length line segment')
         if cap_style == CAP_STYLE.round and join_style == JOIN_STYLE.round:
-            return geom_factory(self.impl['buffer'](self, distance, res), sr=self.sr)
+            return geom_factory(self.impl['buffer'](self, distance, res), proj=self.proj)
 
         if 'buffer_with_style' not in self.impl:
             raise NotImplementedError("Styled buffering not available for "
@@ -573,7 +570,7 @@ class BaseGeometry(object):
         return geom_factory(self.impl['buffer_with_style'](self, distance, res,
                                                            cap_style,
                                                            join_style,
-                                                           mitre_limit), sr=self.sr)
+                                                           mitre_limit), proj=self.proj)
 
     @delegated
     def s_simplify(self, tolerance, preserve_topology=True):
@@ -589,27 +586,27 @@ class BaseGeometry(object):
             op = self.impl['topology_preserve_simplify']
         else:
             op = self.impl['simplify']
-        return geom_factory(op(self, tolerance), sr=self.sr)
+        return geom_factory(op(self, tolerance), proj=self.proj)
 
     # Binary operations
     # -----------------
 
     def s_difference(self, other):
         """Returns the difference of the geometries"""
-        return geom_factory(self.impl['difference'](self, other), sr=self.sr)
+        return geom_factory(self.impl['difference'](self, other), proj=self.proj)
 
     def s_intersection(self, other):
         """Returns the intersection of the geometries"""
-        return geom_factory(self.impl['intersection'](self, other), sr=self.sr)
+        return geom_factory(self.impl['intersection'](self, other), proj=self.proj)
 
     def s_symmetric_difference(self, other):
         """Returns the symmetric difference of the geometries
         (Shapely geometry)"""
-        return geom_factory(self.impl['symmetric_difference'](self, other), sr=self.sr)
+        return geom_factory(self.impl['symmetric_difference'](self, other), proj=self.proj)
 
     def s_union(self, other):
         """Returns the union of the geometries (Shapely geometry)"""
-        return geom_factory(self.impl['union'](self, other), sr=self.sr)
+        return geom_factory(self.impl['union'](self, other), proj=self.proj)
 
     # Unary predicates
     # ----------------
@@ -764,8 +761,8 @@ class BaseGeometry(object):
         return geom_factory(op(self, distance))
 
     @property
-    def sr(self):
-        return self._sr
+    def proj(self):
+        return self._proj
 
     @staticmethod
     def import_protobuf(geometry_data: geometry_pb2.GeometryData):
@@ -778,23 +775,23 @@ class BaseGeometry(object):
         return rpc_reader.read()
 
     @staticmethod
-    def import_wkt(wkt: str, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
+    def import_wkt(wkt: str, proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
         # TODO. this is messy. should be using RPCReader for this
-        sr = get_sr(sr=sr, wkid=wkid, proj4=proj4)
-        return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkt=wkt, sr=sr))
+        proj = get_proj(proj=proj, epsg=epsg, proj4=proj4)
+        return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkt=wkt, proj=proj))
 
     @staticmethod
-    def import_wkb(wkb: bytes, sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
+    def import_wkb(wkb: bytes, proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
         # TODO. this is messy. should be using RPCReader for this
-        sr = get_sr(sr=sr, wkid=wkid, proj4=proj4)
-        return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkb=wkb, sr=sr))
+        proj = get_proj(proj=proj, epsg=epsg, proj4=proj4)
+        return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkb=wkb, proj=proj))
 
     @staticmethod
-    def _spat_ref_create(wkid: int = 0, proj4: str = ""):
-        if wkid > 0:
-            return geometry_pb2.SpatialReferenceData(wkid=wkid)
+    def _spat_ref_create(epsg: int = 0, proj4: str = ""):
+        if epsg > 0:
+            return geometry_pb2.ProjectionData(epsg=epsg)
         elif len(proj4) > 0:
-            return geometry_pb2.SpatialReferenceData(proj4=proj4)
+            return geometry_pb2.ProjectionData(proj4=proj4)
         return None
 
     def buffer(self, distance: float, geodetic=True):
@@ -810,35 +807,60 @@ class BaseGeometry(object):
             return self.geodetic_buffer(distance_m=distance)
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.BUFFER,
-                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(
+                                                  buffer_params=geometry_pb2.Params.Buffer(
                                                       distance=distance),
                                                   result_encoding=geometry_pb2.WKB)
 
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
-    def project(self, to_sr: geometry_pb2.SpatialReferenceData = None, to_wkid: int = 0, to_proj4: str = ""):
-        to_sr = get_sr(sr=to_sr, wkid=to_wkid, proj4=to_proj4)
-        if sr_eq(self.sr, to_sr):
+    def project(self, to_proj: geometry_pb2.ProjectionData = None, to_epsg: int = 0, to_proj4: str = ""):
+        to_proj = get_proj(proj=to_proj, epsg=to_epsg, proj4=to_proj4)
+        if proj_eq(self.proj, to_proj):
             # notice, no copy made here, whereas, project always copies the data
             return self
 
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.PROJECT,
-                                                  result_sr=to_sr)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+                                                  result_proj=to_proj)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def simplify(self):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.SIMPLIFY)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def convex(self):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.CONVEX_HULL)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
+
+    def densify(self, max_length_m: float, geodetic=True, result_proj: geometry_pb2.ProjectionData = None):
+        """
+Densify a polyline or polygon by the max_length in meters. No segment will be larger than the max_length. If geodetic is set to true the densification will use the geodesic midpoint from Rapp
+        Args:
+            max_length_m: the maximum length of a segment.
+            geodetic: bool, if true densify considers curvature of ellipsoid
+            result_proj: projection for results (otherwise uses projection of input)
+
+        Returns: densified geometry
+
+        """
+        if self.geom_type != 'Polygon' and self.geom_type != 'LineString':
+            raise ValueError("only polygon or polylines")
+
+        params = geometry_pb2.Params.Densify(max_length=max_length_m)
+        operator_type = geometry_pb2.GEODETIC_DENSIFY_BY_LENGTH
+        if not geodetic:
+            operator_type = geometry_pb2.DENSIFY_BY_LENGTH
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                  operator=operator_type,
+                                                  densify_params=params,
+                                                  result_proj=result_proj)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def area(self, geodetic=True):
@@ -858,177 +880,235 @@ class BaseGeometry(object):
         """
         op_area = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                operator=geometry_pb2.GEODETIC_AREA,
-                                               result_sr=geometry_pb2.SpatialReferenceData(wkid=4326))
-        area_response = geometry_init.geometry_service.stub.Operate(op_area)
+                                               result_proj=geometry_pb2.ProjectionData(epsg=4326))
+        area_response = geometry_init.geometry_service.operate(op_area)
         return area_response.measure
 
-    def distance(self, other_geom, geodetic=True):
+    def distance(self, other_geom: BaseGeometry, geodetic=True):
         if geodetic:
             return self.geodetic_distance(other_geom=other_geom)
         return self.s_distance(other_geom)
 
-    def geodetic_distance(self, other_geom):
+    def geodetic_distance(self, other_geom: BaseGeometry):
         # TODO, requires proper implementation in Geometry Service
-        centroid = self.union(other_geom, result_sr=geometry_pb2.SpatialReferenceData(wkid=4326)).centroid
-        local_sr = geometry_pb2.SpatialReferenceData(
-            custom=geometry_pb2.SpatialReferenceData.Custom(lon_0=centroid.x,
+        centroid = self.union(other_geom, result_proj=geometry_pb2.ProjectionData(epsg=4326)).centroid
+        local_proj = geometry_pb2.ProjectionData(
+            custom=geometry_pb2.ProjectionData.Custom(lon_0=centroid.x,
                                                             lat_0=centroid.y))
 
         op_distance = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                    right_geometry=other_geom.geometry_data,
                                                    operator=geometry_pb2.DISTANCE,
-                                                   operation_sr=local_sr)
-        distance_response = geometry_init.geometry_service.stub.Operate(op_distance)
+                                                   operation_proj=local_proj)
+        distance_response = geometry_init.geometry_service.operate(op_distance)
         return distance_response.measure
 
     def geodetic_buffer(self, distance_m):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.GEODESIC_BUFFER,
-                                                  buffer_params=geometry_pb2.GeometryRequest.BufferParams(
+                                                  buffer_params=geometry_pb2.Params.Buffer(
                                                       distance=distance_m),
                                                   result_encoding=geometry_pb2.WKB)
 
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def symmetric_difference(self,
-                             other_geom,
-                             operation_sr: geometry_pb2.SpatialReferenceData = None,
-                             result_sr: geometry_pb2.SpatialReferenceData = None):
+                             other_geom: BaseGeometry,
+                             operation_proj: geometry_pb2.ProjectionData = None,
+                             result_proj: geometry_pb2.ProjectionData = None):
         return self._two_geom_op(other_geom=other_geom,
                                  operator_type=geometry_pb2.SYMMETRIC_DIFFERENCE,
-                                 operation_sr=operation_sr,
-                                 result_sr=result_sr)
+                                 operation_proj=operation_proj,
+                                 result_proj=result_proj)
 
     def difference(self,
-                   other_geom,
-                   operation_sr: geometry_pb2.SpatialReferenceData = None,
-                   result_sr: geometry_pb2.SpatialReferenceData = None):
+                   other_geom: BaseGeometry,
+                   operation_proj: geometry_pb2.ProjectionData = None,
+                   result_proj: geometry_pb2.ProjectionData = None):
         return self._two_geom_op(other_geom=other_geom,
                                  operator_type=geometry_pb2.DIFFERENCE,
-                                 operation_sr=operation_sr,
-                                 result_sr=result_sr)
+                                 operation_proj=operation_proj,
+                                 result_proj=result_proj)
 
     def intersection(self,
-                     other_geom,
-                     operation_sr: geometry_pb2.SpatialReferenceData = None,
-                     result_sr: geometry_pb2.SpatialReferenceData = None):
+                     other_geom: BaseGeometry,
+                     operation_proj: geometry_pb2.ProjectionData = None,
+                     result_proj: geometry_pb2.ProjectionData = None):
         """
         get the intersecting geometry. if the geometries intersected are in different spatial references, you'll need
         to define a result spatial reference for them both to be projected into. That result spatial reference will be
         the operation spatial reference. If you want their intersection to be in a different spatial reference than the
         results, you can define that as well
         :param other_geom: other geometry to be intersected
-        :param operation_sr: the spatial reference both geometries should be projected into for the intersection operation
-        :param result_sr: the resulting spatial reference of the output geometry
+        :param operation_proj: the spatial reference both geometries should be projected into for the intersection operation
+        :param result_proj: the resulting spatial reference of the output geometry
         :return:
         """
         return self._two_geom_op(other_geom=other_geom,
                                  operator_type=geometry_pb2.INTERSECTION,
-                                 operation_sr=operation_sr,
-                                 result_sr=result_sr)
+                                 operation_proj=operation_proj,
+                                 result_proj=result_proj)
+
+    def random_multipoint(self,
+                          points_per_square_km: float,
+                          seed=None,
+                          result_proj: geometry_pb2.ProjectionData = None):
+        """
+Create a multipoint geometry where all points exist within the input polygon. Points are calculated on an equal area geometry
+        Args:
+            points_per_square_km: desired average points per square kilometer
+            seed: mersenne seed
+            result_proj: if projection is desired
+
+        Returns: multipoint
+
+        """
+        if self.geom_type != 'Polygon' and self.geom_type != 'MultiPolygon':
+            raise ValueError('only implemented for Polygon')
+
+        if seed is None:
+            seed = random.randint(0, 20000000)
+            print("generated seed {}".format(seed))
+
+        params = geometry_pb2.Params.RandomPoints(seed=seed,
+                                                                 points_per_square_km=points_per_square_km)
+        op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
+                                                  operator=geometry_pb2.RANDOM_POINTS,
+                                                  random_points_params=params,
+                                                  result_proj=result_proj)
+
+        geometry_response = geometry_init.geometry_service.operate(op_request)
+        return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def union(self,
-              other_geom,
-              operation_sr: geometry_pb2.SpatialReferenceData = None,
-              result_sr: geometry_pb2.SpatialReferenceData = None):
+              other_geom: BaseGeometry,
+              operation_proj: geometry_pb2.ProjectionData = None,
+              result_proj: geometry_pb2.ProjectionData = None):
         if other_geom is None:
-            if result_sr:
-                return self.project(to_sr=result_sr)
+            if result_proj:
+                return self.project(to_proj=result_proj)
             return self
 
         return self._two_geom_op(other_geom=other_geom,
                                  operator_type=geometry_pb2.UNION,
-                                 operation_sr=operation_sr,
-                                 result_sr=result_sr)
+                                 operation_proj=operation_proj,
+                                 result_proj=result_proj)
 
     @staticmethod
-    def _gen_union(geometry_iterable: Iterable):
+    def cascaded_union(geometry_iterable: Iterable,
+                       percent_reduction: int = 0,
+                       max_point_count: int = 0,
+                       batch_size: int = 25):
+        """
+        union an iterable list of geometries
+        @param geometry_iterable: input list of geometries
+        @param percent_reduction: if generalizing the output, how much to reduce the geometry by
+        @param max_point_count: if generalizing the output, what is the max number of points
+        @param batch_size: batch size for number of geometries to stream up to service
+        @return: a unioned geometry
+        """
+        intermediate = []
         for geometry in geometry_iterable:
-            yield geometry_pb2.GeometryRequest(geometry=geometry.geometry_data,
-                                               operator=geometry_pb2.UNION)
+            intermediate.append(geometry)
+            if len(intermediate) == batch_size:
+                # every stream_interval items
+                intermediate = [geometry_init.geometry_service.op_client_stream(intermediate)]
 
-    @staticmethod
-    def cascaded_union(geometry_iterable: Iterable):
-        geometry_response = geometry_init\
-            .geometry_service\
-            .stub\
-            .OperateClientStream(BaseGeometry._gen_union(geometry_iterable))
+        result = intermediate[0]
+        if len(intermediate) > 1:
+            result = geometry_init.geometry_service.op_client_stream(intermediate)
 
-        return BaseGeometry.import_protobuf(geometry_response.geometry)
+        if percent_reduction == 0 and max_point_count == 0:
+            # if no generalize
+            return result
+
+        return result.generalize(percent_reduction=percent_reduction, max_point_count=max_point_count)
+
+    def _operation_proj(self,
+                      other_geom: BaseGeometry,
+                      operation_proj: geometry_pb2.ProjectionData = None):
+        if operation_proj is None and not self.proj_eq(other_geom.proj):
+            operation_proj = self.proj
+            warn("left and right geometries have different proj and operation_proj is None. defaulting "
+                 "operation_proj to the left geometry proj: \n{}".format(self.proj))
+        return operation_proj
 
     def _two_geom_op(self,
-                     other_geom,
+                     other_geom: BaseGeometry,
                      operator_type: geometry_pb2.OperatorType,
-                     operation_sr: geometry_pb2.SpatialReferenceData = None,
-                     result_sr: geometry_pb2.SpatialReferenceData = None):
+                     operation_proj: geometry_pb2.ProjectionData = None,
+                     result_proj: geometry_pb2.ProjectionData = None):
+        operation_proj = self._operation_proj(other_geom=other_geom, operation_proj=operation_proj)
+
         op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                   right_geometry=other_geom.geometry_data,
                                                   operator=operator_type,
-                                                  operation_sr=operation_sr,
-                                                  result_sr=result_sr)
-        return BaseGeometry.import_protobuf(
-            geometry_init.geometry_service.stub.Operate(op_request).geometry)
+                                                  operation_proj=operation_proj,
+                                                  result_proj=result_proj)
+        return BaseGeometry.import_protobuf(geometry_init.geometry_service.operate(op_request).geometry)
 
     def equals(self,
-               other_geom,
-               operation_sr: geometry_pb2.SpatialReferenceData = None):
+               other_geom: BaseGeometry,
+               operation_proj: geometry_pb2.ProjectionData = None):
         """
         Returns True if geometries are equal, else False.
         :param other_geom: other geometry
-        :param operation_sr: if geometries have different spatial references, project both geometries to one spatial
+        :param operation_proj: if geometries have different spatial references, project both geometries to one spatial
         reference for execution of equality
         :return:
         """
-        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.EQUALS, operation_sr=operation_sr)
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.EQUALS, operation_proj=operation_proj)
 
     def contains(self,
-                 other_geom,
-                 operation_sr: geometry_pb2.SpatialReferenceData = None):
-        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.CONTAINS, operation_sr=operation_sr)
+                 other_geom: BaseGeometry,
+                 operation_proj: geometry_pb2.ProjectionData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.CONTAINS, operation_proj=operation_proj)
 
     def within(self,
-               other_geom,
-               operation_sr: geometry_pb2.SpatialReferenceData = None):
-        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.WITHIN, operation_sr=operation_sr)
+               other_geom: BaseGeometry,
+               operation_proj: geometry_pb2.ProjectionData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.WITHIN, operation_proj=operation_proj)
 
     def touches(self,
-                other_geom,
-                operation_sr: geometry_pb2.SpatialReferenceData = None):
-        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.TOUCHES, operation_sr=operation_sr)
+                other_geom: BaseGeometry,
+                operation_proj: geometry_pb2.ProjectionData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.TOUCHES, operation_proj=operation_proj)
 
     def overlaps(self,
-                 other_geom,
-                 operation_sr: geometry_pb2.SpatialReferenceData = None):
-        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.OVERLAPS, operation_sr=operation_sr)
+                 other_geom: BaseGeometry,
+                 operation_proj: geometry_pb2.ProjectionData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.OVERLAPS, operation_proj=operation_proj)
 
     def crosses(self,
-                other_geom,
-                operation_sr: geometry_pb2.SpatialReferenceData = None):
-        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.CROSSES, operation_sr=operation_sr)
+                other_geom: BaseGeometry,
+                operation_proj: geometry_pb2.ProjectionData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.CROSSES, operation_proj=operation_proj)
 
     def disjoint(self,
-                 other_geom,
-                 operation_sr: geometry_pb2.SpatialReferenceData = None):
-        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.DISJOINT, operation_sr=operation_sr)
+                 other_geom: BaseGeometry,
+                 operation_proj: geometry_pb2.ProjectionData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.DISJOINT, operation_proj=operation_proj)
 
     def intersects(self,
-                   other_geom,
-                   operation_sr: geometry_pb2.SpatialReferenceData = None):
-        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.INTERSECTS, operation_sr=operation_sr)
+                   other_geom: BaseGeometry,
+                   operation_proj: geometry_pb2.ProjectionData = None):
+        return self._relate(other_geom=other_geom, relate_type=geometry_pb2.INTERSECTS, operation_proj=operation_proj)
 
     def _relate(self,
-                other_geom,
+                other_geom: BaseGeometry,
                 relate_type: geometry_pb2.OperatorType,
-                operation_sr: geometry_pb2.SpatialReferenceData = None):
+                operation_proj: geometry_pb2.ProjectionData = None):
+        operation_proj = self._operation_proj(other_geom=other_geom, operation_proj=operation_proj)
+
         op_request = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                   right_geometry=other_geom.geometry_data,
                                                   operator=relate_type,
-                                                  operation_sr=operation_sr)
-        return geometry_init.geometry_service.stub.Operate(op_request).spatial_relationship
+                                                  operation_proj=operation_proj)
+        return geometry_init.geometry_service.operate(op_request).spatial_relationship
 
     def generalize(self, percent_reduction=0, max_point_count=0, remove_degenerates=True):
-        generalize_by_area_params = geometry_pb2.GeometryRequest.GeneralizeByAreaParams(
+        generalize_by_area_params = geometry_pb2.Params.GeneralizeByArea(
             percent_reduction=percent_reduction,
             max_point_count=max_point_count,
             remove_degenerates=remove_degenerates
@@ -1038,7 +1118,7 @@ class BaseGeometry(object):
                                                   operator=geometry_pb2.GENERALIZE_BY_AREA,
                                                   generalize_by_area_params=generalize_by_area_params)
 
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_request)
+        geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     @property
@@ -1047,7 +1127,7 @@ class BaseGeometry(object):
         create a GeometryData protobuf object from the current geometry
         :return: GeometryData object with a defined spatial reference
         """
-        return geometry_pb2.GeometryData(wkb=self.wkb, sr=self._sr)
+        return geometry_pb2.GeometryData(wkb=self.wkb, proj=self._proj)
 
     @property
     def envelope_data(self):
@@ -1060,18 +1140,30 @@ class BaseGeometry(object):
                                          ymin=self.bounds[1],
                                          xmax=self.bounds[2],
                                          ymax=self.bounds[3],
-                                         sr=self._sr)
+                                         proj=self._proj)
 
     @property
     def shapely_dump(self):
+        """
+Create a shapely geometry instance from the epl geometry instance
+        @return:
+        """
         return shapely_loads_wkb(self.wkb)
 
     @property
     def carto_geom(self):
+        """
+Carto was not playing nice with our wrapper of shapely
+        @return:
+        """
         return self.shapely_dump
 
     @property
     def carto_bounds(self):
+        """
+bounds order according to carto
+        @return:
+        """
         b = self.bounds
         return b[0], b[2], b[1], b[3]
 
@@ -1085,21 +1177,21 @@ class BaseGeometry(object):
         in spatial reference of geometry
         :return: new geometry
         """
-        local_sr = None
+        local_proj = None
         if geodetic:
-            centroid = self.project(to_sr=geometry_pb2.SpatialReferenceData(wkid=4326)).centroid
-            local_sr = geometry_pb2.SpatialReferenceData(
-                custom=geometry_pb2.SpatialReferenceData.Custom(lon_0=centroid.x,
+            centroid = self.project(to_proj=geometry_pb2.ProjectionData(epsg=4326)).centroid
+            local_proj = geometry_pb2.ProjectionData(
+                custom=geometry_pb2.ProjectionData.Custom(lon_0=centroid.x,
                                                                 lat_0=centroid.y))
 
-        affine_transform_params = geometry_pb2.GeometryRequest.AffineTransformParams(x_offset=x_offset,
+        affine_transform_params = geometry_pb2.Params.AffineTransform(x_offset=x_offset,
                                                                                      y_offset=y_offset)
         op_translate = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                     affine_transform_params=affine_transform_params,
                                                     operator=geometry_pb2.AFFINE_TRANSFORM,
-                                                    operation_sr=local_sr,
-                                                    result_sr=self.sr)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_translate)
+                                                    operation_proj=local_proj,
+                                                    result_proj=self.proj)
+        geometry_response = geometry_init.geometry_service.operate(op_translate)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def length(self, geodetic=True):
@@ -1107,7 +1199,7 @@ class BaseGeometry(object):
             return self.s_length
         op_length = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                  operator=geometry_pb2.GEODETIC_LENGTH)
-        geometry_response = geometry_init.geometry_service.stub.Operate(op_length)
+        geometry_response = geometry_init.geometry_service.operate(op_length)
         return geometry_response.measure
 
 
@@ -1170,17 +1262,11 @@ class BaseMultipartGeometry(BaseGeometry):
                 type(other) == type(self) and
                 len(self) == len(other) and
                 all(x == y for x, y in zip(self, other)) and
-                self._sr_eq__(other)
+                self._proj_eq__(other)
         )
 
-    def _sr_eq__(self, other):
-        if self.sr.wkid > 0:
-            return self.sr.wkid == other.sr.wkid
-        elif len(self.sr.proj4) > 0:
-            return self.sr.proj4 == other.sr.proj4
-        elif len(self.sr.wkt) > 0:
-            return self.sr.wkt == other.sr.wkt
-        return False
+    def _proj_eq__(self, other):
+        return proj_eq(self.proj, other.proj)
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -1314,7 +1400,7 @@ class RPCReader(object):
         """Create Reader"""
         self._lgeos = lgeos
         self._geometry_data = geometry_data
-        # TODO, manage geometry_data with geojson and esrishape
+        # TODO, manage geometry_data with geojson and eprojishape
         if len(self._geometry_data.wkt) > 0:
             self._reader_wkt = self._lgeos.GEOSWKTReader_create()
         elif len(geometry_data.wkb) > 0:
@@ -1338,7 +1424,7 @@ class RPCReader(object):
             geom = self.read_wkt()
         elif len(self._geometry_data.wkb) > 0:
             geom = self.read_wkb()
-        result = geom_factory(geom, sr=self._geometry_data.sr)
+        result = geom_factory(geom, proj=self._geometry_data.proj)
         return result
 
     def read_wkb(self):
@@ -1363,21 +1449,21 @@ class RPCReader(object):
         return geom
 
 
-def get_sr(sr: geometry_pb2.SpatialReferenceData = None, wkid: int = 0, proj4: str = ""):
-    if sr is None and wkid == 0 and len(proj4) == 0:
+def get_proj(proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
+    if proj is None and epsg == 0 and len(proj4) == 0:
         raise ValueError("must define a spatial reference for geometry on creation")
-    if sr is None and wkid > 0:
-        sr = geometry_pb2.SpatialReferenceData(wkid=wkid)
-    elif sr is None and len(proj4) > 0:
-        sr = geometry_pb2.SpatialReferenceData(proj4=proj4)
-    return sr
+    if proj is None and epsg > 0:
+        proj = geometry_pb2.ProjectionData(epsg=epsg)
+    elif proj is None and len(proj4) > 0:
+        proj = geometry_pb2.ProjectionData(proj4=proj4)
+    return proj
 
 
-def sr_eq(sr: geometry_pb2.SpatialReferenceData, other_sr: geometry_pb2.SpatialReferenceData):
-    if sr.wkid != other_sr.wkid:
-        return False
-    if sr.proj4 != other_sr.proj4:
-        return False
-    if sr.wkt != other_sr.wkt:
-        return False
-    return True
+def proj_eq(proj: geometry_pb2.ProjectionData, other_proj: geometry_pb2.ProjectionData):
+    if proj.epsg > 0:
+        return proj.epsg == other_proj.epsg
+    elif len(proj.proj4) > 0:
+        return proj.proj4 == other_proj.proj4
+    elif len(proj.wkt) > 0:
+        return proj.wkt == other_proj.wkt
+    return False

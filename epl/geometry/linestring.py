@@ -1,7 +1,7 @@
 """Line strings and related utilities
 """
 from epl.geometry.base import BaseGeometry
-from epl.protobuf import geometry_pb2
+from epl.protobuf.v1 import geometry_pb2
 from ctypes import c_double
 
 from shapely.geos import lgeos, TopologicalError
@@ -24,8 +24,8 @@ class LineString(BaseGeometry):
 
     def __init__(self,
                  coordinates=None,
-                 sr: geometry_pb2.SpatialReferenceData = None,
-                 wkid: int = 0,
+                 proj: geometry_pb2.ProjectionData = None,
+                 epsg: int = 0,
                  proj4: str = ""):
         """
         Parameters
@@ -43,7 +43,7 @@ class LineString(BaseGeometry):
           >>> a.length
           2.0
         """
-        BaseGeometry.__init__(self, sr=sr, wkid=wkid, proj4=proj4)
+        BaseGeometry.__init__(self, proj=proj, epsg=epsg, proj4=proj4)
         if coordinates is not None:
             self._set_coords(coordinates)
 
