@@ -60,7 +60,7 @@ class LinearRing(LineString):
         return {
             'type': 'LinearRing',
             'coordinates': tuple(self.coords)
-            }
+        }
 
     # Coordinate access
 
@@ -96,7 +96,6 @@ class LinearRing(LineString):
 
 
 class LinearRingAdapter(LineStringAdapter):
-
     __p__ = None
 
     def __init__(self, context):
@@ -108,7 +107,7 @@ class LinearRingAdapter(LineStringAdapter):
         return {
             'type': 'LinearRing',
             'coordinates': tuple(self.coords)
-            }
+        }
 
     coords = property(BaseGeometry._get_coords)
 
@@ -119,7 +118,6 @@ def asLinearRing(context):
 
 
 class InteriorRingSequence(object):
-
     _factory = None
     _geom = None
     __p__ = None
@@ -305,20 +303,20 @@ class Polygon(BaseGeometry):
     @property
     def __array_interface__(self):
         raise NotImplementedError(
-        "A polygon does not itself provide the array interface. Its rings do.")
+            "A polygon does not itself provide the array interface. Its rings do.")
 
     def _get_coords(self):
         raise NotImplementedError(
-        "Component rings have coordinate sequences, but the polygon does not")
+            "Component rings have coordinate sequences, but the polygon does not")
 
     def _set_coords(self, ob):
         raise NotImplementedError(
-        "Component rings have coordinate sequences, but the polygon does not")
+            "Component rings have coordinate sequences, but the polygon does not")
 
     @property
     def coords(self):
         raise NotImplementedError(
-        "Component rings have coordinate sequences, but the polygon does not")
+            "Component rings have coordinate sequences, but the polygon does not")
 
     @property
     def __geo_interface__(self):
@@ -358,10 +356,11 @@ class Polygon(BaseGeometry):
         return (
             '<path fill-rule="evenodd" fill="{2}" stroke="#555555" '
             'stroke-width="{0}" opacity="0.6" d="{1}" />'
-            ).format(2. * scale_factor, path, fill_color)
+        ).format(2. * scale_factor, path, fill_color)
 
     @classmethod
-    def from_bounds(cls, xmin, ymin, xmax, ymax, proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
+    def from_bounds(cls, xmin, ymin, xmax, ymax, proj: geometry_pb2.ProjectionData = None, epsg: int = 0,
+                    proj4: str = ""):
         """Construct a `Polygon()` from spatial bounds."""
         return cls([
             (xmin, ymin),
@@ -369,13 +368,13 @@ class Polygon(BaseGeometry):
             (xmax, ymax),
             (xmax, ymin)], proj=proj, epsg=epsg, proj4=proj4)
 
-    @classmethod
-    def from_envelope_data(cls, envelope_data: geometry_pb2.EnvelopeData):
-        return cls.from_bounds(xmin=envelope_data.xmin,
-                               ymin=envelope_data.ymin,
-                               xmax=envelope_data.xmax,
-                               ymax=envelope_data.ymax,
-                               proj=envelope_data.proj)
+    @staticmethod
+    def from_envelope_data(envelope_data: geometry_pb2.EnvelopeData):
+        return Polygon.from_bounds(xmin=envelope_data.xmin,
+                                   ymin=envelope_data.ymin,
+                                   xmax=envelope_data.xmax,
+                                   ymax=envelope_data.ymax,
+                                   proj=envelope_data.proj)
 
 
 class PolygonAdapter(PolygonProxy, Polygon):
@@ -408,12 +407,12 @@ def orient(polygon, sign=1.0):
     s = float(sign)
     rings = []
     ring = polygon.exterior
-    if signed_area(ring)/s >= 0.0:
+    if signed_area(ring) / s >= 0.0:
         rings.append(ring)
     else:
         rings.append(list(ring.coords)[::-1])
     for ring in polygon.interiors:
-        if signed_area(ring)/s <= 0.0:
+        if signed_area(ring) / s <= 0.0:
             rings.append(ring)
         else:
             rings.append(list(ring.coords)[::-1])
@@ -485,10 +484,10 @@ def geos_linearring_from_py(ob, update_geom=None, update_ndim=0):
         coords = ob[0]
         # Because of a bug in the GEOS C API,
         # always set X before Y
-        lgeos.GEOSCoordSeq_setX(cs, M-1, coords[0])
-        lgeos.GEOSCoordSeq_setY(cs, M-1, coords[1])
+        lgeos.GEOSCoordSeq_setX(cs, M - 1, coords[0])
+        lgeos.GEOSCoordSeq_setY(cs, M - 1, coords[1])
         if n == 3:
-            lgeos.GEOSCoordSeq_setZ(cs, M-1, coords[2])
+            lgeos.GEOSCoordSeq_setZ(cs, M - 1, coords[2])
 
     if update_geom is not None:
         return None
@@ -501,7 +500,6 @@ def update_linearring_from_py(geom, ob):
 
 
 def geos_polygon_from_py(shell, holes=None):
-
     if shell is None:
         return None
 
