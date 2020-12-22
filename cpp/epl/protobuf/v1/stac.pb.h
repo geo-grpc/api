@@ -483,12 +483,13 @@ enum Instrument : int {
   TM = 16,
   ETM = 32,
   MSS = 64,
+  POM_2 = 128,
   Instrument_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   Instrument_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool Instrument_IsValid(int value);
 constexpr Instrument Instrument_MIN = UNKNOWN_INSTRUMENT;
-constexpr Instrument Instrument_MAX = MSS;
+constexpr Instrument Instrument_MAX = POM_2;
 constexpr int Instrument_ARRAYSIZE = Instrument_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Instrument_descriptor();
