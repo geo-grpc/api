@@ -182,6 +182,14 @@ class LineStringAdapter(CachingGeometryProxy, LineString):
 
     coords = property(_get_coords)
 
+    @staticmethod
+    def from_envelope_data(envelope_data: geometry_pb2.EnvelopeData):
+        return LineString([(envelope_data.xmin, envelope_data.ymin),
+                           (envelope_data.xmin, envelope_data.ymax),
+                           (envelope_data.xmax, envelope_data.ymax),
+                           (envelope_data.xmax, envelope_data.ymin)],
+                          proj=envelope_data.proj)
+
 
 def asLineString(context):
     """Adapt an object the LineString interface"""

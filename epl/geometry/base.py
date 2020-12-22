@@ -775,6 +775,10 @@ class BaseGeometry(object):
         return rpc_reader.read()
 
     @staticmethod
+    def from_envelope_data(envelope_data: geometry_pb2.EnvelopeData):
+        pass
+
+    @staticmethod
     def import_wkt(wkt: str, proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
         # TODO. this is messy. should be using RPCReader for this
         proj = get_proj(proj=proj, epsg=epsg, proj4=proj4)
@@ -894,7 +898,7 @@ Densify a polyline or polygon by the max_length in meters. No segment will be la
         centroid = self.union(other_geom, result_proj=geometry_pb2.ProjectionData(epsg=4326)).centroid
         local_proj = geometry_pb2.ProjectionData(
             custom=geometry_pb2.ProjectionData.Custom(lon_0=centroid.x,
-                                                            lat_0=centroid.y))
+                                                      lat_0=centroid.y))
 
         op_distance = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                    right_geometry=other_geom.geometry_data,
@@ -972,7 +976,7 @@ Create a multipoint geometry where all points exist within the input polygon. Po
             print("generated seed {}".format(seed))
 
         params = geometry_pb2.Params.RandomPoints(seed=seed,
-                                                                 points_per_square_km=points_per_square_km)
+                                                  points_per_square_km=points_per_square_km)
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.RANDOM_POINTS,
                                                   random_points_params=params,
@@ -1025,9 +1029,37 @@ Create a multipoint geometry where all points exist within the input polygon. Po
 
         return result.generalize(percent_reduction=percent_reduction, max_point_count=max_point_count)
 
+    @staticmethod
+    def s_cascaded_union(geometry_iterable: Iterable[BaseGeometry]):
+        """
+union geometries locally using shapely union.
+        @param geometry_iterable:
+        @return:
+        """
+        geometries = [geometry for geometry in geometry_iterable]
+        projs = [geometry.proj for geometry in geometries]
+        sample_proj = None
+        for i, proj in enumerate(projs):
+            if i == len(projs) - 2:
+                sample_proj = proj
+                break
+            if not proj_eq(proj, projs[i]):
+                raise ValueError("all geometries must have the same spatial reference")
+
+        try:
+            L = len(geometries)
+        except TypeError:
+            geometries = [geometries]
+            L = 1
+        subs = (c_void_p * L)()
+        for i, g in enumerate(geometries):
+            subs[i] = g._geom
+        collection = lgeos.GEOSGeom_createCollection(6, subs, L)
+        return geom_factory(lgeos.methods['cascaded_union'](collection), proj=sample_proj)
+
     def _operation_proj(self,
-                      other_geom: BaseGeometry,
-                      operation_proj: geometry_pb2.ProjectionData = None):
+                        other_geom: BaseGeometry,
+                        operation_proj: geometry_pb2.ProjectionData = None):
         if operation_proj is None and not self.proj_eq(other_geom.proj):
             operation_proj = self.proj
             warn("left and right geometries have different proj and operation_proj is None. defaulting "
@@ -1182,10 +1214,10 @@ bounds order according to carto
             centroid = self.project(to_proj=geometry_pb2.ProjectionData(epsg=4326)).centroid
             local_proj = geometry_pb2.ProjectionData(
                 custom=geometry_pb2.ProjectionData.Custom(lon_0=centroid.x,
-                                                                lat_0=centroid.y))
+                                                          lat_0=centroid.y))
 
         affine_transform_params = geometry_pb2.Params.AffineTransform(x_offset=x_offset,
-                                                                                     y_offset=y_offset)
+                                                                      y_offset=y_offset)
         op_translate = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                     affine_transform_params=affine_transform_params,
                                                     operator=geometry_pb2.AFFINE_TRANSFORM,
@@ -1450,8 +1482,10 @@ class RPCReader(object):
 
 
 def get_proj(proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
-    if proj is None and epsg == 0 and len(proj4) == 0:
-        raise ValueError("must define a spatial reference for geometry on creation")
+    if (proj is None or (proj.epsg == 0 and len(proj.proj4) == 0 and not proj.HasField('custom'))) and \
+            epsg == 0 and len(proj4) == 0:
+        raise ValueError("must define a spatial reference for geometry on creation, "
+                         "must be epsg or proj4 (wkt not supported)")
     if proj is None and epsg > 0:
         proj = geometry_pb2.ProjectionData(epsg=epsg)
     elif proj is None and len(proj4) > 0:

@@ -189,6 +189,17 @@ class Point(BaseGeometry):
             return Point((self.x + other.x) / 2.0, (self.y + other.y) / 2.0, proj=self.proj)
         return Point((self.x + other.x) / 2.0, (self.y + other.y) / 2.0, (self.z + other.z) / 2.0, proj=self.proj)
 
+    @staticmethod
+    def from_envelope_data(envelope_data: geometry_pb2.EnvelopeData):
+        """
+takes the centroid of the envelope data
+        @param envelope_data:
+        @return:
+        """
+        x = envelope_data.xmin = (envelope_data.xmax - envelope_data.xmin) / 2
+        y = envelope_data.ymin = (envelope_data.ymax - envelope_data.ymin) / 2
+        return Point(x, y, proj=envelope_data.proj)
+
 
 class PointAdapter(CachingGeometryProxy, Point):
     _other_owned = False

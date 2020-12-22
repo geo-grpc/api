@@ -818,10 +818,34 @@ class TestBasic(unittest.TestCase):
             test.append(buffered)
 
         response = Polygon.cascaded_union(test)
-
         buffed = response.s_buffer(0.001)
         for geom in test:
             self.assertTrue(buffed.contains(geom))
+
+    def test_cascaded_union_compare(self):
+        test_epl = []
+        for i in range(0, 200):
+            lon, lat = random.random(), random.random()
+            point = Point(lon, lat, epsg=4326)
+            buffered = point.s_buffer(1)
+            test_epl.append(buffered)
+
+        response = Polygon.cascaded_union(test_epl)
+        response_2 = Polygon.s_cascaded_union(test_epl)
+
+        self.assertTrue(response.buffer(.5).shapely_dump.contains(response_2))
+        buffed = response.s_buffer(0.001)
+        for geom in test_epl:
+            self.assertTrue(buffed.contains(geom))
+
+    def test_s_methods(self):
+        for i in range(0, 200):
+            lon, lat = random.random(), random.random()
+            point = Point(lon, lat, epsg=4326)
+            buffered = point.s_buffer(1)
+            buffer2 = buffered.buffer(2)
+            self.assertTrue(buffer2.s_convex_hull.equals(buffer2))
+            self.assertTrue(buffered.convex().equals(buffered))
 
     def test_triangulate(self):
         from shapely.ops import triangulate
