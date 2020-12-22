@@ -88,12 +88,15 @@ enum Instrument {
     TIRS = 4;
     OLI_TIRS = 6;
 
-    // near space labs instrument
+    // near space labs instrument 1
     POM_1 = 8;
 
     TM = 16;
     ETM = 32;
     MSS = 64;
+
+    // near space labs instrument 2
+    POM_2 = 128;
 }
 
 enum Constellation {

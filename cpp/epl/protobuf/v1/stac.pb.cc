@@ -1018,15 +1018,15 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_2eproto[] PROTOB
   "\tLANDSAT_3\020\010\022\017\n\013LANDSAT_123\020\016\022\r\n\tLANDSAT"
   "_4\020\020\022\r\n\tLANDSAT_5\020 \022\016\n\nLANDSAT_45\0200\022\r\n\tL"
   "ANDSAT_7\020@\022\016\n\tLANDSAT_8\020\200\001\022\014\n\007SWIFT_2\020\200\002"
-  "*j\n\nInstrument\022\026\n\022UNKNOWN_INSTRUMENT\020\000\022\007"
+  "*v\n\nInstrument\022\026\n\022UNKNOWN_INSTRUMENT\020\000\022\007"
   "\n\003OLI\020\002\022\010\n\004TIRS\020\004\022\014\n\010OLI_TIRS\020\006\022\t\n\005POM_1"
-  "\020\010\022\006\n\002TM\020\020\022\007\n\003ETM\020 \022\007\n\003MSS\020@**\n\rConstell"
-  "ation\022\031\n\025UNKNOWN_CONSTELLATION\020\000*J\n\007Miss"
-  "ion\022\023\n\017UNKNOWN_MISSION\020\000\022\013\n\007LANDSAT\020\002\022\010\n"
-  "\004NAIP\020\004\022\010\n\004PNOA\020\010\022\t\n\005SWIFT\020\020BY\n\023com.epl."
-  "protobuf.v1B\tStacProtoP\001Z.github.com/geo"
-  "-grpc/api/golang/epl/protobuf/v1\242\002\004STPBb"
-  "\006proto3"
+  "\020\010\022\006\n\002TM\020\020\022\007\n\003ETM\020 \022\007\n\003MSS\020@\022\n\n\005POM_2\020\200\001"
+  "**\n\rConstellation\022\031\n\025UNKNOWN_CONSTELLATI"
+  "ON\020\000*J\n\007Mission\022\023\n\017UNKNOWN_MISSION\020\000\022\013\n\007"
+  "LANDSAT\020\002\022\010\n\004NAIP\020\004\022\010\n\004PNOA\020\010\022\t\n\005SWIFT\020\020"
+  "BY\n\023com.epl.protobuf.v1B\tStacProtoP\001Z.gi"
+  "thub.com/geo-grpc/api/golang/epl/protobu"
+  "f/v1\242\002\004STPBb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_deps[5] = {
   &::descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto,
@@ -1064,7 +1064,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_once;
 static bool descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_2eproto, "epl/protobuf/v1/stac.proto", 7047,
+  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_2eproto, "epl/protobuf/v1/stac.proto", 7059,
   &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_deps, 24, 5,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fstac_2eproto::offsets,
   file_level_metadata_epl_2fprotobuf_2fv1_2fstac_2eproto, 24, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto,
@@ -1355,6 +1355,7 @@ bool Instrument_IsValid(int value) {
     case 16:
     case 32:
     case 64:
+    case 128:
       return true;
     default:
       return false;
