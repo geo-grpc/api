@@ -6,7 +6,7 @@ MAINTAINER David Raleigh <davidraleigh@gmail.com>
 # https://github.com/rocker-org/shiny/issues/19#issuecomment-308357402
 RUN apt-get update || apt-get update
 
-COPY ./ /opt/src/geometry-chain
+COPY ../.. /opt/src/geometry-chain
 
 WORKDIR /opt/src/geometry-chain
 
