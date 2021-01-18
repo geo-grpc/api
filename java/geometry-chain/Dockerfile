@@ -6,7 +6,7 @@ MAINTAINER David Raleigh <davidraleigh@gmail.com>
 # https://github.com/rocker-org/shiny/issues/19#issuecomment-308357402
 RUN apt-get update || apt-get update
 
-COPY ../.. /opt/src/geometry-chain
+COPY ./ /opt/src/geometry-chain
 
 WORKDIR /opt/src/geometry-chain
 
@@ -29,7 +29,6 @@ RUN chmod +x /opt/src/geometry-chain/build/install/bin/geometry-operators-server
 
 EXPOSE 8980
 
-#TODO, I should be able to make a test image and copy from that, right?
 WORKDIR /opt/src/geometry-chain/build/test-results
 COPY --from=builder /opt/src/geometry-chain/epl-geometry-service/build/test-results .
 COPY --from=builder /opt/src/geometry-chain/epl-geometry-api/build/test-results .
