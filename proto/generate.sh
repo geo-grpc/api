@@ -4,6 +4,10 @@
 docker run --rm -it -v "${GOPATH}":/defs --entrypoint /bin/sh namely/protoc:1.28_2 -c "/defs/src/github.com/geo-grpc/api/proto/protoc.sh"
 ### protoc.sh
 
+# copy geometry over to java
+cp -r "$(pwd)"/epl/protobuf/v1/geometry*.proto "$(pwd)"/../java/geometry-chain/epl-geometry-service/src/main/proto/epl/protobuf/v1
+# copy geometry over to java
+
 docker run --rm   -v "$(pwd)/.."/docs:/out -v "$(pwd)":/protos pseudomuto/protoc-gen-doc:1.3.1 \
   --proto_path=/protos/ \
   epl/protobuf/v1/geometry.proto \
