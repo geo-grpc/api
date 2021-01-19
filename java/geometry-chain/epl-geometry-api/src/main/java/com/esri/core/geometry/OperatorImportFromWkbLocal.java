@@ -37,6 +37,7 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 		WkbHelper(ByteBuffer buffer) {
 			wkbBuffer = buffer;
 			adjustment = 0;
+			skipSize = 5;
 		}
 
 		int getInt(int offset) {
@@ -47,8 +48,11 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 			return wkbBuffer.getDouble(adjustment + offset);
 		}
 
+		void increaseSkipSize(int increaseBy) { skipSize += increaseBy; }
+
 		ByteBuffer wkbBuffer;
 		int adjustment;
+		int skipSize;
 	}
 
 	@Override
@@ -174,8 +178,8 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 					}
 				}
 				if (ogcType == 7) {
-					int count = wkbHelper.getInt(5);
-					wkbHelper.adjustment += 9;
+					int count = wkbHelper.getInt(wkbHelper.skipSize);
+					wkbHelper.adjustment += 4 + wkbHelper.skipSize;
 
 					OGCStructure next = new OGCStructure();
 					next.m_type = ogcType;
@@ -200,186 +204,69 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 		return root;
 	}
 
+	public static boolean hasZ(int geometryType) {
+		return (WkbGeometryType.wkbZ & geometryType) == WkbGeometryType.wkbZ
+				|| (WkbGeometryType.wkbZM & geometryType) == WkbGeometryType.wkbZM;
+	}
+
+	public static boolean hasM(int geometryType) {
+		return (WkbGeometryType.wkbM & geometryType) == WkbGeometryType.wkbM
+				|| (WkbGeometryType.wkbZM & geometryType) == WkbGeometryType.wkbZM;
+	}
+
+	public static boolean hasEWkbZ(long geometryType) {
+		return (WkbGeometryType.eWkbZ & geometryType) == WkbGeometryType.eWkbZ;
+	}
+
+	public static boolean hasEWkbM(long geometryType) {
+		return (WkbGeometryType.eWkbM & geometryType) == WkbGeometryType.eWkbM;
+	}
+
 	private static Geometry importFromWkb(int importFlags, Geometry.Type type,
 			WkbHelper wkbHelper) {
-
 		// read type
 		int wkbType = wkbHelper.getInt(1);
 
-		switch (wkbType) {
-		case WkbGeometryType.wkbPolygon:
-			if (type.value() != Geometry.GeometryType.Polygon
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolygon(false, importFlags, false, false,
-					wkbHelper);
+		boolean bWkbZ = hasZ(wkbType);
+		boolean bWkbM = hasM(wkbType);
 
-		case WkbGeometryType.wkbPolygonM:
-			if (type.value() != Geometry.GeometryType.Polygon
-					&& type.value() != Geometry.GeometryType.Unknown)
+		switch (wkbType % 10) {
+			case WkbGeometryType.wkbPolygon:
+				if (type.value() != Geometry.GeometryType.Polygon && type.value() != Geometry.GeometryType.Unknown)
+					throw new GeometryException("invalid shape type");
+				return importFromWkbPolygon(false, importFlags, bWkbZ, bWkbM, wkbHelper);
+			case WkbGeometryType.wkbMultiPolygon:
+				if (type.value() != Geometry.GeometryType.Polygon && type.value() != Geometry.GeometryType.Unknown)
+					throw new GeometryException("invalid shape type");
+				return importFromWkbPolygon(true, importFlags, bWkbZ, bWkbM, wkbHelper);
+			case WkbGeometryType.wkbLineString:
+				if (type.value() != Geometry.GeometryType.Polyline && type.value() != Geometry.GeometryType.Unknown)
+					throw new GeometryException("invalid shape type");
+				return importFromWkbPolyline(false, importFlags, bWkbZ, bWkbM, wkbHelper);
+			case WkbGeometryType.wkbMultiLineString:
+				if (type.value() != Geometry.GeometryType.Polyline && type.value() != Geometry.GeometryType.Unknown)
+					throw new GeometryException("invalid shape type");
+				return importFromWkbPolyline(true, importFlags, bWkbZ, bWkbM, wkbHelper);
+			case WkbGeometryType.wkbPoint:
+				if (type.value() != Geometry.GeometryType.Point && type.value() != Geometry.GeometryType.Unknown)
+					throw new GeometryException("invalid shape type");
+				return importFromWkbPoint(importFlags, bWkbZ, bWkbM, wkbHelper);
+			case WkbGeometryType.wkbMultiPoint:
+				if (type.value() != Geometry.GeometryType.MultiPoint && type.value() != Geometry.GeometryType.Unknown)
+					throw new GeometryException("invalid shape type");
+				return importFromWkbMultiPoint(importFlags, bWkbZ, bWkbM, wkbHelper);
+			default:
 				throw new GeometryException("invalid shape type");
-			return importFromWkbPolygon(false, importFlags, false, true,
-					wkbHelper);
-
-		case WkbGeometryType.wkbPolygonZ:
-			if (type.value() != Geometry.GeometryType.Polygon
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolygon(false, importFlags, true, false,
-					wkbHelper);
-
-		case WkbGeometryType.wkbPolygonZM:
-			if (type.value() != Geometry.GeometryType.Polygon
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolygon(false, importFlags, true, true,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiPolygon:
-			if (type.value() != Geometry.GeometryType.Polygon
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolygon(true, importFlags, false, false,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiPolygonM:
-			if (type.value() != Geometry.GeometryType.Polygon
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolygon(true, importFlags, false, true,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiPolygonZ:
-			if (type.value() != Geometry.GeometryType.Polygon
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolygon(true, importFlags, true, false,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiPolygonZM:
-			if (type.value() != Geometry.GeometryType.Polygon
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolygon(true, importFlags, true, true,
-					wkbHelper);
-
-		case WkbGeometryType.wkbLineString:
-			if (type.value() != Geometry.GeometryType.Polyline
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolyline(false, importFlags, false, false,
-					wkbHelper);
-
-		case WkbGeometryType.wkbLineStringM:
-			if (type.value() != Geometry.GeometryType.Polyline
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolyline(false, importFlags, false, true,
-					wkbHelper);
-
-		case WkbGeometryType.wkbLineStringZ:
-			if (type.value() != Geometry.GeometryType.Polyline
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolyline(false, importFlags, true, false,
-					wkbHelper);
-
-		case WkbGeometryType.wkbLineStringZM:
-			if (type.value() != Geometry.GeometryType.Polyline
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolyline(false, importFlags, true, true,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiLineString:
-			if (type.value() != Geometry.GeometryType.Polyline
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolyline(true, importFlags, false, false,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiLineStringM:
-			if (type.value() != Geometry.GeometryType.Polyline
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolyline(true, importFlags, false, true,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiLineStringZ:
-			if (type.value() != Geometry.GeometryType.Polyline
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolyline(true, importFlags, true, false,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiLineStringZM:
-			if (type.value() != Geometry.GeometryType.Polyline
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPolyline(true, importFlags, true, true,
-					wkbHelper);
-
-		case WkbGeometryType.wkbMultiPoint:
-			if (type.value() != Geometry.GeometryType.MultiPoint
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbMultiPoint(importFlags, false, false, wkbHelper);
-
-		case WkbGeometryType.wkbMultiPointM:
-			if (type.value() != Geometry.GeometryType.MultiPoint
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbMultiPoint(importFlags, false, true, wkbHelper);
-
-		case WkbGeometryType.wkbMultiPointZ:
-			if (type.value() != Geometry.GeometryType.MultiPoint
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbMultiPoint(importFlags, true, false, wkbHelper);
-
-		case WkbGeometryType.wkbMultiPointZM:
-			if (type.value() != Geometry.GeometryType.MultiPoint
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbMultiPoint(importFlags, true, true, wkbHelper);
-
-		case WkbGeometryType.wkbPoint:
-			if (type.value() != Geometry.GeometryType.Point
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPoint(importFlags, false, false, wkbHelper);
-
-		case WkbGeometryType.wkbPointM:
-			if (type.value() != Geometry.GeometryType.Point
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPoint(importFlags, false, true, wkbHelper);
-
-		case WkbGeometryType.wkbPointZ:
-			if (type.value() != Geometry.GeometryType.Point
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPoint(importFlags, true, false, wkbHelper);
-
-		case WkbGeometryType.wkbPointZM:
-			if (type.value() != Geometry.GeometryType.Point
-					&& type.value() != Geometry.GeometryType.Unknown)
-				throw new GeometryException("invalid shape type");
-			return importFromWkbPoint(importFlags, true, true, wkbHelper);
-
-		default:
-			throw new GeometryException("invalid shape type");
 		}
 	}
 
-	private static Geometry importFromWkbPolygon(boolean bMultiPolygon,
-			int importFlags, boolean bZs, boolean bMs, WkbHelper wkbHelper) {
+	protected static Geometry importFromWkbPolygon(boolean bMultiPolygon, int importFlags, boolean bZs, boolean bMs, WkbHelper wkbHelper) {
 		int offset;
 		int polygonCount;
 
 		if (bMultiPolygon) {
-			polygonCount = wkbHelper.getInt(5);
-			offset = 9;
+			polygonCount = wkbHelper.getInt(wkbHelper.skipSize);
+			offset = 4 + wkbHelper.skipSize;
 		} else {
 			polygonCount = 1;
 			offset = 0;
@@ -390,7 +277,7 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 		int partCount = 0;
 		int tempOffset = offset;
 		for (int ipolygon = 0; ipolygon < polygonCount; ipolygon++) {
-			tempOffset += 5; // skip redundant byte order and type fields
+			tempOffset += wkbHelper.skipSize; // skip redundant byte order and type fields (and maybe srid)
 			int ipartcount = wkbHelper.getInt(tempOffset);
 			tempOffset += 4;
 
@@ -525,7 +412,7 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 
 		// read Coordinates
 		for (int ipolygon = 0; ipolygon < polygonCount; ipolygon++) {
-			offset += 5; // skip redundant byte order and type fields
+			offset += wkbHelper.skipSize; // skip redundant byte order and type fields (and maybe srid)
 			int ipartcount = wkbHelper.getInt(offset);
 			offset += 4;
 			int ipolygonstart = ipolygonend;
@@ -725,14 +612,13 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 		return newPolygon;
 	}
 
-	private static Geometry importFromWkbPolyline(boolean bMultiPolyline,
-			int importFlags, boolean bZs, boolean bMs, WkbHelper wkbHelper) {
+	protected static Geometry importFromWkbPolyline(boolean bMultiPolyline, int importFlags, boolean bZs, boolean bMs, WkbHelper wkbHelper) {
 		int offset;
 		int originalPartCount;
 
 		if (bMultiPolyline) {
-			originalPartCount = wkbHelper.getInt(5);
-			offset = 9;
+			originalPartCount = wkbHelper.getInt(wkbHelper.skipSize);
+			offset = 4 + wkbHelper.skipSize;
 		} else {
 			originalPartCount = 1;
 			offset = 0;
@@ -743,7 +629,7 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 		int partCount = 0;
 		int tempOffset = offset;
 		for (int ipart = 0; ipart < originalPartCount; ipart++) {
-			tempOffset += 5; // skip redundant byte order and type fields
+			tempOffset += wkbHelper.skipSize; // skip redundant byte order and type fields (and maybe srid)
 			int ipointcount = wkbHelper.getInt(tempOffset);
 			tempOffset += 4;
 
@@ -810,7 +696,7 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 
 		// read Coordinates
 		for (int ipart = 0; ipart < originalPartCount; ipart++) {
-			offset += 5; // skip redundant byte order and type fields
+			offset += wkbHelper.skipSize; // skip redundant byte order and type fields (and maybe srid)
 
 			int ipointcount = wkbHelper.getInt(offset);
 			offset += 4;
@@ -908,9 +794,8 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 		return newpolyline;
 	}
 
-	private static Geometry importFromWkbMultiPoint(int importFlags,
-			boolean bZs, boolean bMs, WkbHelper wkbHelper) {
-		int offset = 5; // skip byte order and type
+	protected static Geometry importFromWkbMultiPoint(int importFlags, boolean bZs, boolean bMs, WkbHelper wkbHelper) {
+		int offset = wkbHelper.skipSize; // skip redundant byte order and type fields (and maybe srid)
 
 		// set point count
 		int point_count = wkbHelper.getInt(offset);
@@ -950,7 +835,7 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 
 		boolean bCreateMs = false, bCreateZs = false;
 		for (int i = 0; i < point_count; i++) {
-			offset += 5; // skip redundant byte order and type fields
+			offset += wkbHelper.skipSize; // skip redundant byte order and type fields (and maybe srid)
 
 			// read xy coordinates
 			double x = wkbHelper.getDouble(offset);
@@ -1013,9 +898,8 @@ class OperatorImportFromWkbLocal extends OperatorImportFromWkb {
 		return newmultipoint;
 	}
 
-	private static Geometry importFromWkbPoint(int importFlags, boolean bZs,
-			boolean bMs, WkbHelper wkbHelper) {
-		int offset = 5; // skip byte order and type
+	protected static Geometry importFromWkbPoint(int importFlags, boolean bZs, boolean bMs, WkbHelper wkbHelper) {
+		int offset = wkbHelper.skipSize; // skip redundant byte order and type fields (and maybe srid)
 
 		// set xy coordinate
 		double x = wkbHelper.getDouble(offset);

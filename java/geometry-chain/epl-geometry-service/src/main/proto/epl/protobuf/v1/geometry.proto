@@ -1,5 +1,5 @@
 /*
-Copyright 2017-2020 David Raleigh
+Copyright 2017-2019 Echo Park Labs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@ limitations under the License.
 
 For additional information, contact:
 
-email: davidraleigh@gmail.com
+email: info@echoparklabs.io
 */
 
 syntax = "proto3";
@@ -46,6 +46,8 @@ message GeometryData {
         bytes wkb = 5;
         // ESRI shape binary format for geometry encoding (fastest decoding and encoding for geometry service) https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
         bytes esri_shape = 6;
+        // extended well known binary format
+        bytes ewkb = 15;
     }
 
     // spatial reference of geometry
@@ -177,10 +179,17 @@ message EnvelopeData {
 */
 enum Encoding {
     UNKNOWN_ENCODING = 0; // unknown type.
-    WKB = 1; // well-known binary
-    WKT = 2; // well-known text
-    GEOJSON = 3; // geojson
-    ESRI_SHAPE = 4; // esri shape binary
+    WKB = 2; // well-known binary
+    WKT = 4; // well-known text
+    GEOJSON = 8; // geojson
+    ESRI_SHAPE = 16; // esri shape binary
+    EWKB = 32;
+    // EWKT = 64;
+    // DROP_Z = 128;
+    // DROP_M = 256;
+    // DROP_SRID = 512;
+    // FAIL_NON_SIMPLE = 1024;
+    // FORCE_SIMPLE = 2056;
 }
 
 /*
@@ -241,6 +250,8 @@ enum OperatorType {
     AFFINE_TRANSFORM = 47;
     GEODETIC_LENGTH = 48;
     GEODETIC_INVERSE = 49;
+    EXPORT_TO_EWKB = 50;
+    IMPORT_FROM_EWKB = 51;
 }
 
 /**
@@ -388,8 +399,8 @@ message Params {
     message GeneralizeByArea {
         // oneof https://github.com/golang/protobuf/issues/283
         //        oneof method {
-            double percent_reduction = 1;
-            int32 max_point_count = 2;
+        double percent_reduction = 1;
+        int32 max_point_count = 2;
 
         // oneof https://github.com/golang/protobuf/issues/283
         //        }

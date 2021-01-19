@@ -3,18 +3,20 @@ package com.esri.core.geometry;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class OperatorExportToWkbCursor extends ByteBufferCursor {
+public class OperatorExportToEWkbCursor extends ByteBufferCursor {
 	private GeometryCursor m_geometryCursor;
 	int m_exportFlags;
 	private SimpleStateEnum simpleStateEnum = SimpleStateEnum.SIMPLE_UNKNOWN;
 	private Envelope2D env2D = new Envelope2D();
+	private int m_srid = 0;
 
-	public OperatorExportToWkbCursor(int exportFlags, GeometryCursor geometryCursor) {
+	public OperatorExportToEWkbCursor(int exportFlags, GeometryCursor geometryCursor, SpatialReference spatialReference) {
 		if (geometryCursor == null)
 			throw new GeometryException("invalid argument");
 
-		m_exportFlags = exportFlags;
+		m_exportFlags = exportFlags | WkbExportFlags.wkbExportAsExtendedWkb;
 		m_geometryCursor = geometryCursor;
+		m_srid = OperatorExportToEWkbLocal.getSrid(spatialReference);
 	}
 
 	@Override
@@ -29,9 +31,9 @@ public class OperatorExportToWkbCursor extends ByteBufferCursor {
 			geometry = m_geometryCursor.next();
 			geometry.queryEnvelope2D(env2D);
 			simpleStateEnum = geometry.getSimpleState();
-			int size = OperatorExportToWkbLocal.exportToWKB(m_exportFlags, geometry, null, 0);
+			int size = OperatorExportToWkbLocal.exportToWKB(m_exportFlags, geometry,null, m_srid);
 			ByteBuffer wkbBuffer = ByteBuffer.allocate(size).order(ByteOrder.nativeOrder());
-			OperatorExportToWkbLocal.exportToWKB(m_exportFlags, geometry, wkbBuffer, 0);
+			OperatorExportToWkbLocal.exportToWKB(m_exportFlags, geometry, wkbBuffer, m_srid);
 			return wkbBuffer;
 		}
 		return null;
@@ -56,5 +58,4 @@ public class OperatorExportToWkbCursor extends ByteBufferCursor {
 	public String getFeatureID() {
 		return m_geometryCursor.getFeatureID();
 	}
-
 }
