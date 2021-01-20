@@ -1,0 +1,31 @@
+[package]
+name = "stac-proto"
+version = "0.1.0"
+authors = ["sunny-g <sunny.gonna@gmail.com>"]
+edition = "2018"
+publish = false
+build = "build.rs"
+
+[lib]
+name = "stac_proto"
+path = "src/lib.rs"
+
+[dependencies]
+futures = "0.1"
+grpcio = { version = "0.4", features = ["openssl"] }
+protobuf = { version = "2", features = ["with-serde"] }
+serde = { version = "1.0", features = ["derive"] }
+
+[dev-dependencies]
+futures03 = { package = "futures", version = "0.3", features = ["compat", "executor"] }
+futures03-test = { package = "futures-test", version = "0.3" }
+lazy_static = "1.4"
+
+[build-dependencies]
+lazy_static = "1.4"
+protobuf-codegen = { version = "2" }
+protoc-grpcio = "1.1"
+
+[features]
+default = ["with-serde"]
+with-serde = ["protobuf/with-serde"]
