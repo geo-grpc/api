@@ -1,6 +1,22 @@
 #!/bin/sh
 
 MONO_PATH=/defs/src/github.com/geo-grpc/api
+
+#C#
+protoc -I/opt/include -I="$MONO_PATH"/proto --csharp_out="$MONO_PATH"/dotnet/EplProtobuf \
+  "$MONO_PATH"/proto/epl/protobuf/v1/geometry.proto \
+  "$MONO_PATH"/proto/epl/protobuf/v1/query.proto  \
+  "$MONO_PATH"/proto/epl/protobuf/v1/stac.proto \
+  "$MONO_PATH"/proto/epl/protobuf/v1/geometry_service.proto \
+  "$MONO_PATH"/proto/epl/protobuf/v1/stac_service.proto
+
+protoc -I/opt/include -I="$MONO_PATH"/proto --plugin=protoc-gen-grpc="$(command -v grpc_csharp_plugin)" \
+  --grpc_out="$MONO_PATH"/dotnet/EplProtobuf \
+  "$MONO_PATH"/proto/epl/protobuf/v1/geometry_service.proto \
+  "$MONO_PATH"/proto/epl/protobuf/v1/stac_service.proto
+#C#
+
+
 #PYTHON
 protoc -I/opt/include -I="$MONO_PATH"/proto --python_out="$MONO_PATH"/python/epl_protobuf \
   "$MONO_PATH"/proto/epl/protobuf/v1/geometry.proto \
