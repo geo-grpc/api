@@ -276,11 +276,11 @@ inline bool SimpleState_Parse(
 }
 enum Encoding : int {
   UNKNOWN_ENCODING = 0,
-  WKB = 2,
-  WKT = 4,
-  GEOJSON = 8,
-  ESRI_SHAPE = 16,
-  EWKB = 32,
+  WKB = 1,
+  WKT = 2,
+  GEOJSON = 3,
+  ESRI_SHAPE = 4,
+  EWKB = 5,
   Encoding_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   Encoding_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };

@@ -20,6 +20,7 @@ email: info@echoparklabs.io
 
 syntax = "proto3";
 
+option csharp_namespace = "com.epl.protobuf.v1";
 option java_multiple_files = true;
 option java_package = "com.epl.protobuf.v1";
 option java_outer_classname = "StacProto";
@@ -80,6 +81,7 @@ enum Platform {
 
     // near space labs platform
     SWIFT_2 = 256;
+    SWIFT_3 = 512;
 }
 
 enum Instrument {

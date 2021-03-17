@@ -20,6 +20,7 @@ email: info@echoparklabs.io
 
 syntax = "proto3";
 
+option csharp_namespace = "com.epl.protobuf.v1";
 option java_multiple_files = true;
 option java_package = "com.epl.protobuf.v1";
 option java_outer_classname = "GeometryProto";
@@ -179,17 +180,13 @@ message EnvelopeData {
 */
 enum Encoding {
     UNKNOWN_ENCODING = 0; // unknown type.
-    WKB = 2; // well-known binary
-    WKT = 4; // well-known text
-    GEOJSON = 8; // geojson
-    ESRI_SHAPE = 16; // esri shape binary
-    EWKB = 32;
-    // EWKT = 64;
-    // DROP_Z = 128;
-    // DROP_M = 256;
-    // DROP_SRID = 512;
-    // FAIL_NON_SIMPLE = 1024;
-    // FORCE_SIMPLE = 2056;
+    WKB = 1; // well-known binary
+    WKT = 2; // well-known text
+    GEOJSON = 3; // geojson
+    ESRI_SHAPE = 4; // esri shape binary
+    EWKB = 5; // extended well-known binary
+
+    // EWKT = 6;
 }
 
 /*

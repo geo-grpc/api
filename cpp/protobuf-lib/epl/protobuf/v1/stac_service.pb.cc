@@ -50,10 +50,10 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eprot
   "n\022\033.epl.protobuf.v1.Collection\032\037.epl.pro"
   "tobuf.v1.StacDbResponse\"\000\022M\n\rUpdateOneIt"
   "em\022\031.epl.protobuf.v1.StacItem\032\037.epl.prot"
-  "obuf.v1.StacDbResponse\"\000B_\n\023com.epl.prot"
+  "obuf.v1.StacDbResponse\"\000Bu\n\023com.epl.prot"
   "obuf.v1B\020StacServiceProtoP\001Z.github.com/"
   "geo-grpc/api/golang/epl/protobuf/v1\242\002\003ST"
-  "Sb\006proto3"
+  "S\252\002\023com.epl.protobuf.v1b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_deps[1] = {
   &::descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto,
@@ -63,7 +63,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_once;
 static bool descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, "epl/protobuf/v1/stac_service.proto", 1009,
+  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, "epl/protobuf/v1/stac_service.proto", 1031,
   &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_deps, 0, 1,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto::offsets,
   file_level_metadata_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, 0, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto,

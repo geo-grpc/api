@@ -909,8 +909,8 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto[] PR
   "_FLAW\020\004\022\027\n\023DEGENERATE_SEGMENTS\020\005\022\016\n\nCLUS"
   "TERING\020\006\022\014\n\010CRACKING\020\007\022\016\n\nCROSS_OVER\020\010\022\024"
   "\n\020RING_ORIENTATION\020\t*Y\n\010Encoding\022\024\n\020UNKN"
-  "OWN_ENCODING\020\000\022\007\n\003WKB\020\002\022\007\n\003WKT\020\004\022\013\n\007GEOJ"
-  "SON\020\010\022\016\n\nESRI_SHAPE\020\020\022\010\n\004EWKB\020 *\365\006\n\014Oper"
+  "OWN_ENCODING\020\000\022\007\n\003WKB\020\001\022\007\n\003WKT\020\002\022\013\n\007GEOJ"
+  "SON\020\003\022\016\n\nESRI_SHAPE\020\004\022\010\n\004EWKB\020\005*\365\006\n\014Oper"
   "atorType\022\024\n\020UNKNOWN_OPERATOR\020\000\022\013\n\007PROJEC"
   "T\020\001\022\022\n\016EXPORT_TO_JSON\020\002\022\024\n\020IMPORT_FROM_J"
   "SON\020\003\022\030\n\024EXPORT_TO_ESRI_SHAPE\020\004\022\032\n\026IMPOR"
@@ -933,9 +933,10 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto[] PR
   "ING_CIRCLE\020.\022\024\n\020AFFINE_TRANSFORM\020/\022\023\n\017GE"
   "ODETIC_LENGTH\0200\022\024\n\020GEODETIC_INVERSE\0201\022\022\n"
   "\016EXPORT_TO_EWKB\0202\022\024\n\020IMPORT_FROM_EWKB\0203B"
-  "]\n\023com.epl.protobuf.v1B\rGeometryProtoP\001Z"
+  "s\n\023com.epl.protobuf.v1B\rGeometryProtoP\001Z"
   ".github.com/geo-grpc/api/golang/epl/prot"
-  "obuf/v1\242\002\004GMPBb\006proto3"
+  "obuf/v1\242\002\004GMPB\252\002\023com.epl.protobuf.v1b\006pr"
+  "oto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_deps[1] = {
 };
@@ -966,7 +967,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_once;
 static bool descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto, "epl/protobuf/v1/geometry.proto", 5462,
+  &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto, "epl/protobuf/v1/geometry.proto", 5484,
   &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_deps, 22, 0,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fgeometry_2eproto::offsets,
   file_level_metadata_epl_2fprotobuf_2fv1_2fgeometry_2eproto, 24, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto,
@@ -1069,11 +1070,11 @@ const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Encoding_descriptor() {
 bool Encoding_IsValid(int value) {
   switch (value) {
     case 0:
+    case 1:
     case 2:
+    case 3:
     case 4:
-    case 8:
-    case 16:
-    case 32:
+    case 5:
       return true;
     default:
       return false;
