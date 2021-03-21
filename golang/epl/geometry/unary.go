@@ -84,51 +84,55 @@ func (c *Unary) append(request *eplpbv1.GeometryRequest, other *Unary) *Unary {
 	return c
 }
 
-func (c *Unary) relation(other *Unary, operatorType eplpbv1.OperatorType) (error, bool) {
+func (c *Unary) relation(other *Unary, operatorType eplpbv1.OperatorType) (bool, error) {
 	request := &eplpbv1.GeometryRequest{Operator:operatorType}
 
 	unary := c.append(request, other)
 	if unary.err != nil {
-		return unary.err, false
+		return false, unary.err
 	}
 
 	requestResult, err := getInstance().ClientV1.Operate(context.Background(), unary.geometryRequest)
 	if err != nil {
-		return errors.New(fmt.Sprintf("geometry service error with value:\n%v", err.Error())), false
+		return false, errors.New(fmt.Sprintf("geometry service error with value:\n%v", err.Error()))
 	}
 
-	return nil, requestResult.GetSpatialRelationship()
+	return requestResult.GetSpatialRelationship(), nil
 }
 
-func (c *Unary) measure(request *eplpbv1.GeometryRequest) (error, float64) {
+func (c *Unary) measure(request *eplpbv1.GeometryRequest) (float64, error) {
 	unary := c.append(request, nil)
 
 	if unary.err != nil {
-		return unary.err, math.NaN()
+		return math.NaN(), unary.err
 	}
 
 	requestResult, err := getInstance().ClientV1.Operate(context.Background(), unary.geometryRequest)
 	if err != nil {
-		return errors.New(fmt.Sprintf("geometry service error with value:\n%v", err.Error())), math.NaN()
+		return math.NaN(), errors.New(fmt.Sprintf("geometry service error with value:\n%v", err.Error()))
 	}
 
-	return nil, requestResult.GetMeasure()
+	return requestResult.GetMeasure(), nil
 }
 
 // submit rpc chain of requests for execution
-func (c *Unary) Execute() (error, geom.T) {
+func (c *Unary) Execute() (geom.T, error) {
 	if c.err != nil {
-		return c.err, nil
+		return nil, c.err
 	}
 
-	requestResult, err := getInstance().ClientV1.Operate(context.Background(), c.geometryRequest)
+	return executeToGeom(c.geometryRequest)
+}
+
+func executeToGeom(request* eplpbv1.GeometryRequest) (geom.T, error) {
+	requestResult, err := getInstance().ClientV1.Operate(context.Background(), request)
 	if err != nil {
-		return errors.New(fmt.Sprintf("geometry service error with value:\n%v", err.Error())), nil
+		return nil, errors.New(fmt.Sprintf("geometry service error with value:\n%v", err.Error()))
 	}
 
 	if requestResult.GetGeometry() == nil || requestResult.GetGeometry().Proj == nil {
 		// TODO does this ever occur?
-		return errors.New("geometry Result incomplete"), nil
+		return nil, errors.New("geometry Result incomplete")
 	}
 
 	return GeomPbToGeom(requestResult.GetGeometry())
@@ -271,42 +275,42 @@ func (c *Unary) ShiftXY(geodetic bool, xOffset float64, yOffset float64) *Unary 
 
 
 // Relational operation Contains.
-func (c *Unary) Contains(other *Unary) (error, bool) {
+func (c *Unary) Contains(other *Unary) (bool, error) {
 	return c.relation(other, eplpbv1.OperatorType_CONTAINS)
 }
 
 // Relational operation Crosses.
-func (c *Unary) Crosses(other *Unary) (error, bool) {
+func (c *Unary) Crosses(other *Unary) (bool, error) {
 	return c.relation(other, eplpbv1.OperatorType_CROSSES)
 }
 
 // Relational operation Disjoint.
-func (c *Unary) Disjoint(other *Unary) (error, bool) {
+func (c *Unary) Disjoint(other *Unary) (bool, error) {
 	return c.relation(other, eplpbv1.OperatorType_DISJOINT)
 }
 
 // Relational operation Equals.
-func (c *Unary) Equals(other *Unary) (error, bool) {
+func (c *Unary) Equals(other *Unary) (bool, error) {
 	return c.relation(other, eplpbv1.OperatorType_EQUALS)
 }
 
 // Relational operation Intersects.
-func (c *Unary) Intersects(other *Unary) (error, bool) {
+func (c *Unary) Intersects(other *Unary) (bool, error) {
 	return c.relation(other, eplpbv1.OperatorType_INTERSECTS)
 }
 
 // Relational operation Overlaps.
-func (c *Unary) Overlaps(other *Unary) (error, bool) {
+func (c *Unary) Overlaps(other *Unary) (bool, error) {
 	return c.relation(other, eplpbv1.OperatorType_OVERLAPS)
 }
 
 // Relational operation Touches.
-func (c *Unary) Touches(other *Unary) (error, bool) {
+func (c *Unary) Touches(other *Unary) (bool, error) {
 	return c.relation(other, eplpbv1.OperatorType_TOUCHES)
 }
 
 // Relational operation Within.
-func (c *Unary) Within(other *Unary) (error, bool) {
+func (c *Unary) Within(other *Unary) (bool, error) {
 	return c.relation(other, eplpbv1.OperatorType_WITHIN)
 }
 
@@ -357,7 +361,7 @@ func (c *Unary) Union(other *Unary) *Unary {
 
 
 // Calculates the geodetic length of the input Geometry.
-func (c *Unary) GeodeticLength() (error, float64) {
+func (c *Unary) GeodeticLength() (float64, error) {
 	request := &eplpbv1.GeometryRequest{
 		Operator: eplpbv1.OperatorType_GEODETIC_LENGTH,
 	}
@@ -366,7 +370,7 @@ func (c *Unary) GeodeticLength() (error, float64) {
 }
 
 // Calculates the geodetic area of the input Geometry.
-func (c *Unary) GeodeticArea() (error, float64) {
+func (c *Unary) GeodeticArea() (float64, error) {
 	request := &eplpbv1.GeometryRequest{
 		Operator: eplpbv1.OperatorType_GEODETIC_AREA,
 	}

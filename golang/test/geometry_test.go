@@ -37,7 +37,7 @@ func TestGeometryRequests(t *testing.T) {
 	lefGeometryBag := &pb.GeometryData{Proj: &spatialReferenceNAD27}
 	lefGeometryBag.SetWkt(geometryString)
 
-	err, geometry1 := geomOps.GeomPbToGeom(lefGeometryBag)
+	geometry1, err := geomOps.GeomPbToGeom(lefGeometryBag)
 	if err != nil {
 		t.Errorf(err.Error())
 	}
@@ -50,7 +50,7 @@ func TestGeometryRequests(t *testing.T) {
 		ConvexHull().
 		Project(4326)
 
-	err, result1 := chain.Execute()
+	result1, err := chain.Execute()
 	if err != nil {
 		t.Errorf(err.Error())
 	}
@@ -59,18 +59,18 @@ func TestGeometryRequests(t *testing.T) {
 		t.Errorf("shouldn't be empty")
 	}
 
-	err, geometry2 := geomOps.GeomPbToGeom(lefGeometryBag)
-	err, geomS := geomOps.Simplify(geometry2, true)
-	err, geom2Buff := geomOps.Buffer(geomS, .5)
-	err, geomProjected := geomOps.Project(geom2Buff, 4087)
-	err, geomHulled := geomOps.ConvexHull(geomProjected)
-	err, geomReProjected := geomOps.Project(geomHulled, 4326)
+	geometry2, err := geomOps.GeomPbToGeom(lefGeometryBag)
+	geomS, err := geomOps.Simplify(geometry2, true)
+	geom2Buff, err := geomOps.Buffer(geomS, .5)
+	geomProjected, err := geomOps.Project(geom2Buff, 4087)
+	geomHulled, err := geomOps.ConvexHull(geomProjected)
+	geomReProjected, err := geomOps.Project(geomHulled, 4326)
 
 	if err != nil {
 		t.Errorf(err.Error())
 	}
 
-	err, e := geomOps.Equals(result1, geomReProjected)
+	e, err := geomOps.Equals(result1, geomReProjected)
 	if err != nil {
 		t.Errorf(err.Error())
 	}
@@ -78,11 +78,11 @@ func TestGeometryRequests(t *testing.T) {
 		t.Errorf("geometries not equal")
 	}
 
-	err, result1 = chain.Buffer( 1).Project(3857).Execute()
+	result1, err = chain.Buffer( 1).Project(3857).Execute()
 	if err != nil {
 		t.Errorf(err.Error())
 	}
-	err, e = geomOps.Contains(result1, geomReProjected)
+	e, err = geomOps.Contains(result1, geomReProjected)
 	if err != nil || !e {
 		t.Errorf("geometries not equal")
 	}
@@ -96,12 +96,12 @@ func TestGeometryRequests(t *testing.T) {
 	stream := geomOps.InitStream(inputChan, nil)
 	streamOut := stream.Buffer(44).Execute()
 	for a := range streamOut {
-		err, relation := geomOps.Contains(a.G, geometry2)
+		relation, err := geomOps.Contains(a.G, geometry2)
 		if err != nil || !relation {
 			t.Errorf("geometries not equal")
 		}
 	}
-	//err, geom2Project := testHelper.gs.Project(geom2Buff, )
+	//geom2Project, err := testHelper.gs.Project(geom2Buff, )
 	//
 	//// define a geometry from wkt string with spatial reference nad83
 	//rightGeometryBag := pb.GeometryData{
