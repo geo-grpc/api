@@ -124,12 +124,12 @@ func GeomPbToGeom(geometryData *eplpbv1.GeometryData) (geom.T, error) {
 	} else if len(geometryData.GetGeojson()) != 0 {
 		err = geojson.Unmarshal([]byte(geometryData.GetGeojson()), &geometry)
 	} else if geometryData.GetEsriShape() != nil {
-		emptyRequest := eplpbv1.GeometryRequest{
+		request := eplpbv1.GeometryRequest{
 			Operator:eplpbv1.OperatorType_IMPORT_FROM_ESRI_SHAPE,
 			ResultEncoding:eplpbv1.Encoding_WKB}
-		emptyRequest.SetGeometry(geometryData)
+		request.SetGeometry(geometryData)
 
-		geometry, err = executeToGeom(&emptyRequest)
+		geometry, err = executeToGeom(&request)
 	} else {
 		err = errors.New("no geometry information in ewkb, wkb, geojson, or wkt")
 	}

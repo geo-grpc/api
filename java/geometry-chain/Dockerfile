@@ -1,4 +1,6 @@
-ARG TAG=latest
+ARG TAG=buster-4385c8a
+ARG JAVA_VERSION=11.0.10
+ARG JRE_TAG=${JAVA_VERSION}-jre-slim-buster
 FROM geogrpc/proj:${TAG} as builder
 
 MAINTAINER David Raleigh <davidraleigh@gmail.com>
@@ -17,10 +19,16 @@ RUN ./gradlew build install
 RUN tar -xf /opt/src/geometry-chain/epl-geometry-service/build/distributions/epl-geometry-service.tar -C /opt/src/geometry-chain/epl-geometry-service/build/distributions
 
 
-FROM geogrpc/proj:${TAG}
+# Production build
+FROM openjdk:${JRE_TAG}
 
-# https://github.com/rocker-org/shiny/issues/19#issuecomment-308357402
-RUN apt-get update || apt-get update
+WORKDIR /usr/local
+COPY --from=builder /usr/local .
+RUN export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+
+ENV PROJ_LIB=/usr/local/share/proj
+
+RUN /sbin/ldconfig
 
 WORKDIR /opt/src/geometry-chain/build/install
 COPY --from=builder /opt/src/geometry-chain/epl-geometry-service/build/distributions/epl-geometry-service ./
