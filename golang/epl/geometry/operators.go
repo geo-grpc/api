@@ -31,6 +31,12 @@ var (
 
 var once sync.Once
 
+type Service struct {
+	ClientV1 eplpbv1.GeometryServiceClient
+	CleanupV1 func() error
+	Proj4326 *eplpbv1.ProjectionData
+}
+
 var geometryServiceClient *Service
 
 func getInstance() *Service {
@@ -104,6 +110,53 @@ func CompareProjectionData(proj1 *eplpbv1.ProjectionData, proj2 *eplpbv1.Project
 	return true, ""
 }
 
+func isPolyline(g geom.T) bool {
+	switch g.(type) {
+	case *geom.LineString:
+		return true
+	case *geom.MultiLineString:
+		return true
+	default:
+		return false
+	}
+}
+
+func isPolygon(g geom.T) bool {
+	switch g.(type) {
+	case *geom.Polygon:
+		return true
+	case *geom.MultiPolygon:
+		return true
+	default:
+		return false
+	}
+}
+
+func isMultiPath(g geom.T) bool {
+	return isPolygon(g) || isPolyline(g)
+}
+
+func Supported(g geom.T) (bool, string) {
+	switch g.(type) {
+	case *geom.Point:
+		return true, ""
+	case *geom.LineString:
+		return true, ""
+	case *geom.Polygon:
+		return true, ""
+	case *geom.MultiPoint:
+		return true, ""
+	case *geom.MultiLineString:
+		return true, ""
+	case *geom.MultiPolygon:
+		return true, ""
+	case *geom.GeometryCollection:
+		return false, "GeometryCollection not supported"
+	default:
+		return false, "unknown geometry type not supported"
+	}
+}
+
 func SetSRID(g geom.T, srid int) geom.T {
 	switch g := g.(type) {
 	case *geom.Point:
@@ -163,9 +216,13 @@ func GeomPbToGeom(geometryData *eplpbv1.GeometryData) (geom.T, error) {
 }
 
 func GeomToGeomPb(t geom.T, g *eplpbv1.GeometryData) (error, *eplpbv1.GeometryData) {
-	if t.SRID() == 0 {
-		return errors.New("need SRID"), nil
+	supported, message := Supported(t)
+	if !supported {
+		return errors.New(message), nil
 	}
+	//if t.SRID() == 0 {
+	//	return errors.New("need SRID"), nil
+	//}
 
 	b, err := wkb.Marshal(t, binary.BigEndian)
 	if err != nil {
@@ -182,16 +239,10 @@ func GeomToGeomPb(t geom.T, g *eplpbv1.GeometryData) (error, *eplpbv1.GeometryDa
 	return nil, g
 }
 
-type Service struct {
-	ClientV1 eplpbv1.GeometryServiceClient
-	CleanupV1 func() error
-	Proj4326 *eplpbv1.ProjectionData
-}
-
-func relation(left geom.T, right geom.T, operatorType eplpbv1.OperatorType) (bool, error) {
+func relation(left geom.T, right geom.T, operatorType eplpbv1.OperatorType, de9im string) (bool, error) {
 	leftChain := InitChain(left)
 	rightChain := InitChain(right)
-	return leftChain.relation(rightChain, operatorType)
+	return leftChain.relation(rightChain, operatorType, de9im)
 }
 
 // Creates a buffer around the input geometry
@@ -265,44 +316,67 @@ func ShiftXY(t geom.T, geodetic bool, xOffset float64, yOffset float64) (geom.T,
 
 // Relational operation Contains.
 func Contains(left geom.T, right geom.T) (bool, error) {
-	return relation(left, right, eplpbv1.OperatorType_CONTAINS)
+	return relation(left, right, eplpbv1.OperatorType_CONTAINS, "")
 }
 
 // Relational operation Crosses.
 func Crosses(left geom.T, right geom.T) (bool, error) {
-	return relation(left, right, eplpbv1.OperatorType_CROSSES)
+	return relation(left, right, eplpbv1.OperatorType_CROSSES, "")
 }
 
 // Relational operation Disjoint.
 func Disjoint(left geom.T, right geom.T) (bool, error) {
-	return relation(left, right, eplpbv1.OperatorType_DISJOINT)
+	return relation(left, right, eplpbv1.OperatorType_DISJOINT, "")
 }
 
 // Relational operation Equals.
 func Equals(left geom.T, right geom.T) (bool, error) {
-	return relation(left, right, eplpbv1.OperatorType_EQUALS)
+	return relation(left, right, eplpbv1.OperatorType_EQUALS, "")
 }
 
 // Relational operation Intersects.
 func Intersects(left geom.T, right geom.T) (bool, error) {
-	return relation(left, right, eplpbv1.OperatorType_INTERSECTS)
+	return relation(left, right, eplpbv1.OperatorType_INTERSECTS, "")
 }
 
 // Relational operation Overlaps.
 func Overlaps(left geom.T, right geom.T) (bool, error) {
-	return relation(left, right, eplpbv1.OperatorType_OVERLAPS)
+	return relation(left, right, eplpbv1.OperatorType_OVERLAPS, "")
+}
+
+// relational operation DE-9IM
+//
+// more here: https://en.wikipedia.org/wiki/DE-9IM#Spatial_predicates
+func Relate(left geom.T, right geom.T, de9im string) (bool, error) {
+	return relation(left, right, eplpbv1.OperatorType_RELATE, de9im)
 }
 
 // Relational operation Touches.
 func Touches(left geom.T, right geom.T) (bool, error) {
-	return relation(left, right, eplpbv1.OperatorType_TOUCHES)
+	return relation(left, right, eplpbv1.OperatorType_TOUCHES, "")
 }
 
 // Relational operation Within.
 func Within(left geom.T, right geom.T) (bool, error) {
-	return relation(left, right, eplpbv1.OperatorType_WITHIN)
+	return relation(left, right, eplpbv1.OperatorType_WITHIN, "")
 }
 
+
+// It splits the target polyline or polygon where the polygon/polyline is crossed by the cutter polyline.
+//
+// `considerTouch` True/False indicates whether we consider a touch event a cut
+// `left` cuttee, LineString or Polygon being cut
+// `right` LineString which will divide the cuttee into pieces where it crosses the cutter.
+func Cut(left geom.T, right geom.T, considerTouch bool) (geom.T, error) {
+	if !isMultiPath(left) {
+		return nil, errors.New("left (cuttee) must be a linestring or a polygon")
+	}
+	if !isPolyline(right) {
+		return nil, errors.New("right (cutter) must be a linestring")
+	}
+
+	return InitChain(left).Cut(InitChain(right), considerTouch).Execute()
+}
 
 // Performs the Topological Difference operation on the two geometries.
 //
@@ -310,8 +384,7 @@ func Within(left geom.T, right geom.T) (bool, error) {
 // `right` is the Geometry on the right hand side being subtracted.
 // Returns the result of subtraction
 func Difference(left geom.T, right geom.T) (geom.T, error) {
-	leftChain := InitChain(left)
-	return leftChain.Difference(InitChain(right)).Execute()
+	return InitChain(left).Difference(InitChain(right)).Execute()
 }
 
 // Performs the Topological Intersection operation on the geometry.

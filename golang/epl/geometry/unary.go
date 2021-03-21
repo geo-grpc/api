@@ -75,8 +75,11 @@ func (c *Unary) append(request *eplpbv1.GeometryRequest, other *Unary) *Unary {
 	return c
 }
 
-func (c *Unary) relation(other *Unary, operatorType eplpbv1.OperatorType) (bool, error) {
+func (c *Unary) relation(other *Unary, operatorType eplpbv1.OperatorType, de9im string) (bool, error) {
 	request := &eplpbv1.GeometryRequest{Operator:operatorType}
+	if operatorType == eplpbv1.OperatorType_RELATE {
+		request.Params = &eplpbv1.GeometryRequest_RelateParams{RelateParams:&eplpbv1.Params_Relate{De_9Im:de9im}}
+	}
 
 	unary := c.append(request, other)
 	if unary.err != nil {
@@ -186,6 +189,13 @@ func (c *Unary) Buffer(distance float64) *Unary {
 	return c.append(request, nil)
 }
 
+// Clip the geometry by and envelope defined by `other`
+func (c *Unary) Clip(other *Unary) *Unary {
+	request := &eplpbv1.GeometryRequest{Operator:eplpbv1.OperatorType_CLIP}
+
+	return c.append(request, other)
+}
+
 // Calculates the convex hull geometry.
 //
 // Point - Returns the same point.
@@ -266,6 +276,25 @@ func (c *Unary) GeodeticDensifyByLength(maxLengthMeters float64) *Unary {
 	return c.append(request, nil)
 }
 
+// `distance`: The offset distance for the Geometries.
+// `joinType`: The join type of the offset geometry. eplpbv1.Params_Offset_BEVEL, eplpbv1.Params_Offset_MITER, eplpbv1.Params_Offset_ROUND, eplpbv1.Params_Offset_SQUARE
+// `bevelRatio`: The ratio used to produce a bevel join instead of a miter join (used only when joins is Miter)
+// `flattenError`: The maximum distance of the resulting segments compared to the true circular arc (used only when joins is Round). If flattenError is 0, tolerance value is used. Also, the algorithm never produces more than around 180 vertices for each round join.
+func (c *Unary) Offset(distance float64, joinType eplpbv1.Params_Offset_OffsetJoinType, bevelRatio float64, flattenError float64) *Unary {
+	params := &eplpbv1.GeometryRequest_OffsetParams{OffsetParams:&eplpbv1.Params_Offset{
+		Distance:             distance,
+		JoinType:             joinType,
+		BevelRatio:           bevelRatio,
+		FlattenError:         flattenError,
+	}}
+	request := &eplpbv1.GeometryRequest{
+		Params:params,
+		Operator:eplpbv1.OperatorType_OFFSET,
+	}
+
+	return c.append(request, nil)
+}
+
 // Performs the Project operation
 func (c *Unary) ProjectEPSG(resultEpsg int32) *Unary {
 	proj := &eplpbv1.ProjectionData{
@@ -290,10 +319,18 @@ func (c *Unary) ProjectProtobuf(projData *eplpbv1.ProjectionData) *Unary {
 //
 // `force` When True, the Geometry will be simplified regardless of the internal IsKnownSimple flag.
 func (c *Unary) Simplify(force bool) *Unary {
-	params := &eplpbv1.Params_Simplify{Force:force}
 	request := &eplpbv1.GeometryRequest{
 		Operator:             eplpbv1.OperatorType_SIMPLIFY,
-		Params:               &eplpbv1.GeometryRequest_SimplifyParams{SimplifyParams:params},
+		Params:               &eplpbv1.GeometryRequest_SimplifyParams{SimplifyParams:&eplpbv1.Params_Simplify{Force:force}},
+	}
+
+	return c.append(request, nil)
+}
+
+func (c *Unary) SimplifyOGC(force bool) *Unary {
+	request := &eplpbv1.GeometryRequest{
+		Operator:             eplpbv1.OperatorType_SIMPLIFY_OGC,
+		Params:               &eplpbv1.GeometryRequest_SimplifyParams{SimplifyParams:&eplpbv1.Params_Simplify{Force:force}},
 	}
 
 	return c.append(request, nil)
@@ -317,44 +354,68 @@ func (c *Unary) ShiftXY(geodetic bool, xOffset float64, yOffset float64) *Unary 
 
 // Relational operation Contains.
 func (c *Unary) Contains(other *Unary) (bool, error) {
-	return c.relation(other, eplpbv1.OperatorType_CONTAINS)
+	return c.relation(other, eplpbv1.OperatorType_CONTAINS, "")
 }
 
 // Relational operation Crosses.
 func (c *Unary) Crosses(other *Unary) (bool, error) {
-	return c.relation(other, eplpbv1.OperatorType_CROSSES)
+	return c.relation(other, eplpbv1.OperatorType_CROSSES, "")
 }
 
 // Relational operation Disjoint.
 func (c *Unary) Disjoint(other *Unary) (bool, error) {
-	return c.relation(other, eplpbv1.OperatorType_DISJOINT)
+	return c.relation(other, eplpbv1.OperatorType_DISJOINT, "")
 }
 
 // Relational operation Equals.
 func (c *Unary) Equals(other *Unary) (bool, error) {
-	return c.relation(other, eplpbv1.OperatorType_EQUALS)
+	return c.relation(other, eplpbv1.OperatorType_EQUALS, "")
 }
 
 // Relational operation Intersects.
 func (c *Unary) Intersects(other *Unary) (bool, error) {
-	return c.relation(other, eplpbv1.OperatorType_INTERSECTS)
+	return c.relation(other, eplpbv1.OperatorType_INTERSECTS, "")
 }
 
 // Relational operation Overlaps.
 func (c *Unary) Overlaps(other *Unary) (bool, error) {
-	return c.relation(other, eplpbv1.OperatorType_OVERLAPS)
+	return c.relation(other, eplpbv1.OperatorType_OVERLAPS, "")
+}
+
+// relational operation DE-9IM
+//
+// more here: https://en.wikipedia.org/wiki/DE-9IM#Spatial_predicates
+func (c *Unary) Relate(other *Unary, de9im string) (bool, error) {
+	if len(de9im) != 9 {
+		err := errors.New("relate operator de9im input must be a string of 9 characters")
+		return false, err
+	}
+
+	return c.relation(other, eplpbv1.OperatorType_RELATE, de9im)
 }
 
 // Relational operation Touches.
 func (c *Unary) Touches(other *Unary) (bool, error) {
-	return c.relation(other, eplpbv1.OperatorType_TOUCHES)
+	return c.relation(other, eplpbv1.OperatorType_TOUCHES, "")
 }
 
 // Relational operation Within.
 func (c *Unary) Within(other *Unary) (bool, error) {
-	return c.relation(other, eplpbv1.OperatorType_WITHIN)
+	return c.relation(other, eplpbv1.OperatorType_WITHIN, "")
 }
 
+// It splits the target polyline or polygon where the polygon/polyline is crossed by the cutter polyline.
+//
+// `considerTouch` True/False indicates whether we consider a touch event a cut
+// `other` LineString which will divide the cuttee into pieces where it crosses the cutter.
+func (c *Unary) Cut(other *Unary, considerTouch bool) *Unary {
+	request := &eplpbv1.GeometryRequest{
+		Operator:eplpbv1.OperatorType_CUT,
+		Params:&eplpbv1.GeometryRequest_CutParams{CutParams:&eplpbv1.Params_Cut{ConsiderTouch: considerTouch}},
+	}
+
+	return c.append(request, other)
+}
 
 // Performs the Topological Difference operation on the two geometries.
 //
