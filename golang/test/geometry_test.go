@@ -46,9 +46,9 @@ func TestGeometryRequests(t *testing.T) {
 	chain := geomOps.InitChain(geometry1)
 	chain = chain.Simplify(true).
 		Buffer(.5).
-		Project(4087).
+		ProjectEPSG(4087).
 		ConvexHull().
-		Project(4326)
+		ProjectEPSG(4326)
 
 	result1, err := chain.Execute()
 	if err != nil {
@@ -62,9 +62,9 @@ func TestGeometryRequests(t *testing.T) {
 	geometry2, err := geomOps.GeomPbToGeom(lefGeometryBag)
 	geomS, err := geomOps.Simplify(geometry2, true)
 	geom2Buff, err := geomOps.Buffer(geomS, .5)
-	geomProjected, err := geomOps.Project(geom2Buff, 4087)
+	geomProjected, err := geomOps.ProjectEPSG(geom2Buff, 4087)
 	geomHulled, err := geomOps.ConvexHull(geomProjected)
-	geomReProjected, err := geomOps.Project(geomHulled, 4326)
+	geomReProjected, err := geomOps.ProjectEPSG(geomHulled, 4326)
 
 	if err != nil {
 		t.Errorf(err.Error())
@@ -78,7 +78,7 @@ func TestGeometryRequests(t *testing.T) {
 		t.Errorf("geometries not equal")
 	}
 
-	result1, err = chain.Buffer( 1).Project(3857).Execute()
+	result1, err = chain.Buffer( 1).ProjectEPSG(3857).Execute()
 	if err != nil {
 		t.Errorf(err.Error())
 	}

@@ -12,19 +12,9 @@ import (
 type Unary struct {
 	geometryRequest *eplpbv1.GeometryRequest
 	initialData *eplpbv1.GeometryData
-	commonEpsg int32
+	commonProjectionData *eplpbv1.ProjectionData
+
 	err error
-}
-
-// init a chain object for rpc method construction
-func InitChain(initialGeometry geom.T) *Unary {
-	chain := &Unary{
-		initialData: &eplpbv1.GeometryData{},
-	}
-	chain.err, chain.initialData = GeomToGeomPb(initialGeometry, nil)
-	chain.commonEpsg = int32(initialGeometry.SRID())
-
-	return chain
 }
 
 func (c *Unary) append(request *eplpbv1.GeometryRequest, other *Unary) *Unary {
@@ -69,11 +59,12 @@ func (c *Unary) append(request *eplpbv1.GeometryRequest, other *Unary) *Unary {
 			return c
 		}
 
-		if c.commonEpsg != other.commonEpsg {
-			request.OperationProj = &eplpbv1.ProjectionData{}
-			request.OperationProj.SetEpsg(c.commonEpsg)
+		bSame, message := CompareProjectionData(c.commonProjectionData, other.commonProjectionData)
+		if !bSame {
+			request.OperationProj = c.commonProjectionData
 			// TODO put a warning in here that c.commonEpsg is going to be the new projection for relational operators
 			//   or any derived features.
+			println("automatically choosing projection because '%s'", message)
 		}
 	}
 
@@ -115,15 +106,6 @@ func (c *Unary) measure(request *eplpbv1.GeometryRequest) (float64, error) {
 	return requestResult.GetMeasure(), nil
 }
 
-// submit rpc chain of requests for execution
-func (c *Unary) Execute() (geom.T, error) {
-	if c.err != nil {
-		return nil, c.err
-	}
-
-	return executeToGeom(c.geometryRequest)
-}
-
 func executeToGeom(request* eplpbv1.GeometryRequest) (geom.T, error) {
 	requestResult, err := getInstance().ClientV1.Operate(context.Background(), request)
 	if err != nil {
@@ -136,6 +118,60 @@ func executeToGeom(request* eplpbv1.GeometryRequest) (geom.T, error) {
 	}
 
 	return GeomPbToGeom(requestResult.GetGeometry())
+}
+
+
+// init a chain object for rpc method construction
+func InitChain(initialGeometry geom.T) *Unary {
+	err, initialData := GeomToGeomPb(initialGeometry, nil)
+	commonEpsg := int32(initialGeometry.SRID())
+	commonProjectionData := &eplpbv1.ProjectionData{}
+	commonProjectionData.SetEpsg(commonEpsg)
+	chain := &Unary{
+		geometryRequest: nil,
+		initialData:     initialData,
+		commonProjectionData:commonProjectionData,
+		err:             err,
+	}
+
+	return chain
+}
+
+func InitChainGeometryData(geometryData *eplpbv1.GeometryData) *Unary {
+	chain := &Unary{
+		initialData:geometryData,
+		commonProjectionData:geometryData.Proj,
+	}
+
+	if geometryData.Proj == nil {
+		chain.err = errors.New("initial geometry must have a spatial reference")
+	}
+
+	return chain
+}
+
+// override the projection of the initial data
+func (c *Unary) InitProjection(projData *eplpbv1.ProjectionData) *Unary {
+	if c.initialData != nil {
+		c.initialData.Proj = projData
+		c.commonProjectionData = projData
+	} else {
+		c.err = errors.New("InitProjection must be called immediately after InitChain")
+	}
+
+	return c
+}
+
+// submit rpc chain of requests for execution
+func (c *Unary) Execute() (geom.T, error) {
+	if c.geometryRequest == nil {
+		c.err = errors.New("cannot execute without geometryRequest")
+	}
+	if c.err != nil {
+		return nil, c.err
+	}
+
+	return executeToGeom(c.geometryRequest)
 }
 
 
@@ -231,16 +267,21 @@ func (c *Unary) GeodeticDensifyByLength(maxLengthMeters float64) *Unary {
 }
 
 // Performs the Project operation
-func (c *Unary) Project(resultEpsg int32) *Unary {
+func (c *Unary) ProjectEPSG(resultEpsg int32) *Unary {
+	proj := &eplpbv1.ProjectionData{
+		Definition:           &eplpbv1.ProjectionData_Epsg{Epsg:resultEpsg},
+	}
+	return c.ProjectProtobuf(proj)
+}
+
+func (c *Unary) ProjectProtobuf(projData *eplpbv1.ProjectionData) *Unary {
 	request := &eplpbv1.GeometryRequest{
 		Operator:             eplpbv1.OperatorType_PROJECT,
 	}
 
-	request.ResultProj = &eplpbv1.ProjectionData{
-		Definition:           &eplpbv1.ProjectionData_Epsg{Epsg:resultEpsg},
-	}
+	request.ResultProj = projData
 
-	c.commonEpsg = resultEpsg
+	c.commonProjectionData = projData
 
 	return c.append(request, nil)
 }

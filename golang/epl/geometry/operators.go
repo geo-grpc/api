@@ -16,6 +16,7 @@ import (
 	"google.golang.org/grpc/testdata"
 	"log"
 	"os"
+	"strings"
 	"sync"
 )
 
@@ -83,6 +84,24 @@ func getConnection() (func() error, eplpbv1.GeometryServiceClient) {
 	return func() error {
 		return conn.Close()
 	}, client
+}
+
+func CompareProjectionData(proj1 *eplpbv1.ProjectionData, proj2 *eplpbv1.ProjectionData) (bool, string) {
+	if proj1 == nil && proj2 == nil {
+		return false, "neither projection set"
+	} else if proj1 == nil || proj2 == nil {
+		return false, "one projection not set"
+	} else if proj1.GetEpsg() != proj2.GetEpsg() {
+		return false, "epsg mismatch"
+	} else if strings.Compare(proj1.GetWkt(), proj2.GetWkt()) != 0 {
+		return false, "wkt mismatch"
+	} else if strings.Compare(proj1.GetProj4(), proj2.GetProj4()) != 0 {
+		return false, "proj4 mismatch"
+	} else if proj1.GetEpsg() == 0 && len(proj1.GetProj4()) == 0 && len(proj1.GetWkt()) == 0 {
+		return false, fmt.Sprintf("one or both projections are set to empty projections: %v", proj1)
+	}
+
+	return true, ""
 }
 
 func SetSRID(g geom.T, srid int) geom.T {
@@ -227,8 +246,8 @@ func GeodeticDensifyByLength(t geom.T, maxDistanceMeters float64) (geom.T, error
 }
 
 // Performs the Project operation
-func Project(t geom.T, resultEpsg int32) (geom.T, error) {
-	return InitChain(t).Project(resultEpsg).Execute()
+func ProjectEPSG(t geom.T, resultEpsg int32) (geom.T, error) {
+	return InitChain(t).ProjectEPSG(resultEpsg).Execute()
 }
 
 // Performs the Simplify operation
