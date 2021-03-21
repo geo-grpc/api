@@ -6,11 +6,11 @@ Below is a list of all the methods exposed through gRPC. The links connect to th
 
 * ##### **Topological operations**
     _Boolean operations on Polygons, Polylines, Points and MultiPoints._
-    * [Cut](http://esri.github.io/geometry-api-java/doc/Cut.html){:target="_blank"}
-    * [Difference](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorDifference.html){:target="_blank"}
-    * [Intersection](http://esri.github.io/geometry-api-java/doc/Intersection.html){:target="_blank"}
-    * [Symmetric Difference](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorSymmetricDifference.html){:target="_blank"}
-    * [Union](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorUnion.html){:target="_blank"}
+    * [Cut](http://esri.github.io/geometry-api-java/doc/Cut.html)
+    * [Difference](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorDifference.html)
+    * [Intersection](http://esri.github.io/geometry-api-java/doc/Intersection.html)
+    * [Symmetric Difference](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorSymmetricDifference.html)
+    * [Union](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorUnion.html)
 
 
 * ##### **Validation**
@@ -21,14 +21,14 @@ Below is a list of all the methods exposed through gRPC. The links connect to th
 * ##### **Relational operations**
     _Read [Performing relational operations](http://esri.github.io/geometry-api-java/doc/RelationalOperators.html)._
     * [Relate using DE-9IM matrix](http://esri.github.io/geometry-api-java/doc/Relate.html)
-    * __[Contains](http://esri.github.io/geometry-api-java/doc/Contains.html)__
-    * __[Crosses](http://esri.github.io/geometry-api-java/doc/Crosses.html)__
-    * __[Disjoint](http://esri.github.io/geometry-api-java/doc/Disjoint.html)__
-    * __[Equals](http://esri.github.io/geometry-api-java/doc/Equals.html)__
-    * __[Intersects](http://esri.github.io/geometry-api-java/doc/Intersects.html)__
-    * __[Overlaps](http://esri.github.io/geometry-api-java/doc/Overlaps.html)__
-    * __[Touches](http://esri.github.io/geometry-api-java/doc/Touches.html)__
-    * __[Within](http://esri.github.io/geometry-api-java/doc/Within.html)__
+    * [Contains](http://esri.github.io/geometry-api-java/doc/Contains.html)
+    * [Crosses](http://esri.github.io/geometry-api-java/doc/Crosses.html)
+    * [Disjoint](http://esri.github.io/geometry-api-java/doc/Disjoint.html)
+    * [Equals](http://esri.github.io/geometry-api-java/doc/Equals.html)
+    * [Intersects](http://esri.github.io/geometry-api-java/doc/Intersects.html)
+    * [Overlaps](http://esri.github.io/geometry-api-java/doc/Overlaps.html)
+    * [Touches](http://esri.github.io/geometry-api-java/doc/Touches.html)
+    * [Within](http://esri.github.io/geometry-api-java/doc/Within.html)
 
 * ##### **Other operations**
     * Boundary - creates a geometry that is the boundary of a given geometry
