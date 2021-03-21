@@ -1,4 +1,4 @@
-ARG TAG=buster-a09fa06
+ARG TAG=buster-0604876
 FROM geogrpc/c-builder:${TAG} as builder
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bsdtar

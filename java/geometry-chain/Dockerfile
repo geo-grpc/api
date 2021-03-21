@@ -1,4 +1,4 @@
-ARG TAG=buster-4385c8a
+ARG TAG=buster-0604876
 ARG JAVA_VERSION=11.0.10
 ARG JRE_TAG=${JAVA_VERSION}-jre-slim-buster
 FROM geogrpc/proj:${TAG} as builder
