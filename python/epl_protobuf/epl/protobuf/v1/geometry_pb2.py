@@ -18,8 +18,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='epl/protobuf/v1/geometry.proto',
   package='epl.protobuf.v1',
   syntax='proto3',
-  serialized_options=b'\n\023com.epl.protobuf.v1B\rGeometryProtoP\001Z.github.com/geo-grpc/api/golang/epl/protobuf/v1\242\002\004GMPB',
-  serialized_pb=b'\n\x1e\x65pl/protobuf/v1/geometry.proto\x12\x0f\x65pl.protobuf.v1\"\x9a\x02\n\x0cGeometryData\x12\x13\n\x0bgeometry_id\x18\x01 \x01(\x04\x12\x12\n\nfeature_id\x18\x02 \x01(\t\x12\r\n\x03wkt\x18\x03 \x01(\tH\x00\x12\x11\n\x07geojson\x18\x04 \x01(\tH\x00\x12\r\n\x03wkb\x18\x05 \x01(\x0cH\x00\x12\x14\n\nesri_shape\x18\x06 \x01(\x0cH\x00\x12-\n\x04proj\x18\x07 \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12/\n\x08\x65nvelope\x18\r \x01(\x0b\x32\x1d.epl.protobuf.v1.EnvelopeData\x12,\n\x06simple\x18\x0e \x01(\x0e\x32\x1c.epl.protobuf.v1.SimpleStateB\x06\n\x04\x64\x61taJ\x04\x08\x08\x10\r\"\xc7\x03\n\x0eProjectionData\x12\x0e\n\x04\x65psg\x18\x01 \x01(\x05H\x00\x12\x0f\n\x05proj4\x18\x02 \x01(\tH\x00\x12\x38\n\x06\x63ustom\x18\x03 \x01(\x0b\x32&.epl.protobuf.v1.ProjectionData.CustomH\x00\x12\r\n\x03wkt\x18\x04 \x01(\tH\x00\x12/\n\x08geometry\x18\n \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryData\x12+\n\x04\x62\x62ox\x18\x0b \x01(\x0b\x32\x1d.epl.protobuf.v1.EnvelopeData\x12/\n\x08\x63\x65ntroid\x18\x0c \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryData\x12\r\n\x05shape\x18\x08 \x03(\r\x12\x11\n\ttransform\x18\t \x03(\x01\x1a_\n\x06\x43ustom\x12\r\n\x05lon_0\x18\x01 \x01(\x01\x12\r\n\x05lat_0\x18\x02 \x01(\x01\x12\x37\n\x07\x63s_type\x18\x03 \x01(\x0e\x32&.epl.protobuf.v1.ProjectionData.CSType\"\x19\n\x06\x43SType\x12\x0f\n\x0bLAMBERT_AZI\x10\x00\x42\x0c\n\ndefinitionJ\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x07\x10\x08\"\x91\x01\n\x0c\x45nvelopeData\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01\x12-\n\x04proj\x18\x05 \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x0c\n\x04zmin\x18\x06 \x01(\x01\x12\x0c\n\x04zmax\x18\x07 \x01(\x01\"\xde\x0b\n\x0fGeometryRequest\x12\x31\n\x08geometry\x18\x01 \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryDataH\x00\x12\x36\n\rleft_geometry\x18\x02 \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryDataH\x00\x12<\n\x10geometry_request\x18\x03 \x01(\x0b\x32 .epl.protobuf.v1.GeometryRequestH\x00\x12\x41\n\x15left_geometry_request\x18\x04 \x01(\x0b\x32 .epl.protobuf.v1.GeometryRequestH\x00\x12\x37\n\x0eright_geometry\x18\x05 \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryDataH\x01\x12\x42\n\x16right_geometry_request\x18\x06 \x01(\x0b\x32 .epl.protobuf.v1.GeometryRequestH\x01\x12/\n\x08operator\x18\x07 \x01(\x0e\x32\x1d.epl.protobuf.v1.OperatorType\x12\x32\n\x0fresult_encoding\x18\x08 \x01(\x0e\x32\x19.epl.protobuf.v1.Encoding\x12\x37\n\x0eoperation_proj\x18\t \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x34\n\x0bresult_proj\x18\n \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x37\n\rbuffer_params\x18\x0b \x01(\x0b\x32\x1e.epl.protobuf.v1.Params.BufferH\x02\x12\x37\n\rconvex_params\x18\x0c \x01(\x0b\x32\x1e.epl.protobuf.v1.Params.ConvexH\x02\x12\x37\n\rrelate_params\x18\r \x01(\x0b\x32\x1e.epl.protobuf.v1.Params.RelateH\x02\x12\x44\n\x14random_points_params\x18\x0e \x01(\x0b\x32$.epl.protobuf.v1.Params.RandomPointsH\x02\x12?\n\x11generalize_params\x18\x0f \x01(\x0b\x32\".epl.protobuf.v1.Params.GeneralizeH\x02\x12\x43\n\x13intersection_params\x18\x10 \x01(\x0b\x32$.epl.protobuf.v1.Params.IntersectionH\x02\x12\x37\n\roffset_params\x18\x11 \x01(\x0b\x32\x1e.epl.protobuf.v1.Params.OffsetH\x02\x12\x31\n\ncut_params\x18\x12 \x01(\x0b\x32\x1b.epl.protobuf.v1.Params.CutH\x02\x12\x33\n\x0b\x63lip_params\x18\x13 \x01(\x0b\x32\x1c.epl.protobuf.v1.Params.ClipH\x02\x12\x39\n\x0e\x64\x65nsify_params\x18\x14 \x01(\x0b\x32\x1f.epl.protobuf.v1.Params.DensifyH\x02\x12;\n\x0fsimplify_params\x18\x15 \x01(\x0b\x32 .epl.protobuf.v1.Params.SimplifyH\x02\x12M\n\x19generalize_by_area_params\x18\x16 \x01(\x0b\x32(.epl.protobuf.v1.Params.GeneralizeByAreaH\x02\x12J\n\x17\x61\x66\x66ine_transform_params\x18\x17 \x01(\x0b\x32\'.epl.protobuf.v1.Params.AffineTransformH\x02\x12H\n\x16geodetic_buffer_params\x18\x18 \x01(\x0b\x32&.epl.protobuf.v1.Params.GeodeticBufferH\x02\x42\x06\n\x04leftB\x07\n\x05rightB\x08\n\x06params\"?\n\x0fGeodeticInverse\x12\x0c\n\x04\x61z12\x18\x01 \x01(\x01\x12\x0c\n\x04\x61z21\x18\x02 \x01(\x01\x12\x10\n\x08\x64istance\x18\x03 \x01(\x01\"\xb8\x02\n\x10GeometryResponse\x12\x31\n\x08geometry\x18\x01 \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryDataH\x00\x12\x1e\n\x14spatial_relationship\x18\x02 \x01(\x08H\x00\x12\x11\n\x07measure\x18\x03 \x01(\x01H\x00\x12<\n\x10geodetic_inverse\x18\x04 \x01(\x0b\x32 .epl.protobuf.v1.GeodeticInverseH\x00\x12\x44\n\nrelate_map\x18\x05 \x03(\x0b\x32\x30.epl.protobuf.v1.GeometryResponse.RelateMapEntry\x1a\x30\n\x0eRelateMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\x03\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\x42\x08\n\x06result\"\xe1\x02\n\x10\x46ileRequestChunk\x12\x38\n\x0enested_request\x18\x01 \x01(\x0b\x32 .epl.protobuf.v1.GeometryRequest\x12\x37\n\x14result_encoding_type\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.v1.Encoding\x12\x33\n\ninput_proj\x18\x03 \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x34\n\x0bresult_proj\x18\x05 \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\x12\x0c\n\x04size\x18\x07 \x01(\x03\x12\x0e\n\x06offset\x18\x08 \x01(\x03\x12\x11\n\tfile_name\x18\t \x01(\t\x12\x15\n\ris_last_chunk\x18\n \x01(\x08\"\x19\n\x08\x46ileType\x12\r\n\tSHAPEFILE\x10\x00\"\xd3\x07\n\x06Params\x1al\n\x06\x42uffer\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12\x15\n\rmax_deviation\x18\x02 \x01(\x01\x12\x14\n\x0cunion_result\x18\x03 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x04 \x01(\x05\x1at\n\x0eGeodeticBuffer\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12\x15\n\rmax_deviation\x18\x02 \x01(\x01\x12\x14\n\x0cunion_result\x18\x03 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x04 \x01(\x05\x1a\x17\n\x06\x43onvex\x12\r\n\x05merge\x18\x01 \x01(\x08\x1a\x18\n\x06Relate\x12\x0e\n\x06\x64\x65_9im\x18\x01 \x01(\t\x1a:\n\x0cRandomPoints\x12\x1c\n\x14points_per_square_km\x18\x01 \x01(\x01\x12\x0c\n\x04seed\x18\x02 \x01(\x03\x1a?\n\nGeneralize\x12\x15\n\rmax_deviation\x18\x01 \x01(\x01\x12\x1a\n\x12remove_degenerates\x18\x02 \x01(\x08\x1a\x62\n\x10GeneralizeByArea\x12\x19\n\x11percent_reduction\x18\x01 \x01(\x01\x12\x17\n\x0fmax_point_count\x18\x02 \x01(\x05\x12\x1a\n\x12remove_degenerates\x18\x03 \x01(\x08\x1a&\n\x0cIntersection\x12\x16\n\x0e\x64imension_mask\x18\x01 \x01(\x05\x1a\xc7\x01\n\x06Offset\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12@\n\tjoin_type\x18\x02 \x01(\x0e\x32-.epl.protobuf.v1.Params.Offset.OffsetJoinType\x12\x13\n\x0b\x62\x65vel_ratio\x18\x03 \x01(\x01\x12\x15\n\rflatten_error\x18\x04 \x01(\x01\"=\n\x0eOffsetJoinType\x12\t\n\x05ROUND\x10\x00\x12\t\n\x05\x42\x45VEL\x10\x01\x12\t\n\x05MITER\x10\x02\x12\n\n\x06SQUARE\x10\x03\x1a\x1d\n\x03\x43ut\x12\x16\n\x0e\x63onsider_touch\x18\x01 \x01(\x08\x1a\x37\n\x04\x43lip\x12/\n\x08\x65nvelope\x18\x01 \x01(\x0b\x32\x1d.epl.protobuf.v1.EnvelopeData\x1a\x1d\n\x07\x44\x65nsify\x12\x12\n\nmax_length\x18\x01 \x01(\x01\x1a\x19\n\x08Simplify\x12\r\n\x05\x66orce\x18\x01 \x01(\x08\x1aM\n\x0f\x41\x66\x66ineTransform\x12\x10\n\x08geodetic\x18\x02 \x01(\x08\x12\x10\n\x08x_offset\x18\x03 \x01(\x01\x12\x10\n\x08y_offset\x18\x04 \x01(\x01J\x04\x08\x01\x10\x02*\xc6\x01\n\x0bSimpleState\x12\x12\n\x0eSIMPLE_UNKNOWN\x10\x00\x12\x0f\n\x0bWEAK_SIMPLE\x10\x01\x12\x11\n\rSTRONG_SIMPLE\x10\x02\x12\x0e\n\nNON_SIMPLE\x10\x03\x12\x12\n\x0eSTRUCTURE_FLAW\x10\x04\x12\x17\n\x13\x44\x45GENERATE_SEGMENTS\x10\x05\x12\x0e\n\nCLUSTERING\x10\x06\x12\x0c\n\x08\x43RACKING\x10\x07\x12\x0e\n\nCROSS_OVER\x10\x08\x12\x14\n\x10RING_ORIENTATION\x10\t*O\n\x08\x45ncoding\x12\x14\n\x10UNKNOWN_ENCODING\x10\x00\x12\x07\n\x03WKB\x10\x01\x12\x07\n\x03WKT\x10\x02\x12\x0b\n\x07GEOJSON\x10\x03\x12\x0e\n\nESRI_SHAPE\x10\x04*\xcb\x06\n\x0cOperatorType\x12\x14\n\x10UNKNOWN_OPERATOR\x10\x00\x12\x0b\n\x07PROJECT\x10\x01\x12\x12\n\x0e\x45XPORT_TO_JSON\x10\x02\x12\x14\n\x10IMPORT_FROM_JSON\x10\x03\x12\x18\n\x14\x45XPORT_TO_ESRI_SHAPE\x10\x04\x12\x1a\n\x16IMPORT_FROM_ESRI_SHAPE\x10\x05\x12\t\n\x05UNION\x10\x06\x12\x0e\n\nDIFFERENCE\x10\x07\x12\x10\n\x0cPROXIMITY_2D\x10\x08\x12\n\n\x06RELATE\x10\t\x12\n\n\x06\x45QUALS\x10\n\x12\x0c\n\x08\x44ISJOINT\x10\x0b\x12\x0e\n\nINTERSECTS\x10\x0c\x12\n\n\x06WITHIN\x10\r\x12\x0c\n\x08\x43ONTAINS\x10\x0e\x12\x0b\n\x07\x43ROSSES\x10\x0f\x12\x0b\n\x07TOUCHES\x10\x10\x12\x0c\n\x08OVERLAPS\x10\x11\x12\n\n\x06\x42UFFER\x10\x12\x12\x0c\n\x08\x44ISTANCE\x10\x13\x12\x10\n\x0cINTERSECTION\x10\x14\x12\x08\n\x04\x43LIP\x10\x15\x12\x07\n\x03\x43UT\x10\x16\x12\x15\n\x11\x44\x45NSIFY_BY_LENGTH\x10\x17\x12\x13\n\x0fGEODESIC_BUFFER\x10\x1a\x12\x1e\n\x1aGEODETIC_DENSIFY_BY_LENGTH\x10\x1b\x12\x11\n\rGEODETIC_AREA\x10\x1e\x12\x0c\n\x08SIMPLIFY\x10\x1f\x12\x10\n\x0cSIMPLIFY_OGC\x10 \x12\n\n\x06OFFSET\x10!\x12\x0e\n\nGENERALIZE\x10\"\x12\x16\n\x12GENERALIZE_BY_AREA\x10#\x12\x11\n\rEXPORT_TO_WKB\x10$\x12\x13\n\x0fIMPORT_FROM_WKB\x10%\x12\x11\n\rEXPORT_TO_WKT\x10&\x12\x13\n\x0fIMPORT_FROM_WKT\x10\'\x12\x17\n\x13IMPORT_FROM_GEOJSON\x10(\x12\x15\n\x11\x45XPORT_TO_GEOJSON\x10)\x12\x18\n\x14SYMMETRIC_DIFFERENCE\x10*\x12\x0f\n\x0b\x43ONVEX_HULL\x10+\x12\x0c\n\x08\x42OUNDARY\x10,\x12\x11\n\rRANDOM_POINTS\x10-\x12\x14\n\x10\x45NCLOSING_CIRCLE\x10.\x12\x14\n\x10\x41\x46\x46INE_TRANSFORM\x10/\x12\x13\n\x0fGEODETIC_LENGTH\x10\x30\x12\x14\n\x10GEODETIC_INVERSE\x10\x31\x42]\n\x13\x63om.epl.protobuf.v1B\rGeometryProtoP\x01Z.github.com/geo-grpc/api/golang/epl/protobuf/v1\xa2\x02\x04GMPBb\x06proto3'
+  serialized_options=b'\n\023com.epl.protobuf.v1B\rGeometryProtoP\001Z.github.com/geo-grpc/api/golang/epl/protobuf/v1\242\002\004GMPB\252\002\023com.epl.protobuf.v1',
+  serialized_pb=b'\n\x1e\x65pl/protobuf/v1/geometry.proto\x12\x0f\x65pl.protobuf.v1\"\xaa\x02\n\x0cGeometryData\x12\x13\n\x0bgeometry_id\x18\x01 \x01(\x04\x12\x12\n\nfeature_id\x18\x02 \x01(\t\x12\r\n\x03wkt\x18\x03 \x01(\tH\x00\x12\x11\n\x07geojson\x18\x04 \x01(\tH\x00\x12\r\n\x03wkb\x18\x05 \x01(\x0cH\x00\x12\x14\n\nesri_shape\x18\x06 \x01(\x0cH\x00\x12\x0e\n\x04\x65wkb\x18\x0f \x01(\x0cH\x00\x12-\n\x04proj\x18\x07 \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12/\n\x08\x65nvelope\x18\r \x01(\x0b\x32\x1d.epl.protobuf.v1.EnvelopeData\x12,\n\x06simple\x18\x0e \x01(\x0e\x32\x1c.epl.protobuf.v1.SimpleStateB\x06\n\x04\x64\x61taJ\x04\x08\x08\x10\r\"\xc7\x03\n\x0eProjectionData\x12\x0e\n\x04\x65psg\x18\x01 \x01(\x05H\x00\x12\x0f\n\x05proj4\x18\x02 \x01(\tH\x00\x12\x38\n\x06\x63ustom\x18\x03 \x01(\x0b\x32&.epl.protobuf.v1.ProjectionData.CustomH\x00\x12\r\n\x03wkt\x18\x04 \x01(\tH\x00\x12/\n\x08geometry\x18\n \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryData\x12+\n\x04\x62\x62ox\x18\x0b \x01(\x0b\x32\x1d.epl.protobuf.v1.EnvelopeData\x12/\n\x08\x63\x65ntroid\x18\x0c \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryData\x12\r\n\x05shape\x18\x08 \x03(\r\x12\x11\n\ttransform\x18\t \x03(\x01\x1a_\n\x06\x43ustom\x12\r\n\x05lon_0\x18\x01 \x01(\x01\x12\r\n\x05lat_0\x18\x02 \x01(\x01\x12\x37\n\x07\x63s_type\x18\x03 \x01(\x0e\x32&.epl.protobuf.v1.ProjectionData.CSType\"\x19\n\x06\x43SType\x12\x0f\n\x0bLAMBERT_AZI\x10\x00\x42\x0c\n\ndefinitionJ\x04\x08\x05\x10\x06J\x04\x08\x06\x10\x07J\x04\x08\x07\x10\x08\"\x91\x01\n\x0c\x45nvelopeData\x12\x0c\n\x04xmin\x18\x01 \x01(\x01\x12\x0c\n\x04ymin\x18\x02 \x01(\x01\x12\x0c\n\x04xmax\x18\x03 \x01(\x01\x12\x0c\n\x04ymax\x18\x04 \x01(\x01\x12-\n\x04proj\x18\x05 \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x0c\n\x04zmin\x18\x06 \x01(\x01\x12\x0c\n\x04zmax\x18\x07 \x01(\x01\"\xde\x0b\n\x0fGeometryRequest\x12\x31\n\x08geometry\x18\x01 \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryDataH\x00\x12\x36\n\rleft_geometry\x18\x02 \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryDataH\x00\x12<\n\x10geometry_request\x18\x03 \x01(\x0b\x32 .epl.protobuf.v1.GeometryRequestH\x00\x12\x41\n\x15left_geometry_request\x18\x04 \x01(\x0b\x32 .epl.protobuf.v1.GeometryRequestH\x00\x12\x37\n\x0eright_geometry\x18\x05 \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryDataH\x01\x12\x42\n\x16right_geometry_request\x18\x06 \x01(\x0b\x32 .epl.protobuf.v1.GeometryRequestH\x01\x12/\n\x08operator\x18\x07 \x01(\x0e\x32\x1d.epl.protobuf.v1.OperatorType\x12\x32\n\x0fresult_encoding\x18\x08 \x01(\x0e\x32\x19.epl.protobuf.v1.Encoding\x12\x37\n\x0eoperation_proj\x18\t \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x34\n\x0bresult_proj\x18\n \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x37\n\rbuffer_params\x18\x0b \x01(\x0b\x32\x1e.epl.protobuf.v1.Params.BufferH\x02\x12\x37\n\rconvex_params\x18\x0c \x01(\x0b\x32\x1e.epl.protobuf.v1.Params.ConvexH\x02\x12\x37\n\rrelate_params\x18\r \x01(\x0b\x32\x1e.epl.protobuf.v1.Params.RelateH\x02\x12\x44\n\x14random_points_params\x18\x0e \x01(\x0b\x32$.epl.protobuf.v1.Params.RandomPointsH\x02\x12?\n\x11generalize_params\x18\x0f \x01(\x0b\x32\".epl.protobuf.v1.Params.GeneralizeH\x02\x12\x43\n\x13intersection_params\x18\x10 \x01(\x0b\x32$.epl.protobuf.v1.Params.IntersectionH\x02\x12\x37\n\roffset_params\x18\x11 \x01(\x0b\x32\x1e.epl.protobuf.v1.Params.OffsetH\x02\x12\x31\n\ncut_params\x18\x12 \x01(\x0b\x32\x1b.epl.protobuf.v1.Params.CutH\x02\x12\x33\n\x0b\x63lip_params\x18\x13 \x01(\x0b\x32\x1c.epl.protobuf.v1.Params.ClipH\x02\x12\x39\n\x0e\x64\x65nsify_params\x18\x14 \x01(\x0b\x32\x1f.epl.protobuf.v1.Params.DensifyH\x02\x12;\n\x0fsimplify_params\x18\x15 \x01(\x0b\x32 .epl.protobuf.v1.Params.SimplifyH\x02\x12M\n\x19generalize_by_area_params\x18\x16 \x01(\x0b\x32(.epl.protobuf.v1.Params.GeneralizeByAreaH\x02\x12J\n\x17\x61\x66\x66ine_transform_params\x18\x17 \x01(\x0b\x32\'.epl.protobuf.v1.Params.AffineTransformH\x02\x12H\n\x16geodetic_buffer_params\x18\x18 \x01(\x0b\x32&.epl.protobuf.v1.Params.GeodeticBufferH\x02\x42\x06\n\x04leftB\x07\n\x05rightB\x08\n\x06params\"?\n\x0fGeodeticInverse\x12\x0c\n\x04\x61z12\x18\x01 \x01(\x01\x12\x0c\n\x04\x61z21\x18\x02 \x01(\x01\x12\x10\n\x08\x64istance\x18\x03 \x01(\x01\"\xb8\x02\n\x10GeometryResponse\x12\x31\n\x08geometry\x18\x01 \x01(\x0b\x32\x1d.epl.protobuf.v1.GeometryDataH\x00\x12\x1e\n\x14spatial_relationship\x18\x02 \x01(\x08H\x00\x12\x11\n\x07measure\x18\x03 \x01(\x01H\x00\x12<\n\x10geodetic_inverse\x18\x04 \x01(\x0b\x32 .epl.protobuf.v1.GeodeticInverseH\x00\x12\x44\n\nrelate_map\x18\x05 \x03(\x0b\x32\x30.epl.protobuf.v1.GeometryResponse.RelateMapEntry\x1a\x30\n\x0eRelateMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\x03\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\x42\x08\n\x06result\"\xe1\x02\n\x10\x46ileRequestChunk\x12\x38\n\x0enested_request\x18\x01 \x01(\x0b\x32 .epl.protobuf.v1.GeometryRequest\x12\x37\n\x14result_encoding_type\x18\x02 \x01(\x0e\x32\x19.epl.protobuf.v1.Encoding\x12\x33\n\ninput_proj\x18\x03 \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x34\n\x0bresult_proj\x18\x05 \x01(\x0b\x32\x1f.epl.protobuf.v1.ProjectionData\x12\x0c\n\x04\x64\x61ta\x18\x06 \x01(\x0c\x12\x0c\n\x04size\x18\x07 \x01(\x03\x12\x0e\n\x06offset\x18\x08 \x01(\x03\x12\x11\n\tfile_name\x18\t \x01(\t\x12\x15\n\ris_last_chunk\x18\n \x01(\x08\"\x19\n\x08\x46ileType\x12\r\n\tSHAPEFILE\x10\x00\"\xd3\x07\n\x06Params\x1al\n\x06\x42uffer\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12\x15\n\rmax_deviation\x18\x02 \x01(\x01\x12\x14\n\x0cunion_result\x18\x03 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x04 \x01(\x05\x1at\n\x0eGeodeticBuffer\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12\x15\n\rmax_deviation\x18\x02 \x01(\x01\x12\x14\n\x0cunion_result\x18\x03 \x01(\x08\x12#\n\x1bmax_vertices_in_full_circle\x18\x04 \x01(\x05\x1a\x17\n\x06\x43onvex\x12\r\n\x05merge\x18\x01 \x01(\x08\x1a\x18\n\x06Relate\x12\x0e\n\x06\x64\x65_9im\x18\x01 \x01(\t\x1a:\n\x0cRandomPoints\x12\x1c\n\x14points_per_square_km\x18\x01 \x01(\x01\x12\x0c\n\x04seed\x18\x02 \x01(\x03\x1a?\n\nGeneralize\x12\x15\n\rmax_deviation\x18\x01 \x01(\x01\x12\x1a\n\x12remove_degenerates\x18\x02 \x01(\x08\x1a\x62\n\x10GeneralizeByArea\x12\x19\n\x11percent_reduction\x18\x01 \x01(\x01\x12\x17\n\x0fmax_point_count\x18\x02 \x01(\x05\x12\x1a\n\x12remove_degenerates\x18\x03 \x01(\x08\x1a&\n\x0cIntersection\x12\x16\n\x0e\x64imension_mask\x18\x01 \x01(\x05\x1a\xc7\x01\n\x06Offset\x12\x10\n\x08\x64istance\x18\x01 \x01(\x01\x12@\n\tjoin_type\x18\x02 \x01(\x0e\x32-.epl.protobuf.v1.Params.Offset.OffsetJoinType\x12\x13\n\x0b\x62\x65vel_ratio\x18\x03 \x01(\x01\x12\x15\n\rflatten_error\x18\x04 \x01(\x01\"=\n\x0eOffsetJoinType\x12\t\n\x05ROUND\x10\x00\x12\t\n\x05\x42\x45VEL\x10\x01\x12\t\n\x05MITER\x10\x02\x12\n\n\x06SQUARE\x10\x03\x1a\x1d\n\x03\x43ut\x12\x16\n\x0e\x63onsider_touch\x18\x01 \x01(\x08\x1a\x37\n\x04\x43lip\x12/\n\x08\x65nvelope\x18\x01 \x01(\x0b\x32\x1d.epl.protobuf.v1.EnvelopeData\x1a\x1d\n\x07\x44\x65nsify\x12\x12\n\nmax_length\x18\x01 \x01(\x01\x1a\x19\n\x08Simplify\x12\r\n\x05\x66orce\x18\x01 \x01(\x08\x1aM\n\x0f\x41\x66\x66ineTransform\x12\x10\n\x08geodetic\x18\x02 \x01(\x08\x12\x10\n\x08x_offset\x18\x03 \x01(\x01\x12\x10\n\x08y_offset\x18\x04 \x01(\x01J\x04\x08\x01\x10\x02*\xc6\x01\n\x0bSimpleState\x12\x12\n\x0eSIMPLE_UNKNOWN\x10\x00\x12\x0f\n\x0bWEAK_SIMPLE\x10\x01\x12\x11\n\rSTRONG_SIMPLE\x10\x02\x12\x0e\n\nNON_SIMPLE\x10\x03\x12\x12\n\x0eSTRUCTURE_FLAW\x10\x04\x12\x17\n\x13\x44\x45GENERATE_SEGMENTS\x10\x05\x12\x0e\n\nCLUSTERING\x10\x06\x12\x0c\n\x08\x43RACKING\x10\x07\x12\x0e\n\nCROSS_OVER\x10\x08\x12\x14\n\x10RING_ORIENTATION\x10\t*Y\n\x08\x45ncoding\x12\x14\n\x10UNKNOWN_ENCODING\x10\x00\x12\x07\n\x03WKB\x10\x01\x12\x07\n\x03WKT\x10\x02\x12\x0b\n\x07GEOJSON\x10\x03\x12\x0e\n\nESRI_SHAPE\x10\x04\x12\x08\n\x04\x45WKB\x10\x05*\xf5\x06\n\x0cOperatorType\x12\x14\n\x10UNKNOWN_OPERATOR\x10\x00\x12\x0b\n\x07PROJECT\x10\x01\x12\x12\n\x0e\x45XPORT_TO_JSON\x10\x02\x12\x14\n\x10IMPORT_FROM_JSON\x10\x03\x12\x18\n\x14\x45XPORT_TO_ESRI_SHAPE\x10\x04\x12\x1a\n\x16IMPORT_FROM_ESRI_SHAPE\x10\x05\x12\t\n\x05UNION\x10\x06\x12\x0e\n\nDIFFERENCE\x10\x07\x12\x10\n\x0cPROXIMITY_2D\x10\x08\x12\n\n\x06RELATE\x10\t\x12\n\n\x06\x45QUALS\x10\n\x12\x0c\n\x08\x44ISJOINT\x10\x0b\x12\x0e\n\nINTERSECTS\x10\x0c\x12\n\n\x06WITHIN\x10\r\x12\x0c\n\x08\x43ONTAINS\x10\x0e\x12\x0b\n\x07\x43ROSSES\x10\x0f\x12\x0b\n\x07TOUCHES\x10\x10\x12\x0c\n\x08OVERLAPS\x10\x11\x12\n\n\x06\x42UFFER\x10\x12\x12\x0c\n\x08\x44ISTANCE\x10\x13\x12\x10\n\x0cINTERSECTION\x10\x14\x12\x08\n\x04\x43LIP\x10\x15\x12\x07\n\x03\x43UT\x10\x16\x12\x15\n\x11\x44\x45NSIFY_BY_LENGTH\x10\x17\x12\x13\n\x0fGEODESIC_BUFFER\x10\x1a\x12\x1e\n\x1aGEODETIC_DENSIFY_BY_LENGTH\x10\x1b\x12\x11\n\rGEODETIC_AREA\x10\x1e\x12\x0c\n\x08SIMPLIFY\x10\x1f\x12\x10\n\x0cSIMPLIFY_OGC\x10 \x12\n\n\x06OFFSET\x10!\x12\x0e\n\nGENERALIZE\x10\"\x12\x16\n\x12GENERALIZE_BY_AREA\x10#\x12\x11\n\rEXPORT_TO_WKB\x10$\x12\x13\n\x0fIMPORT_FROM_WKB\x10%\x12\x11\n\rEXPORT_TO_WKT\x10&\x12\x13\n\x0fIMPORT_FROM_WKT\x10\'\x12\x17\n\x13IMPORT_FROM_GEOJSON\x10(\x12\x15\n\x11\x45XPORT_TO_GEOJSON\x10)\x12\x18\n\x14SYMMETRIC_DIFFERENCE\x10*\x12\x0f\n\x0b\x43ONVEX_HULL\x10+\x12\x0c\n\x08\x42OUNDARY\x10,\x12\x11\n\rRANDOM_POINTS\x10-\x12\x14\n\x10\x45NCLOSING_CIRCLE\x10.\x12\x14\n\x10\x41\x46\x46INE_TRANSFORM\x10/\x12\x13\n\x0fGEODETIC_LENGTH\x10\x30\x12\x14\n\x10GEODETIC_INVERSE\x10\x31\x12\x12\n\x0e\x45XPORT_TO_EWKB\x10\x32\x12\x14\n\x10IMPORT_FROM_EWKB\x10\x33\x42s\n\x13\x63om.epl.protobuf.v1B\rGeometryProtoP\x01Z.github.com/geo-grpc/api/golang/epl/protobuf/v1\xa2\x02\x04GMPB\xaa\x02\x13\x63om.epl.protobuf.v1b\x06proto3'
 )
 
 _SIMPLESTATE = _descriptor.EnumDescriptor(
@@ -71,8 +71,8 @@ _SIMPLESTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4166,
-  serialized_end=4364,
+  serialized_start=4182,
+  serialized_end=4380,
 )
 _sym_db.RegisterEnumDescriptor(_SIMPLESTATE)
 
@@ -103,11 +103,15 @@ _ENCODING = _descriptor.EnumDescriptor(
       name='ESRI_SHAPE', index=4, number=4,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='EWKB', index=5, number=5,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4366,
-  serialized_end=4445,
+  serialized_start=4382,
+  serialized_end=4471,
 )
 _sym_db.RegisterEnumDescriptor(_ENCODING)
 
@@ -302,11 +306,19 @@ _OPERATORTYPE = _descriptor.EnumDescriptor(
       name='GEODETIC_INVERSE', index=45, number=49,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='EXPORT_TO_EWKB', index=46, number=50,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='IMPORT_FROM_EWKB', index=47, number=51,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4448,
-  serialized_end=5291,
+  serialized_start=4474,
+  serialized_end=5359,
 )
 _sym_db.RegisterEnumDescriptor(_OPERATORTYPE)
 
@@ -326,6 +338,7 @@ WKB = 1
 WKT = 2
 GEOJSON = 3
 ESRI_SHAPE = 4
+EWKB = 5
 UNKNOWN_OPERATOR = 0
 PROJECT = 1
 EXPORT_TO_JSON = 2
@@ -372,6 +385,8 @@ ENCLOSING_CIRCLE = 46
 AFFINE_TRANSFORM = 47
 GEODETIC_LENGTH = 48
 GEODETIC_INVERSE = 49
+EXPORT_TO_EWKB = 50
+IMPORT_FROM_EWKB = 51
 
 
 _PROJECTIONDATA_CSTYPE = _descriptor.EnumDescriptor(
@@ -387,8 +402,8 @@ _PROJECTIONDATA_CSTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=735,
-  serialized_end=760,
+  serialized_start=751,
+  serialized_end=776,
 )
 _sym_db.RegisterEnumDescriptor(_PROJECTIONDATA_CSTYPE)
 
@@ -405,8 +420,8 @@ _FILEREQUESTCHUNK_FILETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3156,
-  serialized_end=3181,
+  serialized_start=3172,
+  serialized_end=3197,
 )
 _sym_db.RegisterEnumDescriptor(_FILEREQUESTCHUNK_FILETYPE)
 
@@ -435,8 +450,8 @@ _PARAMS_OFFSET_OFFSETJOINTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3877,
-  serialized_end=3938,
+  serialized_start=3893,
+  serialized_end=3954,
 )
 _sym_db.RegisterEnumDescriptor(_PARAMS_OFFSET_OFFSETJOINTYPE)
 
@@ -491,21 +506,28 @@ _GEOMETRYDATA = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='proj', full_name='epl.protobuf.v1.GeometryData.proj', index=6,
+      name='ewkb', full_name='epl.protobuf.v1.GeometryData.ewkb', index=6,
+      number=15, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='proj', full_name='epl.protobuf.v1.GeometryData.proj', index=7,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='envelope', full_name='epl.protobuf.v1.GeometryData.envelope', index=7,
+      name='envelope', full_name='epl.protobuf.v1.GeometryData.envelope', index=8,
       number=13, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='simple', full_name='epl.protobuf.v1.GeometryData.simple', index=8,
+      name='simple', full_name='epl.protobuf.v1.GeometryData.simple', index=9,
       number=14, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -527,7 +549,7 @@ _GEOMETRYDATA = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=52,
-  serialized_end=334,
+  serialized_end=350,
 )
 
 
@@ -571,8 +593,8 @@ _PROJECTIONDATA_CUSTOM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=638,
-  serialized_end=733,
+  serialized_start=654,
+  serialized_end=749,
 )
 
 _PROJECTIONDATA = _descriptor.Descriptor(
@@ -661,8 +683,8 @@ _PROJECTIONDATA = _descriptor.Descriptor(
       name='definition', full_name='epl.protobuf.v1.ProjectionData.definition',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=337,
-  serialized_end=792,
+  serialized_start=353,
+  serialized_end=808,
 )
 
 
@@ -734,8 +756,8 @@ _ENVELOPEDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=795,
-  serialized_end=940,
+  serialized_start=811,
+  serialized_end=956,
 )
 
 
@@ -935,8 +957,8 @@ _GEOMETRYREQUEST = _descriptor.Descriptor(
       name='params', full_name='epl.protobuf.v1.GeometryRequest.params',
       index=2, containing_type=None, fields=[]),
   ],
-  serialized_start=943,
-  serialized_end=2445,
+  serialized_start=959,
+  serialized_end=2461,
 )
 
 
@@ -980,8 +1002,8 @@ _GEODETICINVERSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2447,
-  serialized_end=2510,
+  serialized_start=2463,
+  serialized_end=2526,
 )
 
 
@@ -1018,8 +1040,8 @@ _GEOMETRYRESPONSE_RELATEMAPENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2767,
-  serialized_end=2815,
+  serialized_start=2783,
+  serialized_end=2831,
 )
 
 _GEOMETRYRESPONSE = _descriptor.Descriptor(
@@ -1079,8 +1101,8 @@ _GEOMETRYRESPONSE = _descriptor.Descriptor(
       name='result', full_name='epl.protobuf.v1.GeometryResponse.result',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=2513,
-  serialized_end=2825,
+  serialized_start=2529,
+  serialized_end=2841,
 )
 
 
@@ -1167,8 +1189,8 @@ _FILEREQUESTCHUNK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2828,
-  serialized_end=3181,
+  serialized_start=2844,
+  serialized_end=3197,
 )
 
 
@@ -1219,8 +1241,8 @@ _PARAMS_BUFFER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3194,
-  serialized_end=3302,
+  serialized_start=3210,
+  serialized_end=3318,
 )
 
 _PARAMS_GEODETICBUFFER = _descriptor.Descriptor(
@@ -1270,8 +1292,8 @@ _PARAMS_GEODETICBUFFER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3304,
-  serialized_end=3420,
+  serialized_start=3320,
+  serialized_end=3436,
 )
 
 _PARAMS_CONVEX = _descriptor.Descriptor(
@@ -1300,8 +1322,8 @@ _PARAMS_CONVEX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3422,
-  serialized_end=3445,
+  serialized_start=3438,
+  serialized_end=3461,
 )
 
 _PARAMS_RELATE = _descriptor.Descriptor(
@@ -1330,8 +1352,8 @@ _PARAMS_RELATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3447,
-  serialized_end=3471,
+  serialized_start=3463,
+  serialized_end=3487,
 )
 
 _PARAMS_RANDOMPOINTS = _descriptor.Descriptor(
@@ -1367,8 +1389,8 @@ _PARAMS_RANDOMPOINTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3473,
-  serialized_end=3531,
+  serialized_start=3489,
+  serialized_end=3547,
 )
 
 _PARAMS_GENERALIZE = _descriptor.Descriptor(
@@ -1404,8 +1426,8 @@ _PARAMS_GENERALIZE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3533,
-  serialized_end=3596,
+  serialized_start=3549,
+  serialized_end=3612,
 )
 
 _PARAMS_GENERALIZEBYAREA = _descriptor.Descriptor(
@@ -1448,8 +1470,8 @@ _PARAMS_GENERALIZEBYAREA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3598,
-  serialized_end=3696,
+  serialized_start=3614,
+  serialized_end=3712,
 )
 
 _PARAMS_INTERSECTION = _descriptor.Descriptor(
@@ -1478,8 +1500,8 @@ _PARAMS_INTERSECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3698,
-  serialized_end=3736,
+  serialized_start=3714,
+  serialized_end=3752,
 )
 
 _PARAMS_OFFSET = _descriptor.Descriptor(
@@ -1530,8 +1552,8 @@ _PARAMS_OFFSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3739,
-  serialized_end=3938,
+  serialized_start=3755,
+  serialized_end=3954,
 )
 
 _PARAMS_CUT = _descriptor.Descriptor(
@@ -1560,8 +1582,8 @@ _PARAMS_CUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3940,
-  serialized_end=3969,
+  serialized_start=3956,
+  serialized_end=3985,
 )
 
 _PARAMS_CLIP = _descriptor.Descriptor(
@@ -1590,8 +1612,8 @@ _PARAMS_CLIP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3971,
-  serialized_end=4026,
+  serialized_start=3987,
+  serialized_end=4042,
 )
 
 _PARAMS_DENSIFY = _descriptor.Descriptor(
@@ -1620,8 +1642,8 @@ _PARAMS_DENSIFY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4028,
-  serialized_end=4057,
+  serialized_start=4044,
+  serialized_end=4073,
 )
 
 _PARAMS_SIMPLIFY = _descriptor.Descriptor(
@@ -1650,8 +1672,8 @@ _PARAMS_SIMPLIFY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4059,
-  serialized_end=4084,
+  serialized_start=4075,
+  serialized_end=4100,
 )
 
 _PARAMS_AFFINETRANSFORM = _descriptor.Descriptor(
@@ -1694,8 +1716,8 @@ _PARAMS_AFFINETRANSFORM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4086,
-  serialized_end=4163,
+  serialized_start=4102,
+  serialized_end=4179,
 )
 
 _PARAMS = _descriptor.Descriptor(
@@ -1717,8 +1739,8 @@ _PARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3184,
-  serialized_end=4163,
+  serialized_start=3200,
+  serialized_end=4179,
 )
 
 _GEOMETRYDATA.fields_by_name['proj'].message_type = _PROJECTIONDATA
@@ -1736,6 +1758,9 @@ _GEOMETRYDATA.fields_by_name['wkb'].containing_oneof = _GEOMETRYDATA.oneofs_by_n
 _GEOMETRYDATA.oneofs_by_name['data'].fields.append(
   _GEOMETRYDATA.fields_by_name['esri_shape'])
 _GEOMETRYDATA.fields_by_name['esri_shape'].containing_oneof = _GEOMETRYDATA.oneofs_by_name['data']
+_GEOMETRYDATA.oneofs_by_name['data'].fields.append(
+  _GEOMETRYDATA.fields_by_name['ewkb'])
+_GEOMETRYDATA.fields_by_name['ewkb'].containing_oneof = _GEOMETRYDATA.oneofs_by_name['data']
 _PROJECTIONDATA_CUSTOM.fields_by_name['cs_type'].enum_type = _PROJECTIONDATA_CSTYPE
 _PROJECTIONDATA_CUSTOM.containing_type = _PROJECTIONDATA
 _PROJECTIONDATA.fields_by_name['custom'].message_type = _PROJECTIONDATA_CUSTOM

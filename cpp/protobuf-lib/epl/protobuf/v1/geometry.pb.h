@@ -280,12 +280,13 @@ enum Encoding : int {
   WKT = 2,
   GEOJSON = 3,
   ESRI_SHAPE = 4,
+  EWKB = 5,
   Encoding_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   Encoding_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool Encoding_IsValid(int value);
 constexpr Encoding Encoding_MIN = UNKNOWN_ENCODING;
-constexpr Encoding Encoding_MAX = ESRI_SHAPE;
+constexpr Encoding Encoding_MAX = EWKB;
 constexpr int Encoding_ARRAYSIZE = Encoding_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Encoding_descriptor();
@@ -349,12 +350,14 @@ enum OperatorType : int {
   AFFINE_TRANSFORM = 47,
   GEODETIC_LENGTH = 48,
   GEODETIC_INVERSE = 49,
+  EXPORT_TO_EWKB = 50,
+  IMPORT_FROM_EWKB = 51,
   OperatorType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   OperatorType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool OperatorType_IsValid(int value);
 constexpr OperatorType OperatorType_MIN = UNKNOWN_OPERATOR;
-constexpr OperatorType OperatorType_MAX = GEODETIC_INVERSE;
+constexpr OperatorType OperatorType_MAX = IMPORT_FROM_EWKB;
 constexpr int OperatorType_ARRAYSIZE = OperatorType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* OperatorType_descriptor();
@@ -414,6 +417,7 @@ class GeometryData :
     kGeojson = 4,
     kWkb = 5,
     kEsriShape = 6,
+    kEwkb = 15,
     DATA_NOT_SET = 0,
   };
 
@@ -496,6 +500,7 @@ class GeometryData :
     kGeojsonFieldNumber = 4,
     kWkbFieldNumber = 5,
     kEsriShapeFieldNumber = 6,
+    kEwkbFieldNumber = 15,
   };
   // string feature_id = 2;
   void clear_feature_id();
@@ -637,6 +642,25 @@ class GeometryData :
   std::string* _internal_mutable_esri_shape();
   public:
 
+  // bytes ewkb = 15;
+  private:
+  bool _internal_has_ewkb() const;
+  public:
+  void clear_ewkb();
+  const std::string& ewkb() const;
+  void set_ewkb(const std::string& value);
+  void set_ewkb(std::string&& value);
+  void set_ewkb(const char* value);
+  void set_ewkb(const void* value, size_t size);
+  std::string* mutable_ewkb();
+  std::string* release_ewkb();
+  void set_allocated_ewkb(std::string* ewkb);
+  private:
+  const std::string& _internal_ewkb() const;
+  void _internal_set_ewkb(const std::string& value);
+  std::string* _internal_mutable_ewkb();
+  public:
+
   void clear_data();
   DataCase data_case() const;
   // @@protoc_insertion_point(class_scope:epl.protobuf.v1.GeometryData)
@@ -646,6 +670,7 @@ class GeometryData :
   void set_has_geojson();
   void set_has_wkb();
   void set_has_esri_shape();
+  void set_has_ewkb();
 
   inline bool has_data() const;
   inline void clear_has_data();
@@ -662,6 +687,7 @@ class GeometryData :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr geojson_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr wkb_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr esri_shape_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ewkb_;
   } data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
@@ -5249,6 +5275,104 @@ inline void GeometryData::set_allocated_esri_shape(std::string* esri_shape) {
     data_.esri_shape_.UnsafeSetDefault(esri_shape);
   }
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryData.esri_shape)
+}
+
+// bytes ewkb = 15;
+inline bool GeometryData::_internal_has_ewkb() const {
+  return data_case() == kEwkb;
+}
+inline void GeometryData::set_has_ewkb() {
+  _oneof_case_[0] = kEwkb;
+}
+inline void GeometryData::clear_ewkb() {
+  if (_internal_has_ewkb()) {
+    data_.ewkb_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    clear_has_data();
+  }
+}
+inline const std::string& GeometryData::ewkb() const {
+  // @@protoc_insertion_point(field_get:epl.protobuf.v1.GeometryData.ewkb)
+  return _internal_ewkb();
+}
+inline void GeometryData::set_ewkb(const std::string& value) {
+  _internal_set_ewkb(value);
+  // @@protoc_insertion_point(field_set:epl.protobuf.v1.GeometryData.ewkb)
+}
+inline std::string* GeometryData::mutable_ewkb() {
+  // @@protoc_insertion_point(field_mutable:epl.protobuf.v1.GeometryData.ewkb)
+  return _internal_mutable_ewkb();
+}
+inline const std::string& GeometryData::_internal_ewkb() const {
+  if (_internal_has_ewkb()) {
+    return data_.ewkb_.GetNoArena();
+  }
+  return *&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+}
+inline void GeometryData::_internal_set_ewkb(const std::string& value) {
+  if (!_internal_has_ewkb()) {
+    clear_data();
+    set_has_ewkb();
+    data_.ewkb_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  }
+  data_.ewkb_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void GeometryData::set_ewkb(std::string&& value) {
+  // @@protoc_insertion_point(field_set:epl.protobuf.v1.GeometryData.ewkb)
+  if (!_internal_has_ewkb()) {
+    clear_data();
+    set_has_ewkb();
+    data_.ewkb_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  }
+  data_.ewkb_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:epl.protobuf.v1.GeometryData.ewkb)
+}
+inline void GeometryData::set_ewkb(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  if (!_internal_has_ewkb()) {
+    clear_data();
+    set_has_ewkb();
+    data_.ewkb_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  }
+  data_.ewkb_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:epl.protobuf.v1.GeometryData.ewkb)
+}
+inline void GeometryData::set_ewkb(const void* value, size_t size) {
+  if (!_internal_has_ewkb()) {
+    clear_data();
+    set_has_ewkb();
+    data_.ewkb_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  }
+  data_.ewkb_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:epl.protobuf.v1.GeometryData.ewkb)
+}
+inline std::string* GeometryData::_internal_mutable_ewkb() {
+  if (!_internal_has_ewkb()) {
+    clear_data();
+    set_has_ewkb();
+    data_.ewkb_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  }
+  return data_.ewkb_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* GeometryData::release_ewkb() {
+  // @@protoc_insertion_point(field_release:epl.protobuf.v1.GeometryData.ewkb)
+  if (_internal_has_ewkb()) {
+    clear_has_data();
+    return data_.ewkb_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  } else {
+    return nullptr;
+  }
+}
+inline void GeometryData::set_allocated_ewkb(std::string* ewkb) {
+  if (has_data()) {
+    clear_data();
+  }
+  if (ewkb != nullptr) {
+    set_has_ewkb();
+    data_.ewkb_.UnsafeSetDefault(ewkb);
+  }
+  // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryData.ewkb)
 }
 
 // .epl.protobuf.v1.ProjectionData proj = 7;

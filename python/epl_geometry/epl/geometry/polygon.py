@@ -4,7 +4,7 @@
 import sys
 
 from epl.protobuf.v1 import geometry_pb2
-from epl.geometry.base import BaseGeometry
+from epl.geometry.base import BaseGeometry, get_proj
 from epl.geometry.linestring import LineString, LineStringAdapter
 
 from ctypes import c_void_p, cast, POINTER
@@ -127,10 +127,15 @@ class InteriorRingSequence(object):
     __rings__ = None
     _gtag = None
 
-    def __init__(self, parent):
+    def __init__(self,
+                 parent,
+                 proj: geometry_pb2.ProjectionData = None,
+                 epsg: int = 0,
+                 proj4: str = ""):
         self.__p__ = parent
         self._geom = parent._geom
         self._ndim = parent._ndim
+        self._proj = get_proj(proj=proj, epsg=epsg, proj4=proj4)
 
     def __iter__(self):
         self._index = 0
@@ -187,7 +192,7 @@ class InteriorRingSequence(object):
             self.__rings__ = {}
         if i not in self.__rings__:
             g = lgeos.GEOSGetInteriorRingN(self._geom, i)
-            ring = LinearRing()
+            ring = LinearRing(proj=self._proj)
             ring._geom = g
             ring.__p__ = self
             ring._other_owned = True
@@ -267,7 +272,7 @@ class Polygon(BaseGeometry):
     def interiors(self):
         if self.is_empty:
             return []
-        return InteriorRingSequence(self)
+        return InteriorRingSequence(self, proj=self._proj)
 
     def __eq__(self, other):
         if not isinstance(other, Polygon):

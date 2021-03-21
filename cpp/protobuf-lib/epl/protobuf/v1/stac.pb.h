@@ -452,12 +452,13 @@ enum Platform : int {
   LANDSAT_7 = 64,
   LANDSAT_8 = 128,
   SWIFT_2 = 256,
+  SWIFT_3 = 512,
   Platform_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   Platform_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool Platform_IsValid(int value);
 constexpr Platform Platform_MIN = UNKNOWN_PLATFORM;
-constexpr Platform Platform_MAX = SWIFT_2;
+constexpr Platform Platform_MAX = SWIFT_3;
 constexpr int Platform_ARRAYSIZE = Platform_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Platform_descriptor();

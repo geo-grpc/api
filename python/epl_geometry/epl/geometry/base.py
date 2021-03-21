@@ -17,6 +17,8 @@ from warnings import warn
 from functools import wraps
 
 from typing import Iterable, Iterator
+
+from epl.protobuf.v1.geometry_pb2 import ProjectionData
 from shapely.coords import CoordinateSequence
 from shapely.geos import WKBWriter, WKTWriter
 from shapely.geos import lgeos
@@ -56,6 +58,7 @@ GEOMETRY_MODULES = {
     'GeometryCollection': 'epl.geometry.collection'
 }
 
+RESULT_ENCODING = geometry_pb2.EWKB
 
 def dump_coords(geom):
     """Dump coordinates of a geometry in the same order as data packing"""
@@ -764,6 +767,9 @@ class BaseGeometry(object):
     def proj(self):
         return self._proj
 
+    def set_epsg(self, value):
+        self._proj = ProjectionData(epsg=value)
+
     @staticmethod
     def import_protobuf(geometry_data: geometry_pb2.GeometryData):
         """
@@ -788,7 +794,7 @@ class BaseGeometry(object):
     def import_wkb(wkb: bytes, proj: geometry_pb2.ProjectionData = None, epsg: int = 0, proj4: str = ""):
         # TODO. this is messy. should be using RPCReader for this
         proj = get_proj(proj=proj, epsg=epsg, proj4=proj4)
-        return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(wkb=wkb, proj=proj))
+        return BaseGeometry.import_protobuf(geometry_pb2.GeometryData(ewkb=wkb, proj=proj))
 
     @staticmethod
     def _spat_ref_create(epsg: int = 0, proj4: str = ""):
@@ -813,7 +819,7 @@ class BaseGeometry(object):
                                                   operator=geometry_pb2.BUFFER,
                                                   buffer_params=geometry_pb2.Params.Buffer(
                                                       distance=distance),
-                                                  result_encoding=geometry_pb2.WKB)
+                                                  result_encoding=RESULT_ENCODING)
 
         geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
@@ -826,19 +832,22 @@ class BaseGeometry(object):
 
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.PROJECT,
-                                                  result_proj=to_proj)
+                                                  result_proj=to_proj,
+                                                  result_encoding=RESULT_ENCODING)
         geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def simplify(self):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
-                                                  operator=geometry_pb2.SIMPLIFY)
+                                                  operator=geometry_pb2.SIMPLIFY,
+                                                  result_encoding=RESULT_ENCODING)
         geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
     def convex(self):
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
-                                                  operator=geometry_pb2.CONVEX_HULL)
+                                                  operator=geometry_pb2.CONVEX_HULL,
+                                                  result_encoding=RESULT_ENCODING)
         geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
@@ -863,7 +872,8 @@ Densify a polyline or polygon by the max_length in meters. No segment will be la
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=operator_type,
                                                   densify_params=params,
-                                                  result_proj=result_proj)
+                                                  result_proj=result_proj,
+                                                  result_encoding=RESULT_ENCODING)
         geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
@@ -884,7 +894,8 @@ Densify a polyline or polygon by the max_length in meters. No segment will be la
         """
         op_area = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                operator=geometry_pb2.GEODETIC_AREA,
-                                               result_proj=geometry_pb2.ProjectionData(epsg=4326))
+                                               result_proj=geometry_pb2.ProjectionData(epsg=4326),
+                                               result_encoding=RESULT_ENCODING)
         area_response = geometry_init.geometry_service.operate(op_area)
         return area_response.measure
 
@@ -903,7 +914,8 @@ Densify a polyline or polygon by the max_length in meters. No segment will be la
         op_distance = geometry_pb2.GeometryRequest(left_geometry=self.geometry_data,
                                                    right_geometry=other_geom.geometry_data,
                                                    operator=geometry_pb2.DISTANCE,
-                                                   operation_proj=local_proj)
+                                                   operation_proj=local_proj,
+                                                   result_encoding=RESULT_ENCODING)
         distance_response = geometry_init.geometry_service.operate(op_distance)
         return distance_response.measure
 
@@ -912,7 +924,7 @@ Densify a polyline or polygon by the max_length in meters. No segment will be la
                                                   operator=geometry_pb2.GEODESIC_BUFFER,
                                                   buffer_params=geometry_pb2.Params.Buffer(
                                                       distance=distance_m),
-                                                  result_encoding=geometry_pb2.WKB)
+                                                  result_encoding=RESULT_ENCODING)
 
         geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
@@ -980,7 +992,8 @@ Create a multipoint geometry where all points exist within the input polygon. Po
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.RANDOM_POINTS,
                                                   random_points_params=params,
-                                                  result_proj=result_proj)
+                                                  result_proj=result_proj,
+                                                  result_encoding=RESULT_ENCODING)
 
         geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
@@ -1077,7 +1090,8 @@ union geometries locally using shapely union.
                                                   right_geometry=other_geom.geometry_data,
                                                   operator=operator_type,
                                                   operation_proj=operation_proj,
-                                                  result_proj=result_proj)
+                                                  result_proj=result_proj,
+                                                  result_encoding=RESULT_ENCODING)
         return BaseGeometry.import_protobuf(geometry_init.geometry_service.operate(op_request).geometry)
 
     def equals(self,
@@ -1148,7 +1162,8 @@ union geometries locally using shapely union.
 
         op_request = geometry_pb2.GeometryRequest(geometry=self.geometry_data,
                                                   operator=geometry_pb2.GENERALIZE_BY_AREA,
-                                                  generalize_by_area_params=generalize_by_area_params)
+                                                  generalize_by_area_params=generalize_by_area_params,
+                                                  result_encoding=RESULT_ENCODING)
 
         geometry_response = geometry_init.geometry_service.operate(op_request)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
@@ -1159,7 +1174,7 @@ union geometries locally using shapely union.
         create a GeometryData protobuf object from the current geometry
         :return: GeometryData object with a defined spatial reference
         """
-        return geometry_pb2.GeometryData(wkb=self.wkb, proj=self._proj)
+        return geometry_pb2.GeometryData(ewkb=self.wkb, proj=self._proj)
 
     @property
     def envelope_data(self):
@@ -1222,7 +1237,8 @@ bounds order according to carto
                                                     affine_transform_params=affine_transform_params,
                                                     operator=geometry_pb2.AFFINE_TRANSFORM,
                                                     operation_proj=local_proj,
-                                                    result_proj=self.proj)
+                                                    result_proj=self.proj,
+                                                    result_encoding=RESULT_ENCODING)
         geometry_response = geometry_init.geometry_service.operate(op_translate)
         return BaseGeometry.import_protobuf(geometry_response.geometry)
 
@@ -1435,6 +1451,8 @@ class RPCReader(object):
         # TODO, manage geometry_data with geojson and eprojishape
         if len(self._geometry_data.wkt) > 0:
             self._reader_wkt = self._lgeos.GEOSWKTReader_create()
+        elif len(geometry_data.ewkb) > 0:
+            self._reader_wkb = self._lgeos.GEOSWKBReader_create()
         elif len(geometry_data.wkb) > 0:
             self._reader_wkb = self._lgeos.GEOSWKBReader_create()
         # TODO raise an exception here
@@ -1455,13 +1473,15 @@ class RPCReader(object):
         if len(self._geometry_data.wkt) > 0:
             geom = self.read_wkt()
         elif len(self._geometry_data.wkb) > 0:
-            geom = self.read_wkb()
+            geom = self.read_wkb(self._geometry_data.wkb)
+        elif len(self._geometry_data.ewkb) > 0:
+            geom = self.read_wkb(self._geometry_data.ewkb)
         result = geom_factory(geom, proj=self._geometry_data.proj)
         return result
 
-    def read_wkb(self):
+    def read_wkb(self, wkb_bytes_array):
         geom = self._lgeos.GEOSWKBReader_read(
-            self._reader_wkb, c_char_p(self._geometry_data.wkb), c_size_t(len(self._geometry_data.wkb)))
+            self._reader_wkb, c_char_p(wkb_bytes_array), c_size_t(len(wkb_bytes_array)))
         if not geom:
             raise ValueError(
                 "Could not create geometry because of errors "

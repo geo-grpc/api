@@ -56,3 +56,15 @@ func (m *GeometryRequest) SetRightGeometry(geometry *GeometryData) {
 func (m *GeometryRequest) SetRightGeometryRequest(request *GeometryRequest) {
 	m.Right = &GeometryRequest_RightGeometryRequest{RightGeometryRequest:request}
 }
+
+func (m *GeometryRequest) HasLeftGeometryInput() bool {
+	return m.GetLeftGeometry() != nil || m.GetGeometry() != nil || m.GetLeftGeometryRequest() != nil || m.GetGeometryRequest() != nil
+}
+
+func (m *GeometryRequest) HasGeometryInput() bool {
+	return m.HasLeftGeometryInput()
+}
+
+func (m *GeometryRequest) HasRightGeometryInput() bool {
+	return m.GetRightGeometry() != nil || m.GetRightGeometryRequest() != nil
+}

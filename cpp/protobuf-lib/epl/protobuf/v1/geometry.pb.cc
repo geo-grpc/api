@@ -43,6 +43,7 @@ class GeometryDataDefaultTypeInternal {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr geojson_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr wkb_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr esri_shape_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ewkb_;
 } _GeometryData_default_instance_;
 class ProjectionData_CustomDefaultTypeInternal {
  public:
@@ -524,6 +525,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fgeometry
   offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, geojson_),
   offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, wkb_),
   offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, esri_shape_),
+  offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, ewkb_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryData, proj_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryData, envelope_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryData, simple_),
@@ -744,29 +746,29 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fgeometry
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::epl::protobuf::v1::GeometryData)},
-  { 15, -1, sizeof(::epl::protobuf::v1::ProjectionData_Custom)},
-  { 23, -1, sizeof(::epl::protobuf::v1::ProjectionData)},
-  { 38, -1, sizeof(::epl::protobuf::v1::EnvelopeData)},
-  { 50, -1, sizeof(::epl::protobuf::v1::GeometryRequest)},
-  { 82, -1, sizeof(::epl::protobuf::v1::GeodeticInverse)},
-  { 90, 97, sizeof(::epl::protobuf::v1::GeometryResponse_RelateMapEntry_DoNotUse)},
-  { 99, -1, sizeof(::epl::protobuf::v1::GeometryResponse)},
-  { 110, -1, sizeof(::epl::protobuf::v1::FileRequestChunk)},
-  { 124, -1, sizeof(::epl::protobuf::v1::Params_Buffer)},
-  { 133, -1, sizeof(::epl::protobuf::v1::Params_GeodeticBuffer)},
-  { 142, -1, sizeof(::epl::protobuf::v1::Params_Convex)},
-  { 148, -1, sizeof(::epl::protobuf::v1::Params_Relate)},
-  { 154, -1, sizeof(::epl::protobuf::v1::Params_RandomPoints)},
-  { 161, -1, sizeof(::epl::protobuf::v1::Params_Generalize)},
-  { 168, -1, sizeof(::epl::protobuf::v1::Params_GeneralizeByArea)},
-  { 176, -1, sizeof(::epl::protobuf::v1::Params_Intersection)},
-  { 182, -1, sizeof(::epl::protobuf::v1::Params_Offset)},
-  { 191, -1, sizeof(::epl::protobuf::v1::Params_Cut)},
-  { 197, -1, sizeof(::epl::protobuf::v1::Params_Clip)},
-  { 203, -1, sizeof(::epl::protobuf::v1::Params_Densify)},
-  { 209, -1, sizeof(::epl::protobuf::v1::Params_Simplify)},
-  { 215, -1, sizeof(::epl::protobuf::v1::Params_AffineTransform)},
-  { 223, -1, sizeof(::epl::protobuf::v1::Params)},
+  { 16, -1, sizeof(::epl::protobuf::v1::ProjectionData_Custom)},
+  { 24, -1, sizeof(::epl::protobuf::v1::ProjectionData)},
+  { 39, -1, sizeof(::epl::protobuf::v1::EnvelopeData)},
+  { 51, -1, sizeof(::epl::protobuf::v1::GeometryRequest)},
+  { 83, -1, sizeof(::epl::protobuf::v1::GeodeticInverse)},
+  { 91, 98, sizeof(::epl::protobuf::v1::GeometryResponse_RelateMapEntry_DoNotUse)},
+  { 100, -1, sizeof(::epl::protobuf::v1::GeometryResponse)},
+  { 111, -1, sizeof(::epl::protobuf::v1::FileRequestChunk)},
+  { 125, -1, sizeof(::epl::protobuf::v1::Params_Buffer)},
+  { 134, -1, sizeof(::epl::protobuf::v1::Params_GeodeticBuffer)},
+  { 143, -1, sizeof(::epl::protobuf::v1::Params_Convex)},
+  { 149, -1, sizeof(::epl::protobuf::v1::Params_Relate)},
+  { 155, -1, sizeof(::epl::protobuf::v1::Params_RandomPoints)},
+  { 162, -1, sizeof(::epl::protobuf::v1::Params_Generalize)},
+  { 169, -1, sizeof(::epl::protobuf::v1::Params_GeneralizeByArea)},
+  { 177, -1, sizeof(::epl::protobuf::v1::Params_Intersection)},
+  { 183, -1, sizeof(::epl::protobuf::v1::Params_Offset)},
+  { 192, -1, sizeof(::epl::protobuf::v1::Params_Cut)},
+  { 198, -1, sizeof(::epl::protobuf::v1::Params_Clip)},
+  { 204, -1, sizeof(::epl::protobuf::v1::Params_Densify)},
+  { 210, -1, sizeof(::epl::protobuf::v1::Params_Simplify)},
+  { 216, -1, sizeof(::epl::protobuf::v1::Params_AffineTransform)},
+  { 224, -1, sizeof(::epl::protobuf::v1::Params)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -798,140 +800,143 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\036epl/protobuf/v1/geometry.proto\022\017epl.pr"
-  "otobuf.v1\"\232\002\n\014GeometryData\022\023\n\013geometry_i"
+  "otobuf.v1\"\252\002\n\014GeometryData\022\023\n\013geometry_i"
   "d\030\001 \001(\004\022\022\n\nfeature_id\030\002 \001(\t\022\r\n\003wkt\030\003 \001(\t"
   "H\000\022\021\n\007geojson\030\004 \001(\tH\000\022\r\n\003wkb\030\005 \001(\014H\000\022\024\n\n"
-  "esri_shape\030\006 \001(\014H\000\022-\n\004proj\030\007 \001(\0132\037.epl.p"
-  "rotobuf.v1.ProjectionData\022/\n\010envelope\030\r "
-  "\001(\0132\035.epl.protobuf.v1.EnvelopeData\022,\n\006si"
-  "mple\030\016 \001(\0162\034.epl.protobuf.v1.SimpleState"
-  "B\006\n\004dataJ\004\010\010\020\r\"\307\003\n\016ProjectionData\022\016\n\004eps"
-  "g\030\001 \001(\005H\000\022\017\n\005proj4\030\002 \001(\tH\000\0228\n\006custom\030\003 \001"
-  "(\0132&.epl.protobuf.v1.ProjectionData.Cust"
-  "omH\000\022\r\n\003wkt\030\004 \001(\tH\000\022/\n\010geometry\030\n \001(\0132\035."
-  "epl.protobuf.v1.GeometryData\022+\n\004bbox\030\013 \001"
-  "(\0132\035.epl.protobuf.v1.EnvelopeData\022/\n\010cen"
-  "troid\030\014 \001(\0132\035.epl.protobuf.v1.GeometryDa"
-  "ta\022\r\n\005shape\030\010 \003(\r\022\021\n\ttransform\030\t \003(\001\032_\n\006"
-  "Custom\022\r\n\005lon_0\030\001 \001(\001\022\r\n\005lat_0\030\002 \001(\001\0227\n\007"
-  "cs_type\030\003 \001(\0162&.epl.protobuf.v1.Projecti"
-  "onData.CSType\"\031\n\006CSType\022\017\n\013LAMBERT_AZI\020\000"
-  "B\014\n\ndefinitionJ\004\010\005\020\006J\004\010\006\020\007J\004\010\007\020\010\"\221\001\n\014Env"
-  "elopeData\022\014\n\004xmin\030\001 \001(\001\022\014\n\004ymin\030\002 \001(\001\022\014\n"
-  "\004xmax\030\003 \001(\001\022\014\n\004ymax\030\004 \001(\001\022-\n\004proj\030\005 \001(\0132"
-  "\037.epl.protobuf.v1.ProjectionData\022\014\n\004zmin"
-  "\030\006 \001(\001\022\014\n\004zmax\030\007 \001(\001\"\336\013\n\017GeometryRequest"
-  "\0221\n\010geometry\030\001 \001(\0132\035.epl.protobuf.v1.Geo"
-  "metryDataH\000\0226\n\rleft_geometry\030\002 \001(\0132\035.epl"
-  ".protobuf.v1.GeometryDataH\000\022<\n\020geometry_"
-  "request\030\003 \001(\0132 .epl.protobuf.v1.Geometry"
-  "RequestH\000\022A\n\025left_geometry_request\030\004 \001(\013"
-  "2 .epl.protobuf.v1.GeometryRequestH\000\0227\n\016"
-  "right_geometry\030\005 \001(\0132\035.epl.protobuf.v1.G"
-  "eometryDataH\001\022B\n\026right_geometry_request\030"
-  "\006 \001(\0132 .epl.protobuf.v1.GeometryRequestH"
-  "\001\022/\n\010operator\030\007 \001(\0162\035.epl.protobuf.v1.Op"
-  "eratorType\0222\n\017result_encoding\030\010 \001(\0162\031.ep"
-  "l.protobuf.v1.Encoding\0227\n\016operation_proj"
-  "\030\t \001(\0132\037.epl.protobuf.v1.ProjectionData\022"
-  "4\n\013result_proj\030\n \001(\0132\037.epl.protobuf.v1.P"
-  "rojectionData\0227\n\rbuffer_params\030\013 \001(\0132\036.e"
-  "pl.protobuf.v1.Params.BufferH\002\0227\n\rconvex"
-  "_params\030\014 \001(\0132\036.epl.protobuf.v1.Params.C"
-  "onvexH\002\0227\n\rrelate_params\030\r \001(\0132\036.epl.pro"
-  "tobuf.v1.Params.RelateH\002\022D\n\024random_point"
-  "s_params\030\016 \001(\0132$.epl.protobuf.v1.Params."
-  "RandomPointsH\002\022\?\n\021generalize_params\030\017 \001("
-  "\0132\".epl.protobuf.v1.Params.GeneralizeH\002\022"
-  "C\n\023intersection_params\030\020 \001(\0132$.epl.proto"
-  "buf.v1.Params.IntersectionH\002\0227\n\roffset_p"
-  "arams\030\021 \001(\0132\036.epl.protobuf.v1.Params.Off"
-  "setH\002\0221\n\ncut_params\030\022 \001(\0132\033.epl.protobuf"
-  ".v1.Params.CutH\002\0223\n\013clip_params\030\023 \001(\0132\034."
-  "epl.protobuf.v1.Params.ClipH\002\0229\n\016densify"
-  "_params\030\024 \001(\0132\037.epl.protobuf.v1.Params.D"
-  "ensifyH\002\022;\n\017simplify_params\030\025 \001(\0132 .epl."
-  "protobuf.v1.Params.SimplifyH\002\022M\n\031general"
-  "ize_by_area_params\030\026 \001(\0132(.epl.protobuf."
-  "v1.Params.GeneralizeByAreaH\002\022J\n\027affine_t"
-  "ransform_params\030\027 \001(\0132\'.epl.protobuf.v1."
-  "Params.AffineTransformH\002\022H\n\026geodetic_buf"
-  "fer_params\030\030 \001(\0132&.epl.protobuf.v1.Param"
-  "s.GeodeticBufferH\002B\006\n\004leftB\007\n\005rightB\010\n\006p"
-  "arams\"\?\n\017GeodeticInverse\022\014\n\004az12\030\001 \001(\001\022\014"
-  "\n\004az21\030\002 \001(\001\022\020\n\010distance\030\003 \001(\001\"\270\002\n\020Geome"
-  "tryResponse\0221\n\010geometry\030\001 \001(\0132\035.epl.prot"
-  "obuf.v1.GeometryDataH\000\022\036\n\024spatial_relati"
-  "onship\030\002 \001(\010H\000\022\021\n\007measure\030\003 \001(\001H\000\022<\n\020geo"
-  "detic_inverse\030\004 \001(\0132 .epl.protobuf.v1.Ge"
-  "odeticInverseH\000\022D\n\nrelate_map\030\005 \003(\01320.ep"
-  "l.protobuf.v1.GeometryResponse.RelateMap"
-  "Entry\0320\n\016RelateMapEntry\022\013\n\003key\030\001 \001(\003\022\r\n\005"
-  "value\030\002 \001(\010:\0028\001B\010\n\006result\"\341\002\n\020FileReques"
-  "tChunk\0228\n\016nested_request\030\001 \001(\0132 .epl.pro"
-  "tobuf.v1.GeometryRequest\0227\n\024result_encod"
-  "ing_type\030\002 \001(\0162\031.epl.protobuf.v1.Encodin"
-  "g\0223\n\ninput_proj\030\003 \001(\0132\037.epl.protobuf.v1."
-  "ProjectionData\0224\n\013result_proj\030\005 \001(\0132\037.ep"
-  "l.protobuf.v1.ProjectionData\022\014\n\004data\030\006 \001"
-  "(\014\022\014\n\004size\030\007 \001(\003\022\016\n\006offset\030\010 \001(\003\022\021\n\tfile"
-  "_name\030\t \001(\t\022\025\n\ris_last_chunk\030\n \001(\010\"\031\n\010Fi"
-  "leType\022\r\n\tSHAPEFILE\020\000\"\323\007\n\006Params\032l\n\006Buff"
-  "er\022\020\n\010distance\030\001 \001(\001\022\025\n\rmax_deviation\030\002 "
-  "\001(\001\022\024\n\014union_result\030\003 \001(\010\022#\n\033max_vertice"
-  "s_in_full_circle\030\004 \001(\005\032t\n\016GeodeticBuffer"
-  "\022\020\n\010distance\030\001 \001(\001\022\025\n\rmax_deviation\030\002 \001("
-  "\001\022\024\n\014union_result\030\003 \001(\010\022#\n\033max_vertices_"
-  "in_full_circle\030\004 \001(\005\032\027\n\006Convex\022\r\n\005merge\030"
-  "\001 \001(\010\032\030\n\006Relate\022\016\n\006de_9im\030\001 \001(\t\032:\n\014Rando"
-  "mPoints\022\034\n\024points_per_square_km\030\001 \001(\001\022\014\n"
-  "\004seed\030\002 \001(\003\032\?\n\nGeneralize\022\025\n\rmax_deviati"
-  "on\030\001 \001(\001\022\032\n\022remove_degenerates\030\002 \001(\010\032b\n\020"
-  "GeneralizeByArea\022\031\n\021percent_reduction\030\001 "
-  "\001(\001\022\027\n\017max_point_count\030\002 \001(\005\022\032\n\022remove_d"
-  "egenerates\030\003 \001(\010\032&\n\014Intersection\022\026\n\016dime"
-  "nsion_mask\030\001 \001(\005\032\307\001\n\006Offset\022\020\n\010distance\030"
-  "\001 \001(\001\022@\n\tjoin_type\030\002 \001(\0162-.epl.protobuf."
-  "v1.Params.Offset.OffsetJoinType\022\023\n\013bevel"
-  "_ratio\030\003 \001(\001\022\025\n\rflatten_error\030\004 \001(\001\"=\n\016O"
-  "ffsetJoinType\022\t\n\005ROUND\020\000\022\t\n\005BEVEL\020\001\022\t\n\005M"
-  "ITER\020\002\022\n\n\006SQUARE\020\003\032\035\n\003Cut\022\026\n\016consider_to"
-  "uch\030\001 \001(\010\0327\n\004Clip\022/\n\010envelope\030\001 \001(\0132\035.ep"
-  "l.protobuf.v1.EnvelopeData\032\035\n\007Densify\022\022\n"
-  "\nmax_length\030\001 \001(\001\032\031\n\010Simplify\022\r\n\005force\030\001"
-  " \001(\010\032M\n\017AffineTransform\022\020\n\010geodetic\030\002 \001("
-  "\010\022\020\n\010x_offset\030\003 \001(\001\022\020\n\010y_offset\030\004 \001(\001J\004\010"
-  "\001\020\002*\306\001\n\013SimpleState\022\022\n\016SIMPLE_UNKNOWN\020\000\022"
-  "\017\n\013WEAK_SIMPLE\020\001\022\021\n\rSTRONG_SIMPLE\020\002\022\016\n\nN"
-  "ON_SIMPLE\020\003\022\022\n\016STRUCTURE_FLAW\020\004\022\027\n\023DEGEN"
-  "ERATE_SEGMENTS\020\005\022\016\n\nCLUSTERING\020\006\022\014\n\010CRAC"
-  "KING\020\007\022\016\n\nCROSS_OVER\020\010\022\024\n\020RING_ORIENTATI"
-  "ON\020\t*O\n\010Encoding\022\024\n\020UNKNOWN_ENCODING\020\000\022\007"
-  "\n\003WKB\020\001\022\007\n\003WKT\020\002\022\013\n\007GEOJSON\020\003\022\016\n\nESRI_SH"
-  "APE\020\004*\313\006\n\014OperatorType\022\024\n\020UNKNOWN_OPERAT"
-  "OR\020\000\022\013\n\007PROJECT\020\001\022\022\n\016EXPORT_TO_JSON\020\002\022\024\n"
-  "\020IMPORT_FROM_JSON\020\003\022\030\n\024EXPORT_TO_ESRI_SH"
-  "APE\020\004\022\032\n\026IMPORT_FROM_ESRI_SHAPE\020\005\022\t\n\005UNI"
-  "ON\020\006\022\016\n\nDIFFERENCE\020\007\022\020\n\014PROXIMITY_2D\020\010\022\n"
-  "\n\006RELATE\020\t\022\n\n\006EQUALS\020\n\022\014\n\010DISJOINT\020\013\022\016\n\n"
-  "INTERSECTS\020\014\022\n\n\006WITHIN\020\r\022\014\n\010CONTAINS\020\016\022\013"
-  "\n\007CROSSES\020\017\022\013\n\007TOUCHES\020\020\022\014\n\010OVERLAPS\020\021\022\n"
-  "\n\006BUFFER\020\022\022\014\n\010DISTANCE\020\023\022\020\n\014INTERSECTION"
-  "\020\024\022\010\n\004CLIP\020\025\022\007\n\003CUT\020\026\022\025\n\021DENSIFY_BY_LENG"
-  "TH\020\027\022\023\n\017GEODESIC_BUFFER\020\032\022\036\n\032GEODETIC_DE"
-  "NSIFY_BY_LENGTH\020\033\022\021\n\rGEODETIC_AREA\020\036\022\014\n\010"
-  "SIMPLIFY\020\037\022\020\n\014SIMPLIFY_OGC\020 \022\n\n\006OFFSET\020!"
-  "\022\016\n\nGENERALIZE\020\"\022\026\n\022GENERALIZE_BY_AREA\020#"
-  "\022\021\n\rEXPORT_TO_WKB\020$\022\023\n\017IMPORT_FROM_WKB\020%"
-  "\022\021\n\rEXPORT_TO_WKT\020&\022\023\n\017IMPORT_FROM_WKT\020\'"
-  "\022\027\n\023IMPORT_FROM_GEOJSON\020(\022\025\n\021EXPORT_TO_G"
-  "EOJSON\020)\022\030\n\024SYMMETRIC_DIFFERENCE\020*\022\017\n\013CO"
-  "NVEX_HULL\020+\022\014\n\010BOUNDARY\020,\022\021\n\rRANDOM_POIN"
-  "TS\020-\022\024\n\020ENCLOSING_CIRCLE\020.\022\024\n\020AFFINE_TRA"
-  "NSFORM\020/\022\023\n\017GEODETIC_LENGTH\0200\022\024\n\020GEODETI"
-  "C_INVERSE\0201B]\n\023com.epl.protobuf.v1B\rGeom"
-  "etryProtoP\001Z.github.com/geo-grpc/api/gol"
-  "ang/epl/protobuf/v1\242\002\004GMPBb\006proto3"
+  "esri_shape\030\006 \001(\014H\000\022\016\n\004ewkb\030\017 \001(\014H\000\022-\n\004pr"
+  "oj\030\007 \001(\0132\037.epl.protobuf.v1.ProjectionDat"
+  "a\022/\n\010envelope\030\r \001(\0132\035.epl.protobuf.v1.En"
+  "velopeData\022,\n\006simple\030\016 \001(\0162\034.epl.protobu"
+  "f.v1.SimpleStateB\006\n\004dataJ\004\010\010\020\r\"\307\003\n\016Proje"
+  "ctionData\022\016\n\004epsg\030\001 \001(\005H\000\022\017\n\005proj4\030\002 \001(\t"
+  "H\000\0228\n\006custom\030\003 \001(\0132&.epl.protobuf.v1.Pro"
+  "jectionData.CustomH\000\022\r\n\003wkt\030\004 \001(\tH\000\022/\n\010g"
+  "eometry\030\n \001(\0132\035.epl.protobuf.v1.Geometry"
+  "Data\022+\n\004bbox\030\013 \001(\0132\035.epl.protobuf.v1.Env"
+  "elopeData\022/\n\010centroid\030\014 \001(\0132\035.epl.protob"
+  "uf.v1.GeometryData\022\r\n\005shape\030\010 \003(\r\022\021\n\ttra"
+  "nsform\030\t \003(\001\032_\n\006Custom\022\r\n\005lon_0\030\001 \001(\001\022\r\n"
+  "\005lat_0\030\002 \001(\001\0227\n\007cs_type\030\003 \001(\0162&.epl.prot"
+  "obuf.v1.ProjectionData.CSType\"\031\n\006CSType\022"
+  "\017\n\013LAMBERT_AZI\020\000B\014\n\ndefinitionJ\004\010\005\020\006J\004\010\006"
+  "\020\007J\004\010\007\020\010\"\221\001\n\014EnvelopeData\022\014\n\004xmin\030\001 \001(\001\022"
+  "\014\n\004ymin\030\002 \001(\001\022\014\n\004xmax\030\003 \001(\001\022\014\n\004ymax\030\004 \001("
+  "\001\022-\n\004proj\030\005 \001(\0132\037.epl.protobuf.v1.Projec"
+  "tionData\022\014\n\004zmin\030\006 \001(\001\022\014\n\004zmax\030\007 \001(\001\"\336\013\n"
+  "\017GeometryRequest\0221\n\010geometry\030\001 \001(\0132\035.epl"
+  ".protobuf.v1.GeometryDataH\000\0226\n\rleft_geom"
+  "etry\030\002 \001(\0132\035.epl.protobuf.v1.GeometryDat"
+  "aH\000\022<\n\020geometry_request\030\003 \001(\0132 .epl.prot"
+  "obuf.v1.GeometryRequestH\000\022A\n\025left_geomet"
+  "ry_request\030\004 \001(\0132 .epl.protobuf.v1.Geome"
+  "tryRequestH\000\0227\n\016right_geometry\030\005 \001(\0132\035.e"
+  "pl.protobuf.v1.GeometryDataH\001\022B\n\026right_g"
+  "eometry_request\030\006 \001(\0132 .epl.protobuf.v1."
+  "GeometryRequestH\001\022/\n\010operator\030\007 \001(\0162\035.ep"
+  "l.protobuf.v1.OperatorType\0222\n\017result_enc"
+  "oding\030\010 \001(\0162\031.epl.protobuf.v1.Encoding\0227"
+  "\n\016operation_proj\030\t \001(\0132\037.epl.protobuf.v1"
+  ".ProjectionData\0224\n\013result_proj\030\n \001(\0132\037.e"
+  "pl.protobuf.v1.ProjectionData\0227\n\rbuffer_"
+  "params\030\013 \001(\0132\036.epl.protobuf.v1.Params.Bu"
+  "fferH\002\0227\n\rconvex_params\030\014 \001(\0132\036.epl.prot"
+  "obuf.v1.Params.ConvexH\002\0227\n\rrelate_params"
+  "\030\r \001(\0132\036.epl.protobuf.v1.Params.RelateH\002"
+  "\022D\n\024random_points_params\030\016 \001(\0132$.epl.pro"
+  "tobuf.v1.Params.RandomPointsH\002\022\?\n\021genera"
+  "lize_params\030\017 \001(\0132\".epl.protobuf.v1.Para"
+  "ms.GeneralizeH\002\022C\n\023intersection_params\030\020"
+  " \001(\0132$.epl.protobuf.v1.Params.Intersecti"
+  "onH\002\0227\n\roffset_params\030\021 \001(\0132\036.epl.protob"
+  "uf.v1.Params.OffsetH\002\0221\n\ncut_params\030\022 \001("
+  "\0132\033.epl.protobuf.v1.Params.CutH\002\0223\n\013clip"
+  "_params\030\023 \001(\0132\034.epl.protobuf.v1.Params.C"
+  "lipH\002\0229\n\016densify_params\030\024 \001(\0132\037.epl.prot"
+  "obuf.v1.Params.DensifyH\002\022;\n\017simplify_par"
+  "ams\030\025 \001(\0132 .epl.protobuf.v1.Params.Simpl"
+  "ifyH\002\022M\n\031generalize_by_area_params\030\026 \001(\013"
+  "2(.epl.protobuf.v1.Params.GeneralizeByAr"
+  "eaH\002\022J\n\027affine_transform_params\030\027 \001(\0132\'."
+  "epl.protobuf.v1.Params.AffineTransformH\002"
+  "\022H\n\026geodetic_buffer_params\030\030 \001(\0132&.epl.p"
+  "rotobuf.v1.Params.GeodeticBufferH\002B\006\n\004le"
+  "ftB\007\n\005rightB\010\n\006params\"\?\n\017GeodeticInverse"
+  "\022\014\n\004az12\030\001 \001(\001\022\014\n\004az21\030\002 \001(\001\022\020\n\010distance"
+  "\030\003 \001(\001\"\270\002\n\020GeometryResponse\0221\n\010geometry\030"
+  "\001 \001(\0132\035.epl.protobuf.v1.GeometryDataH\000\022\036"
+  "\n\024spatial_relationship\030\002 \001(\010H\000\022\021\n\007measur"
+  "e\030\003 \001(\001H\000\022<\n\020geodetic_inverse\030\004 \001(\0132 .ep"
+  "l.protobuf.v1.GeodeticInverseH\000\022D\n\nrelat"
+  "e_map\030\005 \003(\01320.epl.protobuf.v1.GeometryRe"
+  "sponse.RelateMapEntry\0320\n\016RelateMapEntry\022"
+  "\013\n\003key\030\001 \001(\003\022\r\n\005value\030\002 \001(\010:\0028\001B\010\n\006resul"
+  "t\"\341\002\n\020FileRequestChunk\0228\n\016nested_request"
+  "\030\001 \001(\0132 .epl.protobuf.v1.GeometryRequest"
+  "\0227\n\024result_encoding_type\030\002 \001(\0162\031.epl.pro"
+  "tobuf.v1.Encoding\0223\n\ninput_proj\030\003 \001(\0132\037."
+  "epl.protobuf.v1.ProjectionData\0224\n\013result"
+  "_proj\030\005 \001(\0132\037.epl.protobuf.v1.Projection"
+  "Data\022\014\n\004data\030\006 \001(\014\022\014\n\004size\030\007 \001(\003\022\016\n\006offs"
+  "et\030\010 \001(\003\022\021\n\tfile_name\030\t \001(\t\022\025\n\ris_last_c"
+  "hunk\030\n \001(\010\"\031\n\010FileType\022\r\n\tSHAPEFILE\020\000\"\323\007"
+  "\n\006Params\032l\n\006Buffer\022\020\n\010distance\030\001 \001(\001\022\025\n\r"
+  "max_deviation\030\002 \001(\001\022\024\n\014union_result\030\003 \001("
+  "\010\022#\n\033max_vertices_in_full_circle\030\004 \001(\005\032t"
+  "\n\016GeodeticBuffer\022\020\n\010distance\030\001 \001(\001\022\025\n\rma"
+  "x_deviation\030\002 \001(\001\022\024\n\014union_result\030\003 \001(\010\022"
+  "#\n\033max_vertices_in_full_circle\030\004 \001(\005\032\027\n\006"
+  "Convex\022\r\n\005merge\030\001 \001(\010\032\030\n\006Relate\022\016\n\006de_9i"
+  "m\030\001 \001(\t\032:\n\014RandomPoints\022\034\n\024points_per_sq"
+  "uare_km\030\001 \001(\001\022\014\n\004seed\030\002 \001(\003\032\?\n\nGeneraliz"
+  "e\022\025\n\rmax_deviation\030\001 \001(\001\022\032\n\022remove_degen"
+  "erates\030\002 \001(\010\032b\n\020GeneralizeByArea\022\031\n\021perc"
+  "ent_reduction\030\001 \001(\001\022\027\n\017max_point_count\030\002"
+  " \001(\005\022\032\n\022remove_degenerates\030\003 \001(\010\032&\n\014Inte"
+  "rsection\022\026\n\016dimension_mask\030\001 \001(\005\032\307\001\n\006Off"
+  "set\022\020\n\010distance\030\001 \001(\001\022@\n\tjoin_type\030\002 \001(\016"
+  "2-.epl.protobuf.v1.Params.Offset.OffsetJ"
+  "oinType\022\023\n\013bevel_ratio\030\003 \001(\001\022\025\n\rflatten_"
+  "error\030\004 \001(\001\"=\n\016OffsetJoinType\022\t\n\005ROUND\020\000"
+  "\022\t\n\005BEVEL\020\001\022\t\n\005MITER\020\002\022\n\n\006SQUARE\020\003\032\035\n\003Cu"
+  "t\022\026\n\016consider_touch\030\001 \001(\010\0327\n\004Clip\022/\n\010env"
+  "elope\030\001 \001(\0132\035.epl.protobuf.v1.EnvelopeDa"
+  "ta\032\035\n\007Densify\022\022\n\nmax_length\030\001 \001(\001\032\031\n\010Sim"
+  "plify\022\r\n\005force\030\001 \001(\010\032M\n\017AffineTransform\022"
+  "\020\n\010geodetic\030\002 \001(\010\022\020\n\010x_offset\030\003 \001(\001\022\020\n\010y"
+  "_offset\030\004 \001(\001J\004\010\001\020\002*\306\001\n\013SimpleState\022\022\n\016S"
+  "IMPLE_UNKNOWN\020\000\022\017\n\013WEAK_SIMPLE\020\001\022\021\n\rSTRO"
+  "NG_SIMPLE\020\002\022\016\n\nNON_SIMPLE\020\003\022\022\n\016STRUCTURE"
+  "_FLAW\020\004\022\027\n\023DEGENERATE_SEGMENTS\020\005\022\016\n\nCLUS"
+  "TERING\020\006\022\014\n\010CRACKING\020\007\022\016\n\nCROSS_OVER\020\010\022\024"
+  "\n\020RING_ORIENTATION\020\t*Y\n\010Encoding\022\024\n\020UNKN"
+  "OWN_ENCODING\020\000\022\007\n\003WKB\020\001\022\007\n\003WKT\020\002\022\013\n\007GEOJ"
+  "SON\020\003\022\016\n\nESRI_SHAPE\020\004\022\010\n\004EWKB\020\005*\365\006\n\014Oper"
+  "atorType\022\024\n\020UNKNOWN_OPERATOR\020\000\022\013\n\007PROJEC"
+  "T\020\001\022\022\n\016EXPORT_TO_JSON\020\002\022\024\n\020IMPORT_FROM_J"
+  "SON\020\003\022\030\n\024EXPORT_TO_ESRI_SHAPE\020\004\022\032\n\026IMPOR"
+  "T_FROM_ESRI_SHAPE\020\005\022\t\n\005UNION\020\006\022\016\n\nDIFFER"
+  "ENCE\020\007\022\020\n\014PROXIMITY_2D\020\010\022\n\n\006RELATE\020\t\022\n\n\006"
+  "EQUALS\020\n\022\014\n\010DISJOINT\020\013\022\016\n\nINTERSECTS\020\014\022\n"
+  "\n\006WITHIN\020\r\022\014\n\010CONTAINS\020\016\022\013\n\007CROSSES\020\017\022\013\n"
+  "\007TOUCHES\020\020\022\014\n\010OVERLAPS\020\021\022\n\n\006BUFFER\020\022\022\014\n\010"
+  "DISTANCE\020\023\022\020\n\014INTERSECTION\020\024\022\010\n\004CLIP\020\025\022\007"
+  "\n\003CUT\020\026\022\025\n\021DENSIFY_BY_LENGTH\020\027\022\023\n\017GEODES"
+  "IC_BUFFER\020\032\022\036\n\032GEODETIC_DENSIFY_BY_LENGT"
+  "H\020\033\022\021\n\rGEODETIC_AREA\020\036\022\014\n\010SIMPLIFY\020\037\022\020\n\014"
+  "SIMPLIFY_OGC\020 \022\n\n\006OFFSET\020!\022\016\n\nGENERALIZE"
+  "\020\"\022\026\n\022GENERALIZE_BY_AREA\020#\022\021\n\rEXPORT_TO_"
+  "WKB\020$\022\023\n\017IMPORT_FROM_WKB\020%\022\021\n\rEXPORT_TO_"
+  "WKT\020&\022\023\n\017IMPORT_FROM_WKT\020\'\022\027\n\023IMPORT_FRO"
+  "M_GEOJSON\020(\022\025\n\021EXPORT_TO_GEOJSON\020)\022\030\n\024SY"
+  "MMETRIC_DIFFERENCE\020*\022\017\n\013CONVEX_HULL\020+\022\014\n"
+  "\010BOUNDARY\020,\022\021\n\rRANDOM_POINTS\020-\022\024\n\020ENCLOS"
+  "ING_CIRCLE\020.\022\024\n\020AFFINE_TRANSFORM\020/\022\023\n\017GE"
+  "ODETIC_LENGTH\0200\022\024\n\020GEODETIC_INVERSE\0201\022\022\n"
+  "\016EXPORT_TO_EWKB\0202\022\024\n\020IMPORT_FROM_EWKB\0203B"
+  "s\n\023com.epl.protobuf.v1B\rGeometryProtoP\001Z"
+  ".github.com/geo-grpc/api/golang/epl/prot"
+  "obuf/v1\242\002\004GMPB\252\002\023com.epl.protobuf.v1b\006pr"
+  "oto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_deps[1] = {
 };
@@ -962,7 +967,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_once;
 static bool descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto, "epl/protobuf/v1/geometry.proto", 5394,
+  &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto, "epl/protobuf/v1/geometry.proto", 5484,
   &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_deps, 22, 0,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fgeometry_2eproto::offsets,
   file_level_metadata_epl_2fprotobuf_2fv1_2fgeometry_2eproto, 24, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto,
@@ -1069,6 +1074,7 @@ bool Encoding_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
       return true;
     default:
       return false;
@@ -1127,6 +1133,8 @@ bool OperatorType_IsValid(int value) {
     case 47:
     case 48:
     case 49:
+    case 50:
+    case 51:
       return true;
     default:
       return false;
@@ -1144,6 +1152,8 @@ void GeometryData::InitAsDefaultInstance() {
   ::epl::protobuf::v1::_GeometryData_default_instance_.wkb_.UnsafeSetDefault(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::epl::protobuf::v1::_GeometryData_default_instance_.esri_shape_.UnsafeSetDefault(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::epl::protobuf::v1::_GeometryData_default_instance_.ewkb_.UnsafeSetDefault(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::epl::protobuf::v1::_GeometryData_default_instance_._instance.get_mutable()->proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
       ::epl::protobuf::v1::ProjectionData::internal_default_instance());
@@ -1208,6 +1218,10 @@ GeometryData::GeometryData(const GeometryData& from)
       _internal_set_esri_shape(from._internal_esri_shape());
       break;
     }
+    case kEwkb: {
+      _internal_set_ewkb(from._internal_ewkb());
+      break;
+    }
     case DATA_NOT_SET: {
       break;
     }
@@ -1264,6 +1278,10 @@ void GeometryData::clear_data() {
     }
     case kEsriShape: {
       data_.esri_shape_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      break;
+    }
+    case kEwkb: {
+      data_.ewkb_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
       break;
     }
     case DATA_NOT_SET: {
@@ -1375,6 +1393,14 @@ const char* GeometryData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           _internal_set_simple(static_cast<::epl::protobuf::v1::SimpleState>(val));
         } else goto handle_unusual;
         continue;
+      // bytes ewkb = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 122)) {
+          auto str = _internal_mutable_ewkb();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
@@ -1472,6 +1498,12 @@ failure:
       14, this->_internal_simple(), target);
   }
 
+  // bytes ewkb = 15;
+  if (_internal_has_ewkb()) {
+    target = stream->WriteBytesMaybeAliased(
+        15, this->_internal_ewkb(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1551,6 +1583,13 @@ size_t GeometryData::ByteSizeLong() const {
           this->_internal_esri_shape());
       break;
     }
+    // bytes ewkb = 15;
+    case kEwkb: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+          this->_internal_ewkb());
+      break;
+    }
     case DATA_NOT_SET: {
       break;
     }
@@ -1617,6 +1656,10 @@ void GeometryData::MergeFrom(const GeometryData& from) {
     }
     case kEsriShape: {
       _internal_set_esri_shape(from._internal_esri_shape());
+      break;
+    }
+    case kEwkb: {
+      _internal_set_ewkb(from._internal_ewkb());
       break;
     }
     case DATA_NOT_SET: {

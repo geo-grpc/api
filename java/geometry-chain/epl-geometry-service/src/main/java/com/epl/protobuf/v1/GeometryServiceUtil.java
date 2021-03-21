@@ -273,6 +273,14 @@ class GeometryResponsesIterator implements Iterator<GeometryResponse> {
             case ESRI_SHAPE:
                 m_byteBufferCursor = new OperatorExportToESRIShapeCursor(0, geometryCursor);
                 break;
+            case EWKB:
+                if (spatialRefGroup.getFinalSpatialRef().getEpsg() > 0) {
+                    SpatialReference spatialReference = SpatialReference.create(spatialRefGroup.getFinalSpatialRef().getEpsg());
+                    m_byteBufferCursor = new OperatorExportToEWkbCursor(WkbExportFlags.wkbExportStripSrid, geometryCursor, spatialReference);
+                } else {
+                    m_byteBufferCursor = new OperatorExportToEWkbCursor(WkbExportFlags.wkbExportStripSrid, geometryCursor, null);
+                }
+                break;
             default:
                 break;
         }
@@ -307,6 +315,13 @@ class GeometryResponsesIterator implements Iterator<GeometryResponse> {
 
             switch (m_encodingType) {
                 case UNKNOWN_ENCODING:
+                case EWKB:
+                    geometryBuilder.setEwkb(ByteString.copyFrom(m_byteBufferCursor.next()));
+                    geometryBuilder.setGeometryId(m_byteBufferCursor.getByteBufferID());
+                    geometryBuilder.setSimpleValue(m_byteBufferCursor.getSimpleState().ordinal());
+                    geometryBuilder.setFeatureId(m_byteBufferCursor.getFeatureID());
+                    envelope2D = m_byteBufferCursor.getEnvelope2D();
+                    break;
                 case WKB:
                     geometryBuilder.setWkb(ByteString.copyFrom(m_byteBufferCursor.next()));
                     geometryBuilder.setGeometryId(m_byteBufferCursor.getByteBufferID());
@@ -856,6 +871,9 @@ public class GeometryServiceUtil {
             case EXPORT_TO_WKB:
                 encodingType = Encoding.WKB;
                 break;
+            case EXPORT_TO_EWKB:
+                encodingType = Encoding.EWKB;
+                break;
             case EXPORT_TO_WKT:
                 encodingType = Encoding.WKT;
                 break;
@@ -943,6 +961,9 @@ public class GeometryServiceUtil {
         if (geometryData.getWkb().size() > 0) {
             OperatorImportFromWkb operatorImport = (OperatorImportFromWkb) factory.getOperator(Operator.Type.ImportFromWkb);
             return operatorImport.execute(0, Geometry.Type.Unknown, geometryData.getWkb().asReadOnlyByteBuffer(), null);
+        } else if (geometryData.getEwkb().size() > 0) {
+            OperatorImportFromEWkb operatorImport = (OperatorImportFromEWkb) factory.getOperator(Operator.Type.ImportFromEWkb);
+            return operatorImport.execute(0, Geometry.Type.Unknown, geometryData.getEwkb().asReadOnlyByteBuffer(), null).getGeometry();
         } else if (geometryData.getEsriShape().size() > 0) {
             OperatorImportFromESRIShape operatorImport = (OperatorImportFromESRIShape) factory.getOperator(Operator.Type.ImportFromESRIShape);
             return operatorImport.execute(0, Geometry.Type.Unknown, geometryData.getEsriShape().asReadOnlyByteBuffer());
@@ -964,10 +985,20 @@ public class GeometryServiceUtil {
         if (geometryData.getWkb().size() > 0) {
             SimpleByteBufferCursor simpleByteBufferCursor = new SimpleByteBufferCursor(
                     geometryData.getWkb().asReadOnlyByteBuffer(),
-                    (int)geometryData.getGeometryId(),
+                    (int) geometryData.getGeometryId(),
                     SimpleStateEnum.valueOf(geometryData.getSimple().name()),
                     geometryData.getFeatureId());
             geometryCursor = new OperatorImportFromWkbCursor(0, simpleByteBufferCursor);
+        } else if (geometryData.getEwkb().size() > 0) {
+            SimpleByteBufferCursor simpleByteBufferCursor = new SimpleByteBufferCursor(
+                    geometryData.getEwkb().asReadOnlyByteBuffer(),
+                    (int) geometryData.getGeometryId(),
+                    SimpleStateEnum.valueOf(geometryData.getSimple().name()),
+                    geometryData.getFeatureId());
+            MapGeometryCursor mapGeometryCursor = new OperatorImportFromEWkbCursor(
+                    0,
+                    simpleByteBufferCursor);
+            geometryCursor = new SimpleGeometryCursor(mapGeometryCursor);
         } else if (geometryData.getEsriShape().size() > 0) {
             SimpleByteBufferCursor simpleByteBufferCursor = new SimpleByteBufferCursor(
                     geometryData.getEsriShape().asReadOnlyByteBuffer(),

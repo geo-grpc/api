@@ -1,5 +1,5 @@
 /*
-Copyright 2017-2020 David Raleigh
+Copyright 2017-2019 Echo Park Labs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,11 +15,12 @@ limitations under the License.
 
 For additional information, contact:
 
-email: davidraleigh@gmail.com
+email: info@echoparklabs.io
 */
 
 syntax = "proto3";
 
+option csharp_namespace = "com.epl.protobuf.v1";
 option java_multiple_files = true;
 option java_package = "com.epl.protobuf.v1";
 option java_outer_classname = "StacServiceProto";

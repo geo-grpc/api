@@ -1,5 +1,5 @@
 /*
-Copyright 2017-2020 David Raleigh
+Copyright 2017-2019 Echo Park Labs
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,11 +15,12 @@ limitations under the License.
 
 For additional information, contact:
 
-email: davidraleigh@gmail.com
+email: info@echoparklabs.io
 */
 
 syntax = "proto3";
 
+option csharp_namespace = "com.epl.protobuf.v1";
 option java_multiple_files = true;
 option java_package = "com.epl.protobuf.v1";
 option java_outer_classname = "GeometryProto";
@@ -46,6 +47,8 @@ message GeometryData {
         bytes wkb = 5;
         // ESRI shape binary format for geometry encoding (fastest decoding and encoding for geometry service) https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
         bytes esri_shape = 6;
+        // extended well known binary format
+        bytes ewkb = 15;
     }
 
     // spatial reference of geometry
@@ -181,6 +184,9 @@ enum Encoding {
     WKT = 2; // well-known text
     GEOJSON = 3; // geojson
     ESRI_SHAPE = 4; // esri shape binary
+    EWKB = 5; // extended well-known binary
+
+    // EWKT = 6;
 }
 
 /*
@@ -241,6 +247,8 @@ enum OperatorType {
     AFFINE_TRANSFORM = 47;
     GEODETIC_LENGTH = 48;
     GEODETIC_INVERSE = 49;
+    EXPORT_TO_EWKB = 50;
+    IMPORT_FROM_EWKB = 51;
 }
 
 /**
@@ -388,8 +396,8 @@ message Params {
     message GeneralizeByArea {
         // oneof https://github.com/golang/protobuf/issues/283
         //        oneof method {
-            double percent_reduction = 1;
-            int32 max_point_count = 2;
+        double percent_reduction = 1;
+        int32 max_point_count = 2;
 
         // oneof https://github.com/golang/protobuf/issues/283
         //        }

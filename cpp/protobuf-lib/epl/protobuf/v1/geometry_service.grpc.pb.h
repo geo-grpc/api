@@ -3,7 +3,7 @@
 // source: epl/protobuf/v1/geometry_service.proto
 // Original file comments:
 //
-// Copyright 2017-2020 David Raleigh
+// Copyright 2017-2019 Echo Park Labs
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 //
 // For additional information, contact:
 //
-// email: davidraleigh@gmail.com
+// email: info@echoparklabs.io
 //
 #ifndef GRPC_epl_2fprotobuf_2fv1_2fgeometry_5fservice_2eproto__INCLUDED
 #define GRPC_epl_2fprotobuf_2fv1_2fgeometry_5fservice_2eproto__INCLUDED

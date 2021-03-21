@@ -18,22 +18,24 @@
 
 
 import json
+import math
 import os
 import random
-import unittest
-import math
-import requests
+import struct
 import warnings
+import unittest
 
 import grpc
+import numpy as np
+import requests
+import epl.protobuf.v1.geometry_service_pb2_grpc as geometry_grpc
 
 from shapely.wkt import loads
 from shapely.wkb import loads as wkbloads
-from epl.geometry import Point, MultiPoint, Polygon, LineString, MultiPolygon, MultiLineString, shape
-from epl import geometry
 from epl.protobuf.v1 import geometry_pb2
-import epl.protobuf.v1.geometry_service_pb2_grpc as geometry_grpc
-import numpy as np
+
+from epl import geometry
+from epl.geometry import Point, MultiPoint, Polygon, LineString, MultiPolygon, MultiLineString, shape
 
 
 def extract_poly_coords(geom):
@@ -182,15 +184,17 @@ class TestBasic(unittest.TestCase):
             left_geometry=geometry_pb2.GeometryData(wkt=expected),
             right_geometry=projected.geometry_data,
             operator=geometry_pb2.EQUALS,
-            operation_proj=output_proj)
+            operation_proj=output_proj,
+        )
         stub = geometry_grpc.GeometryServiceStub(self.channel)
         response3 = stub.Operate(op_equals)
         self.assertTrue(response3.spatial_relationship)
 
         op_simplify = geometry_pb2.GeometryRequest(
-            geometry=geometry_pb2.GeometryData(wkb=polyline.wkb, proj=geometry_pb2.ProjectionData(epsg=32632)),
+            geometry=geometry_pb2.GeometryData(ewkb=polyline.wkb, proj=geometry_pb2.ProjectionData(epsg=32632)),
             operation_proj=output_proj,
-            operator=geometry_pb2.SIMPLIFY
+            operator=geometry_pb2.SIMPLIFY,
+            result_encoding=geometry_pb2.WKB
         )
         response4 = stub.Operate(op_simplify)
         multi_line = MultiLineString.import_protobuf(response4.geometry)
@@ -899,6 +903,10 @@ class TestBasic(unittest.TestCase):
         pt1 = Point(0, -1, epsg=3857)
         self.assertFalse(pt1.proj_eq(pt2.proj))
 
+    def test_project_point(self):
+        pt2 = Point(-1, 0, epsg=4326)
+        pt2.project(to_epsg=3857)
+
     def test_append(self):
         flight_path = LineString(coordinates=[(0, 0), (1, 0)], epsg=4326)
         for i in range(3, 6):
@@ -983,3 +991,259 @@ class TestBasic(unittest.TestCase):
 
         stub = geometry_grpc.GeometryServiceStub(self.channel)
         self.assertRaises(grpc.RpcError, stub.Operate, op_request)
+
+
+class TestWKT(unittest.TestCase):
+    def setUp(self):
+        self.WKT_GEOMETRIES = [
+            "MULTILINESTRING ((-116.4 45.2, -118.0 47.0))",
+            "MULTILINESTRING ((100.00 0.00, 101.00 1.00))",
+            "MULTILINESTRING ((100.00 0.00, 101.00 1.00, 120.00 5.00))",
+
+            "MULTILINESTRING ((-116.4 45.2, -118.0 47.0))",
+            "MULTILINESTRING ((-116.4 45.2, -118.0 47.0, -120.0 49.0))",
+
+            "MULTILINESTRING ((-116.4 45.2, -118.0 47.0))",
+            "MULTILINESTRING ((-116.4 45.2, -118.0 47.0, -120.0 49.0))",
+
+            "MULTILINESTRING ((100.00 0.00, 101.00 1.00))",
+
+            "LINESTRING (-116.4 45.2, -118.0 47.0)",
+            "LINESTRING (100.00 0.00, 101.00 1.00)",
+            "LINESTRING (100.00 0.00, 101.00 1.00, 120.00 5.00)",
+
+            "LINESTRING (-116.4 45.2, -118.0 47.0)",
+            "LINESTRING (-116.4 45.2, -118.0 47.0, -120.0 49.0)",
+
+            "LINESTRING (-116.4 45.2, -118.0 47.0)",
+            "LINESTRING (-116.4 45.2, -118.0 47.0, -120.0 49.0)",
+
+            "LINESTRING (100.00 0.00, 101.00 1.00)", ]
+
+        self.WKT_Z_GEOMETRIES = [
+            "MULTIPOINT (-116.4 45.2 46.0, -118.0 47.0 41.0, -120.0 49.0 41.0)",
+            "LINESTRING (100.00 0.00 1.00, 101.00 0.00 1.00, 101.00 1.00 1.00, 100.00 0.00 1.00)",
+            "POLYGON ((45.20 49.00 41.00, 47.00 46.00 41.00, 46.00 47.00 41.00, 45.20 49.00 41.00))",
+            "LINESTRING (-116.4 45.2 46.0, -118.0 47.0 41.0, -120.0 49.0 41.0)",
+            "LINESTRING (0.00 0.00 10.00, 2.00 1.00 20.00, 4.00 2.00 30.00, 5.00 4.00 40.00)",
+            "MULTILINESTRING ((100.00 0.00 1.00, 101.00 0.00 1.00, 101.00 1.00 1.00, 100.00 0.00 1.00), (-116.4 45.2 "
+            "46.0, -118.0 47.0 41.0, -120.0 49.0 41.0))",
+            "MULTIPOLYGON (((45.20 49.00 41.00, 47.00 46.00 41.00, 46.00 47.00 41.00, 45.20 49.00 41.00)),"
+            "((45.20 49.00 41.00, 47.00 46.00 41.00, 46.00 47.00 41.00, 45.20 49.00 41.00)))",
+            "MULTILINESTRING ((-116.4 45.2 46.0, -118.0 47.0 41.0, -120.0 49.0 41.0), (100.00 0.00 1.00, 101.00 0.00 "
+            "1.00, 101.00 1.00 1.00, 100.00 0.00 1.00))",
+            "MULTILINESTRING ((0.00 0.00 10.00, 2.00 1.00 20.00, 4.00 2.00 30.00, 5.00 4.00 40.00), (100.00 0.00 "
+            "1.00, 101.00 0.00 1.00, 101.00 1.00 1.00, 100.00 0.00 1.00))",
+            "POINT (-116.4 45.2 46.0)", ]
+
+        self.WKT_M_GEOMETRIES = [
+            "POINT M(-116.4 45.2 46.0)",
+            "MULTIPOINT M(-116.4 45.2 46.0, -118.0 47.0 41.0, -120.0 49.0 41.0)",
+            "POLYGON M((45.20 49.00 41.00, 47.00 46.00 41.00, 46.00 47.00 41.00, 45.20 49.00 41.00))",
+            "MULTILINESTRING M((-116.4 45.2 46.0, -118.0 47.0 41.0, -120.0 49.0 41.0))",
+            "MULTIPOLYGON M(((45.20 49.00 41.00, 47.00 46.00 41.00, 46.00 47.00 41.00, 45.20 49.00 41.00)))",
+            "MULTILINESTRING M((100.00 0.00 1.00, 101.00 0.00 1.00, 101.00 1.00 1.00, 100.00 0.00 1.00))",
+            "LINESTRING M(-116.4 45.2 46.0, -118.0 47.0 41.0, -120.0 49.0 41.0)",
+            "LINESTRING M(100.00 0.00 1.00, 101.00 0.00 1.00, 101.00 1.00 1.00, 100.00 0.00 1.00)", ]
+
+        self.WKT_ZM_GEOMETRIES = [
+            "MULTILINESTRING ZM((0.00 0.00 10.00 5.00, 2.00 1.00 20.00 5.00, 4.00 2.00 30.00 5.00, 5.00 4.00 40.00 "
+            "5.00))",
+            "MULTILINESTRING ZM((-116.4 45.2 46.0 0.2, -118.0 47.0 41.0 0.0, -120.0 49.0 41.0 0.3))",
+            "MULTIPOLYGON ZM(((-116.40 45.20 46.00 0.20, -118.00 47.00 41.00 0.00, -120.00 49.00 41.00 0.30, "
+            "-116.40 45.20 46.00 0.20)))",
+            "MULTILINESTRING ZM((100.00 0.00 1.00 40.00, 101.00 0.00 1.00 44.00, 101.00 1.00 1.00 45.00, 100.00 0.00 "
+            "1.00 49.00))",
+            "LINESTRING ZM(0.00 0.00 10.00 5.00, 2.00 1.00 20.00 5.00, 4.00 2.00 30.00 5.00, 5.00 4.00 40.00 5.00)",
+            "LINESTRING ZM(-116.4 45.2 46.0 0.2, -118.0 47.0 41.0 0.0, -120.0 49.0 41.0 0.3)",
+            "POLYGON ZM((-116.40 45.20 46.00 0.20, -118.00 47.00 41.00 0.00, -120.00 49.00 41.00 0.30, -116.40 45.20 "
+            "46.00 0.20))",
+            "LINESTRING ZM(100.00 0.00 1.00 40.00, 101.00 0.00 1.00 44.00, 101.00 1.00 1.00 45.00, 100.00 0.00 1.00 "
+            "49.00)",
+            "LINESTRING(100.00 0.00 1.00 40.00, 101.00 0.00 1.00 44.00, 101.00 1.00 1.00 45.00, 100.00 0.00 1.00 "
+            "49.00)",
+            "MULTIPOINT ZM(-116.4 45.2 46.0 0.2, -118.0 47.0 41.0 0.0, -120.0 49.0 41.0 0.3)",
+            "MULTIPOINT(-116.4 45.2 46.0 0.2, -118.0 47.0 41.0 0.0, -120.0 49.0 41.0 0.3)",
+            "POINT ZM(-116.4 45.2 46.0 0.2)",
+            "POINT(-116.4 45.2 46.0 0.2)",
+        ]
+
+    def test_multipolygon_z(self):
+        bm_shape = MultiPolygon([(((0.0, 0.0, 1.1), (0.0, 1.0, 1.1), (1.0, 1.0, 1.1), (1.0, 0.0, 1.1)),
+                                  [((0.25, 0.25, 1.1), (0.25, 0.5, 1.1), (0.5, 0.5, 1.1), (0.5, 0.25, 1.1))])],
+                                epsg=4326)
+
+        bm_wkb = bm_shape.wkb
+        bm_shape_from_wkb = Polygon.import_wkb(bm_wkb, epsg=4326)
+        self.assertTrue(bm_shape.s_equals(bm_shape_from_wkb))
+        self.assertTrue(bm_shape.equals(bm_shape_from_wkb))
+
+        bm_wkt = bm_shape.wkt
+        bm_shape_from_wkt = Polygon.import_wkt(bm_wkt, epsg=4326)
+        self.assertTrue(bm_shape.s_equals(bm_shape_from_wkt))
+        self.assertTrue(bm_shape.equals(bm_shape_from_wkt))
+
+    def test_point_z(self):
+        bm_shape = Point(0.0, 0.0, 1.1, epsg=4326)
+
+        bm_wkb = bm_shape.wkb
+        bm_shape_from_wkb = Point.import_wkb(bm_wkb, epsg=4326)
+        self.assertTrue(bm_shape.s_equals(bm_shape_from_wkb))
+        self.assertTrue(bm_shape.equals(bm_shape_from_wkb))
+
+        bm_wkt = bm_shape.wkt
+        bm_shape_from_wkt = Point.import_wkt(bm_wkt, epsg=4326)
+        self.assertTrue(bm_shape.s_equals(bm_shape_from_wkt))
+        self.assertTrue(bm_shape.equals(bm_shape_from_wkt))
+
+    @unittest.skip("https://github.com/Toblerity/Shapely/issues/865#issuecomment-698607587")
+    def test_m(self):
+        wkt_linestring = "LINESTRING M(45.20 49.00 41.00, 47.00 46.00 41.00, 46.00 47.00 41.00, 45.20 49.00 41.00)"
+        polyline = Polygon.import_wkt(wkt_linestring, epsg=4326)
+        self.assertFalse(polyline.has_z)
+        self.assertEqual(wkt_linestring, polyline.wkt)
+
+        wkt_polygon = "POLYGON M((45.20 49.00 41.00, 47.00 46.00 41.00, 46.00 47.00 41.00, 45.20 49.00 41.00))"
+        polygon = Polygon.import_wkt(wkt_polygon, epsg=4326)
+        self.assertFalse(polygon.has_z)
+        self.assertEqual(wkt_polygon, polygon.wkt)
+
+        wkt_point = "POINT M (1 1 5 60)"
+        point = Point.import_wkt(wkt_point, epsg=4326)
+        self.assertEqual(wkt_point, point.wkt)
+        self.assertFalse(point.has_z)\
+
+
+    @unittest.skip("https://github.com/Toblerity/Shapely/issues/865")
+    def test_zm(self):
+        wkt_point = "POINT ZM (1 1 5 60)"
+        point = Point.import_wkt(wkt_point, epsg=4326)
+        self.assertEqual(wkt_point, point.wkt)
+        self.assertTrue(point.has_z)
+
+    def test_ewkb_point(self):
+        wkt_point = "POINT Z (1 1 5)"
+        point = Point.import_wkt(wkt_point, epsg=4326)
+        self.assertEqual(wkt_point, point.wkt)
+        self.assertTrue(point.has_z)
+        endianness = "big"
+        if int.from_bytes(point.wkb[0:1], "big") == 1:
+            endianness = "little"
+
+        self.assertEqual(int.from_bytes(point.wkb[1:5], endianness), 2147483649)
+        self.assertEqual(struct.unpack('<d', point.wkb[5:13])[0], 1.0)
+        self.assertEqual(struct.unpack('<d', point.wkb[13:13+8])[0], 1.0)
+        self.assertEqual(struct.unpack('<d', point.wkb[13+8:13+16])[0], 5.0)
+
+        op_request = geometry_pb2.GeometryRequest(geometry=point.geometry_data,
+                                                  operator=geometry_pb2.EXPORT_TO_EWKB,
+                                                  result_encoding=geometry_pb2.EWKB)
+
+        geometry_response = geometry.geometry_service.operate(op_request)
+        point_wkb = geometry_response.geometry.ewkb
+        self.assertEqual(int.from_bytes(point_wkb[1:5], endianness), 2147483649)
+        self.assertEqual(struct.unpack('<d', point_wkb[5:13])[0], 1.0)
+        self.assertEqual(struct.unpack('<d', point_wkb[13:13+8])[0], 1.0)
+        self.assertEqual(struct.unpack('<d', point_wkb[13+8:13+16])[0], 5.0)
+
+    def test_ewkb_export_import(self):
+        test_values = self.WKT_Z_GEOMETRIES
+        test_values.extend(self.WKT_GEOMETRIES)
+        # TODO https://github.com/Toblerity/Shapely/issues/865
+        # test_values.extend(WKT_M_GEOMETRIES)
+        # test_values.extend(WKT_ZM_GEOMETRIES)
+
+        for wkt in test_values:
+            if "LINESTRING" in wkt:
+                geom = LineString.import_wkt(wkt=wkt, epsg=4326)
+                continue
+            elif "POLYGON" in wkt:
+                geom = Polygon.import_wkt(wkt=wkt, epsg=4326)
+                continue
+            elif "MULTIPOINT" in wkt:
+                geom = MultiPoint.import_wkt(wkt=wkt, epsg=4326)
+                continue
+            else:
+                geom = Point.import_wkt(wkt=wkt, epsg=4326)
+
+            endianness = "big"
+            if int.from_bytes(geom.wkb[0:1], "big") == 1:
+                endianness = "little"
+
+            op_request = geometry_pb2.GeometryRequest(geometry=geom.geometry_data,
+                                                      operator=geometry_pb2.EXPORT_TO_EWKB,
+                                                      result_encoding=geometry_pb2.EWKB)
+
+            geometry_response = geometry.geometry_service.operate(op_request)
+            # self.assertEqual(geom.wkt, round_tripped.wkt)
+            # self.assertEqual(geom.wkb_hex, round_tripped.wkb_hex, wkt)
+            # self.assertTrue(round_tripped.equals(geom), wkt)
+            endianness2 = "big"
+            if int.from_bytes(geometry_response.geometry.ewkb[0:1], "big") == 1:
+                endianness2 = "little"
+
+            if not wkt.startswith("POLYGON") and not wkt.startswith("LINESTRING"):
+                self.assertEqual(int.from_bytes(geom.wkb[1:5], endianness),
+                                 int.from_bytes(geometry_response.geometry.ewkb[1:5], endianness2))
+                self.assertEqual(int.from_bytes(geom.wkb[5:5+4], endianness),
+                                 int.from_bytes(geometry_response.geometry.ewkb[5:5+4], endianness2))
+                self.assertEqual(geom.wkb[9], geometry_response.geometry.ewkb[9])
+                self.assertEqual(int.from_bytes(geom.wkb[10:10+4], endianness),
+                                 int.from_bytes(geometry_response.geometry.ewkb[10:10+4], endianness2))
+
+            actual_geom = geometry.BaseGeometry.import_protobuf(geometry_response.geometry)
+            self.assertTrue(actual_geom.equals(geom), geom.wkt)
+            # if not wkt.startswith("POLYGON") and not wkt.startswith("LINESTRING"):
+            #     for i, b in enumerate(geom.wkb):
+            #         self.assertEqual(b, geometry_response.geometry.ewkb[i], "failed at index {}".format(i))
+
+    def test_geometry_encoding_wkb(self):
+        point = Point(1, 2, epsg=4326)
+        endianness = "big"
+        if int.from_bytes(point.wkb[0:1], "big") == 1:
+            endianness = "little"
+        self.assertEqual(1, int.from_bytes(point.wkb[1:5], endianness))
+
+        multi_polygon = MultiPolygon([(((0.0, 0.0), (0.0, 1.0), (1.0, 1.0), (1.0, 0.0)),
+                                       [((0.25, 0.25), (0.25, 0.5), (0.5, 0.5), (0.5, 0.25))])], epsg=4326)
+        self.assertEqual(6, int.from_bytes(multi_polygon.wkb[1:5], endianness))
+
+        point_z = Point(1, 2, 3, epsg=4326)
+        self.assertEqual(2147483649, int.from_bytes(point_z.wkb[1:5], endianness))
+
+        multi_polygon_z = MultiPolygon([(((0.0, 0.0, 0.0), (0.0, 1.0, 0.0), (1.0, 1.0, 0.0), (1.0, 0.0, 0.0)),
+                                         [((0.25, 0.25, 0.0), (0.25, 0.5, 0.0), (0.5, 0.5, 0.0), (0.5, 0.25, 0.0))])],
+                                       epsg=4326)
+
+        self.assertEqual(2147483654, int.from_bytes(multi_polygon_z.wkb[1:5], endianness))
+
+    def test_difference_global(self):
+        p = Polygon.from_bounds(xmin=-180, xmax=180, ymin=-90, ymax=90, epsg=4326)
+        geom_wkt = 'POLYGON((-100.21728515624999 28.777289039997598,-101.6015625 32.79651010951669,' \
+                   '-112.32421874999999 32.73184089686569,-111.9287109375 28.632746799225856,-100.21728515624999 ' \
+                   '28.777289039997598)) '
+        geom = Polygon.import_wkt(wkt=geom_wkt, epsg=4326)
+        world_minus = p.difference(geom)
+        self.assertTrue(world_minus.touches(geom))
+
+    def test_geojson_rings(self):
+        geom_wkt = 'MULTIPOLYGON(((-108.72070312499997 34.99400375757577,-100.01953124999997 46.58906908309183,' \
+                   '-90.79101562499996 34.92197103616377,-108.72070312499997 34.99400375757577),(-100.10742187499997 ' \
+                   '41.47566020027821,-102.91992187499996 37.61423141542416,-96.85546874999996 37.54457732085582,' \
+                   '-100.10742187499997 41.47566020027821)),((-85.16601562499999 34.84987503195417,-80.771484375 ' \
+                   '28.497660832963476,-76.904296875 34.92197103616377,-85.16601562499999 34.84987503195417))) '
+        geom = Polygon.import_wkt(wkt=geom_wkt, epsg=4326)
+        a = geom.__geo_interface__
+        a_shape = geometry.shape(a, epsg=4326)
+        self.assertEqual(a_shape, geom)
+
+    def test_geojson_z(self):
+        point1 = Point(152.352298, -24.875975, 1.1, epsg=4326)
+        geoj = point1.__geo_interface__
+        b_pass = (json.dumps(geoj) == '{"type": "Point", "coordinates": [152.352298, -24.875975, 1.1]}') or \
+                 (json.dumps(geoj) == '{"coordinates": [152.352298, -24.875975, 1.1], "type": "Point"}')
+        self.assertTrue(b_pass)
+        self.assertEqual(point1.z, 1.1)
+
+        buff_point = point1.buffer(distance=40)
+        self.assertTrue(buff_point.contains(point1))

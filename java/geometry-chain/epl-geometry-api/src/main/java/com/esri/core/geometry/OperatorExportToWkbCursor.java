@@ -29,9 +29,9 @@ public class OperatorExportToWkbCursor extends ByteBufferCursor {
 			geometry = m_geometryCursor.next();
 			geometry.queryEnvelope2D(env2D);
 			simpleStateEnum = geometry.getSimpleState();
-			int size = OperatorExportToWkbLocal.exportToWKB(m_exportFlags, geometry, null);
+			int size = OperatorExportToWkbLocal.exportToWKB(m_exportFlags, geometry, null, 0);
 			ByteBuffer wkbBuffer = ByteBuffer.allocate(size).order(ByteOrder.nativeOrder());
-			OperatorExportToWkbLocal.exportToWKB(m_exportFlags, geometry, wkbBuffer);
+			OperatorExportToWkbLocal.exportToWKB(m_exportFlags, geometry, wkbBuffer, 0);
 			return wkbBuffer;
 		}
 		return null;

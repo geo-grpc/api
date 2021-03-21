@@ -229,9 +229,10 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fquery_2eproto[] PROTO
   "\n\003LTE\020\002\022\007\n\003GTE\020\004\022\006\n\002LT\020\010\022\006\n\002GT\020\020\022\013\n\007BETW"
   "EEN\020 \022\017\n\013NOT_BETWEEN\020@\022\010\n\003NEQ\020\200\001\022\007\n\002IN\020\200"
   "\002\022\013\n\006NOT_IN\020\200\004\022\t\n\004LIKE\020\200\010\022\r\n\010NOT_LIKE\020\200\020"
-  "BY\n\023com.epl.protobuf.v1B\nQueryProtoP\001Z.g"
+  "Bo\n\023com.epl.protobuf.v1B\nQueryProtoP\001Z.g"
   "ithub.com/geo-grpc/api/golang/epl/protob"
-  "uf/v1\242\002\003QPBb\006proto3"
+  "uf/v1\242\002\003QPB\252\002\023com.epl.protobuf.v1b\006proto"
+  "3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
@@ -246,7 +247,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_once;
 static bool descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fquery_2eproto, "epl/protobuf/v1/query.proto", 1339,
+  &descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fquery_2eproto, "epl/protobuf/v1/query.proto", 1361,
   &descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_deps, 5, 1,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fquery_2eproto::offsets,
   file_level_metadata_epl_2fprotobuf_2fv1_2fquery_2eproto, 5, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fquery_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fquery_2eproto,
