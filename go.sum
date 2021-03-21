@@ -17,6 +17,8 @@ github.com/davidraleigh/go-geom v1.3.7 h1:5Fp7/N+vcftWdxgNy59XcmttT59k+Qoroa7kDu
 github.com/davidraleigh/go-geom v1.3.7/go.mod h1:wAAQCvDJQyUifYYeC7fsGovHyFj2ushyOrPiSVEIDF8=
 github.com/davidraleigh/go-geom v1.3.8 h1:ocBkhzrM7FM9raOWmyRuooesxcCqoqKnswbBiQCoRV4=
 github.com/davidraleigh/go-geom v1.3.8/go.mod h1:od4x8LvjnG7Z01tHT0IqbseY0tbrFZ7befRd1LkxEkw=
+github.com/davidraleigh/go-geom v1.3.10 h1:5YksgNVWdzlY8JpVPVUM//FBtv+8qwKh15mGzMxqLVU=
+github.com/davidraleigh/go-geom v1.3.10/go.mod h1:od4x8LvjnG7Z01tHT0IqbseY0tbrFZ7befRd1LkxEkw=
 github.com/docker/go-connections v0.4.0/go.mod h1:Gbd7IOopHjR8Iph03tsViu4nIes5XhDvyHbTtUxmeec=
 github.com/docker/go-units v0.4.0/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDDbaIK4Dk=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=

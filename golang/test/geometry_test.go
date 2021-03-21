@@ -21,131 +21,87 @@ email: info@echoparklabs.io
 package test
 
 import (
-	"flag"
-
 	geomOps "github.com/geo-grpc/api/golang/epl/geometry"
 	pb "github.com/geo-grpc/api/golang/epl/protobuf/v1"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/testdata"
-
-	"log"
-	"os"
+	"github.com/twpayne/go-geom"
 	"testing"
 )
 
-var (
-	tls                = flag.Bool("tls", false, "Connection uses TLS if true, else plain TCP")
-	caFile             = flag.String("ca_file", "", "The file containning the CA root cert file")
-	serverAddr         = flag.String("server_addr", "localhost:8980", "The server address in the format of host:port")
-	serverHostOverride = flag.String("server_host_override", "x.test.youtube.com",
-		"The server name use to verify the hostname returned by TLS handshake")
-)
-
-type TestHelper struct {
-	gs *geomOps.Service
-}
-
-func setupTest(t *testing.T) (func(), *TestHelper) {
-	closeFunc, clientV1 := getConnection()
-	testHelp := &TestHelper{
-		gs:&geomOps.Service{
-			ClientV1:  clientV1,
-			CleanupV1: closeFunc,
-			Proj4326:  	&pb.ProjectionData{
-				Definition:&pb.ProjectionData_Epsg{Epsg:4326},
-			},
-		},
-	}
-
-	return func() {
-		t.Log("teardownTest()")
-		err := closeFunc()
-		if err != nil {
-			t.Errorf("failed to disconnect from db")
-		}
-	}, testHelp
-}
-
-func getConnection() (func() error, pb.GeometryServiceClient) {
-	flag.Parse()
-	var opts []grpc.DialOption
-	if *tls {
-		if *caFile == "" {
-			*caFile = testdata.Path("ca.pem")
-		}
-		creds, err := credentials.NewClientTLSFromFile(*caFile, *serverHostOverride)
-		if err != nil {
-			log.Fatalf("Failed to create TLS credentials %v", err)
-		}
-		opts = append(opts, grpc.WithTransportCredentials(creds))
-	} else {
-		opts = append(opts, grpc.WithInsecure())
-	}
-	serverAddr := getEnv("GEOMETRY_SERVICE_HOST", "localhost:8980")
-	conn, err := grpc.Dial(serverAddr, opts...)
-	if err != nil {
-		log.Fatalf("fail to dial: %v", err)
-	}
-
-	client := pb.NewGeometryServiceClient(conn)
-	return func() error {
-			return conn.Close()
-		}, client
-}
-
-
-func getEnv(key, fallback string) string {
-	value, exists := os.LookupEnv(key)
-	if !exists {
-		value = fallback
-	}
-	return value
-}
 
 func TestGeometryRequests(t *testing.T) {
-	cleanup, testHelper := setupTest(t)
-	defer cleanup()
-	spatialReferenceWGS := pb.ProjectionData{}
-	spatialReferenceWGS.SetEpsg(4326)
 	spatialReferenceNAD27 := pb.ProjectionData{}
 	spatialReferenceNAD27.SetEpsg(4267)
-	spatialReferenceMerc := pb.ProjectionData{}
-	spatialReferenceMerc.SetEpsg(3857)
-	spatialReferenceGall := pb.ProjectionData{}
-	spatialReferenceGall.SetEpsg(54016)
-	spatialReferenceMoll := pb.ProjectionData{}
-	spatialReferenceMoll.SetProj4("+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs")
-
 	geometryString := "MULTILINESTRING ((-120 -45, -100 -55, -90 -63, 0 0, 1 1, 100 25, 170 45, 175 65))"
 
 	// define a geometry from an array of wkt strings (in this case only one geometry) with spatial reference nad83
 	lefGeometryBag := &pb.GeometryData{Proj: &spatialReferenceNAD27}
 	lefGeometryBag.SetWkt(geometryString)
 
-	err, geom := testHelper.gs.ParseToGoGeom(lefGeometryBag)
+	err, geometry1 := geomOps.GeomPbToGeom(lefGeometryBag)
 	if err != nil {
-		t.Errorf((*err).Error())
+		t.Errorf(err.Error())
 	}
 	// define a buffer opertor on geometry then buffered with distance size .5 degrees (I know horrible), and then
 	// the result is transformed to WGS84
-	chain := testHelper.gs.BufferChain(geom, nil, &pb.Params_Buffer{Distance:.5,})
-	// project that resulting buffered geometry to World Mollweide
-	chain = testHelper.gs.ProjectChain(nil, chain, 4087)
-	// perform the convex hull operation
-	chain = testHelper.gs.ConvexHullChain(nil, chain)
-	// project that result to World Gall Stereo
-	chain = testHelper.gs.ProjectChain(nil, chain, 4326)
+	chain := geomOps.InitChain(geometry1)
+	chain = chain.Simplify(true).
+		Buffer(.5).
+		Project(4087).
+		ConvexHull().
+		Project(4326)
 
-	err, geom = chain.ExecuteBlockingSingle()
+	err, result1 := chain.Execute()
 	if err != nil {
-		t.Errorf((*err).Error())
+		t.Errorf(err.Error())
 	}
 
-	if geom == nil {
+	if result1 == nil {
 		t.Errorf("shouldn't be empty")
 	}
 
+	err, geometry2 := geomOps.GeomPbToGeom(lefGeometryBag)
+	err, geomS := geomOps.Simplify(geometry2, true)
+	err, geom2Buff := geomOps.Buffer(geomS, .5)
+	err, geomProjected := geomOps.Project(geom2Buff, 4087)
+	err, geomHulled := geomOps.ConvexHull(geomProjected)
+	err, geomReProjected := geomOps.Project(geomHulled, 4326)
+
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+
+	err, e := geomOps.Equals(result1, geomReProjected)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+	if result1 == nil || !e {
+		t.Errorf("geometries not equal")
+	}
+
+	err, result1 = chain.Buffer( 1).Project(3857).Execute()
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+	err, e = geomOps.Contains(result1, geomReProjected)
+	if err != nil || !e {
+		t.Errorf("geometries not equal")
+	}
+
+	inputChan := make(chan geom.T, 2)
+
+
+	inputChan <- geometry2
+	inputChan <- geomReProjected
+	close(inputChan)
+	stream := geomOps.InitStream(inputChan, nil)
+	streamOut := stream.Buffer(44).Execute()
+	for a := range streamOut {
+		err, relation := geomOps.Contains(a.G, geometry2)
+		if err != nil || !relation {
+			t.Errorf("geometries not equal")
+		}
+	}
+	//err, geom2Project := testHelper.gs.Project(geom2Buff, )
 	//
 	//// define a geometry from wkt string with spatial reference nad83
 	//rightGeometryBag := pb.GeometryData{
