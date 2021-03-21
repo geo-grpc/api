@@ -1,5 +1,4 @@
-ARG TAG=buster-4385c8a
-ARG JAVA_VERSION=11.0.10
+ARG TAG=buster-a09fa06
 FROM geogrpc/c-builder:${TAG} as builder
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bsdtar
