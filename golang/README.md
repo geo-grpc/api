@@ -4,43 +4,46 @@ Using gRPC, a fork of ESRI's computational geometry library and the twpayne geom
 
 Below is a list of all the methods exposed through gRPC. The links connect to the ESRI computational geometry library documentation:
 
-* ##### **Topological operations**
+* #### Topological operations
     _Boolean operations on Polygons, Polylines, Points and MultiPoints._
-    * [Cut](http://esri.github.io/geometry-api-java/doc/Cut.html)
-    * [Difference](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorDifference.html)
-    * [Intersection](http://esri.github.io/geometry-api-java/doc/Intersection.html)
-    * [Symmetric Difference](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorSymmetricDifference.html)
-    * [Union](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorUnion.html)
+    * [Cut](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Cut) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Cut.html))
+    * [Difference](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Difference) ([Esri Doc](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorDifference.html))
+    * [Intersection](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Intersection) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Intersection.html))
+    * [Symmetric Difference](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#SymmetricDifference) ([Esri Doc](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorSymmetricDifference.html))
+    * [Union](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Union) ([Esri Doc](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorUnion.html))
 
 
-* ##### **Validation**
-    * Simplify - validates and fixes the geometry to be correct for storage in geodatabase
-    * Simplify with OGC restrictions - validates and fixes the geometry to be correct according to OGC rules
+* #### Validation
+    * [Simplify](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Simplify) - validates and fixes the geometry to be correct for storage in geodatabase
+    * [Simplify with OGC restrictions](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#SimplifyOGC) - validates and fixes the geometry to be correct according to OGC rules
 
 
-* ##### **Relational operations**
-    _Read [Performing relational operations](http://esri.github.io/geometry-api-java/doc/RelationalOperators.html)._
-    * [Relate using DE-9IM matrix](http://esri.github.io/geometry-api-java/doc/Relate.html)
-    * [Contains](http://esri.github.io/geometry-api-java/doc/Contains.html)
-    * [Crosses](http://esri.github.io/geometry-api-java/doc/Crosses.html)
-    * [Disjoint](http://esri.github.io/geometry-api-java/doc/Disjoint.html)
-    * [Equals](http://esri.github.io/geometry-api-java/doc/Equals.html)
-    * [Intersects](http://esri.github.io/geometry-api-java/doc/Intersects.html)
-    * [Overlaps](http://esri.github.io/geometry-api-java/doc/Overlaps.html)
-    * [Touches](http://esri.github.io/geometry-api-java/doc/Touches.html)
-    * [Within](http://esri.github.io/geometry-api-java/doc/Within.html)
+* #### Relational operations
+    _Read [Esri Doc on Performing relational operations](http://esri.github.io/geometry-api-java/doc/RelationalOperators.html)._
+    * [Relate using DE-9IM](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Relate) [ESRI Doc](http://esri.github.io/geometry-api-java/doc/Relate.html)
+    * [Contains](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Contains) ([ESRI Doc](http://esri.github.io/geometry-api-java/doc/Contains.html))
+    * [Crosses](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Crosses) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Crosses.html))
+    * [Disjoint](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Disjoint) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Disjoint.html))
+    * [Equals](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Equals) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Equals.html))
+    * [Intersects](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Intersects) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Intersects.html))
+    * [Overlaps](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Overlaps) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Overlaps.html))
+    * [Touches](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Touches) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Touches.html))
+    * [Within](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Within) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Within.html))
 
-* ##### **Other operations**
-    * Boundary - creates a geometry that is the boundary of a given geometry
-    * Buffer - creates buffer polygon around the given geometry
-    * Clip - clips geometries with a 2-dimensional envelope
-    * Convex Hull - creates the convex hull of a given geometry
-    * Densify - densifies geometries by plotting points between existing vertices
-    * Distance - calculates the distance between two geometries
-    * Generalize - simplifies geometries using the Douglas-Peucker algorithm
-    * Offset - creates geometries that are offset from the input geometries by a given distance 
-    * Geodesic Distance (see geodesicDistanceOnWGS84 in GeometryEngine) - calculates the shortest distance between two points on the WGS84 spheroid
+* #### Other ESRI operations
+    * [Boundary](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Boundary) - creates a geometry that is the boundary of a given geometry
+    * [Buffer](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Buffer) - creates buffer polygon around the given geometry
+    * [Clip](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Clip) - clips geometries with a 2-dimensional envelope
+    * [Convex Hull](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#ConvexHull) - creates the convex hull of a given geometry
+    * [DensifyByLength](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#DensifyByLength) - densifies geometries by plotting points between existing vertices
+    * [Generalize](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Generalize) - simplifies geometries using the Douglas-Peucker algorithm
+    * [Offset](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Offset) - creates geometries that are offset from the input geometries by a given distance 
 
+* #### Other Operations
+    * [GeodesicBuffer](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#GeodesicBuffer) (Experimental) - Regardless of spatial reference, perform a geodesic buffer
+    * [GeodesicArea](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#GeodesicArea) (Experimental) - Regardless of spatial reference, calculate area
+    * [ProjectEPSG](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#ProjectEPSG) (Experimental) - Project a geometry to the given geographic or projected coordinate system defined by the epsg spatial reference code
+    * [ShiftXY](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#ShiftXY) (Experimental) - Shift a geometry in the x and y direction using the coordinate system of it's spatial reference __or__ shift it in meters
 
 the `"github.com/geo-grpc/api/epl/geometry"` and the `"github.com/geo-grpc/api/epl/protobuf/v1"` can be used with the `geogrpc/geometry-chain` docker image to execute computational geometry calls in golang.
 
