@@ -28,6 +28,6 @@ target_link_libraries(unitTest
         ${GTEST_BOTH_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
         ${JWT_LIBS}
-        protobuf_lib
+        epl_protobuf_v1
         curl)
 
