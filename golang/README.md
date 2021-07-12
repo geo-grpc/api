@@ -1,8 +1,8 @@
 # gRPC GIS Computational Geometry fo Go
 
-In microservice architecture you can have more GIS Geometry methods at your disposal.
+A microservice gRPC library for GIS computational geometry methods.
 
-For example, if you wanted to chain together these operation
+For example, here are some geometry operations chained together and not sent to gRPC service until `Execute` method is called.
 ```go
 chain1 := geomOps.InitChain(geometry1)
 chain1 = chain.Simplify(true).ProjectEPSG(32647).Buffer(.5).ConvexHull().ProjectEPSG(4326)
