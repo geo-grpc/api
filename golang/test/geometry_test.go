@@ -49,8 +49,10 @@ func TestGeometryRequests(t *testing.T) {
 		ProjectEPSG(4087).
 		ConvexHull().
 		ProjectEPSG(4326)
-
 	result1, err := chain.Execute()
+
+	chain.ProjectEPSG(4326).ShiftXY(true, 400, 200)
+
 	if err != nil {
 		t.Errorf(err.Error())
 	}
@@ -65,12 +67,18 @@ func TestGeometryRequests(t *testing.T) {
 	geomProjected, err := geomOps.ProjectEPSG(geom2Buff, 4087)
 	geomHulled, err := geomOps.ConvexHull(geomProjected)
 	geomReProjected, err := geomOps.ProjectEPSG(geomHulled, 4326)
+	geomShifted, err := geomOps.ShiftXY(geomReProjected, true, 400, 200)
 
 	if err != nil {
 		t.Errorf(err.Error())
 	}
 
-	e, err := geomOps.Equals(result1, geomReProjected)
+	result1, err = chain.Execute()
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+
+	e, err := geomOps.Equals(result1, geomShifted)
 	if err != nil {
 		t.Errorf(err.Error())
 	}
@@ -78,13 +86,17 @@ func TestGeometryRequests(t *testing.T) {
 		t.Errorf("geometries not equal")
 	}
 
-	result1, err = chain.Buffer( 1).ProjectEPSG(3857).Execute()
+	spatialRefMolly := pb.ProjectionData{}
+
+	spatialRefMolly.SetProj4("+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
+	// TODO it should not require 250 meter buffer to contain.
+	result1, err = chain.ProjectProtobuf(&spatialRefMolly).Buffer( 250).ProjectEPSG(4326).Execute()
 	if err != nil {
 		t.Errorf(err.Error())
 	}
 	e, err = geomOps.Contains(result1, geomReProjected)
 	if err != nil || !e {
-		t.Errorf("geometries not equal")
+		t.Errorf("geometries not contained")
 	}
 
 	inputChan := make(chan geom.T, 2)
