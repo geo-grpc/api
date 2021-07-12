@@ -19,7 +19,7 @@ done
 
 echo "DOTNET_DIR = $DOTNET_DIR"
 echo "CPP_DIR = $CPP_DIR"
-echo "SRC_DIR = $SRC_DIR"
+echo "PROTOC SRC_DIR = $SRC_DIR"
 echo "BUILD_PROTOS = $BUILD_PROTOS"
 echo "GOPATH = $GOPATH"
 echo "PYTHON_DIR = $PYTHON_DIR"
@@ -48,15 +48,16 @@ protoc -I/opt/include -I="$MONO_PATH"/proto --plugin=protoc-gen-grpc_python="$(c
 #PYTHON
 
 #GO
-if [ -z ${GOPATH+x} ];
+if [ -n "$GOPATH" ];
 then
-  echo "GOPATH is unset. not generating golang code";
-else
   protoc -I/opt/include -I "$MONO_PATH"/proto --go_out=/defs/src \
     "$MONO_PATH"/proto/"${BUILD_PROTOS}"/*.proto
 
   protoc -I/opt/include -I "$MONO_PATH"/proto --go_out=plugins=grpc:/defs/src \
     "$MONO_PATH"/proto/"${BUILD_PROTOS}"/*_service.proto
+
+else
+  echo "GOPATH is unset. not generating golang code";
 fi
 #GO
 
