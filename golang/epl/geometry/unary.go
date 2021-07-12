@@ -126,7 +126,7 @@ func executeToGeom(request* eplpbv1.GeometryRequest) (geom.T, error) {
 
 // init a chain object for rpc method construction
 func InitChain(initialGeometry geom.T) *Unary {
-	err, initialData := GeomToGeomPb(initialGeometry, nil)
+	initialData, err := GeomToGeomPb(initialGeometry, nil)
 	commonEpsg := int32(initialGeometry.SRID())
 	commonProjectionData := &eplpbv1.ProjectionData{}
 	commonProjectionData.SetEpsg(commonEpsg)

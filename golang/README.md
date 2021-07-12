@@ -1,20 +1,31 @@
-# gRPC Computational Geometry
+# gRPC GIS Computational Geometry fo Go
 
-Using gRPC, a fork of ESRI's computational geometry library and the twpayne geometry library these packages expose additional computational geometry methods for golang that might be useful to golang GIS software engineers.
+In microservice architecture you can have more GIS Geometry methods at your disposal.
 
-Below is a list of all the methods exposed through gRPC. The links connect to the ESRI computational geometry library documentation:
+For example, if you wanted to chain together these operation
+```go
+chain1 := geomOps.InitChain(geometry1)
+chain1 = chain.Simplify(true).ProjectEPSG(32647).Buffer(.5).ConvexHull().ProjectEPSG(4326)
+chain2 = geomOps.InitChain(geometry2)
+
+result1, err := chain.Execute()
+```
+
+## Operators
+
+Below is a list of all the methods exposed through gRPC. The links connect to the go docs and the ESRI computational geometry library documentation:
 
 * #### Topological operations
     _Boolean operations on Polygons, Polylines, Points and MultiPoints._
     * [Cut](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Cut) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Cut.html))
     * [Difference](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Difference) ([Esri Doc](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorDifference.html))
     * [Intersection](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Intersection) ([Esri Doc](http://esri.github.io/geometry-api-java/doc/Intersection.html))
-    * [Symmetric Difference](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#SymmetricDifference) ([Esri Doc](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorSymmetricDifference.html))
+    * [Symmetric Difference](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#SymmetricDifference) ([GIS wiki](http://wiki.gis.com/wiki/index.php/Symmetrical_difference)) ([Esri Doc](https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/symmetrical-difference.htm))
     * [Union](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Union) ([Esri Doc](http://esri.github.io/geometry-api-java/javadoc/com/esri/core/geometry/OperatorUnion.html))
 
 
 * #### Validation
-    * [Simplify](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Simplify) - validates and fixes the geometry to be correct for storage in geodatabase
+    * [Simplify](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#Simplify) - validates and fixes the geometry to be correct for storage in an ESRI geodatabase
     * [Simplify with OGC restrictions](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#SimplifyOGC) - validates and fixes the geometry to be correct according to OGC rules
 
 
@@ -45,7 +56,15 @@ Below is a list of all the methods exposed through gRPC. The links connect to th
     * [ProjectEPSG](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#ProjectEPSG) (Experimental) - Project a geometry to the given geographic or projected coordinate system defined by the epsg spatial reference code
     * [ShiftXY](https://pkg.go.dev/github.com/geo-grpc/api/golang/epl/geometry#ShiftXY) (Experimental) - Shift a geometry in the x and y direction using the coordinate system of it's spatial reference __or__ shift it in meters
 
-the `"github.com/geo-grpc/api/epl/geometry"` and the `"github.com/geo-grpc/api/epl/protobuf/v1"` can be used with the `geogrpc/geometry-chain` docker image to execute computational geometry calls in golang.
+
+### The Packages
+
+The packages
+```
+"github.com/geo-grpc/api/epl/geometry"
+"github.com/geo-grpc/api/epl/protobuf/v1"
+``` 
+can be used with the gRPC geometry service docker image, `geogrpc/geometry-chain`, to execute GIS computational geometry calls in golang.
 
 To test locally, execute the following docker command:
 ```shell script

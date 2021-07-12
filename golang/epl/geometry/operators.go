@@ -215,10 +215,10 @@ func GeomPbToGeom(geometryData *eplpbv1.GeometryData) (geom.T, error) {
 	return geometry, nil
 }
 
-func GeomToGeomPb(t geom.T, g *eplpbv1.GeometryData) (error, *eplpbv1.GeometryData) {
+func GeomToGeomPb(t geom.T, g *eplpbv1.GeometryData) (*eplpbv1.GeometryData, error) {
 	supported, message := Supported(t)
 	if !supported {
-		return errors.New(message), nil
+		return nil, errors.New(message)
 	}
 	//if t.SRID() == 0 {
 	//	return errors.New("need SRID"), nil
@@ -226,7 +226,7 @@ func GeomToGeomPb(t geom.T, g *eplpbv1.GeometryData) (error, *eplpbv1.GeometryDa
 
 	b, err := wkb.Marshal(t, binary.BigEndian)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 
 	if g == nil {
@@ -236,7 +236,7 @@ func GeomToGeomPb(t geom.T, g *eplpbv1.GeometryData) (error, *eplpbv1.GeometryDa
 	g.Proj = &eplpbv1.ProjectionData{}
 	g.Proj.SetEpsg(int32(t.SRID()))
 
-	return nil, g
+	return g, nil
 }
 
 func relation(left geom.T, right geom.T, operatorType eplpbv1.OperatorType, de9im string) (bool, error) {
@@ -248,6 +248,15 @@ func relation(left geom.T, right geom.T, operatorType eplpbv1.OperatorType, de9i
 // Creates a buffer around the input geometry
 func Buffer(t geom.T, distance float64) (geom.T, error) {
 	return InitChain(t).Buffer(distance).Execute()
+}
+
+func BufferPb(geometryData *eplpbv1.GeometryData, distance float64) (*eplpbv1.GeometryData, error) {
+	t, err := InitChainGeometryData(geometryData).Buffer(distance).Execute()
+	if err != nil {
+		return nil, err
+	}
+	var g = eplpbv1.GeometryData{}
+	return GeomToGeomPb(t, &g)
 }
 
 // Calculates the convex hull geometry.

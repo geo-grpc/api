@@ -798,11 +798,23 @@ public class GeometryServiceUtil {
                             operatorRequest.getOperator().name(),
                             Params.AffineTransform.class.toString()));
                 }
+                if (!srGroup.leftSR.equals(srGroup.operatorSR)) {
+                    throw new GeometryException("cannot have input and operator sr for Affine transformation be different");
+                }
+
                 Transformation2D transformation2D = new Transformation2D();
                 transformation2D.setShift(operatorRequest.getAffineTransformParams().getXOffset(),
                                           operatorRequest.getAffineTransformParams().getYOffset());
                 Geometry geometry = leftCursor.next();
-                geometry.applyTransformation(transformation2D);
+                // TODO do better than this. this is terrible.
+                if (operatorRequest.getAffineTransformParams().getGeodetic()) {
+                    geometry = GeometryEngineEx.project(geometry, srGroup.leftSR, SpatialReferenceEx.create(3857));
+                    geometry.applyTransformation(transformation2D);
+                    geometry = GeometryEngineEx.project(geometry, SpatialReferenceEx.create(3857), srGroup.leftSR);
+
+                } else {
+                    geometry.applyTransformation(transformation2D);
+                }
                 resultCursor = new SimpleGeometryCursor(geometry);
                 break;
             default:
