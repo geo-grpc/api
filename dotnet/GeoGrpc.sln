@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EplProtobuf", "EplProtobuf\EplProtobuf.csproj", "{263AE204-F811-4710-8EB9-B93D452E029A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EplProtobufV1", "EplProtobufV1\EplProtobufV1.csproj", "{263AE204-F811-4710-8EB9-B93D452E029A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
