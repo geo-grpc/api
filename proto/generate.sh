@@ -58,10 +58,12 @@ docker run --rm -it -v "${DEFS_DIR}":/defs \
   --entrypoint /bin/sh namely/protoc:1.37_1 \
   -c "/defs${SRC_MINUS_GO}/proto/protoc.sh SRC_DIR=\"${SRC_MINUS_GO}\" DOTNET_DIR=\"${DOTNET_DIR}\" CPP_DIR=\"${CPP_DIR}\" PYTHON_DIR=\"${PYTHON_DIR}\" BUILD_PROTOS=\"${BUILD_PROTOS}\" GOPATH=\"$GOPATH\""
 ### protoc.sh
-#
-## copy geometry over to java
-#cp -r "$(pwd)"/epl/protobuf/v1/geometry*.proto "$(pwd)"/../java/geometry-chain/epl-geometry-service/src/main/proto/epl/protobuf/v1
-## copy geometry over to java
-#
-#docker run --rm   -v "$(pwd)/.."/docs:/out -v "$(pwd)":/protos pseudomuto/protoc-gen-doc:1.3.1 \
-#  --proto_path=/protos/ "${BUILD_PROTOS}"/*.proto
+
+# copy geometry over to java
+cp -r "${SCRIPT_DIR}"/epl/protobuf/v1/geometry*.proto "${SCRIPT_DIR}"/../java/geometry-chain/epl-geometry-service/src/main/proto/epl/protobuf/v1
+# copy geometry over to java
+
+docker run --rm \
+  -v "${SCRIPT_DIR}"/../docs:/out \
+  -v "${SCRIPT_DIR}":/protos \
+  pseudomuto/protoc-gen-doc:1.3.1 --proto_path=/protos/ "${BUILD_PROTOS}"/*.proto
