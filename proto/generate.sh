@@ -1,7 +1,53 @@
 #!/usr/bin/env bash
 
+BUILD_PROTOS=/epl/protobuf/v1
+
+IFS='/' read -ra my_array <<< "${BUILD_PROTOS}"
+
+unset CPP_DIR
+for i in "${my_array[@]}"
+do
+    if [ -n "$CPP_DIR" ];
+    then
+      echo ${#CPP_DIR}
+      CPP_DIR=$CPP_DIR"-${i}"
+      PYTHON_DIR=$PYTHON_DIR"_${i}"
+      DOTNET_DIR=$DOTNET_DIR"$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    else
+      CPP_DIR=${i}
+      PYTHON_DIR=${i}
+      DOTNET_DIR="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    fi
+done
+echo $DOTNET_DIR
+echo $CPP_DIR
+echo $PYTHON_DIR
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+echo SCRIPT_DIR = $SCRIPT_DIR
+echo GOPATH = $GOPATH
+SRC_DIR="$(dirname "$SCRIPT_DIR")"
+echo SRC_DIR = $SRC_DIR
+
+DEFS_DIR=$GOPATH
+if [ -z ${GOPATH+x} ];
+then
+  echo "GOPATH is unset";
+  DEFS_DIR=$SRC_DIR
+else
+  echo "GOPATH is set to '$GOPATH'";
+fi
+
+echo DEFS_DIR = $DEFS_DIR
+
+SRC_MINUS_GO=${SRC_DIR#"$GOPATH"}
+echo SRC_MINUS_GO = $SRC_MINUS_GO
+
 ### protoc.sh
-docker run --rm -it -v "${GOPATH}":/defs --entrypoint /bin/sh namely/protoc:1.28_2 -c "/defs/src/github.com/geo-grpc/api/proto/protoc.sh"
+#docker run --rm -it -v "${DEFS_DIR}":/defs --entrypoint /bin/sh namely/protoc:1.28_2 -c "/defs${SRC_MINUS_GO}/proto/protoc.sh ${SRC_MINUS_GO}"
+docker run --rm -it -v "${DEFS_DIR}":/defs \
+  --entrypoint /bin/sh namely/protoc:1.37_1 \
+  -c "/defs${SRC_MINUS_GO}/proto/protoc.sh SRC_DIR=\"${SRC_MINUS_GO}\" DOTNET_DIR=\"${DOTNET_DIR}\" CPP_DIR=\"${CPP_DIR}\" PYTHON_DIR=\"${PYTHON_DIR}\" BUILD_PROTOS=\"${BUILD_PROTOS}\""
 ### protoc.sh
 
 # copy geometry over to java
@@ -9,9 +55,4 @@ cp -r "$(pwd)"/epl/protobuf/v1/geometry*.proto "$(pwd)"/../java/geometry-chain/e
 # copy geometry over to java
 
 docker run --rm   -v "$(pwd)/.."/docs:/out -v "$(pwd)":/protos pseudomuto/protoc-gen-doc:1.3.1 \
-  --proto_path=/protos/ \
-  epl/protobuf/v1/geometry.proto \
-  epl/protobuf/v1/geometry_service.proto \
-  epl/protobuf/v1/query.proto \
-  epl/protobuf/v1/stac.proto \
-  epl/protobuf/v1/stac_service.proto
+  --proto_path=/protos/ epl/protobuf/v1/*.proto
