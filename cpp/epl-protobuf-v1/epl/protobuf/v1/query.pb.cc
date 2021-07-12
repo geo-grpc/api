@@ -14,112 +14,103 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2ftimestamp_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto;
+
+PROTOBUF_PRAGMA_INIT_SEG
 namespace epl {
 namespace protobuf {
 namespace v1 {
-class FloatFilterDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<FloatFilter> _instance;
-  float value_;
-  float start_;
-} _FloatFilter_default_instance_;
-class DoubleFilterDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DoubleFilter> _instance;
-  double value_;
-  double start_;
-} _DoubleFilter_default_instance_;
-class TimestampFilterDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TimestampFilter> _instance;
-  const PROTOBUF_NAMESPACE_ID::Timestamp* value_;
-  const PROTOBUF_NAMESPACE_ID::Timestamp* start_;
-} _TimestampFilter_default_instance_;
-class UInt32FilterDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<UInt32Filter> _instance;
-  ::PROTOBUF_NAMESPACE_ID::uint32 value_;
-  ::PROTOBUF_NAMESPACE_ID::uint32 start_;
-} _UInt32Filter_default_instance_;
-class StringFilterDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<StringFilter> _instance;
-} _StringFilter_default_instance_;
+constexpr FloatFilter::FloatFilter(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : set_()
+  , _set_cached_byte_size_()
+  , rel_type_(0)
+
+  , end_(0)
+  , sort_direction_(0)
+
+  , _oneof_case_{}{}
+struct FloatFilterDefaultTypeInternal {
+  constexpr FloatFilterDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~FloatFilterDefaultTypeInternal() {}
+  union {
+    FloatFilter _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT FloatFilterDefaultTypeInternal _FloatFilter_default_instance_;
+constexpr DoubleFilter::DoubleFilter(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : set_()
+  , _set_cached_byte_size_()
+  , rel_type_(0)
+
+  , sort_direction_(0)
+
+  , end_(0)
+  , _oneof_case_{}{}
+struct DoubleFilterDefaultTypeInternal {
+  constexpr DoubleFilterDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~DoubleFilterDefaultTypeInternal() {}
+  union {
+    DoubleFilter _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT DoubleFilterDefaultTypeInternal _DoubleFilter_default_instance_;
+constexpr TimestampFilter::TimestampFilter(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : end_(nullptr)
+  , rel_type_(0)
+
+  , sort_direction_(0)
+
+  , _oneof_case_{}{}
+struct TimestampFilterDefaultTypeInternal {
+  constexpr TimestampFilterDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~TimestampFilterDefaultTypeInternal() {}
+  union {
+    TimestampFilter _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TimestampFilterDefaultTypeInternal _TimestampFilter_default_instance_;
+constexpr UInt32Filter::UInt32Filter(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : set_()
+  , _set_cached_byte_size_()
+  , rel_type_(0)
+
+  , end_(0u)
+  , sort_direction_(0)
+
+  , _oneof_case_{}{}
+struct UInt32FilterDefaultTypeInternal {
+  constexpr UInt32FilterDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~UInt32FilterDefaultTypeInternal() {}
+  union {
+    UInt32Filter _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UInt32FilterDefaultTypeInternal _UInt32Filter_default_instance_;
+constexpr StringFilter::StringFilter(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : set_()
+  , value_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , rel_type_(0)
+{}
+struct StringFilterDefaultTypeInternal {
+  constexpr StringFilterDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~StringFilterDefaultTypeInternal() {}
+  union {
+    StringFilter _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StringFilterDefaultTypeInternal _StringFilter_default_instance_;
 }  // namespace v1
 }  // namespace protobuf
 }  // namespace epl
-static void InitDefaultsscc_info_DoubleFilter_epl_2fprotobuf_2fv1_2fquery_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_DoubleFilter_default_instance_;
-    new (ptr) ::epl::protobuf::v1::DoubleFilter();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::DoubleFilter::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DoubleFilter_epl_2fprotobuf_2fv1_2fquery_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_DoubleFilter_epl_2fprotobuf_2fv1_2fquery_2eproto}, {}};
-
-static void InitDefaultsscc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_FloatFilter_default_instance_;
-    new (ptr) ::epl::protobuf::v1::FloatFilter();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::FloatFilter::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto}, {}};
-
-static void InitDefaultsscc_info_StringFilter_epl_2fprotobuf_2fv1_2fquery_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_StringFilter_default_instance_;
-    new (ptr) ::epl::protobuf::v1::StringFilter();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::StringFilter::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StringFilter_epl_2fprotobuf_2fv1_2fquery_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_StringFilter_epl_2fprotobuf_2fv1_2fquery_2eproto}, {}};
-
-static void InitDefaultsscc_info_TimestampFilter_epl_2fprotobuf_2fv1_2fquery_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_TimestampFilter_default_instance_;
-    new (ptr) ::epl::protobuf::v1::TimestampFilter();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::TimestampFilter::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TimestampFilter_epl_2fprotobuf_2fv1_2fquery_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TimestampFilter_epl_2fprotobuf_2fv1_2fquery_2eproto}, {
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,}};
-
-static void InitDefaultsscc_info_UInt32Filter_epl_2fprotobuf_2fv1_2fquery_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_UInt32Filter_default_instance_;
-    new (ptr) ::epl::protobuf::v1::UInt32Filter();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::UInt32Filter::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_UInt32Filter_epl_2fprotobuf_2fv1_2fquery_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_UInt32Filter_epl_2fprotobuf_2fv1_2fquery_2eproto}, {}};
-
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_epl_2fprotobuf_2fv1_2fquery_2eproto[5];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fquery_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_epl_2fprotobuf_2fv1_2fquery_2eproto = nullptr;
@@ -131,8 +122,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fquery_2e
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::FloatFilter, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::FloatFilter, rel_type_),
-  offsetof(::epl::protobuf::v1::FloatFilterDefaultTypeInternal, value_),
-  offsetof(::epl::protobuf::v1::FloatFilterDefaultTypeInternal, start_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::FloatFilter, end_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::FloatFilter, sort_direction_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::FloatFilter, set_),
@@ -143,8 +134,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fquery_2e
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::DoubleFilter, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::DoubleFilter, rel_type_),
-  offsetof(::epl::protobuf::v1::DoubleFilterDefaultTypeInternal, value_),
-  offsetof(::epl::protobuf::v1::DoubleFilterDefaultTypeInternal, start_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::DoubleFilter, end_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::DoubleFilter, sort_direction_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::DoubleFilter, set_),
@@ -155,8 +146,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fquery_2e
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::TimestampFilter, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::TimestampFilter, rel_type_),
-  offsetof(::epl::protobuf::v1::TimestampFilterDefaultTypeInternal, value_),
-  offsetof(::epl::protobuf::v1::TimestampFilterDefaultTypeInternal, start_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::TimestampFilter, end_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::TimestampFilter, sort_direction_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::TimestampFilter, data_),
@@ -166,8 +157,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fquery_2e
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::UInt32Filter, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::UInt32Filter, rel_type_),
-  offsetof(::epl::protobuf::v1::UInt32FilterDefaultTypeInternal, value_),
-  offsetof(::epl::protobuf::v1::UInt32FilterDefaultTypeInternal, start_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::UInt32Filter, end_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::UInt32Filter, sort_direction_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::UInt32Filter, set_),
@@ -237,24 +228,21 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fquery_2eproto[] PROTO
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_sccs[5] = {
-  &scc_info_DoubleFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,
-  &scc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,
-  &scc_info_StringFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,
-  &scc_info_TimestampFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,
-  &scc_info_UInt32Filter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_once;
-static bool descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fquery_2eproto, "epl/protobuf/v1/query.proto", 1361,
-  &descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_deps, 5, 1,
+  false, false, 1361, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fquery_2eproto, "epl/protobuf/v1/query.proto", 
+  &descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_deps, 1, 5,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fquery_2eproto::offsets,
-  file_level_metadata_epl_2fprotobuf_2fv1_2fquery_2eproto, 5, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fquery_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fquery_2eproto,
+  file_level_metadata_epl_2fprotobuf_2fv1_2fquery_2eproto, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fquery_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fquery_2eproto,
 };
+PROTOBUF_ATTRIBUTE_WEAK ::PROTOBUF_NAMESPACE_ID::Metadata
+descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto_metadata_getter(int index) {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto);
+  return descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto.file_level_metadata[index];
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_epl_2fprotobuf_2fv1_2fquery_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_epl_2fprotobuf_2fv1_2fquery_2eproto(&descriptor_table_epl_2fprotobuf_2fv1_2fquery_2eproto);
 namespace epl {
 namespace protobuf {
 namespace v1 {
@@ -300,24 +288,21 @@ bool FilterRelationship_IsValid(int value) {
 
 // ===================================================================
 
-void FloatFilter::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_FloatFilter_default_instance_.value_ = 0;
-  ::epl::protobuf::v1::_FloatFilter_default_instance_.start_ = 0;
-}
 class FloatFilter::_Internal {
  public:
 };
 
-FloatFilter::FloatFilter()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+FloatFilter::FloatFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  set_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.FloatFilter)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.FloatFilter)
 }
 FloatFilter::FloatFilter(const FloatFilter& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       set_(from.set_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&rel_type_, &from.rel_type_,
     static_cast<size_t>(reinterpret_cast<char*>(&sort_direction_) -
     reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
@@ -339,31 +324,35 @@ FloatFilter::FloatFilter(const FloatFilter& from)
 }
 
 void FloatFilter::SharedCtor() {
-  ::memset(&rel_type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sort_direction_) -
-      reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
-  clear_has_data();
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&rel_type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&sort_direction_) -
+    reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
+clear_has_data();
 }
 
 FloatFilter::~FloatFilter() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.FloatFilter)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void FloatFilter::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (has_data()) {
     clear_data();
   }
 }
 
+void FloatFilter::ArenaDtor(void* object) {
+  FloatFilter* _this = reinterpret_cast< FloatFilter* >(object);
+  (void)_this;
+}
+void FloatFilter::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void FloatFilter::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const FloatFilter& FloatFilter::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void FloatFilter::clear_data() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.FloatFilter)
@@ -395,7 +384,7 @@ void FloatFilter::Clear() {
       reinterpret_cast<char*>(&sort_direction_) -
       reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
   clear_data();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* FloatFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -415,7 +404,7 @@ const char* FloatFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
       // .epl.protobuf.v1.FilterRelationship rel_type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_rel_type(static_cast<::epl::protobuf::v1::FilterRelationship>(val));
         } else goto handle_unusual;
@@ -437,7 +426,7 @@ const char* FloatFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
       // .epl.protobuf.v1.SortDirection sort_direction = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_sort_direction(static_cast<::epl::protobuf::v1::SortDirection>(val));
         } else goto handle_unusual;
@@ -458,7 +447,9 @@ const char* FloatFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -517,7 +508,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.FloatFilter)
   return target;
@@ -605,7 +596,7 @@ void FloatFilter::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void FloatFilter::MergeFrom(const FloatFilter& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.FloatFilter)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -654,11 +645,14 @@ bool FloatFilter::IsInitialized() const {
 
 void FloatFilter::InternalSwap(FloatFilter* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   set_.InternalSwap(&other->set_);
-  swap(rel_type_, other->rel_type_);
-  swap(end_, other->end_);
-  swap(sort_direction_, other->sort_direction_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(FloatFilter, sort_direction_)
+      + sizeof(FloatFilter::sort_direction_)
+      - PROTOBUF_FIELD_OFFSET(FloatFilter, rel_type_)>(
+          reinterpret_cast<char*>(&rel_type_),
+          reinterpret_cast<char*>(&other->rel_type_));
   swap(data_, other->data_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -670,24 +664,21 @@ void FloatFilter::InternalSwap(FloatFilter* other) {
 
 // ===================================================================
 
-void DoubleFilter::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_DoubleFilter_default_instance_.value_ = 0;
-  ::epl::protobuf::v1::_DoubleFilter_default_instance_.start_ = 0;
-}
 class DoubleFilter::_Internal {
  public:
 };
 
-DoubleFilter::DoubleFilter()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+DoubleFilter::DoubleFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  set_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.DoubleFilter)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.DoubleFilter)
 }
 DoubleFilter::DoubleFilter(const DoubleFilter& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       set_(from.set_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&rel_type_, &from.rel_type_,
     static_cast<size_t>(reinterpret_cast<char*>(&end_) -
     reinterpret_cast<char*>(&rel_type_)) + sizeof(end_));
@@ -709,31 +700,35 @@ DoubleFilter::DoubleFilter(const DoubleFilter& from)
 }
 
 void DoubleFilter::SharedCtor() {
-  ::memset(&rel_type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&end_) -
-      reinterpret_cast<char*>(&rel_type_)) + sizeof(end_));
-  clear_has_data();
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&rel_type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&end_) -
+    reinterpret_cast<char*>(&rel_type_)) + sizeof(end_));
+clear_has_data();
 }
 
 DoubleFilter::~DoubleFilter() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.DoubleFilter)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void DoubleFilter::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (has_data()) {
     clear_data();
   }
 }
 
+void DoubleFilter::ArenaDtor(void* object) {
+  DoubleFilter* _this = reinterpret_cast< DoubleFilter* >(object);
+  (void)_this;
+}
+void DoubleFilter::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void DoubleFilter::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const DoubleFilter& DoubleFilter::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DoubleFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void DoubleFilter::clear_data() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.DoubleFilter)
@@ -765,7 +760,7 @@ void DoubleFilter::Clear() {
       reinterpret_cast<char*>(&end_) -
       reinterpret_cast<char*>(&rel_type_)) + sizeof(end_));
   clear_data();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* DoubleFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -785,7 +780,7 @@ const char* DoubleFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       // .epl.protobuf.v1.FilterRelationship rel_type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_rel_type(static_cast<::epl::protobuf::v1::FilterRelationship>(val));
         } else goto handle_unusual;
@@ -807,7 +802,7 @@ const char* DoubleFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       // .epl.protobuf.v1.SortDirection sort_direction = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_sort_direction(static_cast<::epl::protobuf::v1::SortDirection>(val));
         } else goto handle_unusual;
@@ -828,7 +823,9 @@ const char* DoubleFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -887,7 +884,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.DoubleFilter)
   return target;
@@ -975,7 +972,7 @@ void DoubleFilter::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void DoubleFilter::MergeFrom(const DoubleFilter& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.DoubleFilter)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1024,11 +1021,14 @@ bool DoubleFilter::IsInitialized() const {
 
 void DoubleFilter::InternalSwap(DoubleFilter* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   set_.InternalSwap(&other->set_);
-  swap(rel_type_, other->rel_type_);
-  swap(sort_direction_, other->sort_direction_);
-  swap(end_, other->end_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DoubleFilter, end_)
+      + sizeof(DoubleFilter::end_)
+      - PROTOBUF_FIELD_OFFSET(DoubleFilter, rel_type_)>(
+          reinterpret_cast<char*>(&rel_type_),
+          reinterpret_cast<char*>(&other->rel_type_));
   swap(data_, other->data_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -1040,14 +1040,6 @@ void DoubleFilter::InternalSwap(DoubleFilter* other) {
 
 // ===================================================================
 
-void TimestampFilter::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_TimestampFilter_default_instance_.value_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_TimestampFilter_default_instance_.start_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_TimestampFilter_default_instance_._instance.get_mutable()->end_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-}
 class TimestampFilter::_Internal {
  public:
   static const PROTOBUF_NAMESPACE_ID::Timestamp& value(const TimestampFilter* msg);
@@ -1068,7 +1060,7 @@ TimestampFilter::_Internal::end(const TimestampFilter* msg) {
   return *msg->end_;
 }
 void TimestampFilter::set_allocated_value(PROTOBUF_NAMESPACE_ID::Timestamp* value) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_data();
   if (value) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
@@ -1084,12 +1076,14 @@ void TimestampFilter::set_allocated_value(PROTOBUF_NAMESPACE_ID::Timestamp* valu
 }
 void TimestampFilter::clear_value() {
   if (_internal_has_value()) {
-    delete data_.value_;
+    if (GetArena() == nullptr) {
+      delete data_.value_;
+    }
     clear_has_data();
   }
 }
 void TimestampFilter::set_allocated_start(PROTOBUF_NAMESPACE_ID::Timestamp* start) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_data();
   if (start) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
@@ -1105,25 +1099,27 @@ void TimestampFilter::set_allocated_start(PROTOBUF_NAMESPACE_ID::Timestamp* star
 }
 void TimestampFilter::clear_start() {
   if (_internal_has_start()) {
-    delete data_.start_;
+    if (GetArena() == nullptr) {
+      delete data_.start_;
+    }
     clear_has_data();
   }
 }
 void TimestampFilter::clear_end() {
-  if (GetArenaNoVirtual() == nullptr && end_ != nullptr) {
+  if (GetArena() == nullptr && end_ != nullptr) {
     delete end_;
   }
   end_ = nullptr;
 }
-TimestampFilter::TimestampFilter()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+TimestampFilter::TimestampFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.TimestampFilter)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.TimestampFilter)
 }
 TimestampFilter::TimestampFilter(const TimestampFilter& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_end()) {
     end_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.end_);
   } else {
@@ -1150,43 +1146,50 @@ TimestampFilter::TimestampFilter(const TimestampFilter& from)
 }
 
 void TimestampFilter::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TimestampFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base);
-  ::memset(&end_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sort_direction_) -
-      reinterpret_cast<char*>(&end_)) + sizeof(sort_direction_));
-  clear_has_data();
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&end_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&sort_direction_) -
+    reinterpret_cast<char*>(&end_)) + sizeof(sort_direction_));
+clear_has_data();
 }
 
 TimestampFilter::~TimestampFilter() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.TimestampFilter)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void TimestampFilter::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete end_;
   if (has_data()) {
     clear_data();
   }
 }
 
+void TimestampFilter::ArenaDtor(void* object) {
+  TimestampFilter* _this = reinterpret_cast< TimestampFilter* >(object);
+  (void)_this;
+}
+void TimestampFilter::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void TimestampFilter::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const TimestampFilter& TimestampFilter::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TimestampFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void TimestampFilter::clear_data() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.TimestampFilter)
   switch (data_case()) {
     case kValue: {
-      delete data_.value_;
+      if (GetArena() == nullptr) {
+        delete data_.value_;
+      }
       break;
     }
     case kStart: {
-      delete data_.start_;
+      if (GetArena() == nullptr) {
+        delete data_.start_;
+      }
       break;
     }
     case DATA_NOT_SET: {
@@ -1203,7 +1206,7 @@ void TimestampFilter::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && end_ != nullptr) {
+  if (GetArena() == nullptr && end_ != nullptr) {
     delete end_;
   }
   end_ = nullptr;
@@ -1211,7 +1214,7 @@ void TimestampFilter::Clear() {
       reinterpret_cast<char*>(&sort_direction_) -
       reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
   clear_data();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* TimestampFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1231,7 +1234,7 @@ const char* TimestampFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
       // .epl.protobuf.v1.FilterRelationship rel_type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_rel_type(static_cast<::epl::protobuf::v1::FilterRelationship>(val));
         } else goto handle_unusual;
@@ -1253,7 +1256,7 @@ const char* TimestampFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
       // .epl.protobuf.v1.SortDirection sort_direction = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_sort_direction(static_cast<::epl::protobuf::v1::SortDirection>(val));
         } else goto handle_unusual;
@@ -1264,7 +1267,9 @@ const char* TimestampFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1324,7 +1329,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.TimestampFilter)
   return target;
@@ -1403,7 +1408,7 @@ void TimestampFilter::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void TimestampFilter::MergeFrom(const TimestampFilter& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.TimestampFilter)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1451,10 +1456,13 @@ bool TimestampFilter::IsInitialized() const {
 
 void TimestampFilter::InternalSwap(TimestampFilter* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(end_, other->end_);
-  swap(rel_type_, other->rel_type_);
-  swap(sort_direction_, other->sort_direction_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TimestampFilter, sort_direction_)
+      + sizeof(TimestampFilter::sort_direction_)
+      - PROTOBUF_FIELD_OFFSET(TimestampFilter, end_)>(
+          reinterpret_cast<char*>(&end_),
+          reinterpret_cast<char*>(&other->end_));
   swap(data_, other->data_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -1466,24 +1474,21 @@ void TimestampFilter::InternalSwap(TimestampFilter* other) {
 
 // ===================================================================
 
-void UInt32Filter::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_UInt32Filter_default_instance_.value_ = 0u;
-  ::epl::protobuf::v1::_UInt32Filter_default_instance_.start_ = 0u;
-}
 class UInt32Filter::_Internal {
  public:
 };
 
-UInt32Filter::UInt32Filter()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+UInt32Filter::UInt32Filter(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  set_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.UInt32Filter)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.UInt32Filter)
 }
 UInt32Filter::UInt32Filter(const UInt32Filter& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       set_(from.set_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&rel_type_, &from.rel_type_,
     static_cast<size_t>(reinterpret_cast<char*>(&sort_direction_) -
     reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
@@ -1505,31 +1510,35 @@ UInt32Filter::UInt32Filter(const UInt32Filter& from)
 }
 
 void UInt32Filter::SharedCtor() {
-  ::memset(&rel_type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sort_direction_) -
-      reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
-  clear_has_data();
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&rel_type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&sort_direction_) -
+    reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
+clear_has_data();
 }
 
 UInt32Filter::~UInt32Filter() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.UInt32Filter)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void UInt32Filter::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (has_data()) {
     clear_data();
   }
 }
 
+void UInt32Filter::ArenaDtor(void* object) {
+  UInt32Filter* _this = reinterpret_cast< UInt32Filter* >(object);
+  (void)_this;
+}
+void UInt32Filter::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void UInt32Filter::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const UInt32Filter& UInt32Filter::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_UInt32Filter_epl_2fprotobuf_2fv1_2fquery_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void UInt32Filter::clear_data() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.UInt32Filter)
@@ -1561,7 +1570,7 @@ void UInt32Filter::Clear() {
       reinterpret_cast<char*>(&sort_direction_) -
       reinterpret_cast<char*>(&rel_type_)) + sizeof(sort_direction_));
   clear_data();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* UInt32Filter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1574,14 +1583,14 @@ const char* UInt32Filter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       // uint32 value = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_value(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_value(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // .epl.protobuf.v1.FilterRelationship rel_type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_rel_type(static_cast<::epl::protobuf::v1::FilterRelationship>(val));
         } else goto handle_unusual;
@@ -1589,21 +1598,21 @@ const char* UInt32Filter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       // uint32 start = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          _internal_set_start(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_start(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // uint32 end = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          end_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          end_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // .epl.protobuf.v1.SortDirection sort_direction = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_sort_direction(static_cast<::epl::protobuf::v1::SortDirection>(val));
         } else goto handle_unusual;
@@ -1614,7 +1623,7 @@ const char* UInt32Filter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_set(), ptr, ctx);
           CHK_(ptr);
         } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48) {
-          _internal_add_set(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_add_set(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1624,7 +1633,9 @@ const char* UInt32Filter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1687,7 +1698,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.UInt32Filter)
   return target;
@@ -1781,7 +1792,7 @@ void UInt32Filter::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void UInt32Filter::MergeFrom(const UInt32Filter& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.UInt32Filter)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1830,11 +1841,14 @@ bool UInt32Filter::IsInitialized() const {
 
 void UInt32Filter::InternalSwap(UInt32Filter* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   set_.InternalSwap(&other->set_);
-  swap(rel_type_, other->rel_type_);
-  swap(end_, other->end_);
-  swap(sort_direction_, other->sort_direction_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UInt32Filter, sort_direction_)
+      + sizeof(UInt32Filter::sort_direction_)
+      - PROTOBUF_FIELD_OFFSET(UInt32Filter, rel_type_)>(
+          reinterpret_cast<char*>(&rel_type_),
+          reinterpret_cast<char*>(&other->rel_type_));
   swap(data_, other->data_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -1846,53 +1860,55 @@ void UInt32Filter::InternalSwap(UInt32Filter* other) {
 
 // ===================================================================
 
-void StringFilter::InitAsDefaultInstance() {
-}
 class StringFilter::_Internal {
  public:
 };
 
-StringFilter::StringFilter()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+StringFilter::StringFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  set_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.StringFilter)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.StringFilter)
 }
 StringFilter::StringFilter(const StringFilter& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       set_(from.set_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_value().empty()) {
-    value_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.value_);
+    value_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_value(), 
+      GetArena());
   }
   rel_type_ = from.rel_type_;
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.StringFilter)
 }
 
 void StringFilter::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_StringFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base);
-  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  rel_type_ = 0;
+value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+rel_type_ = 0;
 }
 
 StringFilter::~StringFilter() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.StringFilter)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void StringFilter::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void StringFilter::ArenaDtor(void* object) {
+  StringFilter* _this = reinterpret_cast< StringFilter* >(object);
+  (void)_this;
+}
+void StringFilter::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void StringFilter::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const StringFilter& StringFilter::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_StringFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void StringFilter::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.StringFilter)
@@ -1901,9 +1917,9 @@ void StringFilter::Clear() {
   (void) cached_has_bits;
 
   set_.Clear();
-  value_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.ClearToEmpty();
   rel_type_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* StringFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1925,7 +1941,7 @@ const char* StringFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       // .epl.protobuf.v1.FilterRelationship rel_type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_rel_type(static_cast<::epl::protobuf::v1::FilterRelationship>(val));
         } else goto handle_unusual;
@@ -1950,7 +1966,9 @@ const char* StringFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1999,7 +2017,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.StringFilter)
   return target;
@@ -2061,14 +2079,13 @@ void StringFilter::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void StringFilter::MergeFrom(const StringFilter& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.StringFilter)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   set_.MergeFrom(from.set_);
   if (from.value().size() > 0) {
-
-    value_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.value_);
+    _internal_set_value(from._internal_value());
   }
   if (from.rel_type() != 0) {
     _internal_set_rel_type(from._internal_rel_type());
@@ -2095,10 +2112,9 @@ bool StringFilter::IsInitialized() const {
 
 void StringFilter::InternalSwap(StringFilter* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   set_.InternalSwap(&other->set_);
-  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(rel_type_, other->rel_type_);
 }
 
@@ -2113,19 +2129,19 @@ void StringFilter::InternalSwap(StringFilter* other) {
 }  // namespace epl
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::FloatFilter* Arena::CreateMaybeMessage< ::epl::protobuf::v1::FloatFilter >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::FloatFilter >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::FloatFilter >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::DoubleFilter* Arena::CreateMaybeMessage< ::epl::protobuf::v1::DoubleFilter >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::DoubleFilter >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::DoubleFilter >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::TimestampFilter* Arena::CreateMaybeMessage< ::epl::protobuf::v1::TimestampFilter >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::TimestampFilter >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::TimestampFilter >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::UInt32Filter* Arena::CreateMaybeMessage< ::epl::protobuf::v1::UInt32Filter >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::UInt32Filter >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::UInt32Filter >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::StringFilter* Arena::CreateMaybeMessage< ::epl::protobuf::v1::StringFilter >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::StringFilter >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::StringFilter >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

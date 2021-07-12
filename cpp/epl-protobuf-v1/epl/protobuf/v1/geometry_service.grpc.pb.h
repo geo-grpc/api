@@ -124,16 +124,10 @@ class GeometryService final {
       virtual ~experimental_async_interface() {}
       // Execute a single blocking geometry operation
       virtual void Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::epl::protobuf::v1::GeometryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Operate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::GeometryResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void Operate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Operate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // stream in operator requests and get back a stream of results
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -150,9 +144,9 @@ class GeometryService final {
       #endif
       // Maybe a cut operation that returns a lot of different geometries? for now, this is not implemented.
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void OperateServerStream(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) = 0;
+      virtual void OperateServerStream(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) = 0;
       #else
-      virtual void OperateServerStream(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) = 0;
+      virtual void OperateServerStream(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) = 0;
       #endif
       // Maybe something like a union operation. for now, this is not implemented.
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -252,16 +246,10 @@ class GeometryService final {
       public StubInterface::experimental_async_interface {
      public:
       void Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::epl::protobuf::v1::GeometryResponse* response, std::function<void(::grpc::Status)>) override;
-      void Operate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::GeometryResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void Operate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Operate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void OperateBiStream(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::epl::protobuf::v1::GeometryRequest,::epl::protobuf::v1::GeometryResponse>* reactor) override;
@@ -274,9 +262,9 @@ class GeometryService final {
       void OperateBiStreamFlow(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::epl::protobuf::v1::GeometryRequest,::epl::protobuf::v1::GeometryResponse>* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void OperateServerStream(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) override;
+      void OperateServerStream(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) override;
       #else
-      void OperateServerStream(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) override;
+      void OperateServerStream(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void OperateClientStream(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::ClientWriteReactor< ::epl::protobuf::v1::GeometryRequest>* reactor) override;
@@ -476,7 +464,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -491,7 +479,7 @@ class GeometryService final {
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_Operate() override {
@@ -523,7 +511,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
+          new ::grpc::internal::CallbackBidiHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -561,7 +549,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
+          new ::grpc::internal::CallbackBidiHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -599,7 +587,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -637,7 +625,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(4,
-          new ::grpc_impl::internal::CallbackClientStreamingHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
+          new ::grpc::internal::CallbackClientStreamingHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -675,7 +663,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(5,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>(
+          new ::grpc::internal::CallbackBidiHandler< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -940,7 +928,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -978,7 +966,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1016,7 +1004,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1054,7 +1042,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1092,7 +1080,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(4,
-          new ::grpc_impl::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1130,7 +1118,7 @@ class GeometryService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(5,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1163,7 +1151,14 @@ class GeometryService final {
    public:
     WithStreamedUnaryMethod_Operate() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(std::bind(&WithStreamedUnaryMethod_Operate<BaseClass>::StreamedOperate, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>* streamer) {
+                       return this->StreamedOperate(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_Operate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1184,7 +1179,14 @@ class GeometryService final {
    public:
     WithSplitStreamingMethod_OperateServerStream() {
       ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::SplitServerStreamingHandler< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(std::bind(&WithSplitStreamingMethod_OperateServerStream<BaseClass>::StreamedOperateServerStream, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>* streamer) {
+                       return this->StreamedOperateServerStream(context,
+                         streamer);
+                  }));
     }
     ~WithSplitStreamingMethod_OperateServerStream() override {
       BaseClassMustBeDerivedFromService(this);

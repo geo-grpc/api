@@ -14,6 +14,8 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+
+PROTOBUF_PRAGMA_INIT_SEG
 namespace epl {
 namespace protobuf {
 namespace v1 {
@@ -58,19 +60,21 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eprot
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_deps[1] = {
   &::descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_sccs[1] = {
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_once;
-static bool descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, "epl/protobuf/v1/stac_service.proto", 1031,
-  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_deps, 0, 1,
+  false, false, 1031, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, "epl/protobuf/v1/stac_service.proto", 
+  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_deps, 1, 0,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto::offsets,
-  file_level_metadata_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, 0, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto,
+  file_level_metadata_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto,
 };
+PROTOBUF_ATTRIBUTE_WEAK ::PROTOBUF_NAMESPACE_ID::Metadata
+descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_metadata_getter(int index) {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto);
+  return descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto.file_level_metadata[index];
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto(&descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto);
 namespace epl {
 namespace protobuf {
 namespace v1 {

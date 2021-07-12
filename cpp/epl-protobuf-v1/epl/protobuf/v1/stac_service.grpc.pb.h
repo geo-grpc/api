@@ -162,14 +162,14 @@ class StacService final {
       //
       // using a search request, stream all the results that match the search filter
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SearchItems(::grpc::ClientContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) = 0;
+      virtual void SearchItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) = 0;
       #else
-      virtual void SearchItems(::grpc::ClientContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) = 0;
+      virtual void SearchItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) = 0;
+      virtual void SearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) = 0;
       #else
-      virtual void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) = 0;
+      virtual void SearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) = 0;
       #endif
       //
       // insert a stream of items into the STAC service
@@ -188,86 +188,50 @@ class StacService final {
       //
       // count all the items in the Stac service according to the StacRequest filter
       virtual void CountItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CountItems(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void CountItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void CountItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void CountItems(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void CountItems(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       //
       // delete an item from the STAC service
       virtual void DeleteOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DeleteOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void DeleteOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DeleteOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DeleteOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       //
       // using a search request get the first item that matches the request
       virtual void SearchOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacItem* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SearchOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacItem* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SearchOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacItem* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void SearchOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacItem* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SearchOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacItem* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SearchOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacItem* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       //
       // Insert one item into the STAC service
       virtual void InsertOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void InsertOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void InsertOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void InsertOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void InsertOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void InsertOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       //
       // Insert one item into the STAC service
       virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       //
       // Update one item in the STAC service
       virtual void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -388,14 +352,14 @@ class StacService final {
       public StubInterface::experimental_async_interface {
      public:
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SearchItems(::grpc::ClientContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) override;
+      void SearchItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) override;
       #else
-      void SearchItems(::grpc::ClientContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) override;
+      void SearchItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) override;
+      void SearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) override;
       #else
-      void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) override;
+      void SearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void InsertItems(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::epl::protobuf::v1::StacItem,::epl::protobuf::v1::StacDbResponse>* reactor) override;
@@ -408,76 +372,40 @@ class StacService final {
       void UpdateItems(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::epl::protobuf::v1::StacItem,::epl::protobuf::v1::StacDbResponse>* reactor) override;
       #endif
       void CountItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
-      void CountItems(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void CountItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void CountItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void CountItems(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void CountItems(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void DeleteOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DeleteOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void DeleteOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DeleteOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DeleteOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void SearchOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacItem* response, std::function<void(::grpc::Status)>) override;
-      void SearchOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacItem* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SearchOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacItem* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void SearchOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest* request, ::epl::protobuf::v1::StacItem* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SearchOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacItem* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SearchOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacItem* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void InsertOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
-      void InsertOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void InsertOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void InsertOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void InsertOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void InsertOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
-      void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
-      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -773,7 +701,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -811,7 +739,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -849,7 +777,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+          new ::grpc::internal::CallbackBidiHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -887,7 +815,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+          new ::grpc::internal::CallbackBidiHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -925,7 +853,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -940,7 +868,7 @@ class StacService final {
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_CountItems() override {
@@ -972,7 +900,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -987,7 +915,7 @@ class StacService final {
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_DeleteOneItem() override {
@@ -1019,7 +947,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(
+          new ::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1034,7 +962,7 @@ class StacService final {
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_SearchOneItem() override {
@@ -1066,7 +994,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1081,7 +1009,7 @@ class StacService final {
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_InsertOneItem() override {
@@ -1113,7 +1041,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(8,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1128,7 +1056,7 @@ class StacService final {
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_InsertOneCollection() override {
@@ -1160,7 +1088,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(9,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1175,7 +1103,7 @@ class StacService final {
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_UpdateOneItem() override {
@@ -1582,7 +1510,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1620,7 +1548,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1658,7 +1586,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1696,7 +1624,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1734,7 +1662,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1772,7 +1700,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1810,7 +1738,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1848,7 +1776,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1886,7 +1814,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(8,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1924,7 +1852,7 @@ class StacService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodRawCallback(9,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -1957,7 +1885,14 @@ class StacService final {
    public:
     WithStreamedUnaryMethod_CountItems() {
       ::grpc::Service::MarkMethodStreamed(4,
-        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_CountItems<BaseClass>::StreamedCountItems, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>* streamer) {
+                       return this->StreamedCountItems(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_CountItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1977,7 +1912,14 @@ class StacService final {
    public:
     WithStreamedUnaryMethod_DeleteOneItem() {
       ::grpc::Service::MarkMethodStreamed(5,
-        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_DeleteOneItem<BaseClass>::StreamedDeleteOneItem, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* streamer) {
+                       return this->StreamedDeleteOneItem(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_DeleteOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1997,7 +1939,14 @@ class StacService final {
    public:
     WithStreamedUnaryMethod_SearchOneItem() {
       ::grpc::Service::MarkMethodStreamed(6,
-        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(std::bind(&WithStreamedUnaryMethod_SearchOneItem<BaseClass>::StreamedSearchOneItem, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>* streamer) {
+                       return this->StreamedSearchOneItem(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_SearchOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2017,7 +1966,14 @@ class StacService final {
    public:
     WithStreamedUnaryMethod_InsertOneItem() {
       ::grpc::Service::MarkMethodStreamed(7,
-        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_InsertOneItem<BaseClass>::StreamedInsertOneItem, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* streamer) {
+                       return this->StreamedInsertOneItem(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_InsertOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2037,7 +1993,14 @@ class StacService final {
    public:
     WithStreamedUnaryMethod_InsertOneCollection() {
       ::grpc::Service::MarkMethodStreamed(8,
-        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_InsertOneCollection<BaseClass>::StreamedInsertOneCollection, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>* streamer) {
+                       return this->StreamedInsertOneCollection(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_InsertOneCollection() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2057,7 +2020,14 @@ class StacService final {
    public:
     WithStreamedUnaryMethod_UpdateOneItem() {
       ::grpc::Service::MarkMethodStreamed(9,
-        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_UpdateOneItem<BaseClass>::StreamedUpdateOneItem, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* streamer) {
+                       return this->StreamedUpdateOneItem(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_UpdateOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2078,7 +2048,14 @@ class StacService final {
    public:
     WithSplitStreamingMethod_SearchItems() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::SplitServerStreamingHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(std::bind(&WithSplitStreamingMethod_SearchItems<BaseClass>::StreamedSearchItems, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>* streamer) {
+                       return this->StreamedSearchItems(context,
+                         streamer);
+                  }));
     }
     ~WithSplitStreamingMethod_SearchItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2098,7 +2075,14 @@ class StacService final {
    public:
     WithSplitStreamingMethod_SearchCollections() {
       ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::SplitServerStreamingHandler< ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(std::bind(&WithSplitStreamingMethod_SearchCollections<BaseClass>::StreamedSearchCollections, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>* streamer) {
+                       return this->StreamedSearchCollections(context,
+                         streamer);
+                  }));
     }
     ~WithSplitStreamingMethod_SearchCollections() override {
       BaseClassMustBeDerivedFromService(this);

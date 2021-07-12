@@ -48,144 +48,169 @@ GeometryService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& ch
   {}
 
 ::grpc::Status GeometryService::Stub::Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest& request, ::epl::protobuf::v1::GeometryResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Operate_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Operate_, context, request, response);
 }
 
 void GeometryService::Stub::experimental_async::Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::epl::protobuf::v1::GeometryResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Operate_, context, request, response, std::move(f));
-}
-
-void GeometryService::Stub::experimental_async::Operate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::GeometryResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Operate_, context, request, response, std::move(f));
+  ::grpc::internal::CallbackUnaryCall< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Operate_, context, request, response, std::move(f));
 }
 
 void GeometryService::Stub::experimental_async::Operate(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Operate_, context, request, response, reactor);
-}
-
-void GeometryService::Stub::experimental_async::Operate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Operate_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::AsyncOperateRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_Operate_, context, request, true);
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Operate_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::PrepareAsyncOperateRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_Operate_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::epl::protobuf::v1::GeometryResponse, ::epl::protobuf::v1::GeometryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Operate_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::AsyncOperateRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncOperateRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::ClientReaderWriter< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::OperateBiStreamRaw(::grpc::ClientContext* context) {
-  return ::grpc_impl::internal::ClientReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), rpcmethod_OperateBiStream_, context);
+  return ::grpc::internal::ClientReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), rpcmethod_OperateBiStream_, context);
 }
 
 void GeometryService::Stub::experimental_async::OperateBiStream(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::epl::protobuf::v1::GeometryRequest,::epl::protobuf::v1::GeometryResponse>* reactor) {
-  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest,::epl::protobuf::v1::GeometryResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_OperateBiStream_, context, reactor);
+  ::grpc::internal::ClientCallbackReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest,::epl::protobuf::v1::GeometryResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_OperateBiStream_, context, reactor);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::AsyncOperateBiStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateBiStream_, context, true, tag);
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateBiStream_, context, true, tag);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::PrepareAsyncOperateBiStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateBiStream_, context, false, nullptr);
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateBiStream_, context, false, nullptr);
 }
 
 ::grpc::ClientReaderWriter< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::OperateBiStreamFlowRaw(::grpc::ClientContext* context) {
-  return ::grpc_impl::internal::ClientReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), rpcmethod_OperateBiStreamFlow_, context);
+  return ::grpc::internal::ClientReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), rpcmethod_OperateBiStreamFlow_, context);
 }
 
 void GeometryService::Stub::experimental_async::OperateBiStreamFlow(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::epl::protobuf::v1::GeometryRequest,::epl::protobuf::v1::GeometryResponse>* reactor) {
-  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest,::epl::protobuf::v1::GeometryResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_OperateBiStreamFlow_, context, reactor);
+  ::grpc::internal::ClientCallbackReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest,::epl::protobuf::v1::GeometryResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_OperateBiStreamFlow_, context, reactor);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::AsyncOperateBiStreamFlowRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateBiStreamFlow_, context, true, tag);
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateBiStreamFlow_, context, true, tag);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::PrepareAsyncOperateBiStreamFlowRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateBiStreamFlow_, context, false, nullptr);
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateBiStreamFlow_, context, false, nullptr);
 }
 
 ::grpc::ClientReader< ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::OperateServerStreamRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest& request) {
-  return ::grpc_impl::internal::ClientReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), rpcmethod_OperateServerStream_, context, request);
+  return ::grpc::internal::ClientReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), rpcmethod_OperateServerStream_, context, request);
 }
 
-void GeometryService::Stub::experimental_async::OperateServerStream(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) {
-  ::grpc_impl::internal::ClientCallbackReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_OperateServerStream_, context, request, reactor);
+void GeometryService::Stub::experimental_async::OperateServerStream(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::GeometryResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_OperateServerStream_, context, request, reactor);
 }
 
 ::grpc::ClientAsyncReader< ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::AsyncOperateServerStreamRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateServerStream_, context, request, true, tag);
+  return ::grpc::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateServerStream_, context, request, true, tag);
 }
 
 ::grpc::ClientAsyncReader< ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::PrepareAsyncOperateServerStreamRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::GeometryRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateServerStream_, context, request, false, nullptr);
+  return ::grpc::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_OperateServerStream_, context, request, false, nullptr);
 }
 
 ::grpc::ClientWriter< ::epl::protobuf::v1::GeometryRequest>* GeometryService::Stub::OperateClientStreamRaw(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryResponse* response) {
-  return ::grpc_impl::internal::ClientWriterFactory< ::epl::protobuf::v1::GeometryRequest>::Create(channel_.get(), rpcmethod_OperateClientStream_, context, response);
+  return ::grpc::internal::ClientWriterFactory< ::epl::protobuf::v1::GeometryRequest>::Create(channel_.get(), rpcmethod_OperateClientStream_, context, response);
 }
 
 void GeometryService::Stub::experimental_async::OperateClientStream(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::experimental::ClientWriteReactor< ::epl::protobuf::v1::GeometryRequest>* reactor) {
-  ::grpc_impl::internal::ClientCallbackWriterFactory< ::epl::protobuf::v1::GeometryRequest>::Create(stub_->channel_.get(), stub_->rpcmethod_OperateClientStream_, context, response, reactor);
+  ::grpc::internal::ClientCallbackWriterFactory< ::epl::protobuf::v1::GeometryRequest>::Create(stub_->channel_.get(), stub_->rpcmethod_OperateClientStream_, context, response, reactor);
 }
 
 ::grpc::ClientAsyncWriter< ::epl::protobuf::v1::GeometryRequest>* GeometryService::Stub::AsyncOperateClientStreamRaw(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc_impl::internal::ClientAsyncWriterFactory< ::epl::protobuf::v1::GeometryRequest>::Create(channel_.get(), cq, rpcmethod_OperateClientStream_, context, response, true, tag);
+  return ::grpc::internal::ClientAsyncWriterFactory< ::epl::protobuf::v1::GeometryRequest>::Create(channel_.get(), cq, rpcmethod_OperateClientStream_, context, response, true, tag);
 }
 
 ::grpc::ClientAsyncWriter< ::epl::protobuf::v1::GeometryRequest>* GeometryService::Stub::PrepareAsyncOperateClientStreamRaw(::grpc::ClientContext* context, ::epl::protobuf::v1::GeometryResponse* response, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncWriterFactory< ::epl::protobuf::v1::GeometryRequest>::Create(channel_.get(), cq, rpcmethod_OperateClientStream_, context, response, false, nullptr);
+  return ::grpc::internal::ClientAsyncWriterFactory< ::epl::protobuf::v1::GeometryRequest>::Create(channel_.get(), cq, rpcmethod_OperateClientStream_, context, response, false, nullptr);
 }
 
 ::grpc::ClientReaderWriter< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::FileOperateBiStreamFlowRaw(::grpc::ClientContext* context) {
-  return ::grpc_impl::internal::ClientReaderWriterFactory< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), rpcmethod_FileOperateBiStreamFlow_, context);
+  return ::grpc::internal::ClientReaderWriterFactory< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), rpcmethod_FileOperateBiStreamFlow_, context);
 }
 
 void GeometryService::Stub::experimental_async::FileOperateBiStreamFlow(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::epl::protobuf::v1::FileRequestChunk,::epl::protobuf::v1::GeometryResponse>* reactor) {
-  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::epl::protobuf::v1::FileRequestChunk,::epl::protobuf::v1::GeometryResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_FileOperateBiStreamFlow_, context, reactor);
+  ::grpc::internal::ClientCallbackReaderWriterFactory< ::epl::protobuf::v1::FileRequestChunk,::epl::protobuf::v1::GeometryResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_FileOperateBiStreamFlow_, context, reactor);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::AsyncFileOperateBiStreamFlowRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_FileOperateBiStreamFlow_, context, true, tag);
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_FileOperateBiStreamFlow_, context, true, tag);
 }
 
 ::grpc::ClientAsyncReaderWriter< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>* GeometryService::Stub::PrepareAsyncFileOperateBiStreamFlowRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_FileOperateBiStreamFlow_, context, false, nullptr);
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>::Create(channel_.get(), cq, rpcmethod_FileOperateBiStreamFlow_, context, false, nullptr);
 }
 
 GeometryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GeometryService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GeometryService::Service, ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
-          std::mem_fn(&GeometryService::Service::Operate), this)));
+      new ::grpc::internal::RpcMethodHandler< GeometryService::Service, ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GeometryService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::epl::protobuf::v1::GeometryRequest* req,
+             ::epl::protobuf::v1::GeometryResponse* resp) {
+               return service->Operate(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GeometryService_method_names[1],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< GeometryService::Service, ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
-          std::mem_fn(&GeometryService::Service::OperateBiStream), this)));
+          [](GeometryService::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReaderWriter<::epl::protobuf::v1::GeometryResponse,
+             ::epl::protobuf::v1::GeometryRequest>* stream) {
+               return service->OperateBiStream(ctx, stream);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GeometryService_method_names[2],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< GeometryService::Service, ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
-          std::mem_fn(&GeometryService::Service::OperateBiStreamFlow), this)));
+          [](GeometryService::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReaderWriter<::epl::protobuf::v1::GeometryResponse,
+             ::epl::protobuf::v1::GeometryRequest>* stream) {
+               return service->OperateBiStreamFlow(ctx, stream);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GeometryService_method_names[3],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< GeometryService::Service, ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
-          std::mem_fn(&GeometryService::Service::OperateServerStream), this)));
+          [](GeometryService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::epl::protobuf::v1::GeometryRequest* req,
+             ::grpc::ServerWriter<::epl::protobuf::v1::GeometryResponse>* writer) {
+               return service->OperateServerStream(ctx, req, writer);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GeometryService_method_names[4],
       ::grpc::internal::RpcMethod::CLIENT_STREAMING,
       new ::grpc::internal::ClientStreamingHandler< GeometryService::Service, ::epl::protobuf::v1::GeometryRequest, ::epl::protobuf::v1::GeometryResponse>(
-          std::mem_fn(&GeometryService::Service::OperateClientStream), this)));
+          [](GeometryService::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReader<::epl::protobuf::v1::GeometryRequest>* reader,
+             ::epl::protobuf::v1::GeometryResponse* resp) {
+               return service->OperateClientStream(ctx, reader, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GeometryService_method_names[5],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< GeometryService::Service, ::epl::protobuf::v1::FileRequestChunk, ::epl::protobuf::v1::GeometryResponse>(
-          std::mem_fn(&GeometryService::Service::FileOperateBiStreamFlow), this)));
+          [](GeometryService::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReaderWriter<::epl::protobuf::v1::GeometryResponse,
+             ::epl::protobuf::v1::FileRequestChunk>* stream) {
+               return service->FileOperateBiStreamFlow(ctx, stream);
+             }, this)));
 }
 
 GeometryService::Service::~Service() {

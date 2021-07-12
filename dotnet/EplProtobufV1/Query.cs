@@ -141,7 +141,11 @@ namespace com.epl.protobuf.v1 {
   ///
   ///Query language for float fields.
   /// </summary>
-  public sealed partial class FloatFilter : pb::IMessage<FloatFilter> {
+  public sealed partial class FloatFilter : pb::IMessage<FloatFilter>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<FloatFilter> _parser = new pb::MessageParser<FloatFilter>(() => new FloatFilter());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -350,6 +354,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (dataCase_ == DataOneofCase.Value) {
         output.WriteRawTag(13);
         output.WriteFloat(Value);
@@ -374,7 +381,38 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (dataCase_ == DataOneofCase.Value) {
+        output.WriteRawTag(13);
+        output.WriteFloat(Value);
+      }
+      if (RelType != global::com.epl.protobuf.v1.FilterRelationship.Eq) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) RelType);
+      }
+      if (dataCase_ == DataOneofCase.Start) {
+        output.WriteRawTag(29);
+        output.WriteFloat(Start);
+      }
+      if (End != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(End);
+      }
+      if (SortDirection != global::com.epl.protobuf.v1.SortDirection.NotSorted) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) SortDirection);
+      }
+      set_.WriteTo(ref output, _repeated_set_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -430,6 +468,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -463,11 +504,55 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 13: {
+            Value = input.ReadFloat();
+            break;
+          }
+          case 16: {
+            RelType = (global::com.epl.protobuf.v1.FilterRelationship) input.ReadEnum();
+            break;
+          }
+          case 29: {
+            Start = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            End = input.ReadFloat();
+            break;
+          }
+          case 40: {
+            SortDirection = (global::com.epl.protobuf.v1.SortDirection) input.ReadEnum();
+            break;
+          }
+          case 50:
+          case 53: {
+            set_.AddEntriesFrom(ref input, _repeated_set_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class DoubleFilter : pb::IMessage<DoubleFilter> {
+  public sealed partial class DoubleFilter : pb::IMessage<DoubleFilter>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<DoubleFilter> _parser = new pb::MessageParser<DoubleFilter>(() => new DoubleFilter());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -676,6 +761,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (dataCase_ == DataOneofCase.Value) {
         output.WriteRawTag(9);
         output.WriteDouble(Value);
@@ -700,7 +788,38 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (dataCase_ == DataOneofCase.Value) {
+        output.WriteRawTag(9);
+        output.WriteDouble(Value);
+      }
+      if (RelType != global::com.epl.protobuf.v1.FilterRelationship.Eq) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) RelType);
+      }
+      if (dataCase_ == DataOneofCase.Start) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Start);
+      }
+      if (End != 0D) {
+        output.WriteRawTag(33);
+        output.WriteDouble(End);
+      }
+      if (SortDirection != global::com.epl.protobuf.v1.SortDirection.NotSorted) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) SortDirection);
+      }
+      set_.WriteTo(ref output, _repeated_set_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -756,6 +875,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -789,11 +911,55 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 9: {
+            Value = input.ReadDouble();
+            break;
+          }
+          case 16: {
+            RelType = (global::com.epl.protobuf.v1.FilterRelationship) input.ReadEnum();
+            break;
+          }
+          case 25: {
+            Start = input.ReadDouble();
+            break;
+          }
+          case 33: {
+            End = input.ReadDouble();
+            break;
+          }
+          case 40: {
+            SortDirection = (global::com.epl.protobuf.v1.SortDirection) input.ReadEnum();
+            break;
+          }
+          case 50:
+          case 49: {
+            set_.AddEntriesFrom(ref input, _repeated_set_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class TimestampFilter : pb::IMessage<TimestampFilter> {
+  public sealed partial class TimestampFilter : pb::IMessage<TimestampFilter>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<TimestampFilter> _parser = new pb::MessageParser<TimestampFilter>(() => new TimestampFilter());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -984,6 +1150,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (dataCase_ == DataOneofCase.Value) {
         output.WriteRawTag(10);
         output.WriteMessage(Value);
@@ -1007,7 +1176,37 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (dataCase_ == DataOneofCase.Value) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Value);
+      }
+      if (RelType != global::com.epl.protobuf.v1.FilterRelationship.Eq) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) RelType);
+      }
+      if (dataCase_ == DataOneofCase.Start) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Start);
+      }
+      if (end_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(End);
+      }
+      if (SortDirection != global::com.epl.protobuf.v1.SortDirection.NotSorted) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) SortDirection);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -1070,6 +1269,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1111,11 +1313,63 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            global::Google.Protobuf.WellKnownTypes.Timestamp subBuilder = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            if (dataCase_ == DataOneofCase.Value) {
+              subBuilder.MergeFrom(Value);
+            }
+            input.ReadMessage(subBuilder);
+            Value = subBuilder;
+            break;
+          }
+          case 16: {
+            RelType = (global::com.epl.protobuf.v1.FilterRelationship) input.ReadEnum();
+            break;
+          }
+          case 26: {
+            global::Google.Protobuf.WellKnownTypes.Timestamp subBuilder = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            if (dataCase_ == DataOneofCase.Start) {
+              subBuilder.MergeFrom(Start);
+            }
+            input.ReadMessage(subBuilder);
+            Start = subBuilder;
+            break;
+          }
+          case 34: {
+            if (end_ == null) {
+              End = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(End);
+            break;
+          }
+          case 40: {
+            SortDirection = (global::com.epl.protobuf.v1.SortDirection) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class UInt32Filter : pb::IMessage<UInt32Filter> {
+  public sealed partial class UInt32Filter : pb::IMessage<UInt32Filter>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<UInt32Filter> _parser = new pb::MessageParser<UInt32Filter>(() => new UInt32Filter());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1324,6 +1578,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (dataCase_ == DataOneofCase.Value) {
         output.WriteRawTag(8);
         output.WriteUInt32(Value);
@@ -1348,7 +1605,38 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (dataCase_ == DataOneofCase.Value) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(Value);
+      }
+      if (RelType != global::com.epl.protobuf.v1.FilterRelationship.Eq) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) RelType);
+      }
+      if (dataCase_ == DataOneofCase.Start) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Start);
+      }
+      if (End != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(End);
+      }
+      if (SortDirection != global::com.epl.protobuf.v1.SortDirection.NotSorted) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) SortDirection);
+      }
+      set_.WriteTo(ref output, _repeated_set_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -1404,6 +1692,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1437,11 +1728,55 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Value = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            RelType = (global::com.epl.protobuf.v1.FilterRelationship) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            Start = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            End = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            SortDirection = (global::com.epl.protobuf.v1.SortDirection) input.ReadEnum();
+            break;
+          }
+          case 50:
+          case 48: {
+            set_.AddEntriesFrom(ref input, _repeated_set_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class StringFilter : pb::IMessage<StringFilter> {
+  public sealed partial class StringFilter : pb::IMessage<StringFilter>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<StringFilter> _parser = new pb::MessageParser<StringFilter>(() => new StringFilter());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1562,6 +1897,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Value.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Value);
@@ -1574,7 +1912,26 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Value.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Value);
+      }
+      if (RelType != global::com.epl.protobuf.v1.FilterRelationship.Eq) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) RelType);
+      }
+      set_.WriteTo(ref output, _repeated_set_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -1609,6 +1966,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1629,7 +1989,34 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Value = input.ReadString();
+            break;
+          }
+          case 16: {
+            RelType = (global::com.epl.protobuf.v1.FilterRelationship) input.ReadEnum();
+            break;
+          }
+          case 50: {
+            set_.AddEntriesFrom(ref input, _repeated_set_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 

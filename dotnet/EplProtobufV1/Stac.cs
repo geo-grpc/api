@@ -336,7 +336,11 @@ namespace com.epl.protobuf.v1 {
   #endregion
 
   #region Messages
-  public sealed partial class Collection : pb::IMessage<Collection> {
+  public sealed partial class Collection : pb::IMessage<Collection>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Collection> _parser = new pb::MessageParser<Collection>(() => new Collection());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -552,6 +556,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (StacVersion.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(StacVersion);
@@ -582,7 +589,44 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (StacVersion.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(StacVersion);
+      }
+      if (Id.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Id);
+      }
+      if (Title.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Title);
+      }
+      if (Description.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Description);
+      }
+      keywords_.WriteTo(ref output, _repeated_keywords_codec);
+      if (License.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(License);
+      }
+      providers_.WriteTo(ref output, _repeated_providers_codec);
+      if (extent_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(Extent);
+      }
+      summaries_.WriteTo(ref output, _map_summaries_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -648,6 +692,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -695,11 +742,69 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            StacVersion = input.ReadString();
+            break;
+          }
+          case 26: {
+            Id = input.ReadString();
+            break;
+          }
+          case 34: {
+            Title = input.ReadString();
+            break;
+          }
+          case 42: {
+            Description = input.ReadString();
+            break;
+          }
+          case 50: {
+            keywords_.AddEntriesFrom(ref input, _repeated_keywords_codec);
+            break;
+          }
+          case 58: {
+            License = input.ReadString();
+            break;
+          }
+          case 66: {
+            providers_.AddEntriesFrom(ref input, _repeated_providers_codec);
+            break;
+          }
+          case 74: {
+            if (extent_ == null) {
+              Extent = new global::com.epl.protobuf.v1.Extent();
+            }
+            input.ReadMessage(Extent);
+            break;
+          }
+          case 82: {
+            summaries_.AddEntriesFrom(ref input, _map_summaries_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class CollectionRequest : pb::IMessage<CollectionRequest> {
+  public sealed partial class CollectionRequest : pb::IMessage<CollectionRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<CollectionRequest> _parser = new pb::MessageParser<CollectionRequest>(() => new CollectionRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -834,6 +939,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Id.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Id);
@@ -849,7 +957,29 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (spatialCase_ == SpatialOneofCase.Bbox) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Bbox);
+      }
+      if (spatialCase_ == SpatialOneofCase.Intersects) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Intersects);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -897,6 +1027,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -927,11 +1060,52 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+          case 18: {
+            global::com.epl.protobuf.v1.EnvelopeData subBuilder = new global::com.epl.protobuf.v1.EnvelopeData();
+            if (spatialCase_ == SpatialOneofCase.Bbox) {
+              subBuilder.MergeFrom(Bbox);
+            }
+            input.ReadMessage(subBuilder);
+            Bbox = subBuilder;
+            break;
+          }
+          case 26: {
+            global::com.epl.protobuf.v1.GeometryData subBuilder = new global::com.epl.protobuf.v1.GeometryData();
+            if (spatialCase_ == SpatialOneofCase.Intersects) {
+              subBuilder.MergeFrom(Intersects);
+            }
+            input.ReadMessage(subBuilder);
+            Intersects = subBuilder;
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class Stats : pb::IMessage<Stats> {
+  public sealed partial class Stats : pb::IMessage<Stats>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Stats> _parser = new pb::MessageParser<Stats>(() => new Stats());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -996,10 +1170,23 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -1020,6 +1207,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1028,14 +1218,33 @@ namespace com.epl.protobuf.v1 {
             break;
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
 
   }
 
   /// <summary>
   /// The object describes the spatio-temporal extents of the Collection. Both spatial and temporal extents are required to be specified.
   /// </summary>
-  public sealed partial class Extent : pb::IMessage<Extent> {
+  public sealed partial class Extent : pb::IMessage<Extent>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Extent> _parser = new pb::MessageParser<Extent>(() => new Extent());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1132,12 +1341,27 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       spatial_.WriteTo(output, _repeated_spatial_codec);
       temporal_.WriteTo(output, _repeated_temporal_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      spatial_.WriteTo(ref output, _repeated_spatial_codec);
+      temporal_.WriteTo(ref output, _repeated_temporal_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -1162,6 +1386,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1178,7 +1405,30 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            spatial_.AddEntriesFrom(ref input, _repeated_spatial_codec);
+            break;
+          }
+          case 18: {
+            temporal_.AddEntriesFrom(ref input, _repeated_temporal_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
@@ -1186,7 +1436,11 @@ namespace com.epl.protobuf.v1 {
   /// https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#temporal-extent-object
   /// The object describes the temporal extents of the Collection.
   /// </summary>
-  public sealed partial class Interval : pb::IMessage<Interval> {
+  public sealed partial class Interval : pb::IMessage<Interval>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Interval> _parser = new pb::MessageParser<Interval>(() => new Interval());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1279,6 +1533,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (start_ != null) {
         output.WriteRawTag(10);
         output.WriteMessage(Start);
@@ -1290,7 +1547,25 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (start_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Start);
+      }
+      if (end_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(End);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -1329,6 +1604,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1351,14 +1629,47 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (start_ == null) {
+              Start = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(Start);
+            break;
+          }
+          case 18: {
+            if (end_ == null) {
+              End = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(End);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
   /// <summary>
   /// The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the collection and therefore influences the data offered by this collection. May also include information about the final storage provider hosting the data.
   /// </summary>
-  public sealed partial class Provider : pb::IMessage<Provider> {
+  public sealed partial class Provider : pb::IMessage<Provider>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Provider> _parser = new pb::MessageParser<Provider>(() => new Provider());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1490,6 +1801,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Name.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Name);
@@ -1506,7 +1820,30 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Name);
+      }
+      if (Description.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Description);
+      }
+      roles_.WriteTo(ref output, _repeated_roles_codec);
+      if (Url.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Url);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -1547,6 +1884,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1571,7 +1911,38 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Name = input.ReadString();
+            break;
+          }
+          case 18: {
+            Description = input.ReadString();
+            break;
+          }
+          case 26: {
+            roles_.AddEntriesFrom(ref input, _repeated_roles_codec);
+            break;
+          }
+          case 34: {
+            Url = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
@@ -1581,7 +1952,11 @@ namespace com.epl.protobuf.v1 {
   /// downloadable assets. It may have an extension with details beyond the spatial and temporal extents. It may have
   /// additional properties in the properties field
   /// </summary>
-  public sealed partial class StacItem : pb::IMessage<StacItem> {
+  public sealed partial class StacItem : pb::IMessage<StacItem>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<StacItem> _parser = new pb::MessageParser<StacItem>(() => new StacItem());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2243,6 +2618,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Id.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Id);
@@ -2367,7 +2745,138 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (Title.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Title);
+      }
+      if (Collection.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Collection);
+      }
+      if (properties_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Properties);
+      }
+      assets_.WriteTo(ref output, _map_assets_codec);
+      if (geometry_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Geometry);
+      }
+      if (bbox_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(Bbox);
+      }
+      if (temporalDeprecatedCase_ == TemporalDeprecatedOneofCase.Datetime) {
+        output.WriteRawTag(66);
+        output.WriteMessage(Datetime);
+      }
+      if (temporalCase_ == TemporalOneofCase.Observed) {
+        output.WriteRawTag(74);
+        output.WriteMessage(Observed);
+      }
+      if (temporalDeprecatedCase_ == TemporalDeprecatedOneofCase.StartDatetime) {
+        output.WriteRawTag(82);
+        output.WriteMessage(StartDatetime);
+      }
+      if (temporalCase_ == TemporalOneofCase.StartObservation) {
+        output.WriteRawTag(90);
+        output.WriteMessage(StartObservation);
+      }
+      if (endDatetime_ != null) {
+        output.WriteRawTag(98);
+        output.WriteMessage(EndDatetime);
+      }
+      if (endObservation_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(EndObservation);
+      }
+      if (created_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(Created);
+      }
+      if (updated_ != null) {
+        output.WriteRawTag(122);
+        output.WriteMessage(Updated);
+      }
+      if (proj_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(Proj);
+      }
+      if (PlatformEnum != global::com.epl.protobuf.v1.Platform.UnknownPlatform) {
+        output.WriteRawTag(136, 1);
+        output.WriteEnum((int) PlatformEnum);
+      }
+      if (Platform.Length != 0) {
+        output.WriteRawTag(146, 1);
+        output.WriteString(Platform);
+      }
+      if (InstrumentEnum != global::com.epl.protobuf.v1.Instrument.UnknownInstrument) {
+        output.WriteRawTag(152, 1);
+        output.WriteEnum((int) InstrumentEnum);
+      }
+      if (Instrument.Length != 0) {
+        output.WriteRawTag(162, 1);
+        output.WriteString(Instrument);
+      }
+      if (ConstellationEnum != global::com.epl.protobuf.v1.Constellation.UnknownConstellation) {
+        output.WriteRawTag(168, 1);
+        output.WriteEnum((int) ConstellationEnum);
+      }
+      if (Constellation.Length != 0) {
+        output.WriteRawTag(178, 1);
+        output.WriteString(Constellation);
+      }
+      if (MissionEnum != global::com.epl.protobuf.v1.Mission.UnknownMission) {
+        output.WriteRawTag(184, 1);
+        output.WriteEnum((int) MissionEnum);
+      }
+      if (Mission.Length != 0) {
+        output.WriteRawTag(194, 1);
+        output.WriteString(Mission);
+      }
+      if (gsd_ != null) {
+        _single_gsd_codec.WriteTagAndValue(ref output, Gsd);
+      }
+      if (StacVersion.Length != 0) {
+        output.WriteRawTag(210, 1);
+        output.WriteString(StacVersion);
+      }
+      if (StacPbVersion.Length != 0) {
+        output.WriteRawTag(218, 1);
+        output.WriteString(StacPbVersion);
+      }
+      stacExtensions_.WriteTo(ref output, _repeated_stacExtensions_codec);
+      if (eo_ != null) {
+        output.WriteRawTag(234, 1);
+        output.WriteMessage(Eo);
+      }
+      if (landsat_ != null) {
+        output.WriteRawTag(250, 1);
+        output.WriteMessage(Landsat);
+      }
+      if (mosaic_ != null) {
+        output.WriteRawTag(130, 2);
+        output.WriteMessage(Mosaic);
+      }
+      if (view_ != null) {
+        output.WriteRawTag(146, 2);
+        output.WriteMessage(View);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -2628,6 +3137,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -2823,7 +3335,209 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+          case 18: {
+            Title = input.ReadString();
+            break;
+          }
+          case 26: {
+            Collection = input.ReadString();
+            break;
+          }
+          case 34: {
+            if (properties_ == null) {
+              Properties = new global::Google.Protobuf.WellKnownTypes.Any();
+            }
+            input.ReadMessage(Properties);
+            break;
+          }
+          case 42: {
+            assets_.AddEntriesFrom(ref input, _map_assets_codec);
+            break;
+          }
+          case 50: {
+            if (geometry_ == null) {
+              Geometry = new global::com.epl.protobuf.v1.GeometryData();
+            }
+            input.ReadMessage(Geometry);
+            break;
+          }
+          case 58: {
+            if (bbox_ == null) {
+              Bbox = new global::com.epl.protobuf.v1.EnvelopeData();
+            }
+            input.ReadMessage(Bbox);
+            break;
+          }
+          case 66: {
+            global::Google.Protobuf.WellKnownTypes.Timestamp subBuilder = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            if (temporalDeprecatedCase_ == TemporalDeprecatedOneofCase.Datetime) {
+              subBuilder.MergeFrom(Datetime);
+            }
+            input.ReadMessage(subBuilder);
+            Datetime = subBuilder;
+            break;
+          }
+          case 74: {
+            global::Google.Protobuf.WellKnownTypes.Timestamp subBuilder = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            if (temporalCase_ == TemporalOneofCase.Observed) {
+              subBuilder.MergeFrom(Observed);
+            }
+            input.ReadMessage(subBuilder);
+            Observed = subBuilder;
+            break;
+          }
+          case 82: {
+            global::Google.Protobuf.WellKnownTypes.Timestamp subBuilder = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            if (temporalDeprecatedCase_ == TemporalDeprecatedOneofCase.StartDatetime) {
+              subBuilder.MergeFrom(StartDatetime);
+            }
+            input.ReadMessage(subBuilder);
+            StartDatetime = subBuilder;
+            break;
+          }
+          case 90: {
+            global::Google.Protobuf.WellKnownTypes.Timestamp subBuilder = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            if (temporalCase_ == TemporalOneofCase.StartObservation) {
+              subBuilder.MergeFrom(StartObservation);
+            }
+            input.ReadMessage(subBuilder);
+            StartObservation = subBuilder;
+            break;
+          }
+          case 98: {
+            if (endDatetime_ == null) {
+              EndDatetime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(EndDatetime);
+            break;
+          }
+          case 106: {
+            if (endObservation_ == null) {
+              EndObservation = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(EndObservation);
+            break;
+          }
+          case 114: {
+            if (created_ == null) {
+              Created = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(Created);
+            break;
+          }
+          case 122: {
+            if (updated_ == null) {
+              Updated = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(Updated);
+            break;
+          }
+          case 130: {
+            if (proj_ == null) {
+              Proj = new global::com.epl.protobuf.v1.ProjectionData();
+            }
+            input.ReadMessage(Proj);
+            break;
+          }
+          case 136: {
+            PlatformEnum = (global::com.epl.protobuf.v1.Platform) input.ReadEnum();
+            break;
+          }
+          case 146: {
+            Platform = input.ReadString();
+            break;
+          }
+          case 152: {
+            InstrumentEnum = (global::com.epl.protobuf.v1.Instrument) input.ReadEnum();
+            break;
+          }
+          case 162: {
+            Instrument = input.ReadString();
+            break;
+          }
+          case 168: {
+            ConstellationEnum = (global::com.epl.protobuf.v1.Constellation) input.ReadEnum();
+            break;
+          }
+          case 178: {
+            Constellation = input.ReadString();
+            break;
+          }
+          case 184: {
+            MissionEnum = (global::com.epl.protobuf.v1.Mission) input.ReadEnum();
+            break;
+          }
+          case 194: {
+            Mission = input.ReadString();
+            break;
+          }
+          case 202: {
+            float? value = _single_gsd_codec.Read(ref input);
+            if (gsd_ == null || value != 0F) {
+              Gsd = value;
+            }
+            break;
+          }
+          case 210: {
+            StacVersion = input.ReadString();
+            break;
+          }
+          case 218: {
+            StacPbVersion = input.ReadString();
+            break;
+          }
+          case 226: {
+            stacExtensions_.AddEntriesFrom(ref input, _repeated_stacExtensions_codec);
+            break;
+          }
+          case 234: {
+            if (eo_ == null) {
+              Eo = new global::com.epl.protobuf.v1.Eo();
+            }
+            input.ReadMessage(Eo);
+            break;
+          }
+          case 250: {
+            if (landsat_ == null) {
+              Landsat = new global::com.epl.protobuf.v1.Landsat();
+            }
+            input.ReadMessage(Landsat);
+            break;
+          }
+          case 258: {
+            if (mosaic_ == null) {
+              Mosaic = new global::com.epl.protobuf.v1.Mosaic();
+            }
+            input.ReadMessage(Mosaic);
+            break;
+          }
+          case 274: {
+            if (view_ == null) {
+              View = new global::com.epl.protobuf.v1.View();
+            }
+            input.ReadMessage(View);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
@@ -2831,7 +3545,11 @@ namespace com.epl.protobuf.v1 {
   ///*
   /// message for making a request for STAC items.
   /// </summary>
-  public sealed partial class StacRequest : pb::IMessage<StacRequest> {
+  public sealed partial class StacRequest : pb::IMessage<StacRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<StacRequest> _parser = new pb::MessageParser<StacRequest>(() => new StacRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3361,6 +4079,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Limit != 0) {
         output.WriteRawTag(8);
         output.WriteUInt32(Limit);
@@ -3456,7 +4177,109 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Limit != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(Limit);
+      }
+      if (Offset != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(Offset);
+      }
+      if (identityCase_ == IdentityOneofCase.Id) {
+        output.WriteRawTag(26);
+        output.WriteString(Id);
+      }
+      if (identityCase_ == IdentityOneofCase.IdComplex) {
+        output.WriteRawTag(34);
+        output.WriteMessage(IdComplex);
+      }
+      if (Collection.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Collection);
+      }
+      if (properties_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Properties);
+      }
+      if (spatialCase_ == SpatialOneofCase.Intersects) {
+        output.WriteRawTag(58);
+        output.WriteMessage(Intersects);
+      }
+      if (spatialCase_ == SpatialOneofCase.Bbox) {
+        output.WriteRawTag(66);
+        output.WriteMessage(Bbox);
+      }
+      if (spatialCase_ == SpatialOneofCase.GeometryRequest) {
+        output.WriteRawTag(74);
+        output.WriteMessage(GeometryRequest);
+      }
+      if (temporalCase_ == TemporalOneofCase.Datetime) {
+        output.WriteRawTag(82);
+        output.WriteMessage(Datetime);
+      }
+      if (temporalCase_ == TemporalOneofCase.Observed) {
+        output.WriteRawTag(90);
+        output.WriteMessage(Observed);
+      }
+      if (created_ != null) {
+        output.WriteRawTag(98);
+        output.WriteMessage(Created);
+      }
+      if (updated_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(Updated);
+      }
+      if (proj_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(Proj);
+      }
+      if (PlatformEnum != global::com.epl.protobuf.v1.Platform.UnknownPlatform) {
+        output.WriteRawTag(120);
+        output.WriteEnum((int) PlatformEnum);
+      }
+      if (InstrumentEnum != global::com.epl.protobuf.v1.Instrument.UnknownInstrument) {
+        output.WriteRawTag(136, 1);
+        output.WriteEnum((int) InstrumentEnum);
+      }
+      if (ConstellationEnum != global::com.epl.protobuf.v1.Constellation.UnknownConstellation) {
+        output.WriteRawTag(152, 1);
+        output.WriteEnum((int) ConstellationEnum);
+      }
+      if (MissionEnum != global::com.epl.protobuf.v1.Mission.UnknownMission) {
+        output.WriteRawTag(168, 1);
+        output.WriteEnum((int) MissionEnum);
+      }
+      if (gsd_ != null) {
+        output.WriteRawTag(186, 1);
+        output.WriteMessage(Gsd);
+      }
+      if (eo_ != null) {
+        output.WriteRawTag(194, 1);
+        output.WriteMessage(Eo);
+      }
+      if (view_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(View);
+      }
+      if (landsat_ != null) {
+        output.WriteRawTag(210, 1);
+        output.WriteMessage(Landsat);
+      }
+      if (mosaic_ != null) {
+        output.WriteRawTag(218, 1);
+        output.WriteMessage(Mosaic);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -3669,6 +4492,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -3826,11 +4652,179 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Limit = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            Offset = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            Id = input.ReadString();
+            break;
+          }
+          case 34: {
+            global::com.epl.protobuf.v1.StringFilter subBuilder = new global::com.epl.protobuf.v1.StringFilter();
+            if (identityCase_ == IdentityOneofCase.IdComplex) {
+              subBuilder.MergeFrom(IdComplex);
+            }
+            input.ReadMessage(subBuilder);
+            IdComplex = subBuilder;
+            break;
+          }
+          case 42: {
+            Collection = input.ReadString();
+            break;
+          }
+          case 50: {
+            if (properties_ == null) {
+              Properties = new global::Google.Protobuf.WellKnownTypes.Any();
+            }
+            input.ReadMessage(Properties);
+            break;
+          }
+          case 58: {
+            global::com.epl.protobuf.v1.GeometryData subBuilder = new global::com.epl.protobuf.v1.GeometryData();
+            if (spatialCase_ == SpatialOneofCase.Intersects) {
+              subBuilder.MergeFrom(Intersects);
+            }
+            input.ReadMessage(subBuilder);
+            Intersects = subBuilder;
+            break;
+          }
+          case 66: {
+            global::com.epl.protobuf.v1.EnvelopeData subBuilder = new global::com.epl.protobuf.v1.EnvelopeData();
+            if (spatialCase_ == SpatialOneofCase.Bbox) {
+              subBuilder.MergeFrom(Bbox);
+            }
+            input.ReadMessage(subBuilder);
+            Bbox = subBuilder;
+            break;
+          }
+          case 74: {
+            global::com.epl.protobuf.v1.GeometryRequest subBuilder = new global::com.epl.protobuf.v1.GeometryRequest();
+            if (spatialCase_ == SpatialOneofCase.GeometryRequest) {
+              subBuilder.MergeFrom(GeometryRequest);
+            }
+            input.ReadMessage(subBuilder);
+            GeometryRequest = subBuilder;
+            break;
+          }
+          case 82: {
+            global::com.epl.protobuf.v1.TimestampFilter subBuilder = new global::com.epl.protobuf.v1.TimestampFilter();
+            if (temporalCase_ == TemporalOneofCase.Datetime) {
+              subBuilder.MergeFrom(Datetime);
+            }
+            input.ReadMessage(subBuilder);
+            Datetime = subBuilder;
+            break;
+          }
+          case 90: {
+            global::com.epl.protobuf.v1.TimestampFilter subBuilder = new global::com.epl.protobuf.v1.TimestampFilter();
+            if (temporalCase_ == TemporalOneofCase.Observed) {
+              subBuilder.MergeFrom(Observed);
+            }
+            input.ReadMessage(subBuilder);
+            Observed = subBuilder;
+            break;
+          }
+          case 98: {
+            if (created_ == null) {
+              Created = new global::com.epl.protobuf.v1.TimestampFilter();
+            }
+            input.ReadMessage(Created);
+            break;
+          }
+          case 106: {
+            if (updated_ == null) {
+              Updated = new global::com.epl.protobuf.v1.TimestampFilter();
+            }
+            input.ReadMessage(Updated);
+            break;
+          }
+          case 114: {
+            if (proj_ == null) {
+              Proj = new global::com.epl.protobuf.v1.ProjectionData();
+            }
+            input.ReadMessage(Proj);
+            break;
+          }
+          case 120: {
+            PlatformEnum = (global::com.epl.protobuf.v1.Platform) input.ReadEnum();
+            break;
+          }
+          case 136: {
+            InstrumentEnum = (global::com.epl.protobuf.v1.Instrument) input.ReadEnum();
+            break;
+          }
+          case 152: {
+            ConstellationEnum = (global::com.epl.protobuf.v1.Constellation) input.ReadEnum();
+            break;
+          }
+          case 168: {
+            MissionEnum = (global::com.epl.protobuf.v1.Mission) input.ReadEnum();
+            break;
+          }
+          case 186: {
+            if (gsd_ == null) {
+              Gsd = new global::com.epl.protobuf.v1.FloatFilter();
+            }
+            input.ReadMessage(Gsd);
+            break;
+          }
+          case 194: {
+            if (eo_ == null) {
+              Eo = new global::com.epl.protobuf.v1.EoRequest();
+            }
+            input.ReadMessage(Eo);
+            break;
+          }
+          case 202: {
+            if (view_ == null) {
+              View = new global::com.epl.protobuf.v1.ViewRequest();
+            }
+            input.ReadMessage(View);
+            break;
+          }
+          case 210: {
+            if (landsat_ == null) {
+              Landsat = new global::com.epl.protobuf.v1.LandsatRequest();
+            }
+            input.ReadMessage(Landsat);
+            break;
+          }
+          case 218: {
+            if (mosaic_ == null) {
+              Mosaic = new global::com.epl.protobuf.v1.MosaicRequest();
+            }
+            input.ReadMessage(Mosaic);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class View : pb::IMessage<View> {
+  public sealed partial class View : pb::IMessage<View>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<View> _parser = new pb::MessageParser<View>(() => new View());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3995,6 +4989,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (offNadir_ != null) {
         _single_offNadir_codec.WriteTagAndValue(output, OffNadir);
       }
@@ -4013,7 +5010,32 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (offNadir_ != null) {
+        _single_offNadir_codec.WriteTagAndValue(ref output, OffNadir);
+      }
+      if (incidenceAngle_ != null) {
+        _single_incidenceAngle_codec.WriteTagAndValue(ref output, IncidenceAngle);
+      }
+      if (azimuth_ != null) {
+        _single_azimuth_codec.WriteTagAndValue(ref output, Azimuth);
+      }
+      if (sunAzimuth_ != null) {
+        _single_sunAzimuth_codec.WriteTagAndValue(ref output, SunAzimuth);
+      }
+      if (sunElevation_ != null) {
+        _single_sunElevation_codec.WriteTagAndValue(ref output, SunElevation);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -4074,6 +5096,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -4117,11 +5142,65 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            float? value = _single_offNadir_codec.Read(ref input);
+            if (offNadir_ == null || value != 0F) {
+              OffNadir = value;
+            }
+            break;
+          }
+          case 18: {
+            float? value = _single_incidenceAngle_codec.Read(ref input);
+            if (incidenceAngle_ == null || value != 0F) {
+              IncidenceAngle = value;
+            }
+            break;
+          }
+          case 26: {
+            float? value = _single_azimuth_codec.Read(ref input);
+            if (azimuth_ == null || value != 0F) {
+              Azimuth = value;
+            }
+            break;
+          }
+          case 34: {
+            float? value = _single_sunAzimuth_codec.Read(ref input);
+            if (sunAzimuth_ == null || value != 0F) {
+              SunAzimuth = value;
+            }
+            break;
+          }
+          case 42: {
+            float? value = _single_sunElevation_codec.Read(ref input);
+            if (sunElevation_ == null || value != 0F) {
+              SunElevation = value;
+            }
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class ViewRequest : pb::IMessage<ViewRequest> {
+  public sealed partial class ViewRequest : pb::IMessage<ViewRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<ViewRequest> _parser = new pb::MessageParser<ViewRequest>(() => new ViewRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4271,6 +5350,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (offNadir_ != null) {
         output.WriteRawTag(10);
         output.WriteMessage(OffNadir);
@@ -4294,7 +5376,37 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (offNadir_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(OffNadir);
+      }
+      if (incidenceAngle_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(IncidenceAngle);
+      }
+      if (azimuth_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Azimuth);
+      }
+      if (sunAzimuth_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(SunAzimuth);
+      }
+      if (sunElevation_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(SunElevation);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -4360,6 +5472,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -4403,11 +5518,65 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (offNadir_ == null) {
+              OffNadir = new global::com.epl.protobuf.v1.FloatFilter();
+            }
+            input.ReadMessage(OffNadir);
+            break;
+          }
+          case 18: {
+            if (incidenceAngle_ == null) {
+              IncidenceAngle = new global::com.epl.protobuf.v1.FloatFilter();
+            }
+            input.ReadMessage(IncidenceAngle);
+            break;
+          }
+          case 26: {
+            if (azimuth_ == null) {
+              Azimuth = new global::com.epl.protobuf.v1.FloatFilter();
+            }
+            input.ReadMessage(Azimuth);
+            break;
+          }
+          case 34: {
+            if (sunAzimuth_ == null) {
+              SunAzimuth = new global::com.epl.protobuf.v1.FloatFilter();
+            }
+            input.ReadMessage(SunAzimuth);
+            break;
+          }
+          case 42: {
+            if (sunElevation_ == null) {
+              SunElevation = new global::com.epl.protobuf.v1.FloatFilter();
+            }
+            input.ReadMessage(SunElevation);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class Sat : pb::IMessage<Sat> {
+  public sealed partial class Sat : pb::IMessage<Sat>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Sat> _parser = new pb::MessageParser<Sat>(() => new Sat());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4509,6 +5678,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (OrbitState != global::com.epl.protobuf.v1.Sat.Types.OrbitState.UknownOrbitState) {
         output.WriteRawTag(8);
         output.WriteEnum((int) OrbitState);
@@ -4519,7 +5691,24 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (OrbitState != global::com.epl.protobuf.v1.Sat.Types.OrbitState.UknownOrbitState) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) OrbitState);
+      }
+      if (relativeOrbit_ != null) {
+        _single_relativeOrbit_codec.WriteTagAndValue(ref output, RelativeOrbit);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -4554,6 +5743,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -4573,7 +5765,33 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            OrbitState = (global::com.epl.protobuf.v1.Sat.Types.OrbitState) input.ReadEnum();
+            break;
+          }
+          case 50: {
+            uint? value = _single_relativeOrbit_codec.Read(ref input);
+            if (relativeOrbit_ == null || value != 0) {
+              RelativeOrbit = value;
+            }
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
     #region Nested types
     /// <summary>Container for nested types declared in the Sat message type.</summary>
@@ -4591,7 +5809,11 @@ namespace com.epl.protobuf.v1 {
 
   }
 
-  public sealed partial class SatRequest : pb::IMessage<SatRequest> {
+  public sealed partial class SatRequest : pb::IMessage<SatRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<SatRequest> _parser = new pb::MessageParser<SatRequest>(() => new SatRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4691,6 +5913,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (OrbitState != global::com.epl.protobuf.v1.Sat.Types.OrbitState.UknownOrbitState) {
         output.WriteRawTag(8);
         output.WriteEnum((int) OrbitState);
@@ -4702,7 +5927,25 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (OrbitState != global::com.epl.protobuf.v1.Sat.Types.OrbitState.UknownOrbitState) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) OrbitState);
+      }
+      if (RelativeOrbit != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(RelativeOrbit);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -4735,6 +5978,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -4751,7 +5997,30 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            OrbitState = (global::com.epl.protobuf.v1.Sat.Types.OrbitState) input.ReadEnum();
+            break;
+          }
+          case 48: {
+            RelativeOrbit = input.ReadUInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
@@ -4759,7 +6028,11 @@ namespace com.epl.protobuf.v1 {
   ///*
   /// message for electro-optical details of STAC items.
   /// </summary>
-  public sealed partial class Eo : pb::IMessage<Eo> {
+  public sealed partial class Eo : pb::IMessage<Eo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Eo> _parser = new pb::MessageParser<Eo>(() => new Eo());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4860,6 +6133,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (cloudCover_ != null) {
         _single_cloudCover_codec.WriteTagAndValue(output, CloudCover);
       }
@@ -4870,7 +6146,24 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (cloudCover_ != null) {
+        _single_cloudCover_codec.WriteTagAndValue(ref output, CloudCover);
+      }
+      if (Bands != global::com.epl.protobuf.v1.Eo.Types.Band.UnknownBand) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Bands);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -4905,6 +6198,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -4924,7 +6220,33 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            float? value = _single_cloudCover_codec.Read(ref input);
+            if (cloudCover_ == null || value != 0F) {
+              CloudCover = value;
+            }
+            break;
+          }
+          case 16: {
+            Bands = (global::com.epl.protobuf.v1.Eo.Types.Band) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
     #region Nested types
     /// <summary>Container for nested types declared in the Eo message type.</summary>
@@ -4963,7 +6285,11 @@ namespace com.epl.protobuf.v1 {
   ///*
   /// sub message request for specifying electro-optical details in STAC request
   /// </summary>
-  public sealed partial class EoRequest : pb::IMessage<EoRequest> {
+  public sealed partial class EoRequest : pb::IMessage<EoRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<EoRequest> _parser = new pb::MessageParser<EoRequest>(() => new EoRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5062,6 +6388,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (cloudCover_ != null) {
         output.WriteRawTag(10);
         output.WriteMessage(CloudCover);
@@ -5073,7 +6402,25 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (cloudCover_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(CloudCover);
+      }
+      if (Bands != global::com.epl.protobuf.v1.Eo.Types.Band.UnknownBand) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Bands);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -5109,6 +6456,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -5128,7 +6478,33 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (cloudCover_ == null) {
+              CloudCover = new global::com.epl.protobuf.v1.FloatFilter();
+            }
+            input.ReadMessage(CloudCover);
+            break;
+          }
+          case 16: {
+            Bands = (global::com.epl.protobuf.v1.Eo.Types.Band) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
@@ -5136,7 +6512,11 @@ namespace com.epl.protobuf.v1 {
   ///*
   /// message for an asset of a STAC item.
   /// </summary>
-  public sealed partial class Asset : pb::IMessage<Asset> {
+  public sealed partial class Asset : pb::IMessage<Asset>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Asset> _parser = new pb::MessageParser<Asset>(() => new Asset());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5373,6 +6753,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Href.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Href);
@@ -5416,7 +6799,57 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Href.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Href);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Type);
+      }
+      if (EoBands != global::com.epl.protobuf.v1.Eo.Types.Band.UnknownBand) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) EoBands);
+      }
+      if (AssetType != global::com.epl.protobuf.v1.AssetType.UnknownAsset) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) AssetType);
+      }
+      if (CloudPlatform != global::com.epl.protobuf.v1.CloudPlatform.UnknownCloudPlatform) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) CloudPlatform);
+      }
+      if (BucketManager.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(BucketManager);
+      }
+      if (BucketRegion.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(BucketRegion);
+      }
+      if (Bucket.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(Bucket);
+      }
+      if (ObjectPath.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(ObjectPath);
+      }
+      if (RequesterPays != false) {
+        output.WriteRawTag(80);
+        output.WriteBool(RequesterPays);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -5497,6 +6930,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -5545,11 +6981,70 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Href = input.ReadString();
+            break;
+          }
+          case 18: {
+            Type = input.ReadString();
+            break;
+          }
+          case 24: {
+            EoBands = (global::com.epl.protobuf.v1.Eo.Types.Band) input.ReadEnum();
+            break;
+          }
+          case 32: {
+            AssetType = (global::com.epl.protobuf.v1.AssetType) input.ReadEnum();
+            break;
+          }
+          case 40: {
+            CloudPlatform = (global::com.epl.protobuf.v1.CloudPlatform) input.ReadEnum();
+            break;
+          }
+          case 50: {
+            BucketManager = input.ReadString();
+            break;
+          }
+          case 58: {
+            BucketRegion = input.ReadString();
+            break;
+          }
+          case 66: {
+            Bucket = input.ReadString();
+            break;
+          }
+          case 74: {
+            ObjectPath = input.ReadString();
+            break;
+          }
+          case 80: {
+            RequesterPays = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
-  public sealed partial class DatetimeRange : pb::IMessage<DatetimeRange> {
+  public sealed partial class DatetimeRange : pb::IMessage<DatetimeRange>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<DatetimeRange> _parser = new pb::MessageParser<DatetimeRange>(() => new DatetimeRange());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5642,6 +7137,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (start_ != null) {
         output.WriteRawTag(10);
         output.WriteMessage(Start);
@@ -5653,7 +7151,25 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (start_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Start);
+      }
+      if (end_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(End);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -5692,6 +7208,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -5714,7 +7233,36 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (start_ == null) {
+              Start = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(Start);
+            break;
+          }
+          case 18: {
+            if (end_ == null) {
+              End = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(End);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
@@ -5722,7 +7270,11 @@ namespace com.epl.protobuf.v1 {
   ///*
   /// response message for insertion and updates to STAC db
   /// </summary>
-  public sealed partial class StacDbResponse : pb::IMessage<StacDbResponse> {
+  public sealed partial class StacDbResponse : pb::IMessage<StacDbResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<StacDbResponse> _parser = new pb::MessageParser<StacDbResponse>(() => new StacDbResponse());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5843,6 +7395,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Status.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Status);
@@ -5862,7 +7417,33 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Status.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Status);
+      }
+      if (StatusCode != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(StatusCode);
+      }
+      if (DataId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(DataId);
+      }
+      if (Count != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(Count);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -5907,6 +7488,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -5931,7 +7515,38 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Status = input.ReadString();
+            break;
+          }
+          case 16: {
+            StatusCode = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            DataId = input.ReadString();
+            break;
+          }
+          case 32: {
+            Count = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
@@ -5939,7 +7554,11 @@ namespace com.epl.protobuf.v1 {
   ///*
   /// place holder for SAR
   /// </summary>
-  public sealed partial class Sar : pb::IMessage<Sar> {
+  public sealed partial class Sar : pb::IMessage<Sar>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Sar> _parser = new pb::MessageParser<Sar>(() => new Sar());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6018,6 +7637,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Platform != global::com.epl.protobuf.v1.Sar.Types.Platform.UnknownPlatform) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Platform);
@@ -6025,7 +7647,21 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Platform != global::com.epl.protobuf.v1.Sar.Types.Platform.UnknownPlatform) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) Platform);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -6052,6 +7688,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -6064,7 +7703,26 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Platform = (global::com.epl.protobuf.v1.Sar.Types.Platform) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
     #region Nested types
     /// <summary>Container for nested types declared in the Sar message type.</summary>
@@ -6088,7 +7746,11 @@ namespace com.epl.protobuf.v1 {
   /// <summary>
   /// https://landsat.usgs.gov/stac/landsat-extension/schema.json
   /// </summary>
-  public sealed partial class Landsat : pb::IMessage<Landsat> {
+  public sealed partial class Landsat : pb::IMessage<Landsat>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Landsat> _parser = new pb::MessageParser<Landsat>(() => new Landsat());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6256,6 +7918,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (SceneId.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(SceneId);
@@ -6286,7 +7951,44 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (SceneId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(SceneId);
+      }
+      if (ProductId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(ProductId);
+      }
+      if (ProcessingLevel != global::com.epl.protobuf.v1.Landsat.Types.ProcessingLevel.UnknownProcessingLevel) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) ProcessingLevel);
+      }
+      if (WrsPath != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(WrsPath);
+      }
+      if (WrsRow != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(WrsRow);
+      }
+      if (cloudCoverLand_ != null) {
+        _single_cloudCoverLand_codec.WriteTagAndValue(ref output, CloudCoverLand);
+      }
+      if (WrsType != global::com.epl.protobuf.v1.Landsat.Types.WRSType.UknownWrs) {
+        output.WriteRawTag(56);
+        output.WriteEnum((int) WrsType);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -6351,6 +8053,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -6390,7 +8095,53 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            SceneId = input.ReadString();
+            break;
+          }
+          case 18: {
+            ProductId = input.ReadString();
+            break;
+          }
+          case 24: {
+            ProcessingLevel = (global::com.epl.protobuf.v1.Landsat.Types.ProcessingLevel) input.ReadEnum();
+            break;
+          }
+          case 32: {
+            WrsPath = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            WrsRow = input.ReadInt32();
+            break;
+          }
+          case 50: {
+            float? value = _single_cloudCoverLand_codec.Read(ref input);
+            if (cloudCoverLand_ == null || value != 0F) {
+              CloudCoverLand = value;
+            }
+            break;
+          }
+          case 56: {
+            WrsType = (global::com.epl.protobuf.v1.Landsat.Types.WRSType) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
     #region Nested types
     /// <summary>Container for nested types declared in the Landsat message type.</summary>
@@ -6425,7 +8176,11 @@ namespace com.epl.protobuf.v1 {
 
   }
 
-  public sealed partial class LandsatRequest : pb::IMessage<LandsatRequest> {
+  public sealed partial class LandsatRequest : pb::IMessage<LandsatRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<LandsatRequest> _parser = new pb::MessageParser<LandsatRequest>(() => new LandsatRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6574,6 +8329,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (SceneId.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(SceneId);
@@ -6601,7 +8359,41 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (SceneId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(SceneId);
+      }
+      if (ProductId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(ProductId);
+      }
+      if (ProcessingLevel != global::com.epl.protobuf.v1.Landsat.Types.ProcessingLevel.UnknownProcessingLevel) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) ProcessingLevel);
+      }
+      if (WrsPath != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(WrsPath);
+      }
+      if (WrsRow != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(WrsRow);
+      }
+      if (cloudCoverLand_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(CloudCoverLand);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -6661,6 +8453,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -6696,14 +8491,60 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            SceneId = input.ReadString();
+            break;
+          }
+          case 18: {
+            ProductId = input.ReadString();
+            break;
+          }
+          case 24: {
+            ProcessingLevel = (global::com.epl.protobuf.v1.Landsat.Types.ProcessingLevel) input.ReadEnum();
+            break;
+          }
+          case 32: {
+            WrsPath = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            WrsRow = input.ReadInt32();
+            break;
+          }
+          case 50: {
+            if (cloudCoverLand_ == null) {
+              CloudCoverLand = new global::com.epl.protobuf.v1.FloatFilter();
+            }
+            input.ReadMessage(CloudCoverLand);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
   /// <summary>
   /// Experimental
   /// </summary>
-  public sealed partial class Mosaic : pb::IMessage<Mosaic> {
+  public sealed partial class Mosaic : pb::IMessage<Mosaic>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<Mosaic> _parser = new pb::MessageParser<Mosaic>(() => new Mosaic());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6851,6 +8692,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Name.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Name);
@@ -6868,7 +8712,31 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Name);
+      }
+      if (QuadKey.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(QuadKey);
+      }
+      zooms_.WriteTo(ref output, _repeated_zooms_codec);
+      if (observationRange_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(ObservationRange);
+      }
+      provenanceIds_.WriteTo(ref output, _repeated_provenanceIds_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -6914,6 +8782,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -6946,14 +8817,57 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Name = input.ReadString();
+            break;
+          }
+          case 18: {
+            QuadKey = input.ReadString();
+            break;
+          }
+          case 26:
+          case 24: {
+            zooms_.AddEntriesFrom(ref input, _repeated_zooms_codec);
+            break;
+          }
+          case 34: {
+            if (observationRange_ == null) {
+              ObservationRange = new global::com.epl.protobuf.v1.DatetimeRange();
+            }
+            input.ReadMessage(ObservationRange);
+            break;
+          }
+          case 42: {
+            provenanceIds_.AddEntriesFrom(ref input, _repeated_provenanceIds_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 
   /// <summary>
   /// Experimental
   /// </summary>
-  public sealed partial class MosaicRequest : pb::IMessage<MosaicRequest> {
+  public sealed partial class MosaicRequest : pb::IMessage<MosaicRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
     private static readonly pb::MessageParser<MosaicRequest> _parser = new pb::MessageParser<MosaicRequest>(() => new MosaicRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7052,6 +8966,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
       if (Name.Length != 0) {
         output.WriteRawTag(10);
         output.WriteString(Name);
@@ -7063,7 +8980,25 @@ namespace com.epl.protobuf.v1 {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Name);
+      }
+      if (QuadKey.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(QuadKey);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
@@ -7096,6 +9031,9 @@ namespace com.epl.protobuf.v1 {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -7112,7 +9050,30 @@ namespace com.epl.protobuf.v1 {
           }
         }
       }
+    #endif
     }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Name = input.ReadString();
+            break;
+          }
+          case 18: {
+            QuadKey = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
 
   }
 

@@ -36,9 +36,39 @@ namespace com.epl.protobuf.v1 {
   {
     static readonly string __ServiceName = "epl.protobuf.v1.GeometryService";
 
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.GeometryRequest> __Marshaller_epl_protobuf_v1_GeometryRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.GeometryRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.GeometryResponse> __Marshaller_epl_protobuf_v1_GeometryResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.GeometryResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.FileRequestChunk> __Marshaller_epl_protobuf_v1_FileRequestChunk = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.FileRequestChunk.Parser.ParseFrom);
+    static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (message is global::Google.Protobuf.IBufferMessage)
+      {
+        context.SetPayloadLength(message.CalculateSize());
+        global::Google.Protobuf.MessageExtensions.WriteTo(message, context.GetBufferWriter());
+        context.Complete();
+        return;
+      }
+      #endif
+      context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
+    }
+
+    static class __Helper_MessageCache<T>
+    {
+      public static readonly bool IsBufferMessage = global::System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(global::Google.Protobuf.IBufferMessage)).IsAssignableFrom(typeof(T));
+    }
+
+    static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (__Helper_MessageCache<T>.IsBufferMessage)
+      {
+        return parser.ParseFrom(context.PayloadAsReadOnlySequence());
+      }
+      #endif
+      return parser.ParseFrom(context.PayloadAsNewBuffer());
+    }
+
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.GeometryRequest> __Marshaller_epl_protobuf_v1_GeometryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::com.epl.protobuf.v1.GeometryRequest.Parser));
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.GeometryResponse> __Marshaller_epl_protobuf_v1_GeometryResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::com.epl.protobuf.v1.GeometryResponse.Parser));
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.FileRequestChunk> __Marshaller_epl_protobuf_v1_FileRequestChunk = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::com.epl.protobuf.v1.FileRequestChunk.Parser));
 
     static readonly grpc::Method<global::com.epl.protobuf.v1.GeometryRequest, global::com.epl.protobuf.v1.GeometryResponse> __Method_Operate = new grpc::Method<global::com.epl.protobuf.v1.GeometryRequest, global::com.epl.protobuf.v1.GeometryResponse>(
         grpc::MethodType.Unary,

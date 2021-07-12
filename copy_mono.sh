@@ -10,5 +10,5 @@ cp ../../nearspacelabs/mono/java/geometry-chain/settings.gradle ./java/geometry-
 
 # Copy Python from mono
 cp -r ../../nearspacelabs/mono/python/epl_geometry ./python
-cp -r ../../nearspacelabs/mono/python/epl_protobuf ./python
+cp -r ../../nearspacelabs/mono/python/epl_protobuf_v1 ./python
 # Copy Python from mono

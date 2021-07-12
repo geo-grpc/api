@@ -59,9 +59,9 @@ SRC_MINUS_GO=${SRC_DIR#"$GOPATH"}
 echo SRC_MINUS_GO = "$SRC_MINUS_GO"
 
 ### protoc.sh
-#docker run --rm -it -v "${DEFS_DIR}":/defs --entrypoint /bin/sh namely/protoc:1.37_1 -c "/defs${SRC_MINUS_GO}/proto/protoc.sh ${SRC_MINUS_GO}"
+#docker run --rm -it -v "${DEFS_DIR}":/defs --entrypoint /bin/sh namely/protoc:1.28_2 -c "/defs${SRC_MINUS_GO}/proto/protoc.sh ${SRC_MINUS_GO}"
 docker run --rm -it -v "${DEFS_DIR}":/defs \
-  --entrypoint /bin/sh namely/protoc:1.28_2 \
+  --entrypoint /bin/sh namely/protoc:1.37_1 \
   -c "/defs${SRC_MINUS_GO}/proto/protoc.sh SRC_DIR=\"${SRC_MINUS_GO}\" DOTNET_DIR=\"${DOTNET_DIR}\" CPP_DIR=\"${CPP_DIR}\" PYTHON_DIR=\"${PYTHON_DIR}\" BUILD_PROTOS=\"${BUILD_PROTOS}\""
 ### protoc.sh
 

@@ -36,11 +36,41 @@ namespace com.epl.protobuf.v1 {
   {
     static readonly string __ServiceName = "epl.protobuf.v1.StacService";
 
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacRequest> __Marshaller_epl_protobuf_v1_StacRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.StacRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacItem> __Marshaller_epl_protobuf_v1_StacItem = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.StacItem.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.CollectionRequest> __Marshaller_epl_protobuf_v1_CollectionRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.CollectionRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.Collection> __Marshaller_epl_protobuf_v1_Collection = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.Collection.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacDbResponse> __Marshaller_epl_protobuf_v1_StacDbResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.StacDbResponse.Parser.ParseFrom);
+    static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (message is global::Google.Protobuf.IBufferMessage)
+      {
+        context.SetPayloadLength(message.CalculateSize());
+        global::Google.Protobuf.MessageExtensions.WriteTo(message, context.GetBufferWriter());
+        context.Complete();
+        return;
+      }
+      #endif
+      context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
+    }
+
+    static class __Helper_MessageCache<T>
+    {
+      public static readonly bool IsBufferMessage = global::System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(global::Google.Protobuf.IBufferMessage)).IsAssignableFrom(typeof(T));
+    }
+
+    static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (__Helper_MessageCache<T>.IsBufferMessage)
+      {
+        return parser.ParseFrom(context.PayloadAsReadOnlySequence());
+      }
+      #endif
+      return parser.ParseFrom(context.PayloadAsNewBuffer());
+    }
+
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacRequest> __Marshaller_epl_protobuf_v1_StacRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::com.epl.protobuf.v1.StacRequest.Parser));
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacItem> __Marshaller_epl_protobuf_v1_StacItem = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::com.epl.protobuf.v1.StacItem.Parser));
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.CollectionRequest> __Marshaller_epl_protobuf_v1_CollectionRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::com.epl.protobuf.v1.CollectionRequest.Parser));
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.Collection> __Marshaller_epl_protobuf_v1_Collection = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::com.epl.protobuf.v1.Collection.Parser));
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacDbResponse> __Marshaller_epl_protobuf_v1_StacDbResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::com.epl.protobuf.v1.StacDbResponse.Parser));
 
     static readonly grpc::Method<global::com.epl.protobuf.v1.StacRequest, global::com.epl.protobuf.v1.StacItem> __Method_SearchItems = new grpc::Method<global::com.epl.protobuf.v1.StacRequest, global::com.epl.protobuf.v1.StacItem>(
         grpc::MethodType.ServerStreaming,

@@ -14,517 +14,418 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Asset_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Collection_SummariesEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DatetimeRange_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Eo_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_EoRequest_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fquery_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<15> scc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Interval_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Landsat_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_LandsatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Mosaic_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_MosaicRequest_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Provider_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_StacItem_AssetsEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Stats_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fquery_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StringFilter_epl_2fprotobuf_2fv1_2fquery_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fquery_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TimestampFilter_epl_2fprotobuf_2fv1_2fquery_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_View_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fstac_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ViewRequest_epl_2fprotobuf_2fv1_2fstac_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2fany_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Any_google_2fprotobuf_2fany_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2fwrappers_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FloatValue_google_2fprotobuf_2fwrappers_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2ftimestamp_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2fwrappers_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_UInt32Value_google_2fprotobuf_2fwrappers_2eproto;
+
+PROTOBUF_PRAGMA_INIT_SEG
 namespace epl {
 namespace protobuf {
 namespace v1 {
-class Collection_SummariesEntry_DoNotUseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Collection_SummariesEntry_DoNotUse> _instance;
-} _Collection_SummariesEntry_DoNotUse_default_instance_;
-class CollectionDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Collection> _instance;
-} _Collection_default_instance_;
-class CollectionRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CollectionRequest> _instance;
-  const ::epl::protobuf::v1::EnvelopeData* bbox_;
-  const ::epl::protobuf::v1::GeometryData* intersects_;
-} _CollectionRequest_default_instance_;
-class StatsDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Stats> _instance;
-} _Stats_default_instance_;
-class ExtentDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Extent> _instance;
-} _Extent_default_instance_;
-class IntervalDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Interval> _instance;
-} _Interval_default_instance_;
-class ProviderDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Provider> _instance;
-} _Provider_default_instance_;
-class StacItem_AssetsEntry_DoNotUseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<StacItem_AssetsEntry_DoNotUse> _instance;
-} _StacItem_AssetsEntry_DoNotUse_default_instance_;
-class StacItemDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<StacItem> _instance;
-  const PROTOBUF_NAMESPACE_ID::Timestamp* datetime_;
-  const PROTOBUF_NAMESPACE_ID::Timestamp* start_datetime_;
-  const PROTOBUF_NAMESPACE_ID::Timestamp* observed_;
-  const PROTOBUF_NAMESPACE_ID::Timestamp* start_observation_;
-} _StacItem_default_instance_;
-class StacRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<StacRequest> _instance;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
-  const ::epl::protobuf::v1::StringFilter* id_complex_;
-  const ::epl::protobuf::v1::GeometryData* intersects_;
-  const ::epl::protobuf::v1::EnvelopeData* bbox_;
-  const ::epl::protobuf::v1::GeometryRequest* geometry_request_;
-  const ::epl::protobuf::v1::TimestampFilter* datetime_;
-  const ::epl::protobuf::v1::TimestampFilter* observed_;
-} _StacRequest_default_instance_;
-class ViewDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<View> _instance;
-} _View_default_instance_;
-class ViewRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ViewRequest> _instance;
-} _ViewRequest_default_instance_;
-class SatDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Sat> _instance;
-} _Sat_default_instance_;
-class SatRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SatRequest> _instance;
-} _SatRequest_default_instance_;
-class EoDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Eo> _instance;
-} _Eo_default_instance_;
-class EoRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<EoRequest> _instance;
-} _EoRequest_default_instance_;
-class AssetDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Asset> _instance;
-} _Asset_default_instance_;
-class DatetimeRangeDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DatetimeRange> _instance;
-} _DatetimeRange_default_instance_;
-class StacDbResponseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<StacDbResponse> _instance;
-} _StacDbResponse_default_instance_;
-class SarDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Sar> _instance;
-} _Sar_default_instance_;
-class LandsatDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Landsat> _instance;
-} _Landsat_default_instance_;
-class LandsatRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<LandsatRequest> _instance;
-} _LandsatRequest_default_instance_;
-class MosaicDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Mosaic> _instance;
-} _Mosaic_default_instance_;
-class MosaicRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MosaicRequest> _instance;
-} _MosaicRequest_default_instance_;
+constexpr Collection_SummariesEntry_DoNotUse::Collection_SummariesEntry_DoNotUse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct Collection_SummariesEntry_DoNotUseDefaultTypeInternal {
+  constexpr Collection_SummariesEntry_DoNotUseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Collection_SummariesEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    Collection_SummariesEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Collection_SummariesEntry_DoNotUseDefaultTypeInternal _Collection_SummariesEntry_DoNotUse_default_instance_;
+constexpr Collection::Collection(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : keywords_()
+  , providers_()
+  , summaries_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , stac_version_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , title_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , description_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , license_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , extent_(nullptr){}
+struct CollectionDefaultTypeInternal {
+  constexpr CollectionDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~CollectionDefaultTypeInternal() {}
+  union {
+    Collection _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT CollectionDefaultTypeInternal _Collection_default_instance_;
+constexpr CollectionRequest::CollectionRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , _oneof_case_{}{}
+struct CollectionRequestDefaultTypeInternal {
+  constexpr CollectionRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~CollectionRequestDefaultTypeInternal() {}
+  union {
+    CollectionRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT CollectionRequestDefaultTypeInternal _CollectionRequest_default_instance_;
+constexpr Stats::Stats(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct StatsDefaultTypeInternal {
+  constexpr StatsDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~StatsDefaultTypeInternal() {}
+  union {
+    Stats _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StatsDefaultTypeInternal _Stats_default_instance_;
+constexpr Extent::Extent(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : spatial_()
+  , temporal_(){}
+struct ExtentDefaultTypeInternal {
+  constexpr ExtentDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ExtentDefaultTypeInternal() {}
+  union {
+    Extent _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ExtentDefaultTypeInternal _Extent_default_instance_;
+constexpr Interval::Interval(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : start_(nullptr)
+  , end_(nullptr){}
+struct IntervalDefaultTypeInternal {
+  constexpr IntervalDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~IntervalDefaultTypeInternal() {}
+  union {
+    Interval _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT IntervalDefaultTypeInternal _Interval_default_instance_;
+constexpr Provider::Provider(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : roles_()
+  , name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , description_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , url_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct ProviderDefaultTypeInternal {
+  constexpr ProviderDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ProviderDefaultTypeInternal() {}
+  union {
+    Provider _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ProviderDefaultTypeInternal _Provider_default_instance_;
+constexpr StacItem_AssetsEntry_DoNotUse::StacItem_AssetsEntry_DoNotUse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct StacItem_AssetsEntry_DoNotUseDefaultTypeInternal {
+  constexpr StacItem_AssetsEntry_DoNotUseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~StacItem_AssetsEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    StacItem_AssetsEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StacItem_AssetsEntry_DoNotUseDefaultTypeInternal _StacItem_AssetsEntry_DoNotUse_default_instance_;
+constexpr StacItem::StacItem(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : assets_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , stac_extensions_()
+  , id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , title_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , collection_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , platform_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , instrument_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , constellation_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , mission_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , stac_version_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , stac_pb_version_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , properties_(nullptr)
+  , geometry_(nullptr)
+  , bbox_(nullptr)
+  , end_datetime_(nullptr)
+  , end_observation_(nullptr)
+  , created_(nullptr)
+  , updated_(nullptr)
+  , proj_(nullptr)
+  , gsd_(nullptr)
+  , eo_(nullptr)
+  , landsat_(nullptr)
+  , mosaic_(nullptr)
+  , view_(nullptr)
+  , platform_enum_(0)
+
+  , instrument_enum_(0)
+
+  , constellation_enum_(0)
+
+  , mission_enum_(0)
+
+  , _oneof_case_{}{}
+struct StacItemDefaultTypeInternal {
+  constexpr StacItemDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~StacItemDefaultTypeInternal() {}
+  union {
+    StacItem _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StacItemDefaultTypeInternal _StacItem_default_instance_;
+constexpr StacRequest::StacRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : collection_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , properties_(nullptr)
+  , created_(nullptr)
+  , updated_(nullptr)
+  , proj_(nullptr)
+  , gsd_(nullptr)
+  , eo_(nullptr)
+  , view_(nullptr)
+  , landsat_(nullptr)
+  , mosaic_(nullptr)
+  , offset_(PROTOBUF_ULONGLONG(0))
+  , limit_(0u)
+  , platform_enum_(0)
+
+  , mission_enum_(0)
+
+  , instrument_enum_(0)
+
+  , constellation_enum_(0)
+
+  , _oneof_case_{}{}
+struct StacRequestDefaultTypeInternal {
+  constexpr StacRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~StacRequestDefaultTypeInternal() {}
+  union {
+    StacRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StacRequestDefaultTypeInternal _StacRequest_default_instance_;
+constexpr View::View(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : off_nadir_(nullptr)
+  , incidence_angle_(nullptr)
+  , azimuth_(nullptr)
+  , sun_azimuth_(nullptr)
+  , sun_elevation_(nullptr){}
+struct ViewDefaultTypeInternal {
+  constexpr ViewDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ViewDefaultTypeInternal() {}
+  union {
+    View _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ViewDefaultTypeInternal _View_default_instance_;
+constexpr ViewRequest::ViewRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : off_nadir_(nullptr)
+  , incidence_angle_(nullptr)
+  , azimuth_(nullptr)
+  , sun_azimuth_(nullptr)
+  , sun_elevation_(nullptr){}
+struct ViewRequestDefaultTypeInternal {
+  constexpr ViewRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ViewRequestDefaultTypeInternal() {}
+  union {
+    ViewRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ViewRequestDefaultTypeInternal _ViewRequest_default_instance_;
+constexpr Sat::Sat(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : relative_orbit_(nullptr)
+  , orbit_state_(0)
+{}
+struct SatDefaultTypeInternal {
+  constexpr SatDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~SatDefaultTypeInternal() {}
+  union {
+    Sat _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SatDefaultTypeInternal _Sat_default_instance_;
+constexpr SatRequest::SatRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : orbit_state_(0)
+
+  , relative_orbit_(0u){}
+struct SatRequestDefaultTypeInternal {
+  constexpr SatRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~SatRequestDefaultTypeInternal() {}
+  union {
+    SatRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SatRequestDefaultTypeInternal _SatRequest_default_instance_;
+constexpr Eo::Eo(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : cloud_cover_(nullptr)
+  , bands_(0)
+{}
+struct EoDefaultTypeInternal {
+  constexpr EoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~EoDefaultTypeInternal() {}
+  union {
+    Eo _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT EoDefaultTypeInternal _Eo_default_instance_;
+constexpr EoRequest::EoRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : cloud_cover_(nullptr)
+  , bands_(0)
+{}
+struct EoRequestDefaultTypeInternal {
+  constexpr EoRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~EoRequestDefaultTypeInternal() {}
+  union {
+    EoRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT EoRequestDefaultTypeInternal _EoRequest_default_instance_;
+constexpr Asset::Asset(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : href_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , type_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , bucket_manager_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , bucket_region_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , bucket_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , object_path_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , eo_bands_(0)
+
+  , asset_type_(0)
+
+  , cloud_platform_(0)
+
+  , requester_pays_(false){}
+struct AssetDefaultTypeInternal {
+  constexpr AssetDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~AssetDefaultTypeInternal() {}
+  union {
+    Asset _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AssetDefaultTypeInternal _Asset_default_instance_;
+constexpr DatetimeRange::DatetimeRange(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : start_(nullptr)
+  , end_(nullptr){}
+struct DatetimeRangeDefaultTypeInternal {
+  constexpr DatetimeRangeDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~DatetimeRangeDefaultTypeInternal() {}
+  union {
+    DatetimeRange _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT DatetimeRangeDefaultTypeInternal _DatetimeRange_default_instance_;
+constexpr StacDbResponse::StacDbResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : status_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , data_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , count_(PROTOBUF_ULONGLONG(0))
+  , status_code_(0){}
+struct StacDbResponseDefaultTypeInternal {
+  constexpr StacDbResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~StacDbResponseDefaultTypeInternal() {}
+  union {
+    StacDbResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StacDbResponseDefaultTypeInternal _StacDbResponse_default_instance_;
+constexpr Sar::Sar(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : platform_(0)
+{}
+struct SarDefaultTypeInternal {
+  constexpr SarDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~SarDefaultTypeInternal() {}
+  union {
+    Sar _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SarDefaultTypeInternal _Sar_default_instance_;
+constexpr Landsat::Landsat(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : scene_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , product_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , cloud_cover_land_(nullptr)
+  , processing_level_(0)
+
+  , wrs_path_(0)
+  , wrs_row_(0)
+  , wrs_type_(0)
+{}
+struct LandsatDefaultTypeInternal {
+  constexpr LandsatDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~LandsatDefaultTypeInternal() {}
+  union {
+    Landsat _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LandsatDefaultTypeInternal _Landsat_default_instance_;
+constexpr LandsatRequest::LandsatRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : scene_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , product_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , cloud_cover_land_(nullptr)
+  , processing_level_(0)
+
+  , wrs_path_(0)
+  , wrs_row_(0){}
+struct LandsatRequestDefaultTypeInternal {
+  constexpr LandsatRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~LandsatRequestDefaultTypeInternal() {}
+  union {
+    LandsatRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LandsatRequestDefaultTypeInternal _LandsatRequest_default_instance_;
+constexpr Mosaic::Mosaic(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : zooms_()
+  , _zooms_cached_byte_size_()
+  , provenance_ids_()
+  , name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , quad_key_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , observation_range_(nullptr){}
+struct MosaicDefaultTypeInternal {
+  constexpr MosaicDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~MosaicDefaultTypeInternal() {}
+  union {
+    Mosaic _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT MosaicDefaultTypeInternal _Mosaic_default_instance_;
+constexpr MosaicRequest::MosaicRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , quad_key_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct MosaicRequestDefaultTypeInternal {
+  constexpr MosaicRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~MosaicRequestDefaultTypeInternal() {}
+  union {
+    MosaicRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT MosaicRequestDefaultTypeInternal _MosaicRequest_default_instance_;
 }  // namespace v1
 }  // namespace protobuf
 }  // namespace epl
-static void InitDefaultsscc_info_Asset_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Asset_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Asset();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Asset::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Asset_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Asset_epl_2fprotobuf_2fv1_2fstac_2eproto}, {}};
-
-static void InitDefaultsscc_info_Collection_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Collection_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Collection();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Collection::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_Collection_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_Collection_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_Provider_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_Collection_SummariesEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto.base,}};
-
-static void InitDefaultsscc_info_Collection_SummariesEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Collection_SummariesEntry_DoNotUse_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Collection_SummariesEntry_DoNotUse();
-  }
-  ::epl::protobuf::v1::Collection_SummariesEntry_DoNotUse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Collection_SummariesEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Collection_SummariesEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_Stats_epl_2fprotobuf_2fv1_2fstac_2eproto.base,}};
-
-static void InitDefaultsscc_info_CollectionRequest_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_CollectionRequest_default_instance_;
-    new (ptr) ::epl::protobuf::v1::CollectionRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::CollectionRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_CollectionRequest_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_CollectionRequest_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,}};
-
-static void InitDefaultsscc_info_DatetimeRange_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_DatetimeRange_default_instance_;
-    new (ptr) ::epl::protobuf::v1::DatetimeRange();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::DatetimeRange::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DatetimeRange_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_DatetimeRange_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,}};
-
-static void InitDefaultsscc_info_Eo_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Eo_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Eo();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Eo::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Eo_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Eo_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_FloatValue_google_2fprotobuf_2fwrappers_2eproto.base,}};
-
-static void InitDefaultsscc_info_EoRequest_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_EoRequest_default_instance_;
-    new (ptr) ::epl::protobuf::v1::EoRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::EoRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_EoRequest_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_EoRequest_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,}};
-
-static void InitDefaultsscc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Extent_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Extent();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Extent::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Interval_epl_2fprotobuf_2fv1_2fstac_2eproto.base,}};
-
-static void InitDefaultsscc_info_Interval_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Interval_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Interval();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Interval::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Interval_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Interval_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,}};
-
-static void InitDefaultsscc_info_Landsat_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Landsat_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Landsat();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Landsat::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Landsat_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Landsat_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_FloatValue_google_2fprotobuf_2fwrappers_2eproto.base,}};
-
-static void InitDefaultsscc_info_LandsatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_LandsatRequest_default_instance_;
-    new (ptr) ::epl::protobuf::v1::LandsatRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::LandsatRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_LandsatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_LandsatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,}};
-
-static void InitDefaultsscc_info_Mosaic_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Mosaic_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Mosaic();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Mosaic::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Mosaic_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Mosaic_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_DatetimeRange_epl_2fprotobuf_2fv1_2fstac_2eproto.base,}};
-
-static void InitDefaultsscc_info_MosaicRequest_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_MosaicRequest_default_instance_;
-    new (ptr) ::epl::protobuf::v1::MosaicRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::MosaicRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_MosaicRequest_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_MosaicRequest_epl_2fprotobuf_2fv1_2fstac_2eproto}, {}};
-
-static void InitDefaultsscc_info_Provider_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Provider_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Provider();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Provider::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Provider_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Provider_epl_2fprotobuf_2fv1_2fstac_2eproto}, {}};
-
-static void InitDefaultsscc_info_Sar_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Sar_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Sar();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Sar::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Sar_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Sar_epl_2fprotobuf_2fv1_2fstac_2eproto}, {}};
-
-static void InitDefaultsscc_info_Sat_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Sat_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Sat();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Sat::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Sat_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Sat_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_UInt32Value_google_2fprotobuf_2fwrappers_2eproto.base,}};
-
-static void InitDefaultsscc_info_SatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_SatRequest_default_instance_;
-    new (ptr) ::epl::protobuf::v1::SatRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::SatRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_SatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto}, {}};
-
-static void InitDefaultsscc_info_StacDbResponse_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_StacDbResponse_default_instance_;
-    new (ptr) ::epl::protobuf::v1::StacDbResponse();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::StacDbResponse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StacDbResponse_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_StacDbResponse_epl_2fprotobuf_2fv1_2fstac_2eproto}, {}};
-
-static void InitDefaultsscc_info_StacItem_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_StacItem_default_instance_;
-    new (ptr) ::epl::protobuf::v1::StacItem();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::StacItem::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<9> scc_info_StacItem_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 9, 0, InitDefaultsscc_info_StacItem_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_Any_google_2fprotobuf_2fany_2eproto.base,
-      &scc_info_StacItem_AssetsEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_FloatValue_google_2fprotobuf_2fwrappers_2eproto.base,
-      &scc_info_Eo_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_View_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_Landsat_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_Mosaic_epl_2fprotobuf_2fv1_2fstac_2eproto.base,}};
-
-static void InitDefaultsscc_info_StacItem_AssetsEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_StacItem_AssetsEntry_DoNotUse_default_instance_;
-    new (ptr) ::epl::protobuf::v1::StacItem_AssetsEntry_DoNotUse();
-  }
-  ::epl::protobuf::v1::StacItem_AssetsEntry_DoNotUse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_StacItem_AssetsEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_StacItem_AssetsEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_Asset_epl_2fprotobuf_2fv1_2fstac_2eproto.base,}};
-
-static void InitDefaultsscc_info_StacRequest_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_StacRequest_default_instance_;
-    new (ptr) ::epl::protobuf::v1::StacRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::StacRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<10> scc_info_StacRequest_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 10, 0, InitDefaultsscc_info_StacRequest_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_StringFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,
-      &scc_info_Any_google_2fprotobuf_2fany_2eproto.base,
-      &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_TimestampFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,
-      &scc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,
-      &scc_info_EoRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_ViewRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_LandsatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-      &scc_info_MosaicRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,}};
-
-static void InitDefaultsscc_info_Stats_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Stats_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Stats();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Stats::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Stats_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Stats_epl_2fprotobuf_2fv1_2fstac_2eproto}, {}};
-
-static void InitDefaultsscc_info_View_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_View_default_instance_;
-    new (ptr) ::epl::protobuf::v1::View();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::View::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_View_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_View_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_FloatValue_google_2fprotobuf_2fwrappers_2eproto.base,}};
-
-static void InitDefaultsscc_info_ViewRequest_epl_2fprotobuf_2fv1_2fstac_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_ViewRequest_default_instance_;
-    new (ptr) ::epl::protobuf::v1::ViewRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::ViewRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ViewRequest_epl_2fprotobuf_2fv1_2fstac_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ViewRequest_epl_2fprotobuf_2fv1_2fstac_2eproto}, {
-      &scc_info_FloatFilter_epl_2fprotobuf_2fv1_2fquery_2eproto.base,}};
-
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_epl_2fprotobuf_2fv1_2fstac_2eproto[24];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto[13];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto = nullptr;
@@ -559,8 +460,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fstac_2ep
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::CollectionRequest, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::CollectionRequest, id_),
-  offsetof(::epl::protobuf::v1::CollectionRequestDefaultTypeInternal, bbox_),
-  offsetof(::epl::protobuf::v1::CollectionRequestDefaultTypeInternal, intersects_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::CollectionRequest, spatial_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Stats, _internal_metadata_),
@@ -611,10 +512,10 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fstac_2ep
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacItem, assets_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacItem, geometry_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacItem, bbox_),
-  offsetof(::epl::protobuf::v1::StacItemDefaultTypeInternal, datetime_),
-  offsetof(::epl::protobuf::v1::StacItemDefaultTypeInternal, start_datetime_),
-  offsetof(::epl::protobuf::v1::StacItemDefaultTypeInternal, observed_),
-  offsetof(::epl::protobuf::v1::StacItemDefaultTypeInternal, start_observation_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacItem, end_datetime_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacItem, end_observation_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacItem, created_),
@@ -645,15 +546,15 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fstac_2ep
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacRequest, limit_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacRequest, offset_),
-  offsetof(::epl::protobuf::v1::StacRequestDefaultTypeInternal, id_),
-  offsetof(::epl::protobuf::v1::StacRequestDefaultTypeInternal, id_complex_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacRequest, collection_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacRequest, properties_),
-  offsetof(::epl::protobuf::v1::StacRequestDefaultTypeInternal, intersects_),
-  offsetof(::epl::protobuf::v1::StacRequestDefaultTypeInternal, bbox_),
-  offsetof(::epl::protobuf::v1::StacRequestDefaultTypeInternal, geometry_request_),
-  offsetof(::epl::protobuf::v1::StacRequestDefaultTypeInternal, datetime_),
-  offsetof(::epl::protobuf::v1::StacRequestDefaultTypeInternal, observed_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacRequest, created_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacRequest, updated_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::StacRequest, proj_),
@@ -1036,43 +937,21 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
   &::descriptor_table_google_2fprotobuf_2fwrappers_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_sccs[24] = {
-  &scc_info_Asset_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Collection_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Collection_SummariesEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_CollectionRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_DatetimeRange_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Eo_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_EoRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Interval_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Landsat_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_LandsatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Mosaic_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_MosaicRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Provider_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Sar_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Sat_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_SatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_StacDbResponse_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_StacItem_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_StacItem_AssetsEntry_DoNotUse_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_StacRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_Stats_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_View_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-  &scc_info_ViewRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base,
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_once;
-static bool descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_2eproto, "epl/protobuf/v1/stac.proto", 7095,
-  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_deps, 24, 5,
+  false, false, 7095, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_2eproto, "epl/protobuf/v1/stac.proto", 
+  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_deps, 5, 24,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fstac_2eproto::offsets,
-  file_level_metadata_epl_2fprotobuf_2fv1_2fstac_2eproto, 24, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto,
+  file_level_metadata_epl_2fprotobuf_2fv1_2fstac_2eproto, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto,
 };
+PROTOBUF_ATTRIBUTE_WEAK ::PROTOBUF_NAMESPACE_ID::Metadata
+descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_metadata_getter(int index) {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto);
+  return descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto.file_level_metadata[index];
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_epl_2fprotobuf_2fv1_2fstac_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_epl_2fprotobuf_2fv1_2fstac_2eproto(&descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto);
 namespace epl {
 namespace protobuf {
 namespace v1 {
@@ -1414,10 +1293,6 @@ void Collection_SummariesEntry_DoNotUse::MergeFrom(
 
 // ===================================================================
 
-void Collection::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_Collection_default_instance_._instance.get_mutable()->extent_ = const_cast< ::epl::protobuf::v1::Extent*>(
-      ::epl::protobuf::v1::Extent::internal_default_instance());
-}
 class Collection::_Internal {
  public:
   static const ::epl::protobuf::v1::Extent& extent(const Collection* msg);
@@ -1427,37 +1302,45 @@ const ::epl::protobuf::v1::Extent&
 Collection::_Internal::extent(const Collection* msg) {
   return *msg->extent_;
 }
-Collection::Collection()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Collection::Collection(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  keywords_(arena),
+  providers_(arena),
+  summaries_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Collection)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Collection)
 }
 Collection::Collection(const Collection& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       keywords_(from.keywords_),
       providers_(from.providers_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   summaries_.MergeFrom(from.summaries_);
   stac_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_stac_version().empty()) {
-    stac_version_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.stac_version_);
+    stac_version_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_stac_version(), 
+      GetArena());
   }
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_id().empty()) {
-    id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArena());
   }
   title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_title().empty()) {
-    title_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.title_);
+    title_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_title(), 
+      GetArena());
   }
   description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_description().empty()) {
-    description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
+    description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_description(), 
+      GetArena());
   }
   license_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_license().empty()) {
-    license_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.license_);
+    license_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_license(), 
+      GetArena());
   }
   if (from._internal_has_extent()) {
     extent_ = new ::epl::protobuf::v1::Extent(*from.extent_);
@@ -1468,21 +1351,22 @@ Collection::Collection(const Collection& from)
 }
 
 void Collection::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Collection_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  stac_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  license_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  extent_ = nullptr;
+stac_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+license_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+extent_ = nullptr;
 }
 
 Collection::~Collection() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Collection)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Collection::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   stac_version_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   title_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -1491,14 +1375,15 @@ void Collection::SharedDtor() {
   if (this != internal_default_instance()) delete extent_;
 }
 
+void Collection::ArenaDtor(void* object) {
+  Collection* _this = reinterpret_cast< Collection* >(object);
+  (void)_this;
+}
+void Collection::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Collection::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Collection& Collection::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Collection_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Collection::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Collection)
@@ -1509,16 +1394,16 @@ void Collection::Clear() {
   keywords_.Clear();
   providers_.Clear();
   summaries_.Clear();
-  stac_version_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  title_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  description_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  license_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && extent_ != nullptr) {
+  stac_version_.ClearToEmpty();
+  id_.ClearToEmpty();
+  title_.ClearToEmpty();
+  description_.ClearToEmpty();
+  license_.ClearToEmpty();
+  if (GetArena() == nullptr && extent_ != nullptr) {
     delete extent_;
   }
   extent_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Collection::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1624,7 +1509,9 @@ const char* Collection::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1763,7 +1650,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Collection)
   return target;
@@ -1870,7 +1757,7 @@ void Collection::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Collection::MergeFrom(const Collection& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Collection)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1878,24 +1765,19 @@ void Collection::MergeFrom(const Collection& from) {
   providers_.MergeFrom(from.providers_);
   summaries_.MergeFrom(from.summaries_);
   if (from.stac_version().size() > 0) {
-
-    stac_version_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.stac_version_);
+    _internal_set_stac_version(from._internal_stac_version());
   }
   if (from.id().size() > 0) {
-
-    id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
+    _internal_set_id(from._internal_id());
   }
   if (from.title().size() > 0) {
-
-    title_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.title_);
+    _internal_set_title(from._internal_title());
   }
   if (from.description().size() > 0) {
-
-    description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
+    _internal_set_description(from._internal_description());
   }
   if (from.license().size() > 0) {
-
-    license_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.license_);
+    _internal_set_license(from._internal_license());
   }
   if (from.has_extent()) {
     _internal_mutable_extent()->::epl::protobuf::v1::Extent::MergeFrom(from._internal_extent());
@@ -1922,20 +1804,15 @@ bool Collection::IsInitialized() const {
 
 void Collection::InternalSwap(Collection* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   keywords_.InternalSwap(&other->keywords_);
   providers_.InternalSwap(&other->providers_);
   summaries_.Swap(&other->summaries_);
-  stac_version_.Swap(&other->stac_version_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  title_.Swap(&other->title_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  license_.Swap(&other->license_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  stac_version_.Swap(&other->stac_version_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  title_.Swap(&other->title_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  license_.Swap(&other->license_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(extent_, other->extent_);
 }
 
@@ -1946,12 +1823,6 @@ void Collection::InternalSwap(Collection* other) {
 
 // ===================================================================
 
-void CollectionRequest::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_CollectionRequest_default_instance_.bbox_ = const_cast< ::epl::protobuf::v1::EnvelopeData*>(
-      ::epl::protobuf::v1::EnvelopeData::internal_default_instance());
-  ::epl::protobuf::v1::_CollectionRequest_default_instance_.intersects_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-}
 class CollectionRequest::_Internal {
  public:
   static const ::epl::protobuf::v1::EnvelopeData& bbox(const CollectionRequest* msg);
@@ -1967,10 +1838,11 @@ CollectionRequest::_Internal::intersects(const CollectionRequest* msg) {
   return *msg->spatial_.intersects_;
 }
 void CollectionRequest::set_allocated_bbox(::epl::protobuf::v1::EnvelopeData* bbox) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_spatial();
   if (bbox) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(bbox)->GetArena();
     if (message_arena != submessage_arena) {
       bbox = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, bbox, submessage_arena);
@@ -1982,15 +1854,18 @@ void CollectionRequest::set_allocated_bbox(::epl::protobuf::v1::EnvelopeData* bb
 }
 void CollectionRequest::clear_bbox() {
   if (_internal_has_bbox()) {
-    delete spatial_.bbox_;
+    if (GetArena() == nullptr) {
+      delete spatial_.bbox_;
+    }
     clear_has_spatial();
   }
 }
 void CollectionRequest::set_allocated_intersects(::epl::protobuf::v1::GeometryData* intersects) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_spatial();
   if (intersects) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(intersects)->GetArena();
     if (message_arena != submessage_arena) {
       intersects = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, intersects, submessage_arena);
@@ -2002,22 +1877,25 @@ void CollectionRequest::set_allocated_intersects(::epl::protobuf::v1::GeometryDa
 }
 void CollectionRequest::clear_intersects() {
   if (_internal_has_intersects()) {
-    delete spatial_.intersects_;
+    if (GetArena() == nullptr) {
+      delete spatial_.intersects_;
+    }
     clear_has_spatial();
   }
 }
-CollectionRequest::CollectionRequest()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+CollectionRequest::CollectionRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.CollectionRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.CollectionRequest)
 }
 CollectionRequest::CollectionRequest(const CollectionRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_id().empty()) {
-    id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArena());
   }
   clear_has_spatial();
   switch (from.spatial_case()) {
@@ -2037,41 +1915,47 @@ CollectionRequest::CollectionRequest(const CollectionRequest& from)
 }
 
 void CollectionRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_CollectionRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  clear_has_spatial();
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+clear_has_spatial();
 }
 
 CollectionRequest::~CollectionRequest() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.CollectionRequest)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void CollectionRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (has_spatial()) {
     clear_spatial();
   }
 }
 
+void CollectionRequest::ArenaDtor(void* object) {
+  CollectionRequest* _this = reinterpret_cast< CollectionRequest* >(object);
+  (void)_this;
+}
+void CollectionRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void CollectionRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const CollectionRequest& CollectionRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_CollectionRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void CollectionRequest::clear_spatial() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.CollectionRequest)
   switch (spatial_case()) {
     case kBbox: {
-      delete spatial_.bbox_;
+      if (GetArena() == nullptr) {
+        delete spatial_.bbox_;
+      }
       break;
     }
     case kIntersects: {
-      delete spatial_.intersects_;
+      if (GetArena() == nullptr) {
+        delete spatial_.intersects_;
+      }
       break;
     }
     case SPATIAL_NOT_SET: {
@@ -2088,9 +1972,9 @@ void CollectionRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  id_.ClearToEmpty();
   clear_spatial();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* CollectionRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -2129,7 +2013,9 @@ const char* CollectionRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -2177,7 +2063,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.CollectionRequest)
   return target;
@@ -2244,13 +2130,12 @@ void CollectionRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) 
 void CollectionRequest::MergeFrom(const CollectionRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.CollectionRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.id().size() > 0) {
-
-    id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
+    _internal_set_id(from._internal_id());
   }
   switch (from.spatial_case()) {
     case kBbox: {
@@ -2287,9 +2172,8 @@ bool CollectionRequest::IsInitialized() const {
 
 void CollectionRequest::InternalSwap(CollectionRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(spatial_, other->spatial_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -2301,21 +2185,19 @@ void CollectionRequest::InternalSwap(CollectionRequest* other) {
 
 // ===================================================================
 
-void Stats::InitAsDefaultInstance() {
-}
 class Stats::_Internal {
  public:
 };
 
-Stats::Stats()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Stats::Stats(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Stats)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Stats)
 }
 Stats::Stats(const Stats& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Stats)
 }
 
@@ -2325,19 +2207,22 @@ void Stats::SharedCtor() {
 Stats::~Stats() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Stats)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Stats::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Stats::ArenaDtor(void* object) {
+  Stats* _this = reinterpret_cast< Stats* >(object);
+  (void)_this;
+}
+void Stats::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Stats::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Stats& Stats::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Stats_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Stats::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Stats)
@@ -2345,7 +2230,7 @@ void Stats::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Stats::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -2358,7 +2243,9 @@ const char* Stats::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
   }  // while
@@ -2378,7 +2265,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Stats)
   return target;
@@ -2419,7 +2306,7 @@ void Stats::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Stats::MergeFrom(const Stats& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Stats)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2445,7 +2332,7 @@ bool Stats::IsInitialized() const {
 
 void Stats::InternalSwap(Stats* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Stats::GetMetadata() const {
@@ -2455,8 +2342,6 @@ void Stats::InternalSwap(Stats* other) {
 
 // ===================================================================
 
-void Extent::InitAsDefaultInstance() {
-}
 class Extent::_Internal {
  public:
 };
@@ -2464,40 +2349,44 @@ class Extent::_Internal {
 void Extent::clear_spatial() {
   spatial_.Clear();
 }
-Extent::Extent()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Extent::Extent(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  spatial_(arena),
+  temporal_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Extent)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Extent)
 }
 Extent::Extent(const Extent& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       spatial_(from.spatial_),
       temporal_(from.temporal_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Extent)
 }
 
 void Extent::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
 }
 
 Extent::~Extent() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Extent)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Extent::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Extent::ArenaDtor(void* object) {
+  Extent* _this = reinterpret_cast< Extent* >(object);
+  (void)_this;
+}
+void Extent::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Extent::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Extent& Extent::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Extent::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Extent)
@@ -2507,7 +2396,7 @@ void Extent::Clear() {
 
   spatial_.Clear();
   temporal_.Clear();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Extent::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -2547,7 +2436,9 @@ const char* Extent::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -2585,7 +2476,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Extent)
   return target;
@@ -2640,7 +2531,7 @@ void Extent::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Extent::MergeFrom(const Extent& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Extent)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2668,7 +2559,7 @@ bool Extent::IsInitialized() const {
 
 void Extent::InternalSwap(Extent* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   spatial_.InternalSwap(&other->spatial_);
   temporal_.InternalSwap(&other->temporal_);
 }
@@ -2680,12 +2571,6 @@ void Extent::InternalSwap(Extent* other) {
 
 // ===================================================================
 
-void Interval::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_Interval_default_instance_._instance.get_mutable()->start_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_Interval_default_instance_._instance.get_mutable()->end_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-}
 class Interval::_Internal {
  public:
   static const PROTOBUF_NAMESPACE_ID::Timestamp& start(const Interval* msg);
@@ -2701,26 +2586,26 @@ Interval::_Internal::end(const Interval* msg) {
   return *msg->end_;
 }
 void Interval::clear_start() {
-  if (GetArenaNoVirtual() == nullptr && start_ != nullptr) {
+  if (GetArena() == nullptr && start_ != nullptr) {
     delete start_;
   }
   start_ = nullptr;
 }
 void Interval::clear_end() {
-  if (GetArenaNoVirtual() == nullptr && end_ != nullptr) {
+  if (GetArena() == nullptr && end_ != nullptr) {
     delete end_;
   }
   end_ = nullptr;
 }
-Interval::Interval()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Interval::Interval(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Interval)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Interval)
 }
 Interval::Interval(const Interval& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_start()) {
     start_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.start_);
   } else {
@@ -2735,30 +2620,33 @@ Interval::Interval(const Interval& from)
 }
 
 void Interval::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Interval_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  ::memset(&start_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&end_) -
-      reinterpret_cast<char*>(&start_)) + sizeof(end_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&start_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&end_) -
+    reinterpret_cast<char*>(&start_)) + sizeof(end_));
 }
 
 Interval::~Interval() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Interval)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Interval::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete start_;
   if (this != internal_default_instance()) delete end_;
 }
 
+void Interval::ArenaDtor(void* object) {
+  Interval* _this = reinterpret_cast< Interval* >(object);
+  (void)_this;
+}
+void Interval::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Interval::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Interval& Interval::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Interval_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Interval::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Interval)
@@ -2766,15 +2654,15 @@ void Interval::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && start_ != nullptr) {
+  if (GetArena() == nullptr && start_ != nullptr) {
     delete start_;
   }
   start_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && end_ != nullptr) {
+  if (GetArena() == nullptr && end_ != nullptr) {
     delete end_;
   }
   end_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Interval::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -2804,7 +2692,9 @@ const char* Interval::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -2842,7 +2732,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Interval)
   return target;
@@ -2897,7 +2787,7 @@ void Interval::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Interval::MergeFrom(const Interval& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Interval)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2929,9 +2819,13 @@ bool Interval::IsInitialized() const {
 
 void Interval::InternalSwap(Interval* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(start_, other->start_);
-  swap(end_, other->end_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Interval, end_)
+      + sizeof(Interval::end_)
+      - PROTOBUF_FIELD_OFFSET(Interval, start_)>(
+          reinterpret_cast<char*>(&start_),
+          reinterpret_cast<char*>(&other->start_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Interval::GetMetadata() const {
@@ -2941,63 +2835,67 @@ void Interval::InternalSwap(Interval* other) {
 
 // ===================================================================
 
-void Provider::InitAsDefaultInstance() {
-}
 class Provider::_Internal {
  public:
 };
 
-Provider::Provider()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Provider::Provider(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  roles_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Provider)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Provider)
 }
 Provider::Provider(const Provider& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       roles_(from.roles_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArena());
   }
   description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_description().empty()) {
-    description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
+    description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_description(), 
+      GetArena());
   }
   url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_url().empty()) {
-    url_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.url_);
+    url_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_url(), 
+      GetArena());
   }
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Provider)
 }
 
 void Provider::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Provider_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 Provider::~Provider() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Provider)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Provider::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   description_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void Provider::ArenaDtor(void* object) {
+  Provider* _this = reinterpret_cast< Provider* >(object);
+  (void)_this;
+}
+void Provider::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Provider::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Provider& Provider::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Provider_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Provider::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Provider)
@@ -3006,10 +2904,10 @@ void Provider::Clear() {
   (void) cached_has_bits;
 
   roles_.Clear();
-  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  description_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  url_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _internal_metadata_.Clear();
+  name_.ClearToEmpty();
+  description_.ClearToEmpty();
+  url_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Provider::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -3066,7 +2964,9 @@ const char* Provider::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -3128,7 +3028,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Provider)
   return target;
@@ -3198,22 +3098,19 @@ void Provider::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Provider::MergeFrom(const Provider& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Provider)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   roles_.MergeFrom(from.roles_);
   if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    _internal_set_name(from._internal_name());
   }
   if (from.description().size() > 0) {
-
-    description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
+    _internal_set_description(from._internal_description());
   }
   if (from.url().size() > 0) {
-
-    url_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.url_);
+    _internal_set_url(from._internal_url());
   }
 }
 
@@ -3237,14 +3134,11 @@ bool Provider::IsInitialized() const {
 
 void Provider::InternalSwap(Provider* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   roles_.InternalSwap(&other->roles_);
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  url_.Swap(&other->url_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  url_.Swap(&other->url_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Provider::GetMetadata() const {
@@ -3271,42 +3165,6 @@ void StacItem_AssetsEntry_DoNotUse::MergeFrom(
 
 // ===================================================================
 
-void StacItem::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->properties_ = const_cast< PROTOBUF_NAMESPACE_ID::Any*>(
-      PROTOBUF_NAMESPACE_ID::Any::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->geometry_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->bbox_ = const_cast< ::epl::protobuf::v1::EnvelopeData*>(
-      ::epl::protobuf::v1::EnvelopeData::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_.datetime_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_.start_datetime_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_.observed_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_.start_observation_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->end_datetime_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->end_observation_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->created_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->updated_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
-      ::epl::protobuf::v1::ProjectionData::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->gsd_ = const_cast< PROTOBUF_NAMESPACE_ID::FloatValue*>(
-      PROTOBUF_NAMESPACE_ID::FloatValue::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->eo_ = const_cast< ::epl::protobuf::v1::Eo*>(
-      ::epl::protobuf::v1::Eo::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->view_ = const_cast< ::epl::protobuf::v1::View*>(
-      ::epl::protobuf::v1::View::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->landsat_ = const_cast< ::epl::protobuf::v1::Landsat*>(
-      ::epl::protobuf::v1::Landsat::internal_default_instance());
-  ::epl::protobuf::v1::_StacItem_default_instance_._instance.get_mutable()->mosaic_ = const_cast< ::epl::protobuf::v1::Mosaic*>(
-      ::epl::protobuf::v1::Mosaic::internal_default_instance());
-}
 class StacItem::_Internal {
  public:
   static const PROTOBUF_NAMESPACE_ID::Any& properties(const StacItem* msg);
@@ -3397,25 +3255,25 @@ StacItem::_Internal::mosaic(const StacItem* msg) {
   return *msg->mosaic_;
 }
 void StacItem::clear_properties() {
-  if (GetArenaNoVirtual() == nullptr && properties_ != nullptr) {
+  if (GetArena() == nullptr && properties_ != nullptr) {
     delete properties_;
   }
   properties_ = nullptr;
 }
 void StacItem::clear_geometry() {
-  if (GetArenaNoVirtual() == nullptr && geometry_ != nullptr) {
+  if (GetArena() == nullptr && geometry_ != nullptr) {
     delete geometry_;
   }
   geometry_ = nullptr;
 }
 void StacItem::clear_bbox() {
-  if (GetArenaNoVirtual() == nullptr && bbox_ != nullptr) {
+  if (GetArena() == nullptr && bbox_ != nullptr) {
     delete bbox_;
   }
   bbox_ = nullptr;
 }
 void StacItem::set_allocated_datetime(PROTOBUF_NAMESPACE_ID::Timestamp* datetime) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_temporal_deprecated();
   if (datetime) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
@@ -3431,12 +3289,14 @@ void StacItem::set_allocated_datetime(PROTOBUF_NAMESPACE_ID::Timestamp* datetime
 }
 void StacItem::clear_datetime() {
   if (_internal_has_datetime()) {
-    delete temporal_deprecated_.datetime_;
+    if (GetArena() == nullptr) {
+      delete temporal_deprecated_.datetime_;
+    }
     clear_has_temporal_deprecated();
   }
 }
 void StacItem::set_allocated_start_datetime(PROTOBUF_NAMESPACE_ID::Timestamp* start_datetime) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_temporal_deprecated();
   if (start_datetime) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
@@ -3452,12 +3312,14 @@ void StacItem::set_allocated_start_datetime(PROTOBUF_NAMESPACE_ID::Timestamp* st
 }
 void StacItem::clear_start_datetime() {
   if (_internal_has_start_datetime()) {
-    delete temporal_deprecated_.start_datetime_;
+    if (GetArena() == nullptr) {
+      delete temporal_deprecated_.start_datetime_;
+    }
     clear_has_temporal_deprecated();
   }
 }
 void StacItem::set_allocated_observed(PROTOBUF_NAMESPACE_ID::Timestamp* observed) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_temporal();
   if (observed) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
@@ -3473,12 +3335,14 @@ void StacItem::set_allocated_observed(PROTOBUF_NAMESPACE_ID::Timestamp* observed
 }
 void StacItem::clear_observed() {
   if (_internal_has_observed()) {
-    delete temporal_.observed_;
+    if (GetArena() == nullptr) {
+      delete temporal_.observed_;
+    }
     clear_has_temporal();
   }
 }
 void StacItem::set_allocated_start_observation(PROTOBUF_NAMESPACE_ID::Timestamp* start_observation) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_temporal();
   if (start_observation) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
@@ -3494,92 +3358,105 @@ void StacItem::set_allocated_start_observation(PROTOBUF_NAMESPACE_ID::Timestamp*
 }
 void StacItem::clear_start_observation() {
   if (_internal_has_start_observation()) {
-    delete temporal_.start_observation_;
+    if (GetArena() == nullptr) {
+      delete temporal_.start_observation_;
+    }
     clear_has_temporal();
   }
 }
 void StacItem::clear_end_datetime() {
-  if (GetArenaNoVirtual() == nullptr && end_datetime_ != nullptr) {
+  if (GetArena() == nullptr && end_datetime_ != nullptr) {
     delete end_datetime_;
   }
   end_datetime_ = nullptr;
 }
 void StacItem::clear_end_observation() {
-  if (GetArenaNoVirtual() == nullptr && end_observation_ != nullptr) {
+  if (GetArena() == nullptr && end_observation_ != nullptr) {
     delete end_observation_;
   }
   end_observation_ = nullptr;
 }
 void StacItem::clear_created() {
-  if (GetArenaNoVirtual() == nullptr && created_ != nullptr) {
+  if (GetArena() == nullptr && created_ != nullptr) {
     delete created_;
   }
   created_ = nullptr;
 }
 void StacItem::clear_updated() {
-  if (GetArenaNoVirtual() == nullptr && updated_ != nullptr) {
+  if (GetArena() == nullptr && updated_ != nullptr) {
     delete updated_;
   }
   updated_ = nullptr;
 }
 void StacItem::clear_proj() {
-  if (GetArenaNoVirtual() == nullptr && proj_ != nullptr) {
+  if (GetArena() == nullptr && proj_ != nullptr) {
     delete proj_;
   }
   proj_ = nullptr;
 }
 void StacItem::clear_gsd() {
-  if (GetArenaNoVirtual() == nullptr && gsd_ != nullptr) {
+  if (GetArena() == nullptr && gsd_ != nullptr) {
     delete gsd_;
   }
   gsd_ = nullptr;
 }
-StacItem::StacItem()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+StacItem::StacItem(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  assets_(arena),
+  stac_extensions_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.StacItem)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.StacItem)
 }
 StacItem::StacItem(const StacItem& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       stac_extensions_(from.stac_extensions_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   assets_.MergeFrom(from.assets_);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_id().empty()) {
-    id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArena());
   }
   title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_title().empty()) {
-    title_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.title_);
+    title_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_title(), 
+      GetArena());
   }
   collection_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_collection().empty()) {
-    collection_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.collection_);
+    collection_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_collection(), 
+      GetArena());
   }
   platform_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_platform().empty()) {
-    platform_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.platform_);
+    platform_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_platform(), 
+      GetArena());
   }
   instrument_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_instrument().empty()) {
-    instrument_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.instrument_);
+    instrument_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_instrument(), 
+      GetArena());
   }
   constellation_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_constellation().empty()) {
-    constellation_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.constellation_);
+    constellation_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_constellation(), 
+      GetArena());
   }
   mission_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_mission().empty()) {
-    mission_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.mission_);
+    mission_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_mission(), 
+      GetArena());
   }
   stac_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_stac_version().empty()) {
-    stac_version_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.stac_version_);
+    stac_version_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_stac_version(), 
+      GetArena());
   }
   stac_pb_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_stac_pb_version().empty()) {
-    stac_pb_version_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.stac_pb_version_);
+    stac_pb_version_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_stac_pb_version(), 
+      GetArena());
   }
   if (from._internal_has_properties()) {
     properties_ = new PROTOBUF_NAMESPACE_ID::Any(*from.properties_);
@@ -3681,29 +3558,31 @@ StacItem::StacItem(const StacItem& from)
 }
 
 void StacItem::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_StacItem_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  collection_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  platform_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  instrument_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  constellation_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  mission_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  stac_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  stac_pb_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&properties_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&mission_enum_) -
-      reinterpret_cast<char*>(&properties_)) + sizeof(mission_enum_));
-  clear_has_temporal_deprecated();
-  clear_has_temporal();
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+collection_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+platform_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+instrument_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+constellation_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+mission_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+stac_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+stac_pb_version_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&properties_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&mission_enum_) -
+    reinterpret_cast<char*>(&properties_)) + sizeof(mission_enum_));
+clear_has_temporal_deprecated();
+clear_has_temporal();
 }
 
 StacItem::~StacItem() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.StacItem)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void StacItem::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   title_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   collection_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -3734,24 +3613,29 @@ void StacItem::SharedDtor() {
   }
 }
 
+void StacItem::ArenaDtor(void* object) {
+  StacItem* _this = reinterpret_cast< StacItem* >(object);
+  (void)_this;
+}
+void StacItem::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void StacItem::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const StacItem& StacItem::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_StacItem_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void StacItem::clear_temporal_deprecated() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.StacItem)
   switch (temporal_deprecated_case()) {
     case kDatetime: {
-      delete temporal_deprecated_.datetime_;
+      if (GetArena() == nullptr) {
+        delete temporal_deprecated_.datetime_;
+      }
       break;
     }
     case kStartDatetime: {
-      delete temporal_deprecated_.start_datetime_;
+      if (GetArena() == nullptr) {
+        delete temporal_deprecated_.start_datetime_;
+      }
       break;
     }
     case TEMPORAL_DEPRECATED_NOT_SET: {
@@ -3765,11 +3649,15 @@ void StacItem::clear_temporal() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.StacItem)
   switch (temporal_case()) {
     case kObserved: {
-      delete temporal_.observed_;
+      if (GetArena() == nullptr) {
+        delete temporal_.observed_;
+      }
       break;
     }
     case kStartObservation: {
-      delete temporal_.start_observation_;
+      if (GetArena() == nullptr) {
+        delete temporal_.start_observation_;
+      }
       break;
     }
     case TEMPORAL_NOT_SET: {
@@ -3788,64 +3676,64 @@ void StacItem::Clear() {
 
   assets_.Clear();
   stac_extensions_.Clear();
-  id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  title_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  collection_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  platform_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  instrument_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  constellation_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  mission_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  stac_version_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  stac_pb_version_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && properties_ != nullptr) {
+  id_.ClearToEmpty();
+  title_.ClearToEmpty();
+  collection_.ClearToEmpty();
+  platform_.ClearToEmpty();
+  instrument_.ClearToEmpty();
+  constellation_.ClearToEmpty();
+  mission_.ClearToEmpty();
+  stac_version_.ClearToEmpty();
+  stac_pb_version_.ClearToEmpty();
+  if (GetArena() == nullptr && properties_ != nullptr) {
     delete properties_;
   }
   properties_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && geometry_ != nullptr) {
+  if (GetArena() == nullptr && geometry_ != nullptr) {
     delete geometry_;
   }
   geometry_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && bbox_ != nullptr) {
+  if (GetArena() == nullptr && bbox_ != nullptr) {
     delete bbox_;
   }
   bbox_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && end_datetime_ != nullptr) {
+  if (GetArena() == nullptr && end_datetime_ != nullptr) {
     delete end_datetime_;
   }
   end_datetime_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && end_observation_ != nullptr) {
+  if (GetArena() == nullptr && end_observation_ != nullptr) {
     delete end_observation_;
   }
   end_observation_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && created_ != nullptr) {
+  if (GetArena() == nullptr && created_ != nullptr) {
     delete created_;
   }
   created_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && updated_ != nullptr) {
+  if (GetArena() == nullptr && updated_ != nullptr) {
     delete updated_;
   }
   updated_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && proj_ != nullptr) {
+  if (GetArena() == nullptr && proj_ != nullptr) {
     delete proj_;
   }
   proj_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && gsd_ != nullptr) {
+  if (GetArena() == nullptr && gsd_ != nullptr) {
     delete gsd_;
   }
   gsd_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && eo_ != nullptr) {
+  if (GetArena() == nullptr && eo_ != nullptr) {
     delete eo_;
   }
   eo_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && landsat_ != nullptr) {
+  if (GetArena() == nullptr && landsat_ != nullptr) {
     delete landsat_;
   }
   landsat_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && mosaic_ != nullptr) {
+  if (GetArena() == nullptr && mosaic_ != nullptr) {
     delete mosaic_;
   }
   mosaic_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && view_ != nullptr) {
+  if (GetArena() == nullptr && view_ != nullptr) {
     delete view_;
   }
   view_ = nullptr;
@@ -3854,7 +3742,7 @@ void StacItem::Clear() {
       reinterpret_cast<char*>(&platform_enum_)) + sizeof(mission_enum_));
   clear_temporal_deprecated();
   clear_temporal();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* StacItem::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -3990,7 +3878,7 @@ const char* StacItem::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
       // .epl.protobuf.v1.Platform platform_enum = 17;
       case 17:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 136)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_platform_enum(static_cast<::epl::protobuf::v1::Platform>(val));
         } else goto handle_unusual;
@@ -4007,7 +3895,7 @@ const char* StacItem::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
       // .epl.protobuf.v1.Instrument instrument_enum = 19;
       case 19:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 152)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_instrument_enum(static_cast<::epl::protobuf::v1::Instrument>(val));
         } else goto handle_unusual;
@@ -4024,7 +3912,7 @@ const char* StacItem::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
       // .epl.protobuf.v1.Constellation constellation_enum = 21;
       case 21:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 168)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_constellation_enum(static_cast<::epl::protobuf::v1::Constellation>(val));
         } else goto handle_unusual;
@@ -4041,7 +3929,7 @@ const char* StacItem::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
       // .epl.protobuf.v1.Mission mission_enum = 23;
       case 23:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 184)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_mission_enum(static_cast<::epl::protobuf::v1::Mission>(val));
         } else goto handle_unusual;
@@ -4128,7 +4016,9 @@ const char* StacItem::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -4455,7 +4345,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.StacItem)
   return target;
@@ -4729,47 +4619,38 @@ void StacItem::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void StacItem::MergeFrom(const StacItem& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.StacItem)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   assets_.MergeFrom(from.assets_);
   stac_extensions_.MergeFrom(from.stac_extensions_);
   if (from.id().size() > 0) {
-
-    id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
+    _internal_set_id(from._internal_id());
   }
   if (from.title().size() > 0) {
-
-    title_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.title_);
+    _internal_set_title(from._internal_title());
   }
   if (from.collection().size() > 0) {
-
-    collection_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.collection_);
+    _internal_set_collection(from._internal_collection());
   }
   if (from.platform().size() > 0) {
-
-    platform_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.platform_);
+    _internal_set_platform(from._internal_platform());
   }
   if (from.instrument().size() > 0) {
-
-    instrument_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.instrument_);
+    _internal_set_instrument(from._internal_instrument());
   }
   if (from.constellation().size() > 0) {
-
-    constellation_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.constellation_);
+    _internal_set_constellation(from._internal_constellation());
   }
   if (from.mission().size() > 0) {
-
-    mission_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.mission_);
+    _internal_set_mission(from._internal_mission());
   }
   if (from.stac_version().size() > 0) {
-
-    stac_version_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.stac_version_);
+    _internal_set_stac_version(from._internal_stac_version());
   }
   if (from.stac_pb_version().size() > 0) {
-
-    stac_pb_version_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.stac_pb_version_);
+    _internal_set_stac_pb_version(from._internal_stac_pb_version());
   }
   if (from.has_properties()) {
     _internal_mutable_properties()->PROTOBUF_NAMESPACE_ID::Any::MergeFrom(from._internal_properties());
@@ -4870,44 +4751,24 @@ bool StacItem::IsInitialized() const {
 
 void StacItem::InternalSwap(StacItem* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   assets_.Swap(&other->assets_);
   stac_extensions_.InternalSwap(&other->stac_extensions_);
-  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  title_.Swap(&other->title_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  collection_.Swap(&other->collection_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  platform_.Swap(&other->platform_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  instrument_.Swap(&other->instrument_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  constellation_.Swap(&other->constellation_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  mission_.Swap(&other->mission_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  stac_version_.Swap(&other->stac_version_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  stac_pb_version_.Swap(&other->stac_pb_version_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(properties_, other->properties_);
-  swap(geometry_, other->geometry_);
-  swap(bbox_, other->bbox_);
-  swap(end_datetime_, other->end_datetime_);
-  swap(end_observation_, other->end_observation_);
-  swap(created_, other->created_);
-  swap(updated_, other->updated_);
-  swap(proj_, other->proj_);
-  swap(gsd_, other->gsd_);
-  swap(eo_, other->eo_);
-  swap(landsat_, other->landsat_);
-  swap(mosaic_, other->mosaic_);
-  swap(view_, other->view_);
-  swap(platform_enum_, other->platform_enum_);
-  swap(instrument_enum_, other->instrument_enum_);
-  swap(constellation_enum_, other->constellation_enum_);
-  swap(mission_enum_, other->mission_enum_);
+  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  title_.Swap(&other->title_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  collection_.Swap(&other->collection_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  platform_.Swap(&other->platform_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  instrument_.Swap(&other->instrument_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  constellation_.Swap(&other->constellation_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  mission_.Swap(&other->mission_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  stac_version_.Swap(&other->stac_version_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  stac_pb_version_.Swap(&other->stac_pb_version_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(StacItem, mission_enum_)
+      + sizeof(StacItem::mission_enum_)
+      - PROTOBUF_FIELD_OFFSET(StacItem, properties_)>(
+          reinterpret_cast<char*>(&properties_),
+          reinterpret_cast<char*>(&other->properties_));
   swap(temporal_deprecated_, other->temporal_deprecated_);
   swap(temporal_, other->temporal_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
@@ -4921,40 +4782,6 @@ void StacItem::InternalSwap(StacItem* other) {
 
 // ===================================================================
 
-void StacRequest::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_StacRequest_default_instance_.id_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::epl::protobuf::v1::_StacRequest_default_instance_.id_complex_ = const_cast< ::epl::protobuf::v1::StringFilter*>(
-      ::epl::protobuf::v1::StringFilter::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->properties_ = const_cast< PROTOBUF_NAMESPACE_ID::Any*>(
-      PROTOBUF_NAMESPACE_ID::Any::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_.intersects_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_.bbox_ = const_cast< ::epl::protobuf::v1::EnvelopeData*>(
-      ::epl::protobuf::v1::EnvelopeData::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_.geometry_request_ = const_cast< ::epl::protobuf::v1::GeometryRequest*>(
-      ::epl::protobuf::v1::GeometryRequest::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_.datetime_ = const_cast< ::epl::protobuf::v1::TimestampFilter*>(
-      ::epl::protobuf::v1::TimestampFilter::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_.observed_ = const_cast< ::epl::protobuf::v1::TimestampFilter*>(
-      ::epl::protobuf::v1::TimestampFilter::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->created_ = const_cast< ::epl::protobuf::v1::TimestampFilter*>(
-      ::epl::protobuf::v1::TimestampFilter::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->updated_ = const_cast< ::epl::protobuf::v1::TimestampFilter*>(
-      ::epl::protobuf::v1::TimestampFilter::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
-      ::epl::protobuf::v1::ProjectionData::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->gsd_ = const_cast< ::epl::protobuf::v1::FloatFilter*>(
-      ::epl::protobuf::v1::FloatFilter::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->eo_ = const_cast< ::epl::protobuf::v1::EoRequest*>(
-      ::epl::protobuf::v1::EoRequest::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->view_ = const_cast< ::epl::protobuf::v1::ViewRequest*>(
-      ::epl::protobuf::v1::ViewRequest::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->landsat_ = const_cast< ::epl::protobuf::v1::LandsatRequest*>(
-      ::epl::protobuf::v1::LandsatRequest::internal_default_instance());
-  ::epl::protobuf::v1::_StacRequest_default_instance_._instance.get_mutable()->mosaic_ = const_cast< ::epl::protobuf::v1::MosaicRequest*>(
-      ::epl::protobuf::v1::MosaicRequest::internal_default_instance());
-}
 class StacRequest::_Internal {
  public:
   static const ::epl::protobuf::v1::StringFilter& id_complex(const StacRequest* msg);
@@ -5035,10 +4862,11 @@ StacRequest::_Internal::mosaic(const StacRequest* msg) {
   return *msg->mosaic_;
 }
 void StacRequest::set_allocated_id_complex(::epl::protobuf::v1::StringFilter* id_complex) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_identity();
   if (id_complex) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(id_complex)->GetArena();
     if (message_arena != submessage_arena) {
       id_complex = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, id_complex, submessage_arena);
@@ -5050,21 +4878,24 @@ void StacRequest::set_allocated_id_complex(::epl::protobuf::v1::StringFilter* id
 }
 void StacRequest::clear_id_complex() {
   if (_internal_has_id_complex()) {
-    delete identity_.id_complex_;
+    if (GetArena() == nullptr) {
+      delete identity_.id_complex_;
+    }
     clear_has_identity();
   }
 }
 void StacRequest::clear_properties() {
-  if (GetArenaNoVirtual() == nullptr && properties_ != nullptr) {
+  if (GetArena() == nullptr && properties_ != nullptr) {
     delete properties_;
   }
   properties_ = nullptr;
 }
 void StacRequest::set_allocated_intersects(::epl::protobuf::v1::GeometryData* intersects) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_spatial();
   if (intersects) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(intersects)->GetArena();
     if (message_arena != submessage_arena) {
       intersects = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, intersects, submessage_arena);
@@ -5076,15 +4907,18 @@ void StacRequest::set_allocated_intersects(::epl::protobuf::v1::GeometryData* in
 }
 void StacRequest::clear_intersects() {
   if (_internal_has_intersects()) {
-    delete spatial_.intersects_;
+    if (GetArena() == nullptr) {
+      delete spatial_.intersects_;
+    }
     clear_has_spatial();
   }
 }
 void StacRequest::set_allocated_bbox(::epl::protobuf::v1::EnvelopeData* bbox) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_spatial();
   if (bbox) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(bbox)->GetArena();
     if (message_arena != submessage_arena) {
       bbox = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, bbox, submessage_arena);
@@ -5096,15 +4930,18 @@ void StacRequest::set_allocated_bbox(::epl::protobuf::v1::EnvelopeData* bbox) {
 }
 void StacRequest::clear_bbox() {
   if (_internal_has_bbox()) {
-    delete spatial_.bbox_;
+    if (GetArena() == nullptr) {
+      delete spatial_.bbox_;
+    }
     clear_has_spatial();
   }
 }
 void StacRequest::set_allocated_geometry_request(::epl::protobuf::v1::GeometryRequest* geometry_request) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_spatial();
   if (geometry_request) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(geometry_request)->GetArena();
     if (message_arena != submessage_arena) {
       geometry_request = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, geometry_request, submessage_arena);
@@ -5116,15 +4953,18 @@ void StacRequest::set_allocated_geometry_request(::epl::protobuf::v1::GeometryRe
 }
 void StacRequest::clear_geometry_request() {
   if (_internal_has_geometry_request()) {
-    delete spatial_.geometry_request_;
+    if (GetArena() == nullptr) {
+      delete spatial_.geometry_request_;
+    }
     clear_has_spatial();
   }
 }
 void StacRequest::set_allocated_datetime(::epl::protobuf::v1::TimestampFilter* datetime) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_temporal();
   if (datetime) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(datetime)->GetArena();
     if (message_arena != submessage_arena) {
       datetime = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, datetime, submessage_arena);
@@ -5136,15 +4976,18 @@ void StacRequest::set_allocated_datetime(::epl::protobuf::v1::TimestampFilter* d
 }
 void StacRequest::clear_datetime() {
   if (_internal_has_datetime()) {
-    delete temporal_.datetime_;
+    if (GetArena() == nullptr) {
+      delete temporal_.datetime_;
+    }
     clear_has_temporal();
   }
 }
 void StacRequest::set_allocated_observed(::epl::protobuf::v1::TimestampFilter* observed) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_temporal();
   if (observed) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(observed)->GetArena();
     if (message_arena != submessage_arena) {
       observed = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, observed, submessage_arena);
@@ -5156,46 +4999,49 @@ void StacRequest::set_allocated_observed(::epl::protobuf::v1::TimestampFilter* o
 }
 void StacRequest::clear_observed() {
   if (_internal_has_observed()) {
-    delete temporal_.observed_;
+    if (GetArena() == nullptr) {
+      delete temporal_.observed_;
+    }
     clear_has_temporal();
   }
 }
 void StacRequest::clear_created() {
-  if (GetArenaNoVirtual() == nullptr && created_ != nullptr) {
+  if (GetArena() == nullptr && created_ != nullptr) {
     delete created_;
   }
   created_ = nullptr;
 }
 void StacRequest::clear_updated() {
-  if (GetArenaNoVirtual() == nullptr && updated_ != nullptr) {
+  if (GetArena() == nullptr && updated_ != nullptr) {
     delete updated_;
   }
   updated_ = nullptr;
 }
 void StacRequest::clear_proj() {
-  if (GetArenaNoVirtual() == nullptr && proj_ != nullptr) {
+  if (GetArena() == nullptr && proj_ != nullptr) {
     delete proj_;
   }
   proj_ = nullptr;
 }
 void StacRequest::clear_gsd() {
-  if (GetArenaNoVirtual() == nullptr && gsd_ != nullptr) {
+  if (GetArena() == nullptr && gsd_ != nullptr) {
     delete gsd_;
   }
   gsd_ = nullptr;
 }
-StacRequest::StacRequest()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+StacRequest::StacRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.StacRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.StacRequest)
 }
 StacRequest::StacRequest(const StacRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   collection_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_collection().empty()) {
-    collection_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.collection_);
+    collection_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_collection(), 
+      GetArena());
   }
   if (from._internal_has_properties()) {
     properties_ = new PROTOBUF_NAMESPACE_ID::Any(*from.properties_);
@@ -5295,22 +5141,24 @@ StacRequest::StacRequest(const StacRequest& from)
 }
 
 void StacRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_StacRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  collection_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&properties_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&constellation_enum_) -
-      reinterpret_cast<char*>(&properties_)) + sizeof(constellation_enum_));
-  clear_has_identity();
-  clear_has_spatial();
-  clear_has_temporal();
+collection_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&properties_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&constellation_enum_) -
+    reinterpret_cast<char*>(&properties_)) + sizeof(constellation_enum_));
+clear_has_identity();
+clear_has_spatial();
+clear_has_temporal();
 }
 
 StacRequest::~StacRequest() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.StacRequest)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void StacRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   collection_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete properties_;
   if (this != internal_default_instance()) delete created_;
@@ -5332,24 +5180,27 @@ void StacRequest::SharedDtor() {
   }
 }
 
+void StacRequest::ArenaDtor(void* object) {
+  StacRequest* _this = reinterpret_cast< StacRequest* >(object);
+  (void)_this;
+}
+void StacRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void StacRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const StacRequest& StacRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_StacRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void StacRequest::clear_identity() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.StacRequest)
   switch (identity_case()) {
     case kId: {
-      identity_.id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      identity_.id_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case kIdComplex: {
-      delete identity_.id_complex_;
+      if (GetArena() == nullptr) {
+        delete identity_.id_complex_;
+      }
       break;
     }
     case IDENTITY_NOT_SET: {
@@ -5363,15 +5214,21 @@ void StacRequest::clear_spatial() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.StacRequest)
   switch (spatial_case()) {
     case kIntersects: {
-      delete spatial_.intersects_;
+      if (GetArena() == nullptr) {
+        delete spatial_.intersects_;
+      }
       break;
     }
     case kBbox: {
-      delete spatial_.bbox_;
+      if (GetArena() == nullptr) {
+        delete spatial_.bbox_;
+      }
       break;
     }
     case kGeometryRequest: {
-      delete spatial_.geometry_request_;
+      if (GetArena() == nullptr) {
+        delete spatial_.geometry_request_;
+      }
       break;
     }
     case SPATIAL_NOT_SET: {
@@ -5385,11 +5242,15 @@ void StacRequest::clear_temporal() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.StacRequest)
   switch (temporal_case()) {
     case kDatetime: {
-      delete temporal_.datetime_;
+      if (GetArena() == nullptr) {
+        delete temporal_.datetime_;
+      }
       break;
     }
     case kObserved: {
-      delete temporal_.observed_;
+      if (GetArena() == nullptr) {
+        delete temporal_.observed_;
+      }
       break;
     }
     case TEMPORAL_NOT_SET: {
@@ -5406,40 +5267,40 @@ void StacRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  collection_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && properties_ != nullptr) {
+  collection_.ClearToEmpty();
+  if (GetArena() == nullptr && properties_ != nullptr) {
     delete properties_;
   }
   properties_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && created_ != nullptr) {
+  if (GetArena() == nullptr && created_ != nullptr) {
     delete created_;
   }
   created_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && updated_ != nullptr) {
+  if (GetArena() == nullptr && updated_ != nullptr) {
     delete updated_;
   }
   updated_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && proj_ != nullptr) {
+  if (GetArena() == nullptr && proj_ != nullptr) {
     delete proj_;
   }
   proj_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && gsd_ != nullptr) {
+  if (GetArena() == nullptr && gsd_ != nullptr) {
     delete gsd_;
   }
   gsd_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && eo_ != nullptr) {
+  if (GetArena() == nullptr && eo_ != nullptr) {
     delete eo_;
   }
   eo_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && view_ != nullptr) {
+  if (GetArena() == nullptr && view_ != nullptr) {
     delete view_;
   }
   view_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && landsat_ != nullptr) {
+  if (GetArena() == nullptr && landsat_ != nullptr) {
     delete landsat_;
   }
   landsat_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && mosaic_ != nullptr) {
+  if (GetArena() == nullptr && mosaic_ != nullptr) {
     delete mosaic_;
   }
   mosaic_ = nullptr;
@@ -5449,7 +5310,7 @@ void StacRequest::Clear() {
   clear_identity();
   clear_spatial();
   clear_temporal();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* StacRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -5462,14 +5323,14 @@ const char* StacRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
       // uint32 limit = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // uint64 offset = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -5564,7 +5425,7 @@ const char* StacRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
       // .epl.protobuf.v1.Platform platform_enum = 15;
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 120)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_platform_enum(static_cast<::epl::protobuf::v1::Platform>(val));
         } else goto handle_unusual;
@@ -5572,7 +5433,7 @@ const char* StacRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
       // .epl.protobuf.v1.Instrument instrument_enum = 17;
       case 17:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 136)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_instrument_enum(static_cast<::epl::protobuf::v1::Instrument>(val));
         } else goto handle_unusual;
@@ -5580,7 +5441,7 @@ const char* StacRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
       // .epl.protobuf.v1.Constellation constellation_enum = 19;
       case 19:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 152)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_constellation_enum(static_cast<::epl::protobuf::v1::Constellation>(val));
         } else goto handle_unusual;
@@ -5588,7 +5449,7 @@ const char* StacRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
       // .epl.protobuf.v1.Mission mission_enum = 21;
       case 21:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 168)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_mission_enum(static_cast<::epl::protobuf::v1::Mission>(val));
         } else goto handle_unusual;
@@ -5634,7 +5495,9 @@ const char* StacRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -5836,7 +5699,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.StacRequest)
   return target;
@@ -6049,13 +5912,12 @@ void StacRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void StacRequest::MergeFrom(const StacRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.StacRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.collection().size() > 0) {
-
-    collection_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.collection_);
+    _internal_set_collection(from._internal_collection());
   }
   if (from.has_properties()) {
     _internal_mutable_properties()->PROTOBUF_NAMESPACE_ID::Any::MergeFrom(from._internal_properties());
@@ -6167,24 +6029,14 @@ bool StacRequest::IsInitialized() const {
 
 void StacRequest::InternalSwap(StacRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  collection_.Swap(&other->collection_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(properties_, other->properties_);
-  swap(created_, other->created_);
-  swap(updated_, other->updated_);
-  swap(proj_, other->proj_);
-  swap(gsd_, other->gsd_);
-  swap(eo_, other->eo_);
-  swap(view_, other->view_);
-  swap(landsat_, other->landsat_);
-  swap(mosaic_, other->mosaic_);
-  swap(offset_, other->offset_);
-  swap(limit_, other->limit_);
-  swap(platform_enum_, other->platform_enum_);
-  swap(mission_enum_, other->mission_enum_);
-  swap(instrument_enum_, other->instrument_enum_);
-  swap(constellation_enum_, other->constellation_enum_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  collection_.Swap(&other->collection_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(StacRequest, constellation_enum_)
+      + sizeof(StacRequest::constellation_enum_)
+      - PROTOBUF_FIELD_OFFSET(StacRequest, properties_)>(
+          reinterpret_cast<char*>(&properties_),
+          reinterpret_cast<char*>(&other->properties_));
   swap(identity_, other->identity_);
   swap(spatial_, other->spatial_);
   swap(temporal_, other->temporal_);
@@ -6200,18 +6052,6 @@ void StacRequest::InternalSwap(StacRequest* other) {
 
 // ===================================================================
 
-void View::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_View_default_instance_._instance.get_mutable()->off_nadir_ = const_cast< PROTOBUF_NAMESPACE_ID::FloatValue*>(
-      PROTOBUF_NAMESPACE_ID::FloatValue::internal_default_instance());
-  ::epl::protobuf::v1::_View_default_instance_._instance.get_mutable()->incidence_angle_ = const_cast< PROTOBUF_NAMESPACE_ID::FloatValue*>(
-      PROTOBUF_NAMESPACE_ID::FloatValue::internal_default_instance());
-  ::epl::protobuf::v1::_View_default_instance_._instance.get_mutable()->azimuth_ = const_cast< PROTOBUF_NAMESPACE_ID::FloatValue*>(
-      PROTOBUF_NAMESPACE_ID::FloatValue::internal_default_instance());
-  ::epl::protobuf::v1::_View_default_instance_._instance.get_mutable()->sun_azimuth_ = const_cast< PROTOBUF_NAMESPACE_ID::FloatValue*>(
-      PROTOBUF_NAMESPACE_ID::FloatValue::internal_default_instance());
-  ::epl::protobuf::v1::_View_default_instance_._instance.get_mutable()->sun_elevation_ = const_cast< PROTOBUF_NAMESPACE_ID::FloatValue*>(
-      PROTOBUF_NAMESPACE_ID::FloatValue::internal_default_instance());
-}
 class View::_Internal {
  public:
   static const PROTOBUF_NAMESPACE_ID::FloatValue& off_nadir(const View* msg);
@@ -6242,44 +6082,44 @@ View::_Internal::sun_elevation(const View* msg) {
   return *msg->sun_elevation_;
 }
 void View::clear_off_nadir() {
-  if (GetArenaNoVirtual() == nullptr && off_nadir_ != nullptr) {
+  if (GetArena() == nullptr && off_nadir_ != nullptr) {
     delete off_nadir_;
   }
   off_nadir_ = nullptr;
 }
 void View::clear_incidence_angle() {
-  if (GetArenaNoVirtual() == nullptr && incidence_angle_ != nullptr) {
+  if (GetArena() == nullptr && incidence_angle_ != nullptr) {
     delete incidence_angle_;
   }
   incidence_angle_ = nullptr;
 }
 void View::clear_azimuth() {
-  if (GetArenaNoVirtual() == nullptr && azimuth_ != nullptr) {
+  if (GetArena() == nullptr && azimuth_ != nullptr) {
     delete azimuth_;
   }
   azimuth_ = nullptr;
 }
 void View::clear_sun_azimuth() {
-  if (GetArenaNoVirtual() == nullptr && sun_azimuth_ != nullptr) {
+  if (GetArena() == nullptr && sun_azimuth_ != nullptr) {
     delete sun_azimuth_;
   }
   sun_azimuth_ = nullptr;
 }
 void View::clear_sun_elevation() {
-  if (GetArenaNoVirtual() == nullptr && sun_elevation_ != nullptr) {
+  if (GetArena() == nullptr && sun_elevation_ != nullptr) {
     delete sun_elevation_;
   }
   sun_elevation_ = nullptr;
 }
-View::View()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+View::View(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.View)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.View)
 }
 View::View(const View& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_off_nadir()) {
     off_nadir_ = new PROTOBUF_NAMESPACE_ID::FloatValue(*from.off_nadir_);
   } else {
@@ -6309,18 +6149,20 @@ View::View(const View& from)
 }
 
 void View::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_View_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  ::memset(&off_nadir_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sun_elevation_) -
-      reinterpret_cast<char*>(&off_nadir_)) + sizeof(sun_elevation_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&off_nadir_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&sun_elevation_) -
+    reinterpret_cast<char*>(&off_nadir_)) + sizeof(sun_elevation_));
 }
 
 View::~View() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.View)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void View::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete off_nadir_;
   if (this != internal_default_instance()) delete incidence_angle_;
   if (this != internal_default_instance()) delete azimuth_;
@@ -6328,14 +6170,15 @@ void View::SharedDtor() {
   if (this != internal_default_instance()) delete sun_elevation_;
 }
 
+void View::ArenaDtor(void* object) {
+  View* _this = reinterpret_cast< View* >(object);
+  (void)_this;
+}
+void View::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void View::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const View& View::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_View_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void View::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.View)
@@ -6343,27 +6186,27 @@ void View::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && off_nadir_ != nullptr) {
+  if (GetArena() == nullptr && off_nadir_ != nullptr) {
     delete off_nadir_;
   }
   off_nadir_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && incidence_angle_ != nullptr) {
+  if (GetArena() == nullptr && incidence_angle_ != nullptr) {
     delete incidence_angle_;
   }
   incidence_angle_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && azimuth_ != nullptr) {
+  if (GetArena() == nullptr && azimuth_ != nullptr) {
     delete azimuth_;
   }
   azimuth_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && sun_azimuth_ != nullptr) {
+  if (GetArena() == nullptr && sun_azimuth_ != nullptr) {
     delete sun_azimuth_;
   }
   sun_azimuth_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && sun_elevation_ != nullptr) {
+  if (GetArena() == nullptr && sun_elevation_ != nullptr) {
     delete sun_elevation_;
   }
   sun_elevation_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* View::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -6414,7 +6257,9 @@ const char* View::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -6476,7 +6321,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.View)
   return target;
@@ -6552,7 +6397,7 @@ void View::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void View::MergeFrom(const View& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.View)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -6593,12 +6438,13 @@ bool View::IsInitialized() const {
 
 void View::InternalSwap(View* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(off_nadir_, other->off_nadir_);
-  swap(incidence_angle_, other->incidence_angle_);
-  swap(azimuth_, other->azimuth_);
-  swap(sun_azimuth_, other->sun_azimuth_);
-  swap(sun_elevation_, other->sun_elevation_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(View, sun_elevation_)
+      + sizeof(View::sun_elevation_)
+      - PROTOBUF_FIELD_OFFSET(View, off_nadir_)>(
+          reinterpret_cast<char*>(&off_nadir_),
+          reinterpret_cast<char*>(&other->off_nadir_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata View::GetMetadata() const {
@@ -6608,18 +6454,6 @@ void View::InternalSwap(View* other) {
 
 // ===================================================================
 
-void ViewRequest::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_ViewRequest_default_instance_._instance.get_mutable()->off_nadir_ = const_cast< ::epl::protobuf::v1::FloatFilter*>(
-      ::epl::protobuf::v1::FloatFilter::internal_default_instance());
-  ::epl::protobuf::v1::_ViewRequest_default_instance_._instance.get_mutable()->incidence_angle_ = const_cast< ::epl::protobuf::v1::FloatFilter*>(
-      ::epl::protobuf::v1::FloatFilter::internal_default_instance());
-  ::epl::protobuf::v1::_ViewRequest_default_instance_._instance.get_mutable()->azimuth_ = const_cast< ::epl::protobuf::v1::FloatFilter*>(
-      ::epl::protobuf::v1::FloatFilter::internal_default_instance());
-  ::epl::protobuf::v1::_ViewRequest_default_instance_._instance.get_mutable()->sun_azimuth_ = const_cast< ::epl::protobuf::v1::FloatFilter*>(
-      ::epl::protobuf::v1::FloatFilter::internal_default_instance());
-  ::epl::protobuf::v1::_ViewRequest_default_instance_._instance.get_mutable()->sun_elevation_ = const_cast< ::epl::protobuf::v1::FloatFilter*>(
-      ::epl::protobuf::v1::FloatFilter::internal_default_instance());
-}
 class ViewRequest::_Internal {
  public:
   static const ::epl::protobuf::v1::FloatFilter& off_nadir(const ViewRequest* msg);
@@ -6650,44 +6484,44 @@ ViewRequest::_Internal::sun_elevation(const ViewRequest* msg) {
   return *msg->sun_elevation_;
 }
 void ViewRequest::clear_off_nadir() {
-  if (GetArenaNoVirtual() == nullptr && off_nadir_ != nullptr) {
+  if (GetArena() == nullptr && off_nadir_ != nullptr) {
     delete off_nadir_;
   }
   off_nadir_ = nullptr;
 }
 void ViewRequest::clear_incidence_angle() {
-  if (GetArenaNoVirtual() == nullptr && incidence_angle_ != nullptr) {
+  if (GetArena() == nullptr && incidence_angle_ != nullptr) {
     delete incidence_angle_;
   }
   incidence_angle_ = nullptr;
 }
 void ViewRequest::clear_azimuth() {
-  if (GetArenaNoVirtual() == nullptr && azimuth_ != nullptr) {
+  if (GetArena() == nullptr && azimuth_ != nullptr) {
     delete azimuth_;
   }
   azimuth_ = nullptr;
 }
 void ViewRequest::clear_sun_azimuth() {
-  if (GetArenaNoVirtual() == nullptr && sun_azimuth_ != nullptr) {
+  if (GetArena() == nullptr && sun_azimuth_ != nullptr) {
     delete sun_azimuth_;
   }
   sun_azimuth_ = nullptr;
 }
 void ViewRequest::clear_sun_elevation() {
-  if (GetArenaNoVirtual() == nullptr && sun_elevation_ != nullptr) {
+  if (GetArena() == nullptr && sun_elevation_ != nullptr) {
     delete sun_elevation_;
   }
   sun_elevation_ = nullptr;
 }
-ViewRequest::ViewRequest()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+ViewRequest::ViewRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.ViewRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.ViewRequest)
 }
 ViewRequest::ViewRequest(const ViewRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_off_nadir()) {
     off_nadir_ = new ::epl::protobuf::v1::FloatFilter(*from.off_nadir_);
   } else {
@@ -6717,18 +6551,20 @@ ViewRequest::ViewRequest(const ViewRequest& from)
 }
 
 void ViewRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ViewRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  ::memset(&off_nadir_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sun_elevation_) -
-      reinterpret_cast<char*>(&off_nadir_)) + sizeof(sun_elevation_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&off_nadir_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&sun_elevation_) -
+    reinterpret_cast<char*>(&off_nadir_)) + sizeof(sun_elevation_));
 }
 
 ViewRequest::~ViewRequest() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.ViewRequest)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void ViewRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete off_nadir_;
   if (this != internal_default_instance()) delete incidence_angle_;
   if (this != internal_default_instance()) delete azimuth_;
@@ -6736,14 +6572,15 @@ void ViewRequest::SharedDtor() {
   if (this != internal_default_instance()) delete sun_elevation_;
 }
 
+void ViewRequest::ArenaDtor(void* object) {
+  ViewRequest* _this = reinterpret_cast< ViewRequest* >(object);
+  (void)_this;
+}
+void ViewRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ViewRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ViewRequest& ViewRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ViewRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void ViewRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.ViewRequest)
@@ -6751,27 +6588,27 @@ void ViewRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && off_nadir_ != nullptr) {
+  if (GetArena() == nullptr && off_nadir_ != nullptr) {
     delete off_nadir_;
   }
   off_nadir_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && incidence_angle_ != nullptr) {
+  if (GetArena() == nullptr && incidence_angle_ != nullptr) {
     delete incidence_angle_;
   }
   incidence_angle_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && azimuth_ != nullptr) {
+  if (GetArena() == nullptr && azimuth_ != nullptr) {
     delete azimuth_;
   }
   azimuth_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && sun_azimuth_ != nullptr) {
+  if (GetArena() == nullptr && sun_azimuth_ != nullptr) {
     delete sun_azimuth_;
   }
   sun_azimuth_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && sun_elevation_ != nullptr) {
+  if (GetArena() == nullptr && sun_elevation_ != nullptr) {
     delete sun_elevation_;
   }
   sun_elevation_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* ViewRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -6822,7 +6659,9 @@ const char* ViewRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -6884,7 +6723,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.ViewRequest)
   return target;
@@ -6960,7 +6799,7 @@ void ViewRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void ViewRequest::MergeFrom(const ViewRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.ViewRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7001,12 +6840,13 @@ bool ViewRequest::IsInitialized() const {
 
 void ViewRequest::InternalSwap(ViewRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(off_nadir_, other->off_nadir_);
-  swap(incidence_angle_, other->incidence_angle_);
-  swap(azimuth_, other->azimuth_);
-  swap(sun_azimuth_, other->sun_azimuth_);
-  swap(sun_elevation_, other->sun_elevation_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ViewRequest, sun_elevation_)
+      + sizeof(ViewRequest::sun_elevation_)
+      - PROTOBUF_FIELD_OFFSET(ViewRequest, off_nadir_)>(
+          reinterpret_cast<char*>(&off_nadir_),
+          reinterpret_cast<char*>(&other->off_nadir_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ViewRequest::GetMetadata() const {
@@ -7016,10 +6856,6 @@ void ViewRequest::InternalSwap(ViewRequest* other) {
 
 // ===================================================================
 
-void Sat::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_Sat_default_instance_._instance.get_mutable()->relative_orbit_ = const_cast< PROTOBUF_NAMESPACE_ID::UInt32Value*>(
-      PROTOBUF_NAMESPACE_ID::UInt32Value::internal_default_instance());
-}
 class Sat::_Internal {
  public:
   static const PROTOBUF_NAMESPACE_ID::UInt32Value& relative_orbit(const Sat* msg);
@@ -7030,20 +6866,20 @@ Sat::_Internal::relative_orbit(const Sat* msg) {
   return *msg->relative_orbit_;
 }
 void Sat::clear_relative_orbit() {
-  if (GetArenaNoVirtual() == nullptr && relative_orbit_ != nullptr) {
+  if (GetArena() == nullptr && relative_orbit_ != nullptr) {
     delete relative_orbit_;
   }
   relative_orbit_ = nullptr;
 }
-Sat::Sat()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Sat::Sat(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Sat)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Sat)
 }
 Sat::Sat(const Sat& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_relative_orbit()) {
     relative_orbit_ = new PROTOBUF_NAMESPACE_ID::UInt32Value(*from.relative_orbit_);
   } else {
@@ -7054,29 +6890,32 @@ Sat::Sat(const Sat& from)
 }
 
 void Sat::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Sat_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  ::memset(&relative_orbit_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&orbit_state_) -
-      reinterpret_cast<char*>(&relative_orbit_)) + sizeof(orbit_state_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&relative_orbit_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&orbit_state_) -
+    reinterpret_cast<char*>(&relative_orbit_)) + sizeof(orbit_state_));
 }
 
 Sat::~Sat() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Sat)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Sat::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete relative_orbit_;
 }
 
+void Sat::ArenaDtor(void* object) {
+  Sat* _this = reinterpret_cast< Sat* >(object);
+  (void)_this;
+}
+void Sat::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Sat::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Sat& Sat::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Sat_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Sat::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Sat)
@@ -7084,12 +6923,12 @@ void Sat::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && relative_orbit_ != nullptr) {
+  if (GetArena() == nullptr && relative_orbit_ != nullptr) {
     delete relative_orbit_;
   }
   relative_orbit_ = nullptr;
   orbit_state_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Sat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7102,7 +6941,7 @@ const char* Sat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::intern
       // .epl.protobuf.v1.Sat.OrbitState orbit_state = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_orbit_state(static_cast<::epl::protobuf::v1::Sat_OrbitState>(val));
         } else goto handle_unusual;
@@ -7120,7 +6959,9 @@ const char* Sat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::intern
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7157,7 +6998,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Sat)
   return target;
@@ -7211,7 +7052,7 @@ void Sat::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Sat::MergeFrom(const Sat& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Sat)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7243,9 +7084,13 @@ bool Sat::IsInitialized() const {
 
 void Sat::InternalSwap(Sat* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(relative_orbit_, other->relative_orbit_);
-  swap(orbit_state_, other->orbit_state_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Sat, orbit_state_)
+      + sizeof(Sat::orbit_state_)
+      - PROTOBUF_FIELD_OFFSET(Sat, relative_orbit_)>(
+          reinterpret_cast<char*>(&relative_orbit_),
+          reinterpret_cast<char*>(&other->relative_orbit_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Sat::GetMetadata() const {
@@ -7255,21 +7100,19 @@ void Sat::InternalSwap(Sat* other) {
 
 // ===================================================================
 
-void SatRequest::InitAsDefaultInstance() {
-}
 class SatRequest::_Internal {
  public:
 };
 
-SatRequest::SatRequest()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+SatRequest::SatRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.SatRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.SatRequest)
 }
 SatRequest::SatRequest(const SatRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&orbit_state_, &from.orbit_state_,
     static_cast<size_t>(reinterpret_cast<char*>(&relative_orbit_) -
     reinterpret_cast<char*>(&orbit_state_)) + sizeof(relative_orbit_));
@@ -7277,27 +7120,31 @@ SatRequest::SatRequest(const SatRequest& from)
 }
 
 void SatRequest::SharedCtor() {
-  ::memset(&orbit_state_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&relative_orbit_) -
-      reinterpret_cast<char*>(&orbit_state_)) + sizeof(relative_orbit_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&orbit_state_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&relative_orbit_) -
+    reinterpret_cast<char*>(&orbit_state_)) + sizeof(relative_orbit_));
 }
 
 SatRequest::~SatRequest() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.SatRequest)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void SatRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void SatRequest::ArenaDtor(void* object) {
+  SatRequest* _this = reinterpret_cast< SatRequest* >(object);
+  (void)_this;
+}
+void SatRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void SatRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const SatRequest& SatRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void SatRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.SatRequest)
@@ -7308,7 +7155,7 @@ void SatRequest::Clear() {
   ::memset(&orbit_state_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&relative_orbit_) -
       reinterpret_cast<char*>(&orbit_state_)) + sizeof(relative_orbit_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* SatRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7321,7 +7168,7 @@ const char* SatRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
       // .epl.protobuf.v1.Sat.OrbitState orbit_state = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_orbit_state(static_cast<::epl::protobuf::v1::Sat_OrbitState>(val));
         } else goto handle_unusual;
@@ -7329,7 +7176,7 @@ const char* SatRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
       // uint32 relative_orbit = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          relative_orbit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          relative_orbit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -7339,7 +7186,9 @@ const char* SatRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7374,7 +7223,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.SatRequest)
   return target;
@@ -7428,7 +7277,7 @@ void SatRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void SatRequest::MergeFrom(const SatRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.SatRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7460,9 +7309,13 @@ bool SatRequest::IsInitialized() const {
 
 void SatRequest::InternalSwap(SatRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(orbit_state_, other->orbit_state_);
-  swap(relative_orbit_, other->relative_orbit_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SatRequest, relative_orbit_)
+      + sizeof(SatRequest::relative_orbit_)
+      - PROTOBUF_FIELD_OFFSET(SatRequest, orbit_state_)>(
+          reinterpret_cast<char*>(&orbit_state_),
+          reinterpret_cast<char*>(&other->orbit_state_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SatRequest::GetMetadata() const {
@@ -7472,10 +7325,6 @@ void SatRequest::InternalSwap(SatRequest* other) {
 
 // ===================================================================
 
-void Eo::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_Eo_default_instance_._instance.get_mutable()->cloud_cover_ = const_cast< PROTOBUF_NAMESPACE_ID::FloatValue*>(
-      PROTOBUF_NAMESPACE_ID::FloatValue::internal_default_instance());
-}
 class Eo::_Internal {
  public:
   static const PROTOBUF_NAMESPACE_ID::FloatValue& cloud_cover(const Eo* msg);
@@ -7486,20 +7335,20 @@ Eo::_Internal::cloud_cover(const Eo* msg) {
   return *msg->cloud_cover_;
 }
 void Eo::clear_cloud_cover() {
-  if (GetArenaNoVirtual() == nullptr && cloud_cover_ != nullptr) {
+  if (GetArena() == nullptr && cloud_cover_ != nullptr) {
     delete cloud_cover_;
   }
   cloud_cover_ = nullptr;
 }
-Eo::Eo()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Eo::Eo(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Eo)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Eo)
 }
 Eo::Eo(const Eo& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_cloud_cover()) {
     cloud_cover_ = new PROTOBUF_NAMESPACE_ID::FloatValue(*from.cloud_cover_);
   } else {
@@ -7510,29 +7359,32 @@ Eo::Eo(const Eo& from)
 }
 
 void Eo::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Eo_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  ::memset(&cloud_cover_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&bands_) -
-      reinterpret_cast<char*>(&cloud_cover_)) + sizeof(bands_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&cloud_cover_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&bands_) -
+    reinterpret_cast<char*>(&cloud_cover_)) + sizeof(bands_));
 }
 
 Eo::~Eo() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Eo)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Eo::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete cloud_cover_;
 }
 
+void Eo::ArenaDtor(void* object) {
+  Eo* _this = reinterpret_cast< Eo* >(object);
+  (void)_this;
+}
+void Eo::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Eo::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Eo& Eo::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Eo_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Eo::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Eo)
@@ -7540,12 +7392,12 @@ void Eo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && cloud_cover_ != nullptr) {
+  if (GetArena() == nullptr && cloud_cover_ != nullptr) {
     delete cloud_cover_;
   }
   cloud_cover_ = nullptr;
   bands_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Eo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7565,7 +7417,7 @@ const char* Eo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::interna
       // .epl.protobuf.v1.Eo.Band bands = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_bands(static_cast<::epl::protobuf::v1::Eo_Band>(val));
         } else goto handle_unusual;
@@ -7576,7 +7428,9 @@ const char* Eo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::interna
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7613,7 +7467,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Eo)
   return target;
@@ -7667,7 +7521,7 @@ void Eo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Eo::MergeFrom(const Eo& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Eo)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7699,9 +7553,13 @@ bool Eo::IsInitialized() const {
 
 void Eo::InternalSwap(Eo* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(cloud_cover_, other->cloud_cover_);
-  swap(bands_, other->bands_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Eo, bands_)
+      + sizeof(Eo::bands_)
+      - PROTOBUF_FIELD_OFFSET(Eo, cloud_cover_)>(
+          reinterpret_cast<char*>(&cloud_cover_),
+          reinterpret_cast<char*>(&other->cloud_cover_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Eo::GetMetadata() const {
@@ -7711,10 +7569,6 @@ void Eo::InternalSwap(Eo* other) {
 
 // ===================================================================
 
-void EoRequest::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_EoRequest_default_instance_._instance.get_mutable()->cloud_cover_ = const_cast< ::epl::protobuf::v1::FloatFilter*>(
-      ::epl::protobuf::v1::FloatFilter::internal_default_instance());
-}
 class EoRequest::_Internal {
  public:
   static const ::epl::protobuf::v1::FloatFilter& cloud_cover(const EoRequest* msg);
@@ -7725,20 +7579,20 @@ EoRequest::_Internal::cloud_cover(const EoRequest* msg) {
   return *msg->cloud_cover_;
 }
 void EoRequest::clear_cloud_cover() {
-  if (GetArenaNoVirtual() == nullptr && cloud_cover_ != nullptr) {
+  if (GetArena() == nullptr && cloud_cover_ != nullptr) {
     delete cloud_cover_;
   }
   cloud_cover_ = nullptr;
 }
-EoRequest::EoRequest()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+EoRequest::EoRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.EoRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.EoRequest)
 }
 EoRequest::EoRequest(const EoRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_cloud_cover()) {
     cloud_cover_ = new ::epl::protobuf::v1::FloatFilter(*from.cloud_cover_);
   } else {
@@ -7749,29 +7603,32 @@ EoRequest::EoRequest(const EoRequest& from)
 }
 
 void EoRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_EoRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  ::memset(&cloud_cover_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&bands_) -
-      reinterpret_cast<char*>(&cloud_cover_)) + sizeof(bands_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&cloud_cover_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&bands_) -
+    reinterpret_cast<char*>(&cloud_cover_)) + sizeof(bands_));
 }
 
 EoRequest::~EoRequest() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.EoRequest)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void EoRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete cloud_cover_;
 }
 
+void EoRequest::ArenaDtor(void* object) {
+  EoRequest* _this = reinterpret_cast< EoRequest* >(object);
+  (void)_this;
+}
+void EoRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void EoRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const EoRequest& EoRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_EoRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void EoRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.EoRequest)
@@ -7779,12 +7636,12 @@ void EoRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && cloud_cover_ != nullptr) {
+  if (GetArena() == nullptr && cloud_cover_ != nullptr) {
     delete cloud_cover_;
   }
   cloud_cover_ = nullptr;
   bands_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* EoRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7804,7 +7661,7 @@ const char* EoRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
       // .epl.protobuf.v1.Eo.Band bands = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_bands(static_cast<::epl::protobuf::v1::Eo_Band>(val));
         } else goto handle_unusual;
@@ -7815,7 +7672,9 @@ const char* EoRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7852,7 +7711,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.EoRequest)
   return target;
@@ -7906,7 +7765,7 @@ void EoRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void EoRequest::MergeFrom(const EoRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.EoRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7938,9 +7797,13 @@ bool EoRequest::IsInitialized() const {
 
 void EoRequest::InternalSwap(EoRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(cloud_cover_, other->cloud_cover_);
-  swap(bands_, other->bands_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(EoRequest, bands_)
+      + sizeof(EoRequest::bands_)
+      - PROTOBUF_FIELD_OFFSET(EoRequest, cloud_cover_)>(
+          reinterpret_cast<char*>(&cloud_cover_),
+          reinterpret_cast<char*>(&other->cloud_cover_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata EoRequest::GetMetadata() const {
@@ -7950,44 +7813,48 @@ void EoRequest::InternalSwap(EoRequest* other) {
 
 // ===================================================================
 
-void Asset::InitAsDefaultInstance() {
-}
 class Asset::_Internal {
  public:
 };
 
-Asset::Asset()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Asset::Asset(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Asset)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Asset)
 }
 Asset::Asset(const Asset& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   href_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_href().empty()) {
-    href_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.href_);
+    href_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_href(), 
+      GetArena());
   }
   type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_type().empty()) {
-    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
+    type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_type(), 
+      GetArena());
   }
   bucket_manager_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_bucket_manager().empty()) {
-    bucket_manager_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.bucket_manager_);
+    bucket_manager_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_bucket_manager(), 
+      GetArena());
   }
   bucket_region_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_bucket_region().empty()) {
-    bucket_region_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.bucket_region_);
+    bucket_region_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_bucket_region(), 
+      GetArena());
   }
   bucket_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_bucket().empty()) {
-    bucket_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.bucket_);
+    bucket_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_bucket(), 
+      GetArena());
   }
   object_path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_object_path().empty()) {
-    object_path_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.object_path_);
+    object_path_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_object_path(), 
+      GetArena());
   }
   ::memcpy(&eo_bands_, &from.eo_bands_,
     static_cast<size_t>(reinterpret_cast<char*>(&requester_pays_) -
@@ -7996,24 +7863,26 @@ Asset::Asset(const Asset& from)
 }
 
 void Asset::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Asset_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  href_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  bucket_manager_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  bucket_region_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  bucket_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  object_path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&eo_bands_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&requester_pays_) -
-      reinterpret_cast<char*>(&eo_bands_)) + sizeof(requester_pays_));
+href_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+bucket_manager_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+bucket_region_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+bucket_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+object_path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&eo_bands_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&requester_pays_) -
+    reinterpret_cast<char*>(&eo_bands_)) + sizeof(requester_pays_));
 }
 
 Asset::~Asset() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Asset)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Asset::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   href_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   type_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   bucket_manager_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -8022,14 +7891,15 @@ void Asset::SharedDtor() {
   object_path_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void Asset::ArenaDtor(void* object) {
+  Asset* _this = reinterpret_cast< Asset* >(object);
+  (void)_this;
+}
+void Asset::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Asset::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Asset& Asset::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Asset_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Asset::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Asset)
@@ -8037,16 +7907,16 @@ void Asset::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  href_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  bucket_manager_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  bucket_region_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  bucket_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  object_path_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  href_.ClearToEmpty();
+  type_.ClearToEmpty();
+  bucket_manager_.ClearToEmpty();
+  bucket_region_.ClearToEmpty();
+  bucket_.ClearToEmpty();
+  object_path_.ClearToEmpty();
   ::memset(&eo_bands_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&requester_pays_) -
       reinterpret_cast<char*>(&eo_bands_)) + sizeof(requester_pays_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Asset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -8077,7 +7947,7 @@ const char* Asset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // .epl.protobuf.v1.Eo.Band eo_bands = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_eo_bands(static_cast<::epl::protobuf::v1::Eo_Band>(val));
         } else goto handle_unusual;
@@ -8085,7 +7955,7 @@ const char* Asset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // .epl.protobuf.v1.AssetType asset_type = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_asset_type(static_cast<::epl::protobuf::v1::AssetType>(val));
         } else goto handle_unusual;
@@ -8093,7 +7963,7 @@ const char* Asset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // .epl.protobuf.v1.CloudPlatform cloud_platform = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_cloud_platform(static_cast<::epl::protobuf::v1::CloudPlatform>(val));
         } else goto handle_unusual;
@@ -8137,7 +8007,7 @@ const char* Asset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // bool requester_pays = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 80)) {
-          requester_pays_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          requester_pays_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -8147,7 +8017,9 @@ const char* Asset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -8256,7 +8128,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Asset)
   return target;
@@ -8362,33 +8234,27 @@ void Asset::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Asset::MergeFrom(const Asset& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Asset)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.href().size() > 0) {
-
-    href_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.href_);
+    _internal_set_href(from._internal_href());
   }
   if (from.type().size() > 0) {
-
-    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
+    _internal_set_type(from._internal_type());
   }
   if (from.bucket_manager().size() > 0) {
-
-    bucket_manager_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.bucket_manager_);
+    _internal_set_bucket_manager(from._internal_bucket_manager());
   }
   if (from.bucket_region().size() > 0) {
-
-    bucket_region_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.bucket_region_);
+    _internal_set_bucket_region(from._internal_bucket_region());
   }
   if (from.bucket().size() > 0) {
-
-    bucket_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.bucket_);
+    _internal_set_bucket(from._internal_bucket());
   }
   if (from.object_path().size() > 0) {
-
-    object_path_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.object_path_);
+    _internal_set_object_path(from._internal_object_path());
   }
   if (from.eo_bands() != 0) {
     _internal_set_eo_bands(from._internal_eo_bands());
@@ -8424,23 +8290,19 @@ bool Asset::IsInitialized() const {
 
 void Asset::InternalSwap(Asset* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  href_.Swap(&other->href_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  type_.Swap(&other->type_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  bucket_manager_.Swap(&other->bucket_manager_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  bucket_region_.Swap(&other->bucket_region_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  bucket_.Swap(&other->bucket_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  object_path_.Swap(&other->object_path_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(eo_bands_, other->eo_bands_);
-  swap(asset_type_, other->asset_type_);
-  swap(cloud_platform_, other->cloud_platform_);
-  swap(requester_pays_, other->requester_pays_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  href_.Swap(&other->href_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  type_.Swap(&other->type_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  bucket_manager_.Swap(&other->bucket_manager_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  bucket_region_.Swap(&other->bucket_region_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  bucket_.Swap(&other->bucket_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  object_path_.Swap(&other->object_path_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Asset, requester_pays_)
+      + sizeof(Asset::requester_pays_)
+      - PROTOBUF_FIELD_OFFSET(Asset, eo_bands_)>(
+          reinterpret_cast<char*>(&eo_bands_),
+          reinterpret_cast<char*>(&other->eo_bands_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Asset::GetMetadata() const {
@@ -8450,12 +8312,6 @@ void Asset::InternalSwap(Asset* other) {
 
 // ===================================================================
 
-void DatetimeRange::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_DatetimeRange_default_instance_._instance.get_mutable()->start_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::epl::protobuf::v1::_DatetimeRange_default_instance_._instance.get_mutable()->end_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-}
 class DatetimeRange::_Internal {
  public:
   static const PROTOBUF_NAMESPACE_ID::Timestamp& start(const DatetimeRange* msg);
@@ -8471,26 +8327,26 @@ DatetimeRange::_Internal::end(const DatetimeRange* msg) {
   return *msg->end_;
 }
 void DatetimeRange::clear_start() {
-  if (GetArenaNoVirtual() == nullptr && start_ != nullptr) {
+  if (GetArena() == nullptr && start_ != nullptr) {
     delete start_;
   }
   start_ = nullptr;
 }
 void DatetimeRange::clear_end() {
-  if (GetArenaNoVirtual() == nullptr && end_ != nullptr) {
+  if (GetArena() == nullptr && end_ != nullptr) {
     delete end_;
   }
   end_ = nullptr;
 }
-DatetimeRange::DatetimeRange()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+DatetimeRange::DatetimeRange(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.DatetimeRange)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.DatetimeRange)
 }
 DatetimeRange::DatetimeRange(const DatetimeRange& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_start()) {
     start_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.start_);
   } else {
@@ -8505,30 +8361,33 @@ DatetimeRange::DatetimeRange(const DatetimeRange& from)
 }
 
 void DatetimeRange::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DatetimeRange_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  ::memset(&start_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&end_) -
-      reinterpret_cast<char*>(&start_)) + sizeof(end_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&start_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&end_) -
+    reinterpret_cast<char*>(&start_)) + sizeof(end_));
 }
 
 DatetimeRange::~DatetimeRange() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.DatetimeRange)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void DatetimeRange::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete start_;
   if (this != internal_default_instance()) delete end_;
 }
 
+void DatetimeRange::ArenaDtor(void* object) {
+  DatetimeRange* _this = reinterpret_cast< DatetimeRange* >(object);
+  (void)_this;
+}
+void DatetimeRange::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void DatetimeRange::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const DatetimeRange& DatetimeRange::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DatetimeRange_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void DatetimeRange::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.DatetimeRange)
@@ -8536,15 +8395,15 @@ void DatetimeRange::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && start_ != nullptr) {
+  if (GetArena() == nullptr && start_ != nullptr) {
     delete start_;
   }
   start_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && end_ != nullptr) {
+  if (GetArena() == nullptr && end_ != nullptr) {
     delete end_;
   }
   end_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* DatetimeRange::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -8574,7 +8433,9 @@ const char* DatetimeRange::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -8612,7 +8473,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.DatetimeRange)
   return target;
@@ -8667,7 +8528,7 @@ void DatetimeRange::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void DatetimeRange::MergeFrom(const DatetimeRange& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.DatetimeRange)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -8699,9 +8560,13 @@ bool DatetimeRange::IsInitialized() const {
 
 void DatetimeRange::InternalSwap(DatetimeRange* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(start_, other->start_);
-  swap(end_, other->end_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DatetimeRange, end_)
+      + sizeof(DatetimeRange::end_)
+      - PROTOBUF_FIELD_OFFSET(DatetimeRange, start_)>(
+          reinterpret_cast<char*>(&start_),
+          reinterpret_cast<char*>(&other->start_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DatetimeRange::GetMetadata() const {
@@ -8711,28 +8576,28 @@ void DatetimeRange::InternalSwap(DatetimeRange* other) {
 
 // ===================================================================
 
-void StacDbResponse::InitAsDefaultInstance() {
-}
 class StacDbResponse::_Internal {
  public:
 };
 
-StacDbResponse::StacDbResponse()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+StacDbResponse::StacDbResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.StacDbResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.StacDbResponse)
 }
 StacDbResponse::StacDbResponse(const StacDbResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   status_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_status().empty()) {
-    status_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.status_);
+    status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_status(), 
+      GetArena());
   }
   data_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_data_id().empty()) {
-    data_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.data_id_);
+    data_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_data_id(), 
+      GetArena());
   }
   ::memcpy(&count_, &from.count_,
     static_cast<size_t>(reinterpret_cast<char*>(&status_code_) -
@@ -8741,32 +8606,35 @@ StacDbResponse::StacDbResponse(const StacDbResponse& from)
 }
 
 void StacDbResponse::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_StacDbResponse_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  status_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  data_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&count_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&status_code_) -
-      reinterpret_cast<char*>(&count_)) + sizeof(status_code_));
+status_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+data_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&count_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&status_code_) -
+    reinterpret_cast<char*>(&count_)) + sizeof(status_code_));
 }
 
 StacDbResponse::~StacDbResponse() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.StacDbResponse)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void StacDbResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   status_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   data_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void StacDbResponse::ArenaDtor(void* object) {
+  StacDbResponse* _this = reinterpret_cast< StacDbResponse* >(object);
+  (void)_this;
+}
+void StacDbResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void StacDbResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const StacDbResponse& StacDbResponse::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_StacDbResponse_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void StacDbResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.StacDbResponse)
@@ -8774,12 +8642,12 @@ void StacDbResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  status_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  data_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  status_.ClearToEmpty();
+  data_id_.ClearToEmpty();
   ::memset(&count_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&status_code_) -
       reinterpret_cast<char*>(&count_)) + sizeof(status_code_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* StacDbResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -8801,7 +8669,7 @@ const char* StacDbResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
       // int32 status_code = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          status_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          status_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -8817,7 +8685,7 @@ const char* StacDbResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
       // uint64 count = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -8827,7 +8695,9 @@ const char* StacDbResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -8881,7 +8751,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.StacDbResponse)
   return target;
@@ -8950,17 +8820,15 @@ void StacDbResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void StacDbResponse::MergeFrom(const StacDbResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.StacDbResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.status().size() > 0) {
-
-    status_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.status_);
+    _internal_set_status(from._internal_status());
   }
   if (from.data_id().size() > 0) {
-
-    data_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.data_id_);
+    _internal_set_data_id(from._internal_data_id());
   }
   if (from.count() != 0) {
     _internal_set_count(from._internal_count());
@@ -8990,13 +8858,15 @@ bool StacDbResponse::IsInitialized() const {
 
 void StacDbResponse::InternalSwap(StacDbResponse* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  status_.Swap(&other->status_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  data_id_.Swap(&other->data_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(count_, other->count_);
-  swap(status_code_, other->status_code_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  status_.Swap(&other->status_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  data_id_.Swap(&other->data_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(StacDbResponse, status_code_)
+      + sizeof(StacDbResponse::status_code_)
+      - PROTOBUF_FIELD_OFFSET(StacDbResponse, count_)>(
+          reinterpret_cast<char*>(&count_),
+          reinterpret_cast<char*>(&other->count_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StacDbResponse::GetMetadata() const {
@@ -9006,45 +8876,46 @@ void StacDbResponse::InternalSwap(StacDbResponse* other) {
 
 // ===================================================================
 
-void Sar::InitAsDefaultInstance() {
-}
 class Sar::_Internal {
  public:
 };
 
-Sar::Sar()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Sar::Sar(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Sar)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Sar)
 }
 Sar::Sar(const Sar& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   platform_ = from.platform_;
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Sar)
 }
 
 void Sar::SharedCtor() {
-  platform_ = 0;
+platform_ = 0;
 }
 
 Sar::~Sar() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Sar)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Sar::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Sar::ArenaDtor(void* object) {
+  Sar* _this = reinterpret_cast< Sar* >(object);
+  (void)_this;
+}
+void Sar::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Sar::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Sar& Sar::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Sar_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Sar::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Sar)
@@ -9053,7 +8924,7 @@ void Sar::Clear() {
   (void) cached_has_bits;
 
   platform_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Sar::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -9066,7 +8937,7 @@ const char* Sar::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::intern
       // .epl.protobuf.v1.Sar.Platform platform = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_platform(static_cast<::epl::protobuf::v1::Sar_Platform>(val));
         } else goto handle_unusual;
@@ -9077,7 +8948,9 @@ const char* Sar::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::intern
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -9106,7 +8979,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Sar)
   return target;
@@ -9153,7 +9026,7 @@ void Sar::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Sar::MergeFrom(const Sar& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Sar)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -9182,7 +9055,7 @@ bool Sar::IsInitialized() const {
 
 void Sar::InternalSwap(Sar* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(platform_, other->platform_);
 }
 
@@ -9193,10 +9066,6 @@ void Sar::InternalSwap(Sar* other) {
 
 // ===================================================================
 
-void Landsat::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_Landsat_default_instance_._instance.get_mutable()->cloud_cover_land_ = const_cast< PROTOBUF_NAMESPACE_ID::FloatValue*>(
-      PROTOBUF_NAMESPACE_ID::FloatValue::internal_default_instance());
-}
 class Landsat::_Internal {
  public:
   static const PROTOBUF_NAMESPACE_ID::FloatValue& cloud_cover_land(const Landsat* msg);
@@ -9207,27 +9076,29 @@ Landsat::_Internal::cloud_cover_land(const Landsat* msg) {
   return *msg->cloud_cover_land_;
 }
 void Landsat::clear_cloud_cover_land() {
-  if (GetArenaNoVirtual() == nullptr && cloud_cover_land_ != nullptr) {
+  if (GetArena() == nullptr && cloud_cover_land_ != nullptr) {
     delete cloud_cover_land_;
   }
   cloud_cover_land_ = nullptr;
 }
-Landsat::Landsat()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Landsat::Landsat(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Landsat)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Landsat)
 }
 Landsat::Landsat(const Landsat& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   scene_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_scene_id().empty()) {
-    scene_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.scene_id_);
+    scene_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_scene_id(), 
+      GetArena());
   }
   product_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_product_id().empty()) {
-    product_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.product_id_);
+    product_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_product_id(), 
+      GetArena());
   }
   if (from._internal_has_cloud_cover_land()) {
     cloud_cover_land_ = new PROTOBUF_NAMESPACE_ID::FloatValue(*from.cloud_cover_land_);
@@ -9241,33 +9112,36 @@ Landsat::Landsat(const Landsat& from)
 }
 
 void Landsat::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Landsat_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  scene_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  product_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&cloud_cover_land_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&wrs_type_) -
-      reinterpret_cast<char*>(&cloud_cover_land_)) + sizeof(wrs_type_));
+scene_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+product_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&cloud_cover_land_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&wrs_type_) -
+    reinterpret_cast<char*>(&cloud_cover_land_)) + sizeof(wrs_type_));
 }
 
 Landsat::~Landsat() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Landsat)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Landsat::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   scene_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   product_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete cloud_cover_land_;
 }
 
+void Landsat::ArenaDtor(void* object) {
+  Landsat* _this = reinterpret_cast< Landsat* >(object);
+  (void)_this;
+}
+void Landsat::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Landsat::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Landsat& Landsat::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Landsat_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Landsat::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Landsat)
@@ -9275,16 +9149,16 @@ void Landsat::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  scene_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  product_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && cloud_cover_land_ != nullptr) {
+  scene_id_.ClearToEmpty();
+  product_id_.ClearToEmpty();
+  if (GetArena() == nullptr && cloud_cover_land_ != nullptr) {
     delete cloud_cover_land_;
   }
   cloud_cover_land_ = nullptr;
   ::memset(&processing_level_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&wrs_type_) -
       reinterpret_cast<char*>(&processing_level_)) + sizeof(wrs_type_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Landsat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -9315,7 +9189,7 @@ const char* Landsat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
       // .epl.protobuf.v1.Landsat.ProcessingLevel processing_level = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_processing_level(static_cast<::epl::protobuf::v1::Landsat_ProcessingLevel>(val));
         } else goto handle_unusual;
@@ -9323,14 +9197,14 @@ const char* Landsat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
       // int32 wrs_path = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          wrs_path_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          wrs_path_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // int32 wrs_row = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          wrs_row_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          wrs_row_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -9344,7 +9218,7 @@ const char* Landsat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
       // .epl.protobuf.v1.Landsat.WRSType wrs_type = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_wrs_type(static_cast<::epl::protobuf::v1::Landsat_WRSType>(val));
         } else goto handle_unusual;
@@ -9355,7 +9229,9 @@ const char* Landsat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -9431,7 +9307,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Landsat)
   return target;
@@ -9519,17 +9395,15 @@ void Landsat::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Landsat::MergeFrom(const Landsat& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Landsat)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.scene_id().size() > 0) {
-
-    scene_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.scene_id_);
+    _internal_set_scene_id(from._internal_scene_id());
   }
   if (from.product_id().size() > 0) {
-
-    product_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.product_id_);
+    _internal_set_product_id(from._internal_product_id());
   }
   if (from.has_cloud_cover_land()) {
     _internal_mutable_cloud_cover_land()->PROTOBUF_NAMESPACE_ID::FloatValue::MergeFrom(from._internal_cloud_cover_land());
@@ -9568,16 +9442,15 @@ bool Landsat::IsInitialized() const {
 
 void Landsat::InternalSwap(Landsat* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  scene_id_.Swap(&other->scene_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  product_id_.Swap(&other->product_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(cloud_cover_land_, other->cloud_cover_land_);
-  swap(processing_level_, other->processing_level_);
-  swap(wrs_path_, other->wrs_path_);
-  swap(wrs_row_, other->wrs_row_);
-  swap(wrs_type_, other->wrs_type_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  scene_id_.Swap(&other->scene_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  product_id_.Swap(&other->product_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Landsat, wrs_type_)
+      + sizeof(Landsat::wrs_type_)
+      - PROTOBUF_FIELD_OFFSET(Landsat, cloud_cover_land_)>(
+          reinterpret_cast<char*>(&cloud_cover_land_),
+          reinterpret_cast<char*>(&other->cloud_cover_land_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Landsat::GetMetadata() const {
@@ -9587,10 +9460,6 @@ void Landsat::InternalSwap(Landsat* other) {
 
 // ===================================================================
 
-void LandsatRequest::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_LandsatRequest_default_instance_._instance.get_mutable()->cloud_cover_land_ = const_cast< ::epl::protobuf::v1::FloatFilter*>(
-      ::epl::protobuf::v1::FloatFilter::internal_default_instance());
-}
 class LandsatRequest::_Internal {
  public:
   static const ::epl::protobuf::v1::FloatFilter& cloud_cover_land(const LandsatRequest* msg);
@@ -9601,27 +9470,29 @@ LandsatRequest::_Internal::cloud_cover_land(const LandsatRequest* msg) {
   return *msg->cloud_cover_land_;
 }
 void LandsatRequest::clear_cloud_cover_land() {
-  if (GetArenaNoVirtual() == nullptr && cloud_cover_land_ != nullptr) {
+  if (GetArena() == nullptr && cloud_cover_land_ != nullptr) {
     delete cloud_cover_land_;
   }
   cloud_cover_land_ = nullptr;
 }
-LandsatRequest::LandsatRequest()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+LandsatRequest::LandsatRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.LandsatRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.LandsatRequest)
 }
 LandsatRequest::LandsatRequest(const LandsatRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   scene_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_scene_id().empty()) {
-    scene_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.scene_id_);
+    scene_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_scene_id(), 
+      GetArena());
   }
   product_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_product_id().empty()) {
-    product_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.product_id_);
+    product_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_product_id(), 
+      GetArena());
   }
   if (from._internal_has_cloud_cover_land()) {
     cloud_cover_land_ = new ::epl::protobuf::v1::FloatFilter(*from.cloud_cover_land_);
@@ -9635,33 +9506,36 @@ LandsatRequest::LandsatRequest(const LandsatRequest& from)
 }
 
 void LandsatRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_LandsatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  scene_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  product_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&cloud_cover_land_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&wrs_row_) -
-      reinterpret_cast<char*>(&cloud_cover_land_)) + sizeof(wrs_row_));
+scene_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+product_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&cloud_cover_land_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&wrs_row_) -
+    reinterpret_cast<char*>(&cloud_cover_land_)) + sizeof(wrs_row_));
 }
 
 LandsatRequest::~LandsatRequest() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.LandsatRequest)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void LandsatRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   scene_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   product_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete cloud_cover_land_;
 }
 
+void LandsatRequest::ArenaDtor(void* object) {
+  LandsatRequest* _this = reinterpret_cast< LandsatRequest* >(object);
+  (void)_this;
+}
+void LandsatRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void LandsatRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const LandsatRequest& LandsatRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_LandsatRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void LandsatRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.LandsatRequest)
@@ -9669,16 +9543,16 @@ void LandsatRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  scene_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  product_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && cloud_cover_land_ != nullptr) {
+  scene_id_.ClearToEmpty();
+  product_id_.ClearToEmpty();
+  if (GetArena() == nullptr && cloud_cover_land_ != nullptr) {
     delete cloud_cover_land_;
   }
   cloud_cover_land_ = nullptr;
   ::memset(&processing_level_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&wrs_row_) -
       reinterpret_cast<char*>(&processing_level_)) + sizeof(wrs_row_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* LandsatRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -9709,7 +9583,7 @@ const char* LandsatRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
       // .epl.protobuf.v1.Landsat.ProcessingLevel processing_level = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_processing_level(static_cast<::epl::protobuf::v1::Landsat_ProcessingLevel>(val));
         } else goto handle_unusual;
@@ -9717,14 +9591,14 @@ const char* LandsatRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
       // int32 wrs_path = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          wrs_path_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          wrs_path_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // int32 wrs_row = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          wrs_row_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          wrs_row_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -9741,7 +9615,9 @@ const char* LandsatRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -9810,7 +9686,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.LandsatRequest)
   return target;
@@ -9892,17 +9768,15 @@ void LandsatRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void LandsatRequest::MergeFrom(const LandsatRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.LandsatRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.scene_id().size() > 0) {
-
-    scene_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.scene_id_);
+    _internal_set_scene_id(from._internal_scene_id());
   }
   if (from.product_id().size() > 0) {
-
-    product_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.product_id_);
+    _internal_set_product_id(from._internal_product_id());
   }
   if (from.has_cloud_cover_land()) {
     _internal_mutable_cloud_cover_land()->::epl::protobuf::v1::FloatFilter::MergeFrom(from._internal_cloud_cover_land());
@@ -9938,15 +9812,15 @@ bool LandsatRequest::IsInitialized() const {
 
 void LandsatRequest::InternalSwap(LandsatRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  scene_id_.Swap(&other->scene_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  product_id_.Swap(&other->product_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(cloud_cover_land_, other->cloud_cover_land_);
-  swap(processing_level_, other->processing_level_);
-  swap(wrs_path_, other->wrs_path_);
-  swap(wrs_row_, other->wrs_row_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  scene_id_.Swap(&other->scene_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  product_id_.Swap(&other->product_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LandsatRequest, wrs_row_)
+      + sizeof(LandsatRequest::wrs_row_)
+      - PROTOBUF_FIELD_OFFSET(LandsatRequest, cloud_cover_land_)>(
+          reinterpret_cast<char*>(&cloud_cover_land_),
+          reinterpret_cast<char*>(&other->cloud_cover_land_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata LandsatRequest::GetMetadata() const {
@@ -9956,10 +9830,6 @@ void LandsatRequest::InternalSwap(LandsatRequest* other) {
 
 // ===================================================================
 
-void Mosaic::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_Mosaic_default_instance_._instance.get_mutable()->observation_range_ = const_cast< ::epl::protobuf::v1::DatetimeRange*>(
-      ::epl::protobuf::v1::DatetimeRange::internal_default_instance());
-}
 class Mosaic::_Internal {
  public:
   static const ::epl::protobuf::v1::DatetimeRange& observation_range(const Mosaic* msg);
@@ -9969,24 +9839,28 @@ const ::epl::protobuf::v1::DatetimeRange&
 Mosaic::_Internal::observation_range(const Mosaic* msg) {
   return *msg->observation_range_;
 }
-Mosaic::Mosaic()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Mosaic::Mosaic(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  zooms_(arena),
+  provenance_ids_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Mosaic)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Mosaic)
 }
 Mosaic::Mosaic(const Mosaic& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       zooms_(from.zooms_),
       provenance_ids_(from.provenance_ids_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArena());
   }
   quad_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_quad_key().empty()) {
-    quad_key_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.quad_key_);
+    quad_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_quad_key(), 
+      GetArena());
   }
   if (from._internal_has_observation_range()) {
     observation_range_ = new ::epl::protobuf::v1::DatetimeRange(*from.observation_range_);
@@ -9997,31 +9871,33 @@ Mosaic::Mosaic(const Mosaic& from)
 }
 
 void Mosaic::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Mosaic_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  quad_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  observation_range_ = nullptr;
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+quad_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+observation_range_ = nullptr;
 }
 
 Mosaic::~Mosaic() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Mosaic)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Mosaic::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   quad_key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete observation_range_;
 }
 
+void Mosaic::ArenaDtor(void* object) {
+  Mosaic* _this = reinterpret_cast< Mosaic* >(object);
+  (void)_this;
+}
+void Mosaic::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Mosaic::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Mosaic& Mosaic::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Mosaic_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Mosaic::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Mosaic)
@@ -10031,13 +9907,13 @@ void Mosaic::Clear() {
 
   zooms_.Clear();
   provenance_ids_.Clear();
-  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  quad_key_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && observation_range_ != nullptr) {
+  name_.ClearToEmpty();
+  quad_key_.ClearToEmpty();
+  if (GetArena() == nullptr && observation_range_ != nullptr) {
     delete observation_range_;
   }
   observation_range_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Mosaic::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -10071,7 +9947,7 @@ const char* Mosaic::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_zooms(), ptr, ctx);
           CHK_(ptr);
         } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24) {
-          _internal_add_zooms(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_add_zooms(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -10102,7 +9978,9 @@ const char* Mosaic::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -10171,7 +10049,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Mosaic)
   return target;
@@ -10256,19 +10134,17 @@ void Mosaic::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Mosaic::MergeFrom(const Mosaic& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Mosaic)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   zooms_.MergeFrom(from.zooms_);
   provenance_ids_.MergeFrom(from.provenance_ids_);
   if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    _internal_set_name(from._internal_name());
   }
   if (from.quad_key().size() > 0) {
-
-    quad_key_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.quad_key_);
+    _internal_set_quad_key(from._internal_quad_key());
   }
   if (from.has_observation_range()) {
     _internal_mutable_observation_range()->::epl::protobuf::v1::DatetimeRange::MergeFrom(from._internal_observation_range());
@@ -10295,13 +10171,11 @@ bool Mosaic::IsInitialized() const {
 
 void Mosaic::InternalSwap(Mosaic* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   zooms_.InternalSwap(&other->zooms_);
   provenance_ids_.InternalSwap(&other->provenance_ids_);
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  quad_key_.Swap(&other->quad_key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  quad_key_.Swap(&other->quad_key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(observation_range_, other->observation_range_);
 }
 
@@ -10312,56 +10186,58 @@ void Mosaic::InternalSwap(Mosaic* other) {
 
 // ===================================================================
 
-void MosaicRequest::InitAsDefaultInstance() {
-}
 class MosaicRequest::_Internal {
  public:
 };
 
-MosaicRequest::MosaicRequest()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+MosaicRequest::MosaicRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.MosaicRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.MosaicRequest)
 }
 MosaicRequest::MosaicRequest(const MosaicRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArena());
   }
   quad_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_quad_key().empty()) {
-    quad_key_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.quad_key_);
+    quad_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_quad_key(), 
+      GetArena());
   }
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.MosaicRequest)
 }
 
 void MosaicRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_MosaicRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  quad_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+quad_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 MosaicRequest::~MosaicRequest() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.MosaicRequest)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void MosaicRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   quad_key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void MosaicRequest::ArenaDtor(void* object) {
+  MosaicRequest* _this = reinterpret_cast< MosaicRequest* >(object);
+  (void)_this;
+}
+void MosaicRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void MosaicRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const MosaicRequest& MosaicRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_MosaicRequest_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void MosaicRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.MosaicRequest)
@@ -10369,9 +10245,9 @@ void MosaicRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  quad_key_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _internal_metadata_.Clear();
+  name_.ClearToEmpty();
+  quad_key_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* MosaicRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -10405,7 +10281,9 @@ const char* MosaicRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -10447,7 +10325,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.MosaicRequest)
   return target;
@@ -10502,17 +10380,15 @@ void MosaicRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void MosaicRequest::MergeFrom(const MosaicRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.MosaicRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+    _internal_set_name(from._internal_name());
   }
   if (from.quad_key().size() > 0) {
-
-    quad_key_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.quad_key_);
+    _internal_set_quad_key(from._internal_quad_key());
   }
 }
 
@@ -10536,11 +10412,9 @@ bool MosaicRequest::IsInitialized() const {
 
 void MosaicRequest::InternalSwap(MosaicRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  quad_key_.Swap(&other->quad_key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  quad_key_.Swap(&other->quad_key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MosaicRequest::GetMetadata() const {
@@ -10554,76 +10428,76 @@ void MosaicRequest::InternalSwap(MosaicRequest* other) {
 }  // namespace epl
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Collection_SummariesEntry_DoNotUse* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Collection_SummariesEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Collection_SummariesEntry_DoNotUse >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Collection_SummariesEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Collection* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Collection >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Collection >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Collection >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::CollectionRequest* Arena::CreateMaybeMessage< ::epl::protobuf::v1::CollectionRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::CollectionRequest >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::CollectionRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Stats* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Stats >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Stats >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Stats >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Extent* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Extent >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Extent >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Extent >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Interval* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Interval >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Interval >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Interval >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Provider* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Provider >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Provider >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Provider >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::StacItem_AssetsEntry_DoNotUse* Arena::CreateMaybeMessage< ::epl::protobuf::v1::StacItem_AssetsEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::StacItem_AssetsEntry_DoNotUse >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::StacItem_AssetsEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::StacItem* Arena::CreateMaybeMessage< ::epl::protobuf::v1::StacItem >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::StacItem >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::StacItem >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::StacRequest* Arena::CreateMaybeMessage< ::epl::protobuf::v1::StacRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::StacRequest >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::StacRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::View* Arena::CreateMaybeMessage< ::epl::protobuf::v1::View >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::View >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::View >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::ViewRequest* Arena::CreateMaybeMessage< ::epl::protobuf::v1::ViewRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::ViewRequest >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::ViewRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Sat* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Sat >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Sat >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Sat >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::SatRequest* Arena::CreateMaybeMessage< ::epl::protobuf::v1::SatRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::SatRequest >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::SatRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Eo* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Eo >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Eo >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Eo >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::EoRequest* Arena::CreateMaybeMessage< ::epl::protobuf::v1::EoRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::EoRequest >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::EoRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Asset* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Asset >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Asset >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Asset >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::DatetimeRange* Arena::CreateMaybeMessage< ::epl::protobuf::v1::DatetimeRange >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::DatetimeRange >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::DatetimeRange >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::StacDbResponse* Arena::CreateMaybeMessage< ::epl::protobuf::v1::StacDbResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::StacDbResponse >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::StacDbResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Sar* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Sar >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Sar >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Sar >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Landsat* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Landsat >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Landsat >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Landsat >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::LandsatRequest* Arena::CreateMaybeMessage< ::epl::protobuf::v1::LandsatRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::LandsatRequest >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::LandsatRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Mosaic* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Mosaic >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Mosaic >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Mosaic >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::MosaicRequest* Arena::CreateMaybeMessage< ::epl::protobuf::v1::MosaicRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::MosaicRequest >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::MosaicRequest >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

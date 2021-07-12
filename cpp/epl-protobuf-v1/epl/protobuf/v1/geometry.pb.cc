@@ -14,501 +14,356 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GeodeticInverse_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<15> scc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GeometryResponse_RelateMapEntry_DoNotUse_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_AffineTransform_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Buffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Params_Clip_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Convex_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Cut_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Densify_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Generalize_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_GeneralizeByArea_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_GeodeticBuffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Intersection_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Offset_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_RandomPoints_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Relate_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Simplify_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_epl_2fprotobuf_2fv1_2fgeometry_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ProjectionData_Custom_epl_2fprotobuf_2fv1_2fgeometry_2eproto;
+
+PROTOBUF_PRAGMA_INIT_SEG
 namespace epl {
 namespace protobuf {
 namespace v1 {
-class GeometryDataDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GeometryData> _instance;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr wkt_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr geojson_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr wkb_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr esri_shape_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ewkb_;
-} _GeometryData_default_instance_;
-class ProjectionData_CustomDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ProjectionData_Custom> _instance;
-} _ProjectionData_Custom_default_instance_;
-class ProjectionDataDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ProjectionData> _instance;
-  ::PROTOBUF_NAMESPACE_ID::int32 epsg_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr proj4_;
-  const ::epl::protobuf::v1::ProjectionData_Custom* custom_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr wkt_;
-} _ProjectionData_default_instance_;
-class EnvelopeDataDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<EnvelopeData> _instance;
-} _EnvelopeData_default_instance_;
-class GeometryRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GeometryRequest> _instance;
-  const ::epl::protobuf::v1::GeometryData* geometry_;
-  const ::epl::protobuf::v1::GeometryData* left_geometry_;
-  const ::epl::protobuf::v1::GeometryRequest* geometry_request_;
-  const ::epl::protobuf::v1::GeometryRequest* left_geometry_request_;
-  const ::epl::protobuf::v1::GeometryData* right_geometry_;
-  const ::epl::protobuf::v1::GeometryRequest* right_geometry_request_;
-  const ::epl::protobuf::v1::Params_Buffer* buffer_params_;
-  const ::epl::protobuf::v1::Params_Convex* convex_params_;
-  const ::epl::protobuf::v1::Params_Relate* relate_params_;
-  const ::epl::protobuf::v1::Params_RandomPoints* random_points_params_;
-  const ::epl::protobuf::v1::Params_Generalize* generalize_params_;
-  const ::epl::protobuf::v1::Params_Intersection* intersection_params_;
-  const ::epl::protobuf::v1::Params_Offset* offset_params_;
-  const ::epl::protobuf::v1::Params_Cut* cut_params_;
-  const ::epl::protobuf::v1::Params_Clip* clip_params_;
-  const ::epl::protobuf::v1::Params_Densify* densify_params_;
-  const ::epl::protobuf::v1::Params_Simplify* simplify_params_;
-  const ::epl::protobuf::v1::Params_GeneralizeByArea* generalize_by_area_params_;
-  const ::epl::protobuf::v1::Params_AffineTransform* affine_transform_params_;
-  const ::epl::protobuf::v1::Params_GeodeticBuffer* geodetic_buffer_params_;
-} _GeometryRequest_default_instance_;
-class GeodeticInverseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GeodeticInverse> _instance;
-} _GeodeticInverse_default_instance_;
-class GeometryResponse_RelateMapEntry_DoNotUseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GeometryResponse_RelateMapEntry_DoNotUse> _instance;
-} _GeometryResponse_RelateMapEntry_DoNotUse_default_instance_;
-class GeometryResponseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GeometryResponse> _instance;
-  const ::epl::protobuf::v1::GeometryData* geometry_;
-  bool spatial_relationship_;
-  double measure_;
-  const ::epl::protobuf::v1::GeodeticInverse* geodetic_inverse_;
-} _GeometryResponse_default_instance_;
-class FileRequestChunkDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<FileRequestChunk> _instance;
-} _FileRequestChunk_default_instance_;
-class Params_BufferDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Buffer> _instance;
-} _Params_Buffer_default_instance_;
-class Params_GeodeticBufferDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_GeodeticBuffer> _instance;
-} _Params_GeodeticBuffer_default_instance_;
-class Params_ConvexDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Convex> _instance;
-} _Params_Convex_default_instance_;
-class Params_RelateDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Relate> _instance;
-} _Params_Relate_default_instance_;
-class Params_RandomPointsDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_RandomPoints> _instance;
-} _Params_RandomPoints_default_instance_;
-class Params_GeneralizeDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Generalize> _instance;
-} _Params_Generalize_default_instance_;
-class Params_GeneralizeByAreaDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_GeneralizeByArea> _instance;
-} _Params_GeneralizeByArea_default_instance_;
-class Params_IntersectionDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Intersection> _instance;
-} _Params_Intersection_default_instance_;
-class Params_OffsetDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Offset> _instance;
-} _Params_Offset_default_instance_;
-class Params_CutDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Cut> _instance;
-} _Params_Cut_default_instance_;
-class Params_ClipDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Clip> _instance;
-} _Params_Clip_default_instance_;
-class Params_DensifyDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Densify> _instance;
-} _Params_Densify_default_instance_;
-class Params_SimplifyDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_Simplify> _instance;
-} _Params_Simplify_default_instance_;
-class Params_AffineTransformDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params_AffineTransform> _instance;
-} _Params_AffineTransform_default_instance_;
-class ParamsDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Params> _instance;
-} _Params_default_instance_;
+constexpr GeometryData::GeometryData(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : feature_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , proj_(nullptr)
+  , envelope_(nullptr)
+  , geometry_id_(PROTOBUF_ULONGLONG(0))
+  , simple_(0)
+
+  , _oneof_case_{}{}
+struct GeometryDataDefaultTypeInternal {
+  constexpr GeometryDataDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~GeometryDataDefaultTypeInternal() {}
+  union {
+    GeometryData _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GeometryDataDefaultTypeInternal _GeometryData_default_instance_;
+constexpr ProjectionData_Custom::ProjectionData_Custom(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : lon_0_(0)
+  , lat_0_(0)
+  , cs_type_(0)
+{}
+struct ProjectionData_CustomDefaultTypeInternal {
+  constexpr ProjectionData_CustomDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ProjectionData_CustomDefaultTypeInternal() {}
+  union {
+    ProjectionData_Custom _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ProjectionData_CustomDefaultTypeInternal _ProjectionData_Custom_default_instance_;
+constexpr ProjectionData::ProjectionData(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : shape_()
+  , _shape_cached_byte_size_()
+  , transform_()
+  , _transform_cached_byte_size_()
+  , geometry_(nullptr)
+  , bbox_(nullptr)
+  , centroid_(nullptr)
+  , _oneof_case_{}{}
+struct ProjectionDataDefaultTypeInternal {
+  constexpr ProjectionDataDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ProjectionDataDefaultTypeInternal() {}
+  union {
+    ProjectionData _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ProjectionDataDefaultTypeInternal _ProjectionData_default_instance_;
+constexpr EnvelopeData::EnvelopeData(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : proj_(nullptr)
+  , xmin_(0)
+  , ymin_(0)
+  , xmax_(0)
+  , ymax_(0)
+  , zmin_(0)
+  , zmax_(0){}
+struct EnvelopeDataDefaultTypeInternal {
+  constexpr EnvelopeDataDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~EnvelopeDataDefaultTypeInternal() {}
+  union {
+    EnvelopeData _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT EnvelopeDataDefaultTypeInternal _EnvelopeData_default_instance_;
+constexpr GeometryRequest::GeometryRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : operation_proj_(nullptr)
+  , result_proj_(nullptr)
+  , operator__(0)
+
+  , result_encoding_(0)
+
+  , _oneof_case_{}{}
+struct GeometryRequestDefaultTypeInternal {
+  constexpr GeometryRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~GeometryRequestDefaultTypeInternal() {}
+  union {
+    GeometryRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GeometryRequestDefaultTypeInternal _GeometryRequest_default_instance_;
+constexpr GeodeticInverse::GeodeticInverse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : az12_(0)
+  , az21_(0)
+  , distance_(0){}
+struct GeodeticInverseDefaultTypeInternal {
+  constexpr GeodeticInverseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~GeodeticInverseDefaultTypeInternal() {}
+  union {
+    GeodeticInverse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GeodeticInverseDefaultTypeInternal _GeodeticInverse_default_instance_;
+constexpr GeometryResponse_RelateMapEntry_DoNotUse::GeometryResponse_RelateMapEntry_DoNotUse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct GeometryResponse_RelateMapEntry_DoNotUseDefaultTypeInternal {
+  constexpr GeometryResponse_RelateMapEntry_DoNotUseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~GeometryResponse_RelateMapEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    GeometryResponse_RelateMapEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GeometryResponse_RelateMapEntry_DoNotUseDefaultTypeInternal _GeometryResponse_RelateMapEntry_DoNotUse_default_instance_;
+constexpr GeometryResponse::GeometryResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : relate_map_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , _oneof_case_{}{}
+struct GeometryResponseDefaultTypeInternal {
+  constexpr GeometryResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~GeometryResponseDefaultTypeInternal() {}
+  union {
+    GeometryResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GeometryResponseDefaultTypeInternal _GeometryResponse_default_instance_;
+constexpr FileRequestChunk::FileRequestChunk(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : data_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , file_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , nested_request_(nullptr)
+  , input_proj_(nullptr)
+  , result_proj_(nullptr)
+  , result_encoding_type_(0)
+
+  , is_last_chunk_(false)
+  , size_(PROTOBUF_LONGLONG(0))
+  , offset_(PROTOBUF_LONGLONG(0)){}
+struct FileRequestChunkDefaultTypeInternal {
+  constexpr FileRequestChunkDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~FileRequestChunkDefaultTypeInternal() {}
+  union {
+    FileRequestChunk _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT FileRequestChunkDefaultTypeInternal _FileRequestChunk_default_instance_;
+constexpr Params_Buffer::Params_Buffer(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : distance_(0)
+  , max_deviation_(0)
+  , union_result_(false)
+  , max_vertices_in_full_circle_(0){}
+struct Params_BufferDefaultTypeInternal {
+  constexpr Params_BufferDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_BufferDefaultTypeInternal() {}
+  union {
+    Params_Buffer _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_BufferDefaultTypeInternal _Params_Buffer_default_instance_;
+constexpr Params_GeodeticBuffer::Params_GeodeticBuffer(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : distance_(0)
+  , max_deviation_(0)
+  , union_result_(false)
+  , max_vertices_in_full_circle_(0){}
+struct Params_GeodeticBufferDefaultTypeInternal {
+  constexpr Params_GeodeticBufferDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_GeodeticBufferDefaultTypeInternal() {}
+  union {
+    Params_GeodeticBuffer _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_GeodeticBufferDefaultTypeInternal _Params_GeodeticBuffer_default_instance_;
+constexpr Params_Convex::Params_Convex(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : merge_(false){}
+struct Params_ConvexDefaultTypeInternal {
+  constexpr Params_ConvexDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_ConvexDefaultTypeInternal() {}
+  union {
+    Params_Convex _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_ConvexDefaultTypeInternal _Params_Convex_default_instance_;
+constexpr Params_Relate::Params_Relate(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : de_9im_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct Params_RelateDefaultTypeInternal {
+  constexpr Params_RelateDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_RelateDefaultTypeInternal() {}
+  union {
+    Params_Relate _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_RelateDefaultTypeInternal _Params_Relate_default_instance_;
+constexpr Params_RandomPoints::Params_RandomPoints(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : points_per_square_km_(0)
+  , seed_(PROTOBUF_LONGLONG(0)){}
+struct Params_RandomPointsDefaultTypeInternal {
+  constexpr Params_RandomPointsDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_RandomPointsDefaultTypeInternal() {}
+  union {
+    Params_RandomPoints _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_RandomPointsDefaultTypeInternal _Params_RandomPoints_default_instance_;
+constexpr Params_Generalize::Params_Generalize(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : max_deviation_(0)
+  , remove_degenerates_(false){}
+struct Params_GeneralizeDefaultTypeInternal {
+  constexpr Params_GeneralizeDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_GeneralizeDefaultTypeInternal() {}
+  union {
+    Params_Generalize _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_GeneralizeDefaultTypeInternal _Params_Generalize_default_instance_;
+constexpr Params_GeneralizeByArea::Params_GeneralizeByArea(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : percent_reduction_(0)
+  , max_point_count_(0)
+  , remove_degenerates_(false){}
+struct Params_GeneralizeByAreaDefaultTypeInternal {
+  constexpr Params_GeneralizeByAreaDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_GeneralizeByAreaDefaultTypeInternal() {}
+  union {
+    Params_GeneralizeByArea _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_GeneralizeByAreaDefaultTypeInternal _Params_GeneralizeByArea_default_instance_;
+constexpr Params_Intersection::Params_Intersection(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : dimension_mask_(0){}
+struct Params_IntersectionDefaultTypeInternal {
+  constexpr Params_IntersectionDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_IntersectionDefaultTypeInternal() {}
+  union {
+    Params_Intersection _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_IntersectionDefaultTypeInternal _Params_Intersection_default_instance_;
+constexpr Params_Offset::Params_Offset(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : distance_(0)
+  , bevel_ratio_(0)
+  , flatten_error_(0)
+  , join_type_(0)
+{}
+struct Params_OffsetDefaultTypeInternal {
+  constexpr Params_OffsetDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_OffsetDefaultTypeInternal() {}
+  union {
+    Params_Offset _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_OffsetDefaultTypeInternal _Params_Offset_default_instance_;
+constexpr Params_Cut::Params_Cut(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : consider_touch_(false){}
+struct Params_CutDefaultTypeInternal {
+  constexpr Params_CutDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_CutDefaultTypeInternal() {}
+  union {
+    Params_Cut _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_CutDefaultTypeInternal _Params_Cut_default_instance_;
+constexpr Params_Clip::Params_Clip(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : envelope_(nullptr){}
+struct Params_ClipDefaultTypeInternal {
+  constexpr Params_ClipDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_ClipDefaultTypeInternal() {}
+  union {
+    Params_Clip _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_ClipDefaultTypeInternal _Params_Clip_default_instance_;
+constexpr Params_Densify::Params_Densify(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : max_length_(0){}
+struct Params_DensifyDefaultTypeInternal {
+  constexpr Params_DensifyDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_DensifyDefaultTypeInternal() {}
+  union {
+    Params_Densify _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_DensifyDefaultTypeInternal _Params_Densify_default_instance_;
+constexpr Params_Simplify::Params_Simplify(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : force_(false){}
+struct Params_SimplifyDefaultTypeInternal {
+  constexpr Params_SimplifyDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_SimplifyDefaultTypeInternal() {}
+  union {
+    Params_Simplify _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_SimplifyDefaultTypeInternal _Params_Simplify_default_instance_;
+constexpr Params_AffineTransform::Params_AffineTransform(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : x_offset_(0)
+  , y_offset_(0)
+  , geodetic_(false){}
+struct Params_AffineTransformDefaultTypeInternal {
+  constexpr Params_AffineTransformDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Params_AffineTransformDefaultTypeInternal() {}
+  union {
+    Params_AffineTransform _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Params_AffineTransformDefaultTypeInternal _Params_AffineTransform_default_instance_;
+constexpr Params::Params(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct ParamsDefaultTypeInternal {
+  constexpr ParamsDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ParamsDefaultTypeInternal() {}
+  union {
+    Params _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ParamsDefaultTypeInternal _Params_default_instance_;
 }  // namespace v1
 }  // namespace protobuf
 }  // namespace epl
-static void InitDefaultsscc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_GeometryData_default_instance_;
-    new (ptr) ::epl::protobuf::v1::GeometryData();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  {
-    void* ptr = &::epl::protobuf::v1::_ProjectionData_default_instance_;
-    new (ptr) ::epl::protobuf::v1::ProjectionData();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  {
-    void* ptr = &::epl::protobuf::v1::_EnvelopeData_default_instance_;
-    new (ptr) ::epl::protobuf::v1::EnvelopeData();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::GeometryData::InitAsDefaultInstance();
-  ::epl::protobuf::v1::ProjectionData::InitAsDefaultInstance();
-  ::epl::protobuf::v1::EnvelopeData::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {
-      &scc_info_ProjectionData_Custom_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,}};
-
-static void InitDefaultsscc_info_FileRequestChunk_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_FileRequestChunk_default_instance_;
-    new (ptr) ::epl::protobuf::v1::FileRequestChunk();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::FileRequestChunk::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_FileRequestChunk_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_FileRequestChunk_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {
-      &scc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,}};
-
-static void InitDefaultsscc_info_GeodeticInverse_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_GeodeticInverse_default_instance_;
-    new (ptr) ::epl::protobuf::v1::GeodeticInverse();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::GeodeticInverse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GeodeticInverse_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_GeodeticInverse_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_GeometryRequest_default_instance_;
-    new (ptr) ::epl::protobuf::v1::GeometryRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::GeometryRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<15> scc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 15, 0, InitDefaultsscc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {
-      &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Buffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Convex_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Relate_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_RandomPoints_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Generalize_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Intersection_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Offset_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Cut_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Clip_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Densify_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_Simplify_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_GeneralizeByArea_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_AffineTransform_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_Params_GeodeticBuffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,}};
-
-static void InitDefaultsscc_info_GeometryResponse_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_GeometryResponse_default_instance_;
-    new (ptr) ::epl::protobuf::v1::GeometryResponse();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::GeometryResponse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_GeometryResponse_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_GeometryResponse_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {
-      &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_GeodeticInverse_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-      &scc_info_GeometryResponse_RelateMapEntry_DoNotUse_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,}};
-
-static void InitDefaultsscc_info_GeometryResponse_RelateMapEntry_DoNotUse_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_GeometryResponse_RelateMapEntry_DoNotUse_default_instance_;
-    new (ptr) ::epl::protobuf::v1::GeometryResponse_RelateMapEntry_DoNotUse();
-  }
-  ::epl::protobuf::v1::GeometryResponse_RelateMapEntry_DoNotUse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GeometryResponse_RelateMapEntry_DoNotUse_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_GeometryResponse_RelateMapEntry_DoNotUse_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_AffineTransform_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_AffineTransform_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_AffineTransform();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_AffineTransform::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_AffineTransform_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_AffineTransform_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Buffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Buffer_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Buffer();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Buffer::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Buffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Buffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Clip_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Clip_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Clip();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Clip::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Params_Clip_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Params_Clip_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {
-      &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,}};
-
-static void InitDefaultsscc_info_Params_Convex_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Convex_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Convex();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Convex::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Convex_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Convex_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Cut_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Cut_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Cut();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Cut::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Cut_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Cut_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Densify_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Densify_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Densify();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Densify::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Densify_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Densify_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Generalize_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Generalize_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Generalize();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Generalize::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Generalize_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Generalize_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_GeneralizeByArea_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_GeneralizeByArea_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_GeneralizeByArea();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_GeneralizeByArea::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_GeneralizeByArea_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_GeneralizeByArea_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_GeodeticBuffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_GeodeticBuffer_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_GeodeticBuffer();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_GeodeticBuffer::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_GeodeticBuffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_GeodeticBuffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Intersection_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Intersection_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Intersection();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Intersection::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Intersection_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Intersection_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Offset_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Offset_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Offset();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Offset::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Offset_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Offset_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_RandomPoints_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_RandomPoints_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_RandomPoints();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_RandomPoints::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_RandomPoints_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_RandomPoints_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Relate_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Relate_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Relate();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Relate::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Relate_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Relate_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_Params_Simplify_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_Params_Simplify_default_instance_;
-    new (ptr) ::epl::protobuf::v1::Params_Simplify();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::Params_Simplify::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Params_Simplify_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Params_Simplify_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
-static void InitDefaultsscc_info_ProjectionData_Custom_epl_2fprotobuf_2fv1_2fgeometry_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::epl::protobuf::v1::_ProjectionData_Custom_default_instance_;
-    new (ptr) ::epl::protobuf::v1::ProjectionData_Custom();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::epl::protobuf::v1::ProjectionData_Custom::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ProjectionData_Custom_epl_2fprotobuf_2fv1_2fgeometry_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ProjectionData_Custom_epl_2fprotobuf_2fv1_2fgeometry_2eproto}, {}};
-
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_epl_2fprotobuf_2fv1_2fgeometry_2eproto[24];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto[6];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto = nullptr;
@@ -521,11 +376,11 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fgeometry
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryData, geometry_id_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryData, feature_id_),
-  offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, wkt_),
-  offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, geojson_),
-  offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, wkb_),
-  offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, esri_shape_),
-  offsetof(::epl::protobuf::v1::GeometryDataDefaultTypeInternal, ewkb_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryData, proj_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryData, envelope_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryData, simple_),
@@ -543,10 +398,10 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fgeometry
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::ProjectionData, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
-  offsetof(::epl::protobuf::v1::ProjectionDataDefaultTypeInternal, epsg_),
-  offsetof(::epl::protobuf::v1::ProjectionDataDefaultTypeInternal, proj4_),
-  offsetof(::epl::protobuf::v1::ProjectionDataDefaultTypeInternal, custom_),
-  offsetof(::epl::protobuf::v1::ProjectionDataDefaultTypeInternal, wkt_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::ProjectionData, geometry_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::ProjectionData, bbox_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::ProjectionData, centroid_),
@@ -570,30 +425,30 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fgeometry
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryRequest, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, geometry_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, left_geometry_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, geometry_request_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, left_geometry_request_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, right_geometry_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, right_geometry_request_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryRequest, operator__),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryRequest, result_encoding_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryRequest, operation_proj_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryRequest, result_proj_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, buffer_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, convex_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, relate_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, random_points_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, generalize_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, intersection_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, offset_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, cut_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, clip_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, densify_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, simplify_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, generalize_by_area_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, affine_transform_params_),
-  offsetof(::epl::protobuf::v1::GeometryRequestDefaultTypeInternal, geodetic_buffer_params_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryRequest, left_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryRequest, right_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryRequest, params_),
@@ -619,10 +474,10 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fgeometry
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryResponse, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
-  offsetof(::epl::protobuf::v1::GeometryResponseDefaultTypeInternal, geometry_),
-  offsetof(::epl::protobuf::v1::GeometryResponseDefaultTypeInternal, spatial_relationship_),
-  offsetof(::epl::protobuf::v1::GeometryResponseDefaultTypeInternal, measure_),
-  offsetof(::epl::protobuf::v1::GeometryResponseDefaultTypeInternal, geodetic_inverse_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryResponse, relate_map_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::GeometryResponse, result_),
   ~0u,  // no _has_bits_
@@ -938,43 +793,21 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto[] PR
   "obuf/v1\242\002\004GMPB\252\002\023com.epl.protobuf.v1b\006pr"
   "oto3"
   ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_deps[1] = {
-};
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_sccs[22] = {
-  &scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_FileRequestChunk_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_GeodeticInverse_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_GeometryResponse_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_GeometryResponse_RelateMapEntry_DoNotUse_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_AffineTransform_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Buffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Clip_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Convex_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Cut_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Densify_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Generalize_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_GeneralizeByArea_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_GeodeticBuffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Intersection_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Offset_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_RandomPoints_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Relate_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_Params_Simplify_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-  &scc_info_ProjectionData_Custom_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base,
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_once;
-static bool descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto, "epl/protobuf/v1/geometry.proto", 5484,
-  &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_deps, 22, 0,
+  false, false, 5484, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fgeometry_2eproto, "epl/protobuf/v1/geometry.proto", 
+  &descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_once, nullptr, 0, 24,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fgeometry_2eproto::offsets,
-  file_level_metadata_epl_2fprotobuf_2fv1_2fgeometry_2eproto, 24, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto,
+  file_level_metadata_epl_2fprotobuf_2fv1_2fgeometry_2eproto, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fgeometry_2eproto,
 };
+PROTOBUF_ATTRIBUTE_WEAK ::PROTOBUF_NAMESPACE_ID::Metadata
+descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto_metadata_getter(int index) {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto);
+  return descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto.file_level_metadata[index];
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_epl_2fprotobuf_2fv1_2fgeometry_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_epl_2fprotobuf_2fv1_2fgeometry_2eproto(&descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto);
 namespace epl {
 namespace protobuf {
 namespace v1 {
@@ -1144,22 +977,6 @@ bool OperatorType_IsValid(int value) {
 
 // ===================================================================
 
-void GeometryData::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_GeometryData_default_instance_.wkt_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::epl::protobuf::v1::_GeometryData_default_instance_.geojson_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::epl::protobuf::v1::_GeometryData_default_instance_.wkb_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::epl::protobuf::v1::_GeometryData_default_instance_.esri_shape_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::epl::protobuf::v1::_GeometryData_default_instance_.ewkb_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::epl::protobuf::v1::_GeometryData_default_instance_._instance.get_mutable()->proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
-      ::epl::protobuf::v1::ProjectionData::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryData_default_instance_._instance.get_mutable()->envelope_ = const_cast< ::epl::protobuf::v1::EnvelopeData*>(
-      ::epl::protobuf::v1::EnvelopeData::internal_default_instance());
-}
 class GeometryData::_Internal {
  public:
   static const ::epl::protobuf::v1::ProjectionData& proj(const GeometryData* msg);
@@ -1174,18 +991,19 @@ const ::epl::protobuf::v1::EnvelopeData&
 GeometryData::_Internal::envelope(const GeometryData* msg) {
   return *msg->envelope_;
 }
-GeometryData::GeometryData()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+GeometryData::GeometryData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.GeometryData)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.GeometryData)
 }
 GeometryData::GeometryData(const GeometryData& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   feature_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_feature_id().empty()) {
-    feature_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.feature_id_);
+    feature_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_feature_id(), 
+      GetArena());
   }
   if (from._internal_has_proj()) {
     proj_ = new ::epl::protobuf::v1::ProjectionData(*from.proj_);
@@ -1230,20 +1048,22 @@ GeometryData::GeometryData(const GeometryData& from)
 }
 
 void GeometryData::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  feature_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&proj_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&simple_) -
-      reinterpret_cast<char*>(&proj_)) + sizeof(simple_));
-  clear_has_data();
+feature_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&proj_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&simple_) -
+    reinterpret_cast<char*>(&proj_)) + sizeof(simple_));
+clear_has_data();
 }
 
 GeometryData::~GeometryData() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.GeometryData)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void GeometryData::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   feature_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete proj_;
   if (this != internal_default_instance()) delete envelope_;
@@ -1252,36 +1072,37 @@ void GeometryData::SharedDtor() {
   }
 }
 
+void GeometryData::ArenaDtor(void* object) {
+  GeometryData* _this = reinterpret_cast< GeometryData* >(object);
+  (void)_this;
+}
+void GeometryData::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void GeometryData::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const GeometryData& GeometryData::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void GeometryData::clear_data() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.GeometryData)
   switch (data_case()) {
     case kWkt: {
-      data_.wkt_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      data_.wkt_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case kGeojson: {
-      data_.geojson_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      data_.geojson_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case kWkb: {
-      data_.wkb_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      data_.wkb_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case kEsriShape: {
-      data_.esri_shape_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      data_.esri_shape_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case kEwkb: {
-      data_.ewkb_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      data_.ewkb_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case DATA_NOT_SET: {
@@ -1298,12 +1119,12 @@ void GeometryData::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  feature_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && proj_ != nullptr) {
+  feature_id_.ClearToEmpty();
+  if (GetArena() == nullptr && proj_ != nullptr) {
     delete proj_;
   }
   proj_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && envelope_ != nullptr) {
+  if (GetArena() == nullptr && envelope_ != nullptr) {
     delete envelope_;
   }
   envelope_ = nullptr;
@@ -1311,7 +1132,7 @@ void GeometryData::Clear() {
       reinterpret_cast<char*>(&simple_) -
       reinterpret_cast<char*>(&geometry_id_)) + sizeof(simple_));
   clear_data();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GeometryData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1324,7 +1145,7 @@ const char* GeometryData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       // uint64 geometry_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          geometry_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          geometry_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1388,7 +1209,7 @@ const char* GeometryData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       // .epl.protobuf.v1.SimpleState simple = 14;
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 112)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_simple(static_cast<::epl::protobuf::v1::SimpleState>(val));
         } else goto handle_unusual;
@@ -1407,7 +1228,9 @@ const char* GeometryData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1506,7 +1329,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.GeometryData)
   return target;
@@ -1621,13 +1444,12 @@ void GeometryData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void GeometryData::MergeFrom(const GeometryData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.GeometryData)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.feature_id().size() > 0) {
-
-    feature_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.feature_id_);
+    _internal_set_feature_id(from._internal_feature_id());
   }
   if (from.has_proj()) {
     _internal_mutable_proj()->::epl::protobuf::v1::ProjectionData::MergeFrom(from._internal_proj());
@@ -1688,13 +1510,14 @@ bool GeometryData::IsInitialized() const {
 
 void GeometryData::InternalSwap(GeometryData* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  feature_id_.Swap(&other->feature_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(proj_, other->proj_);
-  swap(envelope_, other->envelope_);
-  swap(geometry_id_, other->geometry_id_);
-  swap(simple_, other->simple_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  feature_id_.Swap(&other->feature_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GeometryData, simple_)
+      + sizeof(GeometryData::simple_)
+      - PROTOBUF_FIELD_OFFSET(GeometryData, proj_)>(
+          reinterpret_cast<char*>(&proj_),
+          reinterpret_cast<char*>(&other->proj_));
   swap(data_, other->data_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -1706,21 +1529,19 @@ void GeometryData::InternalSwap(GeometryData* other) {
 
 // ===================================================================
 
-void ProjectionData_Custom::InitAsDefaultInstance() {
-}
 class ProjectionData_Custom::_Internal {
  public:
 };
 
-ProjectionData_Custom::ProjectionData_Custom()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+ProjectionData_Custom::ProjectionData_Custom(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.ProjectionData.Custom)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.ProjectionData.Custom)
 }
 ProjectionData_Custom::ProjectionData_Custom(const ProjectionData_Custom& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&lon_0_, &from.lon_0_,
     static_cast<size_t>(reinterpret_cast<char*>(&cs_type_) -
     reinterpret_cast<char*>(&lon_0_)) + sizeof(cs_type_));
@@ -1728,27 +1549,31 @@ ProjectionData_Custom::ProjectionData_Custom(const ProjectionData_Custom& from)
 }
 
 void ProjectionData_Custom::SharedCtor() {
-  ::memset(&lon_0_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&cs_type_) -
-      reinterpret_cast<char*>(&lon_0_)) + sizeof(cs_type_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&lon_0_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&cs_type_) -
+    reinterpret_cast<char*>(&lon_0_)) + sizeof(cs_type_));
 }
 
 ProjectionData_Custom::~ProjectionData_Custom() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.ProjectionData.Custom)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void ProjectionData_Custom::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void ProjectionData_Custom::ArenaDtor(void* object) {
+  ProjectionData_Custom* _this = reinterpret_cast< ProjectionData_Custom* >(object);
+  (void)_this;
+}
+void ProjectionData_Custom::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ProjectionData_Custom::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ProjectionData_Custom& ProjectionData_Custom::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ProjectionData_Custom_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void ProjectionData_Custom::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.ProjectionData.Custom)
@@ -1759,7 +1584,7 @@ void ProjectionData_Custom::Clear() {
   ::memset(&lon_0_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&cs_type_) -
       reinterpret_cast<char*>(&lon_0_)) + sizeof(cs_type_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* ProjectionData_Custom::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -1786,7 +1611,7 @@ const char* ProjectionData_Custom::_InternalParse(const char* ptr, ::PROTOBUF_NA
       // .epl.protobuf.v1.ProjectionData.CSType cs_type = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_cs_type(static_cast<::epl::protobuf::v1::ProjectionData_CSType>(val));
         } else goto handle_unusual;
@@ -1797,7 +1622,9 @@ const char* ProjectionData_Custom::_InternalParse(const char* ptr, ::PROTOBUF_NA
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -1838,7 +1665,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.ProjectionData.Custom)
   return target;
@@ -1895,7 +1722,7 @@ void ProjectionData_Custom::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& fr
 void ProjectionData_Custom::MergeFrom(const ProjectionData_Custom& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.ProjectionData.Custom)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1930,10 +1757,13 @@ bool ProjectionData_Custom::IsInitialized() const {
 
 void ProjectionData_Custom::InternalSwap(ProjectionData_Custom* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(lon_0_, other->lon_0_);
-  swap(lat_0_, other->lat_0_);
-  swap(cs_type_, other->cs_type_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ProjectionData_Custom, cs_type_)
+      + sizeof(ProjectionData_Custom::cs_type_)
+      - PROTOBUF_FIELD_OFFSET(ProjectionData_Custom, lon_0_)>(
+          reinterpret_cast<char*>(&lon_0_),
+          reinterpret_cast<char*>(&other->lon_0_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ProjectionData_Custom::GetMetadata() const {
@@ -1943,21 +1773,6 @@ void ProjectionData_Custom::InternalSwap(ProjectionData_Custom* other) {
 
 // ===================================================================
 
-void ProjectionData::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_ProjectionData_default_instance_.epsg_ = 0;
-  ::epl::protobuf::v1::_ProjectionData_default_instance_.proj4_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::epl::protobuf::v1::_ProjectionData_default_instance_.custom_ = const_cast< ::epl::protobuf::v1::ProjectionData_Custom*>(
-      ::epl::protobuf::v1::ProjectionData_Custom::internal_default_instance());
-  ::epl::protobuf::v1::_ProjectionData_default_instance_.wkt_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::epl::protobuf::v1::_ProjectionData_default_instance_._instance.get_mutable()->geometry_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-  ::epl::protobuf::v1::_ProjectionData_default_instance_._instance.get_mutable()->bbox_ = const_cast< ::epl::protobuf::v1::EnvelopeData*>(
-      ::epl::protobuf::v1::EnvelopeData::internal_default_instance());
-  ::epl::protobuf::v1::_ProjectionData_default_instance_._instance.get_mutable()->centroid_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-}
 class ProjectionData::_Internal {
  public:
   static const ::epl::protobuf::v1::ProjectionData_Custom& custom(const ProjectionData* msg);
@@ -1983,10 +1798,11 @@ ProjectionData::_Internal::centroid(const ProjectionData* msg) {
   return *msg->centroid_;
 }
 void ProjectionData::set_allocated_custom(::epl::protobuf::v1::ProjectionData_Custom* custom) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_definition();
   if (custom) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(custom);
     if (message_arena != submessage_arena) {
       custom = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, custom, submessage_arena);
@@ -1996,17 +1812,19 @@ void ProjectionData::set_allocated_custom(::epl::protobuf::v1::ProjectionData_Cu
   }
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.ProjectionData.custom)
 }
-ProjectionData::ProjectionData()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+ProjectionData::ProjectionData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  shape_(arena),
+  transform_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.ProjectionData)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.ProjectionData)
 }
 ProjectionData::ProjectionData(const ProjectionData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       shape_(from.shape_),
       transform_(from.transform_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_geometry()) {
     geometry_ = new ::epl::protobuf::v1::GeometryData(*from.geometry_);
   } else {
@@ -2048,19 +1866,21 @@ ProjectionData::ProjectionData(const ProjectionData& from)
 }
 
 void ProjectionData::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  ::memset(&geometry_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&centroid_) -
-      reinterpret_cast<char*>(&geometry_)) + sizeof(centroid_));
-  clear_has_definition();
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&geometry_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&centroid_) -
+    reinterpret_cast<char*>(&geometry_)) + sizeof(centroid_));
+clear_has_definition();
 }
 
 ProjectionData::~ProjectionData() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.ProjectionData)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void ProjectionData::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete geometry_;
   if (this != internal_default_instance()) delete bbox_;
   if (this != internal_default_instance()) delete centroid_;
@@ -2069,14 +1889,15 @@ void ProjectionData::SharedDtor() {
   }
 }
 
+void ProjectionData::ArenaDtor(void* object) {
+  ProjectionData* _this = reinterpret_cast< ProjectionData* >(object);
+  (void)_this;
+}
+void ProjectionData::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ProjectionData::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ProjectionData& ProjectionData::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void ProjectionData::clear_definition() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.ProjectionData)
@@ -2086,15 +1907,17 @@ void ProjectionData::clear_definition() {
       break;
     }
     case kProj4: {
-      definition_.proj4_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      definition_.proj4_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case kCustom: {
-      delete definition_.custom_;
+      if (GetArena() == nullptr) {
+        delete definition_.custom_;
+      }
       break;
     }
     case kWkt: {
-      definition_.wkt_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+      definition_.wkt_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
       break;
     }
     case DEFINITION_NOT_SET: {
@@ -2113,20 +1936,20 @@ void ProjectionData::Clear() {
 
   shape_.Clear();
   transform_.Clear();
-  if (GetArenaNoVirtual() == nullptr && geometry_ != nullptr) {
+  if (GetArena() == nullptr && geometry_ != nullptr) {
     delete geometry_;
   }
   geometry_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && bbox_ != nullptr) {
+  if (GetArena() == nullptr && bbox_ != nullptr) {
     delete bbox_;
   }
   bbox_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && centroid_ != nullptr) {
+  if (GetArena() == nullptr && centroid_ != nullptr) {
     delete centroid_;
   }
   centroid_ = nullptr;
   clear_definition();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* ProjectionData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -2139,7 +1962,7 @@ const char* ProjectionData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
       // int32 epsg = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_epsg(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_epsg(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -2174,7 +1997,7 @@ const char* ProjectionData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_shape(), ptr, ctx);
           CHK_(ptr);
         } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64) {
-          _internal_add_shape(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_add_shape(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -2215,7 +2038,9 @@ const char* ProjectionData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -2309,7 +2134,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.ProjectionData)
   return target;
@@ -2434,7 +2259,7 @@ void ProjectionData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void ProjectionData::MergeFrom(const ProjectionData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.ProjectionData)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2492,12 +2317,15 @@ bool ProjectionData::IsInitialized() const {
 
 void ProjectionData::InternalSwap(ProjectionData* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   shape_.InternalSwap(&other->shape_);
   transform_.InternalSwap(&other->transform_);
-  swap(geometry_, other->geometry_);
-  swap(bbox_, other->bbox_);
-  swap(centroid_, other->centroid_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ProjectionData, centroid_)
+      + sizeof(ProjectionData::centroid_)
+      - PROTOBUF_FIELD_OFFSET(ProjectionData, geometry_)>(
+          reinterpret_cast<char*>(&geometry_),
+          reinterpret_cast<char*>(&other->geometry_));
   swap(definition_, other->definition_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
@@ -2509,10 +2337,6 @@ void ProjectionData::InternalSwap(ProjectionData* other) {
 
 // ===================================================================
 
-void EnvelopeData::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_EnvelopeData_default_instance_._instance.get_mutable()->proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
-      ::epl::protobuf::v1::ProjectionData::internal_default_instance());
-}
 class EnvelopeData::_Internal {
  public:
   static const ::epl::protobuf::v1::ProjectionData& proj(const EnvelopeData* msg);
@@ -2522,15 +2346,15 @@ const ::epl::protobuf::v1::ProjectionData&
 EnvelopeData::_Internal::proj(const EnvelopeData* msg) {
   return *msg->proj_;
 }
-EnvelopeData::EnvelopeData()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+EnvelopeData::EnvelopeData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.EnvelopeData)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.EnvelopeData)
 }
 EnvelopeData::EnvelopeData(const EnvelopeData& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_proj()) {
     proj_ = new ::epl::protobuf::v1::ProjectionData(*from.proj_);
   } else {
@@ -2543,29 +2367,32 @@ EnvelopeData::EnvelopeData(const EnvelopeData& from)
 }
 
 void EnvelopeData::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  ::memset(&proj_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&zmax_) -
-      reinterpret_cast<char*>(&proj_)) + sizeof(zmax_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&proj_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&zmax_) -
+    reinterpret_cast<char*>(&proj_)) + sizeof(zmax_));
 }
 
 EnvelopeData::~EnvelopeData() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.EnvelopeData)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void EnvelopeData::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete proj_;
 }
 
+void EnvelopeData::ArenaDtor(void* object) {
+  EnvelopeData* _this = reinterpret_cast< EnvelopeData* >(object);
+  (void)_this;
+}
+void EnvelopeData::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void EnvelopeData::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const EnvelopeData& EnvelopeData::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_EnvelopeData_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void EnvelopeData::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.EnvelopeData)
@@ -2573,14 +2400,14 @@ void EnvelopeData::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && proj_ != nullptr) {
+  if (GetArena() == nullptr && proj_ != nullptr) {
     delete proj_;
   }
   proj_ = nullptr;
   ::memset(&xmin_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&zmax_) -
       reinterpret_cast<char*>(&xmin_)) + sizeof(zmax_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* EnvelopeData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -2645,7 +2472,9 @@ const char* EnvelopeData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -2711,7 +2540,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.EnvelopeData)
   return target;
@@ -2789,7 +2618,7 @@ void EnvelopeData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void EnvelopeData::MergeFrom(const EnvelopeData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.EnvelopeData)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2836,14 +2665,13 @@ bool EnvelopeData::IsInitialized() const {
 
 void EnvelopeData::InternalSwap(EnvelopeData* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(proj_, other->proj_);
-  swap(xmin_, other->xmin_);
-  swap(ymin_, other->ymin_);
-  swap(xmax_, other->xmax_);
-  swap(ymax_, other->ymax_);
-  swap(zmin_, other->zmin_);
-  swap(zmax_, other->zmax_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(EnvelopeData, zmax_)
+      + sizeof(EnvelopeData::zmax_)
+      - PROTOBUF_FIELD_OFFSET(EnvelopeData, proj_)>(
+          reinterpret_cast<char*>(&proj_),
+          reinterpret_cast<char*>(&other->proj_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata EnvelopeData::GetMetadata() const {
@@ -2853,52 +2681,6 @@ void EnvelopeData::InternalSwap(EnvelopeData* other) {
 
 // ===================================================================
 
-void GeometryRequest::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.geometry_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.left_geometry_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.geometry_request_ = const_cast< ::epl::protobuf::v1::GeometryRequest*>(
-      ::epl::protobuf::v1::GeometryRequest::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.left_geometry_request_ = const_cast< ::epl::protobuf::v1::GeometryRequest*>(
-      ::epl::protobuf::v1::GeometryRequest::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.right_geometry_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.right_geometry_request_ = const_cast< ::epl::protobuf::v1::GeometryRequest*>(
-      ::epl::protobuf::v1::GeometryRequest::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_._instance.get_mutable()->operation_proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
-      ::epl::protobuf::v1::ProjectionData::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_._instance.get_mutable()->result_proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
-      ::epl::protobuf::v1::ProjectionData::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.buffer_params_ = const_cast< ::epl::protobuf::v1::Params_Buffer*>(
-      ::epl::protobuf::v1::Params_Buffer::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.convex_params_ = const_cast< ::epl::protobuf::v1::Params_Convex*>(
-      ::epl::protobuf::v1::Params_Convex::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.relate_params_ = const_cast< ::epl::protobuf::v1::Params_Relate*>(
-      ::epl::protobuf::v1::Params_Relate::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.random_points_params_ = const_cast< ::epl::protobuf::v1::Params_RandomPoints*>(
-      ::epl::protobuf::v1::Params_RandomPoints::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.generalize_params_ = const_cast< ::epl::protobuf::v1::Params_Generalize*>(
-      ::epl::protobuf::v1::Params_Generalize::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.intersection_params_ = const_cast< ::epl::protobuf::v1::Params_Intersection*>(
-      ::epl::protobuf::v1::Params_Intersection::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.offset_params_ = const_cast< ::epl::protobuf::v1::Params_Offset*>(
-      ::epl::protobuf::v1::Params_Offset::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.cut_params_ = const_cast< ::epl::protobuf::v1::Params_Cut*>(
-      ::epl::protobuf::v1::Params_Cut::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.clip_params_ = const_cast< ::epl::protobuf::v1::Params_Clip*>(
-      ::epl::protobuf::v1::Params_Clip::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.densify_params_ = const_cast< ::epl::protobuf::v1::Params_Densify*>(
-      ::epl::protobuf::v1::Params_Densify::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.simplify_params_ = const_cast< ::epl::protobuf::v1::Params_Simplify*>(
-      ::epl::protobuf::v1::Params_Simplify::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.generalize_by_area_params_ = const_cast< ::epl::protobuf::v1::Params_GeneralizeByArea*>(
-      ::epl::protobuf::v1::Params_GeneralizeByArea::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.affine_transform_params_ = const_cast< ::epl::protobuf::v1::Params_AffineTransform*>(
-      ::epl::protobuf::v1::Params_AffineTransform::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryRequest_default_instance_.geodetic_buffer_params_ = const_cast< ::epl::protobuf::v1::Params_GeodeticBuffer*>(
-      ::epl::protobuf::v1::Params_GeodeticBuffer::internal_default_instance());
-}
 class GeometryRequest::_Internal {
  public:
   static const ::epl::protobuf::v1::GeometryData& geometry(const GeometryRequest* msg);
@@ -3014,10 +2796,11 @@ GeometryRequest::_Internal::geodetic_buffer_params(const GeometryRequest* msg) {
   return *msg->params_.geodetic_buffer_params_;
 }
 void GeometryRequest::set_allocated_geometry(::epl::protobuf::v1::GeometryData* geometry) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_left();
   if (geometry) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(geometry);
     if (message_arena != submessage_arena) {
       geometry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, geometry, submessage_arena);
@@ -3028,10 +2811,11 @@ void GeometryRequest::set_allocated_geometry(::epl::protobuf::v1::GeometryData* 
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.geometry)
 }
 void GeometryRequest::set_allocated_left_geometry(::epl::protobuf::v1::GeometryData* left_geometry) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_left();
   if (left_geometry) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(left_geometry);
     if (message_arena != submessage_arena) {
       left_geometry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, left_geometry, submessage_arena);
@@ -3042,10 +2826,11 @@ void GeometryRequest::set_allocated_left_geometry(::epl::protobuf::v1::GeometryD
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.left_geometry)
 }
 void GeometryRequest::set_allocated_geometry_request(::epl::protobuf::v1::GeometryRequest* geometry_request) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_left();
   if (geometry_request) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(geometry_request);
     if (message_arena != submessage_arena) {
       geometry_request = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, geometry_request, submessage_arena);
@@ -3056,10 +2841,11 @@ void GeometryRequest::set_allocated_geometry_request(::epl::protobuf::v1::Geomet
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.geometry_request)
 }
 void GeometryRequest::set_allocated_left_geometry_request(::epl::protobuf::v1::GeometryRequest* left_geometry_request) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_left();
   if (left_geometry_request) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(left_geometry_request);
     if (message_arena != submessage_arena) {
       left_geometry_request = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, left_geometry_request, submessage_arena);
@@ -3070,10 +2856,11 @@ void GeometryRequest::set_allocated_left_geometry_request(::epl::protobuf::v1::G
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.left_geometry_request)
 }
 void GeometryRequest::set_allocated_right_geometry(::epl::protobuf::v1::GeometryData* right_geometry) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_right();
   if (right_geometry) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(right_geometry);
     if (message_arena != submessage_arena) {
       right_geometry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, right_geometry, submessage_arena);
@@ -3084,10 +2871,11 @@ void GeometryRequest::set_allocated_right_geometry(::epl::protobuf::v1::Geometry
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.right_geometry)
 }
 void GeometryRequest::set_allocated_right_geometry_request(::epl::protobuf::v1::GeometryRequest* right_geometry_request) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_right();
   if (right_geometry_request) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(right_geometry_request);
     if (message_arena != submessage_arena) {
       right_geometry_request = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, right_geometry_request, submessage_arena);
@@ -3098,10 +2886,11 @@ void GeometryRequest::set_allocated_right_geometry_request(::epl::protobuf::v1::
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.right_geometry_request)
 }
 void GeometryRequest::set_allocated_buffer_params(::epl::protobuf::v1::Params_Buffer* buffer_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (buffer_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(buffer_params);
     if (message_arena != submessage_arena) {
       buffer_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, buffer_params, submessage_arena);
@@ -3112,10 +2901,11 @@ void GeometryRequest::set_allocated_buffer_params(::epl::protobuf::v1::Params_Bu
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.buffer_params)
 }
 void GeometryRequest::set_allocated_convex_params(::epl::protobuf::v1::Params_Convex* convex_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (convex_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(convex_params);
     if (message_arena != submessage_arena) {
       convex_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, convex_params, submessage_arena);
@@ -3126,10 +2916,11 @@ void GeometryRequest::set_allocated_convex_params(::epl::protobuf::v1::Params_Co
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.convex_params)
 }
 void GeometryRequest::set_allocated_relate_params(::epl::protobuf::v1::Params_Relate* relate_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (relate_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(relate_params);
     if (message_arena != submessage_arena) {
       relate_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, relate_params, submessage_arena);
@@ -3140,10 +2931,11 @@ void GeometryRequest::set_allocated_relate_params(::epl::protobuf::v1::Params_Re
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.relate_params)
 }
 void GeometryRequest::set_allocated_random_points_params(::epl::protobuf::v1::Params_RandomPoints* random_points_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (random_points_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(random_points_params);
     if (message_arena != submessage_arena) {
       random_points_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, random_points_params, submessage_arena);
@@ -3154,10 +2946,11 @@ void GeometryRequest::set_allocated_random_points_params(::epl::protobuf::v1::Pa
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.random_points_params)
 }
 void GeometryRequest::set_allocated_generalize_params(::epl::protobuf::v1::Params_Generalize* generalize_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (generalize_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(generalize_params);
     if (message_arena != submessage_arena) {
       generalize_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, generalize_params, submessage_arena);
@@ -3168,10 +2961,11 @@ void GeometryRequest::set_allocated_generalize_params(::epl::protobuf::v1::Param
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.generalize_params)
 }
 void GeometryRequest::set_allocated_intersection_params(::epl::protobuf::v1::Params_Intersection* intersection_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (intersection_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(intersection_params);
     if (message_arena != submessage_arena) {
       intersection_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, intersection_params, submessage_arena);
@@ -3182,10 +2976,11 @@ void GeometryRequest::set_allocated_intersection_params(::epl::protobuf::v1::Par
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.intersection_params)
 }
 void GeometryRequest::set_allocated_offset_params(::epl::protobuf::v1::Params_Offset* offset_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (offset_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(offset_params);
     if (message_arena != submessage_arena) {
       offset_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, offset_params, submessage_arena);
@@ -3196,10 +2991,11 @@ void GeometryRequest::set_allocated_offset_params(::epl::protobuf::v1::Params_Of
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.offset_params)
 }
 void GeometryRequest::set_allocated_cut_params(::epl::protobuf::v1::Params_Cut* cut_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (cut_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(cut_params);
     if (message_arena != submessage_arena) {
       cut_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, cut_params, submessage_arena);
@@ -3210,10 +3006,11 @@ void GeometryRequest::set_allocated_cut_params(::epl::protobuf::v1::Params_Cut* 
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.cut_params)
 }
 void GeometryRequest::set_allocated_clip_params(::epl::protobuf::v1::Params_Clip* clip_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (clip_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(clip_params);
     if (message_arena != submessage_arena) {
       clip_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, clip_params, submessage_arena);
@@ -3224,10 +3021,11 @@ void GeometryRequest::set_allocated_clip_params(::epl::protobuf::v1::Params_Clip
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.clip_params)
 }
 void GeometryRequest::set_allocated_densify_params(::epl::protobuf::v1::Params_Densify* densify_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (densify_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(densify_params);
     if (message_arena != submessage_arena) {
       densify_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, densify_params, submessage_arena);
@@ -3238,10 +3036,11 @@ void GeometryRequest::set_allocated_densify_params(::epl::protobuf::v1::Params_D
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.densify_params)
 }
 void GeometryRequest::set_allocated_simplify_params(::epl::protobuf::v1::Params_Simplify* simplify_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (simplify_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(simplify_params);
     if (message_arena != submessage_arena) {
       simplify_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, simplify_params, submessage_arena);
@@ -3252,10 +3051,11 @@ void GeometryRequest::set_allocated_simplify_params(::epl::protobuf::v1::Params_
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.simplify_params)
 }
 void GeometryRequest::set_allocated_generalize_by_area_params(::epl::protobuf::v1::Params_GeneralizeByArea* generalize_by_area_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (generalize_by_area_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(generalize_by_area_params);
     if (message_arena != submessage_arena) {
       generalize_by_area_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, generalize_by_area_params, submessage_arena);
@@ -3266,10 +3066,11 @@ void GeometryRequest::set_allocated_generalize_by_area_params(::epl::protobuf::v
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.generalize_by_area_params)
 }
 void GeometryRequest::set_allocated_affine_transform_params(::epl::protobuf::v1::Params_AffineTransform* affine_transform_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (affine_transform_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(affine_transform_params);
     if (message_arena != submessage_arena) {
       affine_transform_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, affine_transform_params, submessage_arena);
@@ -3280,10 +3081,11 @@ void GeometryRequest::set_allocated_affine_transform_params(::epl::protobuf::v1:
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.affine_transform_params)
 }
 void GeometryRequest::set_allocated_geodetic_buffer_params(::epl::protobuf::v1::Params_GeodeticBuffer* geodetic_buffer_params) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_params();
   if (geodetic_buffer_params) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(geodetic_buffer_params);
     if (message_arena != submessage_arena) {
       geodetic_buffer_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, geodetic_buffer_params, submessage_arena);
@@ -3293,15 +3095,15 @@ void GeometryRequest::set_allocated_geodetic_buffer_params(::epl::protobuf::v1::
   }
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryRequest.geodetic_buffer_params)
 }
-GeometryRequest::GeometryRequest()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+GeometryRequest::GeometryRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.GeometryRequest)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.GeometryRequest)
 }
 GeometryRequest::GeometryRequest(const GeometryRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_operation_proj()) {
     operation_proj_ = new ::epl::protobuf::v1::ProjectionData(*from.operation_proj_);
   } else {
@@ -3417,21 +3219,23 @@ GeometryRequest::GeometryRequest(const GeometryRequest& from)
 }
 
 void GeometryRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  ::memset(&operation_proj_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&result_encoding_) -
-      reinterpret_cast<char*>(&operation_proj_)) + sizeof(result_encoding_));
-  clear_has_left();
-  clear_has_right();
-  clear_has_params();
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&operation_proj_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&result_encoding_) -
+    reinterpret_cast<char*>(&operation_proj_)) + sizeof(result_encoding_));
+clear_has_left();
+clear_has_right();
+clear_has_params();
 }
 
 GeometryRequest::~GeometryRequest() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.GeometryRequest)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void GeometryRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete operation_proj_;
   if (this != internal_default_instance()) delete result_proj_;
   if (has_left()) {
@@ -3445,32 +3249,41 @@ void GeometryRequest::SharedDtor() {
   }
 }
 
+void GeometryRequest::ArenaDtor(void* object) {
+  GeometryRequest* _this = reinterpret_cast< GeometryRequest* >(object);
+  (void)_this;
+}
+void GeometryRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void GeometryRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const GeometryRequest& GeometryRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GeometryRequest_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void GeometryRequest::clear_left() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.GeometryRequest)
   switch (left_case()) {
     case kGeometry: {
-      delete left_.geometry_;
+      if (GetArena() == nullptr) {
+        delete left_.geometry_;
+      }
       break;
     }
     case kLeftGeometry: {
-      delete left_.left_geometry_;
+      if (GetArena() == nullptr) {
+        delete left_.left_geometry_;
+      }
       break;
     }
     case kGeometryRequest: {
-      delete left_.geometry_request_;
+      if (GetArena() == nullptr) {
+        delete left_.geometry_request_;
+      }
       break;
     }
     case kLeftGeometryRequest: {
-      delete left_.left_geometry_request_;
+      if (GetArena() == nullptr) {
+        delete left_.left_geometry_request_;
+      }
       break;
     }
     case LEFT_NOT_SET: {
@@ -3484,11 +3297,15 @@ void GeometryRequest::clear_right() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.GeometryRequest)
   switch (right_case()) {
     case kRightGeometry: {
-      delete right_.right_geometry_;
+      if (GetArena() == nullptr) {
+        delete right_.right_geometry_;
+      }
       break;
     }
     case kRightGeometryRequest: {
-      delete right_.right_geometry_request_;
+      if (GetArena() == nullptr) {
+        delete right_.right_geometry_request_;
+      }
       break;
     }
     case RIGHT_NOT_SET: {
@@ -3502,59 +3319,87 @@ void GeometryRequest::clear_params() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.GeometryRequest)
   switch (params_case()) {
     case kBufferParams: {
-      delete params_.buffer_params_;
+      if (GetArena() == nullptr) {
+        delete params_.buffer_params_;
+      }
       break;
     }
     case kConvexParams: {
-      delete params_.convex_params_;
+      if (GetArena() == nullptr) {
+        delete params_.convex_params_;
+      }
       break;
     }
     case kRelateParams: {
-      delete params_.relate_params_;
+      if (GetArena() == nullptr) {
+        delete params_.relate_params_;
+      }
       break;
     }
     case kRandomPointsParams: {
-      delete params_.random_points_params_;
+      if (GetArena() == nullptr) {
+        delete params_.random_points_params_;
+      }
       break;
     }
     case kGeneralizeParams: {
-      delete params_.generalize_params_;
+      if (GetArena() == nullptr) {
+        delete params_.generalize_params_;
+      }
       break;
     }
     case kIntersectionParams: {
-      delete params_.intersection_params_;
+      if (GetArena() == nullptr) {
+        delete params_.intersection_params_;
+      }
       break;
     }
     case kOffsetParams: {
-      delete params_.offset_params_;
+      if (GetArena() == nullptr) {
+        delete params_.offset_params_;
+      }
       break;
     }
     case kCutParams: {
-      delete params_.cut_params_;
+      if (GetArena() == nullptr) {
+        delete params_.cut_params_;
+      }
       break;
     }
     case kClipParams: {
-      delete params_.clip_params_;
+      if (GetArena() == nullptr) {
+        delete params_.clip_params_;
+      }
       break;
     }
     case kDensifyParams: {
-      delete params_.densify_params_;
+      if (GetArena() == nullptr) {
+        delete params_.densify_params_;
+      }
       break;
     }
     case kSimplifyParams: {
-      delete params_.simplify_params_;
+      if (GetArena() == nullptr) {
+        delete params_.simplify_params_;
+      }
       break;
     }
     case kGeneralizeByAreaParams: {
-      delete params_.generalize_by_area_params_;
+      if (GetArena() == nullptr) {
+        delete params_.generalize_by_area_params_;
+      }
       break;
     }
     case kAffineTransformParams: {
-      delete params_.affine_transform_params_;
+      if (GetArena() == nullptr) {
+        delete params_.affine_transform_params_;
+      }
       break;
     }
     case kGeodeticBufferParams: {
-      delete params_.geodetic_buffer_params_;
+      if (GetArena() == nullptr) {
+        delete params_.geodetic_buffer_params_;
+      }
       break;
     }
     case PARAMS_NOT_SET: {
@@ -3571,11 +3416,11 @@ void GeometryRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && operation_proj_ != nullptr) {
+  if (GetArena() == nullptr && operation_proj_ != nullptr) {
     delete operation_proj_;
   }
   operation_proj_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && result_proj_ != nullptr) {
+  if (GetArena() == nullptr && result_proj_ != nullptr) {
     delete result_proj_;
   }
   result_proj_ = nullptr;
@@ -3585,7 +3430,7 @@ void GeometryRequest::Clear() {
   clear_left();
   clear_right();
   clear_params();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GeometryRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -3640,7 +3485,7 @@ const char* GeometryRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
       // .epl.protobuf.v1.OperatorType operator = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_operator_(static_cast<::epl::protobuf::v1::OperatorType>(val));
         } else goto handle_unusual;
@@ -3648,7 +3493,7 @@ const char* GeometryRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
       // .epl.protobuf.v1.Encoding result_encoding = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_result_encoding(static_cast<::epl::protobuf::v1::Encoding>(val));
         } else goto handle_unusual;
@@ -3771,7 +3616,9 @@ const char* GeometryRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -3983,7 +3830,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.GeometryRequest)
   return target;
@@ -4205,7 +4052,7 @@ void GeometryRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void GeometryRequest::MergeFrom(const GeometryRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.GeometryRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -4338,11 +4185,13 @@ bool GeometryRequest::IsInitialized() const {
 
 void GeometryRequest::InternalSwap(GeometryRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(operation_proj_, other->operation_proj_);
-  swap(result_proj_, other->result_proj_);
-  swap(operator__, other->operator__);
-  swap(result_encoding_, other->result_encoding_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GeometryRequest, result_encoding_)
+      + sizeof(GeometryRequest::result_encoding_)
+      - PROTOBUF_FIELD_OFFSET(GeometryRequest, operation_proj_)>(
+          reinterpret_cast<char*>(&operation_proj_),
+          reinterpret_cast<char*>(&other->operation_proj_));
   swap(left_, other->left_);
   swap(right_, other->right_);
   swap(params_, other->params_);
@@ -4358,21 +4207,19 @@ void GeometryRequest::InternalSwap(GeometryRequest* other) {
 
 // ===================================================================
 
-void GeodeticInverse::InitAsDefaultInstance() {
-}
 class GeodeticInverse::_Internal {
  public:
 };
 
-GeodeticInverse::GeodeticInverse()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+GeodeticInverse::GeodeticInverse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.GeodeticInverse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.GeodeticInverse)
 }
 GeodeticInverse::GeodeticInverse(const GeodeticInverse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&az12_, &from.az12_,
     static_cast<size_t>(reinterpret_cast<char*>(&distance_) -
     reinterpret_cast<char*>(&az12_)) + sizeof(distance_));
@@ -4380,27 +4227,31 @@ GeodeticInverse::GeodeticInverse(const GeodeticInverse& from)
 }
 
 void GeodeticInverse::SharedCtor() {
-  ::memset(&az12_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&distance_) -
-      reinterpret_cast<char*>(&az12_)) + sizeof(distance_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&az12_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&distance_) -
+    reinterpret_cast<char*>(&az12_)) + sizeof(distance_));
 }
 
 GeodeticInverse::~GeodeticInverse() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.GeodeticInverse)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void GeodeticInverse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void GeodeticInverse::ArenaDtor(void* object) {
+  GeodeticInverse* _this = reinterpret_cast< GeodeticInverse* >(object);
+  (void)_this;
+}
+void GeodeticInverse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void GeodeticInverse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const GeodeticInverse& GeodeticInverse::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GeodeticInverse_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void GeodeticInverse::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.GeodeticInverse)
@@ -4411,7 +4262,7 @@ void GeodeticInverse::Clear() {
   ::memset(&az12_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&distance_) -
       reinterpret_cast<char*>(&az12_)) + sizeof(distance_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GeodeticInverse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -4448,7 +4299,9 @@ const char* GeodeticInverse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -4488,7 +4341,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.GeodeticInverse)
   return target;
@@ -4544,7 +4397,7 @@ void GeodeticInverse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void GeodeticInverse::MergeFrom(const GeodeticInverse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.GeodeticInverse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -4579,10 +4432,13 @@ bool GeodeticInverse::IsInitialized() const {
 
 void GeodeticInverse::InternalSwap(GeodeticInverse* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(az12_, other->az12_);
-  swap(az21_, other->az21_);
-  swap(distance_, other->distance_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GeodeticInverse, distance_)
+      + sizeof(GeodeticInverse::distance_)
+      - PROTOBUF_FIELD_OFFSET(GeodeticInverse, az12_)>(
+          reinterpret_cast<char*>(&az12_),
+          reinterpret_cast<char*>(&other->az12_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GeodeticInverse::GetMetadata() const {
@@ -4609,14 +4465,6 @@ void GeometryResponse_RelateMapEntry_DoNotUse::MergeFrom(
 
 // ===================================================================
 
-void GeometryResponse::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_GeometryResponse_default_instance_.geometry_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
-      ::epl::protobuf::v1::GeometryData::internal_default_instance());
-  ::epl::protobuf::v1::_GeometryResponse_default_instance_.spatial_relationship_ = false;
-  ::epl::protobuf::v1::_GeometryResponse_default_instance_.measure_ = 0;
-  ::epl::protobuf::v1::_GeometryResponse_default_instance_.geodetic_inverse_ = const_cast< ::epl::protobuf::v1::GeodeticInverse*>(
-      ::epl::protobuf::v1::GeodeticInverse::internal_default_instance());
-}
 class GeometryResponse::_Internal {
  public:
   static const ::epl::protobuf::v1::GeometryData& geometry(const GeometryResponse* msg);
@@ -4632,10 +4480,11 @@ GeometryResponse::_Internal::geodetic_inverse(const GeometryResponse* msg) {
   return *msg->result_.geodetic_inverse_;
 }
 void GeometryResponse::set_allocated_geometry(::epl::protobuf::v1::GeometryData* geometry) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_result();
   if (geometry) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(geometry);
     if (message_arena != submessage_arena) {
       geometry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, geometry, submessage_arena);
@@ -4646,10 +4495,11 @@ void GeometryResponse::set_allocated_geometry(::epl::protobuf::v1::GeometryData*
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryResponse.geometry)
 }
 void GeometryResponse::set_allocated_geodetic_inverse(::epl::protobuf::v1::GeodeticInverse* geodetic_inverse) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_result();
   if (geodetic_inverse) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(geodetic_inverse);
     if (message_arena != submessage_arena) {
       geodetic_inverse = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, geodetic_inverse, submessage_arena);
@@ -4659,15 +4509,16 @@ void GeometryResponse::set_allocated_geodetic_inverse(::epl::protobuf::v1::Geode
   }
   // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.GeometryResponse.geodetic_inverse)
 }
-GeometryResponse::GeometryResponse()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+GeometryResponse::GeometryResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  relate_map_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.GeometryResponse)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.GeometryResponse)
 }
 GeometryResponse::GeometryResponse(const GeometryResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   relate_map_.MergeFrom(from.relate_map_);
   clear_has_result();
   switch (from.result_case()) {
@@ -4695,35 +4546,39 @@ GeometryResponse::GeometryResponse(const GeometryResponse& from)
 }
 
 void GeometryResponse::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GeometryResponse_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  clear_has_result();
+clear_has_result();
 }
 
 GeometryResponse::~GeometryResponse() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.GeometryResponse)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void GeometryResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (has_result()) {
     clear_result();
   }
 }
 
+void GeometryResponse::ArenaDtor(void* object) {
+  GeometryResponse* _this = reinterpret_cast< GeometryResponse* >(object);
+  (void)_this;
+}
+void GeometryResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void GeometryResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const GeometryResponse& GeometryResponse::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GeometryResponse_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void GeometryResponse::clear_result() {
 // @@protoc_insertion_point(one_of_clear_start:epl.protobuf.v1.GeometryResponse)
   switch (result_case()) {
     case kGeometry: {
-      delete result_.geometry_;
+      if (GetArena() == nullptr) {
+        delete result_.geometry_;
+      }
       break;
     }
     case kSpatialRelationship: {
@@ -4735,7 +4590,9 @@ void GeometryResponse::clear_result() {
       break;
     }
     case kGeodeticInverse: {
-      delete result_.geodetic_inverse_;
+      if (GetArena() == nullptr) {
+        delete result_.geodetic_inverse_;
+      }
       break;
     }
     case RESULT_NOT_SET: {
@@ -4754,7 +4611,7 @@ void GeometryResponse::Clear() {
 
   relate_map_.Clear();
   clear_result();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GeometryResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -4774,7 +4631,7 @@ const char* GeometryResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       // bool spatial_relationship = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          _internal_set_spatial_relationship(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          _internal_set_spatial_relationship(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -4810,7 +4667,9 @@ const char* GeometryResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -4891,7 +4750,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.GeometryResponse)
   return target;
@@ -4970,7 +4829,7 @@ void GeometryResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void GeometryResponse::MergeFrom(const GeometryResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.GeometryResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -5018,7 +4877,7 @@ bool GeometryResponse::IsInitialized() const {
 
 void GeometryResponse::InternalSwap(GeometryResponse* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   relate_map_.Swap(&other->relate_map_);
   swap(result_, other->result_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
@@ -5031,14 +4890,6 @@ void GeometryResponse::InternalSwap(GeometryResponse* other) {
 
 // ===================================================================
 
-void FileRequestChunk::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_FileRequestChunk_default_instance_._instance.get_mutable()->nested_request_ = const_cast< ::epl::protobuf::v1::GeometryRequest*>(
-      ::epl::protobuf::v1::GeometryRequest::internal_default_instance());
-  ::epl::protobuf::v1::_FileRequestChunk_default_instance_._instance.get_mutable()->input_proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
-      ::epl::protobuf::v1::ProjectionData::internal_default_instance());
-  ::epl::protobuf::v1::_FileRequestChunk_default_instance_._instance.get_mutable()->result_proj_ = const_cast< ::epl::protobuf::v1::ProjectionData*>(
-      ::epl::protobuf::v1::ProjectionData::internal_default_instance());
-}
 class FileRequestChunk::_Internal {
  public:
   static const ::epl::protobuf::v1::GeometryRequest& nested_request(const FileRequestChunk* msg);
@@ -5058,22 +4909,24 @@ const ::epl::protobuf::v1::ProjectionData&
 FileRequestChunk::_Internal::result_proj(const FileRequestChunk* msg) {
   return *msg->result_proj_;
 }
-FileRequestChunk::FileRequestChunk()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+FileRequestChunk::FileRequestChunk(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.FileRequestChunk)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.FileRequestChunk)
 }
 FileRequestChunk::FileRequestChunk(const FileRequestChunk& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_data().empty()) {
-    data_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.data_);
+    data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_data(), 
+      GetArena());
   }
   file_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_file_name().empty()) {
-    file_name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.file_name_);
+    file_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_file_name(), 
+      GetArena());
   }
   if (from._internal_has_nested_request()) {
     nested_request_ = new ::epl::protobuf::v1::GeometryRequest(*from.nested_request_);
@@ -5097,20 +4950,22 @@ FileRequestChunk::FileRequestChunk(const FileRequestChunk& from)
 }
 
 void FileRequestChunk::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_FileRequestChunk_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  file_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&nested_request_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&offset_) -
-      reinterpret_cast<char*>(&nested_request_)) + sizeof(offset_));
+data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+file_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&nested_request_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&offset_) -
+    reinterpret_cast<char*>(&nested_request_)) + sizeof(offset_));
 }
 
 FileRequestChunk::~FileRequestChunk() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.FileRequestChunk)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void FileRequestChunk::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   data_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   file_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete nested_request_;
@@ -5118,14 +4973,15 @@ void FileRequestChunk::SharedDtor() {
   if (this != internal_default_instance()) delete result_proj_;
 }
 
+void FileRequestChunk::ArenaDtor(void* object) {
+  FileRequestChunk* _this = reinterpret_cast< FileRequestChunk* >(object);
+  (void)_this;
+}
+void FileRequestChunk::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void FileRequestChunk::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const FileRequestChunk& FileRequestChunk::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_FileRequestChunk_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void FileRequestChunk::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.FileRequestChunk)
@@ -5133,24 +4989,24 @@ void FileRequestChunk::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  file_name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == nullptr && nested_request_ != nullptr) {
+  data_.ClearToEmpty();
+  file_name_.ClearToEmpty();
+  if (GetArena() == nullptr && nested_request_ != nullptr) {
     delete nested_request_;
   }
   nested_request_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && input_proj_ != nullptr) {
+  if (GetArena() == nullptr && input_proj_ != nullptr) {
     delete input_proj_;
   }
   input_proj_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && result_proj_ != nullptr) {
+  if (GetArena() == nullptr && result_proj_ != nullptr) {
     delete result_proj_;
   }
   result_proj_ = nullptr;
   ::memset(&result_encoding_type_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&offset_) -
       reinterpret_cast<char*>(&result_encoding_type_)) + sizeof(offset_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* FileRequestChunk::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -5170,7 +5026,7 @@ const char* FileRequestChunk::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       // .epl.protobuf.v1.Encoding result_encoding_type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_result_encoding_type(static_cast<::epl::protobuf::v1::Encoding>(val));
         } else goto handle_unusual;
@@ -5200,14 +5056,14 @@ const char* FileRequestChunk::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       // int64 size = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
-          size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // int64 offset = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
-          offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -5223,7 +5079,7 @@ const char* FileRequestChunk::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       // bool is_last_chunk = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 80)) {
-          is_last_chunk_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          is_last_chunk_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -5233,7 +5089,9 @@ const char* FileRequestChunk::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -5320,7 +5178,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.FileRequestChunk)
   return target;
@@ -5421,17 +5279,15 @@ void FileRequestChunk::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void FileRequestChunk::MergeFrom(const FileRequestChunk& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.FileRequestChunk)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.data().size() > 0) {
-
-    data_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.data_);
+    _internal_set_data(from._internal_data());
   }
   if (from.file_name().size() > 0) {
-
-    file_name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.file_name_);
+    _internal_set_file_name(from._internal_file_name());
   }
   if (from.has_nested_request()) {
     _internal_mutable_nested_request()->::epl::protobuf::v1::GeometryRequest::MergeFrom(from._internal_nested_request());
@@ -5476,18 +5332,15 @@ bool FileRequestChunk::IsInitialized() const {
 
 void FileRequestChunk::InternalSwap(FileRequestChunk* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  data_.Swap(&other->data_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  file_name_.Swap(&other->file_name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(nested_request_, other->nested_request_);
-  swap(input_proj_, other->input_proj_);
-  swap(result_proj_, other->result_proj_);
-  swap(result_encoding_type_, other->result_encoding_type_);
-  swap(is_last_chunk_, other->is_last_chunk_);
-  swap(size_, other->size_);
-  swap(offset_, other->offset_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  data_.Swap(&other->data_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  file_name_.Swap(&other->file_name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(FileRequestChunk, offset_)
+      + sizeof(FileRequestChunk::offset_)
+      - PROTOBUF_FIELD_OFFSET(FileRequestChunk, nested_request_)>(
+          reinterpret_cast<char*>(&nested_request_),
+          reinterpret_cast<char*>(&other->nested_request_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FileRequestChunk::GetMetadata() const {
@@ -5497,21 +5350,19 @@ void FileRequestChunk::InternalSwap(FileRequestChunk* other) {
 
 // ===================================================================
 
-void Params_Buffer::InitAsDefaultInstance() {
-}
 class Params_Buffer::_Internal {
  public:
 };
 
-Params_Buffer::Params_Buffer()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Buffer::Params_Buffer(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Buffer)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Buffer)
 }
 Params_Buffer::Params_Buffer(const Params_Buffer& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&distance_, &from.distance_,
     static_cast<size_t>(reinterpret_cast<char*>(&max_vertices_in_full_circle_) -
     reinterpret_cast<char*>(&distance_)) + sizeof(max_vertices_in_full_circle_));
@@ -5519,27 +5370,31 @@ Params_Buffer::Params_Buffer(const Params_Buffer& from)
 }
 
 void Params_Buffer::SharedCtor() {
-  ::memset(&distance_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&max_vertices_in_full_circle_) -
-      reinterpret_cast<char*>(&distance_)) + sizeof(max_vertices_in_full_circle_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&distance_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&max_vertices_in_full_circle_) -
+    reinterpret_cast<char*>(&distance_)) + sizeof(max_vertices_in_full_circle_));
 }
 
 Params_Buffer::~Params_Buffer() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Buffer)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Buffer::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_Buffer::ArenaDtor(void* object) {
+  Params_Buffer* _this = reinterpret_cast< Params_Buffer* >(object);
+  (void)_this;
+}
+void Params_Buffer::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Buffer::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Buffer& Params_Buffer::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Buffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Buffer::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Buffer)
@@ -5550,7 +5405,7 @@ void Params_Buffer::Clear() {
   ::memset(&distance_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&max_vertices_in_full_circle_) -
       reinterpret_cast<char*>(&distance_)) + sizeof(max_vertices_in_full_circle_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Buffer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -5577,14 +5432,14 @@ const char* Params_Buffer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
       // bool union_result = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          union_result_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          union_result_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // int32 max_vertices_in_full_circle = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          max_vertices_in_full_circle_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          max_vertices_in_full_circle_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -5594,7 +5449,9 @@ const char* Params_Buffer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -5640,7 +5497,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Buffer)
   return target;
@@ -5703,7 +5560,7 @@ void Params_Buffer::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params_Buffer::MergeFrom(const Params_Buffer& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Buffer)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -5741,11 +5598,13 @@ bool Params_Buffer::IsInitialized() const {
 
 void Params_Buffer::InternalSwap(Params_Buffer* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(distance_, other->distance_);
-  swap(max_deviation_, other->max_deviation_);
-  swap(union_result_, other->union_result_);
-  swap(max_vertices_in_full_circle_, other->max_vertices_in_full_circle_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Params_Buffer, max_vertices_in_full_circle_)
+      + sizeof(Params_Buffer::max_vertices_in_full_circle_)
+      - PROTOBUF_FIELD_OFFSET(Params_Buffer, distance_)>(
+          reinterpret_cast<char*>(&distance_),
+          reinterpret_cast<char*>(&other->distance_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params_Buffer::GetMetadata() const {
@@ -5755,21 +5614,19 @@ void Params_Buffer::InternalSwap(Params_Buffer* other) {
 
 // ===================================================================
 
-void Params_GeodeticBuffer::InitAsDefaultInstance() {
-}
 class Params_GeodeticBuffer::_Internal {
  public:
 };
 
-Params_GeodeticBuffer::Params_GeodeticBuffer()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_GeodeticBuffer::Params_GeodeticBuffer(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.GeodeticBuffer)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.GeodeticBuffer)
 }
 Params_GeodeticBuffer::Params_GeodeticBuffer(const Params_GeodeticBuffer& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&distance_, &from.distance_,
     static_cast<size_t>(reinterpret_cast<char*>(&max_vertices_in_full_circle_) -
     reinterpret_cast<char*>(&distance_)) + sizeof(max_vertices_in_full_circle_));
@@ -5777,27 +5634,31 @@ Params_GeodeticBuffer::Params_GeodeticBuffer(const Params_GeodeticBuffer& from)
 }
 
 void Params_GeodeticBuffer::SharedCtor() {
-  ::memset(&distance_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&max_vertices_in_full_circle_) -
-      reinterpret_cast<char*>(&distance_)) + sizeof(max_vertices_in_full_circle_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&distance_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&max_vertices_in_full_circle_) -
+    reinterpret_cast<char*>(&distance_)) + sizeof(max_vertices_in_full_circle_));
 }
 
 Params_GeodeticBuffer::~Params_GeodeticBuffer() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.GeodeticBuffer)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_GeodeticBuffer::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_GeodeticBuffer::ArenaDtor(void* object) {
+  Params_GeodeticBuffer* _this = reinterpret_cast< Params_GeodeticBuffer* >(object);
+  (void)_this;
+}
+void Params_GeodeticBuffer::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_GeodeticBuffer::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_GeodeticBuffer& Params_GeodeticBuffer::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_GeodeticBuffer_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_GeodeticBuffer::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.GeodeticBuffer)
@@ -5808,7 +5669,7 @@ void Params_GeodeticBuffer::Clear() {
   ::memset(&distance_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&max_vertices_in_full_circle_) -
       reinterpret_cast<char*>(&distance_)) + sizeof(max_vertices_in_full_circle_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_GeodeticBuffer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -5835,14 +5696,14 @@ const char* Params_GeodeticBuffer::_InternalParse(const char* ptr, ::PROTOBUF_NA
       // bool union_result = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          union_result_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          union_result_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // int32 max_vertices_in_full_circle = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          max_vertices_in_full_circle_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          max_vertices_in_full_circle_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -5852,7 +5713,9 @@ const char* Params_GeodeticBuffer::_InternalParse(const char* ptr, ::PROTOBUF_NA
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -5898,7 +5761,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.GeodeticBuffer)
   return target;
@@ -5961,7 +5824,7 @@ void Params_GeodeticBuffer::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& fr
 void Params_GeodeticBuffer::MergeFrom(const Params_GeodeticBuffer& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.GeodeticBuffer)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -5999,11 +5862,13 @@ bool Params_GeodeticBuffer::IsInitialized() const {
 
 void Params_GeodeticBuffer::InternalSwap(Params_GeodeticBuffer* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(distance_, other->distance_);
-  swap(max_deviation_, other->max_deviation_);
-  swap(union_result_, other->union_result_);
-  swap(max_vertices_in_full_circle_, other->max_vertices_in_full_circle_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Params_GeodeticBuffer, max_vertices_in_full_circle_)
+      + sizeof(Params_GeodeticBuffer::max_vertices_in_full_circle_)
+      - PROTOBUF_FIELD_OFFSET(Params_GeodeticBuffer, distance_)>(
+          reinterpret_cast<char*>(&distance_),
+          reinterpret_cast<char*>(&other->distance_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params_GeodeticBuffer::GetMetadata() const {
@@ -6013,45 +5878,46 @@ void Params_GeodeticBuffer::InternalSwap(Params_GeodeticBuffer* other) {
 
 // ===================================================================
 
-void Params_Convex::InitAsDefaultInstance() {
-}
 class Params_Convex::_Internal {
  public:
 };
 
-Params_Convex::Params_Convex()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Convex::Params_Convex(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Convex)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Convex)
 }
 Params_Convex::Params_Convex(const Params_Convex& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   merge_ = from.merge_;
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Params.Convex)
 }
 
 void Params_Convex::SharedCtor() {
-  merge_ = false;
+merge_ = false;
 }
 
 Params_Convex::~Params_Convex() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Convex)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Convex::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_Convex::ArenaDtor(void* object) {
+  Params_Convex* _this = reinterpret_cast< Params_Convex* >(object);
+  (void)_this;
+}
+void Params_Convex::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Convex::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Convex& Params_Convex::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Convex_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Convex::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Convex)
@@ -6060,7 +5926,7 @@ void Params_Convex::Clear() {
   (void) cached_has_bits;
 
   merge_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Convex::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -6073,7 +5939,7 @@ const char* Params_Convex::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
       // bool merge = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          merge_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          merge_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -6083,7 +5949,9 @@ const char* Params_Convex::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -6111,7 +5979,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Convex)
   return target;
@@ -6157,7 +6025,7 @@ void Params_Convex::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params_Convex::MergeFrom(const Params_Convex& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Convex)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -6186,7 +6054,7 @@ bool Params_Convex::IsInitialized() const {
 
 void Params_Convex::InternalSwap(Params_Convex* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(merge_, other->merge_);
 }
 
@@ -6197,50 +6065,51 @@ void Params_Convex::InternalSwap(Params_Convex* other) {
 
 // ===================================================================
 
-void Params_Relate::InitAsDefaultInstance() {
-}
 class Params_Relate::_Internal {
  public:
 };
 
-Params_Relate::Params_Relate()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Relate::Params_Relate(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Relate)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Relate)
 }
 Params_Relate::Params_Relate(const Params_Relate& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   de_9im_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_de_9im().empty()) {
-    de_9im_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.de_9im_);
+    de_9im_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_de_9im(), 
+      GetArena());
   }
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Params.Relate)
 }
 
 void Params_Relate::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Params_Relate_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  de_9im_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+de_9im_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 Params_Relate::~Params_Relate() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Relate)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Relate::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   de_9im_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void Params_Relate::ArenaDtor(void* object) {
+  Params_Relate* _this = reinterpret_cast< Params_Relate* >(object);
+  (void)_this;
+}
+void Params_Relate::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Relate::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Relate& Params_Relate::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Relate_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Relate::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Relate)
@@ -6248,8 +6117,8 @@ void Params_Relate::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  de_9im_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _internal_metadata_.Clear();
+  de_9im_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Relate::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -6274,7 +6143,9 @@ const char* Params_Relate::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -6306,7 +6177,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Relate)
   return target;
@@ -6354,13 +6225,12 @@ void Params_Relate::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params_Relate::MergeFrom(const Params_Relate& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Relate)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.de_9im().size() > 0) {
-
-    de_9im_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.de_9im_);
+    _internal_set_de_9im(from._internal_de_9im());
   }
 }
 
@@ -6384,9 +6254,8 @@ bool Params_Relate::IsInitialized() const {
 
 void Params_Relate::InternalSwap(Params_Relate* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  de_9im_.Swap(&other->de_9im_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  de_9im_.Swap(&other->de_9im_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params_Relate::GetMetadata() const {
@@ -6396,21 +6265,19 @@ void Params_Relate::InternalSwap(Params_Relate* other) {
 
 // ===================================================================
 
-void Params_RandomPoints::InitAsDefaultInstance() {
-}
 class Params_RandomPoints::_Internal {
  public:
 };
 
-Params_RandomPoints::Params_RandomPoints()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_RandomPoints::Params_RandomPoints(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.RandomPoints)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.RandomPoints)
 }
 Params_RandomPoints::Params_RandomPoints(const Params_RandomPoints& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&points_per_square_km_, &from.points_per_square_km_,
     static_cast<size_t>(reinterpret_cast<char*>(&seed_) -
     reinterpret_cast<char*>(&points_per_square_km_)) + sizeof(seed_));
@@ -6418,27 +6285,31 @@ Params_RandomPoints::Params_RandomPoints(const Params_RandomPoints& from)
 }
 
 void Params_RandomPoints::SharedCtor() {
-  ::memset(&points_per_square_km_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&seed_) -
-      reinterpret_cast<char*>(&points_per_square_km_)) + sizeof(seed_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&points_per_square_km_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&seed_) -
+    reinterpret_cast<char*>(&points_per_square_km_)) + sizeof(seed_));
 }
 
 Params_RandomPoints::~Params_RandomPoints() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.RandomPoints)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_RandomPoints::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_RandomPoints::ArenaDtor(void* object) {
+  Params_RandomPoints* _this = reinterpret_cast< Params_RandomPoints* >(object);
+  (void)_this;
+}
+void Params_RandomPoints::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_RandomPoints::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_RandomPoints& Params_RandomPoints::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_RandomPoints_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_RandomPoints::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.RandomPoints)
@@ -6449,7 +6320,7 @@ void Params_RandomPoints::Clear() {
   ::memset(&points_per_square_km_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&seed_) -
       reinterpret_cast<char*>(&points_per_square_km_)) + sizeof(seed_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_RandomPoints::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -6469,7 +6340,7 @@ const char* Params_RandomPoints::_InternalParse(const char* ptr, ::PROTOBUF_NAME
       // int64 seed = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          seed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          seed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -6479,7 +6350,9 @@ const char* Params_RandomPoints::_InternalParse(const char* ptr, ::PROTOBUF_NAME
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -6513,7 +6386,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.RandomPoints)
   return target;
@@ -6566,7 +6439,7 @@ void Params_RandomPoints::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from
 void Params_RandomPoints::MergeFrom(const Params_RandomPoints& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.RandomPoints)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -6598,9 +6471,13 @@ bool Params_RandomPoints::IsInitialized() const {
 
 void Params_RandomPoints::InternalSwap(Params_RandomPoints* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(points_per_square_km_, other->points_per_square_km_);
-  swap(seed_, other->seed_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Params_RandomPoints, seed_)
+      + sizeof(Params_RandomPoints::seed_)
+      - PROTOBUF_FIELD_OFFSET(Params_RandomPoints, points_per_square_km_)>(
+          reinterpret_cast<char*>(&points_per_square_km_),
+          reinterpret_cast<char*>(&other->points_per_square_km_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params_RandomPoints::GetMetadata() const {
@@ -6610,21 +6487,19 @@ void Params_RandomPoints::InternalSwap(Params_RandomPoints* other) {
 
 // ===================================================================
 
-void Params_Generalize::InitAsDefaultInstance() {
-}
 class Params_Generalize::_Internal {
  public:
 };
 
-Params_Generalize::Params_Generalize()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Generalize::Params_Generalize(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Generalize)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Generalize)
 }
 Params_Generalize::Params_Generalize(const Params_Generalize& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&max_deviation_, &from.max_deviation_,
     static_cast<size_t>(reinterpret_cast<char*>(&remove_degenerates_) -
     reinterpret_cast<char*>(&max_deviation_)) + sizeof(remove_degenerates_));
@@ -6632,27 +6507,31 @@ Params_Generalize::Params_Generalize(const Params_Generalize& from)
 }
 
 void Params_Generalize::SharedCtor() {
-  ::memset(&max_deviation_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&remove_degenerates_) -
-      reinterpret_cast<char*>(&max_deviation_)) + sizeof(remove_degenerates_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&max_deviation_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&remove_degenerates_) -
+    reinterpret_cast<char*>(&max_deviation_)) + sizeof(remove_degenerates_));
 }
 
 Params_Generalize::~Params_Generalize() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Generalize)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Generalize::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_Generalize::ArenaDtor(void* object) {
+  Params_Generalize* _this = reinterpret_cast< Params_Generalize* >(object);
+  (void)_this;
+}
+void Params_Generalize::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Generalize::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Generalize& Params_Generalize::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Generalize_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Generalize::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Generalize)
@@ -6663,7 +6542,7 @@ void Params_Generalize::Clear() {
   ::memset(&max_deviation_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&remove_degenerates_) -
       reinterpret_cast<char*>(&max_deviation_)) + sizeof(remove_degenerates_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Generalize::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -6683,7 +6562,7 @@ const char* Params_Generalize::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
       // bool remove_degenerates = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          remove_degenerates_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          remove_degenerates_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -6693,7 +6572,9 @@ const char* Params_Generalize::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -6727,7 +6608,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Generalize)
   return target;
@@ -6778,7 +6659,7 @@ void Params_Generalize::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) 
 void Params_Generalize::MergeFrom(const Params_Generalize& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Generalize)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -6810,9 +6691,13 @@ bool Params_Generalize::IsInitialized() const {
 
 void Params_Generalize::InternalSwap(Params_Generalize* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(max_deviation_, other->max_deviation_);
-  swap(remove_degenerates_, other->remove_degenerates_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Params_Generalize, remove_degenerates_)
+      + sizeof(Params_Generalize::remove_degenerates_)
+      - PROTOBUF_FIELD_OFFSET(Params_Generalize, max_deviation_)>(
+          reinterpret_cast<char*>(&max_deviation_),
+          reinterpret_cast<char*>(&other->max_deviation_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params_Generalize::GetMetadata() const {
@@ -6822,21 +6707,19 @@ void Params_Generalize::InternalSwap(Params_Generalize* other) {
 
 // ===================================================================
 
-void Params_GeneralizeByArea::InitAsDefaultInstance() {
-}
 class Params_GeneralizeByArea::_Internal {
  public:
 };
 
-Params_GeneralizeByArea::Params_GeneralizeByArea()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_GeneralizeByArea::Params_GeneralizeByArea(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.GeneralizeByArea)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.GeneralizeByArea)
 }
 Params_GeneralizeByArea::Params_GeneralizeByArea(const Params_GeneralizeByArea& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&percent_reduction_, &from.percent_reduction_,
     static_cast<size_t>(reinterpret_cast<char*>(&remove_degenerates_) -
     reinterpret_cast<char*>(&percent_reduction_)) + sizeof(remove_degenerates_));
@@ -6844,27 +6727,31 @@ Params_GeneralizeByArea::Params_GeneralizeByArea(const Params_GeneralizeByArea& 
 }
 
 void Params_GeneralizeByArea::SharedCtor() {
-  ::memset(&percent_reduction_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&remove_degenerates_) -
-      reinterpret_cast<char*>(&percent_reduction_)) + sizeof(remove_degenerates_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&percent_reduction_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&remove_degenerates_) -
+    reinterpret_cast<char*>(&percent_reduction_)) + sizeof(remove_degenerates_));
 }
 
 Params_GeneralizeByArea::~Params_GeneralizeByArea() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.GeneralizeByArea)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_GeneralizeByArea::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_GeneralizeByArea::ArenaDtor(void* object) {
+  Params_GeneralizeByArea* _this = reinterpret_cast< Params_GeneralizeByArea* >(object);
+  (void)_this;
+}
+void Params_GeneralizeByArea::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_GeneralizeByArea::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_GeneralizeByArea& Params_GeneralizeByArea::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_GeneralizeByArea_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_GeneralizeByArea::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.GeneralizeByArea)
@@ -6875,7 +6762,7 @@ void Params_GeneralizeByArea::Clear() {
   ::memset(&percent_reduction_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&remove_degenerates_) -
       reinterpret_cast<char*>(&percent_reduction_)) + sizeof(remove_degenerates_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_GeneralizeByArea::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -6895,14 +6782,14 @@ const char* Params_GeneralizeByArea::_InternalParse(const char* ptr, ::PROTOBUF_
       // int32 max_point_count = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          max_point_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          max_point_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // bool remove_degenerates = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          remove_degenerates_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          remove_degenerates_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -6912,7 +6799,9 @@ const char* Params_GeneralizeByArea::_InternalParse(const char* ptr, ::PROTOBUF_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -6952,7 +6841,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.GeneralizeByArea)
   return target;
@@ -7010,7 +6899,7 @@ void Params_GeneralizeByArea::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& 
 void Params_GeneralizeByArea::MergeFrom(const Params_GeneralizeByArea& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.GeneralizeByArea)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7045,10 +6934,13 @@ bool Params_GeneralizeByArea::IsInitialized() const {
 
 void Params_GeneralizeByArea::InternalSwap(Params_GeneralizeByArea* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(percent_reduction_, other->percent_reduction_);
-  swap(max_point_count_, other->max_point_count_);
-  swap(remove_degenerates_, other->remove_degenerates_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Params_GeneralizeByArea, remove_degenerates_)
+      + sizeof(Params_GeneralizeByArea::remove_degenerates_)
+      - PROTOBUF_FIELD_OFFSET(Params_GeneralizeByArea, percent_reduction_)>(
+          reinterpret_cast<char*>(&percent_reduction_),
+          reinterpret_cast<char*>(&other->percent_reduction_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params_GeneralizeByArea::GetMetadata() const {
@@ -7058,45 +6950,46 @@ void Params_GeneralizeByArea::InternalSwap(Params_GeneralizeByArea* other) {
 
 // ===================================================================
 
-void Params_Intersection::InitAsDefaultInstance() {
-}
 class Params_Intersection::_Internal {
  public:
 };
 
-Params_Intersection::Params_Intersection()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Intersection::Params_Intersection(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Intersection)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Intersection)
 }
 Params_Intersection::Params_Intersection(const Params_Intersection& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   dimension_mask_ = from.dimension_mask_;
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Params.Intersection)
 }
 
 void Params_Intersection::SharedCtor() {
-  dimension_mask_ = 0;
+dimension_mask_ = 0;
 }
 
 Params_Intersection::~Params_Intersection() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Intersection)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Intersection::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_Intersection::ArenaDtor(void* object) {
+  Params_Intersection* _this = reinterpret_cast< Params_Intersection* >(object);
+  (void)_this;
+}
+void Params_Intersection::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Intersection::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Intersection& Params_Intersection::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Intersection_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Intersection::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Intersection)
@@ -7105,7 +6998,7 @@ void Params_Intersection::Clear() {
   (void) cached_has_bits;
 
   dimension_mask_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Intersection::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7118,7 +7011,7 @@ const char* Params_Intersection::_InternalParse(const char* ptr, ::PROTOBUF_NAME
       // int32 dimension_mask = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          dimension_mask_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          dimension_mask_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -7128,7 +7021,9 @@ const char* Params_Intersection::_InternalParse(const char* ptr, ::PROTOBUF_NAME
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7156,7 +7051,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Intersection)
   return target;
@@ -7204,7 +7099,7 @@ void Params_Intersection::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from
 void Params_Intersection::MergeFrom(const Params_Intersection& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Intersection)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7233,7 +7128,7 @@ bool Params_Intersection::IsInitialized() const {
 
 void Params_Intersection::InternalSwap(Params_Intersection* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(dimension_mask_, other->dimension_mask_);
 }
 
@@ -7244,21 +7139,19 @@ void Params_Intersection::InternalSwap(Params_Intersection* other) {
 
 // ===================================================================
 
-void Params_Offset::InitAsDefaultInstance() {
-}
 class Params_Offset::_Internal {
  public:
 };
 
-Params_Offset::Params_Offset()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Offset::Params_Offset(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Offset)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Offset)
 }
 Params_Offset::Params_Offset(const Params_Offset& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&distance_, &from.distance_,
     static_cast<size_t>(reinterpret_cast<char*>(&join_type_) -
     reinterpret_cast<char*>(&distance_)) + sizeof(join_type_));
@@ -7266,27 +7159,31 @@ Params_Offset::Params_Offset(const Params_Offset& from)
 }
 
 void Params_Offset::SharedCtor() {
-  ::memset(&distance_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&join_type_) -
-      reinterpret_cast<char*>(&distance_)) + sizeof(join_type_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&distance_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&join_type_) -
+    reinterpret_cast<char*>(&distance_)) + sizeof(join_type_));
 }
 
 Params_Offset::~Params_Offset() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Offset)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Offset::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_Offset::ArenaDtor(void* object) {
+  Params_Offset* _this = reinterpret_cast< Params_Offset* >(object);
+  (void)_this;
+}
+void Params_Offset::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Offset::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Offset& Params_Offset::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Offset_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Offset::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Offset)
@@ -7297,7 +7194,7 @@ void Params_Offset::Clear() {
   ::memset(&distance_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&join_type_) -
       reinterpret_cast<char*>(&distance_)) + sizeof(join_type_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Offset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7317,7 +7214,7 @@ const char* Params_Offset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
       // .epl.protobuf.v1.Params.Offset.OffsetJoinType join_type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_join_type(static_cast<::epl::protobuf::v1::Params_Offset_OffsetJoinType>(val));
         } else goto handle_unusual;
@@ -7342,7 +7239,9 @@ const char* Params_Offset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7389,7 +7288,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Offset)
   return target;
@@ -7451,7 +7350,7 @@ void Params_Offset::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params_Offset::MergeFrom(const Params_Offset& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Offset)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7489,11 +7388,13 @@ bool Params_Offset::IsInitialized() const {
 
 void Params_Offset::InternalSwap(Params_Offset* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(distance_, other->distance_);
-  swap(bevel_ratio_, other->bevel_ratio_);
-  swap(flatten_error_, other->flatten_error_);
-  swap(join_type_, other->join_type_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Params_Offset, join_type_)
+      + sizeof(Params_Offset::join_type_)
+      - PROTOBUF_FIELD_OFFSET(Params_Offset, distance_)>(
+          reinterpret_cast<char*>(&distance_),
+          reinterpret_cast<char*>(&other->distance_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params_Offset::GetMetadata() const {
@@ -7503,45 +7404,46 @@ void Params_Offset::InternalSwap(Params_Offset* other) {
 
 // ===================================================================
 
-void Params_Cut::InitAsDefaultInstance() {
-}
 class Params_Cut::_Internal {
  public:
 };
 
-Params_Cut::Params_Cut()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Cut::Params_Cut(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Cut)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Cut)
 }
 Params_Cut::Params_Cut(const Params_Cut& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   consider_touch_ = from.consider_touch_;
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Params.Cut)
 }
 
 void Params_Cut::SharedCtor() {
-  consider_touch_ = false;
+consider_touch_ = false;
 }
 
 Params_Cut::~Params_Cut() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Cut)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Cut::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_Cut::ArenaDtor(void* object) {
+  Params_Cut* _this = reinterpret_cast< Params_Cut* >(object);
+  (void)_this;
+}
+void Params_Cut::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Cut::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Cut& Params_Cut::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Cut_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Cut::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Cut)
@@ -7550,7 +7452,7 @@ void Params_Cut::Clear() {
   (void) cached_has_bits;
 
   consider_touch_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Cut::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7563,7 +7465,7 @@ const char* Params_Cut::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
       // bool consider_touch = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          consider_touch_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          consider_touch_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -7573,7 +7475,9 @@ const char* Params_Cut::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7601,7 +7505,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Cut)
   return target;
@@ -7647,7 +7551,7 @@ void Params_Cut::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params_Cut::MergeFrom(const Params_Cut& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Cut)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7676,7 +7580,7 @@ bool Params_Cut::IsInitialized() const {
 
 void Params_Cut::InternalSwap(Params_Cut* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(consider_touch_, other->consider_touch_);
 }
 
@@ -7687,10 +7591,6 @@ void Params_Cut::InternalSwap(Params_Cut* other) {
 
 // ===================================================================
 
-void Params_Clip::InitAsDefaultInstance() {
-  ::epl::protobuf::v1::_Params_Clip_default_instance_._instance.get_mutable()->envelope_ = const_cast< ::epl::protobuf::v1::EnvelopeData*>(
-      ::epl::protobuf::v1::EnvelopeData::internal_default_instance());
-}
 class Params_Clip::_Internal {
  public:
   static const ::epl::protobuf::v1::EnvelopeData& envelope(const Params_Clip* msg);
@@ -7700,15 +7600,15 @@ const ::epl::protobuf::v1::EnvelopeData&
 Params_Clip::_Internal::envelope(const Params_Clip* msg) {
   return *msg->envelope_;
 }
-Params_Clip::Params_Clip()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Clip::Params_Clip(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Clip)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Clip)
 }
 Params_Clip::Params_Clip(const Params_Clip& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_envelope()) {
     envelope_ = new ::epl::protobuf::v1::EnvelopeData(*from.envelope_);
   } else {
@@ -7718,27 +7618,29 @@ Params_Clip::Params_Clip(const Params_Clip& from)
 }
 
 void Params_Clip::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Params_Clip_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  envelope_ = nullptr;
+envelope_ = nullptr;
 }
 
 Params_Clip::~Params_Clip() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Clip)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Clip::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete envelope_;
 }
 
+void Params_Clip::ArenaDtor(void* object) {
+  Params_Clip* _this = reinterpret_cast< Params_Clip* >(object);
+  (void)_this;
+}
+void Params_Clip::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Clip::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Clip& Params_Clip::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Clip_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Clip::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Clip)
@@ -7746,11 +7648,11 @@ void Params_Clip::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && envelope_ != nullptr) {
+  if (GetArena() == nullptr && envelope_ != nullptr) {
     delete envelope_;
   }
   envelope_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Clip::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7773,7 +7675,9 @@ const char* Params_Clip::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7803,7 +7707,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Clip)
   return target;
@@ -7851,7 +7755,7 @@ void Params_Clip::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params_Clip::MergeFrom(const Params_Clip& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Clip)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -7880,7 +7784,7 @@ bool Params_Clip::IsInitialized() const {
 
 void Params_Clip::InternalSwap(Params_Clip* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(envelope_, other->envelope_);
 }
 
@@ -7891,45 +7795,46 @@ void Params_Clip::InternalSwap(Params_Clip* other) {
 
 // ===================================================================
 
-void Params_Densify::InitAsDefaultInstance() {
-}
 class Params_Densify::_Internal {
  public:
 };
 
-Params_Densify::Params_Densify()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Densify::Params_Densify(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Densify)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Densify)
 }
 Params_Densify::Params_Densify(const Params_Densify& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   max_length_ = from.max_length_;
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Params.Densify)
 }
 
 void Params_Densify::SharedCtor() {
-  max_length_ = 0;
+max_length_ = 0;
 }
 
 Params_Densify::~Params_Densify() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Densify)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Densify::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_Densify::ArenaDtor(void* object) {
+  Params_Densify* _this = reinterpret_cast< Params_Densify* >(object);
+  (void)_this;
+}
+void Params_Densify::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Densify::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Densify& Params_Densify::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Densify_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Densify::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Densify)
@@ -7938,7 +7843,7 @@ void Params_Densify::Clear() {
   (void) cached_has_bits;
 
   max_length_ = 0;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Densify::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -7961,7 +7866,9 @@ const char* Params_Densify::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -7989,7 +7896,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Densify)
   return target;
@@ -8035,7 +7942,7 @@ void Params_Densify::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params_Densify::MergeFrom(const Params_Densify& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Densify)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -8064,7 +7971,7 @@ bool Params_Densify::IsInitialized() const {
 
 void Params_Densify::InternalSwap(Params_Densify* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(max_length_, other->max_length_);
 }
 
@@ -8075,45 +7982,46 @@ void Params_Densify::InternalSwap(Params_Densify* other) {
 
 // ===================================================================
 
-void Params_Simplify::InitAsDefaultInstance() {
-}
 class Params_Simplify::_Internal {
  public:
 };
 
-Params_Simplify::Params_Simplify()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_Simplify::Params_Simplify(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.Simplify)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.Simplify)
 }
 Params_Simplify::Params_Simplify(const Params_Simplify& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   force_ = from.force_;
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Params.Simplify)
 }
 
 void Params_Simplify::SharedCtor() {
-  force_ = false;
+force_ = false;
 }
 
 Params_Simplify::~Params_Simplify() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.Simplify)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_Simplify::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_Simplify::ArenaDtor(void* object) {
+  Params_Simplify* _this = reinterpret_cast< Params_Simplify* >(object);
+  (void)_this;
+}
+void Params_Simplify::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_Simplify::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_Simplify& Params_Simplify::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_Simplify_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_Simplify::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.Simplify)
@@ -8122,7 +8030,7 @@ void Params_Simplify::Clear() {
   (void) cached_has_bits;
 
   force_ = false;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_Simplify::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -8135,7 +8043,7 @@ const char* Params_Simplify::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
       // bool force = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          force_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          force_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -8145,7 +8053,9 @@ const char* Params_Simplify::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -8173,7 +8083,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.Simplify)
   return target;
@@ -8219,7 +8129,7 @@ void Params_Simplify::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params_Simplify::MergeFrom(const Params_Simplify& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.Simplify)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -8248,7 +8158,7 @@ bool Params_Simplify::IsInitialized() const {
 
 void Params_Simplify::InternalSwap(Params_Simplify* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(force_, other->force_);
 }
 
@@ -8259,21 +8169,19 @@ void Params_Simplify::InternalSwap(Params_Simplify* other) {
 
 // ===================================================================
 
-void Params_AffineTransform::InitAsDefaultInstance() {
-}
 class Params_AffineTransform::_Internal {
  public:
 };
 
-Params_AffineTransform::Params_AffineTransform()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params_AffineTransform::Params_AffineTransform(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params.AffineTransform)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params.AffineTransform)
 }
 Params_AffineTransform::Params_AffineTransform(const Params_AffineTransform& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&x_offset_, &from.x_offset_,
     static_cast<size_t>(reinterpret_cast<char*>(&geodetic_) -
     reinterpret_cast<char*>(&x_offset_)) + sizeof(geodetic_));
@@ -8281,27 +8189,31 @@ Params_AffineTransform::Params_AffineTransform(const Params_AffineTransform& fro
 }
 
 void Params_AffineTransform::SharedCtor() {
-  ::memset(&x_offset_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&geodetic_) -
-      reinterpret_cast<char*>(&x_offset_)) + sizeof(geodetic_));
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&x_offset_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&geodetic_) -
+    reinterpret_cast<char*>(&x_offset_)) + sizeof(geodetic_));
 }
 
 Params_AffineTransform::~Params_AffineTransform() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params.AffineTransform)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params_AffineTransform::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params_AffineTransform::ArenaDtor(void* object) {
+  Params_AffineTransform* _this = reinterpret_cast< Params_AffineTransform* >(object);
+  (void)_this;
+}
+void Params_AffineTransform::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params_AffineTransform::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params_AffineTransform& Params_AffineTransform::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_AffineTransform_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params_AffineTransform::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params.AffineTransform)
@@ -8312,7 +8224,7 @@ void Params_AffineTransform::Clear() {
   ::memset(&x_offset_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&geodetic_) -
       reinterpret_cast<char*>(&x_offset_)) + sizeof(geodetic_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params_AffineTransform::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -8325,7 +8237,7 @@ const char* Params_AffineTransform::_InternalParse(const char* ptr, ::PROTOBUF_N
       // bool geodetic = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          geodetic_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          geodetic_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -8349,7 +8261,9 @@ const char* Params_AffineTransform::_InternalParse(const char* ptr, ::PROTOBUF_N
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
       }
@@ -8389,7 +8303,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params.AffineTransform)
   return target;
@@ -8445,7 +8359,7 @@ void Params_AffineTransform::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& f
 void Params_AffineTransform::MergeFrom(const Params_AffineTransform& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params.AffineTransform)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -8480,10 +8394,13 @@ bool Params_AffineTransform::IsInitialized() const {
 
 void Params_AffineTransform::InternalSwap(Params_AffineTransform* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(x_offset_, other->x_offset_);
-  swap(y_offset_, other->y_offset_);
-  swap(geodetic_, other->geodetic_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Params_AffineTransform, geodetic_)
+      + sizeof(Params_AffineTransform::geodetic_)
+      - PROTOBUF_FIELD_OFFSET(Params_AffineTransform, x_offset_)>(
+          reinterpret_cast<char*>(&x_offset_),
+          reinterpret_cast<char*>(&other->x_offset_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params_AffineTransform::GetMetadata() const {
@@ -8493,21 +8410,19 @@ void Params_AffineTransform::InternalSwap(Params_AffineTransform* other) {
 
 // ===================================================================
 
-void Params::InitAsDefaultInstance() {
-}
 class Params::_Internal {
  public:
 };
 
-Params::Params()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Params::Params(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:epl.protobuf.v1.Params)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:epl.protobuf.v1.Params)
 }
 Params::Params(const Params& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Params)
 }
 
@@ -8517,19 +8432,22 @@ void Params::SharedCtor() {
 Params::~Params() {
   // @@protoc_insertion_point(destructor:epl.protobuf.v1.Params)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void Params::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
+void Params::ArenaDtor(void* object) {
+  Params* _this = reinterpret_cast< Params* >(object);
+  (void)_this;
+}
+void Params::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Params::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Params& Params::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Params_epl_2fprotobuf_2fv1_2fgeometry_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Params::Clear() {
 // @@protoc_insertion_point(message_clear_start:epl.protobuf.v1.Params)
@@ -8537,7 +8455,7 @@ void Params::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Params::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
@@ -8550,7 +8468,9 @@ const char* Params::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
           ctx->SetLastTag(tag);
           goto success;
         }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
   }  // while
@@ -8570,7 +8490,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:epl.protobuf.v1.Params)
   return target;
@@ -8611,7 +8531,7 @@ void Params::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 void Params::MergeFrom(const Params& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:epl.protobuf.v1.Params)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -8637,7 +8557,7 @@ bool Params::IsInitialized() const {
 
 void Params::InternalSwap(Params* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Params::GetMetadata() const {
@@ -8651,76 +8571,76 @@ void Params::InternalSwap(Params* other) {
 }  // namespace epl
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::GeometryData* Arena::CreateMaybeMessage< ::epl::protobuf::v1::GeometryData >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::GeometryData >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::GeometryData >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::ProjectionData_Custom* Arena::CreateMaybeMessage< ::epl::protobuf::v1::ProjectionData_Custom >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::ProjectionData_Custom >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::ProjectionData_Custom >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::ProjectionData* Arena::CreateMaybeMessage< ::epl::protobuf::v1::ProjectionData >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::ProjectionData >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::ProjectionData >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::EnvelopeData* Arena::CreateMaybeMessage< ::epl::protobuf::v1::EnvelopeData >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::EnvelopeData >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::EnvelopeData >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::GeometryRequest* Arena::CreateMaybeMessage< ::epl::protobuf::v1::GeometryRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::GeometryRequest >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::GeometryRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::GeodeticInverse* Arena::CreateMaybeMessage< ::epl::protobuf::v1::GeodeticInverse >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::GeodeticInverse >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::GeodeticInverse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::GeometryResponse_RelateMapEntry_DoNotUse* Arena::CreateMaybeMessage< ::epl::protobuf::v1::GeometryResponse_RelateMapEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::GeometryResponse_RelateMapEntry_DoNotUse >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::GeometryResponse_RelateMapEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::GeometryResponse* Arena::CreateMaybeMessage< ::epl::protobuf::v1::GeometryResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::GeometryResponse >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::GeometryResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::FileRequestChunk* Arena::CreateMaybeMessage< ::epl::protobuf::v1::FileRequestChunk >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::FileRequestChunk >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::FileRequestChunk >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Buffer* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Buffer >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Buffer >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Buffer >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_GeodeticBuffer* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_GeodeticBuffer >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_GeodeticBuffer >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_GeodeticBuffer >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Convex* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Convex >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Convex >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Convex >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Relate* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Relate >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Relate >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Relate >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_RandomPoints* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_RandomPoints >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_RandomPoints >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_RandomPoints >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Generalize* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Generalize >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Generalize >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Generalize >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_GeneralizeByArea* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_GeneralizeByArea >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_GeneralizeByArea >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_GeneralizeByArea >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Intersection* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Intersection >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Intersection >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Intersection >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Offset* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Offset >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Offset >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Offset >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Cut* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Cut >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Cut >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Cut >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Clip* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Clip >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Clip >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Clip >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Densify* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Densify >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Densify >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Densify >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_Simplify* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_Simplify >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_Simplify >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_Simplify >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params_AffineTransform* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params_AffineTransform >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params_AffineTransform >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params_AffineTransform >(arena);
 }
 template<> PROTOBUF_NOINLINE ::epl::protobuf::v1::Params* Arena::CreateMaybeMessage< ::epl::protobuf::v1::Params >(Arena* arena) {
-  return Arena::CreateInternal< ::epl::protobuf::v1::Params >(arena);
+  return Arena::CreateMessageInternal< ::epl::protobuf::v1::Params >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
