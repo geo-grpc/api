@@ -2,42 +2,72 @@
 
 if [ -n "$1" ];
 then
-  if [[ ${1:0:1} == "." ]]
-  then
-    BUILD_PROTOS="${1:1}"
-  else
-    BUILD_PROTOS=$1
-  fi
+  SUBMITTED_PATH=$1
 else
-  BUILD_PROTOS=/epl/protobuf/v1
+  SUBMITTED_PATH=/umbra/v1
 fi
-
-IFS='/' read -ra my_array <<< "${BUILD_PROTOS}"
-
-unset CPP_DIR
-for i in "${my_array[@]}"
-do
-    if [ -n "$CPP_DIR" ];
-    then
-      CPP_DIR=$CPP_DIR"-${i}"
-      PYTHON_DIR=$PYTHON_DIR"_${i}"
-      DOTNET_DIR=$DOTNET_DIR"$(tr '[:lower:]' '[:upper:]' <<< "${i:0:1}")${i:1}"
-      BUILD_PROTOS=$BUILD_PROTOS"/${i}"
-    else
-      CPP_DIR=${i}
-      PYTHON_DIR=${i}
-      DOTNET_DIR="$(tr '[:lower:]' '[:upper:]' <<< "${i:0:1}")${i:1}"
-      BUILD_PROTOS=${i}
-    fi
-done
-DOTNET_DIR=dotnet/$DOTNET_DIR
-CPP_DIR=cpp/$CPP_DIR
-PYTHON_DIR=python/$PYTHON_DIR
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 echo script executing from "$SCRIPT_DIR"
 SRC_DIR="$(dirname "$SCRIPT_DIR")"
 echo SRC_DIR = "$SRC_DIR"
+
+TEST_INPUT=${SUBMITTED_PATH#\.}
+TEST_INPUT=${TEST_INPUT#\/}
+if test -f "${SCRIPT_DIR}/${TEST_INPUT}"; then
+  echo "${SCRIPT_DIR}/${TEST_INPUT} is a file. submit location of proto."
+  exit 1
+fi
+
+if ! test -d "${SCRIPT_DIR}/${TEST_INPUT}"; then
+  echo "${SCRIPT_DIR}/${TEST_INPUT} directory does not exist."
+  exit 1
+fi
+
+# remove trailing and preceding slashes
+BUILD_PROTOS="${TEST_INPUT%\/}"
+echo BUILD_PROTOS = $BUILD_PROTOS
+
+# remove dots
+SPLIT_NAMES=$(echo $BUILD_PROTOS | sed 's/\.//g')
+
+# if there are underscore or dash replace with splittable /
+SPLIT_NAMES=$(echo $SPLIT_NAMES | sed 's/[_-]/\//g')
+
+# cpp dir
+CPP_DIR=cpp/$(echo $SPLIT_NAMES | sed 's/[\/]/-/g')
+
+# python dir
+PYTHON_DIR=python/$(echo $SPLIT_NAMES | sed 's/[\/]/_/g')
+
+IFS='/' read -ra directories <<< "${SPLIT_NAMES}"
+
+# TODO there are some nice regex sed combinations for converting to PascalCase, but they don't work in Mac bash:
+# https://unix.stackexchange.com/questions/196239/convert-underscore-to-pascalcase-ie-uppercamelcase
+unset DOTNET_DIR
+for i in "${directories[@]}"
+do
+    if [ -n "$DOTNET_DIR" ];
+    then
+      DOTNET_DIR=$DOTNET_DIR"$(tr '[:lower:]' '[:upper:]' <<< "${i:0:1}")${i:1}"
+    else
+      DOTNET_DIR="$(tr '[:lower:]' '[:upper:]' <<< "${i:0:1}")${i:1}"
+    fi
+done
+DOTNET_DIR=dotnet/$DOTNET_DIR
+
+mksrcdirs () {
+  if [ ! -d "${SRC_DIR}/${1}" ]
+  then
+    echo "Directory ${SRC_DIR}/${1} DOES NOT exists."
+    mkdir -p "${SRC_DIR}/${1}"
+  else
+    echo "Directory ${SRC_DIR}/${1} exists."
+  fi
+}
+
+mksrcdirs "${CPP_DIR}"
+mksrcdirs "${PYTHON_DIR}"
 
 DEFS_DIR=$GOPATH
 if [ -z ${GOPATH+x} ];
@@ -51,7 +81,7 @@ else
 fi
 
 echo DEFS_DIR = "$DEFS_DIR"
-echo SRC_MINUS_GO = "$SRC_MINUS_GO"
+echo SRC_MINUS_GO = \""$SRC_MINUS_GO"\"
 
 ### protoc.sh
 docker run --rm -it -v "${DEFS_DIR}":/defs \
