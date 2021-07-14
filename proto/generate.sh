@@ -4,7 +4,7 @@ if [ -n "$1" ];
 then
   SUBMITTED_PATH=$1
 else
-  SUBMITTED_PATH=/umbra/v1
+  SUBMITTED_PATH=/epl/protobuf/v1
 fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
