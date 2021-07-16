@@ -4,7 +4,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../cmake")
 
-find_package(Protobuf  REQUIRED)
+find_package(Protobuf REQUIRED)
 find_package(GRPC REQUIRED)
 
 set(protobuf_MODULE_COMPATIBLE TRUE)
