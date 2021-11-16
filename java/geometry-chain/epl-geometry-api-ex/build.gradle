@@ -1,0 +1,62 @@
+apply plugin: 'java'
+// Provide convenience executables for trying out the examples.
+apply plugin: 'application'
+apply plugin: 'maven'
+// Inform IntelliJ projects about the generated code.
+apply plugin: 'idea'
+
+group = 'org.epl.geometry'
+version = '2.2.3'
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.addAll([
+            "-Xlint:unchecked",
+            "-Xlint:deprecation",
+            "--add-exports",
+            "java.base/jdk.internal.misc=ALL-UNNAMED"
+    ])
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+def grpcVersion = '1.16.1' // CURRENT_GRPC_VERSION
+
+dependencies {
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.9.6'
+    compile files('/usr/local/lib/proj.jar')
+    implementation project(':epl-geometry-api')
+
+    testCompile group: 'org.json', name: 'json', version:'20170516'
+    testCompile group: 'org.openjdk.jol', name: 'jol-core', version: '0.9'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+
+    // https://www.youtube.com/watch?v=4HG0YQVy8UM&feature=youtu.be
+    jvmArgs += ['--add-exports', 'java.base/jdk.internal.misc=ALL-UNNAMED']
+}
+
+startScripts.enabled = false
+
+tasks.withType(Test) {
+    systemProperty "java.library.path", "/usr/local/lib/"
+}

@@ -1,0 +1,7 @@
+--index-url https://pypi.python.org/simple
+grpcio-tools==1.33.2
+protobuf>=3.8.0
+Shapely==1.6.4.post2
+pytest
+../epl_protobuf/
+-e .

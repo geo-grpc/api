@@ -1,13 +1,8 @@
 # protobuf
 
-Proto files here are used in [STAC](https://github.com/geo-grpc/stac) service and in [geometry service](https://github.com/geo-grpc/geometry-service-java)
+Proto files here are used in [STAC](https://github.com/nearspacelabs/stac-python-client) service and in [geometry service](https://github.com/geo-grpc/geometry-chain)
 
-Build new versions using:
+Build new versions using `generate.sh` from proto directory (requires docker):
 ```bash
 ./generate.sh
-```
-
-Update documnetation:
-```bash
-docker run --rm   -v $(pwd)/docs:/out   -v $(pwd)/proto:/protos   pseudomuto/protoc-gen-doc --proto_path=/protos/ epl/protobuf/geometry.proto epl/protobuf/geometry_service.proto epl/protobuf/query.proto epl/protobuf/stac.proto epl/protobuf/stac_service.proto
 ```

@@ -1,0 +1,25 @@
+version: '3'
+services:
+  geometry-client:
+    container_name: geometry-client-c
+    image: geometry-client-i
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - geometry-chain
+    networks:
+      - geometry-service
+    environment:
+      - GEOMETRY_SERVICE_HOST=geometry-chain:8980
+
+  geometry-chain:
+    container_name: geometry-chain-c
+    image: geogrpc/geometry-chain:latest
+    ports:
+      - "8980:8980"
+    networks:
+      - geometry-service
+
+networks:
+  geometry-service: {}
