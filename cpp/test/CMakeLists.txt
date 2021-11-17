@@ -11,7 +11,17 @@ find_package(GRPC REQUIRED)
 FIND_PACKAGE(CURL)
 
 project(unitTest C CXX)
-find_package(GTest REQUIRED)
+#find_package(GTest REQUIRED)
+
+#target_link_libraries(GoogleTest /usr/local/lib/libgtest.a /usr/local/lib/libgtest_main.a)
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 
 include_directories(${GTEST_INCLUDE_DIRS}
         ${protobuf_lib_INCLUDE}
@@ -28,6 +38,6 @@ target_link_libraries(unitTest
         ${GTEST_BOTH_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
         ${JWT_LIBS}
-        protobuf_lib
+        epl_protobuf_v1
         curl)
 

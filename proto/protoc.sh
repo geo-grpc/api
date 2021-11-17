@@ -1,56 +1,71 @@
 #!/bin/sh
 
-MONO_PATH=/defs/src/github.com/geo-grpc/api
+for ARGUMENT in "$@"
+do
 
-#C#
-protoc -I/opt/include -I="$MONO_PATH"/proto --csharp_out="$MONO_PATH"/dotnet/EplProtobuf \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/query.proto  \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry_service.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac_service.proto
+    KEY=$(echo "$ARGUMENT" | cut -f1 -d=)
+    VALUE=$(echo "$ARGUMENT" | cut -f2 -d=)
 
-protoc -I/opt/include -I="$MONO_PATH"/proto --plugin=protoc-gen-grpc="$(command -v grpc_csharp_plugin)" \
-  --grpc_out="$MONO_PATH"/dotnet/EplProtobuf \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry_service.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac_service.proto
-#C#
+    case "$KEY" in
+            SRC_DIR)              SRC_DIR=${VALUE} ;;
+            DOTNET_DIR)              DOTNET_DIR=${VALUE} ;;
+            PYTHON_DIR)              PYTHON_DIR=${VALUE} ;;
+            BUILD_PROTOS)              BUILD_PROTOS=${VALUE} ;;
+            GOPATH)              GOPATH=${VALUE} ;;
+            CPP_DIR)    CPP_DIR=${VALUE} ;;
+            *)
+    esac
+done
+
+echo "DOTNET_DIR = $DOTNET_DIR"
+echo "CPP_DIR = $CPP_DIR"
+echo "PROTOC SRC_DIR = $SRC_DIR"
+echo "BUILD_PROTOS = $BUILD_PROTOS"
+echo "GOPATH = $GOPATH"
+echo "PYTHON_DIR = $PYTHON_DIR"
+
+MONO_PATH="/defs${SRC_DIR}"
+echo "NAMELY SRC PATH = $MONO_PATH"
 
 
-#PYTHON
-protoc -I/opt/include -I="$MONO_PATH"/proto --python_out="$MONO_PATH"/python/epl_protobuf \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/query.proto  \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac.proto
+##C#
+protoc -I/opt/include -I="${MONO_PATH}"/proto --csharp_out="${MONO_PATH}"/"${DOTNET_DIR}" \
+  "${MONO_PATH}"/proto/"${BUILD_PROTOS}"/*.proto
+
+protoc -I/opt/include -I="${MONO_PATH}"/proto --plugin=protoc-gen-grpc="$(command -v grpc_csharp_plugin)" \
+  --grpc_out="${MONO_PATH}"/"${DOTNET_DIR}" \
+  "${MONO_PATH}"/proto/"${BUILD_PROTOS}"/*_service.proto
+##C#
+
+
+##PYTHON
+protoc -I/opt/include -I="$MONO_PATH"/proto --python_out="$MONO_PATH"/"${PYTHON_DIR}" \
+  "$MONO_PATH"/proto/"${BUILD_PROTOS}"/*.proto
 
 protoc -I/opt/include -I="$MONO_PATH"/proto --plugin=protoc-gen-grpc_python="$(command -v grpc_python_plugin)" \
-  --grpc_python_out="$MONO_PATH"/python/epl_protobuf \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry_service.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac_service.proto
+  --grpc_python_out="$MONO_PATH"/"${PYTHON_DIR}" \
+  "$MONO_PATH"/proto/"${BUILD_PROTOS}"/*_service.proto
 #PYTHON
 
 #GO
-protoc -I/opt/include -I "$MONO_PATH"/proto --go_out=/defs/src \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/query.proto  \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac.proto
+if [ -n "$GOPATH" ];
+then
+  protoc -I/opt/include -I "$MONO_PATH"/proto --go_out=/defs/src \
+    "$MONO_PATH"/proto/"${BUILD_PROTOS}"/*.proto
 
-protoc -I/opt/include -I "$MONO_PATH"/proto --go_out=plugins=grpc:/defs/src \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry_service.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac_service.proto
+  protoc -I/opt/include -I "$MONO_PATH"/proto --go_out=plugins=grpc:/defs/src \
+    "$MONO_PATH"/proto/"${BUILD_PROTOS}"/*_service.proto
+
+else
+  echo "GOPATH is unset. not generating golang code";
+fi
 #GO
 
 #CPP
-protoc -I/opt/include -I "$MONO_PATH"/proto --cpp_out="$MONO_PATH"/cpp/protobuf-lib \
-  -I "$MONO_PATH"/proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/query.proto  \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry_service.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac_service.proto
+protoc -I/opt/include -I "$MONO_PATH"/proto --cpp_out="$MONO_PATH"/"$CPP_DIR" \
+  "$MONO_PATH"/proto/"${BUILD_PROTOS}"/*.proto
 
-protoc -I/opt/include -I "$MONO_PATH"/proto --grpc_out="$MONO_PATH"/cpp/protobuf-lib --plugin=protoc-gen-grpc="$(command -v grpc_cpp_plugin)" \
-  -I "$MONO_PATH"/proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/geometry_service.proto \
-  "$MONO_PATH"/proto/epl/protobuf/v1/stac_service.proto
+protoc -I/opt/include -I "$MONO_PATH"/proto --plugin=protoc-gen-grpc="$(command -v grpc_cpp_plugin)" \
+  --grpc_out="$MONO_PATH"/"$CPP_DIR" \
+  "$MONO_PATH"/proto/"${BUILD_PROTOS}"/*_service.proto
 #CPP

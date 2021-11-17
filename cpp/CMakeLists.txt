@@ -19,7 +19,7 @@ else()
             /usr/lib/x86_64-linux-gnu/libjansson.so)
 endif()
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/protobuf-lib)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/epl-protobuf-v1)
 
 if (APPLE)
     set(PROJECT_INCLUDES ${CMAKE_SOURCE_DIR}/src /usr/local/include/google/protobuf)
@@ -29,7 +29,7 @@ endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
-target_link_libraries(protobuf_lib)
+target_link_libraries(epl_protobuf_v1)
 
 enable_testing()
 
