@@ -20,11 +20,6 @@ class StacServiceStub(object):
                 request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacRequest.SerializeToString,
                 response_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.FromString,
                 )
-        self.SearchCollections = channel.unary_stream(
-                '/epl.protobuf.v1.StacService/SearchCollections',
-                request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.CollectionRequest.SerializeToString,
-                response_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.FromString,
-                )
         self.InsertItems = channel.stream_stream(
                 '/epl.protobuf.v1.StacService/InsertItems',
                 request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.SerializeToString,
@@ -55,14 +50,24 @@ class StacServiceStub(object):
                 request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.SerializeToString,
                 response_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.FromString,
                 )
+        self.UpdateOneItem = channel.unary_unary(
+                '/epl.protobuf.v1.StacService/UpdateOneItem',
+                request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.SerializeToString,
+                response_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.FromString,
+                )
+        self.SearchCollections = channel.unary_stream(
+                '/epl.protobuf.v1.StacService/SearchCollections',
+                request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.CollectionRequest.SerializeToString,
+                response_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.FromString,
+                )
         self.InsertOneCollection = channel.unary_unary(
                 '/epl.protobuf.v1.StacService/InsertOneCollection',
                 request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.SerializeToString,
                 response_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.FromString,
                 )
-        self.UpdateOneItem = channel.unary_unary(
-                '/epl.protobuf.v1.StacService/UpdateOneItem',
-                request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.SerializeToString,
+        self.UpdateCollection = channel.unary_unary(
+                '/epl.protobuf.v1.StacService/UpdateCollection',
+                request_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.SerializeToString,
                 response_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.FromString,
                 )
 
@@ -76,12 +81,6 @@ class StacServiceServicer(object):
         """
         using a search request, stream all the results that match the search filter
         """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SearchCollections(self, request, context):
-        """Missing associated documentation comment in .proto file"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -134,17 +133,33 @@ class StacServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def InsertOneCollection(self, request, context):
+    def UpdateOneItem(self, request, context):
         """
-        Insert one item into the STAC service
+        Update one item in the STAC service
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def UpdateOneItem(self, request, context):
+    def SearchCollections(self, request, context):
         """
-        Update one item in the STAC service
+        Search existing Collections
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def InsertOneCollection(self, request, context):
+        """
+        Create a new Collection
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateCollection(self, request, context):
+        """
+        Update an existing Collection's metadata and/or footprint
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -157,11 +172,6 @@ def add_StacServiceServicer_to_server(servicer, server):
                     servicer.SearchItems,
                     request_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacRequest.FromString,
                     response_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.SerializeToString,
-            ),
-            'SearchCollections': grpc.unary_stream_rpc_method_handler(
-                    servicer.SearchCollections,
-                    request_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.CollectionRequest.FromString,
-                    response_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.SerializeToString,
             ),
             'InsertItems': grpc.stream_stream_rpc_method_handler(
                     servicer.InsertItems,
@@ -193,14 +203,24 @@ def add_StacServiceServicer_to_server(servicer, server):
                     request_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.FromString,
                     response_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.SerializeToString,
             ),
+            'UpdateOneItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateOneItem,
+                    request_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.FromString,
+                    response_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.SerializeToString,
+            ),
+            'SearchCollections': grpc.unary_stream_rpc_method_handler(
+                    servicer.SearchCollections,
+                    request_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.CollectionRequest.FromString,
+                    response_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.SerializeToString,
+            ),
             'InsertOneCollection': grpc.unary_unary_rpc_method_handler(
                     servicer.InsertOneCollection,
                     request_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.FromString,
                     response_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.SerializeToString,
             ),
-            'UpdateOneItem': grpc.unary_unary_rpc_method_handler(
-                    servicer.UpdateOneItem,
-                    request_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.FromString,
+            'UpdateCollection': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateCollection,
+                    request_deserializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.FromString,
                     response_serializer=epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.SerializeToString,
             ),
     }
@@ -228,22 +248,6 @@ class StacService(object):
         return grpc.experimental.unary_stream(request, target, '/epl.protobuf.v1.StacService/SearchItems',
             epl_dot_protobuf_dot_v1_dot_stac__pb2.StacRequest.SerializeToString,
             epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SearchCollections(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/epl.protobuf.v1.StacService/SearchCollections',
-            epl_dot_protobuf_dot_v1_dot_stac__pb2.CollectionRequest.SerializeToString,
-            epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -344,6 +348,38 @@ class StacService(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def UpdateOneItem(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/epl.protobuf.v1.StacService/UpdateOneItem',
+            epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.SerializeToString,
+            epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SearchCollections(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/epl.protobuf.v1.StacService/SearchCollections',
+            epl_dot_protobuf_dot_v1_dot_stac__pb2.CollectionRequest.SerializeToString,
+            epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def InsertOneCollection(request,
             target,
             options=(),
@@ -360,7 +396,7 @@ class StacService(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UpdateOneItem(request,
+    def UpdateCollection(request,
             target,
             options=(),
             channel_credentials=None,
@@ -369,8 +405,8 @@ class StacService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/epl.protobuf.v1.StacService/UpdateOneItem',
-            epl_dot_protobuf_dot_v1_dot_stac__pb2.StacItem.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/epl.protobuf.v1.StacService/UpdateCollection',
+            epl_dot_protobuf_dot_v1_dot_stac__pb2.Collection.SerializeToString,
             epl_dot_protobuf_dot_v1_dot_stac__pb2.StacDbResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

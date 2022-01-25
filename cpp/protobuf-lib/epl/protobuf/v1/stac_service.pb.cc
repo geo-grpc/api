@@ -30,30 +30,32 @@ static constexpr ::PROTOBUF_NAMESPACE_ID::Message* const* file_default_instances
 const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\"epl/protobuf/v1/stac_service.proto\022\017ep"
   "l.protobuf.v1\032\032epl/protobuf/v1/stac.prot"
-  "o2\264\006\n\013StacService\022J\n\013SearchItems\022\034.epl.p"
+  "o2\210\007\n\013StacService\022J\n\013SearchItems\022\034.epl.p"
   "rotobuf.v1.StacRequest\032\031.epl.protobuf.v1"
-  ".StacItem\"\0000\001\022X\n\021SearchCollections\022\".epl"
-  ".protobuf.v1.CollectionRequest\032\033.epl.pro"
-  "tobuf.v1.Collection\"\0000\001\022O\n\013InsertItems\022\031"
-  ".epl.protobuf.v1.StacItem\032\037.epl.protobuf"
-  ".v1.StacDbResponse\"\000(\0010\001\022O\n\013UpdateItems\022"
-  "\031.epl.protobuf.v1.StacItem\032\037.epl.protobu"
-  "f.v1.StacDbResponse\"\000(\0010\001\022M\n\nCountItems\022"
-  "\034.epl.protobuf.v1.StacRequest\032\037.epl.prot"
-  "obuf.v1.StacDbResponse\"\000\022M\n\rDeleteOneIte"
-  "m\022\031.epl.protobuf.v1.StacItem\032\037.epl.proto"
-  "buf.v1.StacDbResponse\"\000\022J\n\rSearchOneItem"
-  "\022\034.epl.protobuf.v1.StacRequest\032\031.epl.pro"
-  "tobuf.v1.StacItem\"\000\022M\n\rInsertOneItem\022\031.e"
-  "pl.protobuf.v1.StacItem\032\037.epl.protobuf.v"
-  "1.StacDbResponse\"\000\022U\n\023InsertOneCollectio"
-  "n\022\033.epl.protobuf.v1.Collection\032\037.epl.pro"
-  "tobuf.v1.StacDbResponse\"\000\022M\n\rUpdateOneIt"
-  "em\022\031.epl.protobuf.v1.StacItem\032\037.epl.prot"
-  "obuf.v1.StacDbResponse\"\000Bu\n\023com.epl.prot"
-  "obuf.v1B\020StacServiceProtoP\001Z.github.com/"
-  "geo-grpc/api/golang/epl/protobuf/v1\242\002\003ST"
-  "S\252\002\023com.epl.protobuf.v1b\006proto3"
+  ".StacItem\"\0000\001\022O\n\013InsertItems\022\031.epl.proto"
+  "buf.v1.StacItem\032\037.epl.protobuf.v1.StacDb"
+  "Response\"\000(\0010\001\022O\n\013UpdateItems\022\031.epl.prot"
+  "obuf.v1.StacItem\032\037.epl.protobuf.v1.StacD"
+  "bResponse\"\000(\0010\001\022M\n\nCountItems\022\034.epl.prot"
+  "obuf.v1.StacRequest\032\037.epl.protobuf.v1.St"
+  "acDbResponse\"\000\022M\n\rDeleteOneItem\022\031.epl.pr"
+  "otobuf.v1.StacItem\032\037.epl.protobuf.v1.Sta"
+  "cDbResponse\"\000\022J\n\rSearchOneItem\022\034.epl.pro"
+  "tobuf.v1.StacRequest\032\031.epl.protobuf.v1.S"
+  "tacItem\"\000\022M\n\rInsertOneItem\022\031.epl.protobu"
+  "f.v1.StacItem\032\037.epl.protobuf.v1.StacDbRe"
+  "sponse\"\000\022M\n\rUpdateOneItem\022\031.epl.protobuf"
+  ".v1.StacItem\032\037.epl.protobuf.v1.StacDbRes"
+  "ponse\"\000\022X\n\021SearchCollections\022\".epl.proto"
+  "buf.v1.CollectionRequest\032\033.epl.protobuf."
+  "v1.Collection\"\0000\001\022U\n\023InsertOneCollection"
+  "\022\033.epl.protobuf.v1.Collection\032\037.epl.prot"
+  "obuf.v1.StacDbResponse\"\000\022R\n\020UpdateCollec"
+  "tion\022\033.epl.protobuf.v1.Collection\032\037.epl."
+  "protobuf.v1.StacDbResponse\"\000Bu\n\023com.epl."
+  "protobuf.v1B\020StacServiceProtoP\001Z.github."
+  "com/geo-grpc/api/golang/epl/protobuf/v1\242"
+  "\002\003STS\252\002\023com.epl.protobuf.v1b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_deps[1] = {
   &::descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto,
@@ -63,7 +65,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_once;
 static bool descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, "epl/protobuf/v1/stac_service.proto", 1031,
+  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, "epl/protobuf/v1/stac_service.proto", 1115,
   &descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto_deps, 0, 1,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto::offsets,
   file_level_metadata_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, 0, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_5fservice_2eproto,

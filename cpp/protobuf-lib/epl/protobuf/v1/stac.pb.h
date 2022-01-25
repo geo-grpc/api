@@ -709,6 +709,7 @@ class Collection :
     kDescriptionFieldNumber = 5,
     kLicenseFieldNumber = 7,
     kExtentFieldNumber = 9,
+    kIsStaticFieldNumber = 11,
   };
   // repeated string keywords = 6;
   int keywords_size() const;
@@ -864,6 +865,15 @@ class Collection :
   ::epl::protobuf::v1::Extent* _internal_mutable_extent();
   public:
 
+  // bool is_static = 11;
+  void clear_is_static();
+  bool is_static() const;
+  void set_is_static(bool value);
+  private:
+  bool _internal_is_static() const;
+  void _internal_set_is_static(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:epl.protobuf.v1.Collection)
  private:
   class _Internal;
@@ -883,6 +893,7 @@ class Collection :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr license_;
   ::epl::protobuf::v1::Extent* extent_;
+  bool is_static_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_epl_2fprotobuf_2fv1_2fstac_2eproto;
 };
@@ -1298,6 +1309,7 @@ class Extent :
   enum : int {
     kSpatialFieldNumber = 1,
     kTemporalFieldNumber = 2,
+    kFootprintFieldNumber = 3,
   };
   // repeated .epl.protobuf.v1.EnvelopeData spatial = 1;
   int spatial_size() const;
@@ -1335,6 +1347,21 @@ class Extent :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::epl::protobuf::v1::Interval >&
       temporal() const;
 
+  // .epl.protobuf.v1.GeometryData footprint = 3;
+  bool has_footprint() const;
+  private:
+  bool _internal_has_footprint() const;
+  public:
+  void clear_footprint();
+  const ::epl::protobuf::v1::GeometryData& footprint() const;
+  ::epl::protobuf::v1::GeometryData* release_footprint();
+  ::epl::protobuf::v1::GeometryData* mutable_footprint();
+  void set_allocated_footprint(::epl::protobuf::v1::GeometryData* footprint);
+  private:
+  const ::epl::protobuf::v1::GeometryData& _internal_footprint() const;
+  ::epl::protobuf::v1::GeometryData* _internal_mutable_footprint();
+  public:
+
   // @@protoc_insertion_point(class_scope:epl.protobuf.v1.Extent)
  private:
   class _Internal;
@@ -1342,6 +1369,7 @@ class Extent :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::epl::protobuf::v1::EnvelopeData > spatial_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::epl::protobuf::v1::Interval > temporal_;
+  ::epl::protobuf::v1::GeometryData* footprint_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_epl_2fprotobuf_2fv1_2fstac_2eproto;
 };
@@ -6216,6 +6244,26 @@ Collection::mutable_summaries() {
   return _internal_mutable_summaries();
 }
 
+// bool is_static = 11;
+inline void Collection::clear_is_static() {
+  is_static_ = false;
+}
+inline bool Collection::_internal_is_static() const {
+  return is_static_;
+}
+inline bool Collection::is_static() const {
+  // @@protoc_insertion_point(field_get:epl.protobuf.v1.Collection.is_static)
+  return _internal_is_static();
+}
+inline void Collection::_internal_set_is_static(bool value) {
+  
+  is_static_ = value;
+}
+inline void Collection::set_is_static(bool value) {
+  _internal_set_is_static(value);
+  // @@protoc_insertion_point(field_set:epl.protobuf.v1.Collection.is_static)
+}
+
 // -------------------------------------------------------------------
 
 // CollectionRequest
@@ -6458,6 +6506,60 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::epl::protobuf::v1::Int
 Extent::temporal() const {
   // @@protoc_insertion_point(field_list:epl.protobuf.v1.Extent.temporal)
   return temporal_;
+}
+
+// .epl.protobuf.v1.GeometryData footprint = 3;
+inline bool Extent::_internal_has_footprint() const {
+  return this != internal_default_instance() && footprint_ != nullptr;
+}
+inline bool Extent::has_footprint() const {
+  return _internal_has_footprint();
+}
+inline const ::epl::protobuf::v1::GeometryData& Extent::_internal_footprint() const {
+  const ::epl::protobuf::v1::GeometryData* p = footprint_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::epl::protobuf::v1::GeometryData*>(
+      &::epl::protobuf::v1::_GeometryData_default_instance_);
+}
+inline const ::epl::protobuf::v1::GeometryData& Extent::footprint() const {
+  // @@protoc_insertion_point(field_get:epl.protobuf.v1.Extent.footprint)
+  return _internal_footprint();
+}
+inline ::epl::protobuf::v1::GeometryData* Extent::release_footprint() {
+  // @@protoc_insertion_point(field_release:epl.protobuf.v1.Extent.footprint)
+  
+  ::epl::protobuf::v1::GeometryData* temp = footprint_;
+  footprint_ = nullptr;
+  return temp;
+}
+inline ::epl::protobuf::v1::GeometryData* Extent::_internal_mutable_footprint() {
+  
+  if (footprint_ == nullptr) {
+    auto* p = CreateMaybeMessage<::epl::protobuf::v1::GeometryData>(GetArenaNoVirtual());
+    footprint_ = p;
+  }
+  return footprint_;
+}
+inline ::epl::protobuf::v1::GeometryData* Extent::mutable_footprint() {
+  // @@protoc_insertion_point(field_mutable:epl.protobuf.v1.Extent.footprint)
+  return _internal_mutable_footprint();
+}
+inline void Extent::set_allocated_footprint(::epl::protobuf::v1::GeometryData* footprint) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(footprint_);
+  }
+  if (footprint) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      footprint = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, footprint, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  footprint_ = footprint;
+  // @@protoc_insertion_point(field_set_allocated:epl.protobuf.v1.Extent.footprint)
 }
 
 // -------------------------------------------------------------------

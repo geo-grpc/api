@@ -2840,6 +2840,13 @@ can be mixed, but please keep the recommended best practices in mind. </p></td>
                   <td><p>A map of property summaries, either a set of values or statistics such as a range. </p></td>
                 </tr>
               
+                <tr>
+                  <td>is_static</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Flag denoting that this collection is static (i.e. it&#39;s footprint will not change). </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3031,6 +3038,13 @@ can be mixed, but please keep the recommended best practices in mind. </p></td>
                   <td><a href="#epl.protobuf.v1.Interval">Interval</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED. Potential temporal extent covered by the collection. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>footprint</td>
+                  <td><a href="#epl.protobuf.v1.GeometryData">GeometryData</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. Current footprint. </p></td>
                 </tr>
               
             </tbody>
@@ -4747,13 +4761,6 @@ in degrees (0-90). </p></td>
               </tr>
             
               <tr>
-                <td>SearchCollections</td>
-                <td><a href="#epl.protobuf.v1.CollectionRequest">CollectionRequest</a></td>
-                <td><a href="#epl.protobuf.v1.Collection">Collection</a> stream</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
                 <td>InsertItems</td>
                 <td><a href="#epl.protobuf.v1.StacItem">StacItem</a> stream</td>
                 <td><a href="#epl.protobuf.v1.StacDbResponse">StacDbResponse</a> stream</td>
@@ -4796,17 +4803,31 @@ in degrees (0-90). </p></td>
               </tr>
             
               <tr>
-                <td>InsertOneCollection</td>
-                <td><a href="#epl.protobuf.v1.Collection">Collection</a></td>
-                <td><a href="#epl.protobuf.v1.StacDbResponse">StacDbResponse</a></td>
-                <td><p>Insert one item into the STAC service</p></td>
-              </tr>
-            
-              <tr>
                 <td>UpdateOneItem</td>
                 <td><a href="#epl.protobuf.v1.StacItem">StacItem</a></td>
                 <td><a href="#epl.protobuf.v1.StacDbResponse">StacDbResponse</a></td>
                 <td><p>Update one item in the STAC service</p></td>
+              </tr>
+            
+              <tr>
+                <td>SearchCollections</td>
+                <td><a href="#epl.protobuf.v1.CollectionRequest">CollectionRequest</a></td>
+                <td><a href="#epl.protobuf.v1.Collection">Collection</a> stream</td>
+                <td><p>Search existing Collections</p></td>
+              </tr>
+            
+              <tr>
+                <td>InsertOneCollection</td>
+                <td><a href="#epl.protobuf.v1.Collection">Collection</a></td>
+                <td><a href="#epl.protobuf.v1.StacDbResponse">StacDbResponse</a></td>
+                <td><p>Create a new Collection</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateCollection</td>
+                <td><a href="#epl.protobuf.v1.Collection">Collection</a></td>
+                <td><a href="#epl.protobuf.v1.StacDbResponse">StacDbResponse</a></td>
+                <td><p>Update an existing Collection&#39;s metadata and/or footprint</p></td>
               </tr>
             
           </tbody>

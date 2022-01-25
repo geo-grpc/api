@@ -25,15 +25,16 @@ namespace v1 {
 
 static const char* StacService_method_names[] = {
   "/epl.protobuf.v1.StacService/SearchItems",
-  "/epl.protobuf.v1.StacService/SearchCollections",
   "/epl.protobuf.v1.StacService/InsertItems",
   "/epl.protobuf.v1.StacService/UpdateItems",
   "/epl.protobuf.v1.StacService/CountItems",
   "/epl.protobuf.v1.StacService/DeleteOneItem",
   "/epl.protobuf.v1.StacService/SearchOneItem",
   "/epl.protobuf.v1.StacService/InsertOneItem",
-  "/epl.protobuf.v1.StacService/InsertOneCollection",
   "/epl.protobuf.v1.StacService/UpdateOneItem",
+  "/epl.protobuf.v1.StacService/SearchCollections",
+  "/epl.protobuf.v1.StacService/InsertOneCollection",
+  "/epl.protobuf.v1.StacService/UpdateCollection",
 };
 
 std::unique_ptr< StacService::Stub> StacService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -44,15 +45,16 @@ std::unique_ptr< StacService::Stub> StacService::NewStub(const std::shared_ptr< 
 
 StacService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_SearchItems_(StacService_method_names[0], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SearchCollections_(StacService_method_names[1], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_InsertItems_(StacService_method_names[2], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
-  , rpcmethod_UpdateItems_(StacService_method_names[3], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
-  , rpcmethod_CountItems_(StacService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteOneItem_(StacService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SearchOneItem_(StacService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_InsertOneItem_(StacService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_InsertOneCollection_(StacService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateOneItem_(StacService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InsertItems_(StacService_method_names[1], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_UpdateItems_(StacService_method_names[2], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_CountItems_(StacService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteOneItem_(StacService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SearchOneItem_(StacService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InsertOneItem_(StacService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateOneItem_(StacService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SearchCollections_(StacService_method_names[8], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_InsertOneCollection_(StacService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateCollection_(StacService_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::ClientReader< ::epl::protobuf::v1::StacItem>* StacService::Stub::SearchItemsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request) {
@@ -69,22 +71,6 @@ void StacService::Stub::experimental_async::SearchItems(::grpc::ClientContext* c
 
 ::grpc::ClientAsyncReader< ::epl::protobuf::v1::StacItem>* StacService::Stub::PrepareAsyncSearchItemsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::StacItem>::Create(channel_.get(), cq, rpcmethod_SearchItems_, context, request, false, nullptr);
-}
-
-::grpc::ClientReader< ::epl::protobuf::v1::Collection>* StacService::Stub::SearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) {
-  return ::grpc_impl::internal::ClientReaderFactory< ::epl::protobuf::v1::Collection>::Create(channel_.get(), rpcmethod_SearchCollections_, context, request);
-}
-
-void StacService::Stub::experimental_async::SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) {
-  ::grpc_impl::internal::ClientCallbackReaderFactory< ::epl::protobuf::v1::Collection>::Create(stub_->channel_.get(), stub_->rpcmethod_SearchCollections_, context, request, reactor);
-}
-
-::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>* StacService::Stub::AsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::Collection>::Create(channel_.get(), cq, rpcmethod_SearchCollections_, context, request, true, tag);
-}
-
-::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>* StacService::Stub::PrepareAsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::Collection>::Create(channel_.get(), cq, rpcmethod_SearchCollections_, context, request, false, nullptr);
 }
 
 ::grpc::ClientReaderWriter< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* StacService::Stub::InsertItemsRaw(::grpc::ClientContext* context) {
@@ -231,34 +217,6 @@ void StacService::Stub::experimental_async::InsertOneItem(::grpc::ClientContext*
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::StacDbResponse>::Create(channel_.get(), cq, rpcmethod_InsertOneItem_, context, request, false);
 }
 
-::grpc::Status StacService::Stub::InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::epl::protobuf::v1::StacDbResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InsertOneCollection_, context, request, response);
-}
-
-void StacService::Stub::experimental_async::InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InsertOneCollection_, context, request, response, std::move(f));
-}
-
-void StacService::Stub::experimental_async::InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InsertOneCollection_, context, request, response, std::move(f));
-}
-
-void StacService::Stub::experimental_async::InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InsertOneCollection_, context, request, response, reactor);
-}
-
-void StacService::Stub::experimental_async::InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InsertOneCollection_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* StacService::Stub::AsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::StacDbResponse>::Create(channel_.get(), cq, rpcmethod_InsertOneCollection_, context, request, true);
-}
-
-::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* StacService::Stub::PrepareAsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::StacDbResponse>::Create(channel_.get(), cq, rpcmethod_InsertOneCollection_, context, request, false);
-}
-
 ::grpc::Status StacService::Stub::UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::epl::protobuf::v1::StacDbResponse* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateOneItem_, context, request, response);
 }
@@ -287,6 +245,78 @@ void StacService::Stub::experimental_async::UpdateOneItem(::grpc::ClientContext*
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::StacDbResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOneItem_, context, request, false);
 }
 
+::grpc::ClientReader< ::epl::protobuf::v1::Collection>* StacService::Stub::SearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) {
+  return ::grpc_impl::internal::ClientReaderFactory< ::epl::protobuf::v1::Collection>::Create(channel_.get(), rpcmethod_SearchCollections_, context, request);
+}
+
+void StacService::Stub::experimental_async::SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::epl::protobuf::v1::Collection>::Create(stub_->channel_.get(), stub_->rpcmethod_SearchCollections_, context, request, reactor);
+}
+
+::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>* StacService::Stub::AsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::Collection>::Create(channel_.get(), cq, rpcmethod_SearchCollections_, context, request, true, tag);
+}
+
+::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>* StacService::Stub::PrepareAsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::epl::protobuf::v1::Collection>::Create(channel_.get(), cq, rpcmethod_SearchCollections_, context, request, false, nullptr);
+}
+
+::grpc::Status StacService::Stub::InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::epl::protobuf::v1::StacDbResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InsertOneCollection_, context, request, response);
+}
+
+void StacService::Stub::experimental_async::InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InsertOneCollection_, context, request, response, std::move(f));
+}
+
+void StacService::Stub::experimental_async::InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InsertOneCollection_, context, request, response, std::move(f));
+}
+
+void StacService::Stub::experimental_async::InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InsertOneCollection_, context, request, response, reactor);
+}
+
+void StacService::Stub::experimental_async::InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InsertOneCollection_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* StacService::Stub::AsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::StacDbResponse>::Create(channel_.get(), cq, rpcmethod_InsertOneCollection_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* StacService::Stub::PrepareAsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::StacDbResponse>::Create(channel_.get(), cq, rpcmethod_InsertOneCollection_, context, request, false);
+}
+
+::grpc::Status StacService::Stub::UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::epl::protobuf::v1::StacDbResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateCollection_, context, request, response);
+}
+
+void StacService::Stub::experimental_async::UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateCollection_, context, request, response, std::move(f));
+}
+
+void StacService::Stub::experimental_async::UpdateCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateCollection_, context, request, response, std::move(f));
+}
+
+void StacService::Stub::experimental_async::UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateCollection_, context, request, response, reactor);
+}
+
+void StacService::Stub::experimental_async::UpdateCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateCollection_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* StacService::Stub::AsyncUpdateCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::StacDbResponse>::Create(channel_.get(), cq, rpcmethod_UpdateCollection_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* StacService::Stub::PrepareAsyncUpdateCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::epl::protobuf::v1::StacDbResponse>::Create(channel_.get(), cq, rpcmethod_UpdateCollection_, context, request, false);
+}
+
 StacService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       StacService_method_names[0],
@@ -295,62 +325,60 @@ StacService::Service::Service() {
           std::mem_fn(&StacService::Service::SearchItems), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       StacService_method_names[1],
-      ::grpc::internal::RpcMethod::SERVER_STREAMING,
-      new ::grpc::internal::ServerStreamingHandler< StacService::Service, ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(
-          std::mem_fn(&StacService::Service::SearchCollections), this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      StacService_method_names[2],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< StacService::Service, ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
           std::mem_fn(&StacService::Service::InsertItems), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      StacService_method_names[3],
+      StacService_method_names[2],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< StacService::Service, ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
           std::mem_fn(&StacService::Service::UpdateItems), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      StacService_method_names[4],
+      StacService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< StacService::Service, ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>(
           std::mem_fn(&StacService::Service::CountItems), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      StacService_method_names[5],
+      StacService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< StacService::Service, ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
           std::mem_fn(&StacService::Service::DeleteOneItem), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      StacService_method_names[6],
+      StacService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< StacService::Service, ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(
           std::mem_fn(&StacService::Service::SearchOneItem), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      StacService_method_names[7],
+      StacService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< StacService::Service, ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
           std::mem_fn(&StacService::Service::InsertOneItem), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
+      StacService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< StacService::Service, ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+          std::mem_fn(&StacService::Service::UpdateOneItem), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
       StacService_method_names[8],
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< StacService::Service, ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(
+          std::mem_fn(&StacService::Service::SearchCollections), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      StacService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< StacService::Service, ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(
           std::mem_fn(&StacService::Service::InsertOneCollection), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      StacService_method_names[9],
+      StacService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< StacService::Service, ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
-          std::mem_fn(&StacService::Service::UpdateOneItem), this)));
+      new ::grpc::internal::RpcMethodHandler< StacService::Service, ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(
+          std::mem_fn(&StacService::Service::UpdateCollection), this)));
 }
 
 StacService::Service::~Service() {
 }
 
 ::grpc::Status StacService::Service::SearchItems(::grpc::ServerContext* context, const ::epl::protobuf::v1::StacRequest* request, ::grpc::ServerWriter< ::epl::protobuf::v1::StacItem>* writer) {
-  (void) context;
-  (void) request;
-  (void) writer;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status StacService::Service::SearchCollections(::grpc::ServerContext* context, const ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* writer) {
   (void) context;
   (void) request;
   (void) writer;
@@ -397,6 +425,20 @@ StacService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status StacService::Service::UpdateOneItem(::grpc::ServerContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status StacService::Service::SearchCollections(::grpc::ServerContext* context, const ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* writer) {
+  (void) context;
+  (void) request;
+  (void) writer;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status StacService::Service::InsertOneCollection(::grpc::ServerContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response) {
   (void) context;
   (void) request;
@@ -404,7 +446,7 @@ StacService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status StacService::Service::UpdateOneItem(::grpc::ServerContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response) {
+::grpc::Status StacService::Service::UpdateCollection(::grpc::ServerContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response) {
   (void) context;
   (void) request;
   (void) response;
