@@ -39,7 +39,6 @@ service StacService {
     using a search request, stream all the results that match the search filter
     */
     rpc SearchItems(epl.protobuf.v1.StacRequest) returns (stream epl.protobuf.v1.StacItem) {}
-    rpc SearchCollections(epl.protobuf.v1.CollectionRequest) returns (stream epl.protobuf.v1.Collection) {}
 
     /*
     insert a stream of items into the STAC service
@@ -69,13 +68,22 @@ service StacService {
     Insert one item into the STAC service
     */
     rpc InsertOneItem(epl.protobuf.v1.StacItem) returns (epl.protobuf.v1.StacDbResponse) {}
-    /*
-    Insert one item into the STAC service
-    */
-    rpc InsertOneCollection(epl.protobuf.v1.Collection) returns (epl.protobuf.v1.StacDbResponse) {}
 
     /*
     Update one item in the STAC service
     */
     rpc UpdateOneItem(epl.protobuf.v1.StacItem) returns (epl.protobuf.v1.StacDbResponse) {}
+
+    /*
+    Search existing Collections
+    */
+    rpc SearchCollections(epl.protobuf.v1.CollectionRequest) returns (stream epl.protobuf.v1.Collection) {}
+    /*
+    Create a new Collection
+    */
+    rpc InsertOneCollection(epl.protobuf.v1.Collection) returns (epl.protobuf.v1.StacDbResponse) {}
+    /*
+    Update an existing Collection's metadata and/or footprint
+    */
+    rpc UpdateCollection(epl.protobuf.v1.Collection) returns (epl.protobuf.v1.StacDbResponse) {}
 }

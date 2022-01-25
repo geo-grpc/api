@@ -71,15 +71,6 @@ class StacService final {
     std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::StacItem>> PrepareAsyncSearchItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::StacItem>>(PrepareAsyncSearchItemsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::epl::protobuf::v1::Collection>> SearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::epl::protobuf::v1::Collection>>(SearchCollectionsRaw(context, request));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>> AsyncSearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>>(AsyncSearchCollectionsRaw(context, request, cq, tag));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>> PrepareAsyncSearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>>(PrepareAsyncSearchCollectionsRaw(context, request, cq));
-    }
     //
     // insert a stream of items into the STAC service
     std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>> InsertItems(::grpc::ClientContext* context) {
@@ -139,7 +130,27 @@ class StacService final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncInsertOneItemRaw(context, request, cq));
     }
     //
-    // Insert one item into the STAC service
+    // Update one item in the STAC service
+    virtual ::grpc::Status UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::epl::protobuf::v1::StacDbResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>> AsyncUpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(AsyncUpdateOneItemRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>> PrepareAsyncUpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncUpdateOneItemRaw(context, request, cq));
+    }
+    //
+    // Search existing Collections
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::epl::protobuf::v1::Collection>> SearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::epl::protobuf::v1::Collection>>(SearchCollectionsRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>> AsyncSearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>>(AsyncSearchCollectionsRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>> PrepareAsyncSearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>>(PrepareAsyncSearchCollectionsRaw(context, request, cq));
+    }
+    //
+    // Create a new Collection
     virtual ::grpc::Status InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::epl::protobuf::v1::StacDbResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>> AsyncInsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(AsyncInsertOneCollectionRaw(context, request, cq));
@@ -148,13 +159,13 @@ class StacService final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncInsertOneCollectionRaw(context, request, cq));
     }
     //
-    // Update one item in the STAC service
-    virtual ::grpc::Status UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::epl::protobuf::v1::StacDbResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>> AsyncUpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(AsyncUpdateOneItemRaw(context, request, cq));
+    // Update an existing Collection's metadata and/or footprint
+    virtual ::grpc::Status UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::epl::protobuf::v1::StacDbResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>> AsyncUpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(AsyncUpdateCollectionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>> PrepareAsyncUpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncUpdateOneItemRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>> PrepareAsyncUpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncUpdateCollectionRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
@@ -165,11 +176,6 @@ class StacService final {
       virtual void SearchItems(::grpc::ClientContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) = 0;
       #else
       virtual void SearchItems(::grpc::ClientContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) = 0;
-      #else
-      virtual void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) = 0;
       #endif
       //
       // insert a stream of items into the STAC service
@@ -242,20 +248,6 @@ class StacService final {
       virtual void InsertOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       //
-      // Insert one item into the STAC service
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      //
       // Update one item in the STAC service
       virtual void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -269,6 +261,41 @@ class StacService final {
       #else
       virtual void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      //
+      // Search existing Collections
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) = 0;
+      #else
+      virtual void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) = 0;
+      #endif
+      //
+      // Create a new Collection
+      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      //
+      // Update an existing Collection's metadata and/or footprint
+      virtual void UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void UpdateCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void UpdateCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -281,9 +308,6 @@ class StacService final {
     virtual ::grpc::ClientReaderInterface< ::epl::protobuf::v1::StacItem>* SearchItemsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::StacItem>* AsyncSearchItemsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::StacItem>* PrepareAsyncSearchItemsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientReaderInterface< ::epl::protobuf::v1::Collection>* SearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>* AsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>* PrepareAsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientReaderWriterInterface< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* InsertItemsRaw(::grpc::ClientContext* context) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* AsyncInsertItemsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncInsertItemsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
@@ -298,10 +322,15 @@ class StacService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacItem>* PrepareAsyncSearchOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* AsyncInsertOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncInsertOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* AsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* AsyncUpdateOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncUpdateOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::epl::protobuf::v1::Collection>* SearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>* AsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::epl::protobuf::v1::Collection>* PrepareAsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* AsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* AsyncUpdateCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncUpdateCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -314,15 +343,6 @@ class StacService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::StacItem>> PrepareAsyncSearchItems(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::StacItem>>(PrepareAsyncSearchItemsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientReader< ::epl::protobuf::v1::Collection>> SearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::epl::protobuf::v1::Collection>>(SearchCollectionsRaw(context, request));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>> AsyncSearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>>(AsyncSearchCollectionsRaw(context, request, cq, tag));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>> PrepareAsyncSearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>>(PrepareAsyncSearchCollectionsRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientReaderWriter< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>> InsertItems(::grpc::ClientContext* context) {
       return std::unique_ptr< ::grpc::ClientReaderWriter< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>>(InsertItemsRaw(context));
@@ -370,6 +390,22 @@ class StacService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> PrepareAsyncInsertOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncInsertOneItemRaw(context, request, cq));
     }
+    ::grpc::Status UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::epl::protobuf::v1::StacDbResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> AsyncUpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(AsyncUpdateOneItemRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> PrepareAsyncUpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncUpdateOneItemRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReader< ::epl::protobuf::v1::Collection>> SearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::epl::protobuf::v1::Collection>>(SearchCollectionsRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>> AsyncSearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>>(AsyncSearchCollectionsRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>> PrepareAsyncSearchCollections(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>>(PrepareAsyncSearchCollectionsRaw(context, request, cq));
+    }
     ::grpc::Status InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::epl::protobuf::v1::StacDbResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> AsyncInsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(AsyncInsertOneCollectionRaw(context, request, cq));
@@ -377,12 +413,12 @@ class StacService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> PrepareAsyncInsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncInsertOneCollectionRaw(context, request, cq));
     }
-    ::grpc::Status UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::epl::protobuf::v1::StacDbResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> AsyncUpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(AsyncUpdateOneItemRaw(context, request, cq));
+    ::grpc::Status UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::epl::protobuf::v1::StacDbResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> AsyncUpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(AsyncUpdateCollectionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> PrepareAsyncUpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncUpdateOneItemRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>> PrepareAsyncUpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>>(PrepareAsyncUpdateCollectionRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -391,11 +427,6 @@ class StacService final {
       void SearchItems(::grpc::ClientContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) override;
       #else
       void SearchItems(::grpc::ClientContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::StacItem>* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) override;
-      #else
-      void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void InsertItems(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::epl::protobuf::v1::StacItem,::epl::protobuf::v1::StacDbResponse>* reactor) override;
@@ -455,6 +486,23 @@ class StacService final {
       #else
       void InsertOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) override;
+      #else
+      void SearchCollections(::grpc::ClientContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::experimental::ClientReadReactor< ::epl::protobuf::v1::Collection>* reactor) override;
+      #endif
       void InsertOneCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
       void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -467,17 +515,17 @@ class StacService final {
       #else
       void InsertOneCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
-      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void UpdateOneItem(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void UpdateCollection(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void UpdateOneItem(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void UpdateCollection(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::epl::protobuf::v1::StacDbResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -493,9 +541,6 @@ class StacService final {
     ::grpc::ClientReader< ::epl::protobuf::v1::StacItem>* SearchItemsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request) override;
     ::grpc::ClientAsyncReader< ::epl::protobuf::v1::StacItem>* AsyncSearchItemsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::epl::protobuf::v1::StacItem>* PrepareAsyncSearchItemsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientReader< ::epl::protobuf::v1::Collection>* SearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) override;
-    ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>* AsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>* PrepareAsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientReaderWriter< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* InsertItemsRaw(::grpc::ClientContext* context) override;
     ::grpc::ClientAsyncReaderWriter< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* AsyncInsertItemsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReaderWriter< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncInsertItemsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
@@ -510,20 +555,26 @@ class StacService final {
     ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacItem>* PrepareAsyncSearchOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* AsyncInsertOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncInsertOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* AsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* AsyncUpdateOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncUpdateOneItemRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::StacItem& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::epl::protobuf::v1::Collection>* SearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request) override;
+    ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>* AsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::epl::protobuf::v1::Collection>* PrepareAsyncSearchCollectionsRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::CollectionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* AsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncInsertOneCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* AsyncUpdateCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::epl::protobuf::v1::StacDbResponse>* PrepareAsyncUpdateCollectionRaw(::grpc::ClientContext* context, const ::epl::protobuf::v1::Collection& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SearchItems_;
-    const ::grpc::internal::RpcMethod rpcmethod_SearchCollections_;
     const ::grpc::internal::RpcMethod rpcmethod_InsertItems_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateItems_;
     const ::grpc::internal::RpcMethod rpcmethod_CountItems_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteOneItem_;
     const ::grpc::internal::RpcMethod rpcmethod_SearchOneItem_;
     const ::grpc::internal::RpcMethod rpcmethod_InsertOneItem_;
-    const ::grpc::internal::RpcMethod rpcmethod_InsertOneCollection_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateOneItem_;
+    const ::grpc::internal::RpcMethod rpcmethod_SearchCollections_;
+    const ::grpc::internal::RpcMethod rpcmethod_InsertOneCollection_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateCollection_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -534,7 +585,6 @@ class StacService final {
     //
     // using a search request, stream all the results that match the search filter
     virtual ::grpc::Status SearchItems(::grpc::ServerContext* context, const ::epl::protobuf::v1::StacRequest* request, ::grpc::ServerWriter< ::epl::protobuf::v1::StacItem>* writer);
-    virtual ::grpc::Status SearchCollections(::grpc::ServerContext* context, const ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* writer);
     //
     // insert a stream of items into the STAC service
     virtual ::grpc::Status InsertItems(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::epl::protobuf::v1::StacDbResponse, ::epl::protobuf::v1::StacItem>* stream);
@@ -554,11 +604,17 @@ class StacService final {
     // Insert one item into the STAC service
     virtual ::grpc::Status InsertOneItem(::grpc::ServerContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response);
     //
-    // Insert one item into the STAC service
-    virtual ::grpc::Status InsertOneCollection(::grpc::ServerContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response);
-    //
     // Update one item in the STAC service
     virtual ::grpc::Status UpdateOneItem(::grpc::ServerContext* context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response);
+    //
+    // Search existing Collections
+    virtual ::grpc::Status SearchCollections(::grpc::ServerContext* context, const ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* writer);
+    //
+    // Create a new Collection
+    virtual ::grpc::Status InsertOneCollection(::grpc::ServerContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response);
+    //
+    // Update an existing Collection's metadata and/or footprint
+    virtual ::grpc::Status UpdateCollection(::grpc::ServerContext* context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SearchItems : public BaseClass {
@@ -581,32 +637,12 @@ class StacService final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_SearchCollections : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_SearchCollections() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_SearchCollections() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSearchCollections(::grpc::ServerContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ServerAsyncWriter< ::epl::protobuf::v1::Collection>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithAsyncMethod_InsertItems : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_InsertItems() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_InsertItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -617,7 +653,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestInsertItems(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::epl::protobuf::v1::StacDbResponse, ::epl::protobuf::v1::StacItem>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -626,7 +662,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateItems() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_UpdateItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -637,7 +673,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateItems(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::epl::protobuf::v1::StacDbResponse, ::epl::protobuf::v1::StacItem>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(3, context, stream, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -646,7 +682,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CountItems() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_CountItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -657,7 +693,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCountItems(::grpc::ServerContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::ServerAsyncResponseWriter< ::epl::protobuf::v1::StacDbResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -666,7 +702,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteOneItem() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_DeleteOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -677,7 +713,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteOneItem(::grpc::ServerContext* context, ::epl::protobuf::v1::StacItem* request, ::grpc::ServerAsyncResponseWriter< ::epl::protobuf::v1::StacDbResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -686,7 +722,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SearchOneItem() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_SearchOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -697,7 +733,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSearchOneItem(::grpc::ServerContext* context, ::epl::protobuf::v1::StacRequest* request, ::grpc::ServerAsyncResponseWriter< ::epl::protobuf::v1::StacItem>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -706,7 +742,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_InsertOneItem() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_InsertOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -717,27 +753,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestInsertOneItem(::grpc::ServerContext* context, ::epl::protobuf::v1::StacItem* request, ::grpc::ServerAsyncResponseWriter< ::epl::protobuf::v1::StacDbResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_InsertOneCollection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_InsertOneCollection() {
-      ::grpc::Service::MarkMethodAsync(8);
-    }
-    ~WithAsyncMethod_InsertOneCollection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status InsertOneCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestInsertOneCollection(::grpc::ServerContext* context, ::epl::protobuf::v1::Collection* request, ::grpc::ServerAsyncResponseWriter< ::epl::protobuf::v1::StacDbResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -746,7 +762,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateOneItem() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_UpdateOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -757,10 +773,70 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateOneItem(::grpc::ServerContext* context, ::epl::protobuf::v1::StacItem* request, ::grpc::ServerAsyncResponseWriter< ::epl::protobuf::v1::StacDbResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SearchCollections : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SearchCollections() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_SearchCollections() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSearchCollections(::grpc::ServerContext* context, ::epl::protobuf::v1::CollectionRequest* request, ::grpc::ServerAsyncWriter< ::epl::protobuf::v1::Collection>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(8, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InsertOneCollection : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InsertOneCollection() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_InsertOneCollection() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InsertOneCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInsertOneCollection(::grpc::ServerContext* context, ::epl::protobuf::v1::Collection* request, ::grpc::ServerAsyncResponseWriter< ::epl::protobuf::v1::StacDbResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SearchItems<WithAsyncMethod_SearchCollections<WithAsyncMethod_InsertItems<WithAsyncMethod_UpdateItems<WithAsyncMethod_CountItems<WithAsyncMethod_DeleteOneItem<WithAsyncMethod_SearchOneItem<WithAsyncMethod_InsertOneItem<WithAsyncMethod_InsertOneCollection<WithAsyncMethod_UpdateOneItem<Service > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_UpdateCollection : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UpdateCollection() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_UpdateCollection() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateCollection(::grpc::ServerContext* context, ::epl::protobuf::v1::Collection* request, ::grpc::ServerAsyncResponseWriter< ::epl::protobuf::v1::StacDbResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SearchItems<WithAsyncMethod_InsertItems<WithAsyncMethod_UpdateItems<WithAsyncMethod_CountItems<WithAsyncMethod_DeleteOneItem<WithAsyncMethod_SearchOneItem<WithAsyncMethod_InsertOneItem<WithAsyncMethod_UpdateOneItem<WithAsyncMethod_SearchCollections<WithAsyncMethod_InsertOneCollection<WithAsyncMethod_UpdateCollection<Service > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_SearchItems : public BaseClass {
    private:
@@ -800,44 +876,6 @@ class StacService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_SearchCollections : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_SearchCollections() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::epl::protobuf::v1::CollectionRequest* request) { return this->SearchCollections(context, request); }));
-    }
-    ~ExperimentalWithCallbackMethod_SearchCollections() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerWriteReactor< ::epl::protobuf::v1::Collection>* SearchCollections(
-      ::grpc::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::epl::protobuf::v1::Collection>* SearchCollections(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
   class ExperimentalWithCallbackMethod_InsertItems : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -848,7 +886,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(2,
+        MarkMethodCallback(1,
           new ::grpc_impl::internal::CallbackBidiHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -886,7 +924,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(3,
+        MarkMethodCallback(2,
           new ::grpc_impl::internal::CallbackBidiHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -924,7 +962,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(4,
+        MarkMethodCallback(3,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -936,9 +974,9 @@ class StacService final {
     void SetMessageAllocatorFor_CountItems(
         ::grpc::experimental::MessageAllocator< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -971,7 +1009,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(5,
+        MarkMethodCallback(4,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -983,9 +1021,9 @@ class StacService final {
     void SetMessageAllocatorFor_DeleteOneItem(
         ::grpc::experimental::MessageAllocator< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -1018,7 +1056,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(6,
+        MarkMethodCallback(5,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1030,9 +1068,9 @@ class StacService final {
     void SetMessageAllocatorFor_SearchOneItem(
         ::grpc::experimental::MessageAllocator< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -1065,7 +1103,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(7,
+        MarkMethodCallback(6,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1077,9 +1115,9 @@ class StacService final {
     void SetMessageAllocatorFor_InsertOneItem(
         ::grpc::experimental::MessageAllocator< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -1102,6 +1140,91 @@ class StacService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithCallbackMethod_UpdateOneItem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_UpdateOneItem() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response) { return this->UpdateOneItem(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateOneItem(
+        ::grpc::experimental::MessageAllocator< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_UpdateOneItem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateOneItem(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* UpdateOneItem(
+      ::grpc::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* UpdateOneItem(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_SearchCollections : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_SearchCollections() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::epl::protobuf::v1::CollectionRequest* request) { return this->SearchCollections(context, request); }));
+    }
+    ~ExperimentalWithCallbackMethod_SearchCollections() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerWriteReactor< ::epl::protobuf::v1::Collection>* SearchCollections(
+      ::grpc::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::epl::protobuf::v1::Collection>* SearchCollections(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class ExperimentalWithCallbackMethod_InsertOneCollection : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -1112,7 +1235,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(8,
+        MarkMethodCallback(9,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1124,9 +1247,9 @@ class StacService final {
     void SetMessageAllocatorFor_InsertOneCollection(
         ::grpc::experimental::MessageAllocator< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -1149,57 +1272,57 @@ class StacService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_UpdateOneItem : public BaseClass {
+  class ExperimentalWithCallbackMethod_UpdateCollection : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_UpdateOneItem() {
+    ExperimentalWithCallbackMethod_UpdateCollection() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(9,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(
+        MarkMethodCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::epl::protobuf::v1::StacItem* request, ::epl::protobuf::v1::StacDbResponse* response) { return this->UpdateOneItem(context, request, response); }));}
-    void SetMessageAllocatorFor_UpdateOneItem(
-        ::grpc::experimental::MessageAllocator< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>* allocator) {
+                     context, const ::epl::protobuf::v1::Collection* request, ::epl::protobuf::v1::StacDbResponse* response) { return this->UpdateCollection(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateCollection(
+        ::grpc::experimental::MessageAllocator< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_UpdateOneItem() override {
+    ~ExperimentalWithCallbackMethod_UpdateCollection() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateOneItem(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+    ::grpc::Status UpdateCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* UpdateOneItem(
-      ::grpc::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/)
+    virtual ::grpc::ServerUnaryReactor* UpdateCollection(
+      ::grpc::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* UpdateOneItem(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/)
+    virtual ::grpc::experimental::ServerUnaryReactor* UpdateCollection(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/)
     #endif
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_SearchItems<ExperimentalWithCallbackMethod_SearchCollections<ExperimentalWithCallbackMethod_InsertItems<ExperimentalWithCallbackMethod_UpdateItems<ExperimentalWithCallbackMethod_CountItems<ExperimentalWithCallbackMethod_DeleteOneItem<ExperimentalWithCallbackMethod_SearchOneItem<ExperimentalWithCallbackMethod_InsertOneItem<ExperimentalWithCallbackMethod_InsertOneCollection<ExperimentalWithCallbackMethod_UpdateOneItem<Service > > > > > > > > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_SearchItems<ExperimentalWithCallbackMethod_InsertItems<ExperimentalWithCallbackMethod_UpdateItems<ExperimentalWithCallbackMethod_CountItems<ExperimentalWithCallbackMethod_DeleteOneItem<ExperimentalWithCallbackMethod_SearchOneItem<ExperimentalWithCallbackMethod_InsertOneItem<ExperimentalWithCallbackMethod_UpdateOneItem<ExperimentalWithCallbackMethod_SearchCollections<ExperimentalWithCallbackMethod_InsertOneCollection<ExperimentalWithCallbackMethod_UpdateCollection<Service > > > > > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_SearchItems<ExperimentalWithCallbackMethod_SearchCollections<ExperimentalWithCallbackMethod_InsertItems<ExperimentalWithCallbackMethod_UpdateItems<ExperimentalWithCallbackMethod_CountItems<ExperimentalWithCallbackMethod_DeleteOneItem<ExperimentalWithCallbackMethod_SearchOneItem<ExperimentalWithCallbackMethod_InsertOneItem<ExperimentalWithCallbackMethod_InsertOneCollection<ExperimentalWithCallbackMethod_UpdateOneItem<Service > > > > > > > > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_SearchItems<ExperimentalWithCallbackMethod_InsertItems<ExperimentalWithCallbackMethod_UpdateItems<ExperimentalWithCallbackMethod_CountItems<ExperimentalWithCallbackMethod_DeleteOneItem<ExperimentalWithCallbackMethod_SearchOneItem<ExperimentalWithCallbackMethod_InsertOneItem<ExperimentalWithCallbackMethod_UpdateOneItem<ExperimentalWithCallbackMethod_SearchCollections<ExperimentalWithCallbackMethod_InsertOneCollection<ExperimentalWithCallbackMethod_UpdateCollection<Service > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SearchItems : public BaseClass {
    private:
@@ -1218,29 +1341,12 @@ class StacService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_SearchCollections : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_SearchCollections() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_SearchCollections() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithGenericMethod_InsertItems : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_InsertItems() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_InsertItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1257,7 +1363,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateItems() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_UpdateItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1274,7 +1380,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CountItems() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_CountItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1291,7 +1397,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteOneItem() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_DeleteOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1308,7 +1414,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SearchOneItem() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_SearchOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1325,7 +1431,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_InsertOneItem() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_InsertOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1337,12 +1443,46 @@ class StacService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_UpdateOneItem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateOneItem() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_UpdateOneItem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateOneItem(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SearchCollections : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SearchCollections() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_SearchCollections() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_InsertOneCollection : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_InsertOneCollection() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_InsertOneCollection() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1354,18 +1494,18 @@ class StacService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_UpdateOneItem : public BaseClass {
+  class WithGenericMethod_UpdateCollection : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_UpdateOneItem() {
-      ::grpc::Service::MarkMethodGeneric(9);
+    WithGenericMethod_UpdateCollection() {
+      ::grpc::Service::MarkMethodGeneric(10);
     }
-    ~WithGenericMethod_UpdateOneItem() override {
+    ~WithGenericMethod_UpdateCollection() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateOneItem(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+    ::grpc::Status UpdateCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1391,32 +1531,12 @@ class StacService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SearchCollections : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_SearchCollections() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_SearchCollections() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSearchCollections(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_InsertItems : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_InsertItems() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(1);
     }
     ~WithRawMethod_InsertItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1427,7 +1547,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestInsertItems(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1436,7 +1556,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateItems() {
-      ::grpc::Service::MarkMethodRaw(3);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_UpdateItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1447,7 +1567,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateItems(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(3, context, stream, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1456,7 +1576,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CountItems() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_CountItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1467,7 +1587,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCountItems(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1476,7 +1596,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteOneItem() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(4);
     }
     ~WithRawMethod_DeleteOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1487,7 +1607,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteOneItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1496,7 +1616,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SearchOneItem() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_SearchOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1507,7 +1627,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSearchOneItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1516,7 +1636,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_InsertOneItem() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_InsertOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1527,27 +1647,7 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestInsertOneItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_InsertOneCollection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_InsertOneCollection() {
-      ::grpc::Service::MarkMethodRaw(8);
-    }
-    ~WithRawMethod_InsertOneCollection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status InsertOneCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestInsertOneCollection(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1556,7 +1656,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateOneItem() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_UpdateOneItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1567,7 +1667,67 @@ class StacService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateOneItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SearchCollections : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SearchCollections() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_SearchCollections() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSearchCollections(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(8, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InsertOneCollection : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InsertOneCollection() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_InsertOneCollection() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InsertOneCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInsertOneCollection(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UpdateCollection : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UpdateCollection() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_UpdateCollection() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateCollection(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1609,44 +1769,6 @@ class StacService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_SearchCollections : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_SearchCollections() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const::grpc::ByteBuffer* request) { return this->SearchCollections(context, request); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_SearchCollections() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* SearchCollections(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* SearchCollections(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_InsertItems : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -1657,7 +1779,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(2,
+        MarkMethodRawCallback(1,
           new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1695,7 +1817,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(3,
+        MarkMethodRawCallback(2,
           new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1733,7 +1855,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(4,
+        MarkMethodRawCallback(3,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1771,7 +1893,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(5,
+        MarkMethodRawCallback(4,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1809,7 +1931,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(6,
+        MarkMethodRawCallback(5,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1847,7 +1969,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(7,
+        MarkMethodRawCallback(6,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1875,44 +1997,6 @@ class StacService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_InsertOneCollection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_InsertOneCollection() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(8,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InsertOneCollection(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_InsertOneCollection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status InsertOneCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* InsertOneCollection(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* InsertOneCollection(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_UpdateOneItem : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -1923,7 +2007,7 @@ class StacService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(9,
+        MarkMethodRawCallback(7,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1951,12 +2035,126 @@ class StacService final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_SearchCollections : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_SearchCollections() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->SearchCollections(context, request); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_SearchCollections() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SearchCollections(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::CollectionRequest* /*request*/, ::grpc::ServerWriter< ::epl::protobuf::v1::Collection>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* SearchCollections(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* SearchCollections(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InsertOneCollection : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InsertOneCollection() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InsertOneCollection(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InsertOneCollection() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InsertOneCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InsertOneCollection(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InsertOneCollection(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_UpdateCollection : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_UpdateCollection() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateCollection(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_UpdateCollection() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* UpdateCollection(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* UpdateCollection(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_CountItems : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CountItems() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_CountItems<BaseClass>::StreamedCountItems, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_CountItems() override {
@@ -1976,7 +2174,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteOneItem() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_DeleteOneItem<BaseClass>::StreamedDeleteOneItem, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteOneItem() override {
@@ -1996,7 +2194,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SearchOneItem() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacRequest, ::epl::protobuf::v1::StacItem>(std::bind(&WithStreamedUnaryMethod_SearchOneItem<BaseClass>::StreamedSearchOneItem, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_SearchOneItem() override {
@@ -2016,7 +2214,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_InsertOneItem() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_InsertOneItem<BaseClass>::StreamedInsertOneItem, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_InsertOneItem() override {
@@ -2031,12 +2229,32 @@ class StacService final {
     virtual ::grpc::Status StreamedInsertOneItem(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::epl::protobuf::v1::StacItem,::epl::protobuf::v1::StacDbResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateOneItem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateOneItem() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_UpdateOneItem<BaseClass>::StreamedUpdateOneItem, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_UpdateOneItem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UpdateOneItem(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdateOneItem(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::epl::protobuf::v1::StacItem,::epl::protobuf::v1::StacDbResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_InsertOneCollection : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_InsertOneCollection() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_InsertOneCollection<BaseClass>::StreamedInsertOneCollection, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_InsertOneCollection() override {
@@ -2051,26 +2269,26 @@ class StacService final {
     virtual ::grpc::Status StreamedInsertOneCollection(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::epl::protobuf::v1::Collection,::epl::protobuf::v1::StacDbResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_UpdateOneItem : public BaseClass {
+  class WithStreamedUnaryMethod_UpdateCollection : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_UpdateOneItem() {
-      ::grpc::Service::MarkMethodStreamed(9,
-        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::StacItem, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_UpdateOneItem<BaseClass>::StreamedUpdateOneItem, this, std::placeholders::_1, std::placeholders::_2)));
+    WithStreamedUnaryMethod_UpdateCollection() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler< ::epl::protobuf::v1::Collection, ::epl::protobuf::v1::StacDbResponse>(std::bind(&WithStreamedUnaryMethod_UpdateCollection<BaseClass>::StreamedUpdateCollection, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_UpdateOneItem() override {
+    ~WithStreamedUnaryMethod_UpdateCollection() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status UpdateOneItem(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::StacItem* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
+    ::grpc::Status UpdateCollection(::grpc::ServerContext* /*context*/, const ::epl::protobuf::v1::Collection* /*request*/, ::epl::protobuf::v1::StacDbResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdateOneItem(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::epl::protobuf::v1::StacItem,::epl::protobuf::v1::StacDbResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUpdateCollection(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::epl::protobuf::v1::Collection,::epl::protobuf::v1::StacDbResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_CountItems<WithStreamedUnaryMethod_DeleteOneItem<WithStreamedUnaryMethod_SearchOneItem<WithStreamedUnaryMethod_InsertOneItem<WithStreamedUnaryMethod_InsertOneCollection<WithStreamedUnaryMethod_UpdateOneItem<Service > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_CountItems<WithStreamedUnaryMethod_DeleteOneItem<WithStreamedUnaryMethod_SearchOneItem<WithStreamedUnaryMethod_InsertOneItem<WithStreamedUnaryMethod_UpdateOneItem<WithStreamedUnaryMethod_InsertOneCollection<WithStreamedUnaryMethod_UpdateCollection<Service > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_SearchItems : public BaseClass {
    private:
@@ -2097,7 +2315,7 @@ class StacService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithSplitStreamingMethod_SearchCollections() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::SplitServerStreamingHandler< ::epl::protobuf::v1::CollectionRequest, ::epl::protobuf::v1::Collection>(std::bind(&WithSplitStreamingMethod_SearchCollections<BaseClass>::StreamedSearchCollections, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithSplitStreamingMethod_SearchCollections() override {
@@ -2112,7 +2330,7 @@ class StacService final {
     virtual ::grpc::Status StreamedSearchCollections(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::epl::protobuf::v1::CollectionRequest,::epl::protobuf::v1::Collection>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_SearchItems<WithSplitStreamingMethod_SearchCollections<Service > > SplitStreamedService;
-  typedef WithSplitStreamingMethod_SearchItems<WithSplitStreamingMethod_SearchCollections<WithStreamedUnaryMethod_CountItems<WithStreamedUnaryMethod_DeleteOneItem<WithStreamedUnaryMethod_SearchOneItem<WithStreamedUnaryMethod_InsertOneItem<WithStreamedUnaryMethod_InsertOneCollection<WithStreamedUnaryMethod_UpdateOneItem<Service > > > > > > > > StreamedService;
+  typedef WithSplitStreamingMethod_SearchItems<WithStreamedUnaryMethod_CountItems<WithStreamedUnaryMethod_DeleteOneItem<WithStreamedUnaryMethod_SearchOneItem<WithStreamedUnaryMethod_InsertOneItem<WithStreamedUnaryMethod_UpdateOneItem<WithSplitStreamingMethod_SearchCollections<WithStreamedUnaryMethod_InsertOneCollection<WithStreamedUnaryMethod_UpdateCollection<Service > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

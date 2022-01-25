@@ -147,8 +147,8 @@ message Collection {
     // A map of property summaries, either a set of values or statistics such as a range.
     map<string, Stats> summaries = 10;
 
-    // REQUIRED. A list of references to other documents.
-    reserved 11;
+    // Flag denoting that this collection is static (i.e. it's footprint will not change).
+    bool is_static = 11;
 }
 
 message CollectionRequest {
@@ -169,6 +169,8 @@ message Extent {
     repeated epl.protobuf.v1.EnvelopeData spatial = 1;
     // REQUIRED. Potential temporal extent covered by the collection.
     repeated Interval temporal = 2;
+    // REQUIRED. Current footprint.
+    epl.protobuf.v1.GeometryData footprint = 3;
 }
 
 // https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#temporal-extent-object

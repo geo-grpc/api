@@ -553,6 +553,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fstac_2ep
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Collection, providers_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Collection, extent_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Collection, summaries_),
+  PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Collection, is_static_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::CollectionRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -574,6 +575,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fstac_2ep
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Extent, spatial_),
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Extent, temporal_),
+  PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Extent, footprint_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::epl::protobuf::v1::Interval, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -798,28 +800,28 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_epl_2fprotobuf_2fv1_2fstac_2ep
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 7, sizeof(::epl::protobuf::v1::Collection_SummariesEntry_DoNotUse)},
   { 9, -1, sizeof(::epl::protobuf::v1::Collection)},
-  { 23, -1, sizeof(::epl::protobuf::v1::CollectionRequest)},
-  { 32, -1, sizeof(::epl::protobuf::v1::Stats)},
-  { 37, -1, sizeof(::epl::protobuf::v1::Extent)},
-  { 44, -1, sizeof(::epl::protobuf::v1::Interval)},
-  { 51, -1, sizeof(::epl::protobuf::v1::Provider)},
-  { 60, 67, sizeof(::epl::protobuf::v1::StacItem_AssetsEntry_DoNotUse)},
-  { 69, -1, sizeof(::epl::protobuf::v1::StacItem)},
-  { 108, -1, sizeof(::epl::protobuf::v1::StacRequest)},
-  { 139, -1, sizeof(::epl::protobuf::v1::View)},
-  { 149, -1, sizeof(::epl::protobuf::v1::ViewRequest)},
-  { 159, -1, sizeof(::epl::protobuf::v1::Sat)},
-  { 166, -1, sizeof(::epl::protobuf::v1::SatRequest)},
-  { 173, -1, sizeof(::epl::protobuf::v1::Eo)},
-  { 180, -1, sizeof(::epl::protobuf::v1::EoRequest)},
-  { 187, -1, sizeof(::epl::protobuf::v1::Asset)},
-  { 202, -1, sizeof(::epl::protobuf::v1::DatetimeRange)},
-  { 209, -1, sizeof(::epl::protobuf::v1::StacDbResponse)},
-  { 218, -1, sizeof(::epl::protobuf::v1::Sar)},
-  { 224, -1, sizeof(::epl::protobuf::v1::Landsat)},
-  { 236, -1, sizeof(::epl::protobuf::v1::LandsatRequest)},
-  { 247, -1, sizeof(::epl::protobuf::v1::Mosaic)},
-  { 257, -1, sizeof(::epl::protobuf::v1::MosaicRequest)},
+  { 24, -1, sizeof(::epl::protobuf::v1::CollectionRequest)},
+  { 33, -1, sizeof(::epl::protobuf::v1::Stats)},
+  { 38, -1, sizeof(::epl::protobuf::v1::Extent)},
+  { 46, -1, sizeof(::epl::protobuf::v1::Interval)},
+  { 53, -1, sizeof(::epl::protobuf::v1::Provider)},
+  { 62, 69, sizeof(::epl::protobuf::v1::StacItem_AssetsEntry_DoNotUse)},
+  { 71, -1, sizeof(::epl::protobuf::v1::StacItem)},
+  { 110, -1, sizeof(::epl::protobuf::v1::StacRequest)},
+  { 141, -1, sizeof(::epl::protobuf::v1::View)},
+  { 151, -1, sizeof(::epl::protobuf::v1::ViewRequest)},
+  { 161, -1, sizeof(::epl::protobuf::v1::Sat)},
+  { 168, -1, sizeof(::epl::protobuf::v1::SatRequest)},
+  { 175, -1, sizeof(::epl::protobuf::v1::Eo)},
+  { 182, -1, sizeof(::epl::protobuf::v1::EoRequest)},
+  { 189, -1, sizeof(::epl::protobuf::v1::Asset)},
+  { 204, -1, sizeof(::epl::protobuf::v1::DatetimeRange)},
+  { 211, -1, sizeof(::epl::protobuf::v1::StacDbResponse)},
+  { 220, -1, sizeof(::epl::protobuf::v1::Sar)},
+  { 226, -1, sizeof(::epl::protobuf::v1::Landsat)},
+  { 238, -1, sizeof(::epl::protobuf::v1::LandsatRequest)},
+  { 249, -1, sizeof(::epl::protobuf::v1::Mosaic)},
+  { 259, -1, sizeof(::epl::protobuf::v1::MosaicRequest)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -854,180 +856,181 @@ const char descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_2eproto[] PROTOB
   "uf.v1\032\037google/protobuf/timestamp.proto\032\036"
   "google/protobuf/wrappers.proto\032\031google/p"
   "rotobuf/any.proto\032\036epl/protobuf/v1/geome"
-  "try.proto\032\033epl/protobuf/v1/query.proto\"\341"
+  "try.proto\032\033epl/protobuf/v1/query.proto\"\356"
   "\002\n\nCollection\022\024\n\014stac_version\030\001 \001(\t\022\n\n\002i"
   "d\030\003 \001(\t\022\r\n\005title\030\004 \001(\t\022\023\n\013description\030\005 "
   "\001(\t\022\020\n\010keywords\030\006 \003(\t\022\017\n\007license\030\007 \001(\t\022,"
   "\n\tproviders\030\010 \003(\0132\031.epl.protobuf.v1.Prov"
   "ider\022\'\n\006extent\030\t \001(\0132\027.epl.protobuf.v1.E"
   "xtent\022=\n\tsummaries\030\n \003(\0132*.epl.protobuf."
-  "v1.Collection.SummariesEntry\032H\n\016Summarie"
-  "sEntry\022\013\n\003key\030\001 \001(\t\022%\n\005value\030\002 \001(\0132\026.epl"
-  ".protobuf.v1.Stats:\0028\001J\004\010\002\020\003J\004\010\013\020\014\"\216\001\n\021C"
-  "ollectionRequest\022\n\n\002id\030\001 \001(\t\022-\n\004bbox\030\002 \001"
-  "(\0132\035.epl.protobuf.v1.EnvelopeDataH\000\0223\n\ni"
-  "ntersects\030\003 \001(\0132\035.epl.protobuf.v1.Geomet"
-  "ryDataH\000B\t\n\007spatial\"\007\n\005Stats\"e\n\006Extent\022."
-  "\n\007spatial\030\001 \003(\0132\035.epl.protobuf.v1.Envelo"
-  "peData\022+\n\010temporal\030\002 \003(\0132\031.epl.protobuf."
-  "v1.Interval\"^\n\010Interval\022)\n\005start\030\001 \001(\0132\032"
-  ".google.protobuf.Timestamp\022\'\n\003end\030\002 \001(\0132"
-  "\032.google.protobuf.Timestamp\"I\n\010Provider\022"
-  "\014\n\004name\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022\r\n\005ro"
-  "les\030\003 \003(\t\022\013\n\003url\030\004 \001(\t\"\317\n\n\010StacItem\022\n\n\002i"
-  "d\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\022\n\ncollection\030\003 \001"
-  "(\t\022(\n\nproperties\030\004 \001(\0132\024.google.protobuf"
-  ".Any\0225\n\006assets\030\005 \003(\0132%.epl.protobuf.v1.S"
-  "tacItem.AssetsEntry\022/\n\010geometry\030\006 \001(\0132\035."
-  "epl.protobuf.v1.GeometryData\022+\n\004bbox\030\007 \001"
-  "(\0132\035.epl.protobuf.v1.EnvelopeData\022.\n\010dat"
-  "etime\030\010 \001(\0132\032.google.protobuf.TimestampH"
-  "\000\0224\n\016start_datetime\030\n \001(\0132\032.google.proto"
-  "buf.TimestampH\000\022.\n\010observed\030\t \001(\0132\032.goog"
-  "le.protobuf.TimestampH\001\0227\n\021start_observa"
-  "tion\030\013 \001(\0132\032.google.protobuf.TimestampH\001"
-  "\0220\n\014end_datetime\030\014 \001(\0132\032.google.protobuf"
-  ".Timestamp\0223\n\017end_observation\030\r \001(\0132\032.go"
-  "ogle.protobuf.Timestamp\022+\n\007created\030\016 \001(\013"
-  "2\032.google.protobuf.Timestamp\022+\n\007updated\030"
-  "\017 \001(\0132\032.google.protobuf.Timestamp\022-\n\004pro"
-  "j\030\020 \001(\0132\037.epl.protobuf.v1.ProjectionData"
-  "\0220\n\rplatform_enum\030\021 \001(\0162\031.epl.protobuf.v"
-  "1.Platform\022\020\n\010platform\030\022 \001(\t\0224\n\017instrume"
-  "nt_enum\030\023 \001(\0162\033.epl.protobuf.v1.Instrume"
-  "nt\022\022\n\ninstrument\030\024 \001(\t\022:\n\022constellation_"
-  "enum\030\025 \001(\0162\036.epl.protobuf.v1.Constellati"
-  "on\022\025\n\rconstellation\030\026 \001(\t\022.\n\014mission_enu"
-  "m\030\027 \001(\0162\030.epl.protobuf.v1.Mission\022\017\n\007mis"
-  "sion\030\030 \001(\t\022(\n\003gsd\030\031 \001(\0132\033.google.protobu"
-  "f.FloatValue\022\024\n\014stac_version\030\032 \001(\t\022\027\n\017st"
-  "ac_pb_version\030\033 \001(\t\022\027\n\017stac_extensions\030\034"
-  " \003(\t\022\037\n\002eo\030\035 \001(\0132\023.epl.protobuf.v1.Eo\022#\n"
-  "\004view\030\" \001(\0132\025.epl.protobuf.v1.View\022)\n\007la"
-  "ndsat\030\037 \001(\0132\030.epl.protobuf.v1.Landsat\022\'\n"
-  "\006mosaic\030  \001(\0132\027.epl.protobuf.v1.Mosaic\032E"
-  "\n\013AssetsEntry\022\013\n\003key\030\001 \001(\t\022%\n\005value\030\002 \001("
-  "\0132\026.epl.protobuf.v1.Asset:\0028\001B\025\n\023tempora"
-  "l_deprecatedB\n\n\010temporal\"\300\010\n\013StacRequest"
-  "\022\r\n\005limit\030\001 \001(\r\022\016\n\006offset\030\002 \001(\004\022\014\n\002id\030\003 "
-  "\001(\tH\000\0223\n\nid_complex\030\004 \001(\0132\035.epl.protobuf"
-  ".v1.StringFilterH\000\022\022\n\ncollection\030\005 \001(\t\022("
-  "\n\nproperties\030\006 \001(\0132\024.google.protobuf.Any"
-  "\0223\n\nintersects\030\007 \001(\0132\035.epl.protobuf.v1.G"
-  "eometryDataH\001\022-\n\004bbox\030\010 \001(\0132\035.epl.protob"
-  "uf.v1.EnvelopeDataH\001\022<\n\020geometry_request"
-  "\030\t \001(\0132 .epl.protobuf.v1.GeometryRequest"
-  "H\001\0224\n\010datetime\030\n \001(\0132 .epl.protobuf.v1.T"
-  "imestampFilterH\002\0224\n\010observed\030\013 \001(\0132 .epl"
-  ".protobuf.v1.TimestampFilterH\002\0221\n\007create"
-  "d\030\014 \001(\0132 .epl.protobuf.v1.TimestampFilte"
-  "r\0221\n\007updated\030\r \001(\0132 .epl.protobuf.v1.Tim"
-  "estampFilter\022-\n\004proj\030\016 \001(\0132\037.epl.protobu"
-  "f.v1.ProjectionData\0220\n\rplatform_enum\030\017 \001"
-  "(\0162\031.epl.protobuf.v1.Platform\0224\n\017instrum"
-  "ent_enum\030\021 \001(\0162\033.epl.protobuf.v1.Instrum"
-  "ent\022:\n\022constellation_enum\030\023 \001(\0162\036.epl.pr"
-  "otobuf.v1.Constellation\022.\n\014mission_enum\030"
-  "\025 \001(\0162\030.epl.protobuf.v1.Mission\022)\n\003gsd\030\027"
-  " \001(\0132\034.epl.protobuf.v1.FloatFilter\022&\n\002eo"
-  "\030\030 \001(\0132\032.epl.protobuf.v1.EoRequest\022*\n\004vi"
-  "ew\030\031 \001(\0132\034.epl.protobuf.v1.ViewRequest\0220"
-  "\n\007landsat\030\032 \001(\0132\037.epl.protobuf.v1.Landsa"
-  "tRequest\022.\n\006mosaic\030\033 \001(\0132\036.epl.protobuf."
-  "v1.MosaicRequestB\n\n\010identityB\t\n\007spatialB"
-  "\n\n\010temporalJ\004\010\020\020\021J\004\010\022\020\023J\004\010\024\020\025J\004\010\026\020\027\"\200\002\n\004"
-  "View\022.\n\toff_nadir\030\001 \001(\0132\033.google.protobu"
-  "f.FloatValue\0224\n\017incidence_angle\030\002 \001(\0132\033."
-  "google.protobuf.FloatValue\022,\n\007azimuth\030\003 "
-  "\001(\0132\033.google.protobuf.FloatValue\0220\n\013sun_"
-  "azimuth\030\004 \001(\0132\033.google.protobuf.FloatVal"
-  "ue\0222\n\rsun_elevation\030\005 \001(\0132\033.google.proto"
-  "buf.FloatValue\"\214\002\n\013ViewRequest\022/\n\toff_na"
-  "dir\030\001 \001(\0132\034.epl.protobuf.v1.FloatFilter\022"
-  "5\n\017incidence_angle\030\002 \001(\0132\034.epl.protobuf."
-  "v1.FloatFilter\022-\n\007azimuth\030\003 \001(\0132\034.epl.pr"
-  "otobuf.v1.FloatFilter\0221\n\013sun_azimuth\030\004 \001"
-  "(\0132\034.epl.protobuf.v1.FloatFilter\0223\n\rsun_"
-  "elevation\030\005 \001(\0132\034.epl.protobuf.v1.FloatF"
-  "ilter\"\333\001\n\003Sat\0224\n\016relative_orbit\030\006 \001(\0132\034."
-  "google.protobuf.UInt32Value\0224\n\013orbit_sta"
-  "te\030\001 \001(\0162\037.epl.protobuf.v1.Sat.OrbitStat"
-  "e\"h\n\nOrbitState\022\026\n\022UKNOWN_ORBIT_STATE\020\000\022"
-  "\023\n\017ASCENDING_ORBIT\020\001\022\024\n\020DESCENDING_ORBIT"
-  "\020\002\022\027\n\023GEOSTATIONARY_ORBIT\020\003\"Z\n\nSatReques"
-  "t\022\026\n\016relative_orbit\030\006 \001(\r\0224\n\013orbit_state"
-  "\030\001 \001(\0162\037.epl.protobuf.v1.Sat.OrbitState\""
-  "\227\002\n\002Eo\0220\n\013cloud_cover\030\001 \001(\0132\033.google.pro"
-  "tobuf.FloatValue\022\'\n\005bands\030\002 \001(\0162\030.epl.pr"
-  "otobuf.v1.Eo.Band\"\265\001\n\004Band\022\020\n\014UNKNOWN_BA"
-  "ND\020\000\022\013\n\007COASTAL\020\002\022\010\n\004BLUE\020\004\022\t\n\005GREEN\020\010\022\007"
-  "\n\003RED\020\020\022\007\n\003RGB\020\034\022\007\n\003NIR\020 \022\t\n\005NIR_2\020!\022\t\n\005"
-  "RGBIR\020<\022\n\n\006SWIR_1\020@\022\013\n\006SWIR_2\020\200\001\022\010\n\003PAN\020"
-  "\200\002\022\013\n\006CIRRUS\020\200\004\022\013\n\006LWIR_1\020\200\010\022\013\n\006LWIR_2\020\200"
-  "\020\"g\n\tEoRequest\0221\n\013cloud_cover\030\001 \001(\0132\034.ep"
-  "l.protobuf.v1.FloatFilter\022\'\n\005bands\030\002 \001(\016"
-  "2\030.epl.protobuf.v1.Eo.Band\"\243\002\n\005Asset\022\014\n\004"
-  "href\030\001 \001(\t\022\014\n\004type\030\002 \001(\t\022*\n\010eo_bands\030\003 \001"
-  "(\0162\030.epl.protobuf.v1.Eo.Band\022.\n\nasset_ty"
-  "pe\030\004 \001(\0162\032.epl.protobuf.v1.AssetType\0226\n\016"
-  "cloud_platform\030\005 \001(\0162\036.epl.protobuf.v1.C"
-  "loudPlatform\022\026\n\016bucket_manager\030\006 \001(\t\022\025\n\r"
-  "bucket_region\030\007 \001(\t\022\016\n\006bucket\030\010 \001(\t\022\023\n\013o"
-  "bject_path\030\t \001(\t\022\026\n\016requester_pays\030\n \001(\010"
-  "\"c\n\rDatetimeRange\022)\n\005start\030\001 \001(\0132\032.googl"
-  "e.protobuf.Timestamp\022\'\n\003end\030\002 \001(\0132\032.goog"
-  "le.protobuf.Timestamp\"U\n\016StacDbResponse\022"
-  "\016\n\006status\030\001 \001(\t\022\023\n\013status_code\030\002 \001(\005\022\017\n\007"
-  "data_id\030\003 \001(\t\022\r\n\005count\030\004 \001(\004\"\234\001\n\003Sar\022/\n\010"
-  "platform\030\001 \001(\0162\035.epl.protobuf.v1.Sar.Pla"
-  "tform\">\n\010Platform\022\024\n\020UNKNOWN_PLATFORM\020\000\022"
-  "\013\n\007ENVISAT\020\001\022\017\n\013SENTINEL_1A\020\002\"$\n\nInstrum"
-  "ent\022\026\n\022UNKNOWN_INSTRUMENT\020\000\"\360\003\n\007Landsat\022"
-  "\020\n\010scene_id\030\001 \001(\t\022\022\n\nproduct_id\030\002 \001(\t\022B\n"
-  "\020processing_level\030\003 \001(\0162(.epl.protobuf.v"
-  "1.Landsat.ProcessingLevel\022\020\n\010wrs_path\030\004 "
-  "\001(\005\022\017\n\007wrs_row\030\005 \001(\005\0225\n\020cloud_cover_land"
-  "\030\006 \001(\0132\033.google.protobuf.FloatValue\0222\n\010w"
-  "rs_type\030\007 \001(\0162 .epl.protobuf.v1.Landsat."
-  "WRSType\"]\n\022CollectionCategory\022\037\n\033UNKNOWN"
-  "_COLLECTION_CATEGORY\020\000\022\006\n\002A1\020\001\022\006\n\002A2\020\002\022\006"
-  "\n\002T1\020\003\022\006\n\002T2\020\004\022\006\n\002RT\020\005\"-\n\007WRSType\022\016\n\nUKN"
-  "OWN_WRS\020\000\022\010\n\004WRS1\020\001\022\010\n\004WRS2\020\002\"_\n\017Process"
-  "ingLevel\022\034\n\030UNKNOWN_PROCESSING_LEVEL\020\000\022\007"
-  "\n\003L1G\020\001\022\010\n\004L1TP\020\002\022\007\n\003L1T\020\003\022\010\n\004L1GT\020\004\022\010\n\004"
-  "L1GS\020\005\"\325\001\n\016LandsatRequest\022\020\n\010scene_id\030\001 "
-  "\001(\t\022\022\n\nproduct_id\030\002 \001(\t\022B\n\020processing_le"
-  "vel\030\003 \001(\0162(.epl.protobuf.v1.Landsat.Proc"
-  "essingLevel\022\020\n\010wrs_path\030\004 \001(\005\022\017\n\007wrs_row"
-  "\030\005 \001(\005\0226\n\020cloud_cover_land\030\006 \001(\0132\034.epl.p"
-  "rotobuf.v1.FloatFilter\"\212\001\n\006Mosaic\022\014\n\004nam"
-  "e\030\001 \001(\t\022\020\n\010quad_key\030\002 \001(\t\022\r\n\005zooms\030\003 \003(\005"
-  "\0229\n\021observation_range\030\004 \001(\0132\036.epl.protob"
-  "uf.v1.DatetimeRange\022\026\n\016provenance_ids\030\005 "
-  "\003(\t\"/\n\rMosaicRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010qu"
-  "ad_key\030\002 \001(\t*\352\001\n\tAssetType\022\021\n\rUNKNOWN_AS"
-  "SET\020\000\022\010\n\004JPEG\020\001\022\013\n\007GEOTIFF\020\002\022\010\n\004LERC\020\003\022\007"
-  "\n\003MRF\020\004\022\013\n\007MRF_IDX\020\005\022\013\n\007MRF_XML\020\006\022\016\n\nCO_"
-  "GEOTIFF\020\007\022\007\n\003RAW\020\010\022\r\n\tTHUMBNAIL\020\t\022\010\n\004TIF"
-  "F\020\n\022\r\n\tJPEG_2000\020\013\022\007\n\003XML\020\014\022\007\n\003TXT\020\r\022\007\n\003"
-  "PNG\020\016\022\014\n\010OVERVIEW\020\017\022\010\n\004JSON\020\020\022\010\n\004HTML\020\021\022"
-  "\010\n\004WEBP\020\022*Q\n\rCloudPlatform\022\032\n\026UNKNOWN_CL"
-  "OUD_PLATFORM\020\000\022\007\n\003AWS\020\001\022\007\n\003GCP\020\002\022\t\n\005AZUR"
-  "E\020\003\022\007\n\003IBM\020\004*\307\001\n\010Platform\022\024\n\020UNKNOWN_PLA"
-  "TFORM\020\000\022\r\n\tLANDSAT_1\020\002\022\r\n\tLANDSAT_2\020\004\022\r\n"
-  "\tLANDSAT_3\020\010\022\017\n\013LANDSAT_123\020\016\022\r\n\tLANDSAT"
-  "_4\020\020\022\r\n\tLANDSAT_5\020 \022\016\n\nLANDSAT_45\0200\022\r\n\tL"
-  "ANDSAT_7\020@\022\016\n\tLANDSAT_8\020\200\001\022\014\n\007SWIFT_2\020\200\002"
-  "\022\014\n\007SWIFT_3\020\200\004*v\n\nInstrument\022\026\n\022UNKNOWN_"
-  "INSTRUMENT\020\000\022\007\n\003OLI\020\002\022\010\n\004TIRS\020\004\022\014\n\010OLI_T"
-  "IRS\020\006\022\t\n\005POM_1\020\010\022\006\n\002TM\020\020\022\007\n\003ETM\020 \022\007\n\003MSS"
-  "\020@\022\n\n\005POM_2\020\200\001**\n\rConstellation\022\031\n\025UNKNO"
-  "WN_CONSTELLATION\020\000*J\n\007Mission\022\023\n\017UNKNOWN"
-  "_MISSION\020\000\022\013\n\007LANDSAT\020\002\022\010\n\004NAIP\020\004\022\010\n\004PNO"
-  "A\020\010\022\t\n\005SWIFT\020\020Bo\n\023com.epl.protobuf.v1B\tS"
-  "tacProtoP\001Z.github.com/geo-grpc/api/gola"
-  "ng/epl/protobuf/v1\242\002\004STPB\252\002\023com.epl.prot"
-  "obuf.v1b\006proto3"
+  "v1.Collection.SummariesEntry\022\021\n\tis_stati"
+  "c\030\013 \001(\010\032H\n\016SummariesEntry\022\013\n\003key\030\001 \001(\t\022%"
+  "\n\005value\030\002 \001(\0132\026.epl.protobuf.v1.Stats:\0028"
+  "\001J\004\010\002\020\003\"\216\001\n\021CollectionRequest\022\n\n\002id\030\001 \001("
+  "\t\022-\n\004bbox\030\002 \001(\0132\035.epl.protobuf.v1.Envelo"
+  "peDataH\000\0223\n\nintersects\030\003 \001(\0132\035.epl.proto"
+  "buf.v1.GeometryDataH\000B\t\n\007spatial\"\007\n\005Stat"
+  "s\"\227\001\n\006Extent\022.\n\007spatial\030\001 \003(\0132\035.epl.prot"
+  "obuf.v1.EnvelopeData\022+\n\010temporal\030\002 \003(\0132\031"
+  ".epl.protobuf.v1.Interval\0220\n\tfootprint\030\003"
+  " \001(\0132\035.epl.protobuf.v1.GeometryData\"^\n\010I"
+  "nterval\022)\n\005start\030\001 \001(\0132\032.google.protobuf"
+  ".Timestamp\022\'\n\003end\030\002 \001(\0132\032.google.protobu"
+  "f.Timestamp\"I\n\010Provider\022\014\n\004name\030\001 \001(\t\022\023\n"
+  "\013description\030\002 \001(\t\022\r\n\005roles\030\003 \003(\t\022\013\n\003url"
+  "\030\004 \001(\t\"\317\n\n\010StacItem\022\n\n\002id\030\001 \001(\t\022\r\n\005title"
+  "\030\002 \001(\t\022\022\n\ncollection\030\003 \001(\t\022(\n\nproperties"
+  "\030\004 \001(\0132\024.google.protobuf.Any\0225\n\006assets\030\005"
+  " \003(\0132%.epl.protobuf.v1.StacItem.AssetsEn"
+  "try\022/\n\010geometry\030\006 \001(\0132\035.epl.protobuf.v1."
+  "GeometryData\022+\n\004bbox\030\007 \001(\0132\035.epl.protobu"
+  "f.v1.EnvelopeData\022.\n\010datetime\030\010 \001(\0132\032.go"
+  "ogle.protobuf.TimestampH\000\0224\n\016start_datet"
+  "ime\030\n \001(\0132\032.google.protobuf.TimestampH\000\022"
+  ".\n\010observed\030\t \001(\0132\032.google.protobuf.Time"
+  "stampH\001\0227\n\021start_observation\030\013 \001(\0132\032.goo"
+  "gle.protobuf.TimestampH\001\0220\n\014end_datetime"
+  "\030\014 \001(\0132\032.google.protobuf.Timestamp\0223\n\017en"
+  "d_observation\030\r \001(\0132\032.google.protobuf.Ti"
+  "mestamp\022+\n\007created\030\016 \001(\0132\032.google.protob"
+  "uf.Timestamp\022+\n\007updated\030\017 \001(\0132\032.google.p"
+  "rotobuf.Timestamp\022-\n\004proj\030\020 \001(\0132\037.epl.pr"
+  "otobuf.v1.ProjectionData\0220\n\rplatform_enu"
+  "m\030\021 \001(\0162\031.epl.protobuf.v1.Platform\022\020\n\010pl"
+  "atform\030\022 \001(\t\0224\n\017instrument_enum\030\023 \001(\0162\033."
+  "epl.protobuf.v1.Instrument\022\022\n\ninstrument"
+  "\030\024 \001(\t\022:\n\022constellation_enum\030\025 \001(\0162\036.epl"
+  ".protobuf.v1.Constellation\022\025\n\rconstellat"
+  "ion\030\026 \001(\t\022.\n\014mission_enum\030\027 \001(\0162\030.epl.pr"
+  "otobuf.v1.Mission\022\017\n\007mission\030\030 \001(\t\022(\n\003gs"
+  "d\030\031 \001(\0132\033.google.protobuf.FloatValue\022\024\n\014"
+  "stac_version\030\032 \001(\t\022\027\n\017stac_pb_version\030\033 "
+  "\001(\t\022\027\n\017stac_extensions\030\034 \003(\t\022\037\n\002eo\030\035 \001(\013"
+  "2\023.epl.protobuf.v1.Eo\022#\n\004view\030\" \001(\0132\025.ep"
+  "l.protobuf.v1.View\022)\n\007landsat\030\037 \001(\0132\030.ep"
+  "l.protobuf.v1.Landsat\022\'\n\006mosaic\030  \001(\0132\027."
+  "epl.protobuf.v1.Mosaic\032E\n\013AssetsEntry\022\013\n"
+  "\003key\030\001 \001(\t\022%\n\005value\030\002 \001(\0132\026.epl.protobuf"
+  ".v1.Asset:\0028\001B\025\n\023temporal_deprecatedB\n\n\010"
+  "temporal\"\300\010\n\013StacRequest\022\r\n\005limit\030\001 \001(\r\022"
+  "\016\n\006offset\030\002 \001(\004\022\014\n\002id\030\003 \001(\tH\000\0223\n\nid_comp"
+  "lex\030\004 \001(\0132\035.epl.protobuf.v1.StringFilter"
+  "H\000\022\022\n\ncollection\030\005 \001(\t\022(\n\nproperties\030\006 \001"
+  "(\0132\024.google.protobuf.Any\0223\n\nintersects\030\007"
+  " \001(\0132\035.epl.protobuf.v1.GeometryDataH\001\022-\n"
+  "\004bbox\030\010 \001(\0132\035.epl.protobuf.v1.EnvelopeDa"
+  "taH\001\022<\n\020geometry_request\030\t \001(\0132 .epl.pro"
+  "tobuf.v1.GeometryRequestH\001\0224\n\010datetime\030\n"
+  " \001(\0132 .epl.protobuf.v1.TimestampFilterH\002"
+  "\0224\n\010observed\030\013 \001(\0132 .epl.protobuf.v1.Tim"
+  "estampFilterH\002\0221\n\007created\030\014 \001(\0132 .epl.pr"
+  "otobuf.v1.TimestampFilter\0221\n\007updated\030\r \001"
+  "(\0132 .epl.protobuf.v1.TimestampFilter\022-\n\004"
+  "proj\030\016 \001(\0132\037.epl.protobuf.v1.ProjectionD"
+  "ata\0220\n\rplatform_enum\030\017 \001(\0162\031.epl.protobu"
+  "f.v1.Platform\0224\n\017instrument_enum\030\021 \001(\0162\033"
+  ".epl.protobuf.v1.Instrument\022:\n\022constella"
+  "tion_enum\030\023 \001(\0162\036.epl.protobuf.v1.Conste"
+  "llation\022.\n\014mission_enum\030\025 \001(\0162\030.epl.prot"
+  "obuf.v1.Mission\022)\n\003gsd\030\027 \001(\0132\034.epl.proto"
+  "buf.v1.FloatFilter\022&\n\002eo\030\030 \001(\0132\032.epl.pro"
+  "tobuf.v1.EoRequest\022*\n\004view\030\031 \001(\0132\034.epl.p"
+  "rotobuf.v1.ViewRequest\0220\n\007landsat\030\032 \001(\0132"
+  "\037.epl.protobuf.v1.LandsatRequest\022.\n\006mosa"
+  "ic\030\033 \001(\0132\036.epl.protobuf.v1.MosaicRequest"
+  "B\n\n\010identityB\t\n\007spatialB\n\n\010temporalJ\004\010\020\020"
+  "\021J\004\010\022\020\023J\004\010\024\020\025J\004\010\026\020\027\"\200\002\n\004View\022.\n\toff_nadi"
+  "r\030\001 \001(\0132\033.google.protobuf.FloatValue\0224\n\017"
+  "incidence_angle\030\002 \001(\0132\033.google.protobuf."
+  "FloatValue\022,\n\007azimuth\030\003 \001(\0132\033.google.pro"
+  "tobuf.FloatValue\0220\n\013sun_azimuth\030\004 \001(\0132\033."
+  "google.protobuf.FloatValue\0222\n\rsun_elevat"
+  "ion\030\005 \001(\0132\033.google.protobuf.FloatValue\"\214"
+  "\002\n\013ViewRequest\022/\n\toff_nadir\030\001 \001(\0132\034.epl."
+  "protobuf.v1.FloatFilter\0225\n\017incidence_ang"
+  "le\030\002 \001(\0132\034.epl.protobuf.v1.FloatFilter\022-"
+  "\n\007azimuth\030\003 \001(\0132\034.epl.protobuf.v1.FloatF"
+  "ilter\0221\n\013sun_azimuth\030\004 \001(\0132\034.epl.protobu"
+  "f.v1.FloatFilter\0223\n\rsun_elevation\030\005 \001(\0132"
+  "\034.epl.protobuf.v1.FloatFilter\"\333\001\n\003Sat\0224\n"
+  "\016relative_orbit\030\006 \001(\0132\034.google.protobuf."
+  "UInt32Value\0224\n\013orbit_state\030\001 \001(\0162\037.epl.p"
+  "rotobuf.v1.Sat.OrbitState\"h\n\nOrbitState\022"
+  "\026\n\022UKNOWN_ORBIT_STATE\020\000\022\023\n\017ASCENDING_ORB"
+  "IT\020\001\022\024\n\020DESCENDING_ORBIT\020\002\022\027\n\023GEOSTATION"
+  "ARY_ORBIT\020\003\"Z\n\nSatRequest\022\026\n\016relative_or"
+  "bit\030\006 \001(\r\0224\n\013orbit_state\030\001 \001(\0162\037.epl.pro"
+  "tobuf.v1.Sat.OrbitState\"\227\002\n\002Eo\0220\n\013cloud_"
+  "cover\030\001 \001(\0132\033.google.protobuf.FloatValue"
+  "\022\'\n\005bands\030\002 \001(\0162\030.epl.protobuf.v1.Eo.Ban"
+  "d\"\265\001\n\004Band\022\020\n\014UNKNOWN_BAND\020\000\022\013\n\007COASTAL\020"
+  "\002\022\010\n\004BLUE\020\004\022\t\n\005GREEN\020\010\022\007\n\003RED\020\020\022\007\n\003RGB\020\034"
+  "\022\007\n\003NIR\020 \022\t\n\005NIR_2\020!\022\t\n\005RGBIR\020<\022\n\n\006SWIR_"
+  "1\020@\022\013\n\006SWIR_2\020\200\001\022\010\n\003PAN\020\200\002\022\013\n\006CIRRUS\020\200\004\022"
+  "\013\n\006LWIR_1\020\200\010\022\013\n\006LWIR_2\020\200\020\"g\n\tEoRequest\0221"
+  "\n\013cloud_cover\030\001 \001(\0132\034.epl.protobuf.v1.Fl"
+  "oatFilter\022\'\n\005bands\030\002 \001(\0162\030.epl.protobuf."
+  "v1.Eo.Band\"\243\002\n\005Asset\022\014\n\004href\030\001 \001(\t\022\014\n\004ty"
+  "pe\030\002 \001(\t\022*\n\010eo_bands\030\003 \001(\0162\030.epl.protobu"
+  "f.v1.Eo.Band\022.\n\nasset_type\030\004 \001(\0162\032.epl.p"
+  "rotobuf.v1.AssetType\0226\n\016cloud_platform\030\005"
+  " \001(\0162\036.epl.protobuf.v1.CloudPlatform\022\026\n\016"
+  "bucket_manager\030\006 \001(\t\022\025\n\rbucket_region\030\007 "
+  "\001(\t\022\016\n\006bucket\030\010 \001(\t\022\023\n\013object_path\030\t \001(\t"
+  "\022\026\n\016requester_pays\030\n \001(\010\"c\n\rDatetimeRang"
+  "e\022)\n\005start\030\001 \001(\0132\032.google.protobuf.Times"
+  "tamp\022\'\n\003end\030\002 \001(\0132\032.google.protobuf.Time"
+  "stamp\"U\n\016StacDbResponse\022\016\n\006status\030\001 \001(\t\022"
+  "\023\n\013status_code\030\002 \001(\005\022\017\n\007data_id\030\003 \001(\t\022\r\n"
+  "\005count\030\004 \001(\004\"\234\001\n\003Sar\022/\n\010platform\030\001 \001(\0162\035"
+  ".epl.protobuf.v1.Sar.Platform\">\n\010Platfor"
+  "m\022\024\n\020UNKNOWN_PLATFORM\020\000\022\013\n\007ENVISAT\020\001\022\017\n\013"
+  "SENTINEL_1A\020\002\"$\n\nInstrument\022\026\n\022UNKNOWN_I"
+  "NSTRUMENT\020\000\"\360\003\n\007Landsat\022\020\n\010scene_id\030\001 \001("
+  "\t\022\022\n\nproduct_id\030\002 \001(\t\022B\n\020processing_leve"
+  "l\030\003 \001(\0162(.epl.protobuf.v1.Landsat.Proces"
+  "singLevel\022\020\n\010wrs_path\030\004 \001(\005\022\017\n\007wrs_row\030\005"
+  " \001(\005\0225\n\020cloud_cover_land\030\006 \001(\0132\033.google."
+  "protobuf.FloatValue\0222\n\010wrs_type\030\007 \001(\0162 ."
+  "epl.protobuf.v1.Landsat.WRSType\"]\n\022Colle"
+  "ctionCategory\022\037\n\033UNKNOWN_COLLECTION_CATE"
+  "GORY\020\000\022\006\n\002A1\020\001\022\006\n\002A2\020\002\022\006\n\002T1\020\003\022\006\n\002T2\020\004\022\006"
+  "\n\002RT\020\005\"-\n\007WRSType\022\016\n\nUKNOWN_WRS\020\000\022\010\n\004WRS"
+  "1\020\001\022\010\n\004WRS2\020\002\"_\n\017ProcessingLevel\022\034\n\030UNKN"
+  "OWN_PROCESSING_LEVEL\020\000\022\007\n\003L1G\020\001\022\010\n\004L1TP\020"
+  "\002\022\007\n\003L1T\020\003\022\010\n\004L1GT\020\004\022\010\n\004L1GS\020\005\"\325\001\n\016Lands"
+  "atRequest\022\020\n\010scene_id\030\001 \001(\t\022\022\n\nproduct_i"
+  "d\030\002 \001(\t\022B\n\020processing_level\030\003 \001(\0162(.epl."
+  "protobuf.v1.Landsat.ProcessingLevel\022\020\n\010w"
+  "rs_path\030\004 \001(\005\022\017\n\007wrs_row\030\005 \001(\005\0226\n\020cloud_"
+  "cover_land\030\006 \001(\0132\034.epl.protobuf.v1.Float"
+  "Filter\"\212\001\n\006Mosaic\022\014\n\004name\030\001 \001(\t\022\020\n\010quad_"
+  "key\030\002 \001(\t\022\r\n\005zooms\030\003 \003(\005\0229\n\021observation_"
+  "range\030\004 \001(\0132\036.epl.protobuf.v1.DatetimeRa"
+  "nge\022\026\n\016provenance_ids\030\005 \003(\t\"/\n\rMosaicReq"
+  "uest\022\014\n\004name\030\001 \001(\t\022\020\n\010quad_key\030\002 \001(\t*\352\001\n"
+  "\tAssetType\022\021\n\rUNKNOWN_ASSET\020\000\022\010\n\004JPEG\020\001\022"
+  "\013\n\007GEOTIFF\020\002\022\010\n\004LERC\020\003\022\007\n\003MRF\020\004\022\013\n\007MRF_I"
+  "DX\020\005\022\013\n\007MRF_XML\020\006\022\016\n\nCO_GEOTIFF\020\007\022\007\n\003RAW"
+  "\020\010\022\r\n\tTHUMBNAIL\020\t\022\010\n\004TIFF\020\n\022\r\n\tJPEG_2000"
+  "\020\013\022\007\n\003XML\020\014\022\007\n\003TXT\020\r\022\007\n\003PNG\020\016\022\014\n\010OVERVIE"
+  "W\020\017\022\010\n\004JSON\020\020\022\010\n\004HTML\020\021\022\010\n\004WEBP\020\022*Q\n\rClo"
+  "udPlatform\022\032\n\026UNKNOWN_CLOUD_PLATFORM\020\000\022\007"
+  "\n\003AWS\020\001\022\007\n\003GCP\020\002\022\t\n\005AZURE\020\003\022\007\n\003IBM\020\004*\307\001\n"
+  "\010Platform\022\024\n\020UNKNOWN_PLATFORM\020\000\022\r\n\tLANDS"
+  "AT_1\020\002\022\r\n\tLANDSAT_2\020\004\022\r\n\tLANDSAT_3\020\010\022\017\n\013"
+  "LANDSAT_123\020\016\022\r\n\tLANDSAT_4\020\020\022\r\n\tLANDSAT_"
+  "5\020 \022\016\n\nLANDSAT_45\0200\022\r\n\tLANDSAT_7\020@\022\016\n\tLA"
+  "NDSAT_8\020\200\001\022\014\n\007SWIFT_2\020\200\002\022\014\n\007SWIFT_3\020\200\004*v"
+  "\n\nInstrument\022\026\n\022UNKNOWN_INSTRUMENT\020\000\022\007\n\003"
+  "OLI\020\002\022\010\n\004TIRS\020\004\022\014\n\010OLI_TIRS\020\006\022\t\n\005POM_1\020\010"
+  "\022\006\n\002TM\020\020\022\007\n\003ETM\020 \022\007\n\003MSS\020@\022\n\n\005POM_2\020\200\001**"
+  "\n\rConstellation\022\031\n\025UNKNOWN_CONSTELLATION"
+  "\020\000*J\n\007Mission\022\023\n\017UNKNOWN_MISSION\020\000\022\013\n\007LA"
+  "NDSAT\020\002\022\010\n\004NAIP\020\004\022\010\n\004PNOA\020\010\022\t\n\005SWIFT\020\020Bo"
+  "\n\023com.epl.protobuf.v1B\tStacProtoP\001Z.gith"
+  "ub.com/geo-grpc/api/golang/epl/protobuf/"
+  "v1\242\002\004STPB\252\002\023com.epl.protobuf.v1b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_deps[5] = {
   &::descriptor_table_epl_2fprotobuf_2fv1_2fgeometry_2eproto,
@@ -1065,7 +1068,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_epl
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_once;
 static bool descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto = {
-  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_2eproto, "epl/protobuf/v1/stac.proto", 7095,
+  &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_initialized, descriptor_table_protodef_epl_2fprotobuf_2fv1_2fstac_2eproto, "epl/protobuf/v1/stac.proto", 7159,
   &descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_once, descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_sccs, descriptor_table_epl_2fprotobuf_2fv1_2fstac_2eproto_deps, 24, 5,
   schemas, file_default_instances, TableStruct_epl_2fprotobuf_2fv1_2fstac_2eproto::offsets,
   file_level_metadata_epl_2fprotobuf_2fv1_2fstac_2eproto, 24, file_level_enum_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto, file_level_service_descriptors_epl_2fprotobuf_2fv1_2fstac_2eproto,
@@ -1464,6 +1467,7 @@ Collection::Collection(const Collection& from)
   } else {
     extent_ = nullptr;
   }
+  is_static_ = from.is_static_;
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Collection)
 }
 
@@ -1474,7 +1478,9 @@ void Collection::SharedCtor() {
   title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   license_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  extent_ = nullptr;
+  ::memset(&extent_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&is_static_) -
+      reinterpret_cast<char*>(&extent_)) + sizeof(is_static_));
 }
 
 Collection::~Collection() {
@@ -1518,6 +1524,7 @@ void Collection::Clear() {
     delete extent_;
   }
   extent_ = nullptr;
+  is_static_ = false;
   _internal_metadata_.Clear();
 }
 
@@ -1616,6 +1623,13 @@ const char* Collection::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<82>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // bool is_static = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 88)) {
+          is_static_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -1761,6 +1775,12 @@ failure:
     }
   }
 
+  // bool is_static = 11;
+  if (this->is_static() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(11, this->_internal_is_static(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1843,6 +1863,11 @@ size_t Collection::ByteSizeLong() const {
         *extent_);
   }
 
+  // bool is_static = 11;
+  if (this->is_static() != 0) {
+    total_size += 1 + 1;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -1900,6 +1925,9 @@ void Collection::MergeFrom(const Collection& from) {
   if (from.has_extent()) {
     _internal_mutable_extent()->::epl::protobuf::v1::Extent::MergeFrom(from._internal_extent());
   }
+  if (from.is_static() != 0) {
+    _internal_set_is_static(from._internal_is_static());
+  }
 }
 
 void Collection::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1937,6 +1965,7 @@ void Collection::InternalSwap(Collection* other) {
   license_.Swap(&other->license_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(extent_, other->extent_);
+  swap(is_static_, other->is_static_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Collection::GetMetadata() const {
@@ -2456,13 +2485,26 @@ void Stats::InternalSwap(Stats* other) {
 // ===================================================================
 
 void Extent::InitAsDefaultInstance() {
+  ::epl::protobuf::v1::_Extent_default_instance_._instance.get_mutable()->footprint_ = const_cast< ::epl::protobuf::v1::GeometryData*>(
+      ::epl::protobuf::v1::GeometryData::internal_default_instance());
 }
 class Extent::_Internal {
  public:
+  static const ::epl::protobuf::v1::GeometryData& footprint(const Extent* msg);
 };
 
+const ::epl::protobuf::v1::GeometryData&
+Extent::_Internal::footprint(const Extent* msg) {
+  return *msg->footprint_;
+}
 void Extent::clear_spatial() {
   spatial_.Clear();
+}
+void Extent::clear_footprint() {
+  if (GetArenaNoVirtual() == nullptr && footprint_ != nullptr) {
+    delete footprint_;
+  }
+  footprint_ = nullptr;
 }
 Extent::Extent()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
@@ -2475,11 +2517,17 @@ Extent::Extent(const Extent& from)
       spatial_(from.spatial_),
       temporal_(from.temporal_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_footprint()) {
+    footprint_ = new ::epl::protobuf::v1::GeometryData(*from.footprint_);
+  } else {
+    footprint_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:epl.protobuf.v1.Extent)
 }
 
 void Extent::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Extent_epl_2fprotobuf_2fv1_2fstac_2eproto.base);
+  footprint_ = nullptr;
 }
 
 Extent::~Extent() {
@@ -2488,6 +2536,7 @@ Extent::~Extent() {
 }
 
 void Extent::SharedDtor() {
+  if (this != internal_default_instance()) delete footprint_;
 }
 
 void Extent::SetCachedSize(int size) const {
@@ -2507,6 +2556,10 @@ void Extent::Clear() {
 
   spatial_.Clear();
   temporal_.Clear();
+  if (GetArenaNoVirtual() == nullptr && footprint_ != nullptr) {
+    delete footprint_;
+  }
+  footprint_ = nullptr;
   _internal_metadata_.Clear();
 }
 
@@ -2539,6 +2592,13 @@ const char* Extent::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // .epl.protobuf.v1.GeometryData footprint = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_footprint(), ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -2583,6 +2643,14 @@ failure:
       InternalWriteMessage(2, this->_internal_temporal(i), target, stream);
   }
 
+  // .epl.protobuf.v1.GeometryData footprint = 3;
+  if (this->has_footprint()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::footprint(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -2611,6 +2679,13 @@ size_t Extent::ByteSizeLong() const {
   for (const auto& msg : this->temporal_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .epl.protobuf.v1.GeometryData footprint = 3;
+  if (this->has_footprint()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *footprint_);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2646,6 +2721,9 @@ void Extent::MergeFrom(const Extent& from) {
 
   spatial_.MergeFrom(from.spatial_);
   temporal_.MergeFrom(from.temporal_);
+  if (from.has_footprint()) {
+    _internal_mutable_footprint()->::epl::protobuf::v1::GeometryData::MergeFrom(from._internal_footprint());
+  }
 }
 
 void Extent::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -2671,6 +2749,7 @@ void Extent::InternalSwap(Extent* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
   spatial_.InternalSwap(&other->spatial_);
   temporal_.InternalSwap(&other->temporal_);
+  swap(footprint_, other->footprint_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Extent::GetMetadata() const {

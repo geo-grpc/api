@@ -38,9 +38,9 @@ namespace com.epl.protobuf.v1 {
 
     static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacRequest> __Marshaller_epl_protobuf_v1_StacRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.StacRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacItem> __Marshaller_epl_protobuf_v1_StacItem = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.StacItem.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacDbResponse> __Marshaller_epl_protobuf_v1_StacDbResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.StacDbResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::com.epl.protobuf.v1.CollectionRequest> __Marshaller_epl_protobuf_v1_CollectionRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.CollectionRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::com.epl.protobuf.v1.Collection> __Marshaller_epl_protobuf_v1_Collection = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.Collection.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::com.epl.protobuf.v1.StacDbResponse> __Marshaller_epl_protobuf_v1_StacDbResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::com.epl.protobuf.v1.StacDbResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::com.epl.protobuf.v1.StacRequest, global::com.epl.protobuf.v1.StacItem> __Method_SearchItems = new grpc::Method<global::com.epl.protobuf.v1.StacRequest, global::com.epl.protobuf.v1.StacItem>(
         grpc::MethodType.ServerStreaming,
@@ -48,13 +48,6 @@ namespace com.epl.protobuf.v1 {
         "SearchItems",
         __Marshaller_epl_protobuf_v1_StacRequest,
         __Marshaller_epl_protobuf_v1_StacItem);
-
-    static readonly grpc::Method<global::com.epl.protobuf.v1.CollectionRequest, global::com.epl.protobuf.v1.Collection> __Method_SearchCollections = new grpc::Method<global::com.epl.protobuf.v1.CollectionRequest, global::com.epl.protobuf.v1.Collection>(
-        grpc::MethodType.ServerStreaming,
-        __ServiceName,
-        "SearchCollections",
-        __Marshaller_epl_protobuf_v1_CollectionRequest,
-        __Marshaller_epl_protobuf_v1_Collection);
 
     static readonly grpc::Method<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse> __Method_InsertItems = new grpc::Method<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse>(
         grpc::MethodType.DuplexStreaming,
@@ -98,6 +91,20 @@ namespace com.epl.protobuf.v1 {
         __Marshaller_epl_protobuf_v1_StacItem,
         __Marshaller_epl_protobuf_v1_StacDbResponse);
 
+    static readonly grpc::Method<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse> __Method_UpdateOneItem = new grpc::Method<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateOneItem",
+        __Marshaller_epl_protobuf_v1_StacItem,
+        __Marshaller_epl_protobuf_v1_StacDbResponse);
+
+    static readonly grpc::Method<global::com.epl.protobuf.v1.CollectionRequest, global::com.epl.protobuf.v1.Collection> __Method_SearchCollections = new grpc::Method<global::com.epl.protobuf.v1.CollectionRequest, global::com.epl.protobuf.v1.Collection>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "SearchCollections",
+        __Marshaller_epl_protobuf_v1_CollectionRequest,
+        __Marshaller_epl_protobuf_v1_Collection);
+
     static readonly grpc::Method<global::com.epl.protobuf.v1.Collection, global::com.epl.protobuf.v1.StacDbResponse> __Method_InsertOneCollection = new grpc::Method<global::com.epl.protobuf.v1.Collection, global::com.epl.protobuf.v1.StacDbResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -105,11 +112,11 @@ namespace com.epl.protobuf.v1 {
         __Marshaller_epl_protobuf_v1_Collection,
         __Marshaller_epl_protobuf_v1_StacDbResponse);
 
-    static readonly grpc::Method<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse> __Method_UpdateOneItem = new grpc::Method<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse>(
+    static readonly grpc::Method<global::com.epl.protobuf.v1.Collection, global::com.epl.protobuf.v1.StacDbResponse> __Method_UpdateCollection = new grpc::Method<global::com.epl.protobuf.v1.Collection, global::com.epl.protobuf.v1.StacDbResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "UpdateOneItem",
-        __Marshaller_epl_protobuf_v1_StacItem,
+        "UpdateCollection",
+        __Marshaller_epl_protobuf_v1_Collection,
         __Marshaller_epl_protobuf_v1_StacDbResponse);
 
     /// <summary>Service descriptor</summary>
@@ -131,11 +138,6 @@ namespace com.epl.protobuf.v1 {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>A task indicating completion of the handler.</returns>
       public virtual global::System.Threading.Tasks.Task SearchItems(global::com.epl.protobuf.v1.StacRequest request, grpc::IServerStreamWriter<global::com.epl.protobuf.v1.StacItem> responseStream, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      public virtual global::System.Threading.Tasks.Task SearchCollections(global::com.epl.protobuf.v1.CollectionRequest request, grpc::IServerStreamWriter<global::com.epl.protobuf.v1.Collection> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -216,7 +218,32 @@ namespace com.epl.protobuf.v1 {
 
       /// <summary>
       ///
-      ///Insert one item into the STAC service
+      ///Update one item in the STAC service
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      public virtual global::System.Threading.Tasks.Task<global::com.epl.protobuf.v1.StacDbResponse> UpdateOneItem(global::com.epl.protobuf.v1.StacItem request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///
+      ///Search existing Collections
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="responseStream">Used for sending responses back to the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>A task indicating completion of the handler.</returns>
+      public virtual global::System.Threading.Tasks.Task SearchCollections(global::com.epl.protobuf.v1.CollectionRequest request, grpc::IServerStreamWriter<global::com.epl.protobuf.v1.Collection> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///
+      ///Create a new Collection
       /// </summary>
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
@@ -228,12 +255,12 @@ namespace com.epl.protobuf.v1 {
 
       /// <summary>
       ///
-      ///Update one item in the STAC service
+      ///Update an existing Collection's metadata and/or footprint
       /// </summary>
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::com.epl.protobuf.v1.StacDbResponse> UpdateOneItem(global::com.epl.protobuf.v1.StacItem request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::com.epl.protobuf.v1.StacDbResponse> UpdateCollection(global::com.epl.protobuf.v1.Collection request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -286,14 +313,6 @@ namespace com.epl.protobuf.v1 {
       public virtual grpc::AsyncServerStreamingCall<global::com.epl.protobuf.v1.StacItem> SearchItems(global::com.epl.protobuf.v1.StacRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncServerStreamingCall(__Method_SearchItems, null, options, request);
-      }
-      public virtual grpc::AsyncServerStreamingCall<global::com.epl.protobuf.v1.Collection> SearchCollections(global::com.epl.protobuf.v1.CollectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return SearchCollections(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncServerStreamingCall<global::com.epl.protobuf.v1.Collection> SearchCollections(global::com.epl.protobuf.v1.CollectionRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncServerStreamingCall(__Method_SearchCollections, null, options, request);
       }
       /// <summary>
       ///
@@ -533,54 +552,6 @@ namespace com.epl.protobuf.v1 {
       }
       /// <summary>
       ///
-      ///Insert one item into the STAC service
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
-      public virtual global::com.epl.protobuf.v1.StacDbResponse InsertOneCollection(global::com.epl.protobuf.v1.Collection request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return InsertOneCollection(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      ///
-      ///Insert one item into the STAC service
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
-      public virtual global::com.epl.protobuf.v1.StacDbResponse InsertOneCollection(global::com.epl.protobuf.v1.Collection request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_InsertOneCollection, null, options, request);
-      }
-      /// <summary>
-      ///
-      ///Insert one item into the STAC service
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::com.epl.protobuf.v1.StacDbResponse> InsertOneCollectionAsync(global::com.epl.protobuf.v1.Collection request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return InsertOneCollectionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      ///
-      ///Insert one item into the STAC service
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::com.epl.protobuf.v1.StacDbResponse> InsertOneCollectionAsync(global::com.epl.protobuf.v1.Collection request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_InsertOneCollection, null, options, request);
-      }
-      /// <summary>
-      ///
       ///Update one item in the STAC service
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
@@ -627,6 +598,126 @@ namespace com.epl.protobuf.v1 {
       {
         return CallInvoker.AsyncUnaryCall(__Method_UpdateOneItem, null, options, request);
       }
+      /// <summary>
+      ///
+      ///Search existing Collections
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncServerStreamingCall<global::com.epl.protobuf.v1.Collection> SearchCollections(global::com.epl.protobuf.v1.CollectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SearchCollections(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///
+      ///Search existing Collections
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncServerStreamingCall<global::com.epl.protobuf.v1.Collection> SearchCollections(global::com.epl.protobuf.v1.CollectionRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_SearchCollections, null, options, request);
+      }
+      /// <summary>
+      ///
+      ///Create a new Collection
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::com.epl.protobuf.v1.StacDbResponse InsertOneCollection(global::com.epl.protobuf.v1.Collection request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return InsertOneCollection(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///
+      ///Create a new Collection
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::com.epl.protobuf.v1.StacDbResponse InsertOneCollection(global::com.epl.protobuf.v1.Collection request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_InsertOneCollection, null, options, request);
+      }
+      /// <summary>
+      ///
+      ///Create a new Collection
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::com.epl.protobuf.v1.StacDbResponse> InsertOneCollectionAsync(global::com.epl.protobuf.v1.Collection request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return InsertOneCollectionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///
+      ///Create a new Collection
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::com.epl.protobuf.v1.StacDbResponse> InsertOneCollectionAsync(global::com.epl.protobuf.v1.Collection request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_InsertOneCollection, null, options, request);
+      }
+      /// <summary>
+      ///
+      ///Update an existing Collection's metadata and/or footprint
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::com.epl.protobuf.v1.StacDbResponse UpdateCollection(global::com.epl.protobuf.v1.Collection request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateCollection(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///
+      ///Update an existing Collection's metadata and/or footprint
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::com.epl.protobuf.v1.StacDbResponse UpdateCollection(global::com.epl.protobuf.v1.Collection request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateCollection, null, options, request);
+      }
+      /// <summary>
+      ///
+      ///Update an existing Collection's metadata and/or footprint
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::com.epl.protobuf.v1.StacDbResponse> UpdateCollectionAsync(global::com.epl.protobuf.v1.Collection request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateCollectionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///
+      ///Update an existing Collection's metadata and/or footprint
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::com.epl.protobuf.v1.StacDbResponse> UpdateCollectionAsync(global::com.epl.protobuf.v1.Collection request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateCollection, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override StacServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -640,15 +731,16 @@ namespace com.epl.protobuf.v1 {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_SearchItems, serviceImpl.SearchItems)
-          .AddMethod(__Method_SearchCollections, serviceImpl.SearchCollections)
           .AddMethod(__Method_InsertItems, serviceImpl.InsertItems)
           .AddMethod(__Method_UpdateItems, serviceImpl.UpdateItems)
           .AddMethod(__Method_CountItems, serviceImpl.CountItems)
           .AddMethod(__Method_DeleteOneItem, serviceImpl.DeleteOneItem)
           .AddMethod(__Method_SearchOneItem, serviceImpl.SearchOneItem)
           .AddMethod(__Method_InsertOneItem, serviceImpl.InsertOneItem)
+          .AddMethod(__Method_UpdateOneItem, serviceImpl.UpdateOneItem)
+          .AddMethod(__Method_SearchCollections, serviceImpl.SearchCollections)
           .AddMethod(__Method_InsertOneCollection, serviceImpl.InsertOneCollection)
-          .AddMethod(__Method_UpdateOneItem, serviceImpl.UpdateOneItem).Build();
+          .AddMethod(__Method_UpdateCollection, serviceImpl.UpdateCollection).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -658,15 +750,16 @@ namespace com.epl.protobuf.v1 {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, StacServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_SearchItems, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::com.epl.protobuf.v1.StacRequest, global::com.epl.protobuf.v1.StacItem>(serviceImpl.SearchItems));
-      serviceBinder.AddMethod(__Method_SearchCollections, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::com.epl.protobuf.v1.CollectionRequest, global::com.epl.protobuf.v1.Collection>(serviceImpl.SearchCollections));
       serviceBinder.AddMethod(__Method_InsertItems, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.InsertItems));
       serviceBinder.AddMethod(__Method_UpdateItems, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.UpdateItems));
       serviceBinder.AddMethod(__Method_CountItems, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::com.epl.protobuf.v1.StacRequest, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.CountItems));
       serviceBinder.AddMethod(__Method_DeleteOneItem, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.DeleteOneItem));
       serviceBinder.AddMethod(__Method_SearchOneItem, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::com.epl.protobuf.v1.StacRequest, global::com.epl.protobuf.v1.StacItem>(serviceImpl.SearchOneItem));
       serviceBinder.AddMethod(__Method_InsertOneItem, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.InsertOneItem));
-      serviceBinder.AddMethod(__Method_InsertOneCollection, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::com.epl.protobuf.v1.Collection, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.InsertOneCollection));
       serviceBinder.AddMethod(__Method_UpdateOneItem, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::com.epl.protobuf.v1.StacItem, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.UpdateOneItem));
+      serviceBinder.AddMethod(__Method_SearchCollections, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::com.epl.protobuf.v1.CollectionRequest, global::com.epl.protobuf.v1.Collection>(serviceImpl.SearchCollections));
+      serviceBinder.AddMethod(__Method_InsertOneCollection, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::com.epl.protobuf.v1.Collection, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.InsertOneCollection));
+      serviceBinder.AddMethod(__Method_UpdateCollection, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::com.epl.protobuf.v1.Collection, global::com.epl.protobuf.v1.StacDbResponse>(serviceImpl.UpdateCollection));
     }
 
   }
